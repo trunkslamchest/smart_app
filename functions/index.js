@@ -32,6 +32,4 @@ exports.test1 = functions
     if(req.headers.origin === url.rootSecured || url.rootUnsecured ) { res.set('Access-Control-Allow-Origin', `${req.headers.origin}`) }
 
     res.status(200).send('test1 successful')
-
-  return parsed
 });

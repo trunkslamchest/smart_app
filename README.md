@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/trunkslamchest/smartapp/tree/0.72"><img align="center" src="https://img.shields.io/badge/Most%20Recent%20Branch-0.72-000000"></a>
+  <a href="https://github.com/trunkslamchest/smartapp/tree/0.72"><img align="center" src="https://img.shields.io/badge/Latest%20Repository-0.72-000000"></a>
 </p>
 
 # Contents
@@ -37,6 +37,7 @@
   - [Internal File Structure](#internal-file-structure)
   - [External Dataset](#external-dataset)
 - [Credits](#credits)
+- [Contact](#contact)
 
 &nbsp;
 
@@ -152,5 +153,12 @@
 &nbsp;
 
 <a href="https://github.com/trunkslamchest/smart_app/blob/master/README.md#contents"><img src="https://img.shields.io/badge/^-Back%20To%20Top-000000"></a>
+
+&nbsp;
+
+# Contact
+  - austin.smith.dev@gmail.com
+  - <a href="https://www.linkedin.com/in/austin-smith-dev/">LinkedIn</a>
+  - <a href="https://medium.com/@trunk9slamchest">Medium</a>
 
 &nbsp;
