@@ -2,7 +2,6 @@ import React from 'react'
 
 import { routes } from '../../utility/paths.js'
 
-
 import GuestHeader from './headers/guestHeader'
 import NormalHeader from './headers/normalHeader'
 
@@ -24,7 +23,6 @@ const Header = (props) => {
       <HeaderButton
         link={ routes.home }
         name='header_home_button'
-        onClick={props.onClickHomeFunctions}
       >
         Home
       </HeaderButton>
@@ -32,7 +30,6 @@ const Header = (props) => {
     header =
       <NormalHeader
         user_name={props.user_name}
-        showLogOutModal={props.showLogOutModal}
         showProfileMenu={props.showProfileMenu}
       />
   }

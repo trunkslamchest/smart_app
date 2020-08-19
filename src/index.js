@@ -15,12 +15,14 @@ import ScrollRestore from './utility/scrollRestore'
 
 import devTestReducer from './store/reducers/devTestReducer'
 import storeReducer from './store/reducers/storeReducer'
+import modalReducer from './store/reducers/modalReducer'
 
 const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   devTest: devTestReducer,
-  store: storeReducer
+  store: storeReducer,
+  modal: modalReducer
 })
 
 const logger = (store) => {

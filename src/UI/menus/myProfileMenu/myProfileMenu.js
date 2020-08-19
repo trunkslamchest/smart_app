@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../../store/actions/actionIndex'
+
 import { routes } from '../../../utility/paths.js'
 
 import DropDownMenu from '../dropDownMenu'
@@ -15,7 +18,7 @@ const MyProfileMenu = (props) => {
 
   const onLogOut = () => {
     props.showProfileMenu()
-    props.showLogOutModal()
+    props.onLogoutModal(true)
   }
 
   return(
@@ -54,4 +57,10 @@ const MyProfileMenu = (props) => {
   )
 }
 
-export default MyProfileMenu
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogoutModal: (bool) => dispatch(actions.logout(bool)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(MyProfileMenu)

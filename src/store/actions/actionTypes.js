@@ -5,3 +5,7 @@ export const SUBTRACT = 'SUBTRACT'
 export const RESET = 'RESET'
 export const SAVE = 'SAVE'
 export const REMOVE = 'REMOVE'
+
+export const LOGINMODAL = 'LOGINMODAL'
+export const LOGOUTMODAL = 'LOGOUTMODAL'
+export const SIGNUPMODAL = 'SIGNUPMODAL'

@@ -10,7 +10,6 @@ const HeaderButton = (props) => {
       exact to={props.link}
       className='default_header_link'
       name={props.name}
-      onClick={props.onClick}
     >
       {props.children}
     </NavLink>

@@ -10,3 +10,9 @@ export {
   save,
   remove
 } from './storeActions'
+
+export {
+  login,
+  logout,
+  signup,
+} from './modalActions'

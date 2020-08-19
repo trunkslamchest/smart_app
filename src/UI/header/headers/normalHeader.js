@@ -50,7 +50,7 @@ export default class NormalHeader extends React.Component {
             >
               My Profile
             </HeaderButton2>
-            {this.state.showProfileMenu ? <MyProfileMenu showLogOutModal={this.props.showLogOutModal} showProfileMenu={this.showProfileMenu} /> : null}
+            {this.state.showProfileMenu ? <MyProfileMenu showProfileMenu={this.showProfileMenu} /> : null}
           </div>
           <div className='header_nav_links_menu_container'>
             <HeaderButton2

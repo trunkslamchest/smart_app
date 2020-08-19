@@ -1,15 +1,18 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/actionIndex'
+
 import { routes } from '../../utility/paths.js'
 
-
-import LogInFormContainer from './logInFormContainer'
+import Modal from '../../UI/modal/modal'
+import LogInForm from './logInForm'
 
 import authFunctions from '../../utility/authFunctions'
 
 import './logIn.css'
 
-export default class LogIn extends React.Component {
+class LogIn extends React.Component {
 
   state = {
     errors: [],
@@ -34,28 +37,46 @@ export default class LogIn extends React.Component {
       else {
         this.props.setToken(res_obj)
         this.props.updateLogin()
-        this.props.showLogInModal()
+        this.props.onLoginModal(false)
         this.props.history.push( routes.dashboard )
       }
     })
   }
 
   onCancel = (event) => {
-    this.props.showLogInModal()
+    this.props.onLoginModal(false)
   }
 
   render(){
     return (
-      <div className='login_wrapper'>
-        <LogInFormContainer
-          errors={this.state.errors}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          onCancel={this.onCancel}
-          user_name={this.state.user_name}
-          password={this.state.password}
-        />
-      </div>
+        <Modal
+          showModal={ this.props.modal.login }
+        >
+        <div className='login_wrapper'>
+          <LogInForm
+            errors={this.state.errors}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            onCancel={this.onCancel}
+            user_name={this.state.user_name}
+            password={this.state.password}
+          />
+        </div>
+      </Modal>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    modal: state.modal
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoginModal: (bool) => dispatch(actions.login(bool)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

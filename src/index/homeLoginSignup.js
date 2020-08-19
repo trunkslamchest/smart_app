@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../store/actions/actionIndex'
+
 import Button3 from '../UI/buttons/button3'
 
 import './homeLoginSignup.css'
@@ -7,11 +10,11 @@ import './homeLoginSignup.css'
 const HomeLoginSignup = (props) => {
 
   const onLogIn = (event) => {
-    props.showLogInModal()
+    props.onLoginModal(true)
   }
 
   const onSignUp = (event) => {
-    props.showSignUpModal()
+    props.onSignupModal(true)
   }
 
   return(
@@ -32,4 +35,11 @@ const HomeLoginSignup = (props) => {
   )
 }
 
-export default HomeLoginSignup
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoginModal: (bool) => dispatch(actions.login(bool)),
+    onSignupModal: (bool) => dispatch(actions.signup(bool))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HomeLoginSignup)

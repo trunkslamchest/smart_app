@@ -2,6 +2,10 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
+import genders from '../../datasets/genders'
+import months from '../../datasets/months'
+import states from '../../datasets/states'
+
 import SignUpFormInput from './signUpFormInput'
 import SignUpFormSelect from './signUpFormSelect'
 import SignUpFormButtonContainer from './signUpFormButtonContainer'
@@ -9,6 +13,14 @@ import SignUpFormButtonContainer from './signUpFormButtonContainer'
 import ErrorContainer from '../../error/errorContainer'
 
 const SignUpForm = (props) => {
+
+  const signUpFormRef = React.createRef()
+
+  const onSubmit = (event) => {
+    if(props.errors.length === 0) signUpFormRef.current.scrollTop = 0
+    props.onSubmit(event)
+  }
+
   return(
     <>
       <div className='alt_header'>
@@ -18,7 +30,7 @@ const SignUpForm = (props) => {
         id='sign_up_form'
         name='sign_up_form'
         className='sign_up_form'
-        ref={props.signUpFormRef}
+        ref={signUpFormRef}
       >
         <div className='sign_up_div'>
           <label>Basics</label>
@@ -77,7 +89,7 @@ const SignUpForm = (props) => {
             id='gender'
             name='gender'
             defaultOption='Select'
-            options={props.genders}
+            options={genders}
             onChange={props.onChange}
             value={props.gender}
           />
@@ -100,7 +112,7 @@ const SignUpForm = (props) => {
             id='birth_month'
             name='birth_month'
             defaultOption='Month'
-            options={props.months}
+            options={months}
             onChange={props.onChange}
             value={props.birth_month}
           />
@@ -152,7 +164,7 @@ const SignUpForm = (props) => {
             id='state'
             name='state'
             defaultOption='State'
-            options={props.states}
+            options={states}
             onChange={props.onChange}
             value={props.state}
           />
@@ -184,7 +196,7 @@ const SignUpForm = (props) => {
         <hr />
       </form>
       <SignUpFormButtonContainer
-        onSubmit={props.onSubmit}
+        onSubmit={onSubmit}
         onReset={props.onReset}
         onCancel={props.onCancel}
       />

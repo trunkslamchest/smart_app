@@ -1,15 +1,19 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/actionIndex'
+
 import { routes } from '../../utility/paths.js'
 
-import SignUpFormContainer from './signUpFormContainer'
+import Modal from '../../UI/modal/modal'
+import SignUpForm from './signUpForm'
 
 import userFunctions from '../../utility/userFunctions'
 import authFunctions from '../../utility/authFunctions'
 
 import './signUp.css'
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
 
   state = {
     errors: [],
@@ -77,7 +81,7 @@ export default class SignUp extends React.Component {
             else {
               this.props.setToken(res_obj)
               this.props.updateLogin()
-              this.props.showSignUpModal()
+              this.props.onSignupModal(false)
               this.props.history.push( routes.dashboard )
             }
           })
@@ -86,10 +90,7 @@ export default class SignUp extends React.Component {
     }
   }
 
-  onReset = (event) => {
-    event.persist()
-    event.preventDefault()
-
+  onReset = () => {
     this.setState({
       errors: [],
       TOSagreement: false,
@@ -110,35 +111,51 @@ export default class SignUp extends React.Component {
     })
   }
 
-  onCancel = (event) => {
-    this.props.showSignUpModal()
-  }
+  onCancel = () => { this.props.onSignupModal(false) }
 
   render(){
     return (
-      <SignUpFormContainer
-        errors={this.state.errors}
-        onChange={this.onChange}
-        onChecked={this.onChecked}
-        onSubmit={this.onSubmit}
-        onCancel={this.onCancel}
-        onReset={this.onReset}
-        user_name={this.state.user_name}
-        password={this.state.password}
-        email={this.state.email}
-        first_name={this.state.first_name}
-        last_name={this.state.last_name}
-        gender={this.state.gender}
-        birth_day={this.state.birth_day}
-        birth_month={this.state.birth_month}
-        birth_year={this.state.birth_year}
-        house_number={this.state.house_number}
-        street_name={this.state.street_name}
-        city_town={this.state.city_town}
-        state={this.state.state}
-        zip_code={this.state.zip_code}
-        TOSagreement={this.state.TOSagreement}
-      />
+      <Modal
+        showModal={ this.props.modal.signup }
+      >
+        <SignUpForm
+          errors={this.state.errors}
+          onChange={this.onChange}
+          onChecked={this.onChecked}
+          onSubmit={this.onSubmit}
+          onCancel={this.onCancel}
+          onReset={this.onReset}
+          user_name={this.state.user_name}
+          password={this.state.password}
+          email={this.state.email}
+          first_name={this.state.first_name}
+          last_name={this.state.last_name}
+          gender={this.state.gender}
+          birth_day={this.state.birth_day}
+          birth_month={this.state.birth_month}
+          birth_year={this.state.birth_year}
+          house_number={this.state.house_number}
+          street_name={this.state.street_name}
+          city_town={this.state.city_town}
+          state={this.state.state}
+          zip_code={this.state.zip_code}
+          TOSagreement={this.state.TOSagreement}
+        />
+      </Modal>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    modal: state.modal
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignupModal: (bool) => dispatch(actions.signup(bool))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

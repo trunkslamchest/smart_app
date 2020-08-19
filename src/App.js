@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from './store/actions/actionIndex'
+
 import { routes } from './utility/paths'
 
 import Header from './UI/header/header'
@@ -16,10 +19,7 @@ import TermsOfService from './docs/termsOfService'
 import Privacy from './docs/privacy'
 import Disclaimer from './docs/disclaimer'
 
-import Modal from './UI/modal/modal'
-
 import DevTest from './devTest/devTest'
-
 import E404 from './error/E404'
 
 import userFunctions from './utility/userFunctions'
@@ -40,7 +40,7 @@ import './App.css'
 import './UI/response.css'
 import './UI/loading.css'
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   state = {
     user: {
@@ -207,78 +207,17 @@ export default class App extends React.Component {
     })
   }
 
-  showLogInModal = () => {
-    let switchModal = !this.state.showLogInModal
-    this.setState({showLogInModal: switchModal})
-  }
-
-  showSignUpModal = () => {
-    let switchModal = !this.state.showSignUpModal
-    this.setState({showSignUpModal: switchModal})
-  }
-
-  showLogOutModal = () => {
-    let switchModal = !this.state.showLogOutModal
-    this.setState({showLogOutModal: switchModal})
-  }
-
   componentWillUnmount(){
-    this.setState({showLogInModal: false})
-    this.setState({showSignUpModal: false})
-    this.setState({showLogOutModal: false})
+    this.props.onLoginModal(false)
+    this.props.onLogoutModal(false)
+    this.props.onSignupModal(false)
   }
 
   render(){
-
-    const logInModal =
-      <Modal
-        showModal={ this.state.showLogInModal }
-      >
-        <LogIn
-          history={this.props.history}
-          onClickTrafficFunctions={this.onClickTrafficFunctions}
-          setToken={this.setToken}
-          showLogInModal={this.showLogInModal}
-          updateLogin={this.updateLogin}
-        />
-      </Modal>
-
-    const signUpModal =
-      <Modal
-        showModal={ this.state.showSignUpModal }
-      >
-        <SignUp
-          history={this.props.history}
-          onClickTrafficFunctions={this.onClickTrafficFunctions}
-          setToken={this.setToken}
-          showSignUpModal={this.showSignUpModal}
-          updateLogin={this.updateLogin}
-        />
-      </Modal>
-
-    const logOutModal =
-      <Modal
-        showModal={ this.state.showLogOutModal }
-      >
-        <LogOut
-          access={this.state.user.access}
-          history={this.props.history}
-          logOut={this.logOut}
-          onClickTrafficFunctions={this.onClickTrafficFunctions}
-          showLogOutModal={this.showLogOutModal}
-          token={this.state.user.token}
-          user_id={this.state.user.id}
-          user_name={this.state.user.user_name}
-        />
-      </Modal>
-
     return (
       <>
         <Header
           logOut={this.logOut}
-          showLogInModal={this.showLogInModal}
-          showSignUpModal={this.showSignUpModal}
-          showLogOutModal={this.showLogOutModal}
           user_access={this.state.user.access}
           user_id={this.state.user.id}
           user_name={this.state.user.user_name}
@@ -286,9 +225,24 @@ export default class App extends React.Component {
         />
 
         <div className='main_container'>
-          {this.state.showLogInModal ? logInModal : null }
-          {this.state.showSignUpModal ? signUpModal : null }
-          {this.state.showLogOutModal ? logOutModal : null }
+          <LogIn
+            history={this.props.history}
+            setToken={this.setToken}
+            updateLogin={this.updateLogin}
+          />
+          <LogOut
+            access={this.state.user.access}
+            history={this.props.history}
+            logOut={this.logOut}
+            token={this.state.user.token}
+            user_id={this.state.user.id}
+            user_name={this.state.user.user_name}
+          />
+          <SignUp
+            history={this.props.history}
+            setToken={this.setToken}
+            updateLogin={this.updateLogin}
+          />
           <Switch>
             <Route exact path={ routes.home }>
               <Home
@@ -310,21 +264,11 @@ export default class App extends React.Component {
                 user={this.state.user}
               />
             </Route>
-            <Route exact path={ routes.tos }>
-              <TermsOfService />
-            </Route>
-            <Route exact path={ routes.privacy }>
-              <Privacy />
-            </Route>
-            <Route exact path={ routes.disclaimer }>
-              <Disclaimer />
-            </Route>
-            <Route path={ routes.devTest }>
-                <DevTest />
-            </Route>
-            <Route>
-              <E404 />
-            </Route>
+            <Route exact path={ routes.tos }> <TermsOfService /> </Route>
+            <Route exact path={ routes.privacy }> <Privacy /> </Route>
+            <Route exact path={ routes.disclaimer }> <Disclaimer /> </Route>
+            <Route path={ routes.devTest }> <DevTest /> </Route>
+            <Route> <E404 /> </Route>
           </Switch>
         </div>
         <Footer/>
@@ -332,3 +276,19 @@ export default class App extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    modal: state.modal
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoginModal: (bool) => dispatch(actions.login(bool)),
+    onLogoutModal: (bool) => dispatch(actions.logout(bool)),
+    onSignupModal: (bool) => dispatch(actions.signup(bool))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

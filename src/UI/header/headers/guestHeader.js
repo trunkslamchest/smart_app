@@ -1,17 +1,20 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../../store/actions/actionIndex'
+
 import HeaderButton2 from '../headerButton2'
 
 import '../headerButton2.css'
 
 const GuestHeader = (props) => {
 
-  const logInButtonFunctions = (event) => {
-    props.showLogInModal()
+  const logInButtonFunctions = () => {
+    props.onLoginModal(true)
   }
 
-  const signUpButtonFunctions = (event) => {
-    props.showSignUpModal()
+  const signUpButtonFunctions = () => {
+    props.onSignupModal(true)
   }
 
   return(
@@ -32,4 +35,11 @@ const GuestHeader = (props) => {
   )
 }
 
-export default GuestHeader
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoginModal: (bool) => dispatch(actions.login(bool)),
+    onSignupModal: (bool) => dispatch(actions.signup(bool))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(GuestHeader)
