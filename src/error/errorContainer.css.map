@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAA;EACd,UAAU,EAAE,GAAG;EACf,MAAM,EAAE,iBAAiB;CAC1B;;AAED,AAAA,WAAW,CAAA;EACT,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "errorContainer.scss"
+    ],
+    "names": [],
+    "file": "errorContainer.css"
+}

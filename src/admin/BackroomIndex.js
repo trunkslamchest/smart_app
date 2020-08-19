@@ -1,10 +1,22 @@
 import React from 'react'
 
-const BackroomIndex = (props) => {
+import DefaultButton from '../UI/buttons/defaultButton'
 
-		return(
-			<h3> Backroom Dashboard </h3>
-		)
+const BackroomIndex = (props) => {
+  return(
+    <>
+      <div className='main_window_header'>
+        <p> Backroom Dashboard </p>
+      </div>
+      <DefaultButton
+        link='/backroom/test_temp'
+        name='test_page_button'
+        onClick={null}
+      >
+        Test Temp
+      </DefaultButton>
+    </>
+  )
 }
 
 export default BackroomIndex

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACT,gBAAgB,EAAE,IAAI;CAcvB;;AAfD,AAGE,UAHQ,CAGR,EAAE,CAAC;EACD,kBAAkB,EAAE,GAAG;EACvB,gBAAgB,EAAE,GAAG;EACrB,mBAAmB,EAAE,GAAG;EACxB,iBAAiB,EAAE,GAAG;EACtB,oBAAoB,EAAE,GAAG;EACzB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,OAAO;EACpB,aAAa,EAAE,OAAO;EACtB,UAAU,EAAE,IAAI;CACjB",
+    "sources": [
+        "test2Menu.scss"
+    ],
+    "names": [],
+    "file": "test2Menu.css"
+}

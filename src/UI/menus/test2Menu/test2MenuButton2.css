@@ -1,0 +1,23 @@
+.test2MenuButton2 {
+  text-align: center;
+  background: #292929;
+  color: #FFF;
+  font: 300 12pt 'Lato', sans-serif;
+  padding: 15px 20px 15px 20px;
+  margin: 0px;
+  text-decoration: none;
+  border: 0px solid #afafaf;
+}
+
+.test2MenuButton2:hover {
+  cursor: pointer;
+  color: #282c34;
+  background: #f4a642;
+  border: 0px solid #afafaf;
+}
+
+.test2MenuButton2:active {
+  background-color: #f5a742;
+  border: 0px solid #afafaf;
+}
+/*# sourceMappingURL=test2MenuButton2.css.map */

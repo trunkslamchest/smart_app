@@ -4,32 +4,51 @@ import { Redirect } from 'react-router-dom'
 
 export default class TestTemp extends React.Component{
 
-	render(){
+  onSubmitFunctions = (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    console.log(formData)
+  }
 
-	const temp_default =
-		<div className="default_wrapper">
-			<div className="loading_container">
-				{/* <div className="loading_header">
-					<h3>Loading</h3>
-				</div> */}
-				<div className="loading_animation_container">
-					<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-				</div>
-			</div>
-		</div>
+  render(){
 
-		return (
-			<>
-				{
-					(() => {
-						switch(localStorage.length === 0 || localStorage.access !== 'admin') {
-							case true: return <Redirect to='/' />
-							case false: return temp_default
-							default: return null;
-						}
-					})()
-				}
-			</>
-		)
-	}
+    const img_upload_form =
+    <>
+      <form id='img_upload_form'
+        onSubmit={this.onSubmitFunctions}
+      >
+        <input type='file'
+          name='img_input_upload'
+          id='img_input_upload'
+          className='img_input_upload'
+          accept='image/*'
+        />
+        <input
+          type='submit'
+          value='Submit'
+        />
+      </form>
+    </>
+
+  const temp_default =
+    <div className='default_wrapper'>
+
+      {img_upload_form}
+
+    </div>
+
+    return (
+      <>
+        {
+          (() => {
+            switch(localStorage.length === 0 || localStorage.access !== 'admin') {
+              case true: return <Redirect to='/' />
+              case false: return temp_default
+              default: return null;
+            }
+          })()
+        }
+      </>
+    )
+  }
 }
