@@ -15,6 +15,9 @@
 
 <p align="center">
   <img align="center" src="https://img.shields.io/badge/Status-Work%20In%20Progress-000000">
+</p>
+
+<p align="center">
   <a href="https://github.com/trunkslamchest/smartapp/tree/0.72"><img align="center" src="https://img.shields.io/badge/Most%20Recent%20Branch-0.72-000000"></a>
 </p>
 
