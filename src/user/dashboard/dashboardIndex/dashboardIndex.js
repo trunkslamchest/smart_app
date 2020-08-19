@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+
+// import { useEffect } from 'react'
 
 const DashboardIndex = (props) => {
-
-  const {onPageLoadFunctions} = props
-
-  useEffect(() => {onPageLoadFunctions('user_dashboard') }, [onPageLoadFunctions])
-
   return(
     <div className='dashboard_index'>
       <div className='alt_header'>

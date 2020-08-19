@@ -17,13 +17,12 @@ import Privacy from './docs/privacy'
 import Disclaimer from './docs/disclaimer'
 
 import Modal from './UI/modal/modal'
-// import Backroom from './admin/Backroom'
+
 import DevTest from './devTest/devTest'
 
 import E404 from './error/E404'
 
 import userFunctions from './utility/userFunctions'
-import trafficFunctions from './utility/trafficFunctions'
 
 import {
 	// NavLink,
@@ -223,23 +222,6 @@ export default class App extends React.Component {
     this.setState({showLogOutModal: switchModal})
   }
 
-  onClickTrafficFunctions = (event, user) => {
-    let elementInfo = {
-      user_id: this.state.user.id || user,
-      interaction: event.target.attributes.interaction.value,
-      element: event.target.name
-    }
-    trafficFunctions('element', 'http://localhost:3001/traffics', elementInfo)
-  }
-
-  onPageLoadFunctions = ( page ) => {
-    let pageInfo = {
-      user_id: localStorage.user_id,
-      page_name: page,
-    }
-    trafficFunctions('page', 'http://localhost:3001/pages', pageInfo)
-  }
-
   componentWillUnmount(){
     this.setState({showLogInModal: false})
     this.setState({showSignUpModal: false})
@@ -294,7 +276,6 @@ export default class App extends React.Component {
       <>
         <Header
           logOut={this.logOut}
-          onClickTrafficFunctions={this.onClickTrafficFunctions}
           showLogInModal={this.showLogInModal}
           showSignUpModal={this.showSignUpModal}
           showLogOutModal={this.showLogOutModal}
@@ -312,8 +293,6 @@ export default class App extends React.Component {
             <Route exact path={ routes.home }>
               <Home
                 history={this.props.history}
-                onPageLoadFunctions={this.onPageLoadFunctions}
-                onClickTrafficFunctions={this.onClickTrafficFunctions}
                 setToken={this.setToken}
                 user_id={this.state.user.id}
                 updateLogin={this.updateLogin}
@@ -326,39 +305,28 @@ export default class App extends React.Component {
               <DashboardContainer
                 history={this.props.history}
                 logOut={this.logOut}
-                onPageLoadFunctions={this.onPageLoadFunctions}
-                onClickTrafficFunctions={this.onClickTrafficFunctions}
                 setToken={this.setToken}
                 setUser={this.setUser}
                 user={this.state.user}
               />
             </Route>
             <Route exact path={ routes.tos }>
-              <TermsOfService
-
-              />
+              <TermsOfService />
             </Route>
             <Route exact path={ routes.privacy }>
-              <Privacy
-
-              />
+              <Privacy />
             </Route>
             <Route exact path={ routes.disclaimer }>
-              <Disclaimer
-
-              />
+              <Disclaimer />
             </Route>
             <Route path={ routes.devTest }>
-                <DevTest
-
-                />
+                <DevTest />
             </Route>
             <Route>
               <E404 />
             </Route>
           </Switch>
         </div>
-
         <Footer/>
       </>
     )

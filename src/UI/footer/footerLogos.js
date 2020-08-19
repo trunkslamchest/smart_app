@@ -18,7 +18,6 @@ const FooterLogos = (props) => {
           image={flatiron_logo}
           alt='The Flatiron School'
           name='footer_flatiron_logo'
-          onClick={props.onClickUpdateTrafficFunctions}
         />
       </FooterLogo>
       <FooterLogo link='https://www.postgresql.org/'>
@@ -26,7 +25,6 @@ const FooterLogos = (props) => {
           image={postgres_logo}
           alt='PostgreSQL'
           name='footer_postgres_logo'
-          onClick={props.onClickUpdateTrafficFunctions}
         />
       </FooterLogo>
       <FooterLogo link='https://rubyonrails.org/'>
@@ -34,7 +32,6 @@ const FooterLogos = (props) => {
           image={rails_logo}
           alt='Ruby On Rails'
           name='footer_rails_logo'
-          onClick={props.onClickUpdateTrafficFunctions}
         />
       </FooterLogo>
       <FooterLogo link='https://reactjs.org/'>
@@ -42,7 +39,6 @@ const FooterLogos = (props) => {
           image={react_logo}
           alt='React'
           name='footer_react_logo'
-          onClick={props.onClickUpdateTrafficFunctions}
         />
       </FooterLogo>
     </div>

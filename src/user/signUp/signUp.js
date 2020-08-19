@@ -76,7 +76,6 @@ export default class SignUp extends React.Component {
               this.props.setToken(res_obj)
               this.props.updateLogin()
               this.props.showSignUpModal()
-              this.props.onClickTrafficFunctions(event)
               this.props.history.push('/dashboard')
             }
           })
@@ -88,8 +87,6 @@ export default class SignUp extends React.Component {
   onReset = (event) => {
     event.persist()
     event.preventDefault()
-
-    this.props.onClickTrafficFunctions(event)
 
     this.setState({
       errors: [],
@@ -112,7 +109,6 @@ export default class SignUp extends React.Component {
   }
 
   onCancel = (event) => {
-    this.props.onClickTrafficFunctions(event)
     this.props.showSignUpModal()
   }
 

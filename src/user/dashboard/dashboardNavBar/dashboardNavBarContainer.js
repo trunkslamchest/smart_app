@@ -13,7 +13,6 @@ const DashboardNavBarContainer = (props) => {
           name='dashboard_user_info_button'
           interaction='click'
           link='/dashboard/profile'
-          onClick={props.onClickTrafficFunctions}
         >
           My Profile
         </DashboardNavBarButton>
@@ -21,7 +20,6 @@ const DashboardNavBarContainer = (props) => {
           name='dashboard_test_button'
           interaction='click'
           link='/dashboard/test'
-          onClick={props.onClickTrafficFunctions}
         >
           Test Page
         </DashboardNavBarButton>

@@ -32,14 +32,12 @@ export default class LogIn extends React.Component {
         this.props.setToken(res_obj)
         this.props.updateLogin()
         this.props.showLogInModal()
-        this.props.onClickTrafficFunctions(event, res_obj.user_id)
         this.props.history.push('/dashboard')
       }
     })
   }
 
   onCancel = (event) => {
-    this.props.onClickTrafficFunctions(event)
     this.props.showLogInModal()
   }
 

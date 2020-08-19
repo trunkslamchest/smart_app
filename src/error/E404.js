@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+
+// import { useEffect } from 'react'
 
 import './E404.css'
 
 const E404 = (props) => {
-
-  const {onPageLoadFunctions} = props
-
-  useEffect(() => {onPageLoadFunctions('error404')}, [onPageLoadFunctions])
-
   return(
     <div className='alt_container'>
       <div className='alt_wrapper'>

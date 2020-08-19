@@ -7,14 +7,12 @@ import './logOut.css'
 const LogOut = (props) => {
 
   const onConfirm = (event) => {
-    props.onClickTrafficFunctions(event)
     props.showLogOutModal()
     props.logOut(props.token)
     props.history.push('/')
   }
 
   const onCancel = (event) => {
-    props.onClickTrafficFunctions(event)
     props.showLogOutModal()
   }
 

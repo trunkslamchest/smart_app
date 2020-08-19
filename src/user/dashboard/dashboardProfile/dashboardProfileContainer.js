@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+
+// import { useEffect } from 'react'
 
 import DashboardProfileButtonContainer from './dashboardProfileButtonContainer'
 
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
-
-  const {onPageLoadFunctions} = props
 
   const formatDate = (date) => {
     const number_ends = [ 'st', 'nd', 'rd', 'th' ]
@@ -26,8 +26,6 @@ const DashboardProfileContainer = (props) => {
       }
     }
   }
-
-  useEffect(() => {onPageLoadFunctions('user_profile') }, [onPageLoadFunctions])
 
   const age = new Date().getFullYear() - props.user.birth_year
 
@@ -56,7 +54,7 @@ const DashboardProfileContainer = (props) => {
           <li>Join Date</li>
           <li>{props.user.join_month} {formatDate(props.user.join_day)}, {props.user.join_year}</li>
         </ul>
-          <DashboardProfileButtonContainer history={props.history} onClickTrafficFunctions={props.onClickTrafficFunctions} />
+          <DashboardProfileButtonContainer history={props.history} />
       </div>
     </div>
   )

@@ -27,22 +27,17 @@ export default class Dashboard extends React.Component{
       <Route exact path='/dashboard'>
         <DashboardIndex
           firstName={this.props.user.first_name}
-          onPageLoadFunctions={this.props.onPageLoadFunctions}
         />
       </Route>
       <Route exact path='/dashboard/profile'>
         <DashboardProfileContainer
           history={this.props.history}
-          onClickTrafficFunctions={this.props.onClickTrafficFunctions}
-          onPageLoadFunctions={this.props.onPageLoadFunctions}
           user={this.props.user}
         />
       </Route>
       <Route path='/dashboard/profile/edit'>
         <DashboardEditProfile
           history={this.props.history}
-          onClickTrafficFunctions={this.props.onClickTrafficFunctions}
-          onPageLoadFunctions={this.props.onPageLoadFunctions}
           setUser={this.props.setUser}
           user={this.props.user}
         />
@@ -52,8 +47,6 @@ export default class Dashboard extends React.Component{
           access={this.props.user.access}
           history={this.props.history}
           logOut={this.props.logOut}
-          onClickTrafficFunctions={this.props.onClickTrafficFunctions}
-          onPageLoadFunctions={this.props.onPageLoadFunctions}
           user_id={this.props.user.id}
           setToken={this.props.setToken}
         />
@@ -72,7 +65,7 @@ export default class Dashboard extends React.Component{
 
     return(
       <div className='dashboard_wrapper'>
-        <DashboardNavBarContainer onClickTrafficFunctions={this.props.onClickTrafficFunctions} />
+        <DashboardNavBarContainer />
         {this.state.loaded ? routes : loading}
       </div>
     )

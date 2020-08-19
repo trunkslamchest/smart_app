@@ -8,12 +8,10 @@ const GuestHeader = (props) => {
 
   const logInButtonFunctions = (event) => {
     props.showLogInModal()
-    props.onClickTrafficFunctions(event)
   }
 
   const signUpButtonFunctions = (event) => {
     props.showSignUpModal()
-    props.onClickTrafficFunctions(event)
   }
 
   return(

@@ -12,20 +12,12 @@ const Modal = (props) => {
         showModal={props.showModal}
       />
       <div className='modal_wrapper'>
-        {/* <div
-              className='modal_wrapper'
-            style={{
-              transform: this.props.showLogInModal ? 'translateY(0)' : 'translateY(-100vh)',
-                opacity: this.props.showLogInModal ? '1': '0'
-              }}
-          > */}
         {props.children}
       </div>
     </>
 
   return(
     <>
-      {/* { modal } */}
       { props.showModal ? modal : null }
     </>
   )

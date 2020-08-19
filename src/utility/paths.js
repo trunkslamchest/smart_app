@@ -8,11 +8,11 @@ export const fetch = {
 export const routes = {
   root: '/',
   home: '/testSub',
-  dashboard: '/dashboard',
-  tos: '/terms_of_service',
-  privacy: '/privacy',
-  disclaimer: '/disclamier',
-  devTest: '/devTest'
+  dashboard: '/testSub/dashboard',
+  tos: '/testSub/terms_of_service',
+  privacy: '/testSub/privacy',
+  disclaimer: '/testSub/disclamier',
+  devTest: '/testSub/devTest'
   // home: '/smartapp',
   // dashboard: '/smartapp/dashboard',
   // tos: '/smartapp/terms_of_service',

@@ -8,13 +8,10 @@ import './dashboardDeleteProfile.css'
 
 export default class DashboardDeleteProfile extends React.Component {
 
-  componentDidMount(){this.props.onPageLoadFunctions('delete_profile')}
-
   onConfirm = (event) => {
     userFunctions('delete', `http://localhost:3001/users/${this.props.user_id}`)
     .then(
       this.props.logOut(),
-      this.props.onClickTrafficFunctions(event),
       this.props.history.push('/')
     )
   }

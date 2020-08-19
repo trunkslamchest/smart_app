@@ -6,8 +6,7 @@ import './dashboardProfileButtonContainer.css'
 
 const DashboardProfileButtonContainer = (props) => {
 
-  const onClickFunctions = (event, url) => {
-    props.onClickTrafficFunctions(event)
+  const onClickFunctions = (url) => {
     props.history.push(url)
   }
 
@@ -18,7 +17,7 @@ const DashboardProfileButtonContainer = (props) => {
         id='delete_profile_button'
         name='edit_profile_button'
         interaction='click'
-        onClick={(event) => onClickFunctions(event, 'profile/edit')}
+        onClick={() => onClickFunctions('profile/edit')}
       >
         Edit Profile
       </DashboardProfileButton>
@@ -27,7 +26,7 @@ const DashboardProfileButtonContainer = (props) => {
         id='delete_profile_button'
         name='delete_profile_button'
         interaction='click'
-        onClick={(event) => onClickFunctions(event, 'profile/delete')}
+        onClick={() => onClickFunctions('profile/delete')}
       >
         Delete Profile
       </DashboardProfileButton>

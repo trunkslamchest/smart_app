@@ -11,7 +11,6 @@ const FooterLink = (props) => {
       className='footer_link'
       activeClassName='footer_link_active'
       target='_blank'
-      onClick={props.onClick}
     >
       {props.children}
     </NavLink>

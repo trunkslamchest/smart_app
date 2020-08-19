@@ -43,8 +43,6 @@ export default class DashboardEditProfile extends React.Component {
         zip_code: this.props.user.zip_code
       })
     }
-
-    this.props.onPageLoadFunctions('edit_profile')
   }
 
   onChange = (event) => {this.setState({ [event.target.name]: event.target.value })}
@@ -73,7 +71,6 @@ export default class DashboardEditProfile extends React.Component {
     .then(res_obj => {
       if (res_obj.errors) this.setState({errors: res_obj.errors})
       else {
-        this.props.onClickTrafficFunctions(event)
         this.props.setUser(res_obj, this.props.user.token)
         this.props.history.push('/dashboard/profile')
       }
@@ -83,8 +80,6 @@ export default class DashboardEditProfile extends React.Component {
   onReset = (event) => {
     event.persist()
     event.preventDefault()
-
-    this.props.onClickTrafficFunctions(event)
 
     this.setState({
       user_name: this.props.user.user_name,
@@ -105,7 +100,6 @@ export default class DashboardEditProfile extends React.Component {
   }
 
   onCancel = (event) => {
-    this.props.onClickTrafficFunctions(event)
     this.props.history.push('/dashboard/profile')
   }
 

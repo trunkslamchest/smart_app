@@ -8,7 +8,6 @@ const FooterLogoImg = (props) => {
       alt={props.alt}
       name={props.name}
       interaction='click'
-      onClick={props.onClick}
     />
   )
 }
