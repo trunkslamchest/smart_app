@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width=75% src="https://github.com/trunkslamchest/smart_app/blob/dev-win64-0.6/src/assets/index_logo_blue3.png">
+  <img width=75% src="https://raw.githubusercontent.com/trunkslamchest/smart_app/master/src/assets/index_logo_blue3.png">
 </p>
 
 <p align="center">
