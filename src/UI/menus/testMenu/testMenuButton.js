@@ -6,7 +6,6 @@ const testButton = (props) => {
     <NavLink
       exact to={props.link}
       name={props.name}
-      interaction='click'
       className='testMenuButton'
       activeClassName='default_active'
       onClick={props.onClick}

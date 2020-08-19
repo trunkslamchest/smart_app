@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../utility/paths.js'
+
 import SignUpFormContainer from './signUpFormContainer'
 
 import userFunctions from '../../utility/userFunctions'
@@ -76,7 +78,7 @@ export default class SignUp extends React.Component {
               this.props.setToken(res_obj)
               this.props.updateLogin()
               this.props.showSignUpModal()
-              this.props.history.push('/dashboard')
+              this.props.history.push( routes.dashboard )
             }
           })
         }

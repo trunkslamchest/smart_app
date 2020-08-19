@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { routes } from '../../utility/paths.js'
+
+
 import LogInFormContainer from './logInFormContainer'
 
 import authFunctions from '../../utility/authFunctions'
@@ -32,7 +35,7 @@ export default class LogIn extends React.Component {
         this.props.setToken(res_obj)
         this.props.updateLogin()
         this.props.showLogInModal()
-        this.props.history.push('/dashboard')
+        this.props.history.push( routes.dashboard )
       }
     })
   }

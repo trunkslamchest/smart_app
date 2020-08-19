@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../../utility/paths.js'
+
 import DropDownMenu from '../dropDownMenu'
 
 import MyProfileMenuButton from './myProfileMenuButton'
@@ -22,21 +24,21 @@ const MyProfileMenu = (props) => {
       showMenu={props.showProfileMenu}
     >
       <MyProfileMenuButton
-        link='/dashboard'
+        link={ routes.dashboard }
         name='My Profile'
         onClick={props.showProfileMenu}
       >
         Dashboard
       </MyProfileMenuButton>
       <MyProfileMenuButton
-        link='/dashboard/profile'
+        link={ routes.dashboard_profile }
         name='View Profile'
         onClick={props.showProfileMenu}
       >
         View Profile
       </MyProfileMenuButton>
       <MyProfileMenuButton
-        link='/dashboard/profile/edit'
+        link={ routes.dashboard_profile_edit }
         name='Edit Profile'
         onClick={props.showProfileMenu}
       >

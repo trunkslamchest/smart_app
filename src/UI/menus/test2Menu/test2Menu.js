@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../../utility/paths.js'
+
 import DropDownMenu from '../dropDownMenu'
 
 import Test2MenuButton from './test2MenuButton'
@@ -17,7 +19,7 @@ const Test2Menu = (props) => {
       showMenu={props.showTest2Menu}
     >
       <Test2MenuButton
-        link='/'
+        link={ routes.home }
         name='Test Menu Item 1'
         onClick={props.showTestMenu}
       >

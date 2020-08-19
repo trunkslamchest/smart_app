@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { routes } from '../../utility/paths.js'
+
+
 import LogOutButtonContainer from './logOutButtonContainer'
 
 import './logOut.css'
@@ -9,7 +12,7 @@ const LogOut = (props) => {
   const onConfirm = (event) => {
     props.showLogOutModal()
     props.logOut(props.token)
-    props.history.push('/')
+    props.history.push( routes.home )
   }
 
   const onCancel = (event) => {

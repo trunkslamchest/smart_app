@@ -6,7 +6,6 @@ const HeaderButton = (props) => {
     <NavLink
       exact to={props.link}
       name={props.name}
-      interaction='click'
       className='myProfileMenuButton'
       activeClassName='default_active'
       onClick={props.onClick}

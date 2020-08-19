@@ -1,16 +1,10 @@
 ;(function(env) {
 
-  var userFunctions = function(method, url, obj){
-    var init = new userFunctions.init(method, url, obj)
-    return init[method]
-  }
+  var userFunctions = function(method, url, obj){ return new userFunctions.init(method, url, obj)[method] }
 
-  userFunctions.init = function(method, url, obj){
-    this[method] = this[method](url, obj)
-  }
+  userFunctions.init = function(method, url, obj){ this[method] = this[method](url, obj) }
 
   userFunctions.prototype = {
-
     get: function(url) {
       return fetch(url)
       .then(res => res.json())
@@ -54,7 +48,6 @@
       })
       .then(res => res.json())
     }
-
   }
 
   userFunctions.init.prototype = userFunctions.prototype

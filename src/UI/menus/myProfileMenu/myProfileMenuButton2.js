@@ -4,7 +4,6 @@ const MyProfileMenuButton2 = (props) => {
   return(
     <button
       name={props.name}
-      interaction='click'
       className='myProfileMenuButton'
       onClick={props.onClick}
     >

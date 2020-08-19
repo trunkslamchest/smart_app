@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../../utility/paths.js'
+
 import DashboardProfileButton from './dashboardProfileButton'
 
 import './dashboardProfileButtonContainer.css'
@@ -16,8 +18,7 @@ const DashboardProfileButtonContainer = (props) => {
         type='button'
         id='delete_profile_button'
         name='edit_profile_button'
-        interaction='click'
-        onClick={() => onClickFunctions('profile/edit')}
+        onClick={() => onClickFunctions( routes.dashboard_profile_edit )}
       >
         Edit Profile
       </DashboardProfileButton>
@@ -25,8 +26,7 @@ const DashboardProfileButtonContainer = (props) => {
         type='button'
         id='delete_profile_button'
         name='delete_profile_button'
-        interaction='click'
-        onClick={() => onClickFunctions('profile/delete')}
+        onClick={() => onClickFunctions( routes.dashboard_profile_delete )}
       >
         Delete Profile
       </DashboardProfileButton>

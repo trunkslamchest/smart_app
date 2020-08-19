@@ -8,7 +8,6 @@ const dashboardProfileButton = (props) => {
       type={props.type}
       id={props.id}
       name={props.name}
-      interaction={props.interaction}
       className='alt_button'
       onClick={props.onClick}
     >

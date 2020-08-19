@@ -21,13 +21,7 @@
       return cookieObj
     },
 
-    getCookie: function(cookie) {
-      for(let cookieKey in this.parsedCookies) {
-        if(cookieKey === cookie) {
-          return `${cookieKey}=${this.parsedCookies[cookieKey]}`
-        }
-      }
-    },
+    getCookie: function(cookie) { for(let cookieKey in this.parsedCookies) { if(cookieKey === cookie) return `${cookieKey}=${this.parsedCookies[cookieKey]}` } },
 
     getCookieName: function(cookie) { return this.getCookie(cookie).split('=')[0] },
 

@@ -9,7 +9,6 @@ const DashboardDeleteProfileButton = (props) => {
       id={props.id}
       name={props.name}
       className={props.className}
-      interaction='click'
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}

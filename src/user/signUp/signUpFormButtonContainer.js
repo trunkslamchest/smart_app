@@ -9,7 +9,6 @@ const SignUpFormButtonContainer = (props) => {
         type='submit'
         id='sign_up_form_submit'
         name='sign_up_form_submit'
-        interaction='submit'
         onClick={props.onSubmit}
         value='Create Account'
       />
@@ -17,7 +16,6 @@ const SignUpFormButtonContainer = (props) => {
         type='reset'
         id='sign_up_form_reset'
         name='sign_up_form_reset'
-        interaction='reset'
         onClick={props.onReset}
         value='Reset'
       />
@@ -25,7 +23,6 @@ const SignUpFormButtonContainer = (props) => {
         type='button'
         id='sign_up_form_cancel'
         name='sign_up_form_cancel'
-        interaction='cancel'
         onClick={props.onCancel}
         value='Cancel'
       />

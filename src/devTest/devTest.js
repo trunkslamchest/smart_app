@@ -24,9 +24,6 @@ class DevTest extends React.Component {
   }
 
   render(){
-
-    // console.log(this.props)
-
     return(
       <div className='default_wrapper'>
         <CounterOutput value={this.props.counter} />

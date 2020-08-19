@@ -9,7 +9,6 @@ const DashboardEditProfileFormButtonContainer = (props) => {
         type='submit'
         id='edit_profile_submit'
         name='edit_profile_submit'
-        interaction='confirm'
         onClick={props.onSubmit}
         value='Update Profile'
       />
@@ -17,7 +16,6 @@ const DashboardEditProfileFormButtonContainer = (props) => {
         type='reset'
         id='edit_profile_reset'
         name='edit_profile_reset'
-        interaction='reset'
         onClick={props.onReset}
         value='Reset'
       />
@@ -25,7 +23,6 @@ const DashboardEditProfileFormButtonContainer = (props) => {
         type='button'
         id='edit_profile_form_cancel'
         name='edit_profile_form_cancel'
-        interaction='cancel'
         onClick={props.onCancel}
         value='Cancel'
       />

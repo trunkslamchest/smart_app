@@ -7,7 +7,6 @@ const LogInFormButton = (props) => {
       id={props.id}
       name={props.name}
       className='alt_button'
-      interaction={props.interaction}
       onClick={props.onClick}
       value={props.value}
     />

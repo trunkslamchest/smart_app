@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../../utility/paths.js'
+
 import DashboardEditProfileFormContainer from './dashboardEditProfileFormContainer'
 
 import userFunctions from '../../../utility/userFunctions'
@@ -72,7 +74,7 @@ export default class DashboardEditProfile extends React.Component {
       if (res_obj.errors) this.setState({errors: res_obj.errors})
       else {
         this.props.setUser(res_obj, this.props.user.token)
-        this.props.history.push('/dashboard/profile')
+        this.props.history.push( routes.dashboard_profile )
       }
     })
   }
@@ -100,7 +102,7 @@ export default class DashboardEditProfile extends React.Component {
   }
 
   onCancel = (event) => {
-    this.props.history.push('/dashboard/profile')
+    this.props.history.push( routes.dashboard_profile )
   }
 
   render(){

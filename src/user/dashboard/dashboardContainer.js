@@ -1,6 +1,9 @@
 import React from 'react'
 
+import { routes } from '../../utility/paths.js'
+
 import { Route, Switch } from 'react-router-dom'
+
 
 import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer'
 import DashboardIndex from './dashboardIndex/dashboardIndex'
@@ -22,27 +25,27 @@ export default class Dashboard extends React.Component{
   componentDidUpdate(){if (this.state.mounted && this.props.user.id && !this.state.loaded){ this.setState({ loaded: true })}}
 
   render(){
-    const routes =
+    const routeBoard =
     <Switch>
-      <Route exact path='/dashboard'>
+      <Route exact path={ routes.dashboard }>
         <DashboardIndex
           firstName={this.props.user.first_name}
         />
       </Route>
-      <Route exact path='/dashboard/profile'>
+      <Route exact path={ routes.dashboard_profile }>
         <DashboardProfileContainer
           history={this.props.history}
           user={this.props.user}
         />
       </Route>
-      <Route path='/dashboard/profile/edit'>
+      <Route path={ routes.dashboard_profile_edit }>
         <DashboardEditProfile
           history={this.props.history}
           setUser={this.props.setUser}
           user={this.props.user}
         />
       </Route>
-      <Route path='/dashboard/profile/delete'>
+      <Route path={ routes.dashboard_profile_delete }>
         <DashboardDeleteProfile
           access={this.props.user.access}
           history={this.props.history}
@@ -51,7 +54,7 @@ export default class Dashboard extends React.Component{
           setToken={this.props.setToken}
         />
       </Route>
-      <Route path='/dashboard/test'>
+      <Route path={ routes.dashboard_test }>
         <DashboardTest />
       </Route>
     </Switch>
@@ -66,7 +69,7 @@ export default class Dashboard extends React.Component{
     return(
       <div className='dashboard_wrapper'>
         <DashboardNavBarContainer />
-        {this.state.loaded ? routes : loading}
+        {this.state.loaded ? routeBoard : loading}
       </div>
     )
   }

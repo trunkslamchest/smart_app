@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { routes } from '../../utility/paths.js'
+
+
 import GuestHeader from './headers/guestHeader'
 import NormalHeader from './headers/normalHeader'
 
@@ -19,7 +22,7 @@ const Header = (props) => {
   if(!!props.user_token) {
     home_link =
       <HeaderButton
-        link='/'
+        link={ routes.home }
         name='header_home_button'
         onClick={props.onClickHomeFunctions}
       >

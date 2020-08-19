@@ -1,16 +1,10 @@
 ;(function(env) {
 
-  var authFunctions = function(method, url, obj){
-    var init = new authFunctions.init(method, url, obj)
-    return init[method]
-  }
+  var authFunctions = function(method, url, obj){ return new authFunctions.init(method, url, obj)[method] }
 
-  authFunctions.init = function(method, url, obj){
-    this[method] = this[method](url, obj)
-  }
+  authFunctions.init = function(method, url, obj){ this[method] = this[method](url, obj) }
 
   authFunctions.prototype = {
-
     logIn: function(url, logInObj) {
       return fetch(url, {
         method: 'POST',
@@ -21,7 +15,6 @@
       })
       .then(res => res.json())
     }
-
   }
 
   authFunctions.init.prototype = authFunctions.prototype

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,cAAc,CAAC;EACX,gBAAgB,EAAE,IAAI;CAczB;;AAfD,AAGE,cAHY,CAGZ,EAAE,CAAC;EACD,kBAAkB,EAAE,GAAG;EACvB,gBAAgB,EAAE,GAAG;EACrB,mBAAmB,EAAE,GAAG;EACxB,iBAAiB,EAAE,GAAG;EACtB,oBAAoB,EAAE,GAAG;EACzB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,OAAO;EACpB,aAAa,EAAE,OAAO;EACtB,UAAU,EAAE,IAAI;CACjB",
-    "sources": [
-        "myProfileMenu.scss"
-    ],
-    "names": [],
-    "file": "myProfileMenu.css"
-}

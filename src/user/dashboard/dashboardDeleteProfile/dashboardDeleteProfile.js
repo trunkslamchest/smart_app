@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../../utility/paths.js'
+
 import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer'
 
 import userFunctions from '../../../utility/userFunctions'
@@ -12,13 +14,13 @@ export default class DashboardDeleteProfile extends React.Component {
     userFunctions('delete', `http://localhost:3001/users/${this.props.user_id}`)
     .then(
       this.props.logOut(),
-      this.props.history.push('/')
+      this.props.history.push( routes.home )
     )
   }
 
   onCancel = (event) => {
     this.props.onClickTrafficFunctions(event)
-    this.props.history.push('/dashboard/profile')
+    this.props.history.push( routes.dashboard_profile )
   }
 
   render(){

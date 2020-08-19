@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../../utility/paths.js'
+
 import DashboardNavBarButton from './dashboardNavBarButton'
 
 import './dashboardNavBar.css'
@@ -11,15 +13,13 @@ const DashboardNavBarContainer = (props) => {
       <ul>
         <DashboardNavBarButton
           name='dashboard_user_info_button'
-          interaction='click'
-          link='/dashboard/profile'
+          link={ routes.dashboard_profile }
         >
           My Profile
         </DashboardNavBarButton>
         <DashboardNavBarButton
           name='dashboard_test_button'
-          interaction='click'
-          link='/dashboard/test'
+          link={ routes.dashboard_test }
         >
           Test Page
         </DashboardNavBarButton>

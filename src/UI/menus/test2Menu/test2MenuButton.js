@@ -7,7 +7,6 @@ const Test2Button = (props) => {
       exact to={props.link}
       name={props.name}
       interaction='click'
-      className='test2MenuButton'
       activeClassName='default_active'
       onClick={props.onClick}
     >
