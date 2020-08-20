@@ -48,9 +48,9 @@ export const signUpUser = (username, email, password) => {
   // 		password: password,
   // 		returnSecureToken: true
   // 	}
-  // 	let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_7qitu7-JaNR20IU7XibHYsV1B3EJP94'
+  // 	let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=NOPE'
   // 	if(!signup){
-  // 		url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_7qitu7-JaNR20IU7XibHYsV1B3EJP94'
+  // 		url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=NOPE'
   // 	}
   // 	axios.post(url, authData)
   // 		.then(response => {

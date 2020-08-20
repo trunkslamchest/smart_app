@@ -1,21 +1,24 @@
+const env = require('dotenv').config()
 const functions = require('firebase-functions')
 const firebase = require("firebase")
 const admin = require('firebase-admin')
 
 const url = {
-  database: 'https://smartapp-b3d27.firebaseio.com',
-  databaseUsers: 'https://smartapp-b3d27-users.firebaseio.com/',
-  databaseQuestions: 'https://smartapp-b3d27-questions.firebaseio.com/',
-  rootSecured: 'https://localhost:3000',
-  rootUnsecured: 'http://localhost:3000',
-  // rootSecured: 'https://trunkslamchest.com',
-  // rootUnsecured: 'http://trunkslamchest.com'
+  database: env.parsed.DEPLOY_DB_ROOT,
+  databaseUsers: env.parsed.DEPLOY_DB_USERS,
+  databaseQuestions: env.parsed.DEPLOY_DB_QUESTIONS,
+  rootSecured: env.parsed.LOCAL_SECURED,
+  rootUnsecured: env.parsed.LOCAL_UNSECURE,
+  // rootSecured: env.parsed.DEPLOY_SECURED,
+  // rootUnsecured: `${env.parsed.DEPLOY_UNSECURED
 }
 
 var firebaseConfig = {
-  databaseURL: url.database
-  // databaseURL: url.databaseUsers
-  // databaseURL: url.databaseQuestions
+  databaseURL: url.databaseQuestions,
+  apiKey: env.parsed.FIREBASE_API_KEY,
+  authDomain: env.parsed.FIREBASE_AUTH_DOMAIN,
+  projectId: env.parsed.FIREBASE_PROJECT_ID,
+  storageBucket: env.parsed.FIREBASE_STORAGE_BUCKET
 }
 
 firebase.initializeApp(firebaseConfig)

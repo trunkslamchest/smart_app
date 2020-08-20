@@ -1,9 +1,9 @@
 export const fetch = {
   get: {
-    users: 'http://localhost:5001/smartapp-b3d27/us-east1/users',
-    // users: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/users',
-    questions: 'http://localhost:5002/smartapp-b3d27/us-east1/questions'
-    // questions: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/questions'
+    users: `${process.env.REACT_APP_LOCAL_GET_USERS}`,
+    // users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`,
+    questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`
+    // questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`
   }
 }
 

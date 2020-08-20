@@ -32,12 +32,10 @@ export const authUser = (email, password, signup) => {
       password: password
     }
 
-  console.log(auth.signIn)
-
-    // authFunctions('logIn', auth.signIn, logInObj)
-    //   .then(res => {
-    //     console.log(res)
-    //   })
+    authFunctions('logIn', auth.signIn, logInObj)
+      .then(res => {
+        console.log(res)
+      })
       // .catch(error => {
       //   // console.log(error.response.data.error.message.split('_').join(' '))
       //   // const parseErrorMessage = error.response.data.error.message.split('_').join(' ')
@@ -49,9 +47,9 @@ export const authUser = (email, password, signup) => {
   // 		password: password,
   // 		returnSecureToken: true
   // 	}
-  // 	let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_7qitu7-JaNR20IU7XibHYsV1B3EJP94'
+  // 	let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=NOPE'
   // 	if(!signup){
-  // 		url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_7qitu7-JaNR20IU7XibHYsV1B3EJP94'
+  // 		url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=NOPE'
   // 	}
   // 	axios.post(url, authData)
   // 		.then(response => {
