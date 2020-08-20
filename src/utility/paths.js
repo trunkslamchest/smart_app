@@ -8,8 +8,8 @@ export const fetch = {
 }
 
 export const auth = {
-  signUp: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBSKeC86vFuphU91Ylbrdf9RMDO8SGam5E',
-  signIn: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBSKeC86vFuphU91Ylbrdf9RMDO8SGam5E'
+  signIn: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_AUTH_KEY}`,
+  signUp: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_AUTH_KEY}`
 }
 
 export const routes = {

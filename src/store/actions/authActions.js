@@ -32,10 +32,12 @@ export const authUser = (email, password, signup) => {
       password: password
     }
 
-    authFunctions('logIn', auth.signIn, logInObj)
-      .then(res => {
-        console.log(res)
-      })
+  console.log(auth.signIn)
+
+    // authFunctions('logIn', auth.signIn, logInObj)
+    //   .then(res => {
+    //     console.log(res)
+    //   })
       // .catch(error => {
       //   // console.log(error.response.data.error.message.split('_').join(' '))
       //   // const parseErrorMessage = error.response.data.error.message.split('_').join(' ')
