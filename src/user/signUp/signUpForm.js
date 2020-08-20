@@ -2,12 +2,12 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import genders from '../../datasets/genders'
-import months from '../../datasets/months'
-import states from '../../datasets/states'
+// import genders from '../../datasets/genders'
+// import months from '../../datasets/months'
+// import states from '../../datasets/states'
 
 import SignUpFormInput from './signUpFormInput'
-import SignUpFormSelect from './signUpFormSelect'
+// import SignUpFormSelect from './signUpFormSelect'
 import SignUpFormButtonContainer from './signUpFormButtonContainer'
 
 import ErrorContainer from '../../error/errorContainer'
@@ -33,7 +33,6 @@ const SignUpForm = (props) => {
         ref={signUpFormRef}
       >
         <div className='sign_up_div'>
-          <label>Basics</label>
           <SignUpFormInput
             type='text'
             id='user_name'
@@ -61,125 +60,6 @@ const SignUpForm = (props) => {
             value={props.email}
           />
           {props.errors.email ? <ErrorContainer errors={props.errors.email} /> : null }
-        </div>
-        <div className='sign_up_div'>
-          <label>Name</label>
-          <SignUpFormInput
-            type='text'
-            id='first_name'
-            name='first_name'
-            placeholder='First Name'
-            onChange={props.onChange}
-            value={props.first_name}
-          />
-          {props.errors.first_name ? <ErrorContainer errors={props.errors.first_name} /> : null }
-          <SignUpFormInput
-            type='text'
-            id='last_name'
-            name='last_name'
-            placeholder='Last Name'
-            onChange={props.onChange}
-            value={props.last_name}
-          />
-          {props.errors.last_name ? <ErrorContainer errors={props.errors.last_name} /> : null }
-        </div>
-        <div className='sign_up_div'>
-          <SignUpFormSelect
-            label='Gender'
-            id='gender'
-            name='gender'
-            defaultOption='Select'
-            options={genders}
-            onChange={props.onChange}
-            value={props.gender}
-          />
-          {props.errors.gender ? <ErrorContainer errors={props.errors.gender} /> : null }
-        </div>
-        <div className='sign_up_div'>
-          <label>Date of Birth</label>
-          <SignUpFormInput
-            type='number'
-            id='birth_day'
-            name='birth_day'
-            placeholder='Day'
-            min='1'
-            max='31'
-            onChange={props.onChange}
-            value={props.birth_day}
-          />
-          {props.errors.birth_day ? <ErrorContainer errors={props.errors.birth_day} /> : null }
-          <SignUpFormSelect
-            id='birth_month'
-            name='birth_month'
-            defaultOption='Month'
-            options={months}
-            onChange={props.onChange}
-            value={props.birth_month}
-          />
-          {props.errors.birth_month ? <ErrorContainer errors={props.errors.birth_month} /> : null }
-          <SignUpFormInput
-            type='number'
-            id='birth_year'
-            name='birth_year'
-            placeholder='Year'
-            min='1900'
-            max='2020'
-            onChange={props.onChange}
-            value={props.birth_year}
-          />
-          {props.errors.birth_year ? <ErrorContainer errors={props.errors.birth_year} /> : null }
-        </div>
-        <div className='sign_up_div'>
-          <label>Address</label>
-          <SignUpFormInput
-            type='number'
-            id='house_number'
-            name='house_number'
-            placeholder='Apt./House Number'
-            min='1'
-            max='9999'
-            onChange={props.onChange}
-            value={props.house_number}
-          />
-          {props.errors.house_number ? <ErrorContainer errors={props.errors.house_number} /> : null }
-          <SignUpFormInput
-            type='text'
-            id='street_name'
-            name='street_name'
-            placeholder='Steet Name'
-            onChange={props.onChange}
-            value={props.street_name}
-          />
-          {props.errors.street_name ? <ErrorContainer errors={props.errors.street_name} /> : null }
-          <SignUpFormInput
-            type='text'
-            id='city_town'
-            name='city_town'
-            placeholder='City/Town'
-            onChange={props.onChange}
-            value={props.city_town}
-          />
-          {props.errors.city_town ? <ErrorContainer errors={props.errors.city_town} /> : null }
-          <SignUpFormSelect
-            id='state'
-            name='state'
-            defaultOption='State'
-            options={states}
-            onChange={props.onChange}
-            value={props.state}
-          />
-          {props.errors.state ? <ErrorContainer errors={props.errors.state} /> : null }
-          <SignUpFormInput
-            type='number'
-            id='zip_code'
-            name='zip_code'
-            placeholder='Zip Code'
-            min='10000'
-            max='99999'
-            onChange={props.onChange}
-            value={props.zip_code}
-          />
-          {props.errors.zip_code ? <ErrorContainer errors={props.errors.zip_code} /> : null }
         </div>
         <hr />
         <div className='tos_agree_div'>

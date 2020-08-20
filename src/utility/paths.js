@@ -1,10 +1,15 @@
 export const fetch = {
   get: {
-    // users: 'http://localhost:5001/smartapp-b3d27/us-east1/users',
-    users: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/users',
-    // questions: 'http://localhost:5002/smartapp-b3d27/us-east1/questions'
-    questions: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/questions'
+    users: 'http://localhost:5001/smartapp-b3d27/us-east1/users',
+    // users: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/users',
+    questions: 'http://localhost:5002/smartapp-b3d27/us-east1/questions'
+    // questions: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/questions'
   }
+}
+
+export const auth = {
+  signUp: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBSKeC86vFuphU91Ylbrdf9RMDO8SGam5E',
+  signIn: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBSKeC86vFuphU91Ylbrdf9RMDO8SGam5E'
 }
 
 export const routes = {

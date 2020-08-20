@@ -15,9 +15,6 @@ const Home = (props) => {
             history={props.history}
             setToken={props.setToken}
             updateLogin={props.updateLogin}
-            showLogInModal={props.showLogInModal}
-            showSignUpModal={props.showSignUpModal}
-            showModal={props.showModal}
           />
         :
           <HomeLoggedIn />

@@ -3,12 +3,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-import { routes } from '../../utility/paths.js'
+// import { routes } from '../../utility/paths.js'
 
 import Modal from '../../UI/modal/modal'
 import LogInForm from './logInForm'
 
-import authFunctions from '../../utility/authFunctions'
+// import userFunctions from '../../utility/userFunctions'
+// import authFunctions from '../../utility/authFunctions'
 
 import './logIn.css'
 
@@ -26,21 +27,21 @@ class LogIn extends React.Component {
     event.preventDefault()
     event.persist()
 
-    let logInObj = {
-      user_name: this.state.user_name,
-      password: this.state.password
-    }
+    // console.log(this.state)
 
-    authFunctions('logIn', 'http://localhost:3001/login', logInObj)
-    .then(res_obj => {
-      if (res_obj.errors) this.setState({ errors: res_obj.errors })
-      else {
-        this.props.setToken(res_obj)
-        this.props.updateLogin()
-        this.props.onLoginModal(false)
-        this.props.history.push( routes.dashboard )
-      }
-    })
+    this.props.onAuth(this.state.user_name, this.state.password)
+
+
+    // authFunctions('logIn', 'http://localhost:3001/login', logInObj)
+    // .then(res_obj => {
+    //   if (res_obj.errors) this.setState({ errors: res_obj.errors })
+    //   else {
+    //     this.props.setToken(res_obj)
+    //     this.props.updateLogin()
+    //     this.props.onLoginModal(false)
+    //     this.props.history.push( routes.dashboard )
+    //   }
+    // })
   }
 
   onCancel = (event) => {
@@ -69,13 +70,15 @@ class LogIn extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal
+    modal: state.modal,
+    auth: state.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(actions.login(bool)),
+    onAuth: (email, password) => dispatch(actions.authUser(email, password)),
   }
 }
 

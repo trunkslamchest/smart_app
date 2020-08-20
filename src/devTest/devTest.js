@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../store/actions/actionIndex'
+// import * as actions from '../store/actions/actionIndex'
 
-import { routes, fetch } from '../utility/paths'
+import { fetch } from '../utility/paths'
 
 import userFunctions from '../utility/userFunctions'
 import questionFunctions from '../utility/questionFunctions'

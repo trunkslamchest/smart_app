@@ -13,8 +13,8 @@ const url = {
 }
 
 var firebaseConfig = {
-  // databaseURL: url.database
-  databaseURL: url.databaseUsers
+  databaseURL: url.database
+  // databaseURL: url.databaseUsers
   // databaseURL: url.databaseQuestions
 }
 
