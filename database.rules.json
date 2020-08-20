@@ -1,14 +1,6 @@
 {
   "rules": {
     ".read": true,
-    ".write": true,
-    "users": {
-   	  ".read": true,
-    	".write": true
-    },
-    "questions": {
-   	  ".read": true,
-    	".write": true
-    }
+    ".write": true
   }
 }

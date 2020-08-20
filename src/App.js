@@ -1,9 +1,13 @@
 import React from 'react'
 
+import { Route, Switch } from 'react-router-dom'
+
 import { connect } from 'react-redux'
 import * as actions from './store/actions/actionIndex'
 
 import { routes } from './utility/paths'
+
+import userFunctions from './utility/userFunctions'
 
 import Header from './UI/header/header'
 import Home from './index/Home'
@@ -21,20 +25,6 @@ import Disclaimer from './docs/disclaimer'
 
 import DevTest from './devTest/devTest'
 import E404 from './error/E404'
-
-import userFunctions from './utility/userFunctions'
-
-import {
-	// NavLink,
-	// Link,
-	// Redirect,
-	Route,
-	Switch,
-	// useRouteMatch,
-	// useParams,
-	// useHistory,
-	// useLocation
-	} from 'react-router-dom'
 
 import './App.css'
 import './UI/response.css'

@@ -1,5 +1,10 @@
 export const fetch = {
-
+  get: {
+    // users: 'http://localhost:5001/smartapp-b3d27/us-east1/users',
+    users: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/users',
+    // questions: 'http://localhost:5002/smartapp-b3d27/us-east1/questions'
+    questions: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/questions'
+  }
 }
 
 export const routes = {
