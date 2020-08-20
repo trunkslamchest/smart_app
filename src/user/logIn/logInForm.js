@@ -3,7 +3,7 @@ import React from 'react'
 import LogInFormInput from './logInFormInput'
 import LogInFormButtonContainer from './logInFormButtonContainer'
 
-import ErrorContainer from '../../error/errorContainer'
+// import ErrorContainer from '../../error/errorContainer'
 
 const LogInForm = (props) => {
   return(
@@ -17,16 +17,14 @@ const LogInForm = (props) => {
         className='log_in_form'
       >
         <div className='log_in_div'>
-          {props.errors.form ? <ErrorContainer errors={props.errors.form} /> : null }
           <LogInFormInput
             type='text'
-            label='User Name'
-            id='user_name'
-            name='user_name'
+            label='Email'
+            id='email'
+            name='email'
             onChange={props.onChange}
-            value={props.user_name}
+            value={props.email}
           />
-          {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null }
           <br />
           <LogInFormInput
             type='password'
@@ -36,7 +34,6 @@ const LogInForm = (props) => {
             onChange={props.onChange}
             value={props.password}
           />
-        {props.errors.password ? <ErrorContainer errors={props.errors.password} /> : null }
         </div>
         <LogInFormButtonContainer
           onSubmit={props.onSubmit}

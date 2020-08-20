@@ -10,7 +10,7 @@ const url = {
   rootSecured: env.parsed.LOCAL_SECURED,
   rootUnsecured: env.parsed.LOCAL_UNSECURE,
   // rootSecured: env.parsed.DEPLOY_SECURED,
-  // rootUnsecured: `${env.parsed.DEPLOY_UNSECURED
+  // rootUnsecured: env.parsed.DEPLOY_UNSECURED
 }
 
 var firebaseConfig = {
@@ -26,12 +26,12 @@ admin.initializeApp()
 
 var setCORSbasic = function(req, res){
   res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) { res.set('Access-Control-Allow-Origin', `${req.headers.origin}`) };
+  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
 }
 
 var setCORSget = function(req, res){
   res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) { res.set('Access-Control-Allow-Origin', `${req.headers.origin}`) };
+  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
 }
 
 exports.test1 = functions

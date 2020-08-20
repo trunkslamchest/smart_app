@@ -17,7 +17,7 @@ class LogIn extends React.Component {
 
   state = {
     errors: [],
-    user_name: '',
+    email: '',
     password: ''
   }
 
@@ -29,7 +29,7 @@ class LogIn extends React.Component {
 
     // console.log(this.state)
 
-    this.props.onAuth(this.state.user_name, this.state.password)
+    this.props.onAuth(this.state.email, this.state.password)
 
 
     // authFunctions('logIn', 'http://localhost:3001/login', logInObj)
@@ -59,7 +59,7 @@ class LogIn extends React.Component {
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             onCancel={this.onCancel}
-            user_name={this.state.user_name}
+            email={this.state.email}
             password={this.state.password}
           />
         </div>
