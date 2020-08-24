@@ -15,7 +15,8 @@ const LogOut = (props) => {
 
   const onConfirm = () => {
     props.onLogoutModal(false)
-    props.logOut(props.token)
+    props.onLogout()
+    // props.logOut(props.token)
     props.history.push( routes.home )
   }
 
@@ -40,13 +41,15 @@ const LogOut = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal
+    modal: state.modal,
+    auth: state.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogoutModal: (bool) => dispatch(actions.logout(bool)),
+    onLogout: (bool) => dispatch(actions.authLogOut())
   }
 }
 

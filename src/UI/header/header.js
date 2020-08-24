@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/actionIndex'
+
 import { routes } from '../../utility/paths.js'
 
 import GuestHeader from './headers/guestHeader'
@@ -18,7 +21,7 @@ const Header = (props) => {
       showSignUpModal={props.showSignUpModal}
     />
 
-  if(!!props.user_token) {
+  if(!!props.auth.token) {
     home_link =
       <HeaderButton
         link={ routes.home }
@@ -46,4 +49,10 @@ const Header = (props) => {
   )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Header)

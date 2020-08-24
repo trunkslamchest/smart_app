@@ -29,7 +29,7 @@ class LogIn extends React.Component {
 
     // console.log(this.state)
 
-    this.props.onAuth(this.state.email, this.state.password)
+    this.props.onLogin(this.state.email, this.state.password)
 
 
     // authFunctions('logIn', 'http://localhost:3001/login', logInObj)
@@ -78,7 +78,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(actions.login(bool)),
-    onAuth: (email, password) => dispatch(actions.authUser(email, password)),
+    onLogin: (email, password) => dispatch(actions.authUser(email, password)),
   }
 }
 

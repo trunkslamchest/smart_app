@@ -1,35 +1,57 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  error: null,
+  loading: false,
   token: null,
-  userId: null,
-  error: null
+  refreshToken: null,
+  id: null
 }
 
 const authStart = (currentState, action) => {
   return {
     ...currentState,
-    error: null
+    error: null,
+    loading: true
   }
 }
 
 const authSuccess = (currentState, action) => {
   return {
     ...currentState,
-    token: action.idToken,
-    userId: action.userId,
-    error: null
+    error: null,
+    loading: false,
+    token: action.token,
+    refreshToken: action.refreshToken,
+    id: action.id
   }
 }
 
 const authFail = (currentState, action) => {
   return {
     ...currentState,
+    loading: false,
     error: action.error
   }
 }
 
 const authUser = (currentState, action) => {
+  return {
+    ...currentState,
+    error: action.error
+  }
+}
+
+const authLogOut = (currentState, action) => {
+  return {
+    ...currentState,
+    token: null,
+    refreshToken: null,
+    id: null
+  }
+}
+
+const authRefresh = (currentState, action) => {
   return {
     ...currentState,
     error: action.error
@@ -42,7 +64,8 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_SUCCESS: return authSuccess(currentState, action)
     case actionTypes.AUTH_FAIL: return authFail(currentState, action)
     case actionTypes.AUTH_USER: return authUser(currentState, action)
-
+    case actionTypes.AUTH_LOGOUT: return authLogOut(currentState, action)
+    case actionTypes.AUTH_REFRESH: return authRefresh(currentState, action)
     default: return currentState
   }
 }

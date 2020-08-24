@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes'
 
 import { auth } from '../../utility/paths'
 
+import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
 
 export const authStart = () => {
@@ -10,11 +11,18 @@ export const authStart = () => {
   }
 }
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, refreshToken, id) => {
+
+  localStorage.access = 'normal'
+  localStorage.id = id
+  localStorage.refreshToken = refreshToken
+  localStorage.token = token
+
   return {
     type: actionTypes.AUTH_SUCCESS,
-    idToken: token,
-    userId: userId
+    id: id,
+    refreshToken: refreshToken,
+    token: token
   }
 }
 
@@ -25,22 +33,56 @@ export const authFail = (error) => {
   }
 }
 
+export const authLogOut = () => {
+
+  localStorage.removeItem('token')
+  localStorage.removeItem('refreshToken')
+  localStorage.removeItem('id')
+  localStorage.access = 'guest'
+
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+    id: null,
+    refreshToken: null,
+    token: null
+  }
+}
+
+export const authRefresh = (refreshObj) => {
+  console.log(refreshObj)
+  return dispatch => {
+    authFunctions('refreshToken', auth.refreshToken, refreshObj)
+      .then(res => {
+        dispatch(authSuccess(res.id_token, res.refresh_token, res.user_id))
+
+        console.log(res)
+      })
+  }
+  // return {
+  //   type: actionTypes.AUTH_REFRESH
+  // }
+}
+
 export const authUser = (email, password, signup) => {
   return dispatch => {
     let logInObj = {
       email: email,
-      password: password
+      password: password,
+  		returnSecureToken: true
     }
 
     authFunctions('logIn', auth.signIn, logInObj)
       .then(res => {
+        dispatch(authSuccess(res.idToken, res.refreshToken, res.localId))
+        // const expirationDate = getTime('now') + res.data.expiresIn * 1000
+
         console.log(res)
       })
-      // .catch(error => {
-      //   // console.log(error.response.data.error.message.split('_').join(' '))
-      //   // const parseErrorMessage = error.response.data.error.message.split('_').join(' ')
-      //   dispatch(authFail(error.response.data.error))
-      // })
+      .catch(error => {
+        // console.log(error.response.data.error.message.split('_').join(' '))
+        // const parseErrorMessage = error.response.data.error.message.split('_').join(' ')
+        dispatch(authFail(error.response.data.error))
+      })
   // 	dispatch(authStart())
   // 	const authData = {
   // 		email: email,

@@ -21,8 +21,9 @@ export {
   authUser,
   authStart,
   authSuccess,
-  authFail
-  // logOut,
+  authFail,
+  authLogOut,
+  authRefresh
   // setAuthRedirectPath,
   // checkAuthState,
   // checkAuthTimeout,

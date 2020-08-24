@@ -5,8 +5,9 @@ import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './store/actions/actionIndex'
 
-import { routes } from './utility/paths'
+import { routes, auth } from './utility/paths'
 
+// import authFunctions from './utility/authFunctions'
 import userFunctions from './utility/userFunctions'
 
 import Header from './UI/header/header'
@@ -44,44 +45,18 @@ class App extends React.Component {
 
   componentDidMount(){
     if (!localStorage.token)  {
-      localStorage.clear()
+      localStorage.removeItem('token')
+      localStorage.removeItem('refreshToken')
+      localStorage.removeItem('id')
       localStorage.access = 'guest'
     } else {
-      this.setState({
-        user: {
-          access: localStorage.access,
-          id: parseInt(localStorage.user_id, 10),
-          email: localStorage.email,
-          loggedIn: true,
-          token: localStorage.token,
-          user_name: localStorage.user_name
-        }
-      })
+      let refreshObj = {
+        grant_type: "refresh_token",
+        refresh_token: localStorage.refreshToken
+      }
+      this.props.onAuthRefresh(refreshObj)
+      // authFunctions('refreshLogIn', auth.refreshSignIn, refreshObj)
     }
-  }
-
-  setToken = ({ token, user_id })  => {
-
-    localStorage.user_id = user_id
-    localStorage.token = token
-
-    userFunctions('get', `http://localhost:3001/users/${user_id}`)
-    .then(res_obj => {
-      let current_user = res_obj.data.attributes.user
-
-      localStorage.user_name = current_user.user_name
-      localStorage.email = current_user.email
-      localStorage.access = current_user.access
-
-      this.setState({
-        user: {
-          token,
-          loggedIn: true,
-          ...current_user,
-        }
-      })
-    })
-
   }
 
   setUser = ( res_obj, token ) => {
@@ -192,7 +167,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal
+    modal: state.modal,
+    auth: state.auth
   }
 }
 
@@ -200,7 +176,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(actions.login(bool)),
     onLogoutModal: (bool) => dispatch(actions.logout(bool)),
-    onSignupModal: (bool) => dispatch(actions.signup(bool))
+    onSignupModal: (bool) => dispatch(actions.signup(bool)),
+    onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj))
   }
 }
 

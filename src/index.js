@@ -29,20 +29,20 @@ const rootReducer = combineReducers({
   signUp: signUpReducer
 })
 
-const logger = (store) => {
-  return next => {
-    return action => {
-      console.log('[Middleware] action', action)
-      const nextResult = next(action)
-      console.log('[Middleware] next state', store.getState())
-      return nextResult
-    }
-  }
-}
+// const logger = (store) => {
+//   return next => {
+//     return action => {
+//       console.log('[Middleware] action', action)
+//       const nextResult = next(action)
+//       console.log('[Middleware] next state', store.getState())
+//       return nextResult
+//     }
+//   }
+// }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 const RouterApp = (
   <Provider store={store}>
