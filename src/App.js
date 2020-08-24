@@ -45,9 +45,10 @@ class App extends React.Component {
 
   componentDidMount(){
     if (!localStorage.token)  {
-      localStorage.removeItem('token')
-      localStorage.removeItem('refreshToken')
-      localStorage.removeItem('id')
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('refreshToken')
+      // localStorage.removeItem('id')
+      localStorage.clear()
       localStorage.access = 'guest'
     } else {
       let refreshObj = {
@@ -55,7 +56,6 @@ class App extends React.Component {
         refresh_token: localStorage.refreshToken
       }
       this.props.onAuthRefresh(refreshObj)
-      // authFunctions('refreshLogIn', auth.refreshSignIn, refreshObj)
     }
   }
 
@@ -84,20 +84,6 @@ class App extends React.Component {
     })
   }
 
-  logOut = () => {
-    localStorage.clear()
-    localStorage.access = 'guest'
-    this.setState({
-      user: {
-        email: null,
-        id: null,
-        loggedIn: null,
-        token: null,
-        user_name: null
-      },
-    })
-  }
-
   componentWillUnmount(){
     this.props.onLoginModal(false)
     this.props.onLogoutModal(false)
@@ -108,7 +94,6 @@ class App extends React.Component {
     return (
       <>
         <Header
-          logOut={this.logOut}
           user_access={this.state.user.access}
           user_id={this.state.user.id}
           user_name={this.state.user.user_name}

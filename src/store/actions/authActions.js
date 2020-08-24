@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes'
 
-import { auth } from '../../utility/paths'
+import { routes, auth } from '../../utility/paths'
 
 import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
@@ -35,9 +35,10 @@ export const authFail = (error) => {
 
 export const authLogOut = () => {
 
-  localStorage.removeItem('token')
-  localStorage.removeItem('refreshToken')
-  localStorage.removeItem('id')
+  // localStorage.removeItem('token')
+  // localStorage.removeItem('refreshToken')
+  // localStorage.removeItem('id')
+  localStorage.clear()
   localStorage.access = 'guest'
 
   return {
@@ -49,21 +50,15 @@ export const authLogOut = () => {
 }
 
 export const authRefresh = (refreshObj) => {
-  console.log(refreshObj)
   return dispatch => {
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
       .then(res => {
         dispatch(authSuccess(res.id_token, res.refresh_token, res.user_id))
-
-        console.log(res)
       })
   }
-  // return {
-  //   type: actionTypes.AUTH_REFRESH
-  // }
 }
 
-export const authUser = (email, password, signup) => {
+export const authUser = (email, password, props) => {
   return dispatch => {
     let logInObj = {
       email: email,
@@ -73,15 +68,15 @@ export const authUser = (email, password, signup) => {
 
     authFunctions('logIn', auth.signIn, logInObj)
       .then(res => {
-        dispatch(authSuccess(res.idToken, res.refreshToken, res.localId))
+        if(!!res.error) {
+          dispatch(authFail(res.error))
+        } else {
+          dispatch(authSuccess(res.idToken, res.refreshToken, res.localId))
+          props.onLoginModal(false)
+          props.history.push( routes.dashboard )
+        }
         // const expirationDate = getTime('now') + res.data.expiresIn * 1000
-
-        console.log(res)
-      })
-      .catch(error => {
-        // console.log(error.response.data.error.message.split('_').join(' '))
-        // const parseErrorMessage = error.response.data.error.message.split('_').join(' ')
-        dispatch(authFail(error.response.data.error))
+        // console.log(!!res.error)
       })
   // 	dispatch(authStart())
   // 	const authData = {

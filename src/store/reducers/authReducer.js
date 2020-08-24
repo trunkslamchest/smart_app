@@ -31,7 +31,11 @@ const authFail = (currentState, action) => {
   return {
     ...currentState,
     loading: false,
-    error: action.error
+    error: action.error,
+    modal: {
+      ...currentState.modal,
+      login: false
+    }
   }
 }
 
