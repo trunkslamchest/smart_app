@@ -1,9 +1,15 @@
 export const fetch = {
   get: {
+    user: `${process.env.REACT_APP_LOCAL_GET_USER}`,
+    // user: `${process.env.REACT_APP_DEPLOY_GET_USER}`,
     users: `${process.env.REACT_APP_LOCAL_GET_USERS}`,
     // users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`,
     questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`
     // questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`
+  },
+  post: {
+    user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
+    // user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
   }
 }
 

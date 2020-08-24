@@ -18,6 +18,12 @@ export const AUTH_FAIL = 'AUTH_FAIL'
 export const AUTH_USER = 'AUTH_USER'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 export const AUTH_REFRESH = 'AUTH_REFRESH'
+export const AUTH_TIMEOUT = 'AUTH_TIMEOUT'
 
 export const LOGIN_USER = 'LOGIN_USER'
 export const SIGNUP_USER = 'SIGNUP_USER'
+
+export const STORE_USER_INFO = 'STORE_USER_INFO'
+export const STORE_USER_QUESTIONS = 'STORE_USER_QUESTIONS'
+
+// export const UPDATE_USER = 'UPDATE_USER'

@@ -8,13 +8,13 @@ const url = {
   databaseUsers: env.parsed.DEPLOY_DB_USERS,
   databaseQuestions: env.parsed.DEPLOY_DB_QUESTIONS,
   rootSecured: env.parsed.LOCAL_SECURED,
-  rootUnsecured: env.parsed.LOCAL_UNSECURE,
+  rootUnsecured: env.parsed.LOCAL_UNSECURED,
   // rootSecured: env.parsed.DEPLOY_SECURED,
   // rootUnsecured: env.parsed.DEPLOY_UNSECURED
 }
 
 var firebaseConfig = {
-  databaseURL: url.databaseQuestions,
+  databaseURL: url.databaseUsers,
   apiKey: env.parsed.FIREBASE_API_KEY,
   authDomain: env.parsed.FIREBASE_AUTH_DOMAIN,
   projectId: env.parsed.FIREBASE_PROJECT_ID,
@@ -24,33 +24,37 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 admin.initializeApp()
 
-var setCORSbasic = function(req, res){
-  res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-}
+// exports.test1 = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
+//     if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+//     res.status(200).send('test1 successful');
+//   });
 
-var setCORSget = function(req, res){
-  res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-}
+// exports.users = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
+//     if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+//     firebase.database().ref('/').once('value', function(users){ res.json(users) });
+//   });
 
-exports.test1 = functions
+// exports.questions = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
+//     if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+//     firebase.database().ref('/').once('value', function(questions){ res.json(questions) });
+//   });
+
+exports.addUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-    res.status(200).send('test1 successful');
-  });
-
-exports.users = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSget(req, res)
-    firebase.database().ref('/').once('value', function(users){ res.json(users) });
-  });
-
-exports.questions = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSget(req, res)
-    firebase.database().ref('/').once('value', function(questions){ res.json(questions) });
+    res.setHeader('Access-Control-Allow-Methods', ['POST', 'OPTIONS'])
+    res.setHeader('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
+    if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.setHeader("Access-Control-Allow-Origin", `${req.headers.origin}`);
+    var obj = req.body
+    firebase.database().ref().update(obj)
+    res.status(200).json(obj)
   });

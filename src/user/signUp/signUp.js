@@ -3,13 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-// import { routes } from '../../utility/paths.js'
-
 import Modal from '../../UI/modal/modal'
 import SignUpForm from './signUpForm'
-
-// import userFunctions from '../../utility/userFunctions'
-// import authFunctions from '../../utility/authFunctions'
 
 import './signUp.css'
 
@@ -34,35 +29,16 @@ class SignUp extends React.Component {
     event.persist()
     event.preventDefault()
 
-    if (!this.state.TOSagreement) alert('You must agree to the Terms of Service Agreement in order to make a new account.')
-    else {
-
-      this.props.onSignUp(this.state.user_name, this.state.email, this.state.password, this.props)
-
-
-      // userFunctions('signUp', 'http://localhost:3001/users', signUpObj)
-      // .then(res_obj => {
-        // if (res_obj.errors) this.setState({errors: res_obj.errors})
-        // else {
-
-          // let logInObj = {
-          //   user_name: this.state.user_name,
-          //   password: this.state.password
-          // }
-
-          // authFunctions('logIn', 'http://localhost:3001/login', logInObj)
-          // .then(res_obj => {
-          //   if (res_obj.errors) this.setState({errors: res_obj.errors})
-          //   else {
-          //     this.props.setToken(res_obj)
-          //     this.props.updateLogin()
-          //     this.props.onSignupModal(false)
-          //     this.props.history.push( routes.dashboard )
-          //   }
-          // })
-        // }
-      // })
+    let signUpObj = {
+      displayName: this.state.user_name,
+      email: this.state.email,
+      password: this.state.password,
+      returnSecureToken: true
     }
+
+    if (!this.state.TOSagreement) alert('You must agree to the Terms of Service Agreement in order to make a new account.')
+    else this.props.onSignUp(signUpObj, this.props)
+
   }
 
   onReset = () => {

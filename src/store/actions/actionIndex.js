@@ -24,27 +24,25 @@ export {
   authSuccess,
   authFail,
   authLogOut,
-  authRefresh
+  authRefresh,
+  authTimeout,
   // setAuthRedirectPath,
   // checkAuthState,
   // checkAuthTimeout,
-  // logoutSuccess,
 } from './authActions'
 
 export {
   logInUser,
   // logOut,
-  // setAuthRedirectPath,
-  // checkAuthState,
-  // checkAuthTimeout,
   // logoutSuccess,
 } from './logInActions'
 
 export {
-  signUpUser,
-  // logOut,
-  // setAuthRedirectPath,
-  // checkAuthState,
-  // checkAuthTimeout,
-  // logoutSuccess,
+  signUpUser
 } from './signUpActions'
+
+export {
+  storeUserInfo,
+  storeUserQuestions
+  // updateUser
+} from './userActions'

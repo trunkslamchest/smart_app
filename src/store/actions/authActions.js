@@ -1,9 +1,12 @@
 import * as actionTypes from './actionTypes'
 
-import { routes, auth } from '../../utility/paths'
+import { fetch, auth } from '../../utility/paths'
 
-import getTime from '../../utility/getTime'
+import { storeUserInfo, storeUserQuestions } from './userActions'
+
+// import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
+import userFunctions from '../../utility/userFunctions'
 
 export const authStart = () => {
   return {
@@ -11,12 +14,12 @@ export const authStart = () => {
   }
 }
 
-export const authSuccess = (token, refreshToken, id) => {
-
+export const authSuccess = (token, refreshToken, id, expires) => {
   localStorage.access = 'normal'
   localStorage.id = id
   localStorage.refreshToken = refreshToken
   localStorage.token = token
+  localStorage.expiration = expires
 
   return {
     type: actionTypes.AUTH_SUCCESS,
@@ -54,63 +57,32 @@ export const authRefresh = (refreshObj) => {
   return dispatch => {
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
       .then(res => {
-        dispatch(authSuccess(res.id_token, res.refresh_token, res.user_id))
+        userFunctions('user', fetch.get.user, res.user_id)
+        .then(res2 => {
+          console.log(res2)
+          // return res2
+          dispatch(authSuccess(res.id_token, res.refresh_token, res.user_id, res.expires_in))
+          dispatch(storeUserInfo(res2.info))
+          dispatch(storeUserQuestions(res2.questions))
+
+        })
       })
   }
 }
 
-export const authUser = (token, refreshToken, id) => {
+export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
-          dispatch(authSuccess(token, refreshToken, id))
+    dispatch(authSuccess(token, refreshToken, id, expires))
 
-        // const expirationDate = getTime('now') + res.data.expiresIn * 1000
-        // console.log(!!res.error)
-
-
-    // authFunctions('authUser', auth.signIn, logInObj)
-    //   .then(res => {
-    //     if(!!res.error) {
-    //       dispatch(authFail(res.error))
-    //     } else {
-    //       dispatch(authSuccess(res.idToken, res.refreshToken, res.localId))
-    //     }
-    //     // const expirationDate = getTime('now') + res.data.expiresIn * 1000
-    //     // console.log(!!res.error)
-    //   })
-
-
-
-
-
-  // 	dispatch(authStart())
-  // 	const authData = {
-  // 		email: email,
-  // 		password: password,
-  // 		returnSecureToken: true
-  // 	}
-  // 	let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=NOPE'
-  // 	if(!signup){
-  // 		url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=NOPE'
-  // 	}
-  // 	axios.post(url, authData)
-  // 		.then(response => {
-  // 			console.log(response)
-  // 			const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
-  // 			localStorage.setItem('token', response.data.idToken)
-  // 			localStorage.setItem('expirationDate', expirationDate)
-  // 			localStorage.setItem('userId', response.data.localId)
-  // 			dispatch(authSuccess(response.data.idToken, response.data.localId))
-  // 			dispatch(checkAuthTimeout(response.data.expiresIn))
-  // 		})
-  // 		.catch(error => {
-  // 			// console.log(error.response.data.error.message.split('_').join(' '))
-  // 			// const parseErrorMessage = error.response.data.error.message.split('_').join(' ')
-  // 			dispatch(authFail(error.response.data.error))
-  // 		})
+    // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
+    // localStorage.setItem('expirationDate', expirationDate)
+    // dispatch(checkAuthTimeout(response.data.expiresIn))
   }
-  // return {
-  //   type: actionTypes.AUTH_USER,
-  //   email: email,
-  //   password: password
-  // }
+}
+
+export const authTimeout = (expirationTime) => {
+  return {
+    type: actionTypes.AUTH_TIMEOUT,
+    expirationTime: expirationTime
+  }
 }

@@ -5,10 +5,10 @@ import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './store/actions/actionIndex'
 
-import { routes, auth } from './utility/paths'
+import { routes } from './utility/paths'
 
 // import authFunctions from './utility/authFunctions'
-import userFunctions from './utility/userFunctions'
+// import userFunctions from './utility/userFunctions'
 
 import Header from './UI/header/header'
 import Home from './index/Home'

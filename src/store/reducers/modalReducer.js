@@ -40,7 +40,7 @@ const modalReducer = (currentState = initialState, action) => {
     case actionTypes.LOGINMODAL: return loginModal(currentState, action)
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)
     case actionTypes.SIGNUPMODAL: return signupModal(currentState, action)
-    case actionTypes.SHOWMODAL: return signupModal(currentState, action)
+    case actionTypes.SHOWMODAL: return showModal(currentState, action)
     default: return currentState
   }
 }

@@ -19,6 +19,7 @@ import modalReducer from './store/reducers/modalReducer'
 import authReducer from './store/reducers/authReducer'
 import logInReducer from './store/reducers/logInReducer'
 import signUpReducer from './store/reducers/signUpReducer'
+import userReducer from './store/reducers/userReducer'
 
 const history = createBrowserHistory();
 
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   auth: authReducer,
   logIn: logInReducer,
-  signUp: signUpReducer
+  signUp: signUpReducer,
+  user: userReducer
 })
 
 // const logger = (store) => {

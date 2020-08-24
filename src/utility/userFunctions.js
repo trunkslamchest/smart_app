@@ -10,6 +10,19 @@
       .then(res => res.json())
     },
 
+    user: function(url, id) {
+      return fetch(url, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({id})
+      })
+      .then(res => res.json())
+    },
+
     patch: function(url, userObj){
       return fetch(url, {
         method: 'PATCH',
@@ -23,9 +36,11 @@
 
     post: function(url, userObj){
       return fetch(url, {
-        method: 'POST',
+        method: "POST",
+        mode: 'cors',
         headers: {
-          'content-type':'application/json'
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
         },
         body: JSON.stringify(userObj)
       })
@@ -37,17 +52,6 @@
         method: 'DELETE'
       })
     },
-
-    signUp: function(url, signUpObj) {
-      return fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(signUpObj)
-      })
-      .then(res => res.json())
-    }
   }
 
   userFunctions.init.prototype = userFunctions.prototype
