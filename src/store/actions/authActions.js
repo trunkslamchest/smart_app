@@ -56,15 +56,12 @@ export const authLogOut = () => {
 export const authRefresh = (refreshObj) => {
   return dispatch => {
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
-      .then(res => {
-        userFunctions('user', fetch.get.user, res.user_id)
-        .then(res2 => {
-          console.log(res2)
-          // return res2
-          dispatch(authSuccess(res.id_token, res.refresh_token, res.user_id, res.expires_in))
-          dispatch(storeUserInfo(res2.info))
-          dispatch(storeUserQuestions(res2.questions))
-
+      .then(authRes => {
+        userFunctions('user', fetch.get.user, authRes.user_id)
+        .then(userRes => {
+          dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
+          dispatch(storeUserInfo(userRes.info))
+          dispatch(storeUserQuestions(userRes.questions))
         })
       })
   }
@@ -72,8 +69,12 @@ export const authRefresh = (refreshObj) => {
 
 export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
-    dispatch(authSuccess(token, refreshToken, id, expires))
-
+      userFunctions('user', fetch.get.user, id)
+      .then(userRes => {
+        dispatch(authSuccess(token, refreshToken, id, expires))
+        dispatch(storeUserInfo(userRes.info))
+        dispatch(storeUserQuestions(userRes.questions))
+      })
     // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
     // localStorage.setItem('expirationDate', expirationDate)
     // dispatch(checkAuthTimeout(response.data.expiresIn))
