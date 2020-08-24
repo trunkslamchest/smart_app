@@ -16,7 +16,6 @@ const LogOut = (props) => {
   const onConfirm = () => {
     props.onLogoutModal(false)
     props.onLogout()
-    // props.logOut(props.token)
     props.history.push( routes.home )
   }
 

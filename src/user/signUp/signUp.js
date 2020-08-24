@@ -37,7 +37,7 @@ class SignUp extends React.Component {
     if (!this.state.TOSagreement) alert('You must agree to the Terms of Service Agreement in order to make a new account.')
     else {
 
-      this.props.onSignUp(this.state.user_name, this.state.email, this.state.password)
+      this.props.onSignUp(this.state.user_name, this.state.email, this.state.password, this.props)
 
 
       // userFunctions('signUp', 'http://localhost:3001/users', signUpObj)
@@ -101,8 +101,8 @@ class SignUp extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal,
     auth: state.auth,
+    modal: state.modal,
     signUp: state.signUp
   }
 }
@@ -111,8 +111,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSignupModal: (bool) => dispatch(actions.signup(bool)),
     onAuth: (email, password) => dispatch(actions.authUser(email, password)),
-    onSignUp: (user_name, email, password) => dispatch(actions.signUpUser(user_name, email, password))
-
+    onSignUp: (user_name, email, password, props) => dispatch(actions.signUpUser(user_name, email, password, props))
   }
 }
 

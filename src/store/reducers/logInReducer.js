@@ -4,18 +4,18 @@ const initialState = {
   error: null
 }
 
-const signUpUser = (currentState, action) => {
+const logInUser = (currentState, action) => {
   return {
     ...currentState,
     error: action.error
   }
 }
 
-const signUpReducer = (currentState = initialState, action) => {
+const logInReducer = (currentState = initialState, action) => {
   switch(action.type) {
-    case actionTypes.SIGNUP_USER: return signUpUser(currentState, action)
+    case actionTypes.LOGIN_USER: return logInUser(currentState, action)
     default: return currentState
   }
 }
 
-export default signUpReducer
+export default logInReducer

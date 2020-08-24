@@ -59,35 +59,8 @@ class App extends React.Component {
     }
   }
 
-  setUser = ( res_obj, token ) => {
-    let current_user = res_obj.data.attributes.user
-
-    localStorage.user_name = current_user.user_name
-    localStorage.email = current_user.email
-    localStorage.access = current_user.access
-
-    this.setState({
-      user: {
-        token,
-        loggedIn: true,
-        ...current_user
-      }
-    })
-  }
-
-  updateLogin = () => {
-    this.setState({
-      user: {
-        ...this.state.user,
-        loggedIn: !this.state.loggedIn
-      }
-    })
-  }
-
   componentWillUnmount(){
-    this.props.onLoginModal(false)
-    this.props.onLogoutModal(false)
-    this.props.onSignupModal(false)
+    this.props.showModal(false)
   }
 
   render(){
@@ -103,27 +76,21 @@ class App extends React.Component {
         <div className='main_container'>
           <LogIn
             history={this.props.history}
-            setToken={this.setToken}
-            updateLogin={this.updateLogin}
           />
           <LogOut
             access={this.state.user.access}
             history={this.props.history}
-            logOut={this.logOut}
             token={this.state.user.token}
             user_id={this.state.user.id}
             user_name={this.state.user.user_name}
           />
           <SignUp
             history={this.props.history}
-            setToken={this.setToken}
-            updateLogin={this.updateLogin}
           />
           <Switch>
             <Route exact path={ routes.home }>
               <Home
                 history={this.props.history}
-                setToken={this.setToken}
                 user_id={this.state.user.id}
                 updateLogin={this.updateLogin}
               />
@@ -131,8 +98,6 @@ class App extends React.Component {
             <Route path={ routes.dashboard }>
               <DashboardContainer
                 history={this.props.history}
-                logOut={this.logOut}
-                setToken={this.setToken}
                 setUser={this.setUser}
                 user={this.state.user}
               />
@@ -159,9 +124,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoginModal: (bool) => dispatch(actions.login(bool)),
-    onLogoutModal: (bool) => dispatch(actions.logout(bool)),
-    onSignupModal: (bool) => dispatch(actions.signup(bool)),
+    onShowModal: (bool) => dispatch(actions.showModal(bool)),
     onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj))
   }
 }

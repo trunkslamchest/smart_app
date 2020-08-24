@@ -16,10 +16,7 @@ const Header = (props) => {
   let home_link = null
 
   let header =
-    <GuestHeader
-      showLogInModal={props.showLogInModal}
-      showSignUpModal={props.showSignUpModal}
-    />
+    <GuestHeader />
 
   if(!!props.auth.token) {
     home_link =

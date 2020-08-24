@@ -27,6 +27,7 @@ export const authSuccess = (token, refreshToken, id) => {
 }
 
 export const authFail = (error) => {
+  console.log(error)
   return {
     type: actionTypes.AUTH_FAIL,
     error: error
@@ -58,26 +59,29 @@ export const authRefresh = (refreshObj) => {
   }
 }
 
-export const authUser = (email, password, props) => {
+export const authUser = (token, refreshToken, id) => {
   return dispatch => {
-    let logInObj = {
-      email: email,
-      password: password,
-  		returnSecureToken: true
-    }
+          dispatch(authSuccess(token, refreshToken, id))
 
-    authFunctions('logIn', auth.signIn, logInObj)
-      .then(res => {
-        if(!!res.error) {
-          dispatch(authFail(res.error))
-        } else {
-          dispatch(authSuccess(res.idToken, res.refreshToken, res.localId))
-          props.onLoginModal(false)
-          props.history.push( routes.dashboard )
-        }
         // const expirationDate = getTime('now') + res.data.expiresIn * 1000
         // console.log(!!res.error)
-      })
+
+
+    // authFunctions('authUser', auth.signIn, logInObj)
+    //   .then(res => {
+    //     if(!!res.error) {
+    //       dispatch(authFail(res.error))
+    //     } else {
+    //       dispatch(authSuccess(res.idToken, res.refreshToken, res.localId))
+    //     }
+    //     // const expirationDate = getTime('now') + res.data.expiresIn * 1000
+    //     // console.log(!!res.error)
+    //   })
+
+
+
+
+
   // 	dispatch(authStart())
   // 	const authData = {
   // 		email: email,

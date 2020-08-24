@@ -15,6 +15,7 @@ export {
   login,
   logout,
   signup,
+  showModal,
 } from './modalActions'
 
 export {
@@ -31,10 +32,16 @@ export {
 } from './authActions'
 
 export {
+  logInUser,
+  // logOut,
+  // setAuthRedirectPath,
+  // checkAuthState,
+  // checkAuthTimeout,
+  // logoutSuccess,
+} from './logInActions'
+
+export {
   signUpUser,
-  signUpStart,
-  signUpSuccess,
-  signUpFail
   // logOut,
   // setAuthRedirectPath,
   // checkAuthState,

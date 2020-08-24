@@ -70,15 +70,16 @@ class LogIn extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal,
-    auth: state.auth
+    auth: state.auth,
+    login: state.login,
+    modal: state.modal
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(actions.login(bool)),
-    onLogin: (email, password, props) => dispatch(actions.authUser(email, password, props)),
+    onLogin: (email, password, props) => dispatch(actions.logInUser(email, password, props)),
   }
 }
 

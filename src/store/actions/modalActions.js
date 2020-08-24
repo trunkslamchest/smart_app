@@ -20,3 +20,10 @@ export const signup = (bool) => {
     signup: bool
   }
 }
+
+export const showModal = (bool) => {
+  return{
+    type: actionTypes.SHOWMODAL,
+    showModal: bool
+  }
+}
