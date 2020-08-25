@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes'
 
 import { fetch, auth } from '../../utility/paths'
 
-import { storeUserInfo, storeUserQuestions } from './userActions'
+import { storeUserInfo, storeUserQuestions, clearUserInfo, clearUserQuestions } from './userActions'
 
 // import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
@@ -38,13 +38,20 @@ export const authFail = (error) => {
 }
 
 export const authLogOut = () => {
-
   // localStorage.removeItem('token')
   // localStorage.removeItem('refreshToken')
   // localStorage.removeItem('id')
   localStorage.clear()
   localStorage.access = 'guest'
 
+  return dispatch => {
+    dispatch(clearUserInfo())
+    dispatch(clearUserQuestions())
+    dispatch(clearAuthInfo())
+  }
+}
+
+const clearAuthInfo = () => {
   return {
     type: actionTypes.AUTH_LOGOUT,
     id: null,
@@ -57,7 +64,7 @@ export const authRefresh = (refreshObj) => {
   return dispatch => {
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
       .then(authRes => {
-        userFunctions('user', fetch.get.user, authRes.user_id)
+        userFunctions('getUser', fetch.get.user, authRes.user_id)
         .then(userRes => {
           dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
           dispatch(storeUserInfo(userRes.info))
@@ -69,7 +76,7 @@ export const authRefresh = (refreshObj) => {
 
 export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
-      userFunctions('user', fetch.get.user, id)
+      userFunctions('getUser', fetch.get.user, id)
       .then(userRes => {
         dispatch(authSuccess(token, refreshToken, id, expires))
         dispatch(storeUserInfo(userRes.info))

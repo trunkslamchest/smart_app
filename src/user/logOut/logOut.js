@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogoutModal: (bool) => dispatch(actions.logout(bool)),
-    onLogout: (bool) => dispatch(actions.authLogOut())
+    onLogout: () => dispatch(actions.authLogOut())
   }
 }
 

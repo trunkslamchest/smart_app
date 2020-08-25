@@ -13,3 +13,17 @@ export const storeUserQuestions = (questions) => {
     questions: questions
   }
 }
+
+export const clearUserInfo = () => {
+  return {
+    type: actionTypes.CLEAR_USER_INFO,
+    info: null
+  }
+}
+
+export const clearUserQuestions = () => {
+  return {
+    type: actionTypes.CLEAR_USER_QUESTIONS,
+    questions: null
+  }
+}

@@ -10,7 +10,7 @@
       .then(res => res.json())
     },
 
-    user: function(url, id) {
+    getUser: function(url, id) {
       return fetch(url, {
         method: "POST",
         mode: 'cors',

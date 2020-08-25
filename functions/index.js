@@ -58,3 +58,16 @@ exports.addUser = functions
     firebase.database().ref().update(obj)
     res.status(200).json(obj)
   });
+
+exports.getUser = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    res.set('Access-Control-Allow-Methods', ['POST', 'OPTIONS'])
+    res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
+    if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+    var user = {}
+    firebase.database().ref('/').once('value', function(users){
+      users.forEach(function(snap) { if(req.body.id === snap.key) user = snap.val() })
+      res.json(user)
+    })
+  });
