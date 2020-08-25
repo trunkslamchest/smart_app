@@ -7,9 +7,6 @@ import * as actions from './store/actions/actionIndex'
 
 import { routes } from './utility/paths'
 
-// import authFunctions from './utility/authFunctions'
-// import userFunctions from './utility/userFunctions'
-
 import Header from './UI/header/header'
 import Home from './index/Home'
 import Footer from './UI/footer/footer'
@@ -32,16 +29,6 @@ import './UI/response.css'
 import './UI/loading.css'
 
 class App extends React.Component {
-
-  state = {
-    user: {
-      email: null,
-      id: null,
-      loggedIn: null,
-      token: null,
-      user_name: null
-    }
-  }
 
   componentDidMount(){
     if (!localStorage.token)  {
@@ -66,41 +53,18 @@ class App extends React.Component {
   render(){
     return (
       <>
-        <Header
-          user_access={this.state.user.access}
-          user_id={this.state.user.id}
-          user_name={this.state.user.user_name}
-          user_token={this.state.user.token}
-        />
-
+        <Header />
         <div className='main_container'>
-          <LogIn
-            history={this.props.history}
-          />
-          <LogOut
-            access={this.state.user.access}
-            history={this.props.history}
-            token={this.state.user.token}
-            user_id={this.state.user.id}
-            user_name={this.state.user.user_name}
-          />
-          <SignUp
-            history={this.props.history}
-          />
+          <LogIn history={this.props.history} />
+          <LogOut history={this.props.history} />
+          <SignUp history={this.props.history} />
+
           <Switch>
             <Route exact path={ routes.home }>
-              <Home
-                history={this.props.history}
-                user_id={this.state.user.id}
-                updateLogin={this.updateLogin}
-              />
+              <Home history={this.props.history} />
             </Route>
             <Route path={ routes.dashboard }>
-              <DashboardContainer
-                history={this.props.history}
-                setUser={this.setUser}
-                user={this.state.user}
-              />
+              <DashboardContainer history={this.props.history} />
             </Route>
             <Route exact path={ routes.tos }> <TermsOfService /> </Route>
             <Route exact path={ routes.privacy }> <Privacy /> </Route>

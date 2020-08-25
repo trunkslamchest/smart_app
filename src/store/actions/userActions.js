@@ -38,9 +38,4 @@ export const updateUserInfo = (obj, props) => {
       dispatch(storeUserInfo(obj.info))
     })
   }
-
-  // return {
-  //   type: actionTypes.UPDATE_USER_INFO,
-  //   info: obj
-  // }
 }

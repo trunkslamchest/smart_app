@@ -3,12 +3,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/actionIndex'
 
-
 import { routes } from '../../../utility/paths.js'
 
 import DashboardEditProfileForm from './dashboardEditProfileForm'
-
-// import userFunctions from '../../../utility/userFunctions'
 
 import './dashboardEditProfile.css'
 
@@ -74,15 +71,6 @@ class DashboardEditProfile extends React.Component {
     }
 
     this.props.onUpdateUserInfo(userObj, this.props)
-
-    // userFunctions('patch', `http://localhost:3001/users/${this.props.user.id}`, userObj)
-    // .then(res_obj => {
-    //   if (res_obj.errors) this.setState({errors: res_obj.errors})
-    //   else {
-    //     this.props.setUser(res_obj, this.props.user.token)
-    //     this.props.history.push( routes.dashboard_profile )
-    //   }
-    // })
   }
 
   onReset = (event) => {
