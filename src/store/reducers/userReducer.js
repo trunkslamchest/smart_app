@@ -33,12 +33,20 @@ const clearUserQuestions = (currentState, action) => {
   }
 }
 
+const updateUserInfo = (currentState, action) => {
+  return{
+    ...currentState,
+    info: action.info
+  }
+}
+
 const userReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.STORE_USER_INFO: return storeUserInfo(currentState, action)
     case actionTypes.STORE_USER_QUESTIONS: return storeUserQuestions(currentState, action)
     case actionTypes.CLEAR_USER_INFO: return clearUserInfo(currentState, action)
     case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
+    case actionTypes.UPDATE_USER_INFO: return updateUserInfo(currentState, action)
     default: return currentState
   }
 }

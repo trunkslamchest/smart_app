@@ -20,7 +20,11 @@ export const signUpUser = (signUpObj, props) => {
 
         userObj[id] = {
           info: {
-            DOB: '',
+            dob: {
+              day: '',
+              month: '',
+              year: ''
+            },
             email: signUpObj.email,
             first_name: '',
             gender: '',

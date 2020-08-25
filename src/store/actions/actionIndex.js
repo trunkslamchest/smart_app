@@ -45,6 +45,7 @@ export {
   storeUserInfo,
   clearUserInfo,
   storeUserQuestions,
-  clearUserQuestions
+  clearUserQuestions,
+  updateUserInfo
   // updateUser
 } from './userActions'

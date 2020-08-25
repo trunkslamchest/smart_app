@@ -13,7 +13,7 @@ import DashboardProfileContainer from './dashboardProfile/dashboardProfileContai
 
 import DashboardTest from './dashboardTest'
 
-import DashboardEditProfile from './dashboardEditProfile/dashboardEditProfile'
+import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
 import './dashboardContainer.css'
@@ -31,7 +31,7 @@ class Dashboard extends React.Component{
         />
       </Route>
       <Route path={ routes.dashboard_profile_edit }>
-        <DashboardEditProfile
+        <DashboardEditProfileContainer
           history={this.props.history}
         />
       </Route>

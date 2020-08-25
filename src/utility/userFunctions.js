@@ -23,18 +23,20 @@
       .then(res => res.json())
     },
 
-    patch: function(url, userObj){
+    patch: function(url, obj){
       return fetch(url, {
-        method: 'PATCH',
+        method: "PATCH",
+        mode: 'cors',
         headers: {
-          'content-type':'application/json'
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
         },
-        body: JSON.stringify(userObj)
+        body: JSON.stringify(obj)
       })
       .then(res => res.json())
     },
 
-    post: function(url, userObj){
+    post: function(url, obj){
       return fetch(url, {
         method: "POST",
         mode: 'cors',
@@ -42,7 +44,7 @@
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
           "Content-Type": 'application/json'
         },
-        body: JSON.stringify(userObj)
+        body: JSON.stringify(obj)
       })
       .then(res => res.json())
     },

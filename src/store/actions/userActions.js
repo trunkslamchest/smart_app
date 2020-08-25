@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes'
 
+import { fetch } from '../../utility/paths'
+import userFunctions from '../../utility/userFunctions'
+
 export const storeUserInfo = (info) => {
   return {
     type: actionTypes.STORE_USER_INFO,
@@ -26,4 +29,18 @@ export const clearUserQuestions = () => {
     type: actionTypes.CLEAR_USER_QUESTIONS,
     questions: null
   }
+}
+
+export const updateUserInfo = (obj, props) => {
+  return dispatch => {
+    userFunctions('patch', fetch.patch.user, obj)
+    .then(res => {
+      dispatch(storeUserInfo(obj.info))
+    })
+  }
+
+  // return {
+  //   type: actionTypes.UPDATE_USER_INFO,
+  //   info: obj
+  // }
 }

@@ -6,9 +6,8 @@ import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormB
 
 import genders from '../../../datasets/genders'
 import months from '../../../datasets/months'
-import states from '../../../datasets/states'
 
-import ErrorContainer from '../../../error/errorContainer'
+// import ErrorContainer from '../../../error/errorContainer'
 
 const dashboardEditProfileForm = (props) => {
   return(
@@ -22,7 +21,7 @@ const dashboardEditProfileForm = (props) => {
         className='edit_profile_form'
       >
         <div className='edit_div'>
-          <label>Basics</label>
+          <label>User Name</label>
           <DashboardEditProfileFormInput
             type='text'
             id='user_name'
@@ -31,7 +30,10 @@ const dashboardEditProfileForm = (props) => {
             onChange={props.onChange}
             value={props.user_name}
           />
-          {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null }
+          {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
+        </div>
+        <div className='edit_div'>
+          <label>Email</label>
           <DashboardEditProfileFormInput
             type='text'
             id='email'
@@ -40,7 +42,7 @@ const dashboardEditProfileForm = (props) => {
             onChange={props.onChange}
             value={props.email}
           />
-          {props.errors.email ? <ErrorContainer errors={props.errors.email} /> : null }
+          {/* {props.errors.email ? <ErrorContainer errors={props.errors.email} /> : null } */}
         </div>
         <div className='edit_div'>
           <label>Name</label>
@@ -52,7 +54,7 @@ const dashboardEditProfileForm = (props) => {
             onChange={props.onChange}
             value={props.first_name}
           />
-          {props.errors.first_name ? <ErrorContainer errors={props.errors.first_name} /> : null }
+          {/* {props.errors.first_name ? <ErrorContainer errors={props.errors.first_name} /> : null } */}
           <DashboardEditProfileFormInput
             type='text'
             id='last_name'
@@ -61,7 +63,7 @@ const dashboardEditProfileForm = (props) => {
             onChange={props.onChange}
             value={props.last_name}
           />
-          {props.errors.last_name ? <ErrorContainer errors={props.errors.last_name} /> : null }
+          {/* {props.errors.last_name ? <ErrorContainer errors={props.errors.last_name} /> : null } */}
         </div>
         <div className='edit_div'>
           <DashboardEditProfileFormSelect
@@ -72,90 +74,40 @@ const dashboardEditProfileForm = (props) => {
             onChange={props.onChange}
             value={props.gender}
           />
-          {props.errors.gender ? <ErrorContainer errors={props.errors.gender} /> : null }
+          {/* {props.errors.gender ? <ErrorContainer errors={props.errors.gender} /> : null } */}
         </div>
         <div className='edit_div'>
           <label>Date of Birth</label>
             <DashboardEditProfileFormInput
               type='number'
-              id='birth_day'
-              name='birth_day'
+              id='day'
+              name='day'
               min='1'
               max='31'
-              onChange={props.onChange}
-              value={props.birth_day}
+              placeholder='Day'
+              onChange={props.onDOBChange}
+              value={props.dob.day}
             />
-            {props.errors.birth_day ? <ErrorContainer errors={props.errors.birth_day} /> : null }
+            {/* {props.errors.dob.day ? <ErrorContainer errors={props.errors.dob.day} /> : null } */}
             <DashboardEditProfileFormSelect
-              id='birth_month'
-              name='birth_month'
+              id='month'
+              name='month'
               options={months}
-              onChange={props.onChange}
-              value={props.birth_month}
+              onChange={props.onDOBChange}
+              value={props.dob.month}
             />
-            {props.errors.birth_month ? <ErrorContainer errors={props.errors.birth_month} /> : null }
+            {/* {props.errors.dob.month ? <ErrorContainer errors={props.errors.dob.month} /> : null } */}
             <DashboardEditProfileFormInput
               type='number'
-              id='birth_year'
-              name='birth_year'
+              id='year'
+              name='year'
               min='1900'
               max='2020'
-              onChange={props.onChange}
-              value={props.birth_year}
+              placeholder='Year'
+              onChange={props.onDOBChange}
+              value={props.dob.year}
             />
-            {props.errors.birth_year ? <ErrorContainer errors={props.errors.birth_year} /> : null }
-
-        </div>
-        <div className='edit_div'>
-          <label>Address</label>
-          <DashboardEditProfileFormInput
-            type='number'
-            id='house_number'
-            name='house_number'
-            placeholder='Apt./House Number'
-            min='1'
-            max='9999'
-            onChange={props.onChange}
-            value={props.house_number}
-          />
-          {props.errors.house_number ? <ErrorContainer errors={props.errors.house_number} /> : null }
-          <DashboardEditProfileFormInput
-            type='text'
-            id='street_name'
-            name='street_name'
-            placeholder='Street Name'
-            onChange={props.onChange}
-            value={props.street_name}
-          />
-          {props.errors.street_name ? <ErrorContainer errors={props.errors.street_name} /> : null }
-          <DashboardEditProfileFormInput
-            type='text'
-            id='city_town'
-            name='city_town'
-            placeholder='City/Town'
-            onChange={props.onChange}
-            value={props.city_town}
-          />
-          {props.errors.city_town ? <ErrorContainer errors={props.errors.city_town} /> : null }
-          <DashboardEditProfileFormSelect
-            id='state'
-            name='state'
-            defaultOption='State'
-            options={states}
-            onChange={props.onChange}
-            value={props.state}
-          />
-          {props.errors.state ? <ErrorContainer errors={props.errors.state} /> : null }
-          <DashboardEditProfileFormInput
-            type='number'
-            id='zip_code'
-            name='zip_code'
-            min='10000'
-            max='99999'
-            onChange={props.onChange}
-            value={props.zip_code}
-          />
-          {props.errors.zip_code ? <ErrorContainer errors={props.errors.zip_code} /> : null }
+            {/* {props.errors.dob.year ? <ErrorContainer errors={props.errors.dob.year} /> : null } */}
         </div>
         <DashboardEditProfileFormButtonContainer
           onSubmit={props.onSubmit}

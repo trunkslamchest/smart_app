@@ -10,6 +10,10 @@ export const fetch = {
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
     // user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
+  },
+  patch: {
+    user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`
+    // user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`
   }
 }
 
