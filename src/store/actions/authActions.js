@@ -10,7 +10,9 @@ import userFunctions from '../../utility/userFunctions'
 
 export const authStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: actionTypes.AUTH_START,
+    error: null,
+    loading: true
   }
 }
 
@@ -24,6 +26,7 @@ export const authSuccess = (token, refreshToken, id, expires) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     id: id,
+    loading: false,
     refreshToken: refreshToken,
     token: token
   }
@@ -33,7 +36,8 @@ export const authFail = (error) => {
   console.log(error)
   return {
     type: actionTypes.AUTH_FAIL,
-    error: error
+    error: error,
+    loading: false
   }
 }
 
@@ -62,6 +66,7 @@ const clearAuthInfo = () => {
 
 export const authRefresh = (refreshObj) => {
   return dispatch => {
+    dispatch(authStart())
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
       .then(authRes => {
         userFunctions('getUser', fetch.get.user, authRes.user_id)
@@ -76,12 +81,13 @@ export const authRefresh = (refreshObj) => {
 
 export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
-      userFunctions('getUser', fetch.get.user, id)
-      .then(userRes => {
-        dispatch(authSuccess(token, refreshToken, id, expires))
-        dispatch(storeUserInfo(userRes.info))
-        dispatch(storeUserQuestions(userRes.questions))
-      })
+    dispatch(authStart())
+    userFunctions('getUser', fetch.get.user, id)
+    .then(userRes => {
+      dispatch(authSuccess(token, refreshToken, id, expires))
+      dispatch(storeUserInfo(userRes.info))
+      dispatch(storeUserQuestions(userRes.questions))
+    })
     // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
     // localStorage.setItem('expirationDate', expirationDate)
     // dispatch(checkAuthTimeout(response.data.expiresIn))

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 import MyProfileMenu from '../../menus/myProfileMenu/myProfileMenu'
 import TestMenu from '../../menus/testMenu/testMenu'
 import Test2Menu from '../../menus/test2Menu/test2Menu'
@@ -9,7 +11,7 @@ import HeaderButton2 from '../headerButton2'
 import '../header.css'
 import '../headerButton2.css'
 
-export default class NormalHeader extends React.Component {
+class NormalHeader extends React.Component {
 
   state = {
     showProfileMenu: false,
@@ -36,7 +38,7 @@ export default class NormalHeader extends React.Component {
     return(
       <>
         <div className='header_greeting'>
-          Hello, {this.props.user_name}!
+          {!!this.props.user.info && `Hello, ${this.props.user.info.user_name}!`}
         </div>
         <div className='header_nav_links'>
           <div
@@ -75,3 +77,12 @@ export default class NormalHeader extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(NormalHeader)

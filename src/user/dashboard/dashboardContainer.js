@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+// import * as actions from '../../store/actions/actionIndex'
+
 import { routes } from '../../utility/paths.js'
 
 import { Route, Switch } from 'react-router-dom'
-
 
 import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer'
 import DashboardIndex from './dashboardIndex/dashboardIndex'
@@ -16,42 +18,26 @@ import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProf
 
 import './dashboardContainer.css'
 
-export default class Dashboard extends React.Component{
-
-  state = {mounted: false}
-
-  componentDidMount(){this.setState({ mounted: true })}
-
-  componentDidUpdate(){if (this.state.mounted && this.props.user.id && !this.state.loaded){ this.setState({ loaded: true })}}
-
+class Dashboard extends React.Component{
   render(){
     const routeBoard =
     <Switch>
       <Route exact path={ routes.dashboard }>
-        <DashboardIndex
-          firstName={this.props.user.first_name}
-        />
+        <DashboardIndex />
       </Route>
       <Route exact path={ routes.dashboard_profile }>
         <DashboardProfileContainer
           history={this.props.history}
-          user={this.props.user}
         />
       </Route>
       <Route path={ routes.dashboard_profile_edit }>
         <DashboardEditProfile
           history={this.props.history}
-          setUser={this.props.setUser}
-          user={this.props.user}
         />
       </Route>
       <Route path={ routes.dashboard_profile_delete }>
         <DashboardDeleteProfile
-          access={this.props.user.access}
           history={this.props.history}
-          logOut={this.props.logOut}
-          user_id={this.props.user.id}
-          setToken={this.props.setToken}
         />
       </Route>
       <Route path={ routes.dashboard_test }>
@@ -69,8 +55,17 @@ export default class Dashboard extends React.Component{
     return(
       <div className='dashboard_wrapper'>
         <DashboardNavBarContainer />
-        {this.state.loaded ? routeBoard : loading}
+        {this.props.auth.loading ? loading : routeBoard }
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)
