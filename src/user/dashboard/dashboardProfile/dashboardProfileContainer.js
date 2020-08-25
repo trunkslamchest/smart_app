@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import { useEffect } from 'react'
+import { connect } from 'react-redux'
 
 import DashboardProfileButtonContainer from './dashboardProfileButtonContainer'
 
@@ -8,56 +8,78 @@ import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
 
-  const formatDate = (date) => {
-    const number_ends = [ 'st', 'nd', 'rd', 'th' ]
-    const number_split = localStorage.birth_day.split('').pop()
+  let initMount = <></>
+  let fullName = <></>
+  let DOB = <></>
+  let gender = <></>
+  let joinDate = <li>TBA</li>
 
-    if ((parseInt(date, 10) > 10) && (parseInt(date, 10) < 19)) {
-      return `${date}` + number_ends[3]
-    } else {
-      if ((number_split === '1')) {
-        return `${date}` + number_ends[0]
-      } else if (number_split === '2') {
-        return `${date}` + number_ends[1]
-      } else if (number_split === '3') {
-        return `${date}` + number_ends[2]
-      } else {
-        return `${date}` + number_ends[3]
-      }
-    }
-  }
+  if(!!props.user.info){
+    if (props.user.info.first_name === "" || props.user.info.last_name === "") fullName = <li>Update Your Profile to Add Your Name</li>
+    else fullName = <li>{props.user.info.first_name} {props.user.info.last_name}</li>
 
-  const age = new Date().getFullYear() - props.user.birth_year
+    if (props.user.info.DOB === "") DOB = <li>Update Your Profile to Add Your Date Of Birth</li>
+    else DOB = <li>{ props.user.info.DOB }</li>
 
-  return(
+    if (props.user.info.gender === "") gender = <li>Update Your Profile to Add Your Gender</li>
+    else gender = <li>{ props.user.info.gender }</li>
+
+    initMount =
     <div className='dashboard_profile_wrapper'>
       <div className='alt_header'>
-        <h3>{props.user.user_name}</h3>
-        <h5>{props.user.email}</h5>
+        <h3>{props.user.info.user_name}</h3>
+        <h5>{props.user.info.email}</h5>
       </div>
       <div className='dashboard_profile_body'>
         <ul>
-          <li>{props.user.first_name}</li>
-          <li>{props.user.last_name}</li>
+          <li>Name</li>
+          { fullName }
         </ul>
         <ul>
-          <li>{props.user.gender}</li>
-          <li>{age} years old</li>
-          <li>{props.user.birth_month} {formatDate(props.user.birth_day)}, {props.user.birth_year}</li>
+          <li>Date of Birth</li>
+          { DOB }
         </ul>
         <ul>
-          <li>{props.user.house_number} {props.user.street_name}</li>
-          <li>{props.user.city_town}, {props.user.state}</li>
-          <li>{props.user.zip_code}</li>
+          <li>Gender</li>
+          { gender }
         </ul>
         <ul>
           <li>Join Date</li>
-          <li>{props.user.join_month} {formatDate(props.user.join_day)}, {props.user.join_year}</li>
+          { joinDate }
         </ul>
           <DashboardProfileButtonContainer history={props.history} />
       </div>
     </div>
-  )
+  }
+
+  // const formatDate = (date) => {
+  //   const number_ends = [ 'st', 'nd', 'rd', 'th' ]
+  //   const number_split = localStorage.birth_day.split('').pop()
+
+  //   if ((parseInt(date, 10) > 10) && (parseInt(date, 10) < 19)) {
+  //     return `${date}` + number_ends[3]
+  //   } else {
+  //     if ((number_split === '1')) {
+  //       return `${date}` + number_ends[0]
+  //     } else if (number_split === '2') {
+  //       return `${date}` + number_ends[1]
+  //     } else if (number_split === '3') {
+  //       return `${date}` + number_ends[2]
+  //     } else {
+  //       return `${date}` + number_ends[3]
+  //     }
+  //   }
+  // }
+
+  // const age = new Date().getFullYear() - props.user.birth_year
+
+  return(<>{ initMount }</>)
 }
 
-export default DashboardProfileContainer
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(DashboardProfileContainer)

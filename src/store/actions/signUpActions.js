@@ -23,6 +23,7 @@ export const signUpUser = (signUpObj, props) => {
             DOB: '',
             email: signUpObj.email,
             first_name: '',
+            gender: '',
             last_name: '',
             user_name: signUpObj.displayName
           },

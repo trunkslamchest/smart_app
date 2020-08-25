@@ -2,8 +2,6 @@ import React from 'react'
 
 import { connect} from 'react-redux'
 
-// import { useEffect } from 'react'
-
 const DashboardIndex = (props) => {
   return(
     <div className='dashboard_index'>
