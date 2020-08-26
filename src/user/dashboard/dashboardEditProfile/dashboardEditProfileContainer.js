@@ -70,6 +70,8 @@ class DashboardEditProfile extends React.Component {
       }
     }
 
+    // console.log(userObj)
+
     this.props.onUpdateUserInfo(userObj, this.props)
   }
 
