@@ -35,11 +35,8 @@ class Dashboard extends React.Component{
           history={this.props.history}
         />
       </Route>
-      <Route path={ routes.dashboard_profile_delete }>
-        <DashboardDeleteProfile
-          history={this.props.history}
-        />
-      </Route>
+      {/* <Route path={ routes.dashboard_profile_delete }>
+      </Route> */}
       <Route path={ routes.dashboard_test }>
         <DashboardTest />
       </Route>
@@ -53,10 +50,13 @@ class Dashboard extends React.Component{
       </div>
 
     return(
-      <div className='dashboard_wrapper'>
-        <DashboardNavBarContainer />
-        {this.props.auth.loading ? loading : routeBoard }
-      </div>
+      <>
+        <DashboardDeleteProfile history={this.props.history} />
+        <div className='dashboard_wrapper'>
+          <DashboardNavBarContainer />
+          {this.props.auth.loading ? loading : routeBoard }
+        </div>
+      </>
     )
   }
 }

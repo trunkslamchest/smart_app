@@ -1,39 +1,53 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../../store/actions/actionIndex'
+
 import { routes } from '../../../utility/paths.js'
 
+import Modal from '../../../UI/modal/modal'
 import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer'
-
-import userFunctions from '../../../utility/userFunctions'
 
 import './dashboardDeleteProfile.css'
 
-export default class DashboardDeleteProfile extends React.Component {
+const DashboardDeleteProfile = (props) => {
 
-  onConfirm = (event) => {
-    userFunctions('delete', `http://localhost:3001/users/${this.props.user_id}`)
-    .then(
-      this.props.logOut(),
-      this.props.history.push( routes.home )
-    )
+  const onConfirm = (event) => {
+    // userFunctions('delete', `http://localhost:3001/users/${this.props.user_id}`)
+    // .then(
+    //   this.props.logOut(),
+    //   this.props.history.push( routes.home )
+    // )
   }
 
-  onCancel = (event) => {
-    this.props.onClickTrafficFunctions(event)
-    this.props.history.push( routes.dashboard_profile )
-  }
+  const onCancel = () => { props.onDeleteProfileModal(false) }
 
-  render(){
-    return(
-      <div className='default_wrapper'>
-        <div className='alt_header'>
-          <h3>Are you sure you want to delete your profile?</h3>
-        </div>
-          <DashboardDeleteProfileButtonContainer
-            onConfirm={this.onConfirm}
-            onCancel={this.onCancel}
-          />
-      </div>
-    )
+  return(
+  <Modal
+    showModal={ props.modal.deleteProfile }
+  >
+    <div className='alt_header'>
+      <h3>Are you sure you want to delete your profile?</h3>
+    </div>
+      <DashboardDeleteProfileButtonContainer
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+      />
+  </Modal>
+  )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    modal: state.modal,
+    auth: state.auth
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteProfileModal: (bool) => (dispatch(actions.deleteProfile(bool)))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardDeleteProfile)

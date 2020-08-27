@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../../store/actions/actionIndex'
+
 import { routes } from '../../../utility/paths.js'
 
 import DashboardProfileButton from './dashboardProfileButton'
@@ -8,8 +11,12 @@ import './dashboardProfileButtonContainer.css'
 
 const DashboardProfileButtonContainer = (props) => {
 
-  const onClickFunctions = (url) => {
-    props.history.push(url)
+  const onClickEdit = () => {
+    props.history.push(routes.dashboard_profile_edit)
+  }
+
+  const onClickDelete = () => {
+    props.onDeleteProfileModal(true)
   }
 
   return(
@@ -18,7 +25,7 @@ const DashboardProfileButtonContainer = (props) => {
         type='button'
         id='delete_profile_button'
         name='edit_profile_button'
-        onClick={() => onClickFunctions( routes.dashboard_profile_edit )}
+        onClick={onClickEdit}
       >
         Edit Profile
       </DashboardProfileButton>
@@ -26,7 +33,7 @@ const DashboardProfileButtonContainer = (props) => {
         type='button'
         id='delete_profile_button'
         name='delete_profile_button'
-        onClick={() => onClickFunctions( routes.dashboard_profile_delete )}
+        onClick={onClickDelete}
       >
         Delete Profile
       </DashboardProfileButton>
@@ -34,4 +41,17 @@ const DashboardProfileButtonContainer = (props) => {
   )
 }
 
-export default DashboardProfileButtonContainer
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    modal: state.modal
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteProfileModal: (bool) => (dispatch(actions.deleteProfile(bool)))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardProfileButtonContainer)

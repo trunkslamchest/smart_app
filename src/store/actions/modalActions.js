@@ -21,6 +21,13 @@ export const signup = (bool) => {
   }
 }
 
+export const deleteProfile = (bool) => {
+  return {
+    type: actionTypes.DELETEPROFILEMODAL,
+    deleteProfile: bool
+  }
+}
+
 export const showModal = (bool) => {
   return{
     type: actionTypes.SHOWMODAL,

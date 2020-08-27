@@ -9,6 +9,7 @@ export const REMOVE = 'REMOVE'
 export const LOGINMODAL = 'LOGINMODAL'
 export const LOGOUTMODAL = 'LOGOUTMODAL'
 export const SIGNUPMODAL = 'SIGNUPMODAL'
+export const DELETEPROFILEMODAL = 'DELETEPROFILEMODAL'
 
 export const SHOWMODAL = 'SHOWMODAL'
 

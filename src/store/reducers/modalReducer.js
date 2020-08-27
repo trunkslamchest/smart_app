@@ -4,27 +4,35 @@ const initialState = {
   login: false,
   logout: false,
   signup: false,
+  deleteProfile: false,
   showModal: false
 }
 
 const loginModal = (currentState, action) => {
-  return{
+  return {
     ...currentState,
     login: action.login
   }
 }
 
 const logoutModal = (currentState, action) => {
-  return{
+  return {
     ...currentState,
     logout: action.logout
   }
 }
 
 const signupModal = (currentState, action) => {
-  return{
+  return {
     ...currentState,
     signup: action.signup
+  }
+}
+
+const deleteProfileModal = (currentState, action) => {
+  return {
+    ...currentState,
+    deleteProfile: action.deleteProfile
   }
 }
 
@@ -40,6 +48,7 @@ const modalReducer = (currentState = initialState, action) => {
     case actionTypes.LOGINMODAL: return loginModal(currentState, action)
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)
     case actionTypes.SIGNUPMODAL: return signupModal(currentState, action)
+    case actionTypes.DELETEPROFILEMODAL: return deleteProfileModal(currentState, action)
     case actionTypes.SHOWMODAL: return showModal(currentState, action)
     default: return currentState
   }
