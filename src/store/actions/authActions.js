@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes'
 
-import { fetch, auth } from '../../utility/paths'
+import { routes, fetch, auth } from '../../utility/paths'
 
 import { storeUserInfo, storeUserQuestions, clearUserInfo, clearUserQuestions } from './userActions'
 
@@ -41,10 +41,8 @@ export const authFail = (error) => {
   }
 }
 
-export const authLogOut = () => {
-  // localStorage.removeItem('token')
-  // localStorage.removeItem('refreshToken')
-  // localStorage.removeItem('id')
+export const authLogOut = (props) => {
+
   localStorage.clear()
   localStorage.access = 'guest'
 
@@ -52,6 +50,7 @@ export const authLogOut = () => {
     dispatch(clearUserInfo())
     dispatch(clearUserQuestions())
     dispatch(clearAuthInfo())
+    props.history.push( routes.home )
   }
 }
 
@@ -91,6 +90,23 @@ export const authUser = (token, refreshToken, id, expires) => {
     // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
     // localStorage.setItem('expirationDate', expirationDate)
     // dispatch(checkAuthTimeout(response.data.expiresIn))
+  }
+}
+
+export const authDelete = (props) => {
+
+  let id = props.auth.id, token = props.auth.token, project = process.env.REACT_APP_FIREBASE_PROJECT_ID
+
+  const obj = {
+    localId: id,
+    idToken: token,
+    targetProjectId: project
+  }
+
+  return dispatch => {
+    dispatch(authStart())
+    authFunctions('delete', auth.delete, obj)
+    .then(res => { if(res) dispatch(authLogOut(props)) })
   }
 }
 

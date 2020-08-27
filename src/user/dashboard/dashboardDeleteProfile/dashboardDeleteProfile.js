@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/actionIndex'
 
-import { routes } from '../../../utility/paths.js'
+// import { routes } from '../../../utility/paths.js'
 
 import Modal from '../../../UI/modal/modal'
 import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer'
@@ -12,12 +12,11 @@ import './dashboardDeleteProfile.css'
 
 const DashboardDeleteProfile = (props) => {
 
-  const onConfirm = (event) => {
-    // userFunctions('delete', `http://localhost:3001/users/${this.props.user_id}`)
-    // .then(
-    //   this.props.logOut(),
-    //   this.props.history.push( routes.home )
-    // )
+  const onConfirm = () => {
+    let id = props.auth.id
+    let obj = { uid: id }
+    props.onDeleteProfileModal(false)
+    props.onDeleteUser(obj, props)
   }
 
   const onCancel = () => { props.onDeleteProfileModal(false) }
@@ -46,7 +45,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDeleteProfileModal: (bool) => (dispatch(actions.deleteProfile(bool)))
+    onDeleteProfileModal: (bool) => (dispatch(actions.deleteProfile(bool))),
+    onDeleteUser: (obj, props) => (dispatch(actions.deleteUser(obj, props)))
   }
 }
 

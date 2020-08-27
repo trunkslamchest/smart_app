@@ -26,6 +26,7 @@ export {
   authFail,
   authLogOut,
   authRefresh,
+  authDelete,
   authTimeout,
   // setAuthRedirectPath,
   // checkAuthState,
@@ -47,6 +48,7 @@ export {
   clearUserInfo,
   storeUserQuestions,
   clearUserQuestions,
-  updateUserInfo
+  updateUserInfo,
+  deleteUser
   // updateUser
 } from './userActions'

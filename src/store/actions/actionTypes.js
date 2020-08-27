@@ -19,6 +19,7 @@ export const AUTH_FAIL = 'AUTH_FAIL'
 export const AUTH_USER = 'AUTH_USER'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 export const AUTH_REFRESH = 'AUTH_REFRESH'
+export const AUTH_DELETE = 'AUTH_DELETE'
 export const AUTH_TIMEOUT = 'AUTH_TIMEOUT'
 
 export const LOGIN_USER = 'LOGIN_USER'
@@ -31,3 +32,5 @@ export const CLEAR_USER_INFO = 'CLEAR_USER_INFO'
 export const CLEAR_USER_QUESTIONS = 'CLEAR_USER_QUESTIONS'
 
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
+
+export const DELETE_USER = 'DELETE_USER'

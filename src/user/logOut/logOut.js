@@ -14,13 +14,13 @@ import './logOut.css'
 const LogOut = (props) => {
 
   const onConfirm = () => {
-    props.onLogoutModal(false)
-    props.onLogout()
+    props.onLogOutModal(false)
+    props.onLogOut(props)
     props.history.push( routes.home )
   }
 
   const onCancel = () => {
-    props.onLogoutModal(false)
+    props.onLogOutModal(false)
   }
 
   return(
@@ -47,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogoutModal: (bool) => dispatch(actions.logout(bool)),
-    onLogout: () => dispatch(actions.authLogOut())
+    onLogOutModal: (bool) => dispatch(actions.logout(bool)),
+    onLogOut: (props) => dispatch(actions.authLogOut(props))
   }
 }
 

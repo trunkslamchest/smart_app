@@ -55,6 +55,16 @@ const authLogOut = (currentState, action) => {
   }
 }
 
+const authDelete = (currentState, action) => {
+  return {
+    ...currentState,
+    // error: action.error,
+    token: null,
+    refreshToken: null,
+    id: null
+  }
+}
+
 const authRefresh = (currentState, action) => {
   return {
     ...currentState,
@@ -69,6 +79,7 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_FAIL: return authFail(currentState, action)
     case actionTypes.AUTH_USER: return authUser(currentState, action)
     case actionTypes.AUTH_LOGOUT: return authLogOut(currentState, action)
+    case actionTypes.AUTH_DELETE: return authDelete(currentState, action)
     case actionTypes.AUTH_REFRESH: return authRefresh(currentState, action)
     default: return currentState
   }
