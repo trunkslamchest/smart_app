@@ -26,6 +26,7 @@ class DashboardEditProfile extends React.Component {
     pulledStore: false
   }
 
+  componentDidMount(){ if(this.props.user.info) this.pulledStore() }
   componentDidUpdate(){ if(this.props.user.info && !this.state.pulledStore)this.pulledStore() }
 
   pulledStore = () => {
@@ -51,13 +52,11 @@ class DashboardEditProfile extends React.Component {
     })
   }
 
-
   onSubmit = (event) => {
     event.persist()
     event.preventDefault()
 
     let id = localStorage.id
-
     let userObj = {
       uid: id,
       info: {
@@ -69,16 +68,12 @@ class DashboardEditProfile extends React.Component {
         user_name: this.state.user_name
       }
     }
-
-    // console.log(userObj)
-
     this.props.onUpdateUserInfo(userObj, this.props)
   }
 
   onReset = (event) => {
     event.persist()
     event.preventDefault()
-
     this.setState({
       dob: this.props.user.info.dob,
       email: this.props.user.info.email,
@@ -91,6 +86,12 @@ class DashboardEditProfile extends React.Component {
   }
 
   onCancel = (event) => { this.props.history.push( routes.dashboard_profile ) }
+
+  componentWillUnmount(){
+    this.setState({
+      pulledStore: false
+    })
+  }
 
   render(){
     return(

@@ -9,16 +9,10 @@ import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
 
-  let initMount
-  let fullName
-  let dob
-  let gender
-  let joinDate
+  let initMount, fullName, dob, gender, joinDate
 
   const formatDay = () => {
-    const day = props.user.info.join_date.day
-    const number_ends = [ 'st', 'nd', 'rd', 'th' ]
-    const number_split = day.toString().split('').pop()
+    const day = props.user.info.join_date.day, number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
 
     if (day > 10 && day < 19) return day + number_ends[3]
     else {
