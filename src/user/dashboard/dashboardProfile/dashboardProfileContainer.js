@@ -9,7 +9,7 @@ import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
 
-  let initMount, fullName, dob, gender, joinDate
+  let initMount, firstName, lastName, dobDay, dobMonth, dobYear, gender, joinDate
 
   const formatDay = () => {
     const day = props.user.info.join_date.day, number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
@@ -29,16 +29,13 @@ const DashboardProfileContainer = (props) => {
   }
 
   if(!!props.user.info){
-    if (props.user.info.first_name === "" || props.user.info.last_name === "") fullName = <li>Not Available</li>
-    else fullName = <li>{props.user.info.first_name} {props.user.info.last_name}</li>
-
-    if (props.user.info.dob.day === "" || props.user.info.dob.month === "" || props.user.info.dob.year === "") dob = <li>Not Available</li>
-    else dob = <li>{ props.user.info.dob.day } { props.user.info.dob.month }, { props.user.info.dob.year }</li>
-
-    if (props.user.info.gender === "") gender = <li>Not Available</li>
-    else gender = <li>{ props.user.info.gender }</li>
-
-    joinDate = <li>{ formatMonth() } { formatDay() }, { props.user.info.join_date.year }</li>
+    firstName = props.user.info.first_name === "" ? 'missing' : firstName = props.user.info.first_name
+    lastName = props.user.info.last_name === "" ? 'missing' : lastName = props.user.info.last_name
+    dobDay = props.user.info.dob.day === "" ? 'missing' : props.user.info.dob.day
+    dobMonth = props.user.info.dob.month === "" ? 'missing' : props.user.info.dob.month
+    dobYear = props.user.info.dob.year === "" ? 'missing' : props.user.info.dob.year
+    gender = props.user.info.gender === "" ? 'missing' : props.user.info.gender
+    joinDate = `${formatMonth() } ${ formatDay() }, ${ props.user.info.join_date.year}`
 
     initMount =
     <div className='dashboard_profile_wrapper'>
@@ -49,26 +46,24 @@ const DashboardProfileContainer = (props) => {
       <div className='dashboard_profile_body'>
         <ul>
           <li>Name</li>
-          { fullName }
+          <li>{ firstName } { lastName }</li>
         </ul>
         <ul>
           <li>Date of Birth</li>
-          { dob }
+          <li>{ dobDay } { dobMonth }, { dobYear }</li>
         </ul>
         <ul>
           <li>Gender</li>
-          { gender }
+          <li>{ gender }</li>
         </ul>
         <ul>
           <li>Join Date</li>
-          { joinDate }
+          <li>{ joinDate }</li>
         </ul>
           <DashboardProfileButtonContainer history={props.history} />
       </div>
     </div>
   }
-
-  // const age = new Date().getFullYear() - props.user.birth_year
 
   return(<>{ initMount }</>)
 }

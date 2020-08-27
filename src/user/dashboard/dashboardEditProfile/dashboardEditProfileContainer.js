@@ -65,7 +65,8 @@ class DashboardEditProfile extends React.Component {
         first_name: this.state.first_name,
         gender: this.state.gender,
         last_name: this.state.last_name,
-        user_name: this.state.user_name
+        user_name: this.state.user_name,
+        join_date: this.props.user.info.join_date
       }
     }
     this.props.onUpdateUserInfo(userObj, this.props)

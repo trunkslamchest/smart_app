@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes'
 
-import { fetch } from '../../utility/paths'
+import { routes, fetch } from '../../utility/paths'
 import userFunctions from '../../utility/userFunctions'
 
 export const storeUserInfo = (info) => {
@@ -36,6 +36,7 @@ export const updateUserInfo = (obj, props) => {
     userFunctions('patch', fetch.patch.user, obj)
     .then(res => {
       dispatch(storeUserInfo(obj.info))
+      props.history.push( routes.dashboard_profile )
     })
   }
 }
