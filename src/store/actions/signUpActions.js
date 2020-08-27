@@ -7,6 +7,7 @@ import { auth, fetch } from '../../utility/paths'
 
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
+import getTime from '../../utility/getTime'
 
 export const signUpUser = (signUpObj, props) => {
   return dispatch => {
@@ -29,7 +30,12 @@ export const signUpUser = (signUpObj, props) => {
             first_name: '',
             gender: '',
             last_name: '',
-            user_name: signUpObj.displayName
+            user_name: signUpObj.displayName,
+            join_date: {
+              day: getTime('day'),
+              month: getTime('month'),
+              year: getTime('year')
+            }
           },
           questions: {
             questionId: {
