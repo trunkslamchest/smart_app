@@ -10,6 +10,10 @@ import { Route, Switch } from 'react-router-dom'
 import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer'
 import DashboardIndex from './dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardProfile/dashboardProfileContainer'
+import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
+import DashboardVotesContainer from './dashboardVotes/dashboardVotesContainer'
+import DashboardCommentsContainer from './dashboardComments/dashboardCommentsContainer'
+
 
 import DashboardTest from './dashboardTest'
 
@@ -35,8 +39,21 @@ class Dashboard extends React.Component{
           history={this.props.history}
         />
       </Route>
-      {/* <Route path={ routes.dashboard_profile_delete }>
-      </Route> */}
+      <Route exact path={ routes.dashboard_stats }>
+        <DashboardStatsContainer
+          history={this.props.history}
+        />
+      </Route>
+      <Route exact path={ routes.dashboard_votes }>
+        <DashboardVotesContainer
+          history={this.props.history}
+        />
+      </Route>
+      <Route exact path={ routes.dashboard_comments }>
+        <DashboardCommentsContainer
+          history={this.props.history}
+        />
+      </Route>
       <Route path={ routes.dashboard_test }>
         <DashboardTest />
       </Route>

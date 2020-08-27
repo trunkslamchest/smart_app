@@ -19,9 +19,7 @@ const LogOut = (props) => {
     props.history.push( routes.home )
   }
 
-  const onCancel = () => {
-    props.onLogOutModal(false)
-  }
+  const onCancel = () => { props.onLogOutModal(false) }
 
   return(
     <Modal

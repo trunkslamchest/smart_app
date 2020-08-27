@@ -18,10 +18,28 @@ const DashboardNavBarContainer = (props) => {
           My Profile
         </DashboardNavBarButton>
         <DashboardNavBarButton
+          name='dashboard_stats_button'
+          link={ routes.dashboard_stats }
+        >
+          My Stats
+        </DashboardNavBarButton>
+        <DashboardNavBarButton
+          name='dashboard_votes_button'
+          link={ routes.dashboard_votes }
+        >
+          My Votes
+        </DashboardNavBarButton>
+        <DashboardNavBarButton
+          name='dashboard_comments_button'
+          link={ routes.dashboard_comments }
+        >
+          My Comments
+        </DashboardNavBarButton>
+        <DashboardNavBarButton
           name='dashboard_test_button'
           link={ routes.dashboard_test }
         >
-          Test Page
+          Test
         </DashboardNavBarButton>
       </ul>
     </div>

@@ -46,6 +46,12 @@ var setCORSpatch = function(req, res){
   if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
 }
 
+var setCORSdelete = function(req, res){
+  res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
+  res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
+  if(req.headers.origin === url.rootSecured || url.rootUnsecured ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+}
+
 // exports.test1 = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
@@ -70,23 +76,6 @@ var setCORSpatch = function(req, res){
 //     firebase.database().ref('/').once('value', function(users){ res.json(users) });
 //   });
 
-exports.users = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSget(req, res);
-    firebase.database().ref('/').once('value', function(users){ res.status(200).json(users) });
-  });
-
-
-exports.addUser = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSpost(req, res);
-    var obj = req.body;
-    firebase.database().ref().update(obj);
-    res.status(200).json(obj);
-  });
-
 // exports.getUser = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
@@ -97,13 +86,6 @@ exports.addUser = functions
 //       res.json(user);
 //     });
 //   });
-
-exports.getUser = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSpost(req, res);
-    firebase.database().ref('/' + req.body.id).once('value', function(snap){ res.status(200).json(snap.val()) });
-  });
 
 // exports.updateUser = functions
 //   .region('us-east1')
@@ -121,6 +103,29 @@ exports.getUser = functions
 //     });
 //   });
 
+exports.users = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSget(req, res);
+    firebase.database().ref('/').once('value', function(users){ res.status(200).json(users) });
+  });
+
+exports.addUser = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res);
+    var obj = req.body;
+    firebase.database().ref().update(obj);
+    res.status(200).json(obj);
+  });
+
+exports.getUser = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res);
+    firebase.database().ref('/' + req.body.id).once('value', function(snap){ res.status(200).json(snap.val()) });
+  });
+
 exports.updateUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -131,4 +136,16 @@ exports.updateUser = functions
       firebase.database().ref().update(updatedInfo);
     }
     res.status(200).json(updatedInfo);
+  });
+
+exports.deleteUser = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSdelete(req, res);
+    var user = ''
+    if(!!req.body.uid) {
+      user = `/${req.body.uid}`
+      firebase.database().ref(user).remove()
+    }
+    res.status(200).json({msg: 'Your Profile has been removed.'})
   });
