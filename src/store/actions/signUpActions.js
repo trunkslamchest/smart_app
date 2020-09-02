@@ -38,13 +38,13 @@ export const signUpUser = (signUpObj, props) => {
             }
           },
           questions: {
-            questionId: {
-              question: '',
-              answer: '',
-              correct_answer: '',
+            "null": {
+              question: 'null',
+              answer: 'null',
+              correct_answer: 'null',
               time: 0,
-              vote: '',
-              comment: '',
+              vote: 'null',
+              comment: 'null',
             }
           }
         }

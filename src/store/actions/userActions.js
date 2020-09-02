@@ -1,10 +1,7 @@
 import * as actionTypes from './actionTypes'
 import { authDelete } from './authActions'
-
-
 import { routes, fetch } from '../../utility/paths'
 import userFunctions from '../../utility/userFunctions'
-// import authFunctions from '../../utility/userFunctions'
 
 export const storeUserInfo = (info) => {
   return {
