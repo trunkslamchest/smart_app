@@ -1,4 +1,12 @@
 {
+  "totals": {
+    "questions": 61,
+    "answered": 0,
+    "correct": 0,
+    "incorrect": 0,
+    "votes": 0,
+    "comments": 0
+  },
   "easy": {
     "anime": {
       "1": {

@@ -3,11 +3,16 @@ import { logInUser } from './logInActions'
 import { authFail } from './authActions'
 import { storeUserInfo, storeUserQuestions } from './userActions'
 
-import { auth, fetch } from '../../utility/paths'
+import {
+auth,
+fetch
+} from '../../utility/paths'
+
+import signUpObjTemplate from '../../templates/signUpObjTemplate'
 
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
-import getTime from '../../utility/getTime'
+// import getTime from '../../utility/getTime'
 
 export const signUpUser = (signUpObj, props) => {
   return dispatch => {
@@ -16,38 +21,10 @@ export const signUpUser = (signUpObj, props) => {
       if(!!res.error) {
         dispatch(authFail(res.error))
       } else {
-        var id = res.localId
+        let id = res.localId
         let userObj = {}
 
-        userObj[id] = {
-          info: {
-            dob: {
-              day: '',
-              month: '',
-              year: ''
-            },
-            email: signUpObj.email,
-            first_name: '',
-            gender: '',
-            last_name: '',
-            user_name: signUpObj.displayName,
-            join_date: {
-              day: getTime('day'),
-              month: getTime('month'),
-              year: getTime('year')
-            }
-          },
-          questions: {
-            "null": {
-              question: 'null',
-              answer: 'null',
-              correct_answer: 'null',
-              time: 0,
-              vote: 'null',
-              comment: 'null',
-            }
-          }
-        }
+        userObj[id] = signUpObjTemplate(signUpObj.email, signUpObj.displayName)
 
         userFunctions('post', fetch.post.user, userObj)
         .then(res => {

@@ -1,0 +1,73 @@
+.stats_total {
+  background-color: rgba(255,255,255, 1);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  font: 300 10pt 'Poppins', sans-serif;
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+}
+
+.stats_total br {
+  line-height: 0em;
+}
+
+.stats_total ul {
+  text-align:center;
+  width: 50% !important;
+  list-style: none;
+  padding: 10px;
+  margin: 50px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.stats_total li {
+  font-size: 10pt;
+}
+
+.stats_total_rating {
+  text-align:center;
+  width: 50%;
+  margin: 0 auto 0 auto;
+  align-self: center;
+}
+
+.stats_total_rating h1 {
+  text-align:center;
+  font: 800 30pt "Lato";
+  padding: 0px;
+  margin: 0 auto 0 auto;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.stats_total_rating h2 {
+  text-align:center;
+  font: 300 11pt 'Poppins', sans-serif;
+  padding: 0px;
+  margin: 0 auto 0 auto;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.stats_total_rating h2 span {
+  text-align:center;
+  font: 400 13pt 'Baloo', sans-serif;
+  padding: 0px;
+  margin: 0 auto 0 auto;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}

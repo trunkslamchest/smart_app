@@ -95,18 +95,21 @@ export const authUser = (token, refreshToken, id, expires) => {
 
 export const authDelete = (props) => {
 
-  let id = props.auth.id, token = props.auth.token, project = process.env.REACT_APP_FIREBASE_PROJECT_ID
+  // let id = props.auth.id, token = props.auth.token, project = process.env.REACT_APP_FIREBASE_PROJECT_ID
+  let token = props.auth.token
 
   const obj = {
-    localId: id,
+    // localId: id,
     idToken: token,
-    targetProjectId: project
+    // targetProjectId: project
   }
 
   return dispatch => {
     dispatch(authStart())
     authFunctions('delete', auth.delete, obj)
-    .then(res => { if(res) dispatch(authLogOut(props)) })
+    .then(res => {
+      if(res) dispatch(authLogOut(props))
+    })
   }
 }
 
