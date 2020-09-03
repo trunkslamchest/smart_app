@@ -6,6 +6,7 @@ import './headerButton.css'
 const HeaderButton = (props) => {
   return(
     <NavLink
+      menu={props.menu}
       activeClassName='default_active'
       exact to={props.link}
       className='default_header_link'

@@ -1,13 +1,11 @@
 import React from 'react'
 
-import './headerButton2.css'
-
-const HeaderButton2 = (props) => {
+const playMenuButton2 = (props) => {
   return(
     <button
       menu={props.menu}
-      className='header_button2'
       name={props.name}
+      className='playMenuButton2'
       onClick={props.onClick}
     >
       {props.children}
@@ -15,4 +13,4 @@ const HeaderButton2 = (props) => {
   )
 }
 
-export default HeaderButton2
+export default playMenuButton2
