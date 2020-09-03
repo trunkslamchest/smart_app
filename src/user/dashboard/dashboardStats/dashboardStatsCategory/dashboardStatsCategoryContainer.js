@@ -7,7 +7,7 @@ import DashboardStatsCategoryCard from './dashboardStatsCategoryCard'
 
 import './dashboardStatsCategory.css'
 
-class DashboardStatsCategory extends React.Component {
+class DashboardStatsCategoryContainer extends React.Component {
   render(){
 
     var distribCats = <></>
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsCategory)
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsCategoryContainer)

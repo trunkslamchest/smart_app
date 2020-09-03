@@ -8,7 +8,7 @@ import * as actions from './store/actions/actionIndex'
 import { routes } from './utility/paths'
 
 import Header from './UI/header/header'
-import Home from './index/Home'
+import HomeContainer from './home/HomeContainer'
 import Footer from './UI/footer/footer'
 
 import LogIn from './user/logIn/logIn'
@@ -58,7 +58,7 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path={ routes.home }>
-              <Home history={this.props.history} />
+              <HomeContainer history={this.props.history} />
             </Route>
             <Route path={ routes.dashboard }>
               <DashboardContainer history={this.props.history} />

@@ -1,12 +1,12 @@
 import React from 'react'
 
-import './button3.css'
+import './authButton.css'
 
-const Button3 = (props) => {
+const AuthButton = (props) => {
   return(
     <button
       name={props.name}
-      className='button3'
+      className='auth_button'
       onClick={props.onClick}
     >
       {props.children}
@@ -14,4 +14,4 @@ const Button3 = (props) => {
   )
 }
 
-export default Button3
+export default AuthButton

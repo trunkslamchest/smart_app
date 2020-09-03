@@ -2,7 +2,13 @@ import * as actionTypes from './actionTypes'
 
 import { routes, fetch, auth } from '../../utility/paths'
 
-import { storeUserInfo, storeUserQuestions, clearUserInfo, clearUserQuestions, deleteUser } from './userActions'
+import {
+  storeUserInfo,
+  storeUserQuestions,
+  clearUserInfo,
+  clearUserQuestions,
+  // deleteUser
+} from './userActions'
 
 // import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
@@ -65,11 +71,16 @@ const clearAuthInfo = () => {
 
 export const authRefresh = (refreshObj) => {
   return dispatch => {
-    dispatch(authStart())
-    authFunctions('refreshToken', auth.refreshToken, refreshObj)
-    .then(authRes => {
-      dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
-    })
+    if(localStorage.access === "normal" && localStorage.id === "undefined") {
+      localStorage.clear()
+      localStorage.access = 'guest'
+    } else {
+      dispatch(authStart())
+      authFunctions('refreshToken', auth.refreshToken, refreshObj)
+      .then(authRes => {
+        dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
+      })
+    }
   }
 }
 

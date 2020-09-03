@@ -7,7 +7,7 @@ import DashboardStatsDifficultyCard from './dashboardStatsDifficultyCard'
 
 import './dashboardStatsDifficulty.css'
 
-class DashboardStatsDifficulty extends React.Component {
+class DashboardStatsDifficultyContainer extends React.Component {
   render(){
 
     var distribDiffs = <></>
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsDifficulty)
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsDifficultyContainer)

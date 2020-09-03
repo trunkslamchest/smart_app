@@ -1,0 +1,11 @@
+.logged_out_auth_buttons_container {
+  width: 50%;
+  min-width: 50%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0 auto 0 auto;
+  animation: fade_in .1s ease-in-out 1, blur_in .2s ease-in-out 1, slide_in_from_bottom .3s ease-in-out 1;
+}

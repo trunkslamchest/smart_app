@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
 import DashboardStatsTotal from './dashboardStatsTotal/dashboardStatsTotal'
-import DashboardStatsDifficulty from './dashboardStatsDifficulty/dashboardStatsDifficulty'
-import DashboardStatsCategory from './dashboardStatsCategory/dashboardStatsCategory'
+import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'
+import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardStatsCategoryContainer'
 
 import './dashboardStats.css'
 
@@ -14,8 +14,8 @@ class DashboardStatsContainer extends React.Component {
     return(
       <div className={ "stats_wrapper"}>
         <DashboardStatsTotal />
-        <DashboardStatsDifficulty />
-        <DashboardStatsCategory />
+        <DashboardStatsDifficultyContainer />
+        <DashboardStatsCategoryContainer />
       </div>
     )
   }
