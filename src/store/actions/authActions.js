@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes'
 
 import { routes, fetch, auth } from '../../utility/paths'
 
-import { storeUserInfo, storeUserQuestions, clearUserInfo, clearUserQuestions } from './userActions'
+import { storeUserInfo, storeUserQuestions, clearUserInfo, clearUserQuestions, deleteUser } from './userActions'
 
 // import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
@@ -102,26 +102,21 @@ export const authDelete = (props) => {
     dispatch(authStart())
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
     .then(authRes => {
-      if(!!authRes) {
-        deleteUser(authRes)
+      if(authRes.user_id && authRes.id_token) {
+        const obj = {
+          localId: authRes.user_id,
+          idToken: authRes.id_token,
+          // targetProjectId: project
+        }
+        authFunctions('delete', auth.delete, obj)
+        .then(res => {
+          console.log(res)
+          // dispatch(deleteUser(obj, props))
+          // if(res) dispatch(authLogOut(props))
+        })
       }
     })
   }
-}
-
-export const deleteUser = (authRes) => {
-
-  const obj = {
-    localId: authRes.user_id,
-    idToken: authRes.id_token,
-    // targetProjectId: project
-  }
-
-  authFunctions('delete', auth.delete, obj)
-  .then(res => {
-    console.log(res)
-    // if(res) dispatch(authLogOut(props))
-  })
 }
 
 export const authTimeout = (expirationTime) => {

@@ -32,9 +32,6 @@ class App extends React.Component {
 
   componentDidMount(){
     if (!localStorage.token)  {
-      // localStorage.removeItem('token')
-      // localStorage.removeItem('refreshToken')
-      // localStorage.removeItem('id')
       localStorage.clear()
       localStorage.access = 'guest'
     } else {

@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import { authDelete } from './authActions'
+import { authLogOut } from './authActions'
 import { routes, fetch } from '../../utility/paths'
 import userFunctions from '../../utility/userFunctions'
 
@@ -47,8 +47,8 @@ export const deleteUser = (obj, props) => {
   return dispatch => {
     userFunctions('delete', fetch.delete.user, obj)
     .then(res => {
-      // console.log(res)
-      if(res) dispatch(authDelete(props))
+      console.log(res)
+      // if(res) dispatch(authLogOut(props))
     })
   }
 }

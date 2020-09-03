@@ -46,7 +46,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDeleteProfileModal: (bool) => (dispatch(actions.deleteProfile(bool))),
-    onDeleteUser: (obj, props) => (dispatch(actions.deleteUser(obj, props)))
+    // onDeleteUser: (obj, props) => (dispatch(actions.deleteUser(obj, props)))
+    onDeleteUser: (props) => (dispatch(actions.authDelete(props)))
+
   }
 }
 
