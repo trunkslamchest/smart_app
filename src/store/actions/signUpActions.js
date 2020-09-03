@@ -12,7 +12,6 @@ import signUpObjTemplate from '../../templates/signUpObjTemplate'
 
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
-// import getTime from '../../utility/getTime'
 
 export const signUpUser = (signUpObj, props) => {
   return dispatch => {

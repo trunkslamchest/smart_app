@@ -8,1837 +8,1887 @@
     "comments": 0
   },
   "easy": {
-    "anime": {
-      "1": {
-        "type": "multiple",
-        "question": "The characters of Log Horizon are trapped in what game?",
-        "correct": "Elder Tale",
-        "incorrect": [
-          "Sword Art Online",
-          "Tower Unite",
-          "Yggdrasil"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
-          }
-        }
-      }
+    "totals": {
+      "questions": 21,
+      "answered": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "votes": 0,
+      "comments": 0
     },
-    "art": {
-      "1": {
-        "type": "multiple",
-        "question": "Which painting was not made by Vincent Van Gogh?",
-        "correct": "The Ninth Wave",
-        "incorrect": [
-          "Cafe Terrace at Night",
-          "Bedroom In Arles",
-          "Starry Night"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
-          }
-        }
-      }
-    },
-    "books": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?",
-        "correct": "A Study in Scarlet",
-        "incorrect": [
-          "The Sign of the Four",
-          "A Case of Identity",
-          "The Doings of Raffles Haw"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
-          }
-        }
-      }
-    },
-    "celebrities": {
-      "1": {
-        "type": "multiple",
-        "question": "Named after a character he played in a 1969 film, what is the name of the ski resort in Utah that Robert Redford bought in 1968?",
-        "correct": "Sundance",
-        "incorrect": [
-          "Woodward",
-          "Turner",
-          "Booker"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
-          }
-        }
-      }
-    },
-    "computers": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the domain name for the country Tuvalu?",
-        "correct": ".tv",
-        "incorrect": [
-          ".tu",
-          ".tt",
-          ".tl"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
-          }
-        }
-      }
-    },
-    "film": {
-      "1": {
-        "type": "multiple",
-        "question": "What breed of dog was Marley in the film Marley & Me?",
-        "correct": "Labrador Retriever",
-        "incorrect": [
-          "Golden Retriever",
-          "Dalmatian",
-          "Shiba Inu"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+    "categories": {
+      "anime": {
+        "1": {
+          "type": "multiple",
+          "question": "The characters of Log Horizon are trapped in what game?",
+          "correct": "Elder Tale",
+          "incorrect": [
+            "Sword Art Online",
+            "Tower Unite",
+            "Yggdrasil"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
       },
-      "2": {
-        "type": "multiple",
-        "question": "Which of the following movies was not based on a novel by Stephen King? ",
-        "correct": "The Thing",
-        "incorrect": [
-          "Carrie",
-          "Misery",
-          "The Green Mile"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      "art": {
+        "1": {
+          "type": "multiple",
+          "question": "Which painting was not made by Vincent Van Gogh?",
+          "correct": "The Ninth Wave",
+          "incorrect": [
+            "Cafe Terrace at Night",
+            "Bedroom In Arles",
+            "Starry Night"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "general": {
-      "1": {
-        "type": "multiple",
-        "question": "Which company did Valve cooperate with in the creation of the Vive?",
-        "correct": "HTC",
-        "incorrect": [
-          "Oculus",
-          "Google",
-          "Razer"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "books": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?",
+          "correct": "A Study in Scarlet",
+          "incorrect": [
+            "The Sign of the Four",
+            "A Case of Identity",
+            "The Doings of Raffles Haw"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "geography": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the Capital of the United States?",
-        "correct": "Washington, D.C.",
-        "incorrect": [
-          "Los Angelas, CA",
-          "New York City, NY",
-          "Houston, TX"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "celebrities": {
+        "1": {
+          "type": "multiple",
+          "question": "Named after a character he played in a 1969 film, what is the name of the ski resort in Utah that Robert Redford bought in 1968?",
+          "correct": "Sundance",
+          "incorrect": [
+            "Woodward",
+            "Turner",
+            "Booker"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "history": {
-      "1": {
-        "type": "multiple",
-        "difficulty": "Medium",
-        "question": "The seed drill was invented by which British inventor?",
-        "correc": "Jethro Tull",
-        "incorrect": [
-          "Charles Babbage",
-          "Isaac Newton",
-          "J.J Thomson"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "computers": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the domain name for the country Tuvalu?",
+          "correct": ".tv",
+          "incorrect": [
+            ".tu",
+            ".tt",
+            ".tl"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "math": {
-      "1": {
-        "type": "multiple",
-        "question": "How is the number 9 represented as a binary number?",
-        "correct": "1001",
-        "incorrect": [
-          "1000",
-          "1110",
-          "1010"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
+      },
+      "film": {
+        "1": {
+          "type": "multiple",
+          "question": "What breed of dog was Marley in the film Marley & Me?",
+          "correct": "Labrador Retriever",
+          "incorrect": [
+            "Golden Retriever",
+            "Dalmatian",
+            "Shiba Inu"
+          ],
+          "answers": {
+            "total": 2,
+            "correct": 1,
+            "incorrect": 1,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 6,
+            "good": 3,
+            "neutral": 2,
+            "bad": 1
+          },
+          "comments": {
+            "1": {
+              "user": "user0",
+              "comment": "test"
+            }
+          }
         },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+        "2": {
+          "type": "multiple",
+          "question": "Which of the following movies was not based on a novel by Stephen King? ",
+          "correct": "The Thing",
+          "incorrect": [
+            "Carrie",
+            "Misery",
+            "The Green Mile"
+          ],
+          "answers": {
+            "total": 3,
+            "correct": 2,
+            "incorrect": 1,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 7,
+            "good": 1,
+            "neutral": 2,
+            "bad": 4
+          },
+          "comments": {
+            "1": {
+              "user": "user0",
+              "comment": "test"
+            },
+            "2": {
+              "user": "user1",
+              "comment": "test1"
+            }
           }
         }
-      }
-    },
-    "music": {
-      "1": {
-        "type": "multiple",
-        "question": "Which one of these songs did the group Men At Work NOT make?",
-        "correct": "Safety Dance",
-        "incorrect": [
-          "Down Under",
-          "Who Can It Be Now?",
-          "It's a Mistake"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "general": {
+        "1": {
+          "type": "multiple",
+          "question": "Which company did Valve cooperate with in the creation of the Vive?",
+          "correct": "HTC",
+          "incorrect": [
+            "Oculus",
+            "Google",
+            "Razer"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "mythology": {
-      "1": {
-        "type": "multiple",
-        "question": "The Nike apparel and footwear brand takes it's name from the Greek goddess of what?",
-        "correct": "Victory",
-        "incorrect": [
-          "Courage",
-          "Strength",
-          "Honor"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "geography": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the Capital of the United States?",
+          "correct": "Washington, D.C.",
+          "incorrect": [
+            "Los Angelas, CA",
+            "New York City, NY",
+            "Houston, TX"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "nature": {
-      "1": {
-        "type": "multiple",
-        "question": "Which gas forms about 78% of the Earth's atmosphere?",
-        "correct": "Nitrogen",
-        "incorrect": [
-          "Oxygen",
-          "Argon",
-          "Carbon Dioxide"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "history": {
+        "1": {
+          "type": "multiple",
+          "difficulty": "Medium",
+          "question": "The seed drill was invented by which British inventor?",
+          "correc": "Jethro Tull",
+          "incorrect": [
+            "Charles Babbage",
+            "Isaac Newton",
+            "J.J Thomson"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "politics": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of the following Pacific Islander countries is ruled by a constitutional monarchy?",
-        "correct": "Tonga",
-        "incorrect": [
-          "Palau",
-          "Fiji",
-          "Kiribati"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "math": {
+        "1": {
+          "type": "multiple",
+          "question": "How is the number 9 represented as a binary number?",
+          "correct": "1001",
+          "incorrect": [
+            "1000",
+            "1110",
+            "1010"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "science": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the powerhouse of the cell?",
-        "correct": "Mitochondria",
-        "incorrect": [
-          "Ribosome",
-          "Redbull",
-          "Nucleus"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "music": {
+        "1": {
+          "type": "multiple",
+          "question": "Which one of these songs did the group Men At Work NOT make?",
+          "correct": "Safety Dance",
+          "incorrect": [
+            "Down Under",
+            "Who Can It Be Now?",
+            "It's a Mistake"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "sports": {
-      "1": {
-        "type": "multiple",
-        "question": "In bowling, what is the term used for getting three consecutive strikes?",
-        "correct": "Turkey",
-        "incorrect": [
-          "Flamingo",
-          "Birdie",
-          "Eagle"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "mythology": {
+        "1": {
+          "type": "multiple",
+          "question": "The Nike apparel and footwear brand takes it's name from the Greek goddess of what?",
+          "correct": "Victory",
+          "incorrect": [
+            "Courage",
+            "Strength",
+            "Honor"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "television": {
-      "1": {
-        "type": "multiple",
-        "question": "Guy's Grocery Games is hosted by which presenter?",
-        "correct": "Guy Fieri",
-        "incorrect": [
-          "Guy Martin",
-          "Guy Ritchie",
-          "Ainsley Harriott"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "nature": {
+        "1": {
+          "type": "multiple",
+          "question": "Which gas forms about 78% of the Earth's atmosphere?",
+          "correct": "Nitrogen",
+          "incorrect": [
+            "Oxygen",
+            "Argon",
+            "Carbon Dioxide"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "theatre": {
-      "1": {
-        "type": "multiple",
-        "question": "How many plays is Shakespeare generally considered to have written?",
-        "correct": "37",
-        "incorrect": [
-          "18",
-          "54",
-          "25"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "politics": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of the following Pacific Islander countries is ruled by a constitutional monarchy?",
+          "correct": "Tonga",
+          "incorrect": [
+            "Palau",
+            "Fiji",
+            "Kiribati"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "vehicles": {
-      "1": {
-        "type": "multiple",
-        "question": "What UK Train does NOT go over 125MPH?",
-        "correct": "Sprinter",
-        "incorrect": [
-          "Class 43",
-          "Javelin",
-          "Pendolino"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "science": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the powerhouse of the cell?",
+          "correct": "Mitochondria",
+          "incorrect": [
+            "Ribosome",
+            "Redbull",
+            "Nucleus"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "video_games": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of the following is NOT a Nintendo game console?",
-        "correct": "Dreamcast",
-        "incorrect": [
-          "SNES",
-          "Wii",
-          "Switch"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "sports": {
+        "1": {
+          "type": "multiple",
+          "question": "In bowling, what is the term used for getting three consecutive strikes?",
+          "correct": "Turkey",
+          "incorrect": [
+            "Flamingo",
+            "Birdie",
+            "Eagle"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
+          }
+        }
+      },
+      "television": {
+        "1": {
+          "type": "multiple",
+          "question": "Guy's Grocery Games is hosted by which presenter?",
+          "correct": "Guy Fieri",
+          "incorrect": [
+            "Guy Martin",
+            "Guy Ritchie",
+            "Ainsley Harriott"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
+          }
+        }
+      },
+      "theatre": {
+        "1": {
+          "type": "multiple",
+          "question": "How many plays is Shakespeare generally considered to have written?",
+          "correct": "37",
+          "incorrect": [
+            "18",
+            "54",
+            "25"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
+          }
+        }
+      },
+      "vehicles": {
+        "1": {
+          "type": "multiple",
+          "question": "What UK Train does NOT go over 125MPH?",
+          "correct": "Sprinter",
+          "incorrect": [
+            "Class 43",
+            "Javelin",
+            "Pendolino"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
+          }
+        }
+      },
+      "video_games": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of the following is NOT a Nintendo game console?",
+          "correct": "Dreamcast",
+          "incorrect": [
+            "SNES",
+            "Wii",
+            "Switch"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
       }
     }
   },
   "medium": {
-    "anime": {
-      "1": {
-        "type": "multiple",
-        "question": "Which studio animated Soul Eater?",
-        "correct": "Bones",
-        "incorrect": [
-          "Kyoto Animation",
-          "xebec",
-          "Production I.G"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+    "totals": {
+      "questions": 20,
+      "answered": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "votes": 0,
+      "comments": 0
+    },
+    "categories": {
+      "anime": {
+        "1": {
+          "type": "multiple",
+          "question": "Which studio animated Soul Eater?",
+          "correct": "Bones",
+          "incorrect": [
+            "Kyoto Animation",
+            "xebec",
+            "Production I.G"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "art": {
-      "1": {
-        "type": "multiple",
-        "question": "Which artist's style was to use small different colored dots to create a picture?",
-        "correct": "Georges Seurat",
-        "incorrect": [
-          "Paul Cezanne",
-          "Vincent Van Gogh",
-          "Henri Rousseau"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "art": {
+        "1": {
+          "type": "multiple",
+          "question": "Which artist's style was to use small different colored dots to create a picture?",
+          "correct": "Georges Seurat",
+          "incorrect": [
+            "Paul Cezanne",
+            "Vincent Van Gogh",
+            "Henri Rousseau"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "books": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of these book series is by James Patterson?",
-        "correct": "Maximum Ride",
-        "incorrect": [
-          "Harry Potter",
-          "The Legend of Xanth",
-          "The Bartemaeus Trilogy"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "books": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of these book series is by James Patterson?",
+          "correct": "Maximum Ride",
+          "incorrect": [
+            "Harry Potter",
+            "The Legend of Xanth",
+            "The Bartemaeus Trilogy"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "celebrities": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the name of Jontron's parrot?",
-        "correct": "Jacques",
-        "incorrect": [
-          "Jak",
-          "John",
-          "Jaques"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "celebrities": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the name of Jontron's parrot?",
+          "correct": "Jacques",
+          "incorrect": [
+            "Jak",
+            "John",
+            "Jaques"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "computers": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the correct term for the metal object in between the CPU and the CPU fan within a computer system?",
-        "correct": "Heat Sink",
-        "incorrect": [
-          "CPU Vent",
-          "Temperature Decipator",
-          "Heat Vent"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "computers": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the correct term for the metal object in between the CPU and the CPU fan within a computer system?",
+          "correct": "Heat Sink",
+          "incorrect": [
+            "CPU Vent",
+            "Temperature Decipator",
+            "Heat Vent"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "film": {
-      "1": {
-        "type": "multiple",
-        "question": "Which actor played the main character in the 1990 film Edward Scissorhands?",
-        "correct": "Johnny Depp",
-        "incorrect": [
-          " Clint Eastwood",
-          "Leonardo DiCaprio",
-          "Ben Stiller"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "film": {
+        "1": {
+          "type": "multiple",
+          "question": "Which actor played the main character in the 1990 film Edward Scissorhands?",
+          "correct": "Johnny Depp",
+          "incorrect": [
+            " Clint Eastwood",
+            "Leonardo DiCaprio",
+            "Ben Stiller"
+          ],
+          "answers": {
+            "total": 5,
+            "correct": 3,
+            "incorrect": 2,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 4,
+            "good": 1,
+            "neutral": 2,
+            "bad": 1
+          },
+          "comments": {
+            "1": {
+              "user": "user0",
+              "comment": "test"
+            },
+            "2": {
+              "user": "user1",
+              "comment": "test1"
+            },
+            "3": {
+              "user": "user0",
+              "comment": "test"
+            },
+            "4": {
+              "user": "user1",
+              "comment": "test1"
+            }
           }
         }
-      }
-    },
-    "general": {
-      "1": {
-        "type": "multiple",
-        "question": "In a standard set of playing cards, which is the only king without a moustache?",
-        "correct": "Hearts",
-        "incorrect": [
-          "Spades",
-          "Diamonds",
-          "Clubs"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "general": {
+        "1": {
+          "type": "multiple",
+          "question": "In a standard set of playing cards, which is the only king without a moustache?",
+          "correct": "Hearts",
+          "incorrect": [
+            "Spades",
+            "Diamonds",
+            "Clubs"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "geography": {
-      "1": {
-        "type": "multiple",
-        "question": "Which country has the abbreviation CH?",
-        "correct": "Switzerland",
-        "incorrect": [
-          "China",
-          "Canada",
-          "Kenya"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "geography": {
+        "1": {
+          "type": "multiple",
+          "question": "Which country has the abbreviation CH?",
+          "correct": "Switzerland",
+          "incorrect": [
+            "China",
+            "Canada",
+            "Kenya"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "history": {
-      "1": {
-        "type": "multiple",
-        "question": "What year did the Boxing Day Earthquake & Tsunami occur in the Indian Ocean?",
-        "correct": "2004",
-        "incorrect": [
-          "2006",
-          "2008",
-          "2002"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "history": {
+        "1": {
+          "type": "multiple",
+          "question": "What year did the Boxing Day Earthquake & Tsunami occur in the Indian Ocean?",
+          "correct": "2004",
+          "incorrect": [
+            "2006",
+            "2008",
+            "2002"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "math": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the Roman numeral for 500?",
-        "correct": "D",
-        "incorrect": [
-          "L",
-          "C",
-          "X"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "math": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the Roman numeral for 500?",
+          "correct": "D",
+          "incorrect": [
+            "L",
+            "C",
+            "X"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "music": {
-      "1": {
-        "type": "multiple",
-        "question": "How many copies have Metallica albumMetallica (A.K.A The Black Album) sold worldwide?",
-        "correct": "20.5 million",
-        "incorrect": [
-          "19.5 million",
-          "22.5 million",
-          "25.5 million"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "music": {
+        "1": {
+          "type": "multiple",
+          "question": "How many copies have Metallica albumMetallica (A.K.A The Black Album) sold worldwide?",
+          "correct": "20.5 million",
+          "incorrect": [
+            "19.5 million",
+            "22.5 million",
+            "25.5 million"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "mythology": {
-      "1": {
-        "type": "multiple",
-        "question": "Who was the Roman god of fire?",
-        "correct": "Vulcan",
-        "incorrect": [
-          "Apollo",
-          "Jupiter",
-          "Mercury"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "mythology": {
+        "1": {
+          "type": "multiple",
+          "question": "Who was the Roman god of fire?",
+          "correct": "Vulcan",
+          "incorrect": [
+            "Apollo",
+            "Jupiter",
+            "Mercury"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "nature": {
-      "1": {
-        "type": "multiple",
-        "difficulty": "Medium",
-        "question": "How many degrees Fahrenheit is 100 degrees Celsius? ",
-        "correct": "212",
-        "incorrect": [
-          "326",
-          "100",
-          "451"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "nature": {
+        "1": {
+          "type": "multiple",
+          "difficulty": "Medium",
+          "question": "How many degrees Fahrenheit is 100 degrees Celsius? ",
+          "correct": "212",
+          "incorrect": [
+            "326",
+            "100",
+            "451"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "politics": {
-      "1": {
-        "type": "multiple",
-        "question": "Which president erased the national debt of the United States?",
-        "correct": "Andrew Jackson",
-        "incorrect": [
-          "Ronald Reagan",
-          "John F. Kennedy",
-          "Franklin Roosevelt"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "politics": {
+        "1": {
+          "type": "multiple",
+          "question": "Which president erased the national debt of the United States?",
+          "correct": "Andrew Jackson",
+          "incorrect": [
+            "Ronald Reagan",
+            "John F. Kennedy",
+            "Franklin Roosevelt"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "science": {
-      "1": {
-        "type": "multiple",
-        "question": "This field is sometimes known as The Dismal Science",
-        "correct": "Economics",
-        "incorrect": [
-          "Philosophy",
-          "Politics",
-          "Physics"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "science": {
+        "1": {
+          "type": "multiple",
+          "question": "This field is sometimes known as The Dismal Science",
+          "correct": "Economics",
+          "incorrect": [
+            "Philosophy",
+            "Politics",
+            "Physics"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "sports": {
-      "1": {
-        "type": "multiple",
-        "question": "A stimpmeter measures the speed of a ball over what surface?",
-        "correct": "Golf Putting Green",
-        "incorrect": [
-          " Football Pitch",
-          "Cricket Outfield",
-          "Pinball Table"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "sports": {
+        "1": {
+          "type": "multiple",
+          "question": "A stimpmeter measures the speed of a ball over what surface?",
+          "correct": "Golf Putting Green",
+          "incorrect": [
+            " Football Pitch",
+            "Cricket Outfield",
+            "Pinball Table"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "television": {
-      "1": {
-        "type": "multiple",
-        "question": "In the Netflix show, Stranger Things, what song would Will sing to himself as he was missing?",
-        "correct": "Should I Stay or Should I Go?",
-        "incorrect": [
-          "Love Will Tear Us Apart",
-          "This Charming Man",
-          "Africa"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "television": {
+        "1": {
+          "type": "multiple",
+          "question": "In the Netflix show, Stranger Things, what song would Will sing to himself as he was missing?",
+          "correct": "Should I Stay or Should I Go?",
+          "incorrect": [
+            "Love Will Tear Us Apart",
+            "This Charming Man",
+            "Africa"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "theatre": {
-      "1": {
-        "type": "multiple",
-        "question": "The musical Dirty Rotten Scoundrels is set in what country?",
-        "correct": "France",
-        "incorrect": [
-          "USA",
-          "Germany",
-          "Sweden"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "theatre": {
+        "1": {
+          "type": "multiple",
+          "question": "The musical Dirty Rotten Scoundrels is set in what country?",
+          "correct": "France",
+          "incorrect": [
+            "USA",
+            "Germany",
+            "Sweden"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "vehicles": {
-      "1": {
-        "type": "multiple",
-        "question": "Which one is NOT the function of engine oil in car engines?",
-        "correct": "Combustion",
-        "incorrect": [
-          "Lubrication",
-          "Cooling",
-          "Reduce corrosion"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "vehicles": {
+        "1": {
+          "type": "multiple",
+          "question": "Which one is NOT the function of engine oil in car engines?",
+          "correct": "Combustion",
+          "incorrect": [
+            "Lubrication",
+            "Cooling",
+            "Reduce corrosion"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "video_games": {
-      "1": {
-        "type": "multiple",
-        "question": "In Paper Mario: The Thousand Year Door, what is Hooktail's weakness?",
-        "correct": "The Sound of Crickets",
-        "incorrect": [
-          "Attacks from Koopas",
-          "The Ice Storm Item",
-          "The Hammer"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "video_games": {
+        "1": {
+          "type": "multiple",
+          "question": "In Paper Mario: The Thousand Year Door, what is Hooktail's weakness?",
+          "correct": "The Sound of Crickets",
+          "incorrect": [
+            "Attacks from Koopas",
+            "The Ice Storm Item",
+            "The Hammer"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
       }
     }
   },
   "hard": {
-    "anime": {
-      "1": {
-        "type": "multiple",
-        "question": "Akatsuki's subclass in Log Horizon is what?",
-        "correct": " Tracker",
-        "incorrect": [
-          "Assassin",
-          "Scribe",
-          "Apprentice"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+    "totals": {
+      "questions": 20,
+      "answered": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "votes": 0,
+      "comments": 0
+    },
+    "categories": {
+      "anime": {
+        "1": {
+          "type": "multiple",
+          "question": "Akatsuki's subclass in Log Horizon is what?",
+          "correct": " Tracker",
+          "incorrect": [
+            "Assassin",
+            "Scribe",
+            "Apprentice"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "art": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of these is not an additional variation of the color purple?",
-        "correct": "Kobicha",
-        "incorrect": [
-          "Byzantium",
-          "Pomp and Power",
-          "Palatinate"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "art": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of these is not an additional variation of the color purple?",
+          "correct": "Kobicha",
+          "incorrect": [
+            "Byzantium",
+            "Pomp and Power",
+            "Palatinate"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "books": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of these does Charlie NOT read in The Perks of Being a Wallflower?",
-        "correct": "The Grapes of Wrath",
-        "incorrect": [
-          "Hamlet",
-          "The Great Gatsby",
-          "Peter Pan"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "books": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of these does Charlie NOT read in The Perks of Being a Wallflower?",
+          "correct": "The Grapes of Wrath",
+          "incorrect": [
+            "Hamlet",
+            "The Great Gatsby",
+            "Peter Pan"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "celebrities": {
-      "1": {
-        "type": "multiple",
-        "question": "What was the religion of famous singer Freddie Mercury?",
-        "correct": "Zoroastrianism",
-        "incorrect": [
-          "Paganism",
-          "Ashurism",
-          "Judaism"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "celebrities": {
+        "1": {
+          "type": "multiple",
+          "question": "What was the religion of famous singer Freddie Mercury?",
+          "correct": "Zoroastrianism",
+          "incorrect": [
+            "Paganism",
+            "Ashurism",
+            "Judaism"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "computers": {
-      "1": {
-        "type": "multiple",
-        "question": "Which data structure does FILO apply to?",
-        "correct": "Stack",
-        "incorrect": [
-          "Queue",
-          "Heap",
-          "Tree"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "computers": {
+        "1": {
+          "type": "multiple",
+          "question": "Which data structure does FILO apply to?",
+          "correct": "Stack",
+          "incorrect": [
+            "Queue",
+            "Heap",
+            "Tree"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "film": {
-      "1": {
-        "type": "multiple",
-        "question": "What was the name of the planet in Aliens?",
-        "correct": "LV-426",
-        "incorrect": [
-          "Weyland Yutani Corporation Base",
-          "FR-838",
-          "DI-621"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "film": {
+        "1": {
+          "type": "multiple",
+          "question": "What was the name of the planet in Aliens?",
+          "correct": "LV-426",
+          "incorrect": [
+            "Weyland Yutani Corporation Base",
+            "FR-838",
+            "DI-621"
+          ],
+          "answers": {
+            "total": 10,
+            "correct": 5,
+            "incorrect": 5,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 8,
+            "good": 4,
+            "neutral": 2,
+            "bad": 2
+          },
+          "comments": {
+            "1": {
+              "user": "user0",
+              "comment": "test"
+            },
+            "2": {
+              "user": "user1",
+              "comment": "test1"
+            }
           }
         }
-      }
-    },
-    "general": {
-      "1": {
-        "type": "multiple",
-        "question": "How many notes are there on a standard grand piano?",
-        "correct": "88",
-        "incorrect": [
-          "98",
-          "108",
-          "78"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "general": {
+        "1": {
+          "type": "multiple",
+          "question": "How many notes are there on a standard grand piano?",
+          "correct": "88",
+          "incorrect": [
+            "98",
+            "108",
+            "78"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "geography": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of these countries is NOT a part of the Asian continent?",
-        "correct": "Suriname",
-        "incorrect": [
-          "Georgia",
-          "Russia",
-          "Singapore"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "geography": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of these countries is NOT a part of the Asian continent?",
+          "correct": "Suriname",
+          "incorrect": [
+            "Georgia",
+            "Russia",
+            "Singapore"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "history": {
-      "1": {
-        "type": "multiple",
-        "question": "When was the city of Rome, Italy founded?",
-        "correct": "753 BCE",
-        "incorrect": [
-          "902 BCE",
-          "524 BCE",
-          "697 BCE"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "history": {
+        "1": {
+          "type": "multiple",
+          "question": "When was the city of Rome, Italy founded?",
+          "correct": "753 BCE",
+          "incorrect": [
+            "902 BCE",
+            "524 BCE",
+            "697 BCE"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "math": {
-      "1": {
-        "type": "multiple",
-        "question": "How many zeptometres are inside one femtometre?",
-        "correct": "1,000,000",
-        "incorrect": [
-          "10",
-          "1,000,000,000",
-          "1000"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "math": {
+        "1": {
+          "type": "multiple",
+          "question": "How many zeptometres are inside one femtometre?",
+          "correct": "1,000,000",
+          "incorrect": [
+            "10",
+            "1,000,000,000",
+            "1000"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "music": {
-      "1": {
-        "type": "multiple",
-        "question": "The key of sharps does the key of G# minor contain?",
-        "correct": "5",
-        "incorrect": [
-          "3",
-          "7",
-          "0"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "music": {
+        "1": {
+          "type": "multiple",
+          "question": "The key of sharps does the key of G# minor contain?",
+          "correct": "5",
+          "incorrect": [
+            "3",
+            "7",
+            "0"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "mythology": {
-      "1": {
-        "type": "multiple",
-        "question": "Talos, the mythical giant bronze man, was the protector of which island?",
-        "correct": "Crete",
-        "incorrect": [
-          "Sardinia",
-          "Sicily",
-          "Cyprus"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "mythology": {
+        "1": {
+          "type": "multiple",
+          "question": "Talos, the mythical giant bronze man, was the protector of which island?",
+          "correct": "Crete",
+          "incorrect": [
+            "Sardinia",
+            "Sicily",
+            "Cyprus"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "nature": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of the following is NOT a word used to describe an earthquake?",
-        "correct": "Drop-slide",
-        "incorrect": [
-          "Foreshock",
-          "Strike-slip",
-          "Temblor"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "nature": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of the following is NOT a word used to describe an earthquake?",
+          "correct": "Drop-slide",
+          "incorrect": [
+            "Foreshock",
+            "Strike-slip",
+            "Temblor"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "politics": {
-      "1": {
-        "type": "multiple",
-        "question": "Which letter do you need to have on a European driver license in order to ride any motorbikes?",
-        "correct": "A",
-        "incorrect": [
-          "X",
-          "D",
-          "B"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "politics": {
+        "1": {
+          "type": "multiple",
+          "question": "Which letter do you need to have on a European driver license in order to ride any motorbikes?",
+          "correct": "A",
+          "incorrect": [
+            "X",
+            "D",
+            "B"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "science": {
-      "1": {
-        "type": "multiple",
-        "question": "Which of these chemical compounds is NOT found in gastric acid?",
-        "correct": "Sulfuric acid",
-        "incorrect": [
-          "Hydrochloric acid",
-          "Potassium chloride",
-          "Sodium chloride"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "science": {
+        "1": {
+          "type": "multiple",
+          "question": "Which of these chemical compounds is NOT found in gastric acid?",
+          "correct": "Sulfuric acid",
+          "incorrect": [
+            "Hydrochloric acid",
+            "Potassium chloride",
+            "Sodium chloride"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "sports": {
-      "1": {
-        "type": "multiple",
-        "question": "Which city features all of their professional sports team's jerseys with the same color scheme?",
-        "correct": "Pittsburgh",
-        "incorrect": [
-          "New York",
-          "Seattle",
-          "Tampa Bay"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "sports": {
+        "1": {
+          "type": "multiple",
+          "question": "Which city features all of their professional sports team's jerseys with the same color scheme?",
+          "correct": "Pittsburgh",
+          "incorrect": [
+            "New York",
+            "Seattle",
+            "Tampa Bay"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "television": {
-      "1": {
-        "type": "multiple",
-        "question": "What is the Klingon's afterlife called?",
-        "correct": "Sto-vo-kor",
-        "incorrect": [
-          "Valhalla",
-          "Karon-gahk",
-          "New Jersey"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "television": {
+        "1": {
+          "type": "multiple",
+          "question": "What is the Klingon's afterlife called?",
+          "correct": "Sto-vo-kor",
+          "incorrect": [
+            "Valhalla",
+            "Karon-gahk",
+            "New Jersey"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "theatre": {
-      "1": {
-        "type": "multiple",
-        "question": "Which Shakespeare play features the stage direction 'Enter a messenger, with two heads and a hand'?",
-        "correct": "Titus Andronicus",
-        "incorrect": [
-          "Othello",
-          "Macbeth",
-          "King Lear"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "theatre": {
+        "1": {
+          "type": "multiple",
+          "question": "Which Shakespeare play features the stage direction 'Enter a messenger, with two heads and a hand'?",
+          "correct": "Titus Andronicus",
+          "incorrect": [
+            "Othello",
+            "Macbeth",
+            "King Lear"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "vehicles": {
-      "1": {
-        "type": "multiple",
-        "difficulty": "Hard",
-        "question": "What engine is in the Lexus SC400?",
-        "correct": "1UZ-FE",
-        "incorrect": [
-          "2JZ-GTE",
-          "7M-GTE",
-          "5M-GE"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "vehicles": {
+        "1": {
+          "type": "multiple",
+          "difficulty": "Hard",
+          "question": "What engine is in the Lexus SC400?",
+          "correct": "1UZ-FE",
+          "incorrect": [
+            "2JZ-GTE",
+            "7M-GTE",
+            "5M-GE"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
-      }
-    },
-    "video games": {
-      "1": {
-        "type": "multiple",
-        "question": "In the Pokemon series, what is Palkia's hidden ability?",
-        "correct": "Telepathy",
-        "incorrect": [
-          "Pressure",
-          "Water Bubble",
-          "Hydration"
-        ],
-        "answers": {
-          "total": 0,
-          "correct": 0,
-          "incorrect": 0,
-          "avg_time": 0.00
-        },
-        "votes": {
-          "total": 0,
-          "good": 0,
-          "neutral": 0,
-          "bad": 0
-        },
-        "comments": {
-          "null": {
-            "user": "null",
-            "comment": "null"
+      },
+      "video_games": {
+        "1": {
+          "type": "multiple",
+          "question": "In the Pokemon series, what is Palkia's hidden ability?",
+          "correct": "Telepathy",
+          "incorrect": [
+            "Pressure",
+            "Water Bubble",
+            "Hydration"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "null": {
+              "user": "null",
+              "comment": "null"
+            }
           }
         }
       }
