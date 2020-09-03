@@ -7,38 +7,52 @@ import './dashboardStatsTotal.css'
 
 class DashboardStatsTotal extends React.Component {
 
+  calcRating = (answered, correct) => {
+    let questionFactor = (answered + correct) / 2.0
+    let noAnswersFactor = this.props.user.questions.totals.all.outta_times * 0.25
+    let timeFactor = (10 - this.props.user.questions.totals.all.avg_time) * questionFactor
+    let finalFactor = this.props.user.questions.totals.all.outta_times === 0 ? timeFactor : timeFactor - noAnswersFactor
+    let finalRating = finalFactor.toFixed(2)
+    return finalRating
+  }
+
   render(){
-    return(
-    <div className="stats_total">
-      <ul>
-        {/* <li>{ totalQuestionsAnswered }/{ totalQuestions } answered ({totalQuestionsAnsweredPercent}%)</li> */}
-        <li>nill / nill answered (nill%)</li>
 
-        {/* <li>{ totalQuestionsAnswered > 0 ? correct_answers : "0/0 correct (0.00%)" }</li> */}
-        <li>{ "nill" > 0 ? "nill" : "0/0 correct (0.00%)" }</li>
+    let totalStats = <></>
 
-        <br />
-        {/* <li>{ this.state.user_answers.length > 0 ? `Average Time: ${this.state.average_time} seconds` : "Average Time: 0.00 seconds" }</li> */}
-        <li>{ "nill" > 0 ? `Average Time: ${"nill"} seconds` : "Average Time: 0.00 seconds" }</li>
+    if(this.props.user.questions){
+      let totalQuestionsAnswered = this.props.user.questions.totals.all.answered / this.props.questions.totals.all.questions
+      let totalQuestionsCorrect = this.props.user.questions.totals.all.correct / this.props.questions.totals.all.questions
+      let rating = <p>Answer <span>{5 - this.props.user.questions.totals.all.answered}</span> more questions to receive a rating!</p>
 
-        {/* <li>Outta Times: { totalQuestionsWithNoAnswers }</li> */}
-        <li>Outta Times: nill</li>
+      if(this.props.user.questions.totals.all.answered > 5){
+        rating = <h1>{ this.calcRating(totalQuestionsAnswered, totalQuestionsCorrect) }</h1>
+      }
 
-      </ul>
-      <div className="stats_total_rating">
-        <h2><span>SmartApp</span>™ Rating</h2>
-        {/* { totalQuestionsAnswered < 5 ? stats_rating_countdown : rating } */}
-        { "nill" < 5 ? "nill" : "nill" }
+      totalStats =
+        <div className="stats_total">
+          <ul>
+            <li>{ this.props.user.questions.totals.all.answered }/{ this.props.questions.totals.all.questions } answered ({totalQuestionsAnswered}%)</li>
+            <li>{ this.props.user.questions.totals.all.correct }/{ this.props.user.questions.totals.all.answered } correct ({totalQuestionsCorrect}%)</li>
+            <br />
+            <li>Average Time: { this.props.user.questions.totals.all.avg_time } seconds</li>
+            <li>Outta Times: { this.props.user.questions.totals.all.outta_times }</li>
+          </ul>
+          <div className="stats_total_rating">
+            <h2><span>SmartApp</span>™ Rating</h2>
+            { rating }
+          </div>
+        </div>
+    }
 
-      </div>
-    </div>
-    )
+    return(<>{ totalStats }</>)
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    questions: state.questions
   }
 }
 

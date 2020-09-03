@@ -4,8 +4,10 @@ export const fetch = {
     // user: `${process.env.REACT_APP_DEPLOY_GET_USER}`,
     users: `${process.env.REACT_APP_LOCAL_GET_USERS}`,
     // users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`,
-    questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`
-    // questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`
+    questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`,
+    // questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`,
+    questionsTotals: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS_TOTALS}`
+    // questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`
   },
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`

@@ -1,4 +1,4 @@
-.stats_body {
+.stats_difficulty {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -8,20 +8,29 @@
   align-content: center;
 }
 
-.stats_body ul {
+.stats_difficulty ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
   background-color: #FFF;
   text-align: center;
+  list-style: none;
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0px;
+  padding: 10px 0px;
   background-color: rgba(255,255,255, 1);
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
   box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
 }
 
-.stats_body li {
+.stats_difficulty li {
   font: 300 9pt "Poppins", sans-serif;
   text-align:center;
   padding: 0px;

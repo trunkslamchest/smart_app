@@ -1,6 +1,5 @@
 import getTime from '../utility/getTime'
 
-
 const signUpObjTemplate = (email, user_name) => {
   let obj = {
     info: {
@@ -25,7 +24,9 @@ const signUpObjTemplate = (email, user_name) => {
         "all": {
           "answered": 0,
           "correct": 0,
-          "incorrect": 0
+          "incorrect": 0,
+          "avg_time": (0.00).toFixed(2),
+          "outta_times": 0
         },
         "difficulty": {
           "easy": {

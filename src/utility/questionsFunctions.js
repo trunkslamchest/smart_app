@@ -1,10 +1,10 @@
 ;(function(env) {
 
-  var questionFunctions = function(method, url, obj){ return new questionFunctions.init(method, url, obj)[method] }
+  var questionsFunctions = function(method, url, obj){ return new questionsFunctions.init(method, url, obj)[method] }
 
-  questionFunctions.init = function(method, url, obj){ this[method] = this[method](url, obj) }
+  questionsFunctions.init = function(method, url, obj){ this[method] = this[method](url, obj) }
 
-  questionFunctions.prototype = {
+  questionsFunctions.prototype = {
     get: function(url) {
       return fetch(url)
       .then(res => res.json())
@@ -39,10 +39,10 @@
     },
   }
 
-  questionFunctions.init.prototype = questionFunctions.prototype
+  questionsFunctions.init.prototype = questionsFunctions.prototype
 
-  env.questionFunctions = questionFunctions
+  env.questionsFunctions = questionsFunctions
 
-  module.exports = questionFunctions
+  module.exports = questionsFunctions
 
 })(typeof window === 'undefined' ? global : window)

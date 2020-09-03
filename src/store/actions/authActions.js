@@ -67,20 +67,14 @@ export const authRefresh = (refreshObj) => {
   return dispatch => {
     dispatch(authStart())
     authFunctions('refreshToken', auth.refreshToken, refreshObj)
-      .then(authRes => {
-        userFunctions('getUser', fetch.get.user, authRes.user_id)
-        .then(userRes => {
-          dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
-          dispatch(storeUserInfo(userRes.info))
-          dispatch(storeUserQuestions(userRes.questions))
-        })
-      })
+    .then(authRes => {
+      dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
+    })
   }
 }
 
 export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
-    dispatch(authStart())
     userFunctions('getUser', fetch.get.user, id)
     .then(userRes => {
       dispatch(authSuccess(token, refreshToken, id, expires))
@@ -96,21 +90,38 @@ export const authUser = (token, refreshToken, id, expires) => {
 export const authDelete = (props) => {
 
   // let id = props.auth.id, token = props.auth.token, project = process.env.REACT_APP_FIREBASE_PROJECT_ID
-  let token = props.auth.token
+  // let token = props.auth.token,
+  // id = props.auth.id
 
-  const obj = {
-    // localId: id,
-    idToken: token,
-    // targetProjectId: project
+  let refreshObj = {
+    grant_type: "refresh_token",
+    refresh_token: localStorage.refreshToken
   }
 
   return dispatch => {
     dispatch(authStart())
-    authFunctions('delete', auth.delete, obj)
-    .then(res => {
-      if(res) dispatch(authLogOut(props))
+    authFunctions('refreshToken', auth.refreshToken, refreshObj)
+    .then(authRes => {
+      if(!!authRes) {
+        deleteUser(authRes)
+      }
     })
   }
+}
+
+export const deleteUser = (authRes) => {
+
+  const obj = {
+    localId: authRes.user_id,
+    idToken: authRes.id_token,
+    // targetProjectId: project
+  }
+
+  authFunctions('delete', auth.delete, obj)
+  .then(res => {
+    console.log(res)
+    // if(res) dispatch(authLogOut(props))
+  })
 }
 
 export const authTimeout = (expirationTime) => {

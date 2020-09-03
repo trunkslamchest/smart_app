@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-// import * as actions from '../../store/actions/actionIndex'
+import * as actions from '../../store/actions/actionIndex'
 
 import { routes } from '../../utility/paths.js'
 
@@ -21,6 +21,11 @@ import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProf
 import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
+
+  componentDidMount(){
+    this.props.onGetQuestionTotals()
+  }
+
   render(){
     const routeBoard =
     <Switch>
@@ -79,8 +84,15 @@ class Dashboard extends React.Component{
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    user: state.user
+    user: state.user,
+    questions: state.questions
   }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onGetQuestionTotals: () => dispatch(actions.getQuestionTotals())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

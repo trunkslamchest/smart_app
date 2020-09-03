@@ -52,3 +52,9 @@ export {
   deleteUser
   // updateUser
 } from './userActions'
+
+export {
+  getQuestionTotals,
+  storeQuestionTotals
+
+} from './questionsActions'

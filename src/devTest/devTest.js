@@ -3,10 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../store/actions/actionIndex'
 
-import { fetch } from '../utility/paths'
+// import { fetch } from '../utility/paths'
 
-import userFunctions from '../utility/userFunctions'
-import questionFunctions from '../utility/questionFunctions'
+// import userFunctions from '../utility/userFunctions'
+// import questionFunctions from '../utility/questionFunctions'
 
 
 class DevTest extends React.Component {
@@ -17,19 +17,19 @@ class DevTest extends React.Component {
   }
 
   componentDidMount(){
-    userFunctions('get', fetch.get.users )
-    .then(res => {
-      this.setState({
-        users: Object.entries(res)
-      })
-    })
+    // userFunctions('get', fetch.get.users )
+    // .then(res => {
+    //   this.setState({
+    //     users: Object.entries(res)
+    //   })
+    // })
 
-    questionFunctions('get', fetch.get.questions )
-    .then(res => {
-      this.setState({
-        questions: Object.entries(res)
-      })
-    })
+    // questionFunctions('get', fetch.get.questions )
+    // .then(res => {
+    //   this.setState({
+    //     questions: Object.entries(res)
+    //   })
+    // })
   }
 
   render(){

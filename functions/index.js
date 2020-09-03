@@ -164,7 +164,7 @@ exports.deleteUser = functions
 //   return obj
 // }
 
-// exports.questionTotals = functions
+// exports.questionsTotals = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
 //     setCORSget(req, res)

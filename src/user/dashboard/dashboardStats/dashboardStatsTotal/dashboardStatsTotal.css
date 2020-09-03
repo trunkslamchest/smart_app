@@ -39,6 +39,28 @@
   align-self: center;
 }
 
+.stats_total_rating p {
+  text-align:center;
+  font: 400 10pt "Lato";
+  padding: 0px;
+  margin: 0 auto 0 auto;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.stats_total_rating p span {
+  text-align:center;
+  font: 800 10pt "Lato";
+  padding: 0px;
+  margin: 0 auto 0 auto;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
 .stats_total_rating h1 {
   text-align:center;
   font: 800 30pt "Lato";

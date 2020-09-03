@@ -1,5 +1,5 @@
 // import * as actionTypes from './actionTypes'
-import { authUser, authFail } from './authActions'
+import { authUser, authStart, authFail } from './authActions'
 
 import { routes, auth } from '../../utility/paths'
 
@@ -13,6 +13,7 @@ export const logInUser = (email, password, props) => {
   		returnSecureToken: true
     }
 
+    dispatch(authStart())
     authFunctions('logIn', auth.signIn, logInObj)
     .then(res => {
       if(!!res.error) {
