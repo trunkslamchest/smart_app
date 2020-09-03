@@ -1,21 +1,5 @@
 {
-  "totals": {
-    "questions": 61,
-    "answered": 0,
-    "correct": 0,
-    "incorrect": 0,
-    "votes": 0,
-    "comments": 0
-  },
   "easy": {
-    "totals": {
-      "questions": 0,
-      "answered": 0,
-      "correct": 0,
-      "incorrect": 0,
-      "votes": 0,
-      "comments": 0
-    },
     "categories": {
       "anime": {
         "1": {
@@ -653,14 +637,6 @@
     }
   },
   "medium": {
-    "totals": {
-      "questions": 0,
-      "answered": 0,
-      "correct": 0,
-      "incorrect": 0,
-      "votes": 0,
-      "comments": 0
-    },
     "categories": {
       "anime": {
         "1": {
@@ -1278,14 +1254,6 @@
     }
   },
   "hard": {
-    "totals": {
-      "questions": 0,
-      "answered": 0,
-      "correct": 0,
-      "incorrect": 0,
-      "votes": 0,
-      "comments": 0
-    },
     "categories": {
       "anime": {
         "1": {

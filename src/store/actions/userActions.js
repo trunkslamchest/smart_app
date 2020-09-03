@@ -47,6 +47,7 @@ export const deleteUser = (obj, props) => {
   return dispatch => {
     userFunctions('delete', fetch.delete.user, obj)
     .then(res => {
+      console.log(res)
       if(res) dispatch(authDelete(props))
     })
   }
