@@ -12,17 +12,10 @@ import '../headerButton2.css'
 
 class NormalHeader extends React.Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.setButtonRef = this.setButtonRef.bind(this)
-  // }
-
   state = {
     showPlayMenu: false,
     showProfileMenu: false,
   }
-
-  // setButtonRef(node){this.buttonRef = node}
 
   switchPlayMenu = (bool) => {
     let switchMenu = !this.state.showPlayMenu
@@ -41,9 +34,6 @@ class NormalHeader extends React.Component {
   }
 
   render(){
-
-    // console.log(this.state)
-
     return(
       <>
         <div className='header_greeting'>
@@ -56,7 +46,6 @@ class NormalHeader extends React.Component {
               menu='playMenu'
               name='header_play_button'
               onClick={this.switchPlayMenu}
-              // ref={this.setButtonRef}
             >
               Play
             </HeaderButton2>
@@ -72,7 +61,6 @@ class NormalHeader extends React.Component {
               menu='myProfileMenu'
               name='header_my_profile_button'
               onClick={this.switchProfileMenu}
-              // ref={this.setButtonRef}
             >
               My Profile
             </HeaderButton2>

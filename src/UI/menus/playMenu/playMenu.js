@@ -5,7 +5,6 @@ import { routes } from '../../../utility/paths.js'
 import DropDownMenu from '../dropDownMenu'
 
 import PlayMenuButton from './playMenuButton'
-import PlayMenuButton2 from './playMenuButton2'
 
 import './playMenu.scss'
 import './playMenuButton.scss'
@@ -21,27 +20,29 @@ const PlayMenu = (props) => {
       switchMenu={props.switchPlayMenu}
     >
       <PlayMenuButton
-        menu='playMenu'
-        link={ routes.home }
+        link={ routes.quick_play }
         name='quick_play_button'
+        menu='playMenu'
         onClick={props.switchPlayMenu}
       >
         Quick Play
       </PlayMenuButton>
-      <PlayMenuButton2
-        menu='playMenu'
+      <PlayMenuButton
+        link={ routes.by_diff }
         name='by_difficulty_button'
+        menu='playMenu'
         onClick={props.switchPlayMenu}
       >
         By Difficulty
-      </PlayMenuButton2>
-      <PlayMenuButton2
-        menu='playMenu'
+      </PlayMenuButton>
+      <PlayMenuButton
+        link={ routes.by_cat }
         name='by_category_button'
+        menu='playMenu'
         onClick={props.switchPlayMenu}
       >
         By Category
-      </PlayMenuButton2>
+      </PlayMenuButton>
     </DropDownMenu>
   )
 }

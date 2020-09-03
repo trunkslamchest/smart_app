@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { routes } from '../../utility/paths'
+
 import PlayButton from '../../UI/buttons/playButton/playButton'
 
 import './homeLoggedIn.css'
@@ -23,7 +25,7 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
     <div className="play_buttons_container">
       <div className="quick_play_container">
         <PlayButton
-          link="/quick_play"
+          link={ routes.quick_play }
           buttonName="quick_play_button"
           classType="quick_play_button"
           onClick={ onClickQuickPlayFunctions }
@@ -33,7 +35,7 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
       </div>
       <div className="other_play_container">
         <PlayButton
-          link="/play_by_difficulty"
+          link={ routes.by_diff }
           buttonName="play_by_difficulty_button"
           classType="play_by_difficulty_button"
           onClick={ onClickPlayByDifficultyFunctions }
@@ -41,7 +43,7 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
           Play By Difficulty
         </PlayButton>
         <PlayButton
-          link="/play_by_category"
+          link={ routes.by_cat }
           buttonName="play_by_category_button"
           classType="play_by_category_button"
           onClick={ onClickPlayByCategoryFunctions }

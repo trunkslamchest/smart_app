@@ -8,16 +8,12 @@ export default class DropDownMenu extends React.Component {
   }
 
   componentDidMount() {
-  document.addEventListener('mousedown', this.onMouseClick)
+    document.addEventListener('mousedown', this.onMouseClick)
   }
 
   setMenuRef(node){this.menuRef = node}
 
   onMouseClick = (event) => {
-    // console.log(this.props.menu)
-    // console.log(this.menuRef.attributes.menu.value)
-    // console.log(event.target.attributes.menu.value)
-    // if (this.menuRef && !this.menuRef.contains(event.target) && event.target.className !== 'header_button2' ) this.props.switchMenu()
     if (this.menuRef && !this.menuRef.contains(event.target) && !event.target.attributes.menu ) this.props.switchMenu()
   }
 

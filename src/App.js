@@ -16,6 +16,7 @@ import SignUp from './user/signUp/signUp'
 import LogOut from './user/logOut/logOut'
 
 import DashboardContainer from './user/dashboard/dashboardContainer'
+import PlayContainer from './play/PlayContainer'
 
 import TermsOfService from './docs/termsOfService'
 import Privacy from './docs/privacy'
@@ -62,6 +63,9 @@ class App extends React.Component {
             </Route>
             <Route path={ routes.dashboard }>
               <DashboardContainer history={this.props.history} />
+            </Route>
+            <Route path={ routes.play }>
+              <PlayContainer />
             </Route>
             <Route exact path={ routes.tos }> <TermsOfService /> </Route>
             <Route exact path={ routes.privacy }> <Privacy /> </Route>
