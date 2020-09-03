@@ -9,7 +9,7 @@
   },
   "easy": {
     "totals": {
-      "questions": 21,
+      "questions": 0,
       "answered": 0,
       "correct": 0,
       "incorrect": 0,
@@ -28,21 +28,21 @@
             "Yggdrasil"
           ],
           "answers": {
-            "total": 0,
-            "correct": 0,
-            "incorrect": 0,
+            "total": 7,
+            "correct": 2,
+            "incorrect": 5,
             "avg_time": 0.00
           },
           "votes": {
-            "total": 0,
-            "good": 0,
-            "neutral": 0,
-            "bad": 0
+            "total": 8,
+            "good": 5,
+            "neutral": 2,
+            "bad": 1
           },
           "comments": {
-            "null": {
-              "user": "null",
-              "comment": "null"
+            "1": {
+              "user": "user0",
+              "comment": "test"
             }
           }
         }
@@ -654,7 +654,7 @@
   },
   "medium": {
     "totals": {
-      "questions": 20,
+      "questions": 0,
       "answered": 0,
       "correct": 0,
       "incorrect": 0,
@@ -1279,7 +1279,7 @@
   },
   "hard": {
     "totals": {
-      "questions": 20,
+      "questions": 0,
       "answered": 0,
       "correct": 0,
       "incorrect": 0,
