@@ -10,6 +10,15 @@ import * as actions from '../../store/actions/actionIndex'
 
 class QuickPlayContainer extends React.Component {
 
+  componentDidMount(){
+
+    let questionObj = {
+      prop: 'testProp'
+    }
+
+    this.props.onGetQuickQuestion(questionObj)
+  }
+
 
   componentWillUnmount(){
     this.props.onResetGameMode()
@@ -47,7 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onResetGameMode: () => dispatch(actions.resetGameMode())
+    onResetGameMode: () => dispatch(actions.resetGameMode()),
+    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj))
   }
 }
 

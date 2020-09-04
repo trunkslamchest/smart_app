@@ -55,7 +55,8 @@ export {
 
 export {
   getQuestionTotals,
-  storeQuestionTotals
+  storeQuestionTotals,
+  getQuickQuestion
 
 } from './questionsActions'
 

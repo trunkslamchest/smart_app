@@ -19,3 +19,9 @@ export const getQuestionTotals = (props) => {
     })
   }
 }
+
+export const getQuickQuestion = (obj) => {
+  return dispatch => {
+    console.log(obj)
+  }
+}
