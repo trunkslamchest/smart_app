@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../../store/actions/actionIndex'
+
 import { routes } from '../../../utility/paths.js'
 
 import DropDownMenu from '../dropDownMenu'
@@ -12,6 +15,22 @@ import './playMenuButton2.scss'
 
 const PlayMenu = (props) => {
 
+  const onClickQuickPlayFunctions = () => {
+    props.onSetGameMode("quickPlay")
+    props.switchPlayMenu()
+  }
+
+  const onClickByDifficultyFunctions = () => {
+    props.onSetGameMode("byDifficulty")
+    props.switchPlayMenu()
+  }
+
+  const onClickByCategoryFunctions = () => {
+    props.onSetGameMode("byCategory")
+    props.switchPlayMenu()
+  }
+
+
   return(
     <DropDownMenu
       divClass='playMenu'
@@ -23,7 +42,7 @@ const PlayMenu = (props) => {
         link={ routes.quick_play }
         name='quick_play_button'
         menu='playMenu'
-        onClick={props.switchPlayMenu}
+        onClick={onClickQuickPlayFunctions}
       >
         Quick Play
       </PlayMenuButton>
@@ -31,7 +50,7 @@ const PlayMenu = (props) => {
         link={ routes.by_diff }
         name='by_difficulty_button'
         menu='playMenu'
-        onClick={props.switchPlayMenu}
+        onClick={onClickByDifficultyFunctions}
       >
         By Difficulty
       </PlayMenuButton>
@@ -39,7 +58,7 @@ const PlayMenu = (props) => {
         link={ routes.by_cat }
         name='by_category_button'
         menu='playMenu'
-        onClick={props.switchPlayMenu}
+        onClick={onClickByCategoryFunctions}
       >
         By Category
       </PlayMenuButton>
@@ -47,4 +66,10 @@ const PlayMenu = (props) => {
   )
 }
 
-export default PlayMenu
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PlayMenu)

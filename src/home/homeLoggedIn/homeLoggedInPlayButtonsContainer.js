@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/actionIndex'
+
 import { routes } from '../../utility/paths'
 
 import PlayButton from '../../UI/buttons/playButton/playButton'
@@ -10,15 +13,15 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
 
 
   const onClickQuickPlayFunctions = (event) => {
-
+    props.onSetGameMode("quickPlay")
   }
 
   const onClickPlayByDifficultyFunctions = (event) => {
-
+    props.onSetGameMode("byDifficulty")
   }
 
   const onClickPlayByCategoryFunctions = (event) => {
-
+    props.onSetGameMode("byCategory")
   }
 
   return(
@@ -55,4 +58,10 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
   )
 }
 
-export default HomeLoggedInPlayButtonsContainer
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HomeLoggedInPlayButtonsContainer)

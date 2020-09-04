@@ -58,3 +58,8 @@ export {
   storeQuestionTotals
 
 } from './questionsActions'
+
+export {
+  setGameMode,
+  resetGameMode
+} from './playActions'

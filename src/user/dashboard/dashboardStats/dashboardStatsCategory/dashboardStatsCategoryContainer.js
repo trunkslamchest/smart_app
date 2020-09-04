@@ -10,15 +10,20 @@ import './dashboardStatsCategory.css'
 class DashboardStatsCategoryContainer extends React.Component {
   render(){
 
-    var distribCats = <></>
+    var distribCats
 
     if(this.props.user.questions){
-      let cats = Object.entries(this.props.user.questions.totals.categories)
-      distribCats = cats.map(cat =>
-        <DashboardStatsCategoryCard
-          key={cats.indexOf(cat) + 1}
-          category={cat}
-        />
+        let cats = Object.entries(this.props.user.questions.totals.categories)
+        distribCats = cats.map(cat => {
+          let statCard
+          if(this.props.questions.totals.category[`${cat[0]}`]) {
+            statCard = <DashboardStatsCategoryCard
+                        key={cats.indexOf(cat) + 1}
+                        category={cat}
+                      />
+          }
+          return statCard
+        }
       )
     }
 

@@ -44,6 +44,12 @@ class App extends React.Component {
     }
   }
 
+  // componentDidUpdate(){
+  //   if (!(this.props.history.location.pathname).includes("play") && this.props.gameMode) {
+  //     this.props.onResetGameMode()
+  //   }
+  // }
+
   componentWillUnmount(){
     this.props.showModal(false)
   }
@@ -65,7 +71,7 @@ class App extends React.Component {
               <DashboardContainer history={this.props.history} />
             </Route>
             <Route path={ routes.play }>
-              <PlayContainer />
+              <PlayContainer history={this.props.history} />
             </Route>
             <Route exact path={ routes.tos }> <TermsOfService /> </Route>
             <Route exact path={ routes.privacy }> <Privacy /> </Route>
@@ -82,15 +88,18 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     modal: state.modal,
-    auth: state.auth
+    play: state.play
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
+    onResetGameMode: () => dispatch(actions.resetGameMode()),
     onShowModal: (bool) => dispatch(actions.showModal(bool)),
-    onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj))
+
   }
 }
 

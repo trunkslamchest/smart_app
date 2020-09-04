@@ -6,8 +6,10 @@ export const fetch = {
     // users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`,
     questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`,
     // questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`,
-    questionsTotals: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS_TOTALS}`
-    // questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`
+    questionsTotals: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS_TOTALS}`,
+    // questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`,
+    quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`
+    // quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`
   },
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
@@ -42,6 +44,7 @@ export const routes = {
   dashboard_test: '/testSub/dashboard/test',
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
+  quick_question: '/testSub/play/quick/question',
   by_diff: '/testSub/play/difficulties',
   by_cat: '/testSub/play/categories',
   tos: '/testSub/terms_of_service',
@@ -58,6 +61,7 @@ export const routes = {
   // dashboard_test: '/smartapp/dashboard/test',
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick_play',
+  // quick_question: '/smartapp/play/quick/question',
   // by_diff: '/smartapp/play/difficulties',
   // by_cat: '/smartapp/play/categories',
   // tos: '/smartapp/terms_of_service',

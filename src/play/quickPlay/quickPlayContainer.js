@@ -3,12 +3,17 @@ import React from 'react'
 // import { Route, Switch } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-// import * as actionTypes from '../../store/actions/actionTypes'
+import * as actions from '../../store/actions/actionIndex'
 
 // import { routes } from '../../utility/paths'
 
 
 class QuickPlayContainer extends React.Component {
+
+
+  componentWillUnmount(){
+    this.props.onResetGameMode()
+  }
 
   render(){
     return(
@@ -34,6 +39,7 @@ class QuickPlayContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    play: state.play,
     user: state.user,
     questions: state.questions
   }
@@ -41,7 +47,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    onResetGameMode: () => dispatch(actions.resetGameMode())
   }
 }
 

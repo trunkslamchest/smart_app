@@ -6,7 +6,26 @@
 
   questionsFunctions.prototype = {
     get: function(url) {
-      return fetch(url)
+      return fetch(url, {
+        method: "GET",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+        },
+      })
+      .then(res => res.json())
+    },
+
+    getQuickQuestion: function(url, obj) {
+      return fetch(url, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({obj})
+      })
       .then(res => res.json())
     },
 

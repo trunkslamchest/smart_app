@@ -21,6 +21,7 @@ import logInReducer from './store/reducers/logInReducer'
 import signUpReducer from './store/reducers/signUpReducer'
 import userReducer from './store/reducers/userReducer'
 import questionsReducer from './store/reducers/questionsReducer'
+import playReducer from './store/reducers/playReducer'
 
 const history = createBrowserHistory();
 
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   signUp: signUpReducer,
   user: userReducer,
   questions: questionsReducer,
+  play: playReducer
 })
 
 // const logger = (store) => {
