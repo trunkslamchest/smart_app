@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   questions: null,
-  question: null,
+  question: {},
   totals: null
 }
 

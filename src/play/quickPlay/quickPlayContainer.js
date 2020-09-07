@@ -1,14 +1,20 @@
 import React from 'react'
 
-// import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-// import { routes } from '../../utility/paths'
+import { routes } from '../../utility/paths'
 
+import QuestionContainer from '../displayQuestion/QuestionContainer'
 
 class QuickPlayContainer extends React.Component {
+
+  state = {
+    ready: false,
+    showQuestion: false
+  }
 
   componentDidMount(){
 
@@ -16,30 +22,44 @@ class QuickPlayContainer extends React.Component {
       prop: 'testProp'
     }
 
+    this.props.onSetGameMode("quickPlay")
     this.props.onGetQuickQuestion(questionObj)
   }
 
+  componentDidUpdate(){
+    if(!!this.props.play.question && !this.state.ready){
+      this.setState({ ready: true })
+    }
+
+    if(this.state.ready && !this.state.showQuestion){
+      this.props.history.push( routes.quick_play + '/question' )
+      this.setState({ showQuestion: true })
+    }
+  }
 
   componentWillUnmount(){
     this.props.onResetGameMode()
+    this.setState({
+      ready: false,
+      showQuestion: false
+    })
   }
 
   render(){
+
+    // console.log(this.state)
+    // console.log(this.props.play.question)
+
+    var loading = <h1> Loading... </h1>
+
+    let question =
+      <Route path={ routes.quick_play + '/question' }>
+        <QuestionContainer history={ this.props.history } />
+      </Route>
+
     return(
       <>
-        <h1>quick play template</h1>
-        {/* <Switch>
-          <Route path={ routes.quick_play }>
-
-          </Route>
-          <Route path={ routes.by_diff }>
-
-          </Route>
-
-          <Route path={ routes.by_cat }>
-
-          </Route>
-        </Switch> */}
+        { this.state.showQuestion ? question : loading }
       </>
     )
   }
@@ -57,6 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onResetGameMode: () => dispatch(actions.resetGameMode()),
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj))
   }
 }

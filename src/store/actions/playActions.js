@@ -13,3 +13,17 @@ export const resetGameMode = () => {
     gameMode: null
   }
 }
+
+export const setQuestion = (question) => {
+  return {
+    type: actionTypes.SET_QUESTION,
+    question: question
+  }
+}
+
+export const resetQuestion = () => {
+  return {
+    type: actionTypes.SET_QUESTION,
+    question: null
+  }
+}

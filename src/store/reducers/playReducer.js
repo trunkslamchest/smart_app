@@ -1,7 +1,8 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  gameMode: null
+  gameMode: null,
+  question: null
 }
 
 const setGameMode = (currentState, action) => {
@@ -18,10 +19,27 @@ const resetGameMode = (currentState, action) => {
   }
 }
 
+const setQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
+
+const resetQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: null
+  }
+}
+
 const playReducer = (currentState = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_GAME_MODE: return setGameMode(currentState, action)
     case actionTypes.RESET_GAME_MODE: return resetGameMode(currentState, action)
+    case actionTypes.SET_QUESTION: return setQuestion(currentState, action)
+    case actionTypes.RESET_QUESTION: return resetQuestion(currentState, action)
+
     default: return currentState
   }
 }

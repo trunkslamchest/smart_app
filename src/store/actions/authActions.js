@@ -88,9 +88,12 @@ export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
     userFunctions('getUser', fetch.get.user, id)
     .then(userRes => {
-      dispatch(authSuccess(token, refreshToken, id, expires))
-      dispatch(storeUserInfo(userRes.info))
-      dispatch(storeUserQuestions(userRes.questions))
+      if(!userRes.info) localStorage.clear()
+      else {
+        dispatch(authSuccess(token, refreshToken, id, expires))
+        dispatch(storeUserInfo(userRes.info))
+        dispatch(storeUserQuestions(userRes.questions))
+      }
     })
     // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
     // localStorage.setItem('expirationDate', expirationDate)

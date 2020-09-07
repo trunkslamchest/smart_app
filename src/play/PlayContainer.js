@@ -19,7 +19,7 @@ class PlayContainer extends React.Component {
       <>
         <Switch>
           <Route path={ routes.quick_play }>
-            <QuickPlayContainer />
+            <QuickPlayContainer history={ this.props.history } />
           </Route>
           <Route path={ routes.by_diff }>
             <ByDifficultyContainer />

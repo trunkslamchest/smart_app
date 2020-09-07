@@ -62,5 +62,7 @@ export {
 
 export {
   setGameMode,
-  resetGameMode
+  resetGameMode,
+  setQuestion,
+  resetQuestion
 } from './playActions'

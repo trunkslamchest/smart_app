@@ -16,7 +16,6 @@ import './playMenuButton2.scss'
 const PlayMenu = (props) => {
 
   const onClickQuickPlayFunctions = () => {
-    props.onSetGameMode("quickPlay")
     props.switchPlayMenu()
   }
 

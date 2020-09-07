@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes'
+import { setQuestion } from './playActions'
 
 import { fetch } from '../../utility/paths'
 
@@ -22,6 +23,11 @@ export const getQuestionTotals = (props) => {
 
 export const getQuickQuestion = (obj) => {
   return dispatch => {
-    console.log(obj)
+    questionsFunctions('getQuickQuestion', fetch.get.quickQuestion, obj)
+    .then(res => {
+      // console.log(res)
+      dispatch(setQuestion(res))
+    })
+    // console.log(obj)
   }
 }

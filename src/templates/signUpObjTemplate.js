@@ -29,431 +29,431 @@ const signUpObjTemplate = (email, user_name) => {
           "outta_times": 0
         },
         "difficulty": {
-          "easy": {
+          "Easy": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "medium": {
+          "Medium": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "hard": {
+          "Hard": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           }
         },
         "categories": {
-          "anime": {
+          "Anime": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "art": {
+          "Art": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "books": {
+          "Books": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "celebrities": {
+          "Celebrities": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "computers": {
+          "Computers": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "film": {
+          "Film": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "general": {
+          "General": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "geography": {
+          "Geography": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "history": {
+          "History": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "math": {
+          "Math": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "music": {
+          "Music": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "mythology": {
+          "Mythology": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "nature": {
+          "Nature": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "politics": {
+          "Politics": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "science": {
+          "Science": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "sports": {
+          "Sports": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "television": {
+          "Television": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "theatre": {
+          "Theatre": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "vehicles": {
+          "Vehicles": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           },
-          "video_games": {
+          "Video Games": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0
           }
         }
       },
-      "easy": {
+      "Easy": {
         "categories": {
-          "anime": {
+          "Anime": {
             "null": {
               "null": "null"
             }
           },
-          "art": {
+          "Art": {
             "null": {
               "null": "null"
             }
           },
-          "books": {
+          "Books": {
             "null": {
               "null": "null"
             }
           },
-          "celebrities": {
+          "Celebrities": {
             "null": {
               "null": "null"
             }
           },
-          "computers": {
+          "Computers": {
             "null": {
               "null": "null"
             }
           },
-          "film": {
+          "Film": {
             "null": {
               "null": "null"
             }
           },
-          "general": {
+          "General": {
             "null": {
               "null": "null"
             }
           },
-          "geography": {
+          "Geography": {
             "null": {
               "null": "null"
             }
           },
-          "history": {
+          "History": {
             "null": {
               "null": "null"
             }
           },
-          "math": {
+          "Math": {
             "null": {
               "null": "null"
             }
           },
-          "music": {
+          "Music": {
             "null": {
               "null": "null"
             }
           },
-          "mythology": {
+          "Mythology": {
             "null": {
               "null": "null"
             }
           },
-          "nature": {
+          "Nature": {
             "null": {
               "null": "null"
             }
           },
-          "politics": {
+          "Politics": {
             "null": {
               "null": "null"
             }
           },
-          "science": {
+          "Science": {
             "null": {
               "null": "null"
             }
           },
-          "sports": {
+          "Sports": {
             "null": {
               "null": "null"
             }
           },
-          "television": {
+          "Television": {
             "null": {
               "null": "null"
             }
           },
-          "theatre": {
+          "Theatre": {
             "null": {
               "null": "null"
             }
           },
-          "vehicles": {
+          "Vehicles": {
             "null": {
               "null": "null"
             }
           },
-          "video_games": {
+          "Video Games": {
             "null": {
               "null": "null"
             }
           }
         }
       },
-      "medium": {
+      "Medium": {
         "categories": {
-          "anime": {
+          "Anime": {
             "null": {
               "null": "null"
             }
           },
-          "art": {
+          "Art": {
             "null": {
               "null": "null"
             }
           },
-          "books": {
+          "Books": {
             "null": {
               "null": "null"
             }
           },
-          "celebrities": {
+          "Celebrities": {
             "null": {
               "null": "null"
             }
           },
-          "computers": {
+          "Computers": {
             "null": {
               "null": "null"
             }
           },
-          "film": {
+          "Film": {
             "null": {
               "null": "null"
             }
           },
-          "general": {
+          "General": {
             "null": {
               "null": "null"
             }
           },
-          "geography": {
+          "Geography": {
             "null": {
               "null": "null"
             }
           },
-          "history": {
+          "History": {
             "null": {
               "null": "null"
             }
           },
-          "math": {
+          "Math": {
             "null": {
               "null": "null"
             }
           },
-          "music": {
+          "Music": {
             "null": {
               "null": "null"
             }
           },
-          "mythology": {
+          "Mythology": {
             "null": {
               "null": "null"
             }
           },
-          "nature": {
+          "Nature": {
             "null": {
               "null": "null"
             }
           },
-          "politics": {
+          "Politics": {
             "null": {
               "null": "null"
             }
           },
-          "science": {
+          "Science": {
             "null": {
               "null": "null"
             }
           },
-          "sports": {
+          "Sports": {
             "null": {
               "null": "null"
             }
           },
-          "television": {
+          "Television": {
             "null": {
               "null": "null"
             }
           },
-          "theatre": {
+          "Theatre": {
             "null": {
               "null": "null"
             }
           },
-          "vehicles": {
+          "Vehicles": {
             "null": {
               "null": "null"
             }
           },
-          "video_games": {
+          "Video Games": {
             "null": {
               "null": "null"
             }
           }
         }
       },
-      "hard": {
+      "Hard": {
         "categories": {
-          "anime": {
+          "Anime": {
             "null": {
               "null": "null"
             }
           },
-          "art": {
+          "Art": {
             "null": {
               "null": "null"
             }
           },
-          "books": {
+          "Books": {
             "null": {
               "null": "null"
             }
           },
-          "celebrities": {
+          "Celebrities": {
             "null": {
               "null": "null"
             }
           },
-          "computers": {
+          "Computers": {
             "null": {
               "null": "null"
             }
           },
-          "film": {
+          "Film": {
             "null": {
               "null": "null"
             }
           },
-          "general": {
+          "General": {
             "null": {
               "null": "null"
             }
           },
-          "geography": {
+          "Geography": {
             "null": {
               "null": "null"
             }
           },
-          "history": {
+          "History": {
             "null": {
               "null": "null"
             }
           },
-          "math": {
+          "Math": {
             "null": {
               "null": "null"
             }
           },
-          "music": {
+          "Music": {
             "null": {
               "null": "null"
             }
           },
-          "mythology": {
+          "Mythology": {
             "null": {
               "null": "null"
             }
           },
-          "nature": {
+          "Nature": {
             "null": {
               "null": "null"
             }
           },
-          "politics": {
+          "Politics": {
             "null": {
               "null": "null"
             }
           },
-          "science": {
+          "Science": {
             "null": {
               "null": "null"
             }
           },
-          "sports": {
+          "Sports": {
             "null": {
               "null": "null"
             }
           },
-          "television": {
+          "Television": {
             "null": {
               "null": "null"
             }
           },
-          "theatre": {
+          "Theatre": {
             "null": {
               "null": "null"
             }
           },
-          "vehicles": {
+          "Vehicles": {
             "null": {
               "null": "null"
             }
           },
-          "video_games": {
+          "Video Games": {
             "null": {
               "null": "null"
             }
