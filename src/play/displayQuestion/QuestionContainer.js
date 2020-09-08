@@ -1,10 +1,12 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
+import * as actions from '../../store/actions/actionIndex'
 
-import './QuestionDisplay.css'
 
-class QuestionDisplay extends React.Component{
+import './QuestionContainer.css'
+
+class QuestionContainer extends React.Component{
 
   state = {
     time: (10.00).toFixed(2),
@@ -32,35 +34,36 @@ class QuestionDisplay extends React.Component{
     clearTimeout(this.questionTimeout)
     clearTimeout(this.choicesTimeout)
     clearTimeout(this.timerTimeout)
+    clearTimeout(this.enableQuestionTimeout)
+    clearInterval(this.timerInterval)
     clearInterval(this.startTimer)
   }
 
-  stopTime = (time) => {
-    this.setState({
-      time: time,
-      stopTime: true
-    })
+  stopTime = () => {
+    this.setState({ time: this.state.time })
+    clearInterval(this.timerInterval)
   }
 
   setTime = (time) => { this.setState({ time: time }) }
 
   timerFunctions = () => {
-    if (this.state.stopTime){
-      this.setState({
-        time: this.state.time
-      }, this.setTime(this.state.time))
-      clearInterval(this.timerInterval)
+    if (this.state.time <= 0) this.setState({ time: (0.00).toFixed(2)}, clearInterval(this.timerInterval))
+    else this.setState({ time: (this.state.time - 0.01).toFixed(2), })
+  }
+
+  onClickFunctions = (event) => {
+    this.stopTime()
+
+    let answerObj = {
+      choice: this.props.play.question.choices[event.target.value],
+      time: this.state.time
     }
 
-    if (this.state.time <= 0) {
-      this.setState({
-        time: (0).toFixed(2)
-      }, clearInterval(this.timerInterval))
-    } else {
-      this.setState({
-        time: (this.state.time - 0.01).toFixed(2),
-      })
-    }
+    this.props.onSetAnswer(answerObj)
+    this.props.onSetGameState('answered')
+  }
+
+  onClickBlankFunctions = () => {
   }
 
   render(){
@@ -77,7 +80,7 @@ class QuestionDisplay extends React.Component{
           value={ i }
           className={this.state.enableQuestion ? "question_card_choices_button" : "question_card_choices_button_disabled" }
           name="answer_button"
-          // onClick={ this.state.enableQuestion ? this.onClickFunctions : this.onClickBlankFunctions }
+          onClick={ this.state.enableQuestion ? this.onClickFunctions : this.onClickBlankFunctions }
         >
           { choice }
         </button>
@@ -126,4 +129,18 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(QuestionDisplay)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onResetGameMode: () => dispatch(actions.resetGameMode()),
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
+    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
+    onResetQuestion: () => dispatch(actions.resetQuestion()),
+    onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
+    onResetAnswer: () => dispatch(actions.resetAnswer()),
+    onGetAnswerResults: (obj) => dispatch(actions.getAnswerResults(obj)),
+    onSetGameState : (state) => dispatch(actions.setGameState(state)),
+    onResetGameState : () => dispatch(actions.resetGameState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionContainer)

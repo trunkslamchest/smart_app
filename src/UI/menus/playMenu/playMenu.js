@@ -16,6 +16,7 @@ import './playMenuButton2.scss'
 const PlayMenu = (props) => {
 
   const onClickQuickPlayFunctions = () => {
+    props.onSetGameState('init')
     props.switchPlayMenu()
   }
 
@@ -67,7 +68,8 @@ const PlayMenu = (props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode))
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
+    onSetGameState: (state) => dispatch(actions.setGameState(state))
   }
 }
 

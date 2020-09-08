@@ -113,24 +113,36 @@ exports.deleteUser = functions
 
 // ~~~~~~~~~~~~~~~~~~~~ QUESTIONS ~~~~~~~~~~~~~~~~~~~~
 
-// var calcStats = function(cat, diffCats, statsObj) {
-//   for(i = 1; i < diffCats[cat][1].length; i++){
-//     diffCats[cat][1][i].answers.total && (statsObj.answersSum += diffCats[cat][1][i].answers.total)
-//     diffCats[cat][1][i].answers.correct && (statsObj.correctSum += diffCats[cat][1][i].answers.correct)
-//     diffCats[cat][1][i].answers.incorrect && (statsObj.incorrectSum += diffCats[cat][1][i].answers.incorrect)
-//     diffCats[cat][1][i].votes.total && (statsObj.voteSum.total += diffCats[cat][1][i].votes.total)
-//     diffCats[cat][1][i].votes.good && (statsObj.voteSum.good += diffCats[cat][1][i].votes.good)
-//     diffCats[cat][1][i].votes.neutral && (statsObj.voteSum.neutral += diffCats[cat][1][i].votes.neutral)
-//     diffCats[cat][1][i].votes.bad && (statsObj.voteSum.bad += diffCats[cat][1][i].votes.bad)
-//     Object.keys(diffCats[cat][1][i].comments)[0] !== 'null' && (statsObj.commentSum += (diffCats[cat][1][i].comments.length - 1))
+// exports.questions = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSget(req, res)
+//     firebase.database().ref('/').once('value', function(questions){ res.json(questions) });
+// });
+
+// var calcStats = function(diff, diffCats, statsObj) {
+
+//   let questions = diffCats[diff][1]
+
+//   for(question in questions) {
+//     statsObj.totalSum++
+//     questions[question].answers.total && (statsObj.answersSum += questions[question].answers.total)
+//     questions[question].answers.correct && (statsObj.correctSum += questions[question].answers.correct)
+//     questions[question].answers.incorrect && (statsObj.incorrectSum += questions[question].answers.incorrect)
+//     questions[question].votes.total && (statsObj.voteSum.total += questions[question].votes.total)
+//     questions[question].votes.good && (statsObj.voteSum.good += questions[question].votes.good)
+//     questions[question].votes.neutral && (statsObj.voteSum.neutral += questions[question].votes.neutral)
+//     questions[question].votes.bad && (statsObj.voteSum.bad += questions[question].votes.bad)
+//     Object.keys(questions[question].comments)[0] !== 'null' && (statsObj.commentSum += (Object.keys(questions[question].comments).length))
 //   }
+
 //   return statsObj
 // }
 
 // var calcTotals = function(diffCats, obj) {
-
-//   for(cat in diffCats){
+//   for(diff in diffCats){
 //     var statsObj = {
+//       totalSum: 0,
 //       answersSum: 0,
 //       correctSum: 0,
 //       incorrectSum: 0,
@@ -143,9 +155,9 @@ exports.deleteUser = functions
 //       }
 //     }
 
-//     calcStats(cat, diffCats, statsObj)
+//     calcStats(diff, diffCats, statsObj)
 
-//     obj['questions'] = obj['questions'] ? obj['questions'] + diffCats[cat][1].length - 1 : diffCats[cat][1].length - 1
+//     obj['questions'] = obj['questions'] ? obj['questions'] + statsObj.totalSum : statsObj.totalSum
 //     obj['answers'] = obj['answers'] ? obj['answers'] + statsObj.answersSum : statsObj.answersSum
 //     obj['correct'] = obj['correct'] ? obj['correct'] + statsObj.correctSum : statsObj.correctSum
 //     obj['incorrect'] = obj['incorrect'] ? obj['incorrect'] + statsObj.incorrectSum : statsObj.incorrectSum
@@ -171,19 +183,19 @@ exports.deleteUser = functions
 //     var catTotals = {}
 //     firebase.database().ref('/').once('value', function(questions){
 
-//       var easyCats = Object.entries(questions.val().easy.categories)
-//       var mediumCats = Object.entries(questions.val().medium.categories)
-//       var hardCats = Object.entries(questions.val().hard.categories)
-
+//       var easyCats = Object.entries(questions.val().Easy.categories)
+//       var mediumCats = Object.entries(questions.val().Medium.categories)
+//       var hardCats = Object.entries(questions.val().Hard.categories)
 //       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
 
-//       var allTotals = calcTotals(allCats, {})
 //       var easyTotals = calcTotals(easyCats, {})
 //       var mediumTotals = calcTotals(mediumCats, {})
 //       var hardTotals = calcTotals(hardCats, {})
+//       var allTotals = calcTotals(allCats, {})
 
 //       for(cat in allCats){
 //         var statsObj = {
+//           totalSum: 0,
 //           answersSum: 0,
 //           correctSum: 0,
 //           incorrectSum: 0,
@@ -202,7 +214,7 @@ exports.deleteUser = functions
 
 //         if(catTotals[catName]){
 //           catTotals[catName] = {
-//             total: catTotals[catName].total + allCats[cat][1].length - 1,
+//             questions: catTotals[catName].questions + statsObj.totalSum,
 //             answers: catTotals[catName].answers + statsObj.answersSum,
 //             correct: catTotals[catName].correct + statsObj.correctSum,
 //             incorrect: catTotals[catName].incorrect + statsObj.incorrectSum,
@@ -216,7 +228,7 @@ exports.deleteUser = functions
 //           }
 //         } else {
 //           catTotals[catName] = {
-//             total: allCats[cat][1].length - 1,
+//             questions: statsObj.totalSum,
 //             answers: statsObj.answersSum,
 //             correct: statsObj.correctSum,
 //             incorrect: statsObj.incorrectSum,
@@ -229,11 +241,64 @@ exports.deleteUser = functions
 //       res.json({
 //         all: allTotals,
 //         difficulty: {
-//           easy: easyTotals,
-//           medium: mediumTotals,
-//           hard: hardTotals
+//           Easy: easyTotals,
+//           Medium: mediumTotals,
+//           Hard: hardTotals
 //         },
 //         category: catTotals
 //       }).status(200)
 //     });
-//   });
+// });
+
+// var sortCats = function(diff, cats) {
+//   var questions = []
+//   cats.forEach(cat => { for(id in cat[1]){ questions.push([id, diff, cat[0], cat[1][id]]) } })
+//   return questions
+// }
+
+// exports.quickQuestion = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpost(req, res)
+//     firebase.database().ref('/').once('value', function(questions){
+
+//       // var easyCats = Object.entries(questions.val().easy.categories)
+//       // var mediumCats = Object.entries(questions.val().medium.categories)
+//       // var hardCats = Object.entries(questions.val().hard.categories)
+//       // var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
+
+//       // var allQuestions = []
+
+//       // allCats.forEach(cat => {
+//       //   for(id in cat[1]){
+//       //     allQuestions.push([id, cat[0], cat[1][id]])
+//       //   }
+//       // })
+
+//       // var rng = allQuestions[Math.floor(Math.random() * allQuestions.length - 1) + 1]
+
+//       // var question = {
+//       //   id: rng[0],
+//       //   category: rng[1],
+//       //   question: rng[2].question,
+//       //   choices: rng[2].choices
+//       // }
+
+//       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
+//       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
+//       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
+//       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
+//       var rng = allCats[Math.floor(Math.random() * allCats.length - 1) + 1]
+
+//       var question = {
+//         id: rng[0],
+//         difficulty: rng[1],
+//         category: rng[2],
+//         question: rng[3].question,
+//         choices: rng[3].choices
+//       }
+
+//       res.json(question)
+//       // res.send('done')
+//     })
+//   })

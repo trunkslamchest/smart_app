@@ -56,7 +56,7 @@ export {
 export {
   getQuestionTotals,
   storeQuestionTotals,
-  getQuickQuestion
+  getQuickQuestion,
 
 } from './questionsActions'
 
@@ -64,5 +64,10 @@ export {
   setGameMode,
   resetGameMode,
   setQuestion,
-  resetQuestion
+  resetQuestion,
+  setGameState,
+  resetGameState,
+  setAnswer,
+  resetAnswer,
+  getAnswerResults
 } from './playActions'

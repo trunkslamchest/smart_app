@@ -14,6 +14,16 @@ import ByCategoryContainer from './byCategory/byCategoryContainer'
 
 class PlayContainer extends React.Component {
 
+  componentDidMount(){
+    this.props.onSetGameState('init')
+  }
+
+  componentWillUnmount(){
+    this.props.onResetGameMode()
+    this.props.onResetQuestion()
+    this.props.onResetGameState()
+  }
+
   render(){
     return(
       <>
@@ -44,7 +54,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode))
+    onResetGameMode: () => dispatch(actions.resetGameMode()),
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
+    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
+    onResetQuestion: () => dispatch(actions.resetQuestion()),
+    onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
+    onResetAnswer: () => dispatch(actions.resetAnswer()),
+    onGetAnswerResults: (obj) => dispatch(actions.getAnswerResults(obj)),
+    onSetGameState : (state) => dispatch(actions.setGameState(state)),
+    onResetGameState : () => dispatch(actions.resetGameState())
   }
 }
 

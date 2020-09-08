@@ -8,8 +8,10 @@ export const fetch = {
     // questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`,
     questionsTotals: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS_TOTALS}`,
     // questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`,
-    quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`
-    // quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`
+    quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`,
+    // quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`,
+    questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`
+    // questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`
   },
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`

@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes'
-import { setQuestion } from './playActions'
+import {
+  setQuestion,
+  // setGameState
+} from './playActions'
 
 import { fetch } from '../../utility/paths'
 
@@ -27,6 +30,7 @@ export const getQuickQuestion = (obj) => {
     .then(res => {
       // console.log(res)
       dispatch(setQuestion(res))
+      // dispatch(setGameState(''))
     })
     // console.log(obj)
   }

@@ -88,7 +88,7 @@ export const authUser = (token, refreshToken, id, expires) => {
   return dispatch => {
     userFunctions('getUser', fetch.get.user, id)
     .then(userRes => {
-      if(!userRes.info) localStorage.clear()
+      if(userRes === null) localStorage.clear()
       else {
         dispatch(authSuccess(token, refreshToken, id, expires))
         dispatch(storeUserInfo(userRes.info))

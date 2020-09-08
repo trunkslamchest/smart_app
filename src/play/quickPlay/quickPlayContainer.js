@@ -8,42 +8,40 @@ import * as actions from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
 
 import QuestionContainer from '../displayQuestion/QuestionContainer'
+import ResultsContainer from '../displayResults/resultsContainer'
+
 
 class QuickPlayContainer extends React.Component {
 
-  state = {
-    ready: false,
-    showQuestion: false
-  }
-
   componentDidMount(){
-
-    let questionObj = {
-      prop: 'testProp'
-    }
-
-    this.props.onSetGameMode("quickPlay")
-    this.props.onGetQuickQuestion(questionObj)
+    // this.props.onSetGameState('init')
+    this.props.onSetGameMode('quickPlay')
   }
 
   componentDidUpdate(){
-    if(!!this.props.play.question && !this.state.ready){
-      this.setState({ ready: true })
+    if(this.props.play.gameState === 'init'){
+      let questionObj = {
+        prop: 'testProp'
+      }
+      this.props.onGetQuickQuestion(questionObj)
+      this.props.onSetGameState('mount')
     }
-
-    if(this.state.ready && !this.state.showQuestion){
+    if(this.props.play.gameState === 'mount' && this.props.play.question){
       this.props.history.push( routes.quick_play + '/question' )
-      this.setState({ showQuestion: true })
+      this.props.onSetGameState('question')
+    }
+    if(this.props.play.gameState === 'answered'){
+      console.log(this.props.play.answer)
+      this.props.history.push( routes.quick_play + '/results' )
+      this.props.onSetGameState('results')
+
     }
   }
 
-  componentWillUnmount(){
-    this.props.onResetGameMode()
-    this.setState({
-      ready: false,
-      showQuestion: false
-    })
-  }
+  // componentWillUnmount(){
+  //   this.props.onResetGameMode()
+  //   this.props.onResetGameState()
+  // }
 
   render(){
 
@@ -52,14 +50,28 @@ class QuickPlayContainer extends React.Component {
 
     var loading = <h1> Loading... </h1>
 
-    let question =
-      <Route path={ routes.quick_play + '/question' }>
+    let questionRoute =
+      <Route exact path={ routes.quick_play + '/question' }>
         <QuestionContainer history={ this.props.history } />
+      </Route>
+
+    let resultsRoute =
+      <Route exact path={ routes.quick_play + '/results' }>
+        <ResultsContainer history={ this.props.history } />
       </Route>
 
     return(
       <>
-        { this.state.showQuestion ? question : loading }
+        {/* { this.props.play.question ? question : loading } */}
+				{
+					(() => {
+						switch(this.props.play.gameState) {
+							case 'question': return questionRoute;
+							case 'results': return resultsRoute;
+							default: return loading;
+						}
+					})()
+				}
       </>
     )
   }
@@ -78,7 +90,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onResetGameMode: () => dispatch(actions.resetGameMode()),
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
-    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj))
+    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
+    onResetQuestion: () => dispatch(actions.resetQuestion()),
+    onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
+    onResetAnswer: () => dispatch(actions.resetAnswer()),
+    onGetAnswerResults: (obj) => dispatch(actions.getAnswerResults(obj)),
+    onSetGameState : (state) => dispatch(actions.setGameState(state)),
+    onResetGameState : () => dispatch(actions.resetGameState())
   }
 }
 

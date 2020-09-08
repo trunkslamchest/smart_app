@@ -13,7 +13,7 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
 
 
   const onClickQuickPlayFunctions = (event) => {
-    props.onSetGameMode("quickPlay")
+    // props.onSetGameState('init')
   }
 
   const onClickPlayByDifficultyFunctions = (event) => {
@@ -60,7 +60,8 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode))
+    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
+    onSetGameState: (state) => dispatch(actions.setGameState(state))
   }
 }
 
