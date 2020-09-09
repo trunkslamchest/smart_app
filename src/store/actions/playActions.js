@@ -84,6 +84,13 @@ export const setResults = (results) => {
   }
 }
 
+export const resetResults = () => {
+  return {
+    type: actionTypes.RESET_RESULTS,
+    results: null
+  }
+}
+
 export const setVote = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionVote', fetch.patch.questionVote, obj)

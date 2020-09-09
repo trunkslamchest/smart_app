@@ -72,6 +72,7 @@ export {
   resetAnswer,
   getResults,
   setResults,
+  resetResults,
   setVote,
   resetVote,
   setComment,

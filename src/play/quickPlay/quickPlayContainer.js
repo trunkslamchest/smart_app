@@ -10,11 +10,11 @@ import { routes } from '../../utility/paths'
 import QuestionContainer from '../displayQuestion/QuestionContainer'
 import ResultsContainer from '../displayResults/resultsContainer'
 
+import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 class QuickPlayContainer extends React.Component {
 
   componentDidMount(){
-    // this.props.onSetGameState('init')
     this.props.onSetGameMode('quickPlay')
   }
 
@@ -29,15 +29,14 @@ class QuickPlayContainer extends React.Component {
       this.props.onSetGameState('question')
     }
     if(this.props.play.gameState === 'answered'){
-      let resultsObj = {
+      this.props.onGetResults({
         uid: localStorage.id,
         qid: this.props.play.question.id,
         difficulty: this.props.play.question.difficulty,
         category: this.props.play.question.category,
         answer: this.props.play.answer.choice,
         time: this.props.play.answer.time
-      }
-      this.props.onGetResults(resultsObj)
+      })
     }
     if(this.props.play.gameState === 'answered' && this.props.play.question.votes){
       this.props.history.push( routes.quick_play + '/results' )
@@ -45,17 +44,7 @@ class QuickPlayContainer extends React.Component {
     }
   }
 
-  // componentWillUnmount(){
-  //   this.props.onResetGameMode()
-  //   this.props.onResetGameState()
-  // }
-
   render(){
-
-    // console.log(this.state)
-    // console.log(this.props.play.question)
-
-    var loading = <h1> Loading... </h1>
 
     let questionRoute =
       <Route exact path={ routes.quick_play + '/question' }>
@@ -69,16 +58,15 @@ class QuickPlayContainer extends React.Component {
 
     return(
       <>
-        {/* { this.props.play.question ? question : loading } */}
-				{
-					(() => {
-						switch(this.props.play.gameState) {
-							case 'question': return questionRoute;
-							case 'results': return resultsRoute;
-							default: return loading;
-						}
-					})()
-				}
+        {
+          (() => {
+            switch(this.props.play.gameState) {
+              case 'question': return questionRoute;
+              case 'results': return resultsRoute;
+              default: return <LoadingSpinnerRoller />;
+            }
+          })()
+        }
       </>
     )
   }
@@ -102,6 +90,7 @@ const mapDispatchToProps = (dispatch) => {
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),
     onGetResults: (obj) => dispatch(actions.getResults(obj)),
+    onResetResults: () => dispatch(actions.resetResults()),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
     onSetVote: (obj) => dispatch(actions.setVote(obj)),

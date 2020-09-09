@@ -86,6 +86,13 @@ const setResults = (currentState, action) => {
   }
 }
 
+const resetResults = (currentState, action) => {
+  return {
+    ...currentState,
+    results: null
+  }
+}
+
 const setVote = (currentState, action) => {
   return {
     ...currentState,
@@ -127,6 +134,7 @@ const playReducer = (currentState = initialState, action) => {
     case actionTypes.RESET_ANSWER: return resetAnswer(currentState, action)
     case actionTypes.GET_RESULTS: return getResults(currentState, action)
     case actionTypes.SET_RESULTS: return setResults(currentState, action)
+    case actionTypes.RESET_RESULTS: return resetResults(currentState, action)
     case actionTypes.SET_VOTE : return setVote(currentState, action)
     case actionTypes.RESET_VOTE : return resetVote(currentState, action)
     case actionTypes.SET_COMMENT : return setComment(currentState, action)

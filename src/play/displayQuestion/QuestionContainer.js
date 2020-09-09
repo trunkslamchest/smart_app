@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 import './QuestionContainer.css'
 
@@ -85,8 +86,7 @@ class QuestionContainer extends React.Component{
         </button>
     })
 
-    return(
-      <>
+    const questionSeq =
       <div className="question_card">
         <div className={ this.state.showTimer ? "question_card_timer" : "blank" } >
           <h2>Time Left</h2>
@@ -115,6 +115,9 @@ class QuestionContainer extends React.Component{
           </div>
         </div>
       </div>
+    return(
+      <>
+        { this.state.showTimer ? questionSeq : <LoadingSpinnerRoller /> }
       </>
     )
   }
@@ -137,6 +140,7 @@ const mapDispatchToProps = (dispatch) => {
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),
     onGetResults: (obj) => dispatch(actions.getResults(obj)),
+    onResetResults: () => dispatch(actions.resetResults()),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
     onSetVote: (obj) => dispatch(actions.setVote(obj)),

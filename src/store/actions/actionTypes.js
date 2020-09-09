@@ -55,6 +55,7 @@ export const RESET_ANSWER = 'RESET_ANSWER'
 
 export const GET_RESULTS = 'GET_RESULTS'
 export const SET_RESULTS = 'SET_RESULTS'
+export const RESET_RESULTS = 'RESET_RESULTS'
 
 export const SET_VOTE = 'SET_VOTE'
 export const RESET_VOTE = 'RESET_VOTE'

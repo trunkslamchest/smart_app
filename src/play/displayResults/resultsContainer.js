@@ -9,6 +9,8 @@ import up_vote from '../../assets/up_vote1.png'
 import no_vote from '../../assets/no_vote1.png'
 import down_vote from '../../assets/down_vote1.png'
 
+import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
+
 import './resultsContainer.css'
 
 class ResultsContainer extends React.Component{
@@ -118,6 +120,13 @@ class ResultsContainer extends React.Component{
       alert("Please Enter A Comment")
     }
   }
+
+  onClickNextQuestionFunctions = () => {
+    this.props.onSetGameState('init')
+    this.props.onResetAnswer()
+    this.props.onResetResults()
+  }
+
 
   render(){
 
@@ -233,7 +242,6 @@ class ResultsContainer extends React.Component{
 
     if(this.props.play.question.comments && this.state.showAllComments){
       allComments = Object.entries(this.props.play.question.comments).map(comment =>
-        // console.log(comment)
         <DisplayComments
           key={comment[0]}
           comment={comment[1]}
@@ -241,7 +249,17 @@ class ResultsContainer extends React.Component{
       )
     }
 
-    return(
+    const nextQuestionButton =
+      <button
+        key={"next_question_button"}
+        name="next_question_button"
+        className={ this.state.enableAnsweredButton ? "question_card_next_question_button" : "question_card_next_question_button_disabled" }
+        onClick={ this.state.enableAnsweredButton ? this.onClickNextQuestionFunctions : this.onClickBlankFunctions }
+      >
+        Next Question
+      </button>
+
+    const resultsSeq =
       <div className="question_card">
         <div className={ this.state.showHeader ? "question_card_answer_header" : "blank" }>
           { this.state.showHeader ? header : blank }
@@ -292,7 +310,16 @@ class ResultsContainer extends React.Component{
           </div>
         </div>
 
+        <div className={ this.state.showAnsweredButton ? "question_card_next_question_button_container": "blank"}>
+          { this.state.showAnsweredButton ? nextQuestionButton : blank }
+        </div>
+
       </div>
+
+    return(
+      <>
+        { this.state.showHeader ? resultsSeq : <LoadingSpinnerRoller /> }
+      </>
     )
   }
 }
@@ -314,6 +341,7 @@ const mapDispatchToProps = (dispatch) => {
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),
     onGetResults: (obj) => dispatch(actions.getResults(obj)),
+    onResetResults: () => dispatch(actions.resetResults()),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
     onSetVote: (obj) => dispatch(actions.setVote(obj)),

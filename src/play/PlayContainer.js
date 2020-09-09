@@ -22,6 +22,8 @@ class PlayContainer extends React.Component {
     this.props.onResetGameMode()
     this.props.onResetQuestion()
     this.props.onResetGameState()
+    this.props.onResetAnswer()
+    this.props.onResetResults()
   }
 
   render(){
@@ -61,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),
     onGetResults: (obj) => dispatch(actions.getResults(obj)),
+    onResetResults: () => dispatch(actions.resetResults()),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
     onSetVote: (obj) => dispatch(actions.setVote(obj)),
