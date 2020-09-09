@@ -3,6 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import DisplayComments from './displayComments'
+
 import up_vote from '../../assets/up_vote1.png'
 import no_vote from '../../assets/no_vote1.png'
 import down_vote from '../../assets/down_vote1.png'
@@ -12,6 +14,7 @@ import './resultsContainer.css'
 class ResultsContainer extends React.Component{
 
   state = {
+    comment: '',
     showHeader: false,
     showCorrectAnswer: false,
     showDifficulty: false,
@@ -82,9 +85,44 @@ class ResultsContainer extends React.Component{
     })
   }
 
+  onClickCommentFunctions = () => {
+    this.setState({
+      showCommentButton: false,
+      showCommentText: true,
+    })
+  }
+
+  onChangeComment = (event) => {
+    this.setState({ comment: event.target.value })
+  }
+
+  addComment = (event) => {
+    event.persist()
+    event.preventDefault()
+
+    if (this.state.comment){
+      var commentObj = {
+        uid: localStorage.id,
+        user_name: this.props.user.info.user_name,
+        qid: this.props.play.question.id,
+        difficulty: this.props.play.question.difficulty,
+        category: this.props.play.question.category,
+        comment: this.state.comment
+      }
+      this.props.onSetComment(commentObj)
+      this.setState({
+        showCommentText: false,
+        showAllComments: true,
+      })
+    } else {
+      alert("Please Enter A Comment")
+    }
+  }
+
   render(){
 
     const blank = <></>
+    let allComments = <></>
 
     const header = <h3> { this.props.play.results.result } </h3>
 
@@ -158,6 +196,50 @@ class ResultsContainer extends React.Component{
       </button>
     ]
 
+    const comment_button =
+      <button
+        key={"comment_button"}
+        name="comment_button"
+        value="comment_button"
+        className={ this.state.enableCommentButton ? "question_card_comment_button" : "question_card_comment_button_disabled" }
+        onClick={ this.state.enableCommentButton ? this.onClickCommentFunctions : this.onClickBlankFunctions }
+      >
+        Leave a Comment
+      </button>
+
+    const comment_form =
+      <form
+        name="add_comment_form"
+        interaction="submit"
+        className="question_card_comment_form"
+        onSubmit={ this.addComment }
+      >
+        <textarea
+          rows="5"
+          id="add_comment"
+          name="comment_text"
+          placeholder="Add A Comment..."
+          onChange={ this.onChangeComment }
+          value={ this.state.comment }
+        />
+        <div className="comment_button_container">
+          <input
+            type="submit"
+            className="question_card_comment_button"
+            value="Add Comment"
+          />
+        </div>
+      </form>
+
+    if(this.props.play.question.comments && this.state.showAllComments){
+      allComments = Object.entries(this.props.play.question.comments).map(comment =>
+        // console.log(comment)
+        <DisplayComments
+          key={comment[0]}
+          comment={comment[1]}
+        />
+      )
+    }
 
     return(
       <div className="question_card">
@@ -198,6 +280,18 @@ class ResultsContainer extends React.Component{
           </div>
         </div>
 
+        <div className={ this.state.showCommentButton || this.state.showCommentText || this.state.showAllComments ? "question_card_comment": "blank"}>
+          <div className={ this.state.showCommentButton ? "question_card_comment_button_container": "blank"}>
+            { this.state.showCommentButton ? comment_button : blank }
+          </div>
+          <div className={ this.state.showCommentText ? "question_card_comment_text": "blank"}>
+            { this.state.showCommentText ? comment_form : blank }
+          </div>
+          <div className={ this.state.showAllComments ? "question_card_all_comments": "blank"}>
+            { this.state.showAllComments ? allComments : blank }
+          </div>
+        </div>
+
       </div>
     )
   }
@@ -223,7 +317,9 @@ const mapDispatchToProps = (dispatch) => {
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
     onSetVote: (obj) => dispatch(actions.setVote(obj)),
-    onResetVote: (obj) => dispatch(actions.resetVote(obj))
+    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
+    onSetComment: (obj) => dispatch(actions.setComment(obj)),
+    onResetComment: (obj) => dispatch(actions.resetComment(obj))
   }
 }
 

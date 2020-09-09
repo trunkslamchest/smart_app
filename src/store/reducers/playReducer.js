@@ -96,7 +96,21 @@ const setVote = (currentState, action) => {
 const resetVote = (currentState, action) => {
   return {
     ...currentState,
-    vote: null
+    question: { ...currentState.question, votes: null }
+  }
+}
+
+const setComment = (currentState, action) => {
+  return {
+    ...currentState,
+    question: { ...currentState.question, comments: action.comments }
+  }
+}
+
+const resetComment = (currentState, action) => {
+  return {
+    ...currentState,
+    question: { ...currentState.question, comments: null }
   }
 }
 
@@ -115,6 +129,8 @@ const playReducer = (currentState = initialState, action) => {
     case actionTypes.SET_RESULTS: return setResults(currentState, action)
     case actionTypes.SET_VOTE : return setVote(currentState, action)
     case actionTypes.RESET_VOTE : return resetVote(currentState, action)
+    case actionTypes.SET_COMMENT : return setComment(currentState, action)
+    case actionTypes.RESET_COMMENT : return resetComment(currentState, action)
     default: return currentState
   }
 }

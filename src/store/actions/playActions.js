@@ -88,7 +88,6 @@ export const setVote = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionVote', fetch.patch.questionVote, obj)
     .then(res => {
-      console.log(res)
       dispatch(updateVotes(res))
     })
   }
@@ -104,6 +103,30 @@ const updateVotes = (obj) => {
 export const resetVote = () => {
   return {
     type: actionTypes.RESET_VOTE,
+    vote: null
+  }
+}
+
+export const setComment = (obj) => {
+  return dispatch => {
+    questionsFunctions('patchQuestionComment', fetch.patch.questionComment, obj)
+    .then(res => {
+      // console.log(res)
+      dispatch(updateComments(res))
+    })
+  }
+}
+
+const updateComments = (obj) => {
+  return {
+    type: actionTypes.SET_COMMENT,
+    comments: obj
+  }
+}
+
+export const resetComment = () => {
+  return {
+    type: actionTypes.RESET_COMMENT,
     vote: null
   }
 }

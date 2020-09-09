@@ -32,10 +32,10 @@ class PlayContainer extends React.Component {
             <QuickPlayContainer history={ this.props.history } />
           </Route>
           <Route path={ routes.by_diff }>
-            <ByDifficultyContainer />
+            <ByDifficultyContainer history={ this.props.history } />
           </Route>
           <Route path={ routes.by_cat }>
-            <ByCategoryContainer />
+            <ByCategoryContainer history={ this.props.history } />
           </Route>
         </Switch>
       </>
@@ -61,8 +61,12 @@ const mapDispatchToProps = (dispatch) => {
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),
     onGetResults: (obj) => dispatch(actions.getResults(obj)),
-    onSetGameState : (state) => dispatch(actions.setGameState(state)),
-    onResetGameState : () => dispatch(actions.resetGameState())
+    onSetGameState: (state) => dispatch(actions.setGameState(state)),
+    onResetGameState: () => dispatch(actions.resetGameState()),
+    onSetVote: (obj) => dispatch(actions.setVote(obj)),
+    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
+    onSetComment: (obj) => dispatch(actions.setComment(obj)),
+    onResetComment: (obj) => dispatch(actions.resetComment(obj))
   }
 }
 

@@ -73,5 +73,7 @@ export {
   getResults,
   setResults,
   setVote,
-  resetVote
+  resetVote,
+  setComment,
+  resetComment
 } from './playActions'

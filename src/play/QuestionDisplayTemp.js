@@ -2,24 +2,17 @@ import React from 'react'
 
 import QuestionDisplayComments from './QuestionDisplayComments.js'
 
-import trafficFunctions from '../utility/trafficFunctions'
 import questionFunctions from '../utility/questionFunctions'
 
 import './QuestionDisplay.css'
 import './QuestionAnswered.css'
-
-import up_vote from '../assets/up_vote1.png'
-import no_vote from '../assets/no_vote1.png'
-import down_vote from '../assets/down_vote1.png'
 
 var shuffle = require('shuffle-array')
 
 export default class QuestionDisplay extends React.Component{
 
 	state = {
-		votes: [],
 		comments: [],
-		showVoteButtons: false,
 		showCommentButton: false,
 		showCommentText:false,
 		showAllComments:false,
@@ -33,7 +26,6 @@ export default class QuestionDisplay extends React.Component{
 	}
 
 	displayAnsweredCorrect = () => {
-		this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2500)
 		this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 3000)
 
 		this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 3750)
@@ -41,7 +33,6 @@ export default class QuestionDisplay extends React.Component{
 	}
 
 	displayAnsweredIncorrect = () => {
-		this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2500)
 		this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 3000)
 		this.answeredButtonsTimeout = setTimeout(() => { this.setState({ showAnsweredButton: true })}, 3500)
 
@@ -93,111 +84,6 @@ export default class QuestionDisplay extends React.Component{
 		const shuffled_answers = shuffle(question_answers)
 
 		this.setState({ answers: shuffled_answers })
-	}
-
-	getVotes = () => {
-		questionFunctions('get', `http://localhost:3001/questions/${this.props.question.id}`)
-		.then(res_obj =>
-			this.setState({
-				votes: res_obj.data.attributes.votes.map(vote => vote.vote_num)
-			})
-		)
-	}
-
-	onClickUpVoteFunctions = (event) => {
-		event.persist()
-
-		let voteObj = {
-			user_id: this.props.user_id,
-			question_id: this.props.question.id,
-			vote_num: 1
-		}
-
-		questionFunctions('post', 'http://localhost:3001/votes', voteObj)
-		.then(() => {
-			this.setState({
-				voted: true,
-				showVoteButtons: false
-			})
-			this.getVotes()
-			this.onClickTrafficFunctions(event)
-		})
-	}
-
-	onClickNoVoteFunctions = (event) => {
-		event.persist()
-
-		let voteObj = {
-			user_id: this.props.user_id,
-			question_id: this.props.question.id,
-			vote_num: 0
-		}
-
-		questionFunctions('post', 'http://localhost:3001/votes', voteObj)
-		.then(() => {
-			this.setState({
-				voted: true,
-				showVoteButtons: false
-			})
-			this.getVotes()
-			this.onClickTrafficFunctions(event)
-		})
-	}
-
-	onClickDownVoteFunctions = (event) => {
-		event.persist()
-
-		let voteObj = {
-			user_id: this.props.user_id,
-			question_id: this.props.question.id,
-			vote_num: -1
-		}
-
-		questionFunctions('post', 'http://localhost:3001/votes', voteObj)
-		.then(() => {
-			this.setState({
-				voted: true,
-				showVoteButtons: false
-			})
-			this.getVotes()
-			this.onClickTrafficFunctions(event)
-		})
-	}
-
-	calculateUpVotes = () => {
-		let total_votes = this.state.votes.length
-		let up_votes = this.state.votes.filter(vote => vote === 1 )
-		let total_up_votes = up_votes.length
-		let up_vote_percent = ((total_up_votes / total_votes) * 100).toFixed(2)
-		if (up_votes.length === 0) {
-			return "0%"
-		} else {
-			return `${up_vote_percent}%`
-		}
-	}
-
-	calculateNoVotes = () => {
-		let total_votes = this.state.votes.length
-		let no_votes = this.state.votes.filter(vote => vote === 0 )
-		let total_no_votes = no_votes.length
-		let no_vote_percent = ((total_no_votes / total_votes) * 100).toFixed(2)
-		if (no_votes.length === 0) {
-			return "0%"
-		} else {
-			return `${no_vote_percent}%`
-		}
-	}
-
-	calculateDownVotes = () => {
-		let total_votes = this.state.votes.length
-		let down_votes = this.state.votes.filter(vote => vote === -1 )
-		let total_down_votes = down_votes.length
-		let down_vote_percent = ((total_down_votes / total_votes) * 100).toFixed(2)
-		if (down_votes.length === 0) {
-			return "0%"
-		} else {
-			return `${down_vote_percent}%`
-		}
 	}
 
 	getComments = () => {
@@ -264,20 +150,8 @@ export default class QuestionDisplay extends React.Component{
 	}
 
 	componentWillUnmount(){
-		clearTimeout(this.headerTimeout)
-		clearTimeout(this.questionTimeout)
-		clearTimeout(this.choicesTimeout)
-		clearTimeout(this.timerTimeout)
-		clearInterval(this.startTimer)
-		clearTimeout(this.answeredHeaderTimeout)
-		clearTimeout(this.correctAnswerTimeout)
-		clearTimeout(this.difficultyTimeout)
-		clearTimeout(this.voteButtonsTimeout)
 		clearTimeout(this.commentButtonTimeout)
 		clearTimeout(this.showAnsweredButtons)
-		clearTimeout(this.enableQuestionTimeout)
-		clearTimeout(this.enableCommentTimeout)
-		clearTimeout(this.enableAnsweredTimeout)
 	}
 
 	render(){
@@ -291,66 +165,7 @@ export default class QuestionDisplay extends React.Component{
 				</div>
 			</div>
 
-		const rate_header = <h3>Rate this question</h3>
-
-		const vote_header = <h3>Vote Totals</h3>
-
-		const vote_for_question_buttons = [
-			<button
-				key={"up_vote_button"}
-				className="up_vote_button"
-				name="up_vote_button"
-				interaction="click"
-				onClick={ this.onClickUpVoteFunctions }
-			>
-				<img
-					src={ up_vote }
-					alt="up_vote"
-					name="up_vote_img"
-					interaction="click"
-					onClick={ this.onClickUpVoteFunctions }
-				/>
-			</button>,
-			<button
-				key={"no_vote_button"}
-				className="no_vote_button"
-				name="no_vote_button"
-				interaction="click"
-				onClick={ this.onClickNoVoteFunctions }
-			>
-				<img
-					src={ no_vote }
-					alt="no_vote"
-					name="no_vote_img"
-					interaction="click"
-					onClick={ this.onClickNoVoteFunctions }
-				/>
-			</button>,
-			<button
-				key={"down_vote_button"}
-				className="down_vote_button"
-				name="down_vote_button"
-				interaction="click"
-				onClick={ this.onClickDownVoteFunctions }
-			>
-				<img
-				src={ down_vote }
-				alt="down_vote"
-				name="down_vote_img"
-				interaction="click"
-				onClick={ this.onClickDownVoteFunctions }
-			/>
-			</button>
-		]
-
 		const answered_header = <h3> { this.state.time === 0 ? this.outtaTime() : this.state.user_result } </h3>
-
-		const vote_total =
-			<ul>
-				<li><h5>Up Votes</h5> { this.state.votes.length > 0 ? this.calculateUpVotes() : blank }</li>
-				<li><h5>No Votes</h5> { this.state.votes.length > 0 ? this.calculateNoVotes() : blank }</li>
-				<li><h5>Down Votes</h5> { this.state.votes.length > 0 ? this.calculateDownVotes() : blank }</li>
-			</ul>
 
 		const comment_button =
 			<button
@@ -408,25 +223,6 @@ export default class QuestionDisplay extends React.Component{
 
 		const DisplayAnswer =
 			<div className="question_card">
-
-				<div className={ this.state.showVoteButtons ? "question_card_vote" : "blank" }>
-					<div className={ this.state.showVoteButtons ? "question_card_vote_header" : "blank" }>
-						{ this.state.showVoteButtons ? rate_header : blank }
-					</div>
-					<div className={ this.state.showVoteButtons ? "question_card_vote_buttons_container" : "blank" }>
-						{ this.state.showVoteButtons ? vote_for_question_buttons : blank }
-					</div>
-				</div>
-
-				<div className={ this.state.voted ? "question_card_voted" : "blank" }>
-					<div className={ this.state.voted ? "question_card_voted_header" : "blank" }>
-						{ this.state.voted ? vote_header : blank }
-					</div>
-
-					<div className={ this.state.voted ? "question_card_voted_totals" : "blank" }>
-						{ this.state.voted ? vote_total : blank }
-					</div>
-				</div>
 
 				<div className={ this.state.showCommentButton || this.state.showCommentText || this.state.showAllComments ? "question_card_comment": "blank"}>
 					<div className={ this.state.showCommentButton ? "question_card_comment_button_container": "blank"}>

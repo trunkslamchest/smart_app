@@ -59,3 +59,6 @@ export const SET_RESULTS = 'SET_RESULTS'
 export const SET_VOTE = 'SET_VOTE'
 export const RESET_VOTE = 'RESET_VOTE'
 
+export const SET_COMMENT = 'SET_COMMENT'
+export const RESET_COMMENT = 'RESET_COMMENT'
+
