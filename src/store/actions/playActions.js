@@ -1,5 +1,9 @@
 import * as actionTypes from './actionTypes'
 
+import { fetch } from '../../utility/paths'
+
+import questionsFunctions from '../../utility/questionsFunctions'
+
 export const setGameMode = (mode) => {
   return {
     type: actionTypes.SET_GAME_MODE,
@@ -18,6 +22,13 @@ export const setQuestion = (question) => {
   return {
     type: actionTypes.SET_QUESTION,
     question: question
+  }
+}
+
+export const updateQuestion = (results) => {
+  return {
+    type: actionTypes.UPDATE_QUESTION,
+    results: results
   }
 }
 
@@ -56,9 +67,19 @@ export const resetAnswer = () => {
   }
 }
 
-export const getAnswerResults = (results) => {
+export const getResults = (obj) => {
+  return dispatch => {
+    questionsFunctions('getQuestionResults', fetch.get.questionResults, obj)
+    .then(res => {
+      dispatch(setResults({result: res.answerResult, correct_answer: res.correct}))
+      dispatch(updateQuestion({answers: res.answers, votes: res.votes, comments: res.comments}))
+    })
+  }
+}
+
+export const setResults = (results) => {
   return {
-    type: actionTypes.GET_ANSWER_RESULTS,
+    type: actionTypes.SET_RESULTS,
     results: results
   }
 }

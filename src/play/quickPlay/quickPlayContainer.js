@@ -20,9 +20,7 @@ class QuickPlayContainer extends React.Component {
 
   componentDidUpdate(){
     if(this.props.play.gameState === 'init'){
-      let questionObj = {
-        prop: 'testProp'
-      }
+      let questionObj = { prop: 'testProp' }
       this.props.onGetQuickQuestion(questionObj)
       this.props.onSetGameState('mount')
     }
@@ -31,10 +29,19 @@ class QuickPlayContainer extends React.Component {
       this.props.onSetGameState('question')
     }
     if(this.props.play.gameState === 'answered'){
-      console.log(this.props.play.answer)
+      let resultsObj = {
+        uid: localStorage.id,
+        qid: this.props.play.question.id,
+        difficulty: this.props.play.question.difficulty,
+        category: this.props.play.question.category,
+        answer: this.props.play.answer.choice,
+        time: this.props.play.answer.time
+      }
+      this.props.onGetResults(resultsObj)
+    }
+    if(this.props.play.gameState === 'answered' && this.props.play.results){
       this.props.history.push( routes.quick_play + '/results' )
       this.props.onSetGameState('results')
-
     }
   }
 
@@ -94,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
     onResetQuestion: () => dispatch(actions.resetQuestion()),
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),
-    onGetAnswerResults: (obj) => dispatch(actions.getAnswerResults(obj)),
+    onGetResults: (obj) => dispatch(actions.getResults(obj)),
     onSetGameState : (state) => dispatch(actions.setGameState(state)),
     onResetGameState : () => dispatch(actions.resetGameState())
   }

@@ -261,29 +261,6 @@ exports.deleteUser = functions
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
 //     firebase.database().ref('/').once('value', function(questions){
-
-//       // var easyCats = Object.entries(questions.val().easy.categories)
-//       // var mediumCats = Object.entries(questions.val().medium.categories)
-//       // var hardCats = Object.entries(questions.val().hard.categories)
-//       // var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
-
-//       // var allQuestions = []
-
-//       // allCats.forEach(cat => {
-//       //   for(id in cat[1]){
-//       //     allQuestions.push([id, cat[0], cat[1][id]])
-//       //   }
-//       // })
-
-//       // var rng = allQuestions[Math.floor(Math.random() * allQuestions.length - 1) + 1]
-
-//       // var question = {
-//       //   id: rng[0],
-//       //   category: rng[1],
-//       //   question: rng[2].question,
-//       //   choices: rng[2].choices
-//       // }
-
 //       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
 //       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
 //       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
@@ -299,6 +276,53 @@ exports.deleteUser = functions
 //       }
 
 //       res.json(question)
+//       // res.send('done')
+//     })
+//   })
+
+// exports.questionResults = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpost(req, res)
+//     let calcObj = {}, resObj = {}
+//     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+//       if(!!req.body.uid) {
+
+//         var question = snap.val()
+
+//         let calcTime = parseInt(req.body.time, 10),
+//             calcTotal = question.answers.total + 1,
+//             calcCorrect = question.answers.correct,
+//             calcIncorrect = question.answers.incorrect,
+//             calcResult = ''
+
+//         if(req.body.answer === question.correct) {
+//           calcCorrect = question.answers.correct + 1
+//           calcResult = 'Correct'
+//         } else {
+//           calcIncorrect = question.answers.incorrect + 1
+//           calcResult = 'Incorrect'
+//         }
+
+//         if(question.answers.total !== 0) calcTime = (10 - (parseInt(req.body.time, 10) + question.answers.avg_time)) / question.answers.total
+
+//         calcObj = {
+//           avg_time: calcTime,
+//           correct: calcCorrect,
+//           incorrect: calcIncorrect,
+//           total: calcTotal
+//         }
+
+//         resObj = {
+//           answerResult: calcResult,
+//           answers: calcObj,
+//           comments: question.comments,
+//           votes: question.votes
+//         }
+
+//         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/answers').update(calcObj)
+//       }
+//       res.json(resObj).status(200)
 //       // res.send('done')
 //     })
 //   })

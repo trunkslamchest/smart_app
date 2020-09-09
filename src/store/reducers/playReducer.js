@@ -29,6 +29,14 @@ const setQuestion = (currentState, action) => {
   }
 }
 
+const updateQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: { ...currentState.question, ...action.results}
+  }
+}
+
+
 const resetQuestion = (currentState, action) => {
   return {
     ...currentState,
@@ -64,7 +72,14 @@ const resetAnswer = (currentState, action) => {
   }
 }
 
-const getAnswerResults = (currentState, action) => {
+const getResults = (currentState, action) => {
+  return {
+    ...currentState,
+    results: action.results
+  }
+}
+
+const setResults = (currentState, action) => {
   return {
     ...currentState,
     results: action.results
@@ -77,11 +92,13 @@ const playReducer = (currentState = initialState, action) => {
     case actionTypes.RESET_GAME_MODE: return resetGameMode(currentState, action)
     case actionTypes.SET_QUESTION: return setQuestion(currentState, action)
     case actionTypes.RESET_QUESTION: return resetQuestion(currentState, action)
+    case actionTypes.UPDATE_QUESTION: return updateQuestion(currentState, action)
     case actionTypes.SET_GAME_STATE: return setGameState(currentState, action)
     case actionTypes.RESET_GAME_STATE: return resetGameState(currentState, action)
     case actionTypes.SET_ANSWER: return setAnswer(currentState, action)
     case actionTypes.RESET_ANSWER: return resetAnswer(currentState, action)
-    case actionTypes.GET_ANSWER_RESULTS: return getAnswerResults(currentState, action)
+    case actionTypes.GET_RESULTS: return getResults(currentState, action)
+    case actionTypes.SET_RESULTS: return setResults(currentState, action)
     default: return currentState
   }
 }

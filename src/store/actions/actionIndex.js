@@ -64,10 +64,12 @@ export {
   setGameMode,
   resetGameMode,
   setQuestion,
+  updateQuestion,
   resetQuestion,
   setGameState,
   resetGameState,
   setAnswer,
   resetAnswer,
-  getAnswerResults
+  getResults,
+  setResults
 } from './playActions'
