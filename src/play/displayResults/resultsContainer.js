@@ -127,13 +127,12 @@ class ResultsContainer extends React.Component{
     this.props.onResetResults()
   }
 
-
   render(){
 
     const blank = <></>
     let allComments = <></>
 
-    const header = <h3> { this.props.play.results.result } </h3>
+    const header = <h3> { this.props.play.results.result }! </h3>
 
     const correct_answer_text =
       <>
@@ -286,11 +285,11 @@ class ResultsContainer extends React.Component{
           </div>
 
           <div className={ this.state.voted ? "question_card_voted_totals" : "blank" }>
-            { this.state.voted ?
+            { this.state.voted && this.props.play.question.votes ?
               <ul>
-                <li><h5>Up Votes</h5> { this.state.voted ? votePercents.good : blank }</li>
-                <li><h5>No Votes</h5> { this.state.voted ? votePercents.neutral : blank }</li>
-                <li><h5>Down Votes</h5> { this.state.voted ? votePercents.bad : blank }</li>
+                <li><h5>Up Votes</h5> { votePercents.good }</li>
+                <li><h5>No Votes</h5> { votePercents.neutral }</li>
+                <li><h5>Down Votes</h5> { votePercents.bad }</li>
               </ul>
             :
               blank
@@ -306,7 +305,7 @@ class ResultsContainer extends React.Component{
             { this.state.showCommentText ? comment_form : blank }
           </div>
           <div className={ this.state.showAllComments ? "question_card_all_comments": "blank"}>
-            { this.state.showAllComments ? allComments : blank }
+            { this.state.showAllComments && this.props.play.question.comments ? allComments : blank }
           </div>
         </div>
 
