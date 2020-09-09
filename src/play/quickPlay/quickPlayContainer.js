@@ -39,7 +39,7 @@ class QuickPlayContainer extends React.Component {
       }
       this.props.onGetResults(resultsObj)
     }
-    if(this.props.play.gameState === 'answered' && this.props.play.results){
+    if(this.props.play.gameState === 'answered' && this.props.play.question.votes){
       this.props.history.push( routes.quick_play + '/results' )
       this.props.onSetGameState('results')
     }

@@ -18,8 +18,10 @@ export const fetch = {
     // user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
   },
   patch: {
-    user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`
-    // user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`
+    user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
+    // user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
+    questionVote: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_VOTE}`
+    // questionVote: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_VOTE}`
   },
   delete: {
     user: `${process.env.REACT_APP_LOCAL_DELETE_USER}`

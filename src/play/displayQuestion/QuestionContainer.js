@@ -63,8 +63,7 @@ class QuestionContainer extends React.Component{
     this.props.onSetGameState('answered')
   }
 
-  onClickBlankFunctions = () => {
-  }
+  onClickBlankFunctions = () => {}
 
   render(){
 

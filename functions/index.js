@@ -296,6 +296,8 @@ exports.deleteUser = functions
 //             calcIncorrect = question.answers.incorrect,
 //             calcResult = ''
 
+//         if(question.answers.total !== 0) calcTime = (parseInt(req.body.time, 10) + question.answers.avg_time) / question.answers.total
+
 //         if(req.body.answer === question.correct) {
 //           calcCorrect = question.answers.correct + 1
 //           calcResult = 'Correct'
@@ -303,8 +305,6 @@ exports.deleteUser = functions
 //           calcIncorrect = question.answers.incorrect + 1
 //           calcResult = 'Incorrect'
 //         }
-
-//         if(question.answers.total !== 0) calcTime = (10 - (parseInt(req.body.time, 10) + question.answers.avg_time)) / question.answers.total
 
 //         calcObj = {
 //           avg_time: calcTime,
@@ -315,6 +315,7 @@ exports.deleteUser = functions
 
 //         resObj = {
 //           answerResult: calcResult,
+//           correct: question.correct,
 //           answers: calcObj,
 //           comments: question.comments,
 //           votes: question.votes

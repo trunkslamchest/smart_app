@@ -71,5 +71,7 @@ export {
   setAnswer,
   resetAnswer,
   getResults,
-  setResults
+  setResults,
+  setVote,
+  resetVote
 } from './playActions'
