@@ -10,6 +10,8 @@ import SelectionButton from './selectionButton'
 
 // import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
+import './selectionContainer.css'
+
 class SelectionContainer extends React.Component {
 
   state = {
@@ -54,10 +56,12 @@ class SelectionContainer extends React.Component {
     }
 
     return(
-      <>
+      <div className='selection_container'>
         <h1> Select A { this.state.set } </h1>
-        { distribButtons }
-      </>
+        <div className="selection_buttons_container">
+          { distribButtons }
+        </div>
+      </div>
     )
   }
 }

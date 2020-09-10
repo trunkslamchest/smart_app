@@ -1,17 +1,6 @@
-.select_buttons_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: baseline;
-  margin: 0 auto 0 auto;
-  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
-}
-
 .selection_button {
   -webkit-appearance: none;
-  min-width: 175px;
+  min-width: 200px;
   text-rendering: auto;
   color: #FFF;
   background-image: linear-gradient(rgb(81, 88, 102, 1),  rgb(40, 44, 52, 1) );
@@ -28,7 +17,7 @@
   cursor: pointer;
   background-color: buttonface;
   box-sizing: border-box;
-  margin: 10px 5px 5px 5px;
+  margin: 10px;
   font: 400 15px Roboto;
   padding: 15px 30px 15px 30px;
   border: 0px solid;
