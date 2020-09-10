@@ -280,6 +280,54 @@ exports.deleteUser = functions
 //     })
 //   })
 
+// exports.diffQuestion = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpost(req, res)
+//     firebase.database().ref('/').once('value', function(questions){
+//       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
+//       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
+//       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
+//       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
+//       var rng = allCats[Math.floor(Math.random() * allCats.length - 1) + 1]
+
+//       var question = {
+//         id: rng[0],
+//         difficulty: rng[1],
+//         category: rng[2],
+//         question: rng[3].question,
+//         choices: rng[3].choices
+//       }
+
+//       res.json(question)
+//       // res.send('done')
+//     })
+//   })
+
+// exports.catQuestion = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpost(req, res)
+//     firebase.database().ref('/').once('value', function(questions){
+//       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
+//       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
+//       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
+//       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
+//       var rng = allCats[Math.floor(Math.random() * allCats.length - 1) + 1]
+
+//       var question = {
+//         id: rng[0],
+//         difficulty: rng[1],
+//         category: rng[2],
+//         question: rng[3].question,
+//         choices: rng[3].choices
+//       }
+
+//       res.json(question)
+//       // res.send('done')
+//     })
+//   })
+
 // exports.questionResults = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
@@ -294,13 +342,19 @@ exports.deleteUser = functions
 //             calcTotal = question.answers.total + 1,
 //             calcCorrect = question.answers.correct,
 //             calcIncorrect = question.answers.incorrect,
+//             calcOuttaTime = question.answers.outta_time,
 //             calcResult = ''
 
 //         if(question.answers.total !== 0) calcTime = (parseInt(req.body.time, 10) + question.answers.avg_time) / question.answers.total
 
+//         console.log(req.body.answer, req.body.answer === 'outta_time')
+
 //         if(req.body.answer === question.correct) {
 //           calcCorrect = question.answers.correct + 1
 //           calcResult = 'Correct'
+//         } else if (req.body.answer === 'outta_time'){
+//           calcOuttaTime = question.answers.outta_time + 1
+//           calcResult = 'Outta Time'
 //         } else {
 //           calcIncorrect = question.answers.incorrect + 1
 //           calcResult = 'Incorrect'
@@ -310,6 +364,7 @@ exports.deleteUser = functions
 //           avg_time: calcTime,
 //           correct: calcCorrect,
 //           incorrect: calcIncorrect,
+//           outta_time: calcOuttaTime,
 //           total: calcTotal
 //         }
 
@@ -324,6 +379,49 @@ exports.deleteUser = functions
 //         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/answers').update(calcObj)
 //       }
 //       res.json(resObj).status(200)
+//       // res.send('done')
+//     })
+//   })
+
+
+// exports.questionVote = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpatch(req, res)
+//     let voteObj = {}
+//     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+//       if(!!req.body.uid) {
+//         voteObj = { ...snap.val().votes }
+//         voteObj[req.body.vote] = voteObj[req.body.vote] + 1
+//         voteObj.total = voteObj.total + 1
+//         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/votes').update(voteObj)
+//       }
+//       res.json(voteObj).status(200)
+//       // res.send('done')
+//     })
+//   })
+
+// exports.questionComment = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpatch(req, res)
+//     let commentsObj = {}, commentObj = {}
+//     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+//       if(!!req.body.uid) {
+//         var k = firebase.database().ref().push().key
+//         commentObj = {
+//           [k]: {
+//             comment: req.body.comment,
+//             user: req.body.user_name
+//           }
+//         }
+
+//         if(!snap.val().comments) commentsObj = commentObj
+//         else commentsObj = { ...snap.val().comments, ...commentObj }
+
+//         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments').update(commentsObj)
+//       }
+//       res.json(commentsObj).status(200)
 //       // res.send('done')
 //     })
 //   })
