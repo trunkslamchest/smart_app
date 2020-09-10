@@ -20,7 +20,6 @@ const signUpObjTemplate = (email, user_name) => {
       }
     },
     questions: {
-      'ids': [ 'null' ],
       "totals": {
         "all": {
           "answered": 0,

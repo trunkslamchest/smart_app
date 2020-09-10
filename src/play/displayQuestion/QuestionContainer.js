@@ -46,7 +46,7 @@ class QuestionContainer extends React.Component{
 
       let answerObj = {
         choice: 'outta_time',
-        time: (0.00).toFixed(2)
+        time: (10.00).toFixed(2)
       }
 
       this.props.onSetAnswer(answerObj)
