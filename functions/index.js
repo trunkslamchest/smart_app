@@ -133,7 +133,7 @@ exports.deleteUser = functions
 //     questions[question].votes.good && (statsObj.voteSum.good += questions[question].votes.good)
 //     questions[question].votes.neutral && (statsObj.voteSum.neutral += questions[question].votes.neutral)
 //     questions[question].votes.bad && (statsObj.voteSum.bad += questions[question].votes.bad)
-//     Object.keys(questions[question].comments)[0] !== 'null' && (statsObj.commentSum += (Object.keys(questions[question].comments).length))
+//     questions[question].comments && Object.keys(questions[question].comments)[0] !== 'null' && (statsObj.commentSum += (Object.keys(questions[question].comments).length))
 //   }
 
 //   return statsObj
@@ -284,46 +284,50 @@ exports.deleteUser = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
-//     firebase.database().ref('/').once('value', function(questions){
-//       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
-//       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
-//       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
-//       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
-//       var rng = allCats[Math.floor(Math.random() * allCats.length - 1) + 1]
-
-//       var question = {
-//         id: rng[0],
-//         difficulty: rng[1],
-//         category: rng[2],
-//         question: rng[3].question,
-//         choices: rng[3].choices
+//     firebase.database().ref('/' + req.body.qSet + '/categories').once('value', function(snap){
+//       if(!!req.body.qSet) {
+//         let flatCats = sortCats(req.body.qSet, Object.entries(snap.val()))
+//         var rng = flatCats[Math.floor(Math.random() * flatCats.length - 1) + 1]
+//         var questionObj = {
+//           id: rng[0],
+//           difficulty: rng[1],
+//           category: rng[2],
+//           question: rng[3].question,
+//           choices: rng[3].choices
+//         }
 //       }
-
-//       res.json(question)
+//       res.json(questionObj)
 //       // res.send('done')
 //     })
 //   })
+
+// var pushCats = function(diff, questions) {
+//   return questions.map(q => {
+//     q[1]["difficulty"] = diff
+//     return q
+//   })
+// }
 
 // exports.catQuestion = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
-//     firebase.database().ref('/').once('value', function(questions){
-//       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
-//       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
-//       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
-//       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
-//       var rng = allCats[Math.floor(Math.random() * allCats.length - 1) + 1]
-
-//       var question = {
-//         id: rng[0],
-//         difficulty: rng[1],
-//         category: rng[2],
-//         question: rng[3].question,
-//         choices: rng[3].choices
+//     firebase.database().ref().once('value', function(snap){
+//       if(!!req.body.qSet) {
+//         var easyQs = pushCats('Easy', Object.entries(snap.val().Easy.categories[req.body.qSet]))
+//         var mediumQs = pushCats('Medium', Object.entries(snap.val().Medium.categories[req.body.qSet]))
+//         var hardQs = pushCats('Hard', Object.entries(snap.val().Hard.categories[req.body.qSet]))
+//         var allQs = [ ...easyQs, ...mediumQs, ...hardQs ]
+//         var rng = allQs[Math.floor(Math.random() * allQs.length - 1) + 1]
+//         var questionObj = {
+//           id: rng[0],
+//           difficulty: rng[1].difficulty,
+//           category: req.body.qSet,
+//           question: rng[1].question,
+//           choices: rng[1].choices
+//         }
 //       }
-
-//       res.json(question)
+//       res.json(questionObj)
 //       // res.send('done')
 //     })
 //   })

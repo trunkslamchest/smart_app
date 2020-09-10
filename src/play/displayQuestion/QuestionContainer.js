@@ -10,9 +10,7 @@ import './QuestionContainer.css'
 class QuestionContainer extends React.Component{
 
   state = {
-    time: (3.00).toFixed(2),
-    stopTime: false,
-    setTime: false,
+    time: (10.00).toFixed(2),
     showTimer: false,
     startTimer: false,
     enableQuestion: false,
@@ -41,13 +39,6 @@ class QuestionContainer extends React.Component{
     clearInterval(this.startTimer)
   }
 
-  stopTime = () => {
-    this.setState({ time: this.state.time })
-    clearInterval(this.timerInterval)
-  }
-
-  setTime = (time) => { this.setState({ time: time }) }
-
   timerFunctions = () => {
     if (this.state.time <= 0) {
       this.setState({ time: (0.00).toFixed(2)})
@@ -55,7 +46,7 @@ class QuestionContainer extends React.Component{
 
       let answerObj = {
         choice: 'outta_time',
-        time: this.state.time
+        time: (0.00).toFixed(2)
       }
 
       this.props.onSetAnswer(answerObj)
@@ -65,11 +56,11 @@ class QuestionContainer extends React.Component{
   }
 
   onClickFunctions = (event) => {
-    this.stopTime()
+    clearInterval(this.timerInterval)
 
     let answerObj = {
       choice: this.props.play.question.choices[event.target.value],
-      time: this.state.time
+      time: (10 - this.state.time).toFixed(2)
     }
 
     this.props.onSetAnswer(answerObj)
