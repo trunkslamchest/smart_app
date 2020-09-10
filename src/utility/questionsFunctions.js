@@ -29,6 +29,32 @@
       .then(res => res.json())
     },
 
+    getDiffQuestion: function(url, obj) {
+      return fetch(url, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({obj})
+      })
+      .then(res => res.json())
+    },
+
+    getCatQuestion: function(url, obj) {
+      return fetch(url, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({obj})
+      })
+      .then(res => res.json())
+    },
+
     getQuestionResults: function(url, obj) {
       return fetch(url, {
         method: "POST",

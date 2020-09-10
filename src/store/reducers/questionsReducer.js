@@ -27,11 +27,28 @@ const getQuickQuestion = (currentState, action) => {
   }
 }
 
+const getDiffQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
+
+const getCatQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
+
 export const questionsReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.GET_QUESTION_TOTALS: return getQuestionTotals(currentState, action)
     case actionTypes.STORE_QUESTION_TOTALS: return storeQuestionTotals(currentState, action)
     case actionTypes.GET_QUICK_QUESTION: return getQuickQuestion(currentState, action)
+    case actionTypes.GET_DIFF_QUESTION: return getDiffQuestion(currentState, action)
+    case actionTypes.GET_CAT_QUESTION: return getCatQuestion(currentState, action)
+
     default: return currentState
   }
 }

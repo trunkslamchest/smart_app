@@ -149,25 +149,6 @@ export default class PlayByDifficultyContainer extends React.Component{
 		})
 	}
 
-	onClickTrafficFunctions = (event) => {
-		let elementInfo = {
-			user_id: this.props.user_id,
-			interaction: event.target.attributes.interaction.value,
-			element: event.target.name
-		}
-
-		trafficFunctions('element', 'http://localhost:3001/traffics', elementInfo)
-	}
-
-	onPageLoadFunctions = () => {
-		let pageInfo = {
-			user_id: localStorage.user_id,
-			page_name: 'play_by_difficulty',
-		}
-
-		trafficFunctions('page', 'http://localhost:3001/pages', pageInfo)
-	}
-
 	render(){
 
 		const blank = <></>

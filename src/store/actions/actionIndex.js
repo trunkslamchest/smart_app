@@ -57,6 +57,8 @@ export {
   getQuestionTotals,
   storeQuestionTotals,
   getQuickQuestion,
+  getDiffQuestion,
+  getCatQuestion,
 
 } from './questionsActions'
 

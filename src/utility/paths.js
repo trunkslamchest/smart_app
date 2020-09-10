@@ -10,6 +10,10 @@ export const fetch = {
     // questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`,
     quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`,
     // quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`,
+    diffQuestion: `${process.env.REACT_APP_LOCAL_GET_DIFF_QUESTION}`,
+    // diffQuestion: `${process.env.REACT_APP_DEPLOY_GET_DIFF_QUESTION}`,
+    catQuestion: `${process.env.REACT_APP_LOCAL_GET_CAT_QUESTION}`,
+    // catQuestion: `${process.env.REACT_APP_DEPLOY_GET_CAT_QUESTION}`,
     questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`
     // questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`
   },

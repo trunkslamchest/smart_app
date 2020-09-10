@@ -156,6 +156,8 @@ const mapDispatchToProps = (dispatch) => {
     onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
     onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
     onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
+    onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
+    onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
     onResetQuestion: () => dispatch(actions.resetQuestion()),
     onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
     onResetAnswer: () => dispatch(actions.resetAnswer()),

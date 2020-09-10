@@ -35,3 +35,27 @@ export const getQuickQuestion = (obj) => {
     // console.log(obj)
   }
 }
+
+export const getDiffQuestion = (obj) => {
+  return dispatch => {
+    questionsFunctions('getDiffQuestion', fetch.get.diffQuestion, obj)
+    .then(res => {
+      // console.log(res)
+      dispatch(setQuestion(res))
+      // dispatch(setGameState(''))
+    })
+    // console.log(obj)
+  }
+}
+
+export const getCatQuestion = (obj) => {
+  return dispatch => {
+    questionsFunctions('getCatQuestion', fetch.get.catQuestion, obj)
+    .then(res => {
+      // console.log(res)
+      dispatch(setQuestion(res))
+      // dispatch(setGameState(''))
+    })
+    // console.log(obj)
+  }
+}
