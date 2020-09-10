@@ -46,6 +46,15 @@ export const RESET_GAME_MODE = 'RESET_GAME_MODE'
 export const SET_GAME_STATE = 'SET_GAME_STATE'
 export const RESET_GAME_STATE = 'RESET_GAME_STATE'
 
+export const SET_GAME_DIFF = 'SET_GAME_DIFF'
+export const RESET_GAME_DIFF = 'RESET_GAME_DIFF'
+
+export const SET_GAME_CAT = 'SET_GAME_CAT'
+export const RESET_GAME_CAT = 'RESET_GAME_CAT'
+
+export const SET_GAME_QSET = 'SET_GAME_QSET'
+export const RESET_GAME_QSET = 'RESET_GAME_QSET'
+
 export const SET_QUESTION = 'SET_QUESTION'
 export const UPDATE_QUESTION = 'UPDATE_QUESTION'
 export const RESET_QUESTION = 'RESET_QUESTION'

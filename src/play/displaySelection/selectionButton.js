@@ -1,53 +1,27 @@
 import React from 'react'
 
-import { Route, Switch } from 'react-router-dom'
-
 import { connect } from 'react-redux'
-import * as actions from '../store/actions/actionIndex'
+import * as actions from '../../store/actions/actionIndex'
 
-import { routes } from '../utility/paths'
+import './selectionButton.css'
 
-import QuickPlayContainer from './quickPlay/quickPlayContainer'
-// import ByDifficultyContainer from './byDifficulty/byDifficultyContainer'
-// import ByCategoryContainer from './byCategory/byCategoryContainer'
+const SelectionButton = (props) => {
 
-
-class PlayContainer extends React.Component {
-
-  componentDidMount(){
-    this.props.onSetGameState('init')
-    if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
+  const onClickFunctions = () => {
+    props.onSetGameQset(props.val)
   }
 
-  componentWillUnmount(){
-    this.props.onResetGameMode()
-    this.props.onResetQuestion()
-    this.props.onResetGameState()
-    this.props.onResetAnswer()
-    this.props.onResetResults()
-  }
-
-  render(){
-
-
-
-    return(
-      <>
-        <Switch>
-          <Route path={ routes[this.props.play.gameMode] }>
-            <QuickPlayContainer history={ this.props.history } />
-          </Route>
-          {/* <Route path={ routes.by_diff }>
-            <ByDifficultyContainer history={ this.props.history } />
-          </Route>
-          <Route path={ routes.by_cat }>
-            <ByCategoryContainer history={ this.props.history } />
-          </Route> */}
-        </Switch>
-      </>
-    )
-  }
-
+  return(
+    <button
+      key={ props.key }
+      value={ props.val }
+      className="selection_button"
+      name={`${props.val}_button`}
+      onClick={ onClickFunctions }
+    >
+      { props.val }
+    </button>
+  )
 }
 
 const mapStateToProps = (state) => {
@@ -83,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SelectionButton)

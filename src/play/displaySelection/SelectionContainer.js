@@ -1,53 +1,65 @@
 import React from 'react'
 
-import { Route, Switch } from 'react-router-dom'
-
 import { connect } from 'react-redux'
-import * as actions from '../store/actions/actionIndex'
+import * as actions from '../../store/actions/actionIndex'
 
-import { routes } from '../utility/paths'
+import difficulties from '../../datasets/difficulties'
+import categories from '../../datasets/categories'
 
-import QuickPlayContainer from './quickPlay/quickPlayContainer'
-// import ByDifficultyContainer from './byDifficulty/byDifficultyContainer'
-// import ByCategoryContainer from './byCategory/byCategoryContainer'
+import SelectionButton from './selectionButton'
 
+// import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
-class PlayContainer extends React.Component {
+class SelectionContainer extends React.Component {
 
-  componentDidMount(){
-    this.props.onSetGameState('init')
-    if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
+  state = {
+    set: null,
+    subSet: null,
+    selection: null
   }
 
-  componentWillUnmount(){
-    this.props.onResetGameMode()
+  componentDidMount(){
+    if(this.props.play.gameMode === 'by_diff') {this.setState({ set: 'Difficulty', subSet: difficulties })}
+    if(this.props.play.gameMode === 'by_cat') {this.setState({ set: 'Category', subSet: categories })}
     this.props.onResetQuestion()
-    this.props.onResetGameState()
     this.props.onResetAnswer()
     this.props.onResetResults()
   }
 
+  componentDidUpdate(){
+
+  }
+
+  componentWillUnmount(){
+
+  }
+
+  onClickFunctions = (event) => {
+    this.setState({
+      [this.state.selection]: event.target.value
+    })
+  }
+
   render(){
 
+    let distribButtons
 
+    if(this.state.subSet){
+      distribButtons = this.state.subSet.map(field =>
+        <SelectionButton
+          key={this.state.subSet.indexOf(field)}
+          val={field}
+        />
+      )
+    }
 
     return(
       <>
-        <Switch>
-          <Route path={ routes[this.props.play.gameMode] }>
-            <QuickPlayContainer history={ this.props.history } />
-          </Route>
-          {/* <Route path={ routes.by_diff }>
-            <ByDifficultyContainer history={ this.props.history } />
-          </Route>
-          <Route path={ routes.by_cat }>
-            <ByCategoryContainer history={ this.props.history } />
-          </Route> */}
-        </Switch>
+        <h1> Select A { this.state.set } </h1>
+        { distribButtons }
       </>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {
@@ -83,4 +95,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SelectionContainer)

@@ -16,17 +16,23 @@ import './playMenuButton2.scss'
 const PlayMenu = (props) => {
 
   const onClickQuickPlayFunctions = () => {
+    props.onSetGameMode('quick_play')
+    localStorage.gameMode = 'quick_play'
     props.onSetGameState('init')
     props.switchPlayMenu()
   }
 
   const onClickByDifficultyFunctions = () => {
-    props.onSetGameMode("byDifficulty")
+    props.onSetGameMode('by_diff')
+    localStorage.gameMode = 'by_diff'
+    props.onSetGameState('init')
     props.switchPlayMenu()
   }
 
   const onClickByCategoryFunctions = () => {
-    props.onSetGameMode("byCategory")
+    props.onSetGameMode('by_cat')
+    localStorage.gameMode = 'by_cat'
+    props.onSetGameState('init')
     props.switchPlayMenu()
   }
 

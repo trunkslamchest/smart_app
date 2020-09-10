@@ -3,6 +3,9 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   gameMode: null,
   gameState: null,
+  gameDiff: null,
+  gameCat: null,
+  gameQset: null,
   question: null,
   answer: null,
   results: null
@@ -57,6 +60,49 @@ const resetGameState = (currentState, action) => {
     gameState: null
   }
 }
+
+const setGameDiff = (currentState, action) => {
+  return {
+    ...currentState,
+    gameDiff: action.gameDiff
+  }
+}
+
+const resetGameDiff = (currentState, action) => {
+  return {
+    ...currentState,
+    gameDiff: null
+  }
+}
+
+const setGameCat = (currentState, action) => {
+  return {
+    ...currentState,
+    gameCat: action.gameCat
+  }
+}
+
+const resetGameCat = (currentState, action) => {
+  return {
+    ...currentState,
+    gameCat: null
+  }
+}
+
+const setGameQset = (currentState, action) => {
+  return {
+    ...currentState,
+    gameQset: action.gameQset
+  }
+}
+
+const resetGameQset = (currentState, action) => {
+  return {
+    ...currentState,
+    gameQset: null
+  }
+}
+
 
 const setAnswer = (currentState, action) => {
   return {
@@ -125,11 +171,17 @@ const playReducer = (currentState = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_GAME_MODE: return setGameMode(currentState, action)
     case actionTypes.RESET_GAME_MODE: return resetGameMode(currentState, action)
+    case actionTypes.SET_GAME_STATE: return setGameState(currentState, action)
+    case actionTypes.RESET_GAME_STATE: return resetGameState(currentState, action)
+    case actionTypes.SET_GAME_DIFF: return setGameDiff(currentState, action)
+    case actionTypes.RESET_GAME_DIFF: return resetGameDiff(currentState, action)
+    case actionTypes.SET_GAME_CAT: return setGameCat(currentState, action)
+    case actionTypes.RESET_GAME_CAT: return resetGameCat(currentState, action)
+    case actionTypes.SET_GAME_QSET: return setGameQset(currentState, action)
+    case actionTypes.RESET_GAME_QSET: return resetGameQset(currentState, action)
     case actionTypes.SET_QUESTION: return setQuestion(currentState, action)
     case actionTypes.RESET_QUESTION: return resetQuestion(currentState, action)
     case actionTypes.UPDATE_QUESTION: return updateQuestion(currentState, action)
-    case actionTypes.SET_GAME_STATE: return setGameState(currentState, action)
-    case actionTypes.RESET_GAME_STATE: return resetGameState(currentState, action)
     case actionTypes.SET_ANSWER: return setAnswer(currentState, action)
     case actionTypes.RESET_ANSWER: return resetAnswer(currentState, action)
     case actionTypes.GET_RESULTS: return getResults(currentState, action)

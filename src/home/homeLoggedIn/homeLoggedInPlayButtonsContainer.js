@@ -11,17 +11,22 @@ import './homeLoggedIn.css'
 
 const HomeLoggedInPlayButtonsContainer = (props) => {
 
-
-  const onClickQuickPlayFunctions = (event) => {
-    // props.onSetGameState('init')
+  const onClickQuickPlayFunctions = () => {
+    props.onSetGameMode('quick_play')
+    localStorage.gameMode = 'quick_play'
+    props.onSetGameState('init')
   }
 
-  const onClickPlayByDifficultyFunctions = (event) => {
-    props.onSetGameMode("byDifficulty")
+  const onClickByDifficultyFunctions = () => {
+    props.onSetGameMode('by_diff')
+    localStorage.gameMode = 'by_diff'
+    props.onSetGameState('init')
   }
 
-  const onClickPlayByCategoryFunctions = (event) => {
-    props.onSetGameMode("byCategory")
+  const onClickByCategoryFunctions = () => {
+    props.onSetGameMode('by_cat')
+    localStorage.gameMode = 'by_cat'
+    props.onSetGameState('init')
   }
 
   return(
@@ -41,7 +46,7 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
           link={ routes.by_diff }
           buttonName="play_by_difficulty_button"
           classType="play_by_difficulty_button"
-          onClick={ onClickPlayByDifficultyFunctions }
+          onClick={ onClickByDifficultyFunctions }
         >
           Play By Difficulty
         </PlayButton>
@@ -49,7 +54,7 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
           link={ routes.by_cat }
           buttonName="play_by_category_button"
           classType="play_by_category_button"
-          onClick={ onClickPlayByCategoryFunctions }
+          onClick={ onClickByCategoryFunctions }
         >
           Play By Category
         </PlayButton>

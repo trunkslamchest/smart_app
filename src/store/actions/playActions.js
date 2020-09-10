@@ -53,6 +53,48 @@ export const resetGameState = () => {
   }
 }
 
+export const setGameDiff = (gameDiff) => {
+  return {
+    type: actionTypes.SET_GAME_DIFF,
+    gameDiff: gameDiff
+  }
+}
+
+export const resetGameDiff = () => {
+  return {
+    type: actionTypes.RESET_GAME_DIFF,
+    gameDiff: null
+  }
+}
+
+export const setGameCat = (gameCat) => {
+  return {
+    type: actionTypes.SET_GAME_CAT,
+    gameCat: gameCat
+  }
+}
+
+export const resetGameCat = () => {
+  return {
+    type: actionTypes.RESET_GAME_CAT,
+    gameCat: null
+  }
+}
+
+export const setGameQset = (gameQset) => {
+  return {
+    type: actionTypes.SET_GAME_QSET,
+    gameQset: gameQset
+  }
+}
+
+export const resetGameQset = () => {
+  return {
+    type: actionTypes.RESET_GAME_QSET,
+    gameQset: null
+  }
+}
+
 export const setAnswer = (answer) => {
   return {
     type: actionTypes.SET_ANSWER,
