@@ -23,23 +23,19 @@ class SelectionContainer extends React.Component {
   componentDidMount(){
     if(this.props.play.gameMode === 'by_diff') {this.setState({ set: 'Difficulty', subSet: difficulties })}
     if(this.props.play.gameMode === 'by_cat') {this.setState({ set: 'Category', subSet: categories })}
-    this.props.onResetQuestion()
-    this.props.onResetAnswer()
-    this.props.onResetResults()
   }
 
   componentDidUpdate(){
-
+    if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
+      let questionObj = { qSet: this.props.play.gameQset, prop: 'testProp' }
+      if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
+      if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
+      this.props.onSetGameState('mount')
+    }
   }
 
   componentWillUnmount(){
 
-  }
-
-  onClickFunctions = (event) => {
-    this.setState({
-      [this.state.selection]: event.target.value
-    })
   }
 
   render(){
@@ -80,10 +76,6 @@ const mapDispatchToProps = (dispatch) => {
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
-    onSetGameDiff: (diff) => dispatch(actions.setGameDiff(diff)),
-    onResetGameDiff: (diff) => dispatch(actions.resetGameDiff(diff)),
-    onSetGameCat: (diff) => dispatch(actions.setGameCat(diff)),
-    onResetGameCat: (cat) => dispatch(actions.resetGameCat(cat)),
     onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
     onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
     onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),

@@ -52,8 +52,8 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.voteButtonsTimeout)
     clearTimeout(this.commentButtonTimeout)
     clearTimeout(this.answeredButtonsTimeout)
-    clearTimeout(this.enableCommentTimeout)
-    clearTimeout(this.enableAnsweredTimeout)
+    clearTimeout(this.enableCommentButtonTimeout)
+    clearTimeout(this.enableAnsweredButtonTimeout)
   }
 
   calcVotes = () => {
@@ -337,10 +337,6 @@ const mapDispatchToProps = (dispatch) => {
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
-    onSetGameDiff: (diff) => dispatch(actions.setGameDiff(diff)),
-    onResetGameDiff: (diff) => dispatch(actions.resetGameDiff(diff)),
-    onSetGameCat: (diff) => dispatch(actions.setGameCat(diff)),
-    onResetGameCat: (cat) => dispatch(actions.resetGameCat(cat)),
     onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
     onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
     onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),

@@ -25,6 +25,7 @@ export const getQuestionTotals = (props) => {
 }
 
 export const getQuickQuestion = (obj) => {
+  // console.log(obj)
   return dispatch => {
     questionsFunctions('getQuickQuestion', fetch.get.quickQuestion, obj)
     .then(res => {
@@ -37,6 +38,7 @@ export const getQuickQuestion = (obj) => {
 }
 
 export const getDiffQuestion = (obj) => {
+  // console.log(obj)
   return dispatch => {
     questionsFunctions('getDiffQuestion', fetch.get.diffQuestion, obj)
     .then(res => {
@@ -49,6 +51,7 @@ export const getDiffQuestion = (obj) => {
 }
 
 export const getCatQuestion = (obj) => {
+  // console.log(obj)
   return dispatch => {
     questionsFunctions('getCatQuestion', fetch.get.catQuestion, obj)
     .then(res => {

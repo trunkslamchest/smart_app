@@ -11,7 +11,6 @@ import QuickPlayContainer from './quickPlay/quickPlayContainer'
 // import ByDifficultyContainer from './byDifficulty/byDifficultyContainer'
 // import ByCategoryContainer from './byCategory/byCategoryContainer'
 
-
 class PlayContainer extends React.Component {
 
   componentDidMount(){
@@ -21,8 +20,9 @@ class PlayContainer extends React.Component {
 
   componentWillUnmount(){
     this.props.onResetGameMode()
-    this.props.onResetQuestion()
     this.props.onResetGameState()
+    this.props.onResetGameQset()
+    this.props.onResetQuestion()
     this.props.onResetAnswer()
     this.props.onResetResults()
   }
@@ -64,10 +64,6 @@ const mapDispatchToProps = (dispatch) => {
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
-    onSetGameDiff: (diff) => dispatch(actions.setGameDiff(diff)),
-    onResetGameDiff: (diff) => dispatch(actions.resetGameDiff(diff)),
-    onSetGameCat: (diff) => dispatch(actions.setGameCat(diff)),
-    onResetGameCat: (cat) => dispatch(actions.resetGameCat(cat)),
     onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
     onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
     onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),

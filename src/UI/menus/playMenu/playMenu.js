@@ -15,27 +15,17 @@ import './playMenuButton2.scss'
 
 const PlayMenu = (props) => {
 
-  const onClickQuickPlayFunctions = () => {
-    props.onSetGameMode('quick_play')
-    localStorage.gameMode = 'quick_play'
+  const onClickFunctions = (event) => {
+    let gameMode = event.target.name
+    localStorage.gameMode = gameMode
+    props.onSetGameMode(gameMode)
     props.onSetGameState('init')
+    props.onResetGameQset()
+    props.onResetQuestion()
+    props.onResetAnswer()
+    props.onResetResults()
     props.switchPlayMenu()
   }
-
-  const onClickByDifficultyFunctions = () => {
-    props.onSetGameMode('by_diff')
-    localStorage.gameMode = 'by_diff'
-    props.onSetGameState('init')
-    props.switchPlayMenu()
-  }
-
-  const onClickByCategoryFunctions = () => {
-    props.onSetGameMode('by_cat')
-    localStorage.gameMode = 'by_cat'
-    props.onSetGameState('init')
-    props.switchPlayMenu()
-  }
-
 
   return(
     <DropDownMenu
@@ -46,25 +36,25 @@ const PlayMenu = (props) => {
     >
       <PlayMenuButton
         link={ routes.quick_play }
-        name='quick_play_button'
+        name='quick_play'
         menu='playMenu'
-        onClick={onClickQuickPlayFunctions}
+        onClick={onClickFunctions}
       >
         Quick Play
       </PlayMenuButton>
       <PlayMenuButton
         link={ routes.by_diff }
-        name='by_difficulty_button'
+        name='by_diff'
         menu='playMenu'
-        onClick={onClickByDifficultyFunctions}
+        onClick={onClickFunctions}
       >
         By Difficulty
       </PlayMenuButton>
       <PlayMenuButton
         link={ routes.by_cat }
-        name='by_category_button'
+        name='by_cat'
         menu='playMenu'
-        onClick={onClickByCategoryFunctions}
+        onClick={onClickFunctions}
       >
         By Category
       </PlayMenuButton>
@@ -74,8 +64,24 @@ const PlayMenu = (props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onResetGameMode: () => dispatch(actions.resetGameMode()),
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
-    onSetGameState: (state) => dispatch(actions.setGameState(state))
+    onSetGameState: (state) => dispatch(actions.setGameState(state)),
+    onResetGameState: () => dispatch(actions.resetGameState()),
+    onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
+    onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
+    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
+    onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
+    onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
+    onResetQuestion: () => dispatch(actions.resetQuestion()),
+    onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
+    onResetAnswer: () => dispatch(actions.resetAnswer()),
+    onGetResults: (obj) => dispatch(actions.getResults(obj)),
+    onResetResults: () => dispatch(actions.resetResults()),
+    onSetVote: (obj) => dispatch(actions.setVote(obj)),
+    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
+    onSetComment: (obj) => dispatch(actions.setComment(obj)),
+    onResetComment: (obj) => dispatch(actions.resetComment(obj))
   }
 }
 

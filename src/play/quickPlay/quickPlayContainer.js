@@ -22,38 +22,20 @@ class QuickPlayContainer extends React.Component {
 
   componentDidUpdate(){
     if(this.props.play.gameState === 'init'){
-
       if (this.props.play.gameMode === 'quick_play') {
         let questionObj = { prop: 'testProp' }
         this.props.onGetQuickQuestion(questionObj)
         this.props.onSetGameState('mount')
       }
-
       if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
-        let questionObj = { diff: this.props.play.gameDiff, prop: 'testProp' }
         this.props.history.push( routes[this.props.play.gameMode] + '/select' )
         this.props.onSetGameState('selection')
-        // this.props.onGetDifficultyQuestion(questionObj)
       }
-
-      // if (this.props.play.gameMode === 'by_cat') {
-      //   let questionObj = { cat: this.props.play.gameCat, prop: 'testProp' }
-      //   this.props.history.push( routes[this.props.play.gameMode] + '/select' )
-      //   this.props.onSetGameState('selection')
-      //   // this.props.onGetCategoryQuestion(questionObj)
-      // }
     }
 
     if(this.props.play.gameState === 'mount' && this.props.play.question){
-
-      if(this.props.play.gameMode === 'quick_play') {
-        this.props.history.push( routes[this.props.play.gameMode] + '/question' )
-        this.props.onSetGameState('question')
-      }
-
-      // if(this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
-      // }
-
+      this.props.history.push( routes[this.props.play.gameMode] + '/question' )
+      this.props.onSetGameState('question')
     }
 
     if(this.props.play.gameState === 'answered'){
@@ -75,30 +57,20 @@ class QuickPlayContainer extends React.Component {
   }
 
   render(){
-
-    let selectionRoute =
-      <Route exact path={ routes[this.props.play.gameMode] + '/select' }>
-        <SelectionContainer history={ this.props.history } />
-      </Route>
-
-    let questionRoute =
-      <Route exact path={ routes[this.props.play.gameMode] + '/question' }>
-        <QuestionContainer history={ this.props.history } />
-      </Route>
-
-    let resultsRoute =
-      <Route exact path={ routes[this.props.play.gameMode] + '/results' }>
-        <ResultsContainer history={ this.props.history } />
-      </Route>
-
     return(
       <>
         {
           (() => {
             switch(this.props.play.gameState) {
-              case 'selection': return selectionRoute;
-              case 'question': return questionRoute;
-              case 'results': return resultsRoute;
+              case 'selection': return <Route exact path={ routes[this.props.play.gameMode] + '/select' }>
+                                         <SelectionContainer history={ this.props.history } />
+                                       </Route>;
+              case 'question': return <Route exact path={ routes[this.props.play.gameMode] + '/question' }>
+                                        <QuestionContainer history={ this.props.history } />
+                                      </Route>;
+              case 'results': return <Route exact path={ routes[this.props.play.gameMode] + '/results' }>
+                                       <ResultsContainer history={ this.props.history } />
+                                     </Route>;
               default: return <LoadingSpinnerRoller />;
             }
           })()
@@ -106,7 +78,6 @@ class QuickPlayContainer extends React.Component {
       </>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {
@@ -123,10 +94,6 @@ const mapDispatchToProps = (dispatch) => {
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetGameState: () => dispatch(actions.resetGameState()),
-    onSetGameDiff: (diff) => dispatch(actions.setGameDiff(diff)),
-    onResetGameDiff: (diff) => dispatch(actions.resetGameDiff(diff)),
-    onSetGameCat: (diff) => dispatch(actions.setGameCat(diff)),
-    onResetGameCat: (cat) => dispatch(actions.resetGameCat(cat)),
     onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
     onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
     onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),

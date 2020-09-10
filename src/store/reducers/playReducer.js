@@ -3,8 +3,6 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   gameMode: null,
   gameState: null,
-  gameDiff: null,
-  gameCat: null,
   gameQset: null,
   question: null,
   answer: null,
@@ -58,34 +56,6 @@ const resetGameState = (currentState, action) => {
   return {
     ...currentState,
     gameState: null
-  }
-}
-
-const setGameDiff = (currentState, action) => {
-  return {
-    ...currentState,
-    gameDiff: action.gameDiff
-  }
-}
-
-const resetGameDiff = (currentState, action) => {
-  return {
-    ...currentState,
-    gameDiff: null
-  }
-}
-
-const setGameCat = (currentState, action) => {
-  return {
-    ...currentState,
-    gameCat: action.gameCat
-  }
-}
-
-const resetGameCat = (currentState, action) => {
-  return {
-    ...currentState,
-    gameCat: null
   }
 }
 
@@ -173,10 +143,6 @@ const playReducer = (currentState = initialState, action) => {
     case actionTypes.RESET_GAME_MODE: return resetGameMode(currentState, action)
     case actionTypes.SET_GAME_STATE: return setGameState(currentState, action)
     case actionTypes.RESET_GAME_STATE: return resetGameState(currentState, action)
-    case actionTypes.SET_GAME_DIFF: return setGameDiff(currentState, action)
-    case actionTypes.RESET_GAME_DIFF: return resetGameDiff(currentState, action)
-    case actionTypes.SET_GAME_CAT: return setGameCat(currentState, action)
-    case actionTypes.RESET_GAME_CAT: return resetGameCat(currentState, action)
     case actionTypes.SET_GAME_QSET: return setGameQset(currentState, action)
     case actionTypes.RESET_GAME_QSET: return resetGameQset(currentState, action)
     case actionTypes.SET_QUESTION: return setQuestion(currentState, action)
