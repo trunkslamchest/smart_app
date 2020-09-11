@@ -82,6 +82,7 @@ export const resetAnswer = () => {
 }
 
 export const getResults = (obj) => {
+  // console.log(obj)
   return dispatch => {
     questionsFunctions('getQuestionResults', fetch.get.questionResults, obj)
     .then(res => {

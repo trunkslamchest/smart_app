@@ -36,7 +36,6 @@ class ResultsContainer extends React.Component{
     this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2500)
     this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 3000)
     this.answeredButtonsTimeout = setTimeout(() => { this.setState({ showAnsweredButton: true })}, 3500)
-
     this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 3750)
     this.enableAnsweredButtonTimeout = setTimeout(() => { this.setState({ enableAnsweredButton: true })}, 4250)
 

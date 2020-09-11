@@ -382,20 +382,32 @@ exports.crossUpdateUserComment = functions
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
 //     firebase.database().ref('/').once('value', function(questions){
-//       var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
-//       var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
-//       var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
-//       var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
-//       var rng = allCats[Math.floor(Math.random() * allCats.length - 1) + 1]
+//       var question = {}
+//       if(!!req.body.answeredIds){
+//         var easyCats = sortCats('Easy', Object.entries(questions.val().Easy.categories))
+//         var mediumCats = sortCats('Medium', Object.entries(questions.val().Medium.categories))
+//         var hardCats = sortCats('Hard', Object.entries(questions.val().Hard.categories))
+//         var allCats = [ ...easyCats, ...mediumCats, ...hardCats ]
 
-//       var question = {
-//         id: rng[0],
-//         difficulty: rng[1],
-//         category: rng[2],
-//         question: rng[3].question,
-//         choices: rng[3].choices
+//         const filterQuestions = allCats.filter(question => !req.body.answeredIds.includes(question[0]))
+
+//         if(filterQuestions.length) {
+//           var rng = filterQuestions[Math.floor(Math.random() * filterQuestions.length - 1) + 1]
+//           question = {
+//             id: rng[0],
+//             difficulty: rng[1],
+//             category: rng[2],
+//             question: rng[3].question,
+//             choices: rng[3].choices
+//           }
+//         } else {
+//           question = {
+//             completed: true,
+//             msg1: 'You have answered all the questions!',
+//             msg2: 'Check back soon to see if more questions have been added to SmartApp™'
+//           }
+//         }
 //       }
-
 //       res.json(question)
 //       // res.send('done')
 //     })
@@ -406,18 +418,31 @@ exports.crossUpdateUserComment = functions
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
 //     firebase.database().ref('/' + req.body.qSet + '/categories').once('value', function(snap){
+//       var question = {}
+
 //       if(!!req.body.qSet) {
 //         let flatCats = sortCats(req.body.qSet, Object.entries(snap.val()))
-//         var rng = flatCats[Math.floor(Math.random() * flatCats.length - 1) + 1]
-//         var questionObj = {
-//           id: rng[0],
-//           difficulty: rng[1],
-//           category: rng[2],
-//           question: rng[3].question,
-//           choices: rng[3].choices
+
+//         const filterQuestions = flatCats.filter(question => !req.body.answeredIds.includes(question[0]))
+
+//         if(filterQuestions.length) {
+//           var rng = filterQuestions[Math.floor(Math.random() * filterQuestions.length - 1) + 1]
+//           var question = {
+//             id: rng[0],
+//             difficulty: rng[1],
+//             category: rng[2],
+//             question: rng[3].question,
+//             choices: rng[3].choices
+//           }
+//         } else {
+//           question = {
+//             completed: true,
+//             msg1: `You have answered all the ${req.body.qSet} questions!`,
+//             msg2: 'Check back soon to see if more questions have been added to SmartApp™'
+//           }
 //         }
 //       }
-//       res.json(questionObj)
+//       res.json(question)
 //       // res.send('done')
 //     })
 // })
@@ -438,24 +463,38 @@ exports.crossUpdateUserComment = functions
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
 //     firebase.database().ref().once('value', function(snap){
+//       var question = {}
+
+
 //       if(!!req.body.qSet) {
 //         var easyQs = [], mediumQs = [], hardQs = []
 //         if(snap.val().Easy.categories[req.body.qSet]) easyQs = pushCats('Easy', Object.entries(snap.val().Easy.categories[req.body.qSet]))
 //         if(snap.val().Medium.categories[req.body.qSet]) mediumQs = pushCats('Medium', Object.entries(snap.val().Medium.categories[req.body.qSet]))
-//         if(snap.val().Hard.categories[req.body.qSet]) hardQs = pushCats('Medium', Object.entries(snap.val().Hard.categories[req.body.qSet]))
+//         if(snap.val().Hard.categories[req.body.qSet]) hardQs = pushCats('Hard', Object.entries(snap.val().Hard.categories[req.body.qSet]))
 
 //         var allQs = [ ...easyQs, ...mediumQs, ...hardQs ]
-//         var rng = allQs[Math.floor(Math.random() * allQs.length - 1) + 1]
 
-//         var questionObj = {
-//           id: rng[0],
-//           difficulty: rng[1].difficulty,
-//           category: req.body.qSet,
-//           question: rng[1].question,
-//           choices: rng[1].choices
+//         const filterQuestions = allQs.filter(question => !req.body.answeredIds.includes(question[0]))
+
+//         if(filterQuestions.length) {
+//           var rng = filterQuestions[Math.floor(Math.random() * filterQuestions.length - 1) + 1]
+
+//           question = {
+//             id: rng[0],
+//             difficulty: rng[1].difficulty,
+//             category: req.body.qSet,
+//             question: rng[1].question,
+//             choices: rng[1].choices
+//           }
+//         } else {
+//           question = {
+//             completed: true,
+//             msg1: `You have answered all the ${req.body.qSet} questions!`,
+//             msg2: 'Check back soon to see if more questions have been added to SmartApp™'
+//           }
 //         }
 //       }
-//       res.json(questionObj)
+//       res.json(question)
 //     })
 //   // res.send('done')
 // })
@@ -499,6 +538,7 @@ exports.crossUpdateUserComment = functions
 //         }
 
 //         resObj = {
+//           qid: req.body.qid,
 //           answerResult: calcResult,
 //           correct: question.correct,
 //           answers: calcObj,
@@ -548,8 +588,6 @@ exports.crossUpdateUserComment = functions
 //     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
 //       if(!!req.body.uid) {
 
-//         console.log(req.body)
-
 //         voteObj = { ...snap.val().votes }
 //         voteObj[req.body.vote] = voteObj[req.body.vote] + 1
 //         voteObj.total = voteObj.total + 1
@@ -593,6 +631,7 @@ exports.crossUpdateUserComment = functions
 //     let commentsObj = {}, commentObj = {}
 //     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
 //       if(!!req.body.uid) {
+
 //         var k = firebase.database().ref().push().key
 //         commentObj = {
 //           [k]: {
