@@ -3,17 +3,17 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import * as actions from '../store/actions/actionIndex'
 
-import { routes } from '../../utility/paths'
+import { routes } from '../utility/paths'
 
-import SelectionContainer from '../displaySelection/SelectionContainer'
-import QuestionContainer from '../displayQuestion/QuestionContainer'
-import ResultsContainer from '../displayResults/resultsContainer'
+import SelectionContainer from './displaySelection/SelectionContainer'
+import QuestionContainer from './displayQuestion/QuestionContainer'
+import ResultsContainer from './displayResults/resultsContainer'
 
-import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
+import LoadingSpinnerRoller from '../UI/loading/spinner/roller'
 
-class QuickPlayContainer extends React.Component {
+class PlayController extends React.Component {
 
   componentDidMount(){
     this.props.onSetGameState('init')
@@ -111,4 +111,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuickPlayContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayController)

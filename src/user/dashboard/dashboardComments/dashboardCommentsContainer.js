@@ -10,7 +10,7 @@ import './dashboardComments.css'
 
 class DashboardCommentsContainer extends React.Component {
 
-  state = { comments: null }
+  state = { comments: [] }
 
   componentDidMount(){ if(!this.state.comments){ this.sortComments() } }
 
@@ -48,7 +48,7 @@ class DashboardCommentsContainer extends React.Component {
         <h4> You have not commented on any questions yet!</h4>
       </div>
 
-    if(this.state.comments){
+    if(this.state.comments.length > 0){
       distribComments = this.state.comments.map(question =>
         <DashboardCommentCard
           key={this.state.comments.indexOf(question) + 1}
@@ -59,7 +59,7 @@ class DashboardCommentsContainer extends React.Component {
 
     return(
       <div className={ "comment_wrapper"}>
-        { this.state.comments ? distribComments : no_comments_header }
+        { this.state.comments.length > 0 ? distribComments : no_comments_header }
       </div>
     )
   }

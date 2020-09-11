@@ -18,6 +18,9 @@ import DashboardTest from './dashboardTest'
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
+import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
+
+
 import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
@@ -63,19 +66,12 @@ class Dashboard extends React.Component{
       </Route>
     </Switch>
 
-    const loading =
-      <div className='loading_container'>
-        <div className='loading_animation_container'>
-          <div className='lds-roller'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        </div>
-      </div>
-
     return(
       <>
         <DashboardDeleteProfile history={this.props.history} />
         <div className='dashboard_wrapper'>
           <DashboardNavBarContainer />
-          {this.props.auth.loading ? loading : routeBoard }
+          {this.props.auth.loading ? <LoadingSpinnerRoller /> : routeBoard }
         </div>
       </>
     )

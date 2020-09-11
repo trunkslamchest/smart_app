@@ -168,12 +168,33 @@ exports.crossUpdateUserVote = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORScrossPatch(req, res);
-    var voteObj = {}
+    var voteObj = {}, updateObj = {}
+
+    // firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
+    //   var votePath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid
+    //   voteObj[votePath] = { ...snap.val()[req.body.difficulty].categories[req.body.category][req.body.qid], vote: req.body.vote }
+    //   firebase.database().ref().update(voteObj);
+    // })
+
     firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
-      var votePath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid
-      voteObj[votePath] = { ...snap.val()[req.body.difficulty].categories[req.body.category][req.body.qid], vote: req.body.vote }
+      var votePath = '/' + req.body.uid + '/questions/votes'
+
+      updateObj = {
+        question: req.body.question,
+        difficulty: req.body.difficulty,
+        category: req.body.category,
+        answer: req.body.answer,
+        correct_answer: req.body.correct_answer,
+        result: req.body.result,
+        vote: req.body.vote
+      }
+
+      voteObj[votePath] = { ...snap.val().votes, [req.body.qid]: updateObj }
+      voteObj[votePath].total = voteObj[votePath].total ? voteObj[votePath].total + 1 : 1
+
       firebase.database().ref().update(voteObj);
     })
+
     res.status(200).json({ msg: 'user vote updated' });
 });
 
@@ -181,12 +202,33 @@ exports.crossUpdateUserComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORScrossPatch(req, res);
-    var commentObj = {}
+    var commentObj = {}, updateObj = {}
+
+    // firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
+    //   var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid
+    //   commentObj[commentPath] = { ...snap.val()[req.body.difficulty].categories[req.body.category][req.body.qid], comment: req.body.comment }
+    //   firebase.database().ref().update(commentObj);
+    // })
+
     firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
-      var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid
-      commentObj[commentPath] = { ...snap.val()[req.body.difficulty].categories[req.body.category][req.body.qid], comment: req.body.comment }
+      var commentPath = '/' + req.body.uid + '/questions/comments'
+
+      updateObj = {
+        question: req.body.question,
+        difficulty: req.body.difficulty,
+        category: req.body.category,
+        answer: req.body.answer,
+        correct_answer: req.body.correct_answer,
+        result: req.body.result,
+        comment: req.body.comment
+      }
+
+      commentObj[commentPath] = { ...snap.val().comments, [req.body.qid]: updateObj }
+      commentObj[commentPath].total = commentObj[commentPath].total ? commentObj[commentPath].total + 1 : 1
+
       firebase.database().ref().update(commentObj);
     })
+
     res.status(200).json({ msg: 'user comment updated' });
 });
 
@@ -505,6 +547,9 @@ exports.crossUpdateUserComment = functions
 //     let voteObj = {}
 //     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
 //       if(!!req.body.uid) {
+
+//         console.log(req.body)
+
 //         voteObj = { ...snap.val().votes }
 //         voteObj[req.body.vote] = voteObj[req.body.vote] + 1
 //         voteObj.total = voteObj.total + 1
@@ -513,8 +558,12 @@ exports.crossUpdateUserComment = functions
 //         let crossObj = {
 //           uid: req.body.uid,
 //           qid: req.body.qid,
+//           question: req.body.question,
 //           difficulty: req.body.difficulty,
 //           category: req.body.category,
+//           answer: req.body.answer,
+//           correct_answer: req.body.correct_answer,
+//           result: req.body.result,
 //           vote: req.body.vote
 //         }
 
@@ -560,8 +609,12 @@ exports.crossUpdateUserComment = functions
 //         let crossObj = {
 //           uid: req.body.uid,
 //           qid: req.body.qid,
+//           question: req.body.question,
 //           difficulty: req.body.difficulty,
 //           category: req.body.category,
+//           answer: req.body.answer,
+//           correct_answer: req.body.correct_answer,
+//           result: req.body.result,
 //           comment: req.body.comment
 //         }
 

@@ -75,8 +75,12 @@ class ResultsContainer extends React.Component{
     let voteObj = {
       uid: localStorage.id,
       qid: this.props.play.question.id,
+      question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
       category: this.props.play.question.category,
+      answer: this.props.play.answer.choice,
+      correct_answer: this.props.play.results.correct_answer,
+      result: this.props.play.results.result,
       vote: event.target.attributes.vote.value
     }
 
@@ -105,10 +109,14 @@ class ResultsContainer extends React.Component{
     if (this.state.comment){
       var commentObj = {
         uid: localStorage.id,
-        user_name: this.props.user.info.user_name,
         qid: this.props.play.question.id,
+        user_name: this.props.user.info.user_name,
+        question: this.props.play.question.question,
         difficulty: this.props.play.question.difficulty,
         category: this.props.play.question.category,
+        answer: this.props.play.answer.choice,
+        correct_answer: this.props.play.results.correct_answer,
+        result: this.props.play.results.result,
         comment: this.state.comment
       }
       this.props.onSetComment(commentObj)

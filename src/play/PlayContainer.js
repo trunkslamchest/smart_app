@@ -7,7 +7,7 @@ import * as actions from '../store/actions/actionIndex'
 
 import { routes } from '../utility/paths'
 
-import QuickPlayContainer from './quickPlay/quickPlayContainer'
+import PlayController from './playController'
 
 class PlayContainer extends React.Component {
 
@@ -30,7 +30,7 @@ class PlayContainer extends React.Component {
       <>
         <Switch>
           <Route path={ routes[this.props.play.gameMode] }>
-            <QuickPlayContainer history={ this.props.history } />
+            <PlayController history={ this.props.history } />
           </Route>
         </Switch>
       </>
