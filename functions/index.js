@@ -111,6 +111,85 @@ exports.deleteUser = functions
     res.status(200).json({msg: 'Your Profile has been removed.'})
   });
 
+exports.crossUpdateUserQuestion = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORScrossPatch(req, res);
+    var idObj = {}, qObj = {}, tObj = {}, dtObj = {}, ctObj = {}
+    firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
+
+      var idPath = '/' + req.body.uid + '/questions/ids',
+          diffPath = '/' + req.body.uid + '/questions/' + req.body.difficulty,
+          totalsPath = '/' + req.body.uid + '/questions/totals'
+
+      if(!snap.val().ids) idObj[idPath] = [ req.body.qid ]
+      else idObj[idPath] = [ ...snap.val().ids, req.body.qid ]
+
+      qObj[diffPath + '/categories/' + req.body.category + '/' + req.body.qid ] = {
+        time: req.body.time,
+        result: req.body.result,
+        answer: req.body.answer,
+        correct_answer: req.body.correct_answer,
+        question: req.body.question,
+      }
+
+      tObj[totalsPath + '/all'] = {
+        answered: snap.val().totals.all.answered + 1,
+        avg_time: snap.val().totals.all.avg_time === 0 ? parseFloat(req.body.time) : ((parseFloat(snap.val().totals.all.avg_time) + parseFloat(req.body.time)) / 2.00).toFixed(2),
+        correct: req.body.result === 'Correct' ? snap.val().totals.all.correct + 1 : snap.val().totals.all.correct,
+        incorrect: req.body.result === 'Incorrect' ? snap.val().totals.all.incorrect + 1 : snap.val().totals.all.incorrect,
+        outta_times: req.body.result === 'Outta Time' ? snap.val().totals.all.outta_times + 1 : snap.val().totals.all.outta_times
+      }
+
+      dtObj[totalsPath + '/difficulty/' + req.body.difficulty] = {
+        answered: snap.val().totals.difficulty[req.body.difficulty].answered + 1,
+        correct: req.body.result === 'Correct' ? snap.val().totals.difficulty[req.body.difficulty].correct + 1 : snap.val().totals.difficulty[req.body.difficulty].correct,
+        incorrect: req.body.result === 'Incorrect' ? snap.val().totals.difficulty[req.body.difficulty].incorrect + 1 : snap.val().totals.difficulty[req.body.difficulty].incorrect
+      }
+
+      ctObj[totalsPath + '/categories/' + req.body.category] = {
+        answered: snap.val().totals.categories[req.body.category].answered + 1,
+        correct: req.body.result === 'Correct' ? snap.val().totals.categories[req.body.category].correct + 1 : snap.val().totals.categories[req.body.category].correct,
+        incorrect: req.body.result === 'Incorrect' ? snap.val().totals.categories[req.body.category].incorrect + 1 : snap.val().totals.categories[req.body.category].incorrect
+      }
+
+      firebase.database().ref().update(idObj);
+      firebase.database().ref().update(qObj);
+      firebase.database().ref().update(tObj);
+      firebase.database().ref().update(dtObj);
+      firebase.database().ref().update(ctObj);
+
+    })
+
+    res.status(200).json({ msg: 'user question updated' });
+});
+
+exports.crossUpdateUserVote = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORScrossPatch(req, res);
+    var voteObj = {}
+    firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
+      var votePath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid
+      voteObj[votePath] = { ...snap.val()[req.body.difficulty].categories[req.body.category][req.body.qid], vote: req.body.vote }
+      firebase.database().ref().update(voteObj);
+    })
+    res.status(200).json({ msg: 'user vote updated' });
+});
+
+exports.crossUpdateUserComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORScrossPatch(req, res);
+    var commentObj = {}
+    firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
+      var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid
+      commentObj[commentPath] = { ...snap.val()[req.body.difficulty].categories[req.body.category][req.body.qid], comment: req.body.comment }
+      firebase.database().ref().update(commentObj);
+    })
+    res.status(200).json({ msg: 'user comment updated' });
+});
+
 // ~~~~~~~~~~~~~~~~~~~~ QUESTIONS ~~~~~~~~~~~~~~~~~~~~
 
 // exports.questions = functions
@@ -278,7 +357,7 @@ exports.deleteUser = functions
 //       res.json(question)
 //       // res.send('done')
 //     })
-//   })
+// })
 
 // exports.diffQuestion = functions
 //   .region('us-east1')
@@ -299,13 +378,17 @@ exports.deleteUser = functions
 //       res.json(questionObj)
 //       // res.send('done')
 //     })
-//   })
+// })
 
 // var pushCats = function(diff, questions) {
-//   return questions.map(q => {
-//     q[1]["difficulty"] = diff
-//     return q
-//   })
+//   if(!!questions) {
+//     return questions.map(q => {
+//       q[1]["difficulty"] = diff
+//       return q
+//     })
+//   } else {
+//     return []
+//   }
 // }
 
 // exports.catQuestion = functions
@@ -314,11 +397,14 @@ exports.deleteUser = functions
 //     setCORSpost(req, res)
 //     firebase.database().ref().once('value', function(snap){
 //       if(!!req.body.qSet) {
-//         var easyQs = pushCats('Easy', Object.entries(snap.val().Easy.categories[req.body.qSet]))
-//         var mediumQs = pushCats('Medium', Object.entries(snap.val().Medium.categories[req.body.qSet]))
-//         var hardQs = pushCats('Hard', Object.entries(snap.val().Hard.categories[req.body.qSet]))
+//         var easyQs = [], mediumQs = [], hardQs = []
+//         if(snap.val().Easy.categories[req.body.qSet]) easyQs = pushCats('Easy', Object.entries(snap.val().Easy.categories[req.body.qSet]))
+//         if(snap.val().Medium.categories[req.body.qSet]) mediumQs = pushCats('Medium', Object.entries(snap.val().Medium.categories[req.body.qSet]))
+//         if(snap.val().Hard.categories[req.body.qSet]) hardQs = pushCats('Medium', Object.entries(snap.val().Hard.categories[req.body.qSet]))
+
 //         var allQs = [ ...easyQs, ...mediumQs, ...hardQs ]
 //         var rng = allQs[Math.floor(Math.random() * allQs.length - 1) + 1]
+
 //         var questionObj = {
 //           id: rng[0],
 //           difficulty: rng[1].difficulty,
@@ -328,16 +414,16 @@ exports.deleteUser = functions
 //         }
 //       }
 //       res.json(questionObj)
-//       // res.send('done')
 //     })
-//   })
+//   // res.send('done')
+// })
 
 // exports.questionResults = functions
 //   .region('us-east1')
 //   .https.onRequest((req, res) => {
 //     setCORSpost(req, res)
-//     let calcObj = {}, resObj = {}
 //     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+//       let calcObj = {}, resObj = {}, crossObj = {}
 //       if(!!req.body.uid) {
 
 //         var question = snap.val()
@@ -350,8 +436,6 @@ exports.deleteUser = functions
 //             calcResult = ''
 
 //         if(question.answers.total !== 0) calcTime = (parseInt(req.body.time, 10) + question.answers.avg_time) / question.answers.total
-
-//         console.log(req.body.answer, req.body.answer === 'outta_time')
 
 //         if(req.body.answer === question.correct) {
 //           calcCorrect = question.answers.correct + 1
@@ -380,13 +464,39 @@ exports.deleteUser = functions
 //           votes: question.votes
 //         }
 
+//         crossObj = {
+//           uid: req.body.uid,
+//           qid: req.body.qid,
+//           time: req.body.time,
+//           result: calcResult,
+//           answer: req.body.answer,
+//           correct_answer: question.correct,
+//           question: question.question,
+//           difficulty: req.body.difficulty,
+//           category: req.body.category
+//         }
+
 //         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/answers').update(calcObj)
+
+//         fetch(url.crossUpdateUserQuestion, {
+//           method: "POST",
+//           mode: 'cors',
+//           headers: {
+//             "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+//             "Content-Type": 'application/json'
+//           },
+//           body: JSON.stringify(crossObj)
+//           })
+//           .then(res => res.json())
+//           .then(r => {
+//             console.log(r)
+//         })
 //       }
+
 //       res.json(resObj).status(200)
 //       // res.send('done')
 //     })
-//   })
-
+// })
 
 // exports.questionVote = functions
 //   .region('us-east1')
@@ -399,11 +509,33 @@ exports.deleteUser = functions
 //         voteObj[req.body.vote] = voteObj[req.body.vote] + 1
 //         voteObj.total = voteObj.total + 1
 //         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/votes').update(voteObj)
+
+//         let crossObj = {
+//           uid: req.body.uid,
+//           qid: req.body.qid,
+//           difficulty: req.body.difficulty,
+//           category: req.body.category,
+//           vote: req.body.vote
+//         }
+
+//         fetch(url.crossUpdateUserVote, {
+//           method: "POST",
+//           mode: 'cors',
+//           headers: {
+//             "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+//             "Content-Type": 'application/json'
+//           },
+//           body: JSON.stringify(crossObj)
+//           })
+//           .then(res => res.json())
+//           .then(r => {
+//             console.log(r)
+//         })
 //       }
 //       res.json(voteObj).status(200)
 //       // res.send('done')
 //     })
-//   })
+// })
 
 // exports.questionComment = functions
 //   .region('us-east1')
@@ -424,8 +556,30 @@ exports.deleteUser = functions
 //         else commentsObj = { ...snap.val().comments, ...commentObj }
 
 //         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments').update(commentsObj)
+
+//         let crossObj = {
+//           uid: req.body.uid,
+//           qid: req.body.qid,
+//           difficulty: req.body.difficulty,
+//           category: req.body.category,
+//           comment: req.body.comment
+//         }
+
+//         fetch(url.crossUpdateUserComment, {
+//           method: "POST",
+//           mode: 'cors',
+//           headers: {
+//             "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+//             "Content-Type": 'application/json'
+//           },
+//           body: JSON.stringify(crossObj)
+//           })
+//           .then(res => res.json())
+//           .then(r => {
+//             console.log(r)
+//         })
 //       }
 //       res.json(commentsObj).status(200)
 //       // res.send('done')
 //     })
-//   })
+// })

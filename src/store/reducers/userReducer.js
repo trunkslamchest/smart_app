@@ -40,6 +40,13 @@ const updateUserInfo = (currentState, action) => {
   }
 }
 
+const updateUserQuestions = (currentState, action) => {
+  return{
+    ...currentState,
+    questions: action.questions
+  }
+}
+
 const deleteUser = (currentState, action) => {
   return{
     ...currentState,
@@ -55,6 +62,8 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_USER_INFO: return clearUserInfo(currentState, action)
     case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_INFO: return updateUserInfo(currentState, action)
+    case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
+
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     default: return currentState
   }

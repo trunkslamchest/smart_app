@@ -132,7 +132,6 @@ export const setComment = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionComment', fetch.patch.questionComment, obj)
     .then(res => {
-      // console.log(res)
       dispatch(updateComments(res))
     })
   }

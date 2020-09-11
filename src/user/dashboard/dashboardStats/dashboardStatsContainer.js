@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-// import * as actions from '../../../store/actions/actionIndex'
+import * as actions from '../../../store/actions/actionIndex'
 
 import DashboardStatsTotal from './dashboardStatsTotal/dashboardStatsTotal'
 import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'
@@ -10,6 +10,12 @@ import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardS
 import './dashboardStats.css'
 
 class DashboardStatsContainer extends React.Component {
+
+  // componentDidMount(){
+  //   this.props.onGetQuestionTotals()
+  //   this.props.onUpdateUserQuestions()
+  // }
+
   render(){
     return(
       <div className={ "stats_wrapper"}>
@@ -23,14 +29,16 @@ class DashboardStatsContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    auth: state.auth,
+    user: state.user,
+    questions: state.questions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    onGetQuestionTotals: () => dispatch(actions.getQuestionTotals()),
+    onUpdateUserQuestions: () => dispatch(actions.updateUserQuestions())
   }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsContainer)

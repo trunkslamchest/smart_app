@@ -43,6 +43,17 @@ export const updateUserInfo = (obj, props) => {
   }
 }
 
+export const updateUserQuestions = () => {
+    return dispatch => {
+  if(localStorage.id) {
+      userFunctions('getUser', fetch.get.user, localStorage.id)
+      .then(userRes => {
+        dispatch(storeUserQuestions(userRes.questions))
+      })
+    }
+  }
+}
+
 export const deleteUser = (obj, props) => {
   return dispatch => {
     userFunctions('delete', fetch.delete.user, obj)

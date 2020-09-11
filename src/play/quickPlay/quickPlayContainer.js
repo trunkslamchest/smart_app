@@ -38,7 +38,7 @@ class QuickPlayContainer extends React.Component {
       this.props.onSetGameState('question')
     }
 
-    if(this.props.play.gameState === 'answered'){
+    if(this.props.play.gameState === 'answered'&& !this.props.play.results){
       this.props.onGetResults({
         uid: localStorage.id,
         qid: this.props.play.question.id,
@@ -49,7 +49,7 @@ class QuickPlayContainer extends React.Component {
       })
     }
 
-    if(this.props.play.gameState === 'answered' && this.props.play.question.votes){
+    if(this.props.play.gameState === 'answered' && this.props.play.question.answers){
       this.props.history.push( routes[this.props.play.gameMode] + '/results' )
       this.props.onSetGameState('results')
     }

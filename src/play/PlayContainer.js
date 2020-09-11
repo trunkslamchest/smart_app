@@ -8,8 +8,6 @@ import * as actions from '../store/actions/actionIndex'
 import { routes } from '../utility/paths'
 
 import QuickPlayContainer from './quickPlay/quickPlayContainer'
-// import ByDifficultyContainer from './byDifficulty/byDifficultyContainer'
-// import ByCategoryContainer from './byCategory/byCategoryContainer'
 
 class PlayContainer extends React.Component {
 
@@ -28,26 +26,16 @@ class PlayContainer extends React.Component {
   }
 
   render(){
-
-
-
     return(
       <>
         <Switch>
           <Route path={ routes[this.props.play.gameMode] }>
             <QuickPlayContainer history={ this.props.history } />
           </Route>
-          {/* <Route path={ routes.by_diff }>
-            <ByDifficultyContainer history={ this.props.history } />
-          </Route>
-          <Route path={ routes.by_cat }>
-            <ByCategoryContainer history={ this.props.history } />
-          </Route> */}
         </Switch>
       </>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {

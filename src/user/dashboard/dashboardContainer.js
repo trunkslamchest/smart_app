@@ -24,6 +24,7 @@ class Dashboard extends React.Component{
 
   componentDidMount(){
     this.props.onGetQuestionTotals()
+    this.props.onUpdateUserQuestions()
   }
 
   render(){
@@ -91,7 +92,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetQuestionTotals: () => dispatch(actions.getQuestionTotals())
+    onGetQuestionTotals: () => dispatch(actions.getQuestionTotals()),
+    onUpdateUserQuestions: () => dispatch(actions.updateUserQuestions())
   }
 }
 
