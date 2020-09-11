@@ -47,6 +47,23 @@ const updateUserQuestions = (currentState, action) => {
   }
 }
 
+const updateUserQuestionIds = (currentState, action) => {
+  let qIds
+
+  if(currentState.questions.ids){
+    qIds = [ ...currentState.questions.ids, action.ids ]
+  }
+
+  if(!currentState.questions.ids){
+    qIds = [ action.ids ]
+  }
+
+  return{
+    ...currentState,
+    questions: { ...currentState.questions, ids: qIds }
+  }
+}
+
 const deleteUser = (currentState, action) => {
   return{
     ...currentState,
@@ -63,7 +80,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_INFO: return updateUserInfo(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
-
+    case actionTypes.UPDATE_USER_QUESTIONIDS: return updateUserQuestionIds(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     default: return currentState
   }

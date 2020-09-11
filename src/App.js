@@ -44,12 +44,6 @@ class App extends React.Component {
     }
   }
 
-  // componentDidUpdate(){
-  //   if (!(this.props.history.location.pathname).includes("play") && this.props.gameMode) {
-  //     this.props.onResetGameMode()
-  //   }
-  // }
-
   componentWillUnmount(){
     this.props.showModal(false)
   }
@@ -62,7 +56,6 @@ class App extends React.Component {
           <LogIn history={this.props.history} />
           <LogOut history={this.props.history} />
           <SignUp history={this.props.history} />
-
           <Switch>
             <Route exact path={ routes.home }>
               <HomeContainer history={this.props.history} />
@@ -73,11 +66,11 @@ class App extends React.Component {
             <Route path={ routes.play }>
               <PlayContainer history={this.props.history} />
             </Route>
-            <Route exact path={ routes.tos }> <TermsOfService /> </Route>
-            <Route exact path={ routes.privacy }> <Privacy /> </Route>
-            <Route exact path={ routes.disclaimer }> <Disclaimer /> </Route>
-            <Route path={ routes.devTest }> <DevTest /> </Route>
-            <Route> <E404 /> </Route>
+            <Route exact path={ routes.tos }><TermsOfService /></Route>
+            <Route exact path={ routes.privacy }><Privacy /></Route>
+            <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
+            <Route path={ routes.devTest }><DevTest /></Route>
+            <Route><E404 /></Route>
           </Switch>
         </div>
         <Footer/>
@@ -98,8 +91,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
     onResetGameMode: () => dispatch(actions.resetGameMode()),
-    onShowModal: (bool) => dispatch(actions.showModal(bool)),
-
+    onShowModal: (bool) => dispatch(actions.showModal(bool))
   }
 }
 

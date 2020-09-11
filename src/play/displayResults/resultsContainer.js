@@ -358,7 +358,7 @@ const mapDispatchToProps = (dispatch) => {
     onSetVote: (obj) => dispatch(actions.setVote(obj)),
     onResetVote: (obj) => dispatch(actions.resetVote(obj)),
     onSetComment: (obj) => dispatch(actions.setComment(obj)),
-    onResetComment: (obj) => dispatch(actions.resetComment(obj))
+    onResetComment: (obj) => dispatch(actions.resetComment(obj)),
   }
 }
 

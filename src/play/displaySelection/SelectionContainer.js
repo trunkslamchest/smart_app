@@ -27,7 +27,10 @@ class SelectionContainer extends React.Component {
 
   componentDidUpdate(){
     if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
-      let questionObj = { qSet: this.props.play.gameQset, prop: 'testProp' }
+      let questionObj = { qSet: this.props.play.gameQset }
+
+      if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+
       if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
       if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
       this.props.onSetGameState('mount')

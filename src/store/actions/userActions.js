@@ -44,13 +44,20 @@ export const updateUserInfo = (obj, props) => {
 }
 
 export const updateUserQuestions = () => {
-    return dispatch => {
+  return dispatch => {
   if(localStorage.id) {
       userFunctions('getUser', fetch.get.user, localStorage.id)
       .then(userRes => {
         dispatch(storeUserQuestions(userRes.questions))
       })
     }
+  }
+}
+
+export const updateUserQuestionIds = (ids) => {
+  return {
+    type: actionTypes.UPDATE_USER_QUESTIONIDS,
+    ids: ids
   }
 }
 

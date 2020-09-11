@@ -30,6 +30,9 @@ export const getQuickQuestion = (obj) => {
     questionsFunctions('getQuickQuestion', fetch.get.quickQuestion, obj)
     .then(res => {
       // console.log(res)
+      // if(res.completed){
+
+      // }
       dispatch(setQuestion(res))
       // dispatch(setGameState(''))
     })

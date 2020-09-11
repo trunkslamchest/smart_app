@@ -149,8 +149,27 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+.default_header h1 {
+  text-align: center;
+  font: 300 20pt "Lato";
+  background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
+  padding: 10px;
+  margin: 0px 0px 0px 0px;
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+}
+
+.default_header h2 {
+  text-align: center;
+  font: 300 15pt "Lato";
+  background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
+  padding: 10px;
+  margin: 0px 0px 0px 0px;
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+}
+
 .default_header h3 {
   text-align: center;
+  font: 300 10pt "Lato";
   background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
   padding: 10px;
   margin: 0px 0px 0px 0px;

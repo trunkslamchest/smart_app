@@ -50,6 +50,7 @@ export {
   clearUserQuestions,
   updateUserInfo,
   updateUserQuestions,
+  updateUserQuestionIds,
   deleteUser
   // updateUser
 } from './userActions'

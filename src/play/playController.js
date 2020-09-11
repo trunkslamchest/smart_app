@@ -22,15 +22,22 @@ class PlayController extends React.Component {
 
   componentDidUpdate(){
     if(this.props.play.gameState === 'init'){
+
       if (this.props.play.gameMode === 'quick_play') {
-        let questionObj = { prop: 'testProp' }
-        this.props.onGetQuickQuestion(questionObj)
-        this.props.onSetGameState('mount')
+        let questionObj = { answeredIds: [] }
+
+        if(this.props.user.questions) {
+          if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+          this.props.onGetQuickQuestion(questionObj)
+          this.props.onSetGameState('mount')
+        }
       }
+
       if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
         this.props.history.push( routes[this.props.play.gameMode] + '/select' )
         this.props.onSetGameState('selection')
       }
+
     }
 
     if(this.props.play.gameState === 'mount' && this.props.play.question){
@@ -38,7 +45,7 @@ class PlayController extends React.Component {
       this.props.onSetGameState('question')
     }
 
-    if(this.props.play.gameState === 'answered'&& !this.props.play.results){
+    if(this.props.play.gameState === 'answered' && !this.props.play.results){
       this.props.onGetResults({
         uid: localStorage.id,
         qid: this.props.play.question.id,
@@ -51,6 +58,7 @@ class PlayController extends React.Component {
 
     if(this.props.play.gameState === 'answered' && this.props.play.question.answers){
       this.props.history.push( routes[this.props.play.gameMode] + '/results' )
+      this.props.onUpdateUserQuestionIds(this.props.play.question.id)
       this.props.onSetGameState('results')
     }
 
@@ -107,7 +115,8 @@ const mapDispatchToProps = (dispatch) => {
     onSetVote: (obj) => dispatch(actions.setVote(obj)),
     onResetVote: (obj) => dispatch(actions.resetVote(obj)),
     onSetComment: (obj) => dispatch(actions.setComment(obj)),
-    onResetComment: (obj) => dispatch(actions.resetComment(obj))
+    onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    onUpdateUserQuestionIds: (id) => dispatch(actions.updateUserQuestionIds(id))
   }
 }
 

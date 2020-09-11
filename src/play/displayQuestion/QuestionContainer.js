@@ -3,7 +3,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import { routes } from '../../utility/paths'
+
+
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
+
+import PlayButton from '../../UI/buttons/playButton/playButton'
+
 
 import './QuestionContainer.css'
 
@@ -20,12 +26,17 @@ class QuestionContainer extends React.Component{
   }
 
   componentDidMount(){
-    this.timerTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
-    this.startTimer = setTimeout(() => { this.timerInterval = setInterval(this.timerFunctions, 10)}, 5000)
+    if(!this.props.play.question.completed) {
+      this.timerTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
+      this.startTimer = setTimeout(() => { this.timerInterval = setInterval(this.timerFunctions, 10)}, 5000)
+      this.questionTimeout = setTimeout(() => { this.setState({ showQuestion: true })}, 3000)
+      this.choicesTimeout = setTimeout(() => { this.setState({ showChoices: true })}, 4000)
+      this.enableQuestionTimeout = setTimeout(() => { this.setState({ enableQuestion: true })}, 5000)
+    } else {
+      this.completedTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
+
+    }
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 2000)
-    this.questionTimeout = setTimeout(() => { this.setState({ showQuestion: true })}, 3000)
-    this.choicesTimeout = setTimeout(() => { this.setState({ showChoices: true })}, 4000)
-    this.enableQuestionTimeout = setTimeout(() => { this.setState({ enableQuestion: true })}, 5000)
   }
 
   componentWillUnmount(){
@@ -35,6 +46,7 @@ class QuestionContainer extends React.Component{
     clearTimeout(this.timerTimeout)
     clearTimeout(this.enableQuestionTimeout)
     clearTimeout(this.outtaTimeTimeout)
+    clearTimeout(this.completedTimeout)
     clearInterval(this.timerInterval)
     clearInterval(this.startTimer)
   }
@@ -67,57 +79,99 @@ class QuestionContainer extends React.Component{
     this.props.onSetGameState('answered')
   }
 
+  onClickCompletedFunctions = (event) => {
+    let gameMode = event.target.name
+    localStorage.gameMode = gameMode
+    this.props.onSetGameMode(gameMode)
+    this.props.onSetGameState('init')
+    this.props.onResetGameQset()
+    this.props.onResetQuestion()
+    this.props.onResetAnswer()
+    this.props.onResetResults()
+  }
+
   onClickBlankFunctions = () => {}
 
   render(){
 
+    let questionSeq = <></>
+    let choices = <></>
     const blank = <></>
 
     const time = this.state.time
     const category = this.props.play.question.category
     const question = this.props.play.question.question
-    const choices = this.props.play.question.choices.map(choice => {
+
+    if(this.props.play.question.completed) {
+      questionSeq =
+      <>
+        <div className='default_header'>
+          <h1>{ this.props.play.question.msg1 }</h1>
+          <h2>{ this.props.play.question.msg2 }</h2>
+        </div>
+        <PlayButton
+          link={ routes.by_diff }
+          buttonName="by_diff"
+          classType="play_by_difficulty_button"
+          onClick={ this.onClickCompletedFunctions }
+        >
+          Choose a new Difficulty
+        </PlayButton>
+        <PlayButton
+          link={ routes.by_cat }
+          buttonName="by_cat"
+          classType="play_by_category_button"
+          onClick={ this.onClickCompletedFunctions }
+        >
+          Choose a new Category
+        </PlayButton>
+      </>
+    }
+
+    if(!this.props.play.question.completed) {
+      choices = this.props.play.question.choices.map(choice => {
         let i = this.props.play.question.choices.indexOf(choice)
         return <button
-          key={`answer_button_${i}`}
-          value={ i }
-          className={this.state.enableQuestion ? "question_card_choices_button" : "question_card_choices_button_disabled" }
-          name="answer_button"
-          onClick={ this.state.enableQuestion ? this.onClickFunctions : this.onClickBlankFunctions }
-        >
-          { choice }
-        </button>
-    })
-
-    const questionSeq =
-      <div className="question_card">
-        <div className={ this.state.showTimer ? "question_card_timer" : "blank" } >
-          <h2>Time Left</h2>
-          <h1>{ this.state.showTimer ? time : blank }</h1>
-          <div className={ this.state.showHeader ? "question_card_header" : "blank" }>
-            In { this.state.showHeader ? category : blank }...
+            key={`answer_button_${i}`}
+            value={ i }
+            className={this.state.enableQuestion ? "question_card_choices_button" : "question_card_choices_button_disabled" }
+            name="answer_button"
+            onClick={ this.state.enableQuestion ? this.onClickFunctions : this.onClickBlankFunctions }
+          >
+            { choice }
+          </button>
+        })
+        questionSeq =
+        <div className="question_card">
+          <div className={ this.state.showTimer ? "question_card_timer" : "blank" } >
+            <h2>Time Left</h2>
+            <h1>{ this.state.showTimer ? time : blank }</h1>
+            <div className={ this.state.showHeader ? "question_card_header" : "blank" }>
+              In { this.state.showHeader ? category : blank }...
+            </div>
+            <div className={ this.state.showQuestion ? "question_card_text" : "blank" }>
+              { this.state.showQuestion ? question : blank }
+            </div>
+            <div className={ this.state.showChoices ? "question_card_choices" : "blank" }>
+              { this.state.showChoices ?
+                <>
+                  <div className='div1'>
+                    { choices[0] }
+                    { choices[1] }
+                  </div>
+                  <div className='div2'>
+                    { choices[2] }
+                    { choices[3] }
+                  </div>
+                </>
+              :
+                blank
+              }
+            </div>
           </div>
-          <div className={ this.state.showQuestion ? "question_card_text" : "blank" }>
-            { this.state.showQuestion ? question : blank }
-          </div>
-          <div className={ this.state.showChoices ? "question_card_choices" : "blank" }>
-            { this.state.showChoices ?
-              <>
-                <div className='div1'>
-                  { choices[0] }
-                  { choices[1] }
-                </div>
-                <div className='div2'>
-                  { choices[2] }
-                  { choices[3] }
-                </div>
-              </>
-            :
-              blank
-            }
-          </div>
-        </div>
       </div>
+    }
+
     return(
       <>
         { this.state.showTimer ? questionSeq : <LoadingSpinnerRoller /> }

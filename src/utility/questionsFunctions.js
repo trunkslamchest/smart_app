@@ -24,7 +24,7 @@
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
           "Content-Type": 'application/json'
         },
-        body: JSON.stringify({obj})
+        body: JSON.stringify(obj)
       })
       .then(res => res.json())
     },
