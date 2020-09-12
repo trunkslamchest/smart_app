@@ -71,16 +71,16 @@ const clearAuthInfo = () => {
 
 export const authRefresh = (refreshObj) => {
   return dispatch => {
-    if(localStorage.access === "normal" && localStorage.id === "undefined") {
-      localStorage.clear()
-      localStorage.access = 'guest'
-    } else {
+    // if(localStorage.access === "normal" && localStorage.id === "undefined") {
+    //   localStorage.clear()
+    //   localStorage.access = 'guest'
+    // } else {
       dispatch(authStart())
       authFunctions('refreshToken', auth.refreshToken, refreshObj)
       .then(authRes => {
         dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
       })
-    }
+    // }
   }
 }
 

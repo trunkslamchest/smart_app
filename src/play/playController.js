@@ -10,6 +10,7 @@ import { routes } from '../utility/paths'
 import SelectionContainer from './displaySelection/SelectionContainer'
 import QuestionContainer from './displayQuestion/QuestionContainer'
 import ResultsContainer from './displayResults/resultsContainer'
+import CompletedContainer from './displayCompleted/completedContainer'
 
 import LoadingSpinnerRoller from '../UI/loading/spinner/roller'
 
@@ -22,27 +23,44 @@ class PlayController extends React.Component {
 
   componentDidUpdate(){
     if(this.props.play.gameState === 'init'){
-
       if (this.props.play.gameMode === 'quick_play') {
         let questionObj = { answeredIds: [] }
-
         if(this.props.user.questions) {
           if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
           this.props.onGetQuickQuestion(questionObj)
           this.props.onSetGameState('mount')
         }
       }
-
       if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
         this.props.history.push( routes[this.props.play.gameMode] + '/select' )
         this.props.onSetGameState('selection')
       }
+    }
 
+    if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
+      let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
+
+      if(this.props.user.questions) {
+        if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+        if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
+        if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
+        this.props.onSetGameState('mount')
+      }
     }
 
     if(this.props.play.gameState === 'mount' && this.props.play.question){
-      this.props.history.push( routes[this.props.play.gameMode] + '/question' )
-      this.props.onSetGameState('question')
+      if(this.props.play.question.completed){
+        this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+        this.props.onSetGameState('completed')
+      } else {
+        this.props.history.push( routes[this.props.play.gameMode] + '/question' )
+        this.props.onSetGameState('question')
+      }
+    }
+
+    if(this.props.play.gameState === 'question' && this.props.play.question.completed){
+      this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+      this.props.onSetGameState('completed')
     }
 
     if(this.props.play.gameState === 'answered' && !this.props.play.results){
@@ -61,7 +79,6 @@ class PlayController extends React.Component {
       this.props.onUpdateUserQuestionIds(this.props.play.question.id)
       this.props.onSetGameState('results')
     }
-
   }
 
   render(){
@@ -79,6 +96,9 @@ class PlayController extends React.Component {
               case 'results': return <Route exact path={ routes[this.props.play.gameMode] + '/results' }>
                                        <ResultsContainer history={ this.props.history } />
                                      </Route>;
+              case 'completed': return <Route exact path={ routes[this.props.play.gameMode] + '/completed' }>
+                                        <CompletedContainer history={ this.props.history } />
+                                      </Route>;
               default: return <LoadingSpinnerRoller />;
             }
           })()

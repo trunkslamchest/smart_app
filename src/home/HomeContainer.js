@@ -10,10 +10,8 @@ import './Home.css'
 const HomeContainer = (props) => {
   return(
     <div className='default_wrapper'>
-      {localStorage.access === 'guest' ?
-          <HomeLoggedOutContainer
-            history={props.history}
-          />
+      {localStorage.access === 'guest' || localStorage.length ===  0 ?
+          <HomeLoggedOutContainer history={props.history} />
         :
           <HomeLoggedInContainer />
       }
