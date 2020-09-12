@@ -26,8 +26,8 @@ import './dashboardContainer.css'
 class Dashboard extends React.Component{
 
   componentDidMount(){
-    this.props.onGetQuestionTotals()
-    this.props.onUpdateUserQuestions()
+    // this.props.onGetQuestionTotals()
+    // this.props.onUpdateUserQuestions()
   }
 
   render(){

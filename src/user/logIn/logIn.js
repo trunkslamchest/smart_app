@@ -27,21 +27,7 @@ class LogIn extends React.Component {
     event.preventDefault()
     event.persist()
 
-    // console.log(this.state)
-
-    this.props.onLogin(this.state.email, this.state.password, this.props)
-
-
-    // authFunctions('logIn', 'http://localhost:3001/login', logInObj)
-    // .then(res_obj => {
-    //   if (res_obj.errors) this.setState({ errors: res_obj.errors })
-    //   else {
-    //     this.props.setToken(res_obj)
-    //     this.props.updateLogin()
-    //     this.props.onLoginModal(false)
-    //     this.props.history.push( routes.dashboard )
-    //   }
-    // })
+    this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true}, this.props)
   }
 
   onCancel = (event) => {
@@ -79,7 +65,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(actions.login(bool)),
-    onLogin: (email, password, props) => dispatch(actions.logInUser(email, password, props)),
+    onAuthStart: (type, obj, props) => dispatch(actions.authLogIn(type, obj, props)),
   }
 }
 

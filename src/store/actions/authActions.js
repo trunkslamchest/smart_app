@@ -14,11 +14,29 @@ import {
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
 
-export const authStart = () => {
+export const authStart = (authType, obj, props) => {
+  return dispatch => {
+    dispatch(initAuth(authType))
+    if(authType === 'logIn') dispatch(authLogIn(obj, props))
+    if(authType === 'refresh') dispatch(authRefresh(obj))
+  }
+}
+
+const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
     error: null,
-    loading: true
+    start: true,
+    authType: authType
+  }
+}
+
+export const authLoading = () => {
+  return {
+    type: actionTypes.AUTH_LOADING,
+    error: null,
+    loading: true,
+    start: false
   }
 }
 
@@ -32,9 +50,13 @@ export const authSuccess = (token, refreshToken, id, expires) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     id: id,
+    fail: false,
     loading: false,
     refreshToken: refreshToken,
-    token: token
+    start: false,
+    success: true,
+    token: token,
+    authType: null
   }
 }
 
@@ -43,7 +65,47 @@ export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
-    loading: false
+    loading: false,
+    start: false,
+    fail: true,
+  }
+}
+
+export const authLogIn = (obj, props) => {
+ return dispatch => {
+    authFunctions('logIn', auth.signIn, obj)
+    .then(authRes => {
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else {
+        dispatch(authSuccess(authRes.idToken, authRes.refreshToken, authRes.localId, authRes.expiresIn))
+        if (!!props.onLoginModal) props.onLoginModal(false)
+        else props.onSignupModal(false)
+        props.history.push( routes.dashboard )
+      }
+    })
+  }
+}
+
+export const authRefresh = (obj) => {
+  return dispatch => {
+    authFunctions('refreshToken', auth.refreshToken, obj)
+    .then(authRes => {
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
+    })
+  }
+}
+
+export const authUser = () => {
+  return dispatch => {
+    userFunctions('getUser', fetch.get.user, localStorage.id)
+    .then(userRes => {
+      if(userRes === null) localStorage.clear()
+      else {
+        dispatch(storeUserInfo(userRes.info))
+        dispatch(storeUserQuestions(userRes.questions))
+      }
+    })
   }
 }
 
@@ -66,38 +128,6 @@ const clearAuthInfo = () => {
     id: null,
     refreshToken: null,
     token: null
-  }
-}
-
-export const authRefresh = (refreshObj) => {
-  return dispatch => {
-    // if(localStorage.access === "normal" && localStorage.id === "undefined") {
-    //   localStorage.clear()
-    //   localStorage.access = 'guest'
-    // } else {
-      dispatch(authStart())
-      authFunctions('refreshToken', auth.refreshToken, refreshObj)
-      .then(authRes => {
-        dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
-      })
-    // }
-  }
-}
-
-export const authUser = (token, refreshToken, id, expires) => {
-  return dispatch => {
-    userFunctions('getUser', fetch.get.user, id)
-    .then(userRes => {
-      if(userRes === null) localStorage.clear()
-      else {
-        dispatch(authSuccess(token, refreshToken, id, expires))
-        dispatch(storeUserInfo(userRes.info))
-        dispatch(storeUserQuestions(userRes.questions))
-      }
-    })
-    // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
-    // localStorage.setItem('expirationDate', expirationDate)
-    // dispatch(checkAuthTimeout(response.data.expiresIn))
   }
 }
 
@@ -139,3 +169,72 @@ export const authTimeout = (expirationTime) => {
     expirationTime: expirationTime
   }
 }
+
+export const authCert = (bool) => {
+  return {
+    type: actionTypes.AUTH_CERT,
+    fail: false,
+    loading: false,
+    start: false,
+    success: false,
+    authType: null,
+    cert: bool
+  }
+}
+
+// export const authStart = (authType) => {
+//   return {
+//     type: actionTypes.AUTH_START,
+//     error: null,
+//     start: true,
+//     authType: authType
+//   }
+// }
+
+// export const authLogIn = (obj, props) => {
+//  return dispatch => {
+//     authFunctions('logIn', auth.signIn, obj)
+//     .then(authRes => {
+//       console.log(authRes)
+//       if(!!authRes.error) dispatch(authFail(authRes.error))
+//       else {
+//         dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
+//         if (!!props.onLoginModal) props.onLoginModal(false)
+//         else props.onSignupModal(false)
+//         props.history.push( routes.dashboard )
+//       }
+//     })
+//   }
+// }
+
+// export const authRefresh = (refreshObj) => {
+//   return dispatch => {
+//     // if(localStorage.access === "normal" && localStorage.id === "undefined") {
+//     //   localStorage.clear()
+//     //   localStorage.access = 'guest'
+//     // } else {
+//       // dispatch(authStart())
+//       authFunctions('refreshToken', auth.refreshToken, refreshObj)
+//       .then(authRes => {
+//         dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
+//       })
+//     // }
+//   }
+// }
+
+// export const authUser = (token, refreshToken, id, expires) => {
+//   return dispatch => {
+//     userFunctions('getUser', fetch.get.user, id)
+//     .then(userRes => {
+//       if(userRes === null) localStorage.clear()
+//       else {
+//         dispatch(authSuccess(token, refreshToken, id, expires))
+//         dispatch(storeUserInfo(userRes.info))
+//         dispatch(storeUserQuestions(userRes.questions))
+//       }
+//     })
+//     // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
+//     // localStorage.setItem('expirationDate', expirationDate)
+//     // dispatch(checkAuthTimeout(response.data.expiresIn))
+//   }
+// }
