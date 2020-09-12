@@ -3,12 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-// import { routes } from '../../utility/paths'
-
-// import PlayButton from '../../UI/buttons/playButton/playButton'
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
-
-
 
 import './QuestionContainer.css'
 
@@ -56,9 +51,10 @@ class QuestionContainer extends React.Component{
       }
 
       this.props.onSetAnswer(answerObj)
+
       this.outtaTimeTimeout = setTimeout(() => { this.props.onSetGameState('answered') }, 500)
-    }
-    else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
+
+    } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
   }
 
   onClickFunctions = (event) => {

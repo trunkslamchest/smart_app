@@ -84,6 +84,7 @@ class ResultsContainer extends React.Component{
     }
 
     this.props.onSetVote(voteObj)
+
     this.setState({
       voted: true,
       showVoteButtons: false
@@ -118,14 +119,15 @@ class ResultsContainer extends React.Component{
         result: this.props.play.results.result,
         comment: this.state.comment
       }
+
       this.props.onSetComment(commentObj)
+
       this.setState({
         showCommentText: false,
         showAllComments: true,
       })
-    } else {
-      alert("Please Enter A Comment")
-    }
+
+    } else alert("Please Enter A Comment")
   }
 
   onClickNextQuestionFunctions = () => {

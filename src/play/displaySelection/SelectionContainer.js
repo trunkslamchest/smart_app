@@ -8,8 +8,6 @@ import categories from '../../datasets/categories'
 
 import SelectionButton from './selectionButton'
 
-// import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
-
 import './selectionContainer.css'
 
 class SelectionContainer extends React.Component {
@@ -26,20 +24,9 @@ class SelectionContainer extends React.Component {
   }
 
   componentDidUpdate(){
-    // if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
-    //   let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
-
-    //   if(this.props.user.questions) {
-    //     if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-    //     if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
-    //     if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
-    //     this.props.onSetGameState('mount')
-    //   }
-    // }
   }
 
   componentWillUnmount(){
-
   }
 
   render(){
