@@ -25,26 +25,21 @@ export {
   authLoading,
   authSuccess,
   authFail,
+  authSignUp,
   authLogIn,
   authLogOut,
   authRefresh,
   authDelete,
   authTimeout,
   authCert,
+  authRedirect,
+  authClearState,
+  authClearCreds,
+  authValid
   // setAuthRedirectPath,
   // checkAuthState,
   // checkAuthTimeout,
 } from './authActions'
-
-export {
-  logInUser,
-  // logOut,
-  // logoutSuccess,
-} from './logInActions'
-
-export {
-  signUpUser
-} from './signUpActions'
 
 export {
   storeUserInfo,
@@ -60,11 +55,11 @@ export {
 
 export {
   getQuestionTotals,
+  clearQuestionTotals,
   storeQuestionTotals,
   getQuickQuestion,
   getDiffQuestion,
-  getCatQuestion,
-
+  getCatQuestion
 } from './questionsActions'
 
 export {

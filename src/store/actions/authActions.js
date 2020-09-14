@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes'
 
-import { routes, fetch, auth } from '../../utility/paths'
+import { fetch, auth } from '../../utility/paths'
 
 import {
   storeUserInfo,
@@ -10,15 +10,23 @@ import {
   // deleteUser
 } from './userActions'
 
+import {
+  clearQuestionTotals
+} from './questionsActions'
+
 // import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
 
-export const authStart = (authType, obj, props) => {
+import signUpObjTemplate from '../../templates/signUpObjTemplate'
+
+export const authStart = (authType, obj) => {
   return dispatch => {
     dispatch(initAuth(authType))
-    if(authType === 'logIn') dispatch(authLogIn(obj, props))
-    if(authType === 'refresh') dispatch(authRefresh(obj))
+    if(authType === 'signUp') dispatch(authSignUp(authType, obj))
+    if(authType === 'logIn') dispatch(authLogIn(authType, obj))
+    if(authType === 'refresh') dispatch(authRefresh(authType, obj))
+    // if(authType === 'logOut') dispatch(authLogOut(authType, obj))
   }
 }
 
@@ -27,6 +35,7 @@ const initAuth = (authType) => {
     type: actionTypes.AUTH_START,
     error: null,
     start: true,
+    loading: true,
     authType: authType
   }
 }
@@ -40,28 +49,8 @@ export const authLoading = () => {
   }
 }
 
-export const authSuccess = (token, refreshToken, id, expires) => {
-  localStorage.access = 'normal'
-  localStorage.id = id
-  localStorage.refreshToken = refreshToken
-  localStorage.token = token
-  localStorage.expiration = expires
-
-  return {
-    type: actionTypes.AUTH_SUCCESS,
-    id: id,
-    fail: false,
-    loading: false,
-    refreshToken: refreshToken,
-    start: false,
-    success: true,
-    token: token,
-    authType: null
-  }
-}
-
 export const authFail = (error) => {
-  console.log(error)
+  // console.log(error)
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
@@ -71,28 +60,62 @@ export const authFail = (error) => {
   }
 }
 
-export const authLogIn = (obj, props) => {
- return dispatch => {
-    authFunctions('logIn', auth.signIn, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else {
-        dispatch(authSuccess(authRes.idToken, authRes.refreshToken, authRes.localId, authRes.expiresIn))
-        if (!!props.onLoginModal) props.onLoginModal(false)
-        else props.onSignupModal(false)
-        props.history.push( routes.dashboard )
-      }
+export const authSuccess = (authType, obj) => {
+  return dispatch => {
+
+    if(authType === 'signUp') {
+      updateLocalStorage(obj)
+      dispatch(createUser(obj))
+    }
+
+    if(authType === 'logIn') {
+      updateLocalStorage(obj)
+      dispatch(authComplete(obj))
+    }
+
+    if(authType === 'refresh') {
+      updateLocalStorage(obj)
+      dispatch(authComplete(obj))
+    }
+  }
+}
+
+const updateLocalStorage = (obj) => {
+  localStorage.access = 'normal'
+  localStorage.id = obj.id
+  localStorage.refreshToken = obj.refresh
+  localStorage.token = obj.token
+  localStorage.expiration = obj.expires
+}
+
+const createUser = (obj, props) => {
+  return dispatch => {
+    let id = obj.id
+    let userObj = {}
+
+    userObj[id] = signUpObjTemplate(obj.email, obj.user)
+
+    userFunctions('post', fetch.post.user, userObj)
+    .then(res => {
+      dispatch(authComplete(obj))
+      // if (!!props.onSignUpModal) props.onSignUpModal(false)
+      // else props.onLogInModal(false)
+      // dispatch(signup(false))
+      // props.history.push( routes.dashboard )
     })
   }
 }
 
-export const authRefresh = (obj) => {
-  return dispatch => {
-    authFunctions('refreshToken', auth.refreshToken, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
-    })
+const authComplete = (obj) => {
+  return {
+    type: actionTypes.AUTH_SUCCESS,
+    id: obj.id,
+    fail: false,
+    loading: true,
+    refreshToken: obj.refresh,
+    start: false,
+    success: true,
+    token: obj.token
   }
 }
 
@@ -101,6 +124,7 @@ export const authUser = () => {
     userFunctions('getUser', fetch.get.user, localStorage.id)
     .then(userRes => {
       if(userRes === null) localStorage.clear()
+      // if(!!userRes.error) dispatch(authFail(userRes.error))
       else {
         dispatch(storeUserInfo(userRes.info))
         dispatch(storeUserQuestions(userRes.questions))
@@ -109,7 +133,59 @@ export const authUser = () => {
   }
 }
 
-export const authLogOut = (props) => {
+export const authSignUp = (authType, obj) => {
+  return dispatch => {
+    authFunctions('signUp', auth.signUp, obj)
+    .then(authRes => {
+      // console.log(authRes)
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else dispatch(authSuccess(authType, {
+        email: authRes.email,
+        expires: authRes.expiresIn,
+        id: authRes.localId,
+        refresh: authRes.refreshToken,
+        token: authRes.idToken,
+        user: authRes.displayName
+      }))
+    })
+  }
+}
+
+export const authLogIn = (authType, obj) => {
+ return dispatch => {
+    authFunctions('logIn', auth.signIn, obj)
+    .then(authRes => {
+      // console.log(authRes)
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else dispatch(authSuccess(authType, {
+        email: authRes.email,
+        expires: authRes.expiresIn,
+        id: authRes.localId,
+        refresh: authRes.refreshToken,
+        token: authRes.idToken,
+        user: authRes.displayName
+      }))
+    })
+  }
+}
+
+export const authRefresh = (authType, obj) => {
+  return dispatch => {
+    authFunctions('refreshToken', auth.refreshToken, obj)
+    .then(authRes => {
+      // console.log(authRes)
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else dispatch(authSuccess(authType, {
+        expires: authRes.expires_in,
+        id: authRes.user_id,
+        refresh: authRes.refresh_token,
+        token: authRes.id_token
+      }))
+    })
+  }
+}
+
+export const authLogOut = () => {
 
   localStorage.clear()
   localStorage.access = 'guest'
@@ -117,14 +193,28 @@ export const authLogOut = (props) => {
   return dispatch => {
     dispatch(clearUserInfo())
     dispatch(clearUserQuestions())
-    dispatch(clearAuthInfo())
-    props.history.push( routes.home )
+    dispatch(clearQuestionTotals())
+    dispatch(authClearState())
+    dispatch(authClearCreds())
   }
 }
 
-const clearAuthInfo = () => {
+export const authClearState = () => {
   return {
-    type: actionTypes.AUTH_LOGOUT,
+    type: actionTypes.AUTH_CLEAR_STATE,
+    authType: null,
+    fail: false,
+    loading: false,
+    start: false,
+    success: false,
+    cert: false,
+    valid: false
+  }
+}
+
+export const authClearCreds = () => {
+  return {
+    type: actionTypes.AUTH_CLEAR_CREDS,
     id: null,
     refreshToken: null,
     token: null
@@ -174,11 +264,26 @@ export const authCert = (bool) => {
   return {
     type: actionTypes.AUTH_CERT,
     fail: false,
-    loading: false,
+    loading: true,
     start: false,
     success: false,
-    authType: null,
     cert: bool
+  }
+}
+
+export const authValid = (bool) => {
+  return {
+    type: actionTypes.AUTH_VALID,
+    loading: false,
+    valid: bool
+  }
+}
+
+export const authRedirect = (bool) => {
+  return {
+    type: actionTypes.AUTH_REDIRECT,
+    authType: null,
+    redirect: bool
   }
 }
 

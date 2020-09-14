@@ -3,8 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-import { routes } from '../../utility/paths.js'
-
 import Modal from '../../UI/modal/modal'
 
 import LogOutButtonContainer from './logOutButtonContainer'
@@ -14,9 +12,7 @@ import './logOut.css'
 const LogOut = (props) => {
 
   const onConfirm = () => {
-    props.onLogOutModal(false)
-    props.onLogOut(props)
-    props.history.push( routes.home )
+    props.onAuthStart('logOut', {})
   }
 
   const onCancel = () => { props.onLogOutModal(false) }
@@ -46,7 +42,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogOutModal: (bool) => dispatch(actions.logout(bool)),
-    onLogOut: (props) => dispatch(actions.authLogOut(props))
+    onAuthStart: (type, obj) => dispatch(actions.authStart(type, obj))
   }
 }
 

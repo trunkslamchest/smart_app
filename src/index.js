@@ -17,8 +17,6 @@ import devTestReducer from './store/reducers/devTestReducer'
 import storeReducer from './store/reducers/storeReducer'
 import modalReducer from './store/reducers/modalReducer'
 import authReducer from './store/reducers/authReducer'
-import logInReducer from './store/reducers/logInReducer'
-import signUpReducer from './store/reducers/signUpReducer'
 import userReducer from './store/reducers/userReducer'
 import questionsReducer from './store/reducers/questionsReducer'
 import playReducer from './store/reducers/playReducer'
@@ -30,8 +28,6 @@ const rootReducer = combineReducers({
   store: storeReducer,
   modal: modalReducer,
   auth: authReducer,
-  logIn: logInReducer,
-  signUp: signUpReducer,
   user: userReducer,
   questions: questionsReducer,
   play: playReducer

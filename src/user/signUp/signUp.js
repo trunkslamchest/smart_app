@@ -29,16 +29,13 @@ class SignUp extends React.Component {
     event.persist()
     event.preventDefault()
 
-    let signUpObj = {
-      displayName: this.state.user_name,
-      email: this.state.email,
-      password: this.state.password,
-      returnSecureToken: true
-    }
-
     if (!this.state.TOSagreement) alert('You must agree to the Terms of Service Agreement in order to make a new account.')
-    else this.props.onSignUp(signUpObj, this.props)
-
+    else this.props.onAuthStart('signUp', {
+          displayName: this.state.user_name,
+          email: this.state.email,
+          password: this.state.password,
+          returnSecureToken: true
+        })
   }
 
   onReset = () => {
@@ -51,7 +48,7 @@ class SignUp extends React.Component {
     })
   }
 
-  onCancel = () => { this.props.onSignupModal(false) }
+  onCancel = () => { this.props.onSignUpModal(false) }
 
   render(){
     return (
@@ -85,9 +82,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSignupModal: (bool) => dispatch(actions.signup(bool)),
-    onAuth: (email, password) => dispatch(actions.authUser(email, password)),
-    onSignUp: (user_name, email, password, props) => dispatch(actions.signUpUser(user_name, email, password, props))
+    onSignUpModal: (bool) => dispatch(actions.signup(bool)),
+    onAuthStart: (type, obj, props) => dispatch(actions.authStart(type, obj, props)),
   }
 }
 

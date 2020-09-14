@@ -2,10 +2,12 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   authType: null,
+  cert: false,
   error: null,
   fail: false,
   id: null,
   loading: false,
+  redirect: false,
   refreshToken: null,
   start: false,
   success: false,
@@ -15,9 +17,10 @@ const initialState = {
 const authStart = (currentState, action) => {
   return {
     ...currentState,
+    authType: action.authType,
     error: action.error,
-    start: action.start,
-    authType: action.authType
+    loading: action.loading,
+    start: action.start
   }
 }
 
@@ -39,8 +42,7 @@ const authSuccess = (currentState, action) => {
     refreshToken: action.refreshToken,
     start: action.start,
     success: action.success,
-    token: action.token,
-    authType: action.authType
+    token: action.token
   }
 }
 
@@ -59,7 +61,7 @@ const authFail = (currentState, action) => {
   }
 }
 
-const authUser = (currentState, action) => {
+const authSignUp = (currentState, action) => {
   return {
     ...currentState,
     error: action.error
@@ -76,19 +78,11 @@ const authLogIn = (currentState, action) => {
 const authLogOut = (currentState, action) => {
   return {
     ...currentState,
-    token: null,
+    authType: null,
+    cert: false,
+    id: null,
     refreshToken: null,
-    id: null
-  }
-}
-
-const authDelete = (currentState, action) => {
-  return {
-    ...currentState,
-    // error: action.error,
-    token: null,
-    refreshToken: null,
-    id: null
+    token: null
   }
 }
 
@@ -99,15 +93,69 @@ const authRefresh = (currentState, action) => {
   }
 }
 
+const authUser = (currentState, action) => {
+  return {
+    ...currentState,
+    error: action.error
+  }
+}
+
+const authDelete = (currentState, action) => {
+  return {
+    ...currentState,
+    // error: action.error,
+    id: null,
+    refreshToken: null,
+    token: null
+  }
+}
+
 const authCert = (currentState, action) => {
   return {
     ...currentState,
+    cert: action.cert,
+    fail: action.fail,
+    loading: action.loading,
+    start: action.start,
+    success: action.success
+  }
+}
+
+const authValid = (currentState, action) => {
+  return {
+    ...currentState,
+    loading: false,
+    valid: action.valid
+  }
+}
+
+const authClearState = (currentState, action) => {
+  return {
+    ...currentState,
+    authType: action.authType,
     fail: action.fail,
     loading: action.loading,
     start: action.start,
     success: action.success,
+    cert: action.cert,
+    valid: action.valid
+  }
+}
+
+const authClearCreds = (currentState, action) => {
+  return {
+    ...currentState,
+    id: action.id,
+    refreshToken: action.refreshToken,
+    token: action.token
+  }
+}
+
+const authRedirect = (currentState, action) => {
+  return {
+    ...currentState,
     authType: action.authType,
-    cert: action.cert
+    redirect: action.redirect
   }
 }
 
@@ -117,12 +165,17 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_LOADING: return authLoading(currentState, action)
     case actionTypes.AUTH_SUCCESS: return authSuccess(currentState, action)
     case actionTypes.AUTH_FAIL: return authFail(currentState, action)
+    case actionTypes.AUTH_SIGNUP: return authSignUp(currentState, action)
     case actionTypes.AUTH_LOGIN: return authLogIn(currentState, action)
     case actionTypes.AUTH_LOGOUT: return authLogOut(currentState, action)
+    case actionTypes.AUTH_REFRESH: return authRefresh(currentState, action)
     case actionTypes.AUTH_USER: return authUser(currentState, action)
     case actionTypes.AUTH_DELETE: return authDelete(currentState, action)
-    case actionTypes.AUTH_REFRESH: return authRefresh(currentState, action)
     case actionTypes.AUTH_CERT: return authCert(currentState, action)
+    case actionTypes.AUTH_VALID: return authValid(currentState, action)
+    case actionTypes.AUTH_CLEAR_STATE : return authClearState(currentState, action)
+    case actionTypes.AUTH_CLEAR_CREDS : return authClearCreds(currentState, action)
+    case actionTypes.AUTH_REDIRECT: return authRedirect(currentState, action)
     default: return currentState
   }
 }

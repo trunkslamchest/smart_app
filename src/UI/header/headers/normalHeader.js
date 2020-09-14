@@ -37,7 +37,7 @@ class NormalHeader extends React.Component {
     return(
       <>
         <div className='header_greeting'>
-          {!!this.props.user.info && `Hello, ${this.props.user.info.user_name}!`}
+          {this.props.auth.valid && `Hello, ${this.props.user.info.user_name}!`}
         </div>
         <div className='header_nav_links'>
 
@@ -54,8 +54,8 @@ class NormalHeader extends React.Component {
 
           <div
             className='header_nav_links_menu_container'
-            onMouseEnter={this.onHover}
-            onMouseLeave={this.onHover}
+            // onMouseEnter={this.onHover}
+            // onMouseLeave={this.onHover}
           >
             <HeaderButton2
               menu='myProfileMenu'

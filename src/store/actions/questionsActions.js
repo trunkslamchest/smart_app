@@ -24,6 +24,14 @@ export const getQuestionTotals = (props) => {
   }
 }
 
+export const clearQuestionTotals = () => {
+  return {
+    type: actionTypes.CLEAR_QUESTION_TOTALS,
+    totals: null
+  }
+}
+
+
 export const getQuickQuestion = (obj) => {
   // console.log(obj)
   return dispatch => {

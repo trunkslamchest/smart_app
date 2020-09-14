@@ -6,16 +6,17 @@ import { connect } from 'react-redux'
 // import * as actionTypes from '../actions/actionTypes'
 import * as actions from '../actions/actionIndex'
 
-// import { routes } from '../../utility/paths'
+import { routes } from '../../utility/paths'
 
 class StoreController extends React.Component {
 
   state = {
+    authValid: false,
     initAuth: false,
-    initAuthRefresh: false,
     initUser: false,
     initQuestions: false,
-    certAuth: false
+    certAuth: false,
+    initAuthLogOut: false,
   }
 
   componentDidMount(){
@@ -23,24 +24,66 @@ class StoreController extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.auth.success && !this.state.initUser){
+    // console.log(this.props.auth.success)
+    if(this.props.auth.success && !this.state.initUser && !this.state.authValid){
       this.props.onAuthUser()
       this.setState({ initUser: true })
     }
 
-    if(this.props.user.info && this.props.user.questions && !this.state.initQuestions){
+    if(this.props.user.info && this.props.user.questions && !this.state.initQuestions && !this.state.authValid){
       this.props.onGetQuestionTotals()
       this.setState({ initQuestions: true })
     }
 
-    if(this.props.questions.totals && !this.state.certAuth){
+    if(this.props.questions.totals && !this.state.certAuth && !this.state.authValid){
       this.props.onAuthCert(true)
       this.setState({ certAuth: true })
     }
+
+
+    if(this.props.auth.cert && this.props.auth.authType !== 'refresh' && !this.state.authValid){
+      this.props.onAuthClearState()
+      this.resetLocalAuthState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+      this.props.history.push( routes.dashboard )
+    }
+
+    if(this.props.modal.login && this.props.auth.valid) this.props.onLogInModal(false)
+    if(this.props.modal.signup && this.props.auth.valid) this.props.onSignUpModal(false)
+
+    if(this.props.auth.cert && this.props.auth.authType === 'refresh' && !this.state.authValid) {
+      this.props.onAuthClearState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+    }
+
+    if(this.props.auth.authType === 'logOut' && !this.state.initAuthLogOut) {
+      this.setState({ initAuthLogOut: true })
+    }
+
+    if(this.state.initAuthLogOut) {
+      this.props.onAuthLogOut()
+      this.resetLocalAuthState()
+      this.props.onLogOutModal(false)
+      this.props.history.push( routes.home )
+    }
+
   }
 
   componentWillUnmount(){
 
+  }
+
+  resetLocalAuthState = () => {
+    this.setState({
+      authValid: false,
+      initAuth: false,
+      initUser: false,
+      initQuestions: false,
+      certAuth: false,
+      initAuthLogOut: false,
+    })
   }
 
   render(){ return( <> { this.props.children } </> )}
@@ -73,12 +116,14 @@ const mapDispatchToProps = dispatch => {
     onAuthDelete: (props) => dispatch(actions.authDelete(props)),
     onAuthTimeout: (time) => dispatch(actions.authTimeout(time)),
     onAuthCert: (bool) => dispatch(actions.authCert(bool)),
-    // LOGIN
-    onlogInUser: (email, password, props) => dispatch(actions.logInUser(email, password, props)),
+    onAuthValid: (bool) => dispatch(actions.authValid(bool)),
+    onAuthRedirect: (bool) => dispatch(actions.authRedirect(bool)),
+    onAuthClearState: () => dispatch(actions.authClearState()),
+    onAuthClearCreds: () => dispatch(actions.authClearCreds()),
     // MODAL
-    onLoginModal: (bool) => dispatch(actions.login(bool)),
+    onLogInModal: (bool) => dispatch(actions.login(bool)),
     onLogOutModal: (bool) => dispatch(actions.logout(bool)),
-    onSignupModal: (bool) => dispatch(actions.signup(bool)),
+    onSignUpModal: (bool) => dispatch(actions.signup(bool)),
     onDeleteProfileModal: (bool) => dispatch(actions.deleteProfile(bool)),
     onShowModal: (bool) => dispatch(actions.showModal(bool)),
     // PLAY
@@ -104,7 +149,6 @@ const mapDispatchToProps = dispatch => {
     onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
     onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
     // USER
-    onSignUpUser: (signUpObj, props) => dispatch(actions.signUpUser(signUpObj, props)),
     onStoreUserInfo: (info) => dispatch(actions.storeUserInfo(info)),
     onUpdateUserInfo: (obj, props) => dispatch(actions.updateUserInfo(obj, props)),
     onClearUserInfo: () => dispatch(actions.clearUserInfo()),

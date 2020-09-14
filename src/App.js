@@ -44,8 +44,7 @@ class App extends React.Component {
       //   refresh_token: localStorage.refreshToken
       // }
       // this.props.onAuthRefresh(refreshObj)
-      console.log('test')
-      this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken })
+      this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken }, this.props)
     }
   }
 
@@ -56,7 +55,7 @@ class App extends React.Component {
   render(){
     return (
       <>
-        <StoreController>
+        <StoreController history={this.props.history}>
           <Header />
           <div className='main_container'>
             <LogIn history={this.props.history} />
@@ -87,19 +86,23 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
+  return{
     auth: state.auth,
     modal: state.modal,
-    play: state.play
+    logIn: state.logIn,
+    play: state.play,
+    questions: state.questions,
+    signUp: state.signUp,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuthStart: (authType, obj) => dispatch(actions.authStart(authType, obj)),
-    onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
-    onResetGameMode: () => dispatch(actions.resetGameMode()),
-    onShowModal: (bool) => dispatch(actions.showModal(bool))
+    onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props)),
+    // onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
+    // onResetGameMode: () => dispatch(actions.resetGameMode()),
+    // onShowModal: (bool) => dispatch(actions.showModal(bool))
   }
 }
 

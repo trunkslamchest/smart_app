@@ -20,14 +20,11 @@ import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProf
 
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
-
 import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
 
   componentDidMount(){
-    // this.props.onGetQuestionTotals()
-    // this.props.onUpdateUserQuestions()
   }
 
   render(){
@@ -37,29 +34,19 @@ class Dashboard extends React.Component{
         <DashboardIndex />
       </Route>
       <Route exact path={ routes.dashboard_profile }>
-        <DashboardProfileContainer
-          history={this.props.history}
-        />
+        <DashboardProfileContainer history={this.props.history} />
       </Route>
       <Route path={ routes.dashboard_profile_edit }>
-        <DashboardEditProfileContainer
-          history={this.props.history}
-        />
+        <DashboardEditProfileContainer history={this.props.history} />
       </Route>
       <Route exact path={ routes.dashboard_stats }>
-        <DashboardStatsContainer
-          history={this.props.history}
-        />
+        <DashboardStatsContainer history={this.props.history} />
       </Route>
       <Route exact path={ routes.dashboard_votes }>
-        <DashboardVotesContainer
-          history={this.props.history}
-        />
+        <DashboardVotesContainer history={this.props.history} />
       </Route>
       <Route exact path={ routes.dashboard_comments }>
-        <DashboardCommentsContainer
-          history={this.props.history}
-        />
+        <DashboardCommentsContainer history={this.props.history} />
       </Route>
       <Route path={ routes.dashboard_test }>
         <DashboardTest />
@@ -71,7 +58,7 @@ class Dashboard extends React.Component{
         <DashboardDeleteProfile history={this.props.history} />
         <div className='dashboard_wrapper'>
           <DashboardNavBarContainer />
-          {this.props.auth.loading ? <LoadingSpinnerRoller /> : routeBoard }
+          {this.props.auth.valid ? routeBoard : <LoadingSpinnerRoller /> }
         </div>
       </>
     )

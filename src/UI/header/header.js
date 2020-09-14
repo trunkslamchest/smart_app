@@ -14,10 +14,9 @@ import './header.css'
 const Header = (props) => {
   let home_link = null
 
-  let header =
-    <GuestHeader />
+  let header = <GuestHeader />
 
-  if(!!props.auth.token) {
+  if(props.auth.valid) {
     home_link =
       <HeaderButton
         link={ routes.home }
@@ -36,7 +35,7 @@ const Header = (props) => {
   return(
     <div className='header'>
       <div className='header_left'>
-        {home_link}
+        { home_link }
       </div>
       <div className='header_right'>
         { header }
