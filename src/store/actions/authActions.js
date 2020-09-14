@@ -6,15 +6,13 @@ import {
   storeUserInfo,
   storeUserQuestions,
   clearUserInfo,
-  clearUserQuestions,
-  // deleteUser
+  clearUserQuestions
 } from './userActions'
 
 import {
   clearQuestionTotals
 } from './questionsActions'
 
-// import getTime from '../../utility/getTime'
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
 
@@ -26,7 +24,6 @@ export const authStart = (authType, obj) => {
     if(authType === 'signUp') dispatch(authSignUp(authType, obj))
     if(authType === 'logIn') dispatch(authLogIn(authType, obj))
     if(authType === 'refresh') dispatch(authRefresh(authType, obj))
-    // if(authType === 'logOut') dispatch(authLogOut(authType, obj))
   }
 }
 
@@ -37,15 +34,6 @@ const initAuth = (authType) => {
     start: true,
     loading: true,
     authType: authType
-  }
-}
-
-export const authLoading = () => {
-  return {
-    type: actionTypes.AUTH_LOADING,
-    error: null,
-    loading: true,
-    start: false
   }
 }
 
@@ -98,10 +86,6 @@ const createUser = (obj, props) => {
     userFunctions('post', fetch.post.user, userObj)
     .then(res => {
       dispatch(authComplete(obj))
-      // if (!!props.onSignUpModal) props.onSignUpModal(false)
-      // else props.onLogInModal(false)
-      // dispatch(signup(false))
-      // props.history.push( routes.dashboard )
     })
   }
 }
@@ -278,68 +262,3 @@ export const authValid = (bool) => {
     valid: bool
   }
 }
-
-export const authRedirect = (bool) => {
-  return {
-    type: actionTypes.AUTH_REDIRECT,
-    authType: null,
-    redirect: bool
-  }
-}
-
-// export const authStart = (authType) => {
-//   return {
-//     type: actionTypes.AUTH_START,
-//     error: null,
-//     start: true,
-//     authType: authType
-//   }
-// }
-
-// export const authLogIn = (obj, props) => {
-//  return dispatch => {
-//     authFunctions('logIn', auth.signIn, obj)
-//     .then(authRes => {
-//       console.log(authRes)
-//       if(!!authRes.error) dispatch(authFail(authRes.error))
-//       else {
-//         dispatch(authSuccess(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
-//         if (!!props.onLoginModal) props.onLoginModal(false)
-//         else props.onSignupModal(false)
-//         props.history.push( routes.dashboard )
-//       }
-//     })
-//   }
-// }
-
-// export const authRefresh = (refreshObj) => {
-//   return dispatch => {
-//     // if(localStorage.access === "normal" && localStorage.id === "undefined") {
-//     //   localStorage.clear()
-//     //   localStorage.access = 'guest'
-//     // } else {
-//       // dispatch(authStart())
-//       authFunctions('refreshToken', auth.refreshToken, refreshObj)
-//       .then(authRes => {
-//         dispatch(authUser(authRes.id_token, authRes.refresh_token, authRes.user_id, authRes.expires_in))
-//       })
-//     // }
-//   }
-// }
-
-// export const authUser = (token, refreshToken, id, expires) => {
-//   return dispatch => {
-//     userFunctions('getUser', fetch.get.user, id)
-//     .then(userRes => {
-//       if(userRes === null) localStorage.clear()
-//       else {
-//         dispatch(authSuccess(token, refreshToken, id, expires))
-//         dispatch(storeUserInfo(userRes.info))
-//         dispatch(storeUserQuestions(userRes.questions))
-//       }
-//     })
-//     // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
-//     // localStorage.setItem('expirationDate', expirationDate)
-//     // dispatch(checkAuthTimeout(response.data.expiresIn))
-//   }
-// }

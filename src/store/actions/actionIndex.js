@@ -1,17 +1,4 @@
 export {
-  increment,
-  decrement,
-  add,
-  subtract,
-  reset
-} from './devTestActions'
-
-export {
-  save,
-  remove
-} from './storeActions'
-
-export {
   login,
   logout,
   signup,
@@ -22,7 +9,6 @@ export {
 export {
   authUser,
   authStart,
-  authLoading,
   authSuccess,
   authFail,
   authSignUp,
@@ -32,7 +18,6 @@ export {
   authDelete,
   authTimeout,
   authCert,
-  authRedirect,
   authClearState,
   authClearCreds,
   authValid
@@ -50,7 +35,6 @@ export {
   updateUserQuestions,
   updateUserQuestionIds,
   deleteUser
-  // updateUser
 } from './userActions'
 
 export {

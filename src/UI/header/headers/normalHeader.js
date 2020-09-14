@@ -54,8 +54,6 @@ class NormalHeader extends React.Component {
 
           <div
             className='header_nav_links_menu_container'
-            // onMouseEnter={this.onHover}
-            // onMouseLeave={this.onHover}
           >
             <HeaderButton2
               menu='myProfileMenu'

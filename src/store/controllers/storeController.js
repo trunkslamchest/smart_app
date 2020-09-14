@@ -24,7 +24,7 @@ class StoreController extends React.Component {
   }
 
   componentDidUpdate(){
-    // console.log(this.props.auth.success)
+
     if(this.props.auth.success && !this.state.initUser && !this.state.authValid){
       this.props.onAuthUser()
       this.setState({ initUser: true })
@@ -39,7 +39,6 @@ class StoreController extends React.Component {
       this.props.onAuthCert(true)
       this.setState({ certAuth: true })
     }
-
 
     if(this.props.auth.cert && this.props.auth.authType !== 'refresh' && !this.state.authValid){
       this.props.onAuthClearState()
@@ -105,7 +104,6 @@ const mapDispatchToProps = dispatch => {
   return {
     // AUTH
     onAuthStart: () => dispatch(actions.authStart()),
-    onAuthLoading: () => dispatch(actions.authLoading()),
     onAuthSuccess: (token, refreshToken, id, expires) => dispatch(actions.authSuccess(token, refreshToken, id, expires)),
     onAuthFail: (error) => dispatch(actions.authFail(error)),
     onAuthLogIn: (email, password, props) => dispatch(actions.authLogIn(email, password, props)),
@@ -117,7 +115,6 @@ const mapDispatchToProps = dispatch => {
     onAuthTimeout: (time) => dispatch(actions.authTimeout(time)),
     onAuthCert: (bool) => dispatch(actions.authCert(bool)),
     onAuthValid: (bool) => dispatch(actions.authValid(bool)),
-    onAuthRedirect: (bool) => dispatch(actions.authRedirect(bool)),
     onAuthClearState: () => dispatch(actions.authClearState()),
     onAuthClearCreds: () => dispatch(actions.authClearCreds()),
     // MODAL

@@ -7,7 +7,6 @@ const initialState = {
   fail: false,
   id: null,
   loading: false,
-  redirect: false,
   refreshToken: null,
   start: false,
   success: false,
@@ -18,15 +17,6 @@ const authStart = (currentState, action) => {
   return {
     ...currentState,
     authType: action.authType,
-    error: action.error,
-    loading: action.loading,
-    start: action.start
-  }
-}
-
-const authLoading = (currentState, action) => {
-  return {
-    ...currentState,
     error: action.error,
     loading: action.loading,
     start: action.start
@@ -151,18 +141,9 @@ const authClearCreds = (currentState, action) => {
   }
 }
 
-const authRedirect = (currentState, action) => {
-  return {
-    ...currentState,
-    authType: action.authType,
-    redirect: action.redirect
-  }
-}
-
 const authReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.AUTH_START: return authStart(currentState, action)
-    case actionTypes.AUTH_LOADING: return authLoading(currentState, action)
     case actionTypes.AUTH_SUCCESS: return authSuccess(currentState, action)
     case actionTypes.AUTH_FAIL: return authFail(currentState, action)
     case actionTypes.AUTH_SIGNUP: return authSignUp(currentState, action)
@@ -175,7 +156,6 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_VALID: return authValid(currentState, action)
     case actionTypes.AUTH_CLEAR_STATE : return authClearState(currentState, action)
     case actionTypes.AUTH_CLEAR_CREDS : return authClearCreds(currentState, action)
-    case actionTypes.AUTH_REDIRECT: return authRedirect(currentState, action)
     default: return currentState
   }
 }

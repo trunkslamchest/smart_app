@@ -38,14 +38,7 @@ class App extends React.Component {
     if (!localStorage.token)  {
       localStorage.clear()
       localStorage.access = 'guest'
-    } else {
-      // let refreshObj = {
-      //   grant_type: "refresh_token",
-      //   refresh_token: localStorage.refreshToken
-      // }
-      // this.props.onAuthRefresh(refreshObj)
-      this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken }, this.props)
-    }
+    } else this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken }, this.props)
   }
 
   componentWillUnmount(){

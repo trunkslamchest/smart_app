@@ -13,7 +13,6 @@ import DashboardProfileContainer from './dashboardProfile/dashboardProfileContai
 import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
 import DashboardVotesContainer from './dashboardVotes/dashboardVotesContainer'
 import DashboardCommentsContainer from './dashboardComments/dashboardCommentsContainer'
-import DashboardTest from './dashboardTest'
 
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
@@ -47,9 +46,6 @@ class Dashboard extends React.Component{
       </Route>
       <Route exact path={ routes.dashboard_comments }>
         <DashboardCommentsContainer history={this.props.history} />
-      </Route>
-      <Route path={ routes.dashboard_test }>
-        <DashboardTest />
       </Route>
     </Switch>
 

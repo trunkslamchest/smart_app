@@ -13,8 +13,6 @@ import thunk from 'redux-thunk'
 
 import ScrollRestore from './utility/scrollRestore'
 
-import devTestReducer from './store/reducers/devTestReducer'
-import storeReducer from './store/reducers/storeReducer'
 import modalReducer from './store/reducers/modalReducer'
 import authReducer from './store/reducers/authReducer'
 import userReducer from './store/reducers/userReducer'
@@ -24,8 +22,6 @@ import playReducer from './store/reducers/playReducer'
 const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-  devTest: devTestReducer,
-  store: storeReducer,
   modal: modalReducer,
   auth: authReducer,
   user: userReducer,
