@@ -6,13 +6,16 @@ import { connect } from 'react-redux'
 // import * as actionTypes from '../actions/actionTypes'
 import * as actions from '../actions/actionIndex'
 
-import AuthController from './authController'
+import { routes } from '../../utility/paths'
 
-
-class StoreController extends React.Component {
+class AuthController extends React.Component {
 
   state = {
-
+    authValid: false,
+    initUser: false,
+    initQuestions: false,
+    certAuth: false,
+    initAuthLogOut: false,
   }
 
   componentDidMount(){
@@ -21,31 +24,74 @@ class StoreController extends React.Component {
 
   componentDidUpdate(){
 
+    if(this.props.auth.success && !this.state.initUser && !this.state.authValid){
+      this.props.onAuthUser()
+      this.setState({ initUser: true })
+    }
+
+    if(this.props.user.info && this.props.user.questions && !this.state.initQuestions && !this.state.authValid){
+      this.props.onGetQuestionTotals()
+      this.setState({ initQuestions: true })
+    }
+
+    if(this.props.questions.totals && !this.state.certAuth && !this.state.authValid){
+      this.props.onAuthCert(true)
+      this.setState({ certAuth: true })
+    }
+
+    if(this.props.auth.cert && this.props.auth.authType !== 'refresh' && !this.state.authValid){
+      this.props.onAuthClearState()
+      this.resetLocalAuthState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+      this.props.history.push( routes.dashboard )
+    }
+
+    if(this.props.modal.login && this.props.auth.valid) this.props.onLogInModal(false)
+    if(this.props.modal.signup && this.props.auth.valid) this.props.onSignUpModal(false)
+
+    if(this.props.auth.cert && this.props.auth.authType === 'refresh' && !this.state.authValid) {
+      this.props.onAuthClearState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+    }
+
+    if(this.props.auth.authType === 'logOut' && !this.state.initAuthLogOut) {
+      this.setState({ initAuthLogOut: true })
+    }
+
+    if(this.state.initAuthLogOut) {
+      this.props.onAuthLogOut()
+      this.resetLocalAuthState()
+      this.props.onLogOutModal(false)
+      this.props.history.push( routes.home )
+    }
+
   }
 
   componentWillUnmount(){
 
   }
 
-  render(){
-    return(
-      <>
-        <AuthController history={ this.props.history }>
-          { this.props.children }
-        </AuthController>
-      </>
-    )
+  resetLocalAuthState = () => {
+    this.setState({
+      authValid: false,
+      initUser: false,
+      initQuestions: false,
+      certAuth: false,
+      initAuthLogOut: false,
+    })
   }
+
+  render(){ return( <> { this.props.children } </> )}
 }
 
 const mapStateToProps = state => {
   return{
     auth: state.auth,
     modal: state.modal,
-    logIn: state.logIn,
     play: state.play,
     questions: state.questions,
-    signUp: state.signUp,
     user: state.user
   }
 }
@@ -107,4 +153,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoreController)
+export default connect(mapStateToProps, mapDispatchToProps)(AuthController)

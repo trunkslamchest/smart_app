@@ -6,7 +6,9 @@ const initialState = {
   gameQset: null,
   question: null,
   answer: null,
-  results: null
+  results: null,
+  voted: false,
+  commented: false
 }
 
 const setGameMode = (currentState, action) => {
@@ -19,7 +21,7 @@ const setGameMode = (currentState, action) => {
 const resetGameMode = (currentState, action) => {
   return {
     ...currentState,
-    gameMode: null
+    gameMode: action.gameMode
   }
 }
 
@@ -41,7 +43,7 @@ const updateQuestion = (currentState, action) => {
 const resetQuestion = (currentState, action) => {
   return {
     ...currentState,
-    question: null
+    question: action.question
   }
 }
 
@@ -55,7 +57,7 @@ const setGameState = (currentState, action) => {
 const resetGameState = (currentState, action) => {
   return {
     ...currentState,
-    gameState: null
+    gameState: action.gameState
   }
 }
 
@@ -69,7 +71,7 @@ const setGameQset = (currentState, action) => {
 const resetGameQset = (currentState, action) => {
   return {
     ...currentState,
-    gameQset: null
+    gameQset: action.gameQset
   }
 }
 
@@ -84,7 +86,7 @@ const setAnswer = (currentState, action) => {
 const resetAnswer = (currentState, action) => {
   return {
     ...currentState,
-    answer: null
+    answer: action.answer
   }
 }
 
@@ -105,35 +107,35 @@ const setResults = (currentState, action) => {
 const resetResults = (currentState, action) => {
   return {
     ...currentState,
-    results: null
+    results: action.results
   }
 }
 
 const setVote = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, votes: action.votes }
+    question: { ...currentState.question, votes: action.votes, voted: action.voted }
   }
 }
 
 const resetVote = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, votes: null }
+    question: { ...currentState.question, votes: action.votes, voted: action.voted }
   }
 }
 
 const setComment = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, comments: action.comments }
+    question: { ...currentState.question, comments: action.comments, commented: action.commented }
   }
 }
 
 const resetComment = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, comments: null }
+    question: { ...currentState.question, comments: action.comments, commented: action.commented }
   }
 }
 

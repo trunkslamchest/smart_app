@@ -18,12 +18,12 @@ const PlayMenu = (props) => {
   const onClickFunctions = (event) => {
     let gameMode = event.target.name
     localStorage.gameMode = gameMode
-    props.onSetGameMode(gameMode)
-    props.onSetGameState('init')
-    props.onResetGameQset()
-    props.onResetQuestion()
-    props.onResetAnswer()
-    props.onResetResults()
+    if(props.play.gameMode) props.onResetGameMode()
+    if(props.play.gameState) props.onResetGameState()
+    if(props.play.gameQset) props.onResetGameQset()
+    if(props.play.question) props.onResetQuestion()
+    if(props.play.answer) props.onResetAnswer()
+    if(props.play.results) props.onResetResults()
     props.switchPlayMenu()
   }
 
@@ -62,6 +62,15 @@ const PlayMenu = (props) => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    play: state.play,
+    user: state.user,
+    questions: state.questions
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onResetGameMode: () => dispatch(actions.resetGameMode()),
@@ -85,4 +94,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PlayMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayMenu)

@@ -8,6 +8,7 @@ import * as actions from './store/actions/actionIndex'
 import { routes } from './utility/paths'
 
 import StoreController from './store/controllers/storeController'
+import PlayController from './store/controllers/playController'
 
 import Header from './UI/header/header'
 import HomeContainer from './home/HomeContainer'
@@ -18,7 +19,6 @@ import SignUp from './user/signUp/signUp'
 import LogOut from './user/logOut/logOut'
 
 import DashboardContainer from './user/dashboard/dashboardContainer'
-import PlayContainer from './play/PlayContainer'
 
 import TermsOfService from './docs/termsOfService'
 import Privacy from './docs/privacy'
@@ -62,7 +62,7 @@ class App extends React.Component {
                 <DashboardContainer history={this.props.history} />
               </Route>
               <Route path={ routes.play }>
-                <PlayContainer history={this.props.history} />
+                <PlayController history={this.props.history} />
               </Route>
               <Route exact path={ routes.tos }><TermsOfService /></Route>
               <Route exact path={ routes.privacy }><Privacy /></Route>

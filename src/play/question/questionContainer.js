@@ -5,7 +5,7 @@ import * as actions from '../../store/actions/actionIndex'
 
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
-import './QuestionContainer.css'
+import './questionContainer.css'
 
 class QuestionContainer extends React.Component{
 
@@ -20,6 +20,9 @@ class QuestionContainer extends React.Component{
   }
 
   componentDidMount(){
+    // this.props.onSetGameState('init')
+    // if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
+
     this.timerTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
     this.startTimer = setTimeout(() => { this.timerInterval = setInterval(this.timerFunctions, 10)}, 5000)
     this.questionTimeout = setTimeout(() => { this.setState({ showQuestion: true })}, 3000)
@@ -45,28 +48,30 @@ class QuestionContainer extends React.Component{
       this.setState({ time: (0.00).toFixed(2)})
       clearInterval(this.timerInterval)
 
-      let answerObj = {
+      this.props.onSetAnswer({
         choice: 'outta_time',
         time: (10.00).toFixed(2)
-      }
+      })
 
-      this.props.onSetAnswer(answerObj)
+      this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({
+        choice: 'outta_time',
+        time: (10.00).toFixed(2)
+      }) }, 500)
 
-      this.outtaTimeTimeout = setTimeout(() => { this.props.onSetGameState('answered') }, 500)
-
-    } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
+    } else {
+      // this.setState({ time: (this.state.time - 0.01).toFixed(2) })
+    }
   }
 
   onClickFunctions = (event) => {
     clearInterval(this.timerInterval)
 
-    let answerObj = {
+    this.props.onSetAnswer({
       choice: this.props.play.question.choices[event.target.value],
       time: (10 - this.state.time).toFixed(2)
-    }
+    })
 
-    this.props.onSetAnswer(answerObj)
-    this.props.onSetGameState('answered')
+    // this.props.onSetGameState('answered')
   }
 
   onClickBlankFunctions = () => {}

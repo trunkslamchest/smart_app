@@ -82,7 +82,6 @@ export const resetAnswer = () => {
 }
 
 export const getResults = (obj) => {
-  // console.log(obj)
   return dispatch => {
     questionsFunctions('getQuestionResults', fetch.get.questionResults, obj)
     .then(res => {
@@ -118,14 +117,16 @@ export const setVote = (obj) => {
 const updateVotes = (obj) => {
   return {
     type: actionTypes.SET_VOTE,
-    votes: obj
+    votes: obj,
+    voted: true
   }
 }
 
 export const resetVote = () => {
   return {
     type: actionTypes.RESET_VOTE,
-    vote: null
+    votes: null,
+    voted: false
   }
 }
 
@@ -141,13 +142,15 @@ export const setComment = (obj) => {
 const updateComments = (obj) => {
   return {
     type: actionTypes.SET_COMMENT,
-    comments: obj
+    comments: obj,
+    commented: true
   }
 }
 
 export const resetComment = () => {
   return {
     type: actionTypes.RESET_COMMENT,
-    vote: null
+    comments: null,
+    commented: false
   }
 }

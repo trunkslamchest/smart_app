@@ -33,7 +33,8 @@ export {
   clearUserQuestions,
   updateUserInfo,
   updateUserQuestions,
-  updateUserQuestionIds,
+  updateUserQuestionIdsFromPlayController,
+  updateUserQuestionsFromPlayController,
   deleteUser
 } from './userActions'
 

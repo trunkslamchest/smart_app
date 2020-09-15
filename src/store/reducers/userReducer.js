@@ -47,7 +47,7 @@ const updateUserQuestions = (currentState, action) => {
   }
 }
 
-const updateUserQuestionIds = (currentState, action) => {
+const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
 
   if(currentState.questions.ids){
@@ -61,6 +61,62 @@ const updateUserQuestionIds = (currentState, action) => {
   return{
     ...currentState,
     questions: { ...currentState.questions, ids: qIds }
+  }
+}
+
+const updateUserQuestionsFromPlayController = (currentState, action) => {
+  let questions = currentState.questions
+  let obj
+
+  if(!questions[action.question.difficulty]) {
+
+    obj = {
+      'categories': {
+        [action.question.category]: {
+          [action.question.qid]: {
+            answer: action.question.answer.choice,
+            correct_answer: action.question.results.correct_answer,
+            question: action.question.question,
+            result: action.question.results.result,
+            time: action.question.answer.time
+          }
+        }
+      }
+    }
+
+    questions[action.question.difficulty] = obj
+
+  } else if(!questions[action.question.difficulty].categories[action.question.category]) {
+
+    obj = {
+      [action.question.qid]: {
+        answer: action.question.answer.choice,
+        correct_answer: action.question.results.correct_answer,
+        question: action.question.question,
+        result: action.question.results.result,
+        time: action.question.answer.time
+      }
+    }
+
+  questions[action.question.difficulty].categories[action.question.category] = obj
+
+  } else {
+
+    obj = {
+      answer: action.question.answer.choice,
+      correct_answer: action.question.results.correct_answer,
+      question: action.question.question,
+      result: action.question.results.result,
+      time: action.question.answer.time
+    }
+
+    questions[action.question.difficulty].categories[action.question.category][action.question.qid] = obj
+
+  }
+
+  return{
+    ...currentState,
+    questions: questions
   }
 }
 
@@ -80,7 +136,8 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_INFO: return updateUserInfo(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
-    case actionTypes.UPDATE_USER_QUESTIONIDS: return updateUserQuestionIds(currentState, action)
+    case actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER: return updateUserQuestionIdsFromPlayController(currentState, action)
+    case actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER: return updateUserQuestionsFromPlayController(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     default: return currentState
   }
