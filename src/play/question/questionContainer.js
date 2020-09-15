@@ -59,7 +59,7 @@ class QuestionContainer extends React.Component{
       }) }, 500)
 
     } else {
-      // this.setState({ time: (this.state.time - 0.01).toFixed(2) })
+      this.setState({ time: (this.state.time - 0.01).toFixed(2) })
     }
   }
 
@@ -68,7 +68,9 @@ class QuestionContainer extends React.Component{
 
     this.props.onSetAnswer({
       choice: this.props.play.question.choices[event.target.value],
-      time: (10 - this.state.time).toFixed(2)
+      // time: (10 - this.state.time).toFixed(2)
+      time: parseFloat((10 - this.state.time).toFixed(2))
+
     })
 
     // this.props.onSetGameState('answered')

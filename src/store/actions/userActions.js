@@ -68,6 +68,13 @@ export const updateUserQuestionsFromPlayController = (question) => {
   }
 }
 
+export const updateUserQuestionTotalsFromPlayController = (obj) => {
+  return {
+    type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
+    totals: obj
+  }
+}
+
 
 export const deleteUser = (obj, props) => {
   return dispatch => {

@@ -153,6 +153,12 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'results' && !this.state.updatedUserQuestions){
         this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
+        this.props.onUpdateUserQuestionTotalsFromPlayController({
+          difficulty: this.props.play.question.difficulty,
+          category: this.props.play.question.category,
+          answer: this.props.play.answer,
+          result: this.props.play.results.result
+        })
         this.props.onUpdateUserQuestionsFromPlayController({
           qid: this.props.play.question.id,
           question: this.props.play.question.question,
@@ -235,7 +241,8 @@ const mapDispatchToProps = (dispatch) => {
     onSetComment: (obj) => dispatch(actions.setComment(obj)),
     onResetComment: (obj) => dispatch(actions.resetComment(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
-    onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj))
+    onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),
+    onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj))
   }
 }
 

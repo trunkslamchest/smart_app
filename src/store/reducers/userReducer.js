@@ -50,13 +50,8 @@ const updateUserQuestions = (currentState, action) => {
 const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
 
-  if(currentState.questions.ids){
-    qIds = [ ...currentState.questions.ids, action.ids ]
-  }
-
-  if(!currentState.questions.ids){
-    qIds = [ action.ids ]
-  }
+  if(currentState.questions.ids) qIds = [ ...currentState.questions.ids, action.ids ]
+  if(!currentState.questions.ids) qIds = [ action.ids ]
 
   return{
     ...currentState,
@@ -66,11 +61,9 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
 
 const updateUserQuestionsFromPlayController = (currentState, action) => {
   let questions = currentState.questions
-  let obj
 
   if(!questions[action.question.difficulty]) {
-
-    obj = {
+    questions[action.question.difficulty] = {
       'categories': {
         [action.question.category]: {
           [action.question.qid]: {
@@ -83,12 +76,8 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
         }
       }
     }
-
-    questions[action.question.difficulty] = obj
-
   } else if(!questions[action.question.difficulty].categories[action.question.category]) {
-
-    obj = {
+    questions[action.question.difficulty].categories[action.question.category] = {
       [action.question.qid]: {
         answer: action.question.answer.choice,
         correct_answer: action.question.results.correct_answer,
@@ -97,26 +86,36 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
         time: action.question.answer.time
       }
     }
-
-  questions[action.question.difficulty].categories[action.question.category] = obj
-
   } else {
-
-    obj = {
+    questions[action.question.difficulty].categories[action.question.category][action.question.qid] = {
       answer: action.question.answer.choice,
       correct_answer: action.question.results.correct_answer,
       question: action.question.question,
       result: action.question.results.result,
       time: action.question.answer.time
     }
-
-    questions[action.question.difficulty].categories[action.question.category][action.question.qid] = obj
-
   }
 
   return{
     ...currentState,
     questions: questions
+  }
+}
+
+const updateUserQuestionTotalsFromPlayController = (currentState, action) => {
+  let totals = currentState.questions.totals
+  // console.log(currentState, action.obj)
+
+  // if(totals.all.avg_time === 0) totals.all.avg_time = action.totals.answer.time
+  // else totals.all.avg_time = ((totals.all.avg_time + action.totals.answer.time) / 2.00) * 100
+
+  // totals.all = totals.all + 1
+
+  // console.log(totals)
+  // console.log((totals.all.avg_time + parseFloat(action.totals.answer.time)))
+  return {
+    ...currentState,
+
   }
 }
 
@@ -138,6 +137,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER: return updateUserQuestionIdsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER: return updateUserQuestionsFromPlayController(currentState, action)
+    case actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateUserQuestionTotalsFromPlayController(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     default: return currentState
   }
