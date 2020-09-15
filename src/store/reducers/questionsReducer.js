@@ -30,8 +30,6 @@ const clearQuestionTotals = (currentState, action) => {
 const updateQuestionTotalsFromPlayController = (currentState, action) => {
   let uTotals = currentState.totals
 
-  console.log(uTotals, action.result)
-
   if(action.result.result === 'Correct') {
     uTotals.difficulty[action.result.difficulty].correct += 1
     uTotals.category[action.result.category].correct += 1
@@ -52,7 +50,6 @@ const updateQuestionTotalsFromPlayController = (currentState, action) => {
     ...currentState,
     totals: uTotals
   }
-
 }
 
 const getQuickQuestion = (currentState, action) => {

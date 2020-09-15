@@ -125,7 +125,6 @@ const updateVotes = (obj) => {
 export const resetVote = () => {
   return {
     type: actionTypes.RESET_VOTE,
-    votes: null,
     voted: false
   }
 }
@@ -150,7 +149,6 @@ const updateComments = (obj) => {
 export const resetComment = () => {
   return {
     type: actionTypes.RESET_COMMENT,
-    comments: null,
     commented: false
   }
 }

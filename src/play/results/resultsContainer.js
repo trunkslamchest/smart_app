@@ -22,12 +22,12 @@ class ResultsContainer extends React.Component{
     showDifficulty: false,
     showVoteButtons: false,
     showCommentButton: false,
-    showCommentText:false,
-    showAllComments:false,
+    showCommentForm:false,
     showAnsweredButton: false,
     enableCommentButton: false,
     enableAnsweredButton: false,
-    voted: false
+    voted: false,
+    commented: false,
   }
 
   componentDidMount(){
@@ -94,7 +94,7 @@ class ResultsContainer extends React.Component{
   onClickCommentFunctions = () => {
     this.setState({
       showCommentButton: false,
-      showCommentText: true,
+      showCommentForm: true,
     })
   }
 
@@ -123,8 +123,8 @@ class ResultsContainer extends React.Component{
       this.props.onSetComment(commentObj)
 
       this.setState({
-        showCommentText: false,
-        showAllComments: true,
+        showCommentForm: false,
+        commented: true
       })
 
     } else alert("Please Enter A Comment")
@@ -135,12 +135,17 @@ class ResultsContainer extends React.Component{
     this.props.onResetQuestion()
     this.props.onResetAnswer()
     this.props.onResetResults()
+    if(this.props.play.voted) this.props.onResetVote()
+    if(this.props.play.commented) this.props.onResetComment()
   }
 
   render(){
 
     const blank = <></>
-    let allComments = <></>
+
+    let voteBlock = blank
+    let commentBlock = blank
+    let allComments = blank
 
     const header = <h3> { this.props.play.results.result }! </h3>
 
@@ -214,48 +219,102 @@ class ResultsContainer extends React.Component{
       </button>
     ]
 
-    const comment_button =
-      <button
-        key={"comment_button"}
-        name="comment_button"
-        value="comment_button"
-        className={ this.state.enableCommentButton ? "question_card_comment_button" : "question_card_comment_button_disabled" }
-        onClick={ this.state.enableCommentButton ? this.onClickCommentFunctions : this.onClickBlankFunctions }
-      >
-        Leave a Comment
-      </button>
-
-    const comment_form =
-      <form
-        name="add_comment_form"
-        interaction="submit"
-        className="question_card_comment_form"
-        onSubmit={ this.addComment }
-      >
-        <textarea
-          rows="5"
-          id="add_comment"
-          name="comment_text"
-          placeholder="Add A Comment..."
-          onChange={ this.onChangeComment }
-          value={ this.state.comment }
-        />
-        <div className="comment_button_container">
-          <input
-            type="submit"
-            className="question_card_comment_button"
-            value="Add Comment"
-          />
+    if(this.state.showVoteButtons){
+      voteBlock =
+      <div className="question_card_vote">
+        <div className="question_card_vote_header">
+          { voteHeader }
         </div>
-      </form>
+        <div className="question_card_vote_buttons_container">
+          { vote_for_question_buttons }
+        </div>
+      </div>
+    }
 
-    if(this.props.play.question.comments && this.state.showAllComments){
+    if(this.state.voted && !this.props.play.voted) voteBlock = <div className='question_card_vote_blank'></div>
+
+    if(this.props.play.voted){
+      voteBlock =
+      <div className="question_card_voted">
+        <div className="question_card_voted_header">
+          { voteSubHeader }
+        </div>
+
+        <div className={ "question_card_voted_totals" }>
+            <ul>
+              <li><h5>Up Votes</h5> { votePercents.good }</li>
+              <li><h5>No Votes</h5> { votePercents.neutral }</li>
+              <li><h5>Down Votes</h5> { votePercents.bad }</li>
+            </ul>
+        </div>
+      </div>
+    }
+
+    if(this.props.play.commented && this.state.commented){
       allComments = Object.entries(this.props.play.question.comments).map(comment =>
         <DisplayComments
           key={comment[0]}
           comment={comment[1]}
         />
       )
+    }
+
+    if(this.state.showCommentButton){
+      commentBlock =
+        <div className="question_card_comment">
+          <div className="question_card_comment_button_container">
+            <button
+              key={"comment_button"}
+              name="comment_button"
+              value="comment_button"
+              className={ this.state.enableCommentButton ? "question_card_comment_button" : "question_card_comment_button_disabled" }
+              onClick={ this.state.enableCommentButton ? this.onClickCommentFunctions : this.onClickBlankFunctions }
+            >
+              Leave a Comment
+            </button>
+          </div>
+        </div>
+    }
+
+    if(this.state.showCommentForm){
+      commentBlock =
+        <div className="question_card_comment">
+          <div className="question_card_comment_text">
+            <form
+              name="add_comment_form"
+              interaction="submit"
+              className="question_card_comment_form"
+              onSubmit={ this.addComment }
+            >
+              <textarea
+                rows="5"
+                id="add_comment"
+                name="comment_text"
+                placeholder="Add A Comment..."
+                onChange={ this.onChangeComment }
+                value={ this.state.comment }
+              />
+              <div className="comment_button_container">
+                <input
+                  type="submit"
+                  className="question_card_comment_button"
+                  value="Add Comment"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+    }
+
+    if(this.state.commented && !this.props.play.commented) commentBlock = <div className='question_card_comment_blank'></div>
+
+    if(this.props.play.commented){
+      commentBlock =
+        <div className="question_card_comment">
+          <div className="question_card_all_comments">
+            { allComments }
+          </div>
+        </div>
     }
 
     const nextQuestionButton =
@@ -280,44 +339,8 @@ class ResultsContainer extends React.Component{
           { this.state.showDifficulty ? difficulty : blank }
         </div>
 
-        <div className={ this.state.showVoteButtons ? "question_card_vote" : "blank" }>
-          <div className={ this.state.showVoteButtons ? "question_card_vote_header" : "blank" }>
-            { this.state.showVoteButtons ? voteHeader : blank }
-          </div>
-          <div className={ this.state.showVoteButtons ? "question_card_vote_buttons_container" : "blank" }>
-            { this.state.showVoteButtons ? vote_for_question_buttons : blank }
-          </div>
-        </div>
-
-        <div className={ this.state.voted ? "question_card_voted" : "blank" }>
-          <div className={ this.state.voted ? "question_card_voted_header" : "blank" }>
-            { this.state.voted ? voteSubHeader : blank }
-          </div>
-
-          <div className={ this.state.voted ? "question_card_voted_totals" : "blank" }>
-            { this.state.voted && this.props.play.question.votes ?
-              <ul>
-                <li><h5>Up Votes</h5> { votePercents.good }</li>
-                <li><h5>No Votes</h5> { votePercents.neutral }</li>
-                <li><h5>Down Votes</h5> { votePercents.bad }</li>
-              </ul>
-            :
-              blank
-            }
-          </div>
-        </div>
-
-        <div className={ this.state.showCommentButton || this.state.showCommentText || this.state.showAllComments ? "question_card_comment": "blank"}>
-          <div className={ this.state.showCommentButton ? "question_card_comment_button_container": "blank"}>
-            { this.state.showCommentButton ? comment_button : blank }
-          </div>
-          <div className={ this.state.showCommentText ? "question_card_comment_text": "blank"}>
-            { this.state.showCommentText ? comment_form : blank }
-          </div>
-          <div className={ this.state.showAllComments ? "question_card_all_comments": "blank"}>
-            { this.state.showAllComments && this.props.play.question.comments ? allComments : blank }
-          </div>
-        </div>
+        { voteBlock }
+        { commentBlock }
 
         <div className={ this.state.showAnsweredButton ? "question_card_next_question_button_container": "blank"}>
           { this.state.showAnsweredButton ? nextQuestionButton : blank }

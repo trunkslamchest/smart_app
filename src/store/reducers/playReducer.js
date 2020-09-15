@@ -113,28 +113,30 @@ const resetResults = (currentState, action) => {
 const setVote = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, votes: action.votes, voted: action.voted }
+    question: { ...currentState.question, votes: action.votes },
+    voted: action.voted
   }
 }
 
 const resetVote = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, votes: action.votes, voted: action.voted }
+    voted: action.voted
   }
 }
 
 const setComment = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, comments: action.comments, commented: action.commented }
+    question: { ...currentState.question, comments: action.comments },
+    commented: action.commented
   }
 }
 
 const resetComment = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, comments: action.comments, commented: action.commented }
+    commented: action.commented
   }
 }
 
