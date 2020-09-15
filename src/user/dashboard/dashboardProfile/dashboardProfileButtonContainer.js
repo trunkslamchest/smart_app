@@ -23,9 +23,9 @@ const DashboardProfileButtonContainer = (props) => {
     <div className='dashboard_profile_buttons_container'>
       <DashboardProfileButton
         type='button'
-        id='delete_profile_button'
+        id='edit_profile_button'
         name='edit_profile_button'
-        onClick={onClickEdit}
+        onClick={ onClickEdit }
       >
         Edit Profile
       </DashboardProfileButton>
@@ -33,7 +33,7 @@ const DashboardProfileButtonContainer = (props) => {
         type='button'
         id='delete_profile_button'
         name='delete_profile_button'
-        onClick={onClickDelete}
+        onClick={ onClickDelete }
       >
         Delete Profile
       </DashboardProfileButton>

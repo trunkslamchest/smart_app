@@ -9,7 +9,7 @@ import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
 
-  let initMount, firstName, lastName, dobDay, dobMonth, dobYear, gender, joinDate
+  let firstName, lastName, dobDay, dobMonth, dobYear, gender, joinDate
 
   const formatDay = () => {
     const day = props.user.info.join_date.day, number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
@@ -28,16 +28,15 @@ const DashboardProfileContainer = (props) => {
     return months[month - 1]
   }
 
-  if(!!props.user.info){
-    firstName = props.user.info.first_name === "" ? 'missing' : firstName = props.user.info.first_name
-    lastName = props.user.info.last_name === "" ? 'missing' : lastName = props.user.info.last_name
-    dobDay = props.user.info.dob.day === "" ? 'missing' : props.user.info.dob.day
-    dobMonth = props.user.info.dob.month === "" ? 'missing' : props.user.info.dob.month
-    dobYear = props.user.info.dob.year === "" ? 'missing' : props.user.info.dob.year
-    gender = props.user.info.gender === "" ? 'missing' : props.user.info.gender
-    joinDate = `${formatMonth() } ${ formatDay() }, ${ props.user.info.join_date.year}`
+    firstName = props.user.info.first_name === "null" ? 'missing' : firstName = props.user.info.first_name
+    lastName = props.user.info.last_name === "null" ? 'missing' : lastName = props.user.info.last_name
+    dobDay = props.user.info.dob.day === "null" ? 'missing' : props.user.info.dob.day
+    dobMonth = props.user.info.dob.month === "null" ? 'missing' : props.user.info.dob.month
+    dobYear = props.user.info.dob.year === "null" ? 'missing' : props.user.info.dob.year
+    gender = props.user.info.gender === "null" ? 'missing' : props.user.info.gender
+    joinDate = `${formatMonth() } ${ formatDay() }, ${ props.user.info.join_date.year }`
 
-    initMount =
+  return(
     <div className='dashboard_profile_wrapper'>
       <div className='alt_header'>
         <h3>{props.user.info.user_name}</h3>
@@ -60,12 +59,10 @@ const DashboardProfileContainer = (props) => {
           <li>Join Date</li>
           <li>{ joinDate }</li>
         </ul>
-          <DashboardProfileButtonContainer history={props.history} />
+          <DashboardProfileButtonContainer history={ props.history } />
       </div>
     </div>
-  }
-
-  return(<>{ initMount }</>)
+  )
 }
 
 const mapStateToProps = (state) => {
