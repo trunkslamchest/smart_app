@@ -48,14 +48,9 @@ class QuestionContainer extends React.Component{
       this.setState({ time: (0.00).toFixed(2)})
       clearInterval(this.timerInterval)
 
-      this.props.onSetAnswer({
-        choice: 'outta_time',
-        time: (10.00).toFixed(2)
-      })
-
       this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({
         choice: 'outta_time',
-        time: (10.00).toFixed(2)
+        time: parseFloat((10.00).toFixed(2))
       }) }, 500)
 
     } else {
@@ -68,12 +63,9 @@ class QuestionContainer extends React.Component{
 
     this.props.onSetAnswer({
       choice: this.props.play.question.choices[event.target.value],
-      // time: (10 - this.state.time).toFixed(2)
       time: parseFloat((10 - this.state.time).toFixed(2))
-
     })
 
-    // this.props.onSetGameState('answered')
   }
 
   onClickBlankFunctions = () => {}

@@ -68,10 +68,10 @@ export const updateUserQuestionsFromPlayController = (question) => {
   }
 }
 
-export const updateUserQuestionTotalsFromPlayController = (obj) => {
+export const updateUserQuestionTotalsFromPlayController = (result) => {
   return {
     type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
-    totals: obj
+    result: result
   }
 }
 

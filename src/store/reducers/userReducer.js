@@ -60,10 +60,10 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
 }
 
 const updateUserQuestionsFromPlayController = (currentState, action) => {
-  let questions = currentState.questions
+  let uQuestions = { ...currentState.questions }
 
-  if(!questions[action.question.difficulty]) {
-    questions[action.question.difficulty] = {
+  if(!currentState.questions[action.question.difficulty]) {
+    uQuestions[action.question.difficulty] = {
       'categories': {
         [action.question.category]: {
           [action.question.qid]: {
@@ -76,8 +76,8 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
         }
       }
     }
-  } else if(!questions[action.question.difficulty].categories[action.question.category]) {
-    questions[action.question.difficulty].categories[action.question.category] = {
+  } else if(!currentState.questions[action.question.difficulty].categories[action.question.category]) {
+    uQuestions[action.question.difficulty].categories[action.question.category] = {
       [action.question.qid]: {
         answer: action.question.answer.choice,
         correct_answer: action.question.results.correct_answer,
@@ -87,7 +87,7 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
       }
     }
   } else {
-    questions[action.question.difficulty].categories[action.question.category][action.question.qid] = {
+    uQuestions[action.question.difficulty].categories[action.question.category][action.question.qid] = {
       answer: action.question.answer.choice,
       correct_answer: action.question.results.correct_answer,
       question: action.question.question,
@@ -98,24 +98,41 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
 
   return{
     ...currentState,
-    questions: questions
+    questions: uQuestions
   }
 }
 
 const updateUserQuestionTotalsFromPlayController = (currentState, action) => {
-  let totals = currentState.questions.totals
-  // console.log(currentState, action.obj)
+  let uTotals = { ...currentState.questions.totals }
 
-  // if(totals.all.avg_time === 0) totals.all.avg_time = action.totals.answer.time
-  // else totals.all.avg_time = ((totals.all.avg_time + action.totals.answer.time) / 2.00) * 100
+  if(uTotals.all.avg_time === 0) uTotals.all.avg_time = action.result.answer.time
+  else uTotals.all.avg_time = parseFloat(((uTotals.all.avg_time + action.result.answer.time) / 2.00).toFixed(2))
 
-  // totals.all = totals.all + 1
+  if(action.result.result === 'Correct') {
+    uTotals.difficulty[action.result.difficulty].correct += 1
+    uTotals.categories[action.result.category].correct += 1
+    uTotals.all.correct += 1
+  }
 
-  // console.log(totals)
-  // console.log((totals.all.avg_time + parseFloat(action.totals.answer.time)))
+  if(action.result.result === 'Incorrect') {
+    uTotals.difficulty[action.result.difficulty].incorrect += 1
+    uTotals.categories[action.result.category].incorrect += 1
+    uTotals.all.incorrect += 1
+  }
+
+  if(action.result.result === 'Outta Time') {
+    uTotals.difficulty[action.result.difficulty].outta_times += 1
+    uTotals.categories[action.result.category].outta_times += 1
+    uTotals.all.outta_times += 1
+  }
+
+  uTotals.difficulty[action.result.difficulty].answered += 1
+  uTotals.categories[action.result.category].answered += 1
+  uTotals.all.answered += 1
+
   return {
     ...currentState,
-
+    questions: { ...currentState.questions, totals: uTotals }
   }
 }
 

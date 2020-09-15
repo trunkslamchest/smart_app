@@ -43,6 +43,7 @@ export {
   getQuestionTotals,
   clearQuestionTotals,
   storeQuestionTotals,
+  updateQuestionTotalsFromPlayController,
   getQuickQuestion,
   getDiffQuestion,
   getCatQuestion

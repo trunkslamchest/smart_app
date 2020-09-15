@@ -17,7 +17,8 @@ import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 class PlayController extends React.Component {
 
   state = {
-    updatedUserQuestions: false
+    updatedUserQuestions: false,
+    updatedQuestionTotals: false
   }
 
   componentDidMount(){
@@ -40,11 +41,9 @@ class PlayController extends React.Component {
       if(this.props.play.gameState === 'init'){
         if (this.props.play.gameMode === 'quick_play') {
           let questionObj = { answeredIds: [] }
-          // if(this.props.user.questions) {
             if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
             this.props.onGetQuickQuestion(questionObj)
             this.props.onSetGameState('mount')
-          // }
         }
         if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
           this.props.history.push( routes[this.props.play.gameMode] + '/select' )
@@ -52,45 +51,16 @@ class PlayController extends React.Component {
         }
       }
 
-      // if(this.props.play.gameState === 'init'){
-      //   if (this.props.play.gameMode === 'quick_play') {
-      //     let questionObj = { answeredIds: [] }
-      //     if(this.props.user.questions) {
-      //       if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-      //       this.props.onGetQuickQuestion(questionObj)
-      //       this.props.onSetGameState('mount')
-      //     }
-      //   }
-      //   if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
-      //     this.props.history.push( routes[this.props.play.gameMode] + '/select' )
-      //     this.props.onSetGameState('selection')
-      //   }
-      // }
-
       if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
         let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
 
-        // if(this.props.user.questions) {
-          if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-          if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
-          if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
-          this.props.onSetGameState('mount')
-        // }
+        if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+        if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
+        if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
+        this.props.onSetGameState('mount')
       }
 
-      // if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
-      //   let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
-
-      //   if(this.props.user.questions) {
-      //     if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-      //     if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
-      //     if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
-      //     this.props.onSetGameState('mount')
-      //   }
-      // }
-
       if(this.props.play.gameState === 'mount' && this.props.play.question){
-        if(!!this.state.updatedUserQuestions) this.setState({ updatedUserQuestions: false })
         if(this.props.play.question.completed){
           this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
           this.props.onSetGameState('completed')
@@ -98,27 +68,14 @@ class PlayController extends React.Component {
           this.props.history.push( routes[this.props.play.gameMode] + '/question' )
           this.props.onSetGameState('question')
         }
+        if(!!this.state.updatedUserQuestions) this.setState({ updatedUserQuestions: false })
+        if(!!this.state.updatedQuestionTotals) this.setState({ updatedQuestionTotals: false })
       }
-
-      // if(this.props.play.gameState === 'mount' && this.props.play.question){
-      //   if(this.props.play.question.completed){
-      //     this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-      //     this.props.onSetGameState('completed')
-      //   } else {
-      //     this.props.history.push( routes[this.props.play.gameMode] + '/question' )
-      //     this.props.onSetGameState('question')
-      //   }
-      // }
 
       if(this.props.play.gameState === 'question' && this.props.play.question.completed){
         this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
         this.props.onSetGameState('completed')
       }
-
-      // if(this.props.play.gameState === 'question' && this.props.play.question.completed){
-      //   this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-      //   this.props.onSetGameState('completed')
-      // }
 
       if(this.props.play.gameState === 'question' && this.props.play.answer){
         this.props.onSetGameState('answered')
@@ -134,17 +91,6 @@ class PlayController extends React.Component {
           time: this.props.play.answer.time
         })
       }
-
-      // if(this.props.play.gameState === 'answered' && !this.props.play.results){
-      //   this.props.onGetResults({
-      //     uid: localStorage.id,
-      //     qid: this.props.play.question.id,
-      //     difficulty: this.props.play.question.difficulty,
-      //     category: this.props.play.question.category,
-      //     answer: this.props.play.answer.choice,
-      //     time: this.props.play.answer.time
-      //   })
-      // }
 
       if(this.props.play.gameState === 'answered' && this.props.play.question.answers){
         this.props.history.push( routes[this.props.play.gameMode] + '/results' )
@@ -168,6 +114,15 @@ class PlayController extends React.Component {
           results: this.props.play.results
         })
         this.setState({ updatedUserQuestions: true })
+      }
+
+      if(this.props.play.gameState === 'results' && !this.state.updatedQuestionTotals){
+        this.props.onUpdateQuestionTotalsFromPlayController({
+          difficulty: this.props.play.question.difficulty,
+          category: this.props.play.question.category,
+          result: this.props.play.results.result
+        })
+        this.setState({ updatedQuestionTotals: true })
       }
 
     }
@@ -242,7 +197,8 @@ const mapDispatchToProps = (dispatch) => {
     onResetComment: (obj) => dispatch(actions.resetComment(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
     onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),
-    onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj))
+    onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
+    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj))
   }
 }
 

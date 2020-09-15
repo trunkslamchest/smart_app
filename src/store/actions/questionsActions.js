@@ -31,6 +31,13 @@ export const clearQuestionTotals = () => {
   }
 }
 
+export const updateQuestionTotalsFromPlayController = (result) => {
+  return {
+    type: actionTypes.UPDATE_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
+    result: result
+  }
+}
+
 
 export const getQuickQuestion = (obj) => {
   // console.log(obj)

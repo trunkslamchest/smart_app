@@ -39,7 +39,6 @@ const updateQuestion = (currentState, action) => {
   }
 }
 
-
 const resetQuestion = (currentState, action) => {
   return {
     ...currentState,
