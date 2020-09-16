@@ -17,9 +17,12 @@ const authStart = (currentState, action) => {
   return {
     ...currentState,
     authType: action.authType,
+    cert: action.cert,
     error: action.error,
+    fail: action.false,
     loading: action.loading,
-    start: action.start
+    start: action.start,
+    valid: action.valid
   }
 }
 
@@ -94,9 +97,10 @@ const authDelete = (currentState, action) => {
   return {
     ...currentState,
     // error: action.error,
-    id: null,
-    refreshToken: null,
-    token: null
+    // id: null,
+    // refreshToken: null,
+    // token: null
+    authType: action.authType
   }
 }
 
@@ -123,11 +127,11 @@ const authClearState = (currentState, action) => {
   return {
     ...currentState,
     authType: action.authType,
+    cert: action.cert,
     fail: action.fail,
     loading: action.loading,
     start: action.start,
     success: action.success,
-    cert: action.cert,
     valid: action.valid
   }
 }

@@ -11,10 +11,12 @@ import { routes } from '../../utility/paths'
 class AuthController extends React.Component {
 
   state = {
+    authCert: false,
     authValid: false,
-    initUser: false,
-    initQuestions: false,
-    certAuth: false,
+    initAuthQuestions: false,
+    initAuthStart: false,
+    initAuthUser: false,
+    initAuthDelete: false,
     initAuthLogOut: false,
   }
 
@@ -24,46 +26,69 @@ class AuthController extends React.Component {
 
   componentDidUpdate(){
 
-    if(this.props.auth.success && !this.state.initUser && !this.state.authValid){
-      this.props.onAuthUser()
-      this.setState({ initUser: true })
+    if(this.props.auth.start && !this.state.initAuthStart){
+      this.setState({
+        authCert: false,
+        authValid: false,
+        initAuthQuestions: false,
+        initAuthStart: true,
+        initAuthUser: false,
+        initAuthDelete: false,
+        initAuthLogOut: false,
+      })
     }
 
-    if(this.props.user.info && this.props.user.questions && !this.state.initQuestions && !this.state.authValid){
+    if(this.props.auth.success && this.state.initAuthStart && !this.state.authValid){
+      if(!this.state.initAuthDelete && this.props.auth.authType === 'deleteProfile') { this.setState({ initAuthDelete: true, initAuthStart: false }) }
+      if(!this.state.initAuthUser && this.props.auth.authType !== 'deleteProfile') { this.setState({ initAuthUser: true, initAuthStart: false }) }
+    }
+
+    if(this.state.initAuthDelete){
+        this.props.onAuthDelete()
+        this.setState({ initAuthDelete: false })
+    }
+
+    if(this.state.initAuthUser){
+        this.props.onAuthUser()
+        this.setState({ initAuthUser: false, initAuthQuestions: true })
+    }
+
+    if(this.props.user.info && this.props.user.questions && this.state.initAuthQuestions && !this.state.authValid){
       this.props.onGetQuestionTotals()
-      this.setState({ initQuestions: true })
+      this.setState({ initAuthQuestions: false, initAuthUser: false })
     }
 
-    if(this.props.questions.totals && !this.state.certAuth && !this.state.authValid){
+    if((this.props.auth.authType !== 'deleteProfile' && this.props.questions.totals) && !this.state.initAuthDelete && !this.state.initAuthQuestions && !this.state.authCert && !this.state.authValid){
       this.props.onAuthCert(true)
-      this.setState({ certAuth: true })
+      this.setState({ authCert: true })
     }
 
-    if(this.props.auth.cert && this.props.auth.authType !== 'refresh' && !this.state.authValid){
-      this.props.onAuthClearState()
-      this.resetLocalAuthState()
-      this.props.onAuthValid(true)
-      this.setState({ authValid: true })
-      this.props.history.push( routes.dashboard )
+    if(this.props.auth.cert && !this.state.authValid){
+      if(this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') {
+        this.props.onAuthClearState()
+        this.resetLocalAuthState()
+        this.props.onAuthValid(true)
+        this.setState({ authValid: true })
+        this.props.history.push( routes.dashboard )
+      }
+      if(this.props.auth.authType === 'refresh'){
+        this.props.onAuthClearState()
+        this.resetLocalAuthState()
+        this.props.onAuthValid(true)
+        this.setState({ authValid: true })
+      }
     }
 
     if(this.props.modal.login && this.props.auth.valid) this.props.onLogInModal(false)
     if(this.props.modal.signup && this.props.auth.valid) this.props.onSignUpModal(false)
 
-    if(this.props.auth.cert && this.props.auth.authType === 'refresh' && !this.state.authValid) {
-      this.props.onAuthClearState()
-      this.props.onAuthValid(true)
-      this.setState({ authValid: true })
-    }
-
-    if(this.props.auth.authType === 'logOut' && !this.state.initAuthLogOut) {
-      this.setState({ initAuthLogOut: true })
-    }
+    if(this.props.auth.authType === 'logOut' && !this.state.initAuthLogOut) { this.setState({ initAuthLogOut: true }) }
 
     if(this.state.initAuthLogOut) {
       this.props.onAuthLogOut()
       this.resetLocalAuthState()
-      this.props.onLogOutModal(false)
+      if(this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
+      if(this.props.modal.logout) this.props.onLogOutModal(false)
       this.props.history.push( routes.home )
     }
 
@@ -75,15 +100,23 @@ class AuthController extends React.Component {
 
   resetLocalAuthState = () => {
     this.setState({
+      authCert: false,
       authValid: false,
-      initUser: false,
-      initQuestions: false,
-      certAuth: false,
+      initAuthQuestions: false,
+      initAuthUser: false,
+      initAuthStart: false,
+      initAuthDelete: false,
       initAuthLogOut: false,
     })
   }
 
-  render(){ return( <> { this.props.children } </> )}
+  render(){
+    return(
+      <>
+        { this.props.children }
+      </>
+    )
+  }
 }
 
 const mapStateToProps = state => {
@@ -107,7 +140,7 @@ const mapDispatchToProps = dispatch => {
     // onclearAuthInfo: () => dispatch(actions.clearAuthInfo()),
     onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
     onAuthUser: (token, refreshToken, id, expires) => dispatch(actions.authUser(token, refreshToken, id, expires)),
-    onAuthDelete: (props) => dispatch(actions.authDelete(props)),
+    onAuthDelete: () => dispatch(actions.authDelete()),
     onAuthTimeout: (time) => dispatch(actions.authTimeout(time)),
     onAuthCert: (bool) => dispatch(actions.authCert(bool)),
     onAuthValid: (bool) => dispatch(actions.authValid(bool)),

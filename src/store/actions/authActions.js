@@ -1,12 +1,16 @@
 import * as actionTypes from './actionTypes'
 
-import { fetch, auth } from '../../utility/paths'
+import {
+  fetch,
+  auth
+} from '../../utility/paths'
 
 import {
   storeUserInfo,
   storeUserQuestions,
   clearUserInfo,
-  clearUserQuestions
+  clearUserQuestions,
+  deleteUser
 } from './userActions'
 
 import {
@@ -24,16 +28,20 @@ export const authStart = (authType, obj) => {
     if(authType === 'signUp') dispatch(authSignUp(authType, obj))
     if(authType === 'logIn') dispatch(authLogIn(authType, obj))
     if(authType === 'refresh') dispatch(authRefresh(authType, obj))
+    if(authType === 'deleteProfile') dispatch(authLogIn(authType, obj))
   }
 }
 
 const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
+    authType: authType,
+    cert: false,
     error: null,
-    start: true,
+    fail: false,
     loading: true,
-    authType: authType
+    start: true,
+    valid: false
   }
 }
 
@@ -50,18 +58,10 @@ export const authFail = (error) => {
 
 export const authSuccess = (authType, obj) => {
   return dispatch => {
-
     if(authType === 'signUp') {
       updateLocalStorage(obj)
       dispatch(createUser(obj))
-    }
-
-    if(authType === 'logIn') {
-      updateLocalStorage(obj)
-      dispatch(authComplete(obj))
-    }
-
-    if(authType === 'refresh') {
+    } else {
       updateLocalStorage(obj)
       dispatch(authComplete(obj))
     }
@@ -78,11 +78,8 @@ const updateLocalStorage = (obj) => {
 
 const createUser = (obj, props) => {
   return dispatch => {
-    let id = obj.id
-    let userObj = {}
-
+    let id = obj.id, userObj = {}
     userObj[id] = signUpObjTemplate(obj.email, obj.user)
-
     userFunctions('post', fetch.post.user, userObj)
     .then(res => {
       dispatch(authComplete(obj))
@@ -121,7 +118,6 @@ export const authSignUp = (authType, obj) => {
   return dispatch => {
     authFunctions('signUp', auth.signUp, obj)
     .then(authRes => {
-      // console.log(authRes)
       if(!!authRes.error) dispatch(authFail(authRes.error))
       else dispatch(authSuccess(authType, {
         email: authRes.email,
@@ -139,7 +135,6 @@ export const authLogIn = (authType, obj) => {
  return dispatch => {
     authFunctions('logIn', auth.signIn, obj)
     .then(authRes => {
-      // console.log(authRes)
       if(!!authRes.error) dispatch(authFail(authRes.error))
       else dispatch(authSuccess(authType, {
         email: authRes.email,
@@ -157,7 +152,6 @@ export const authRefresh = (authType, obj) => {
   return dispatch => {
     authFunctions('refreshToken', auth.refreshToken, obj)
     .then(authRes => {
-      // console.log(authRes)
       if(!!authRes.error) dispatch(authFail(authRes.error))
       else dispatch(authSuccess(authType, {
         expires: authRes.expires_in,
@@ -169,17 +163,58 @@ export const authRefresh = (authType, obj) => {
   }
 }
 
-export const authLogOut = () => {
+export const authDelete = (props) => {
+  return dispatch => {
+    const obj = {
+      localId: localStorage.id,
+      idToken: localStorage.token,
+      project: process.env.REACT_APP_FIREBASE_PROJECT_ID
+    }
 
+    authFunctions('delete', auth.delete, obj)
+    .then(authRes => {
+      console.log(authRes)
+      dispatch(deleteUser({uid: localStorage.id}, props))
+      dispatch(setAuthTypeOnDelete('logOut'))
+    })
+  }
+}
+
+const setAuthTypeOnDelete = (authType) => {
+  return {
+    type: actionTypes.AUTH_DELETE,
+    authType: authType
+  }
+}
+
+export const authLogOut = () => {
   localStorage.clear()
   localStorage.access = 'guest'
-
   return dispatch => {
     dispatch(clearUserInfo())
     dispatch(clearUserQuestions())
     dispatch(clearQuestionTotals())
     dispatch(authClearState())
     dispatch(authClearCreds())
+  }
+}
+
+export const authCert = (bool) => {
+  return {
+    type: actionTypes.AUTH_CERT,
+    fail: false,
+    loading: true,
+    start: false,
+    success: false,
+    cert: bool
+  }
+}
+
+export const authValid = (bool) => {
+  return {
+    type: actionTypes.AUTH_VALID,
+    loading: false,
+    valid: bool
   }
 }
 
@@ -205,60 +240,9 @@ export const authClearCreds = () => {
   }
 }
 
-export const authDelete = (props) => {
-
-  // let id = props.auth.id, token = props.auth.token, project = process.env.REACT_APP_FIREBASE_PROJECT_ID
-  // let token = props.auth.token,
-  // id = props.auth.id
-
-  let refreshObj = {
-    grant_type: "refresh_token",
-    refresh_token: localStorage.refreshToken
-  }
-
-  return dispatch => {
-    dispatch(authStart())
-    authFunctions('refreshToken', auth.refreshToken, refreshObj)
-    .then(authRes => {
-      if(authRes.user_id && authRes.id_token) {
-        const obj = {
-          localId: authRes.user_id,
-          idToken: authRes.id_token,
-          // targetProjectId: project
-        }
-        authFunctions('delete', auth.delete, obj)
-        .then(res => {
-          console.log(res)
-          // dispatch(deleteUser(obj, props))
-          // if(res) dispatch(authLogOut(props))
-        })
-      }
-    })
-  }
-}
-
 export const authTimeout = (expirationTime) => {
   return {
     type: actionTypes.AUTH_TIMEOUT,
     expirationTime: expirationTime
-  }
-}
-
-export const authCert = (bool) => {
-  return {
-    type: actionTypes.AUTH_CERT,
-    fail: false,
-    loading: true,
-    start: false,
-    success: false,
-    cert: bool
-  }
-}
-
-export const authValid = (bool) => {
-  return {
-    type: actionTypes.AUTH_VALID,
-    loading: false,
-    valid: bool
   }
 }

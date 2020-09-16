@@ -30,9 +30,7 @@ class LogIn extends React.Component {
     this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true})
   }
 
-  onCancel = (event) => {
-    this.props.onLogInModal(false)
-  }
+  onCancel = () => { this.props.onLogInModal(false) }
 
   render(){
     return (
@@ -41,11 +39,11 @@ class LogIn extends React.Component {
         >
         <div className='login_wrapper'>
           <LogInForm
+            email={this.state.email}
             errors={this.state.errors}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             onCancel={this.onCancel}
-            email={this.state.email}
             password={this.state.password}
           />
         </div>
