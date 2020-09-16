@@ -83,6 +83,14 @@ export const updateUserVotesFromPlayController = (id, vote) => {
   }
 }
 
+export const updateUserCommentsFromPlayController = (id, comment) => {
+  return {
+    type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER,
+    cid: id,
+    comment: comment
+  }
+}
+
 
 export const deleteUser = (obj, props) => {
   return dispatch => {

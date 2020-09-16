@@ -509,14 +509,14 @@ exports.crossUpdateUserComment = functions
 
 //         var question = snap.val()
 
-//         let calcTime = parseInt(req.body.time, 10),
+//         let calcTime = req.body.time,
 //             calcTotal = question.answers.total + 1,
 //             calcCorrect = question.answers.correct,
 //             calcIncorrect = question.answers.incorrect,
 //             calcOuttaTime = question.answers.outta_time,
 //             calcResult = ''
 
-//         if(question.answers.total !== 0) calcTime = (parseInt(req.body.time, 10) + question.answers.avg_time) / question.answers.total
+//         if(question.answers.total !== 0) calcTime = parseFloat(((req.body.time + question.answers.avg_time) / question.answers.total).toFixed(2))
 
 //         if(req.body.answer === question.correct) {
 //           calcCorrect = question.answers.correct + 1
@@ -593,6 +593,8 @@ exports.crossUpdateUserComment = functions
 //         voteObj.total = voteObj.total + 1
 //         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/votes').update(voteObj)
 
+//         voteObj['vote'] = req.body.vote
+
 //         let crossObj = {
 //           uid: req.body.uid,
 //           qid: req.body.qid,
@@ -657,6 +659,11 @@ exports.crossUpdateUserComment = functions
 //           comment: req.body.comment
 //         }
 
+//         commentObj = {
+//           cid: k,
+//           comment: req.body.comment
+//         }
+
 //         fetch(url.crossUpdateUserComment, {
 //           method: "POST",
 //           mode: 'cors',
@@ -671,7 +678,7 @@ exports.crossUpdateUserComment = functions
 //             console.log(r)
 //         })
 //       }
-//       res.json(commentsObj).status(200)
+//       res.json({commentsObj, commentObj }).status(200)
 //       // res.send('done')
 //     })
 // })

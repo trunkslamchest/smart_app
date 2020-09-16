@@ -132,9 +132,9 @@ class ResultsContainer extends React.Component{
 
   onClickNextQuestionFunctions = () => {
     this.props.onSetGameState('init')
-    this.props.onResetQuestion()
-    this.props.onResetAnswer()
-    this.props.onResetResults()
+    if(this.props.play.question) this.props.onResetQuestion()
+    if(this.props.play.answer) this.props.onResetAnswer()
+    if(this.props.play.results) this.props.onResetResults()
     if(this.props.play.voted) this.props.onResetVote()
     if(this.props.play.commented) this.props.onResetComment()
   }

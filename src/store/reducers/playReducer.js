@@ -129,6 +129,7 @@ const setComment = (currentState, action) => {
   return {
     ...currentState,
     question: { ...currentState.question, comments: action.comments },
+    comment: action.comment,
     commented: action.commented
   }
 }
@@ -136,6 +137,7 @@ const setComment = (currentState, action) => {
 const resetComment = (currentState, action) => {
   return {
     ...currentState,
+    comment: action.comment,
     commented: action.commented
   }
 }

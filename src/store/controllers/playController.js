@@ -143,14 +143,18 @@ class PlayController extends React.Component {
         this.setState({ updatedUserVotes: true })
       }
 
-      // if(this.props.play.gameState === 'results' && !this.state.updatedUserComments){
-      //   this.props.onUpdateUserCommentsFromPlayController({
-      //     difficulty: this.props.play.question.difficulty,
-      //     category: this.props.play.question.category,
-      //     result: this.props.play.results.result
-      //   })
-      //   this.setState({ updatedUserComments: true })
-      // }
+      if(this.props.play.gameState === 'results' && this.props.play.commented && !this.state.updatedUserComments){
+        this.props.onUpdateUserCommentsFromPlayController(this.props.play.comment.cid, {
+          answer: this.props.play.answer.choice,
+          category: this.props.play.question.category,
+          comment: this.props.play.comment.comment,
+          correct_answer: this.props.play.results.correct_answer,
+          question: this.props.play.question.question,
+          difficulty: this.props.play.question.difficulty,
+          result: this.props.play.results.result
+        })
+        this.setState({ updatedUserComments: true })
+      }
 
     }
 
@@ -164,6 +168,9 @@ class PlayController extends React.Component {
     if(this.props.play.question) this.props.onResetQuestion()
     if(this.props.play.answer) this.props.onResetAnswer()
     if(this.props.play.results) this.props.onResetResults()
+    if(this.props.play.voted) this.props.onResetVote()
+    if(this.props.play.commented) this.props.onResetComment()
+
   }
 
   render(){
@@ -227,7 +234,7 @@ const mapDispatchToProps = (dispatch) => {
     onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
     onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserVotesFromPlayController: (id, obj) => dispatch(actions.updateUserVotesFromPlayController(id, obj)),
-    // onUpdateUserCommentsFromPlayController: (obj) => dispatch(actions.updateUserCommentsFromPlayController(obj))
+    onUpdateUserCommentsFromPlayController: (id, obj) => dispatch(actions.updateUserCommentsFromPlayController(id, obj))
   }
 }
 

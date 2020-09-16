@@ -150,7 +150,25 @@ const updateUserVotesFromPlayController = (currentState, action) => {
 
   return {
     ...currentState,
-    votes: uVotes
+    questions: { ...currentState.questions, votes: uVotes }
+  }
+}
+
+const updateUserCommentsFromPlayController = (currentState, action) => {
+  let uComments, comment = { [action.cid]: action.comment }
+
+  if(currentState.questions.comments){
+    uComments = { ...currentState.questions.comments }
+    uComments[action.cid] = action.comment
+    uComments.total += 1
+  } else {
+    uComments = comment
+    uComments["total"] = 1
+  }
+
+  return {
+    ...currentState,
+    questions: { ...currentState.questions, comments: uComments }
   }
 }
 
@@ -174,7 +192,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER: return updateUserQuestionsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateUserQuestionTotalsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER: return updateUserVotesFromPlayController(currentState, action)
-
+    case actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER: return updateUserCommentsFromPlayController(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     default: return currentState
   }
