@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import QuestionCard from './questionCard/questionCard'
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 import './questionContainer.css'
@@ -20,9 +21,6 @@ class QuestionContainer extends React.Component{
   }
 
   componentDidMount(){
-    // this.props.onSetGameState('init')
-    // if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
-
     this.timerTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
     this.startTimer = setTimeout(() => { this.timerInterval = setInterval(this.timerFunctions, 10)}, 5000)
     this.questionTimeout = setTimeout(() => { this.setState({ showQuestion: true })}, 3000)
@@ -47,82 +45,32 @@ class QuestionContainer extends React.Component{
     if (this.state.time <= 0) {
       this.setState({ time: (0.00).toFixed(2)})
       clearInterval(this.timerInterval)
-
-      this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({
-        choice: 'outta_time',
-        time: parseFloat((10.00).toFixed(2))
-      }) }, 500)
-
-    } else {
-      this.setState({ time: (this.state.time - 0.01).toFixed(2) })
-    }
+      this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
+    } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
   }
 
   onClickFunctions = (event) => {
     clearInterval(this.timerInterval)
-
-    this.props.onSetAnswer({
-      choice: this.props.play.question.choices[event.target.value],
-      time: parseFloat((10 - this.state.time).toFixed(2))
-    })
-
+    this.props.onSetAnswer({ choice: this.props.play.question.choices[event.target.value], time: parseFloat((10 - this.state.time).toFixed(2)) })
   }
 
-  onClickBlankFunctions = () => {}
-
   render(){
-
-    const blank = <></>
-    const time = this.state.time
-    const category = this.props.play.question.category
-    const question = this.props.play.question.question
-
-    const choices = this.props.play.question.choices.map(choice => {
-        let i = this.props.play.question.choices.indexOf(choice)
-        return <button
-            key={`answer_button_${i}`}
-            value={ i }
-            className={this.state.enableQuestion ? "question_card_choices_button" : "question_card_choices_button_disabled" }
-            name="answer_button"
-            onClick={ this.state.enableQuestion ? this.onClickFunctions : this.onClickBlankFunctions }
-          >
-            { choice }
-          </button>
-        })
-
-    const questionSeq =
-      <div className="question_card">
-        <div className={ this.state.showTimer ? "question_card_timer" : "blank" } >
-          <h2>Time Left</h2>
-          <h1>{ this.state.showTimer ? time : blank }</h1>
-          <div className={ this.state.showHeader ? "question_card_header" : "blank" }>
-            In { this.state.showHeader ? category : blank }...
-          </div>
-          <div className={ this.state.showQuestion ? "question_card_text" : "blank" }>
-            { this.state.showQuestion ? question : blank }
-          </div>
-          <div className={ this.state.showChoices ? "question_card_choices" : "blank" }>
-            { this.state.showChoices ?
-              <>
-                <div className='div1'>
-                  { choices[0] }
-                  { choices[1] }
-                </div>
-                <div className='div2'>
-                  { choices[2] }
-                  { choices[3] }
-                </div>
-              </>
-            :
-              blank
-            }
-          </div>
-        </div>
-    </div>
-
     return(
       <>
-        { this.state.showTimer ? questionSeq : <LoadingSpinnerRoller /> }
+        {
+          this.state.showTimer ?
+            <QuestionCard
+              time={ this.state.time }
+              enableQuestion={ this.state.enableQuestion }
+              onClickFunctions={ this.onClickFunctions }
+              showTimer={ this.state.showTimer }
+              showHeader={ this.state.showHeader }
+              showQuestion={ this.state.showQuestion }
+              showChoices={ this.state.showChoices }
+            />
+          :
+            <LoadingSpinnerRoller />
+        }
       </>
     )
   }

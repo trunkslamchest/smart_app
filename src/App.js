@@ -24,7 +24,6 @@ import TermsOfService from './docs/termsOfService'
 import Privacy from './docs/privacy'
 import Disclaimer from './docs/disclaimer'
 
-import DevTest from './devTest/devTest'
 import E404 from './error/E404'
 
 import './App.css'
@@ -34,7 +33,6 @@ import './UI/loading.css'
 class App extends React.Component {
 
   componentDidMount(){
-    // console.log(!localStorage.token)
     if (!localStorage.token)  {
       localStorage.clear()
       localStorage.access = 'guest'
@@ -67,7 +65,6 @@ class App extends React.Component {
               <Route exact path={ routes.tos }><TermsOfService /></Route>
               <Route exact path={ routes.privacy }><Privacy /></Route>
               <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
-              <Route path={ routes.devTest }><DevTest /></Route>
               <Route><E404 /></Route>
             </Switch>
           </div>
@@ -92,10 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props)),
-    // onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
-    // onResetGameMode: () => dispatch(actions.resetGameMode()),
-    // onShowModal: (bool) => dispatch(actions.showModal(bool))
+    onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props))
   }
 }
 

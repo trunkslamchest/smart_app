@@ -154,9 +154,7 @@ class PlayController extends React.Component {
         })
         this.setState({ updatedUserComments: true })
       }
-
     }
-
   }
 
   componentWillUnmount(){

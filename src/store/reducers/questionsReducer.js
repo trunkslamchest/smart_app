@@ -82,7 +82,6 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.GET_QUICK_QUESTION: return getQuickQuestion(currentState, action)
     case actionTypes.GET_DIFF_QUESTION: return getDiffQuestion(currentState, action)
     case actionTypes.GET_CAT_QUESTION: return getCatQuestion(currentState, action)
-
     default: return currentState
   }
 }
