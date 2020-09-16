@@ -3,13 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/actionIndex'
 
-// import { routes } from '../../../utility/paths.js'
-
 import Modal from '../../../UI/modal/modal'
 
 import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer'
 import DashboardDeleteProfileForm from './dashboardDeleteProfileForm'
-// import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileFormButtonContainer'
 
 import './dashboardDeleteProfile.css'
 
@@ -31,7 +28,6 @@ class DashboardDeleteProfile extends React.Component {
 
     if(this.state.password !== '') this.props.onAuthStart('deleteProfile', {email: this.props.user.info.email, password: this.state.password, returnSecureToken: true})
 
-    // this.props.onDeleteProfileModal(false)
   }
 
   onSubmitCancel = () => {
@@ -77,10 +73,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDeleteProfileModal: (bool) => (dispatch(actions.deleteProfile(bool))),
-    // onDeleteUser: (obj, props) => (dispatch(actions.deleteUser(obj, props)))
-    onDeleteUser: (props) => (dispatch(actions.authDelete(props))),
     onAuthStart: (type, obj) => dispatch(actions.authStart(type, obj))
-
   }
 }
 

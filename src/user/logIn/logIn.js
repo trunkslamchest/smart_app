@@ -3,13 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-// import { routes } from '../../utility/paths.js'
-
 import Modal from '../../UI/modal/modal'
 import LogInForm from './logInForm'
-
-// import userFunctions from '../../utility/userFunctions'
-// import authFunctions from '../../utility/authFunctions'
 
 import './logIn.css'
 

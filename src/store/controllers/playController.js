@@ -74,7 +74,6 @@ class PlayController extends React.Component {
         if(!!this.state.updatedQuestionTotals) this.setState({ updatedQuestionTotals: false })
         if(!!this.state.updatedUserVotes) this.setState({ updatedUserVotes: false })
         if(!!this.state.updatedUserComments) this.setState({ updatedUserComments: false })
-
       }
 
       if(this.props.play.gameState === 'question' && this.props.play.question.completed){
@@ -109,7 +108,7 @@ class PlayController extends React.Component {
           category: this.props.play.question.category,
           answer: this.props.play.answer,
           result: this.props.play.results.result
-        })
+        }, this.props.questions.totals)
         this.props.onUpdateUserQuestionsFromPlayController({
           qid: this.props.play.question.id,
           question: this.props.play.question.question,
@@ -161,7 +160,6 @@ class PlayController extends React.Component {
   }
 
   componentWillUnmount(){
-    // localStorage.removeItem('gameMode')
     if(this.props.play.gameMode) this.props.onResetGameMode()
     if(this.props.play.gameState)  this.props.onResetGameState()
     if(this.props.play.gameQset) this.props.onResetGameQset()
@@ -170,7 +168,6 @@ class PlayController extends React.Component {
     if(this.props.play.results) this.props.onResetResults()
     if(this.props.play.voted) this.props.onResetVote()
     if(this.props.play.commented) this.props.onResetComment()
-
   }
 
   render(){
@@ -229,10 +226,10 @@ const mapDispatchToProps = (dispatch) => {
     onResetVote: (obj) => dispatch(actions.resetVote(obj)),
     onSetComment: (obj) => dispatch(actions.setComment(obj)),
     onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
     onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),
     onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
-    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserVotesFromPlayController: (id, obj) => dispatch(actions.updateUserVotesFromPlayController(id, obj)),
     onUpdateUserCommentsFromPlayController: (id, obj) => dispatch(actions.updateUserCommentsFromPlayController(id, obj))
   }

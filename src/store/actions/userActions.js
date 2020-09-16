@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes'
-// import { authLogOut } from './authActions'
 import { routes, fetch } from '../../utility/paths'
 import userFunctions from '../../utility/userFunctions'
 

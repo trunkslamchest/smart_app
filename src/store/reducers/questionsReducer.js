@@ -28,7 +28,7 @@ const clearQuestionTotals = (currentState, action) => {
 }
 
 const updateQuestionTotalsFromPlayController = (currentState, action) => {
-  let uTotals = currentState.totals
+  let uTotals = { ...currentState.totals }
 
   if(action.result.result === 'Correct') {
     uTotals.difficulty[action.result.difficulty].correct += 1

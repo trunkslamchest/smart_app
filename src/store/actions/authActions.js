@@ -173,7 +173,6 @@ export const authDelete = (props) => {
 
     authFunctions('delete', auth.delete, obj)
     .then(authRes => {
-      console.log(authRes)
       dispatch(deleteUser({uid: localStorage.id}, props))
       dispatch(setAuthTypeOnDelete('logOut'))
     })
