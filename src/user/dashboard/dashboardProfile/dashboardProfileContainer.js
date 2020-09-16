@@ -4,15 +4,23 @@ import { connect } from 'react-redux'
 
 import months from '../../../datasets/months'
 import DashboardProfileButtonContainer from './dashboardProfileButtonContainer'
+import DashboardProfileError from './dashboardProfileError'
 
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
 
-  let firstName, lastName, dobDay, dobMonth, dobYear, gender, joinDate
+  let userName = props.user.info.user_name, email = props.user.info.email
+  let firstName = '', lastName = '', nameErrors = [], distribNameErrors = <></>
+  let dobDay = '', dobMonth = '', dobYear = '', fulldob, dobErrors = [], distribDobErrors = <></>
+  let gender = '', genderErrors = [], distribGenderErrors = <></>
+  let joinDate
 
-  const formatDay = () => {
-    const day = props.user.info.join_date.day, number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
+  const formatDay = (day) => {
+
+    if(day === '') return ''
+
+    const number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
 
     if (day > 10 && day < 19) return day + number_ends[3]
     else {
@@ -23,37 +31,56 @@ const DashboardProfileContainer = (props) => {
     }
   }
 
-  const formatMonth = () => {
-    const month = props.user.info.join_date.month
-    return months[month - 1]
-  }
+  const formatMonth = () => { return months[props.user.info.join_date.month - 1] }
 
-    firstName = props.user.info.first_name === "null" ? 'missing' : firstName = props.user.info.first_name
-    lastName = props.user.info.last_name === "null" ? 'missing' : lastName = props.user.info.last_name
-    dobDay = props.user.info.dob.day === "null" ? 'missing' : props.user.info.dob.day
-    dobMonth = props.user.info.dob.month === "null" ? 'missing' : props.user.info.dob.month
-    dobYear = props.user.info.dob.year === "null" ? 'missing' : props.user.info.dob.year
-    gender = props.user.info.gender === "null" ? 'missing' : props.user.info.gender
-    joinDate = `${formatMonth() } ${ formatDay() }, ${ props.user.info.join_date.year }`
+  if(props.user.info.first_name === 'null') nameErrors.push('Update your profile to add your First Name')
+  else firstName = props.user.info.first_name
+
+  if(props.user.info.last_name === 'null') nameErrors.push('Update your profile to add your Last Name')
+  else lastName = props.user.info.last_name
+
+  if(props.user.info.dob.day === 0) dobErrors.push('Update your profile to add your Birth Day')
+  else dobDay = props.user.info.dob.day
+
+  if(props.user.info.dob.month === 'null') dobErrors.push('Update your profile to add your Birth Month')
+  else dobMonth = props.user.info.dob.month
+
+  if(props.user.info.dob.year === 0) dobErrors.push('Update your profile to add your Birth Year')
+  else dobYear = props.user.info.dob.year
+
+  if(props.user.info.dob.day === 0 && props.user.info.dob.year === 0) fulldob = `${ dobMonth } ${ formatDay(dobDay) } ${ dobYear }`
+  else fulldob = `${ dobMonth } ${ formatDay(dobDay) }, ${ dobYear }`
+
+  if(props.user.info.gender === 'null') genderErrors.push('Update your profile to add your Gender')
+  else gender = props.user.info.gender
+
+  joinDate = `${formatMonth() } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
+
+  if(nameErrors.length) { distribNameErrors = nameErrors.map(error => <DashboardProfileError key={nameErrors.indexOf(error)} error={error} /> )}
+  if(dobErrors.length) { distribDobErrors = dobErrors.map(error => <DashboardProfileError key={dobErrors.indexOf(error)} error={error} /> )}
+  if(genderErrors.length) { distribGenderErrors = genderErrors.map(error => <DashboardProfileError key={genderErrors.indexOf(error)} error={error} /> )}
 
   return(
     <div className='dashboard_profile_wrapper'>
       <div className='alt_header'>
-        <h3>{props.user.info.user_name}</h3>
-        <h5>{props.user.info.email}</h5>
+        <h3>{ userName }</h3>
+        <h5>{ email }</h5>
       </div>
       <div className='dashboard_profile_body'>
         <ul>
           <li>Name</li>
           <li>{ firstName } { lastName }</li>
+          { !!nameErrors.length && <ul>{ distribNameErrors }</ul> }
         </ul>
         <ul>
           <li>Date of Birth</li>
-          <li>{ dobDay } { dobMonth }, { dobYear }</li>
+          <li>{ fulldob }</li>
+          { !!dobErrors.length && <ul>{ distribDobErrors }</ul> }
         </ul>
         <ul>
           <li>Gender</li>
           <li>{ gender }</li>
+          { !!genderErrors.length && <ul>{ distribGenderErrors }</ul> }
         </ul>
         <ul>
           <li>Join Date</li>
