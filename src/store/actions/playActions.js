@@ -109,6 +109,7 @@ export const setVote = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionVote', fetch.patch.questionVote, obj)
     .then(res => {
+      console.log(res)
       dispatch(updateVotes(res))
     })
   }

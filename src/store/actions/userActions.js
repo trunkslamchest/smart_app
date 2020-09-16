@@ -75,6 +75,14 @@ export const updateUserQuestionTotalsFromPlayController = (result) => {
   }
 }
 
+export const updateUserVotesFromPlayController = (id, vote) => {
+  return {
+    type: actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER,
+    qid: id,
+    vote: vote
+  }
+}
+
 
 export const deleteUser = (obj, props) => {
   return dispatch => {

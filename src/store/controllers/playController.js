@@ -18,7 +18,9 @@ class PlayController extends React.Component {
 
   state = {
     updatedUserQuestions: false,
-    updatedQuestionTotals: false
+    updatedQuestionTotals: false,
+    updatedUserVotes: false,
+    updatedUserComments: false
   }
 
   componentDidMount(){
@@ -70,6 +72,9 @@ class PlayController extends React.Component {
         }
         if(!!this.state.updatedUserQuestions) this.setState({ updatedUserQuestions: false })
         if(!!this.state.updatedQuestionTotals) this.setState({ updatedQuestionTotals: false })
+        if(!!this.state.updatedUserVotes) this.setState({ updatedUserVotes: false })
+        if(!!this.state.updatedUserComments) this.setState({ updatedUserComments: false })
+
       }
 
       if(this.props.play.gameState === 'question' && this.props.play.question.completed){
@@ -124,6 +129,28 @@ class PlayController extends React.Component {
         })
         this.setState({ updatedQuestionTotals: true })
       }
+
+      if(this.props.play.gameState === 'results' && this.props.play.voted && !this.state.updatedUserVotes){
+        this.props.onUpdateUserVotesFromPlayController(this.props.play.question.id, {
+          answer: this.props.play.answer.choice,
+          correct_answer: this.props.play.results.correct_answer,
+          question: this.props.play.question.question,
+          difficulty: this.props.play.question.difficulty,
+          category: this.props.play.question.category,
+          result: this.props.play.results.result,
+          vote: this.props.play.question.votes.vote
+        })
+        this.setState({ updatedUserVotes: true })
+      }
+
+      // if(this.props.play.gameState === 'results' && !this.state.updatedUserComments){
+      //   this.props.onUpdateUserCommentsFromPlayController({
+      //     difficulty: this.props.play.question.difficulty,
+      //     category: this.props.play.question.category,
+      //     result: this.props.play.results.result
+      //   })
+      //   this.setState({ updatedUserComments: true })
+      // }
 
     }
 
@@ -198,7 +225,9 @@ const mapDispatchToProps = (dispatch) => {
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
     onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),
     onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
-    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj))
+    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
+    onUpdateUserVotesFromPlayController: (id, obj) => dispatch(actions.updateUserVotesFromPlayController(id, obj)),
+    // onUpdateUserCommentsFromPlayController: (obj) => dispatch(actions.updateUserCommentsFromPlayController(obj))
   }
 }
 
