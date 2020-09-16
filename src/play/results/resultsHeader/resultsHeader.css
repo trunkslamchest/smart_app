@@ -1,0 +1,14 @@
+.results_answer_header {
+  text-align: center;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  background-color: rgba(255,255,255, 1);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  animation: slide_in_from_bottom .25s ease-in-out 1;
+}
+
+.results_answer_header h3 {
+  font: 300 22pt 'Lato', sans-serif;
+  animation: fade_in .5s ease-in-out 1, blur_in .25s ease-in-out 1;
+}

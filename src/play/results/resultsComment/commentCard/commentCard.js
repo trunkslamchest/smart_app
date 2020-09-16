@@ -1,6 +1,8 @@
 import React from 'react'
 
-const DisplayComments = (props) => {
+import './commentCard.css'
+
+const commentCard = (props) => {
   return(
     <ul>
       <li>
@@ -11,4 +13,4 @@ const DisplayComments = (props) => {
   )
 }
 
-export default DisplayComments
+export default commentCard

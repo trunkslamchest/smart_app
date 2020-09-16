@@ -1,0 +1,73 @@
+
+.results_next_question_button {
+  min-width: 60%;
+  max-width: 500px;
+  align-items: flex-start;
+  color: #FFF;
+  background-image: linear-gradient(rgb(81, 88, 102, 1),  rgb(40, 44, 52, 1) );
+  background-color: buttonface;
+  border: 0px solid;
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font: 400 15px Roboto;
+  letter-spacing: normal;
+  margin: 5px 0px 5px 0px;
+  padding: 15px 30px 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+  -webkit-appearance: none;
+  animation: fade_in .2s ease-in-out 1, blur_in .2s ease-in-out 1;
+}
+
+.results_next_question_button:hover {
+  color: rgb(40, 44, 52, 1);
+  background-image: linear-gradient(rgb(245, 167, 66, 1),  rgb(212, 144, 57, 1) );
+  transition-property: color;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+  animation: scale_in .1s ease-in-out 1;
+}
+
+.results_next_question_button:active {
+  color: rgb(40, 44, 52, 1);
+  background-image: linear-gradient(rgb(245, 167, 66, 1),  rgb(212, 144, 57, 1) );
+  transition-property: color;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+  animation: scale_out .1s ease-in-out 1, blur_out .1s ease-in-out 1;
+}
+
+.results_next_question_button_disabled {
+  width: 60%;
+  min-width: 60%;
+  max-width: 60%;
+  -webkit-appearance: none;
+  text-rendering: auto;
+  color: #FFF;
+  background-image: linear-gradient(rgb(81, 88, 102, 1),  rgb(40, 44, 52, 1) );
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25), 0 0 5px 0 rgba(0, 0, 0, 0.25), 0 0 5px 0 rgba(0, 0, 0, 0.25);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  align-items: flex-start;
+  cursor: pointer;
+  background-color: buttonface;
+  box-sizing: border-box;
+  margin: 5px 0px 5px 0px;
+  font: 400 15px Roboto;
+  padding: 15px 30px 15px 30px;
+  border: 0px solid;
+  animation: fade_in .2s ease-in-out 1, blur_in .2s ease-in-out 1;
+}

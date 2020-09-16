@@ -3,11 +3,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-import DisplayComments from './displayComments'
-
-import up_vote from '../../assets/up_vote1.png'
-import no_vote from '../../assets/no_vote1.png'
-import down_vote from '../../assets/down_vote1.png'
+import ResultsHeader from './resultsHeader/resultsHeader'
+import ResultsAnswer from './resultsAnswer/resultsAnswer'
+import ResultsDifficulty from './resultsDifficulty/resultsDifficulty'
+import ResultsVote from './resultsVote/resultsVote'
+import ResultsComment from './resultsComment/resultsComment'
+import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
 
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
@@ -23,9 +24,9 @@ class ResultsContainer extends React.Component{
     showVoteButtons: false,
     showCommentButton: false,
     showCommentForm:false,
-    showAnsweredButton: false,
+    showNextQuestionButton: false,
     enableCommentButton: false,
-    enableAnsweredButton: false,
+    enableNextQuestionButton: false,
     voted: false,
     commented: false,
   }
@@ -35,13 +36,10 @@ class ResultsContainer extends React.Component{
     this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 2000)
     this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2500)
     this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 3000)
-    this.answeredButtonsTimeout = setTimeout(() => { this.setState({ showAnsweredButton: true })}, 3500)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 3500)
     this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 3750)
-    this.enableAnsweredButtonTimeout = setTimeout(() => { this.setState({ enableAnsweredButton: true })}, 4250)
-
-    if(this.props.play.results.result === "Incorrect") {
-      this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1500)
-    }
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 4250)
+    if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1500)
   }
 
   componentWillUnmount(){
@@ -50,28 +48,14 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.difficultyTimeout)
     clearTimeout(this.voteButtonsTimeout)
     clearTimeout(this.commentButtonTimeout)
-    clearTimeout(this.answeredButtonsTimeout)
+    clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableCommentButtonTimeout)
-    clearTimeout(this.enableAnsweredButtonTimeout)
-  }
-
-  calcVotes = () => {
-    if (this.props.play.question.votes.total === 0) return {
-      good: '0%',
-      neutral: '0%',
-      bad: '0%',
-    }
-    else return {
-      good: `${((this.props.play.question.votes.good / this.props.play.question.votes.total) * 100).toFixed(2)}%`,
-      neutral: `${((this.props.play.question.votes.neutral / this.props.play.question.votes.total) * 100).toFixed(2)}%`,
-      bad: `${((this.props.play.question.votes.bad / this.props.play.question.votes.total) * 100).toFixed(2)}%`,
-    }
+    clearTimeout(this.enableNextQuestionTimeout)
   }
 
   onClickVoteFunctions = (event) => {
     event.persist()
-
-    let voteObj = {
+    this.props.onSetVote({
       uid: localStorage.id,
       qid: this.props.play.question.id,
       question: this.props.play.question.question,
@@ -81,33 +65,19 @@ class ResultsContainer extends React.Component{
       correct_answer: this.props.play.results.correct_answer,
       result: this.props.play.results.result,
       vote: event.target.attributes.vote.value
-    }
-
-    this.props.onSetVote(voteObj)
-
-    this.setState({
-      voted: true,
-      showVoteButtons: false
     })
+    this.setState({ voted: true, showVoteButtons: false })
   }
 
-  onClickCommentFunctions = () => {
-    this.setState({
-      showCommentButton: false,
-      showCommentForm: true,
-    })
-  }
+  onClickCommentFunctions = () => { this.setState({ showCommentButton: false, showCommentForm: true }) }
 
-  onChangeComment = (event) => {
-    this.setState({ comment: event.target.value })
-  }
+  onChangeComment = (event) => { this.setState({ comment: event.target.value }) }
 
-  addComment = (event) => {
+  onAddComment = (event) => {
     event.persist()
     event.preventDefault()
-
     if (this.state.comment){
-      var commentObj = {
+      this.props.onSetComment({
         uid: localStorage.id,
         qid: this.props.play.question.id,
         user_name: this.props.user.info.user_name,
@@ -118,240 +88,51 @@ class ResultsContainer extends React.Component{
         correct_answer: this.props.play.results.correct_answer,
         result: this.props.play.results.result,
         comment: this.state.comment
-      }
-
-      this.props.onSetComment(commentObj)
-
-      this.setState({
-        showCommentForm: false,
-        commented: true
       })
-
+      this.setState({ showCommentForm: false, commented: true })
     } else alert("Please Enter A Comment")
-  }
-
-  onClickNextQuestionFunctions = () => {
-    this.props.onSetGameState('init')
-    if(this.props.play.question) this.props.onResetQuestion()
-    if(this.props.play.answer) this.props.onResetAnswer()
-    if(this.props.play.results) this.props.onResetResults()
-    if(this.props.play.voted) this.props.onResetVote()
-    if(this.props.play.commented) this.props.onResetComment()
   }
 
   render(){
 
-    const blank = <></>
+    let results = <LoadingSpinnerRoller />
 
-    let voteBlock = blank
-    let commentBlock = blank
-    let allComments = blank
-
-    const header = <h3> { this.props.play.results.result }! </h3>
-
-    const correct_answer_text =
-      <>
-        <h3>The correct answer was</h3>
-        <h4>{ this.props.play.results.correct_answer }</h4>
-      </>
-
-    const difficulty_text =
-      <>
-        <h3>Question Difficulty</h3>
-        <h4>{ this.props.play.question.difficulty }</h4>
-      </>
-
-    const correct_answer = this.state.showCorrectAnswer ? correct_answer_text : blank
-    const answer = this.props.play.results.result === 'Incorrect' ? correct_answer : blank
-    const difficulty = this.state.showDifficulty ? difficulty_text : blank
-
-    const voteHeader = <h3>Rate this question</h3>
-    const votePercents = this.calcVotes()
-    const voteSubHeader =
-      <>
-        <h3>Rating</h3>
-        <h4>Votes: { this.props.play.question.votes.total }</h4>
-      </>
-
-    const vote_for_question_buttons = [
-      <button
-        className="up_vote_button"
-        key={"up_vote_button"}
-        name="up_vote_button"
-        vote="good"
-        onClick={ this.onClickVoteFunctions }
-      >
-        <img
-          alt="up_vote"
-          name="up_vote_img"
-          src={ up_vote }
-          vote="good"
-        />
-      </button>,
-      <button
-        className="no_vote_button"
-        key={"no_vote_button"}
-        name="no_vote_button"
-        vote="neutral"
-        onClick={ this.onClickVoteFunctions }
-      >
-        <img
-          alt="no_vote"
-          name="no_vote_img"
-          src={ no_vote }
-          vote="neutral"
-        />
-      </button>,
-      <button
-        className="down_vote_button"
-        key={"down_vote_button"}
-        name="down_vote_button"
-        vote="bad"
-
-        onClick={ this.onClickVoteFunctions }
-      >
-        <img
-          alt="down_vote"
-          name="down_vote_img"
-          src={ down_vote }
-          vote="bad"
-        />
-      </button>
-    ]
-
-    if(this.state.showVoteButtons){
-      voteBlock =
-      <div className="question_card_vote">
-        <div className="question_card_vote_header">
-          { voteHeader }
-        </div>
-        <div className="question_card_vote_buttons_container">
-          { vote_for_question_buttons }
-        </div>
-      </div>
-    }
-
-    if(this.state.voted && !this.props.play.voted) voteBlock = <div className='question_card_vote_blank'></div>
-
-    if(this.props.play.voted){
-      voteBlock =
-      <div className="question_card_voted">
-        <div className="question_card_voted_header">
-          { voteSubHeader }
-        </div>
-
-        <div className={ "question_card_voted_totals" }>
-            <ul>
-              <li><h5>Up Votes</h5> { votePercents.good }</li>
-              <li><h5>No Votes</h5> { votePercents.neutral }</li>
-              <li><h5>Down Votes</h5> { votePercents.bad }</li>
-            </ul>
-        </div>
-      </div>
-    }
-
-    if(this.props.play.commented && this.state.commented){
-      allComments = Object.entries(this.props.play.question.comments).map(comment =>
-        <DisplayComments
-          key={comment[0]}
-          comment={comment[1]}
-        />
-      )
-    }
-
-    if(this.state.showCommentButton){
-      commentBlock =
-        <div className="question_card_comment">
-          <div className="question_card_comment_button_container">
-            <button
-              key={"comment_button"}
-              name="comment_button"
-              value="comment_button"
-              className={ this.state.enableCommentButton ? "question_card_comment_button" : "question_card_comment_button_disabled" }
-              onClick={ this.state.enableCommentButton ? this.onClickCommentFunctions : this.onClickBlankFunctions }
-            >
-              Leave a Comment
-            </button>
-          </div>
+    if(this.state.showHeader) {
+      results =
+        <div className="results_container">
+          <ResultsHeader
+            showHeader={ this.state.showHeader }
+          />
+          <ResultsAnswer
+            showCorrectAnswer={ this.state.showCorrectAnswer }
+          />
+          <ResultsDifficulty
+            showDifficulty={ this.state.showDifficulty }
+          />
+          <ResultsVote
+            showVoteButtons={ this.state.showVoteButtons }
+            voted={ this.state.voted }
+            onClickVoteFunctions={ this.onClickVoteFunctions }
+          />
+          <ResultsComment
+            comment={ this.state.comment }
+            commented={ this.state.commented }
+            showCommentButton={ this.state.showCommentButton }
+            showCommentForm={ this.state.showCommentForm }
+            enableCommentButton={ this.state.enableCommentButton }
+            onAddComment={ this.onAddComment }
+            onChangeComment={ this.onChangeComment }
+            onClickCommentFunctions={ this.onClickCommentFunctions }
+          />
+          <ResultsNextQuestion
+            showNextQuestionButton={ this.state.showNextQuestionButton }
+            enableNextQuestionButton={ this.state.enableNextQuestionButton }
+          />
         </div>
     }
-
-    if(this.state.showCommentForm){
-      commentBlock =
-        <div className="question_card_comment">
-          <div className="question_card_comment_text">
-            <form
-              name="add_comment_form"
-              interaction="submit"
-              className="question_card_comment_form"
-              onSubmit={ this.addComment }
-            >
-              <textarea
-                rows="5"
-                id="add_comment"
-                name="comment_text"
-                placeholder="Add A Comment..."
-                onChange={ this.onChangeComment }
-                value={ this.state.comment }
-              />
-              <div className="comment_button_container">
-                <input
-                  type="submit"
-                  className="question_card_comment_button"
-                  value="Add Comment"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-    }
-
-    if(this.state.commented && !this.props.play.commented) commentBlock = <div className='question_card_comment_blank'></div>
-
-    if(this.props.play.commented){
-      commentBlock =
-        <div className="question_card_comment">
-          <div className="question_card_all_comments">
-            { allComments }
-          </div>
-        </div>
-    }
-
-    const nextQuestionButton =
-      <button
-        key={"next_question_button"}
-        name="next_question_button"
-        className={ this.state.enableAnsweredButton ? "question_card_next_question_button" : "question_card_next_question_button_disabled" }
-        onClick={ this.state.enableAnsweredButton ? this.onClickNextQuestionFunctions : this.onClickBlankFunctions }
-      >
-        Next Question
-      </button>
-
-    const resultsSeq =
-      <div className="question_card">
-        <div className={ this.state.showHeader ? "question_card_answer_header" : "blank" }>
-          { this.state.showHeader ? header : blank }
-        </div>
-        <div className={ this.state.showCorrectAnswer ? "question_card_correct_answer" : "blank" }>
-          { this.state.showCorrectAnswer ? answer : blank }
-        </div>
-        <div className={ this.state.showDifficulty ? "question_card_difficulty" : "blank" }>
-          { this.state.showDifficulty ? difficulty : blank }
-        </div>
-
-        { voteBlock }
-        { commentBlock }
-
-        <div className={ this.state.showAnsweredButton ? "question_card_next_question_button_container": "blank"}>
-          { this.state.showAnsweredButton ? nextQuestionButton : blank }
-        </div>
-
-      </div>
 
     return(
-      <>
-        { this.state.showHeader ? resultsSeq : <LoadingSpinnerRoller /> }
-      </>
+      <>{ results }</>
     )
   }
 }

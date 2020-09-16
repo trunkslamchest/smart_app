@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/actionIndex'
 import difficulties from '../../datasets/difficulties'
 import categories from '../../datasets/categories'
 
-import SelectionButton from './selectionButton'
+import SelectionButton from './selectionButton/selectionButton'
 
 import './selectionContainer.css'
 

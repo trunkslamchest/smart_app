@@ -1,0 +1,23 @@
+.results_comment_text {
+  width: 100%;
+  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+}
+
+.results_comment_form {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+}
+
+.results_comment_form textarea {
+  min-width: 60%;
+  max-width: 500px;
+  margin: 0 auto 0 auto;
+  font: 300 12pt 'Lato', sans-serif;
+  border: 1px solid rgb(175, 175, 175, 1);
+  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+}

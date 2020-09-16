@@ -1,0 +1,94 @@
+.results_comment_blank {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+  background-color: rgba(255,255,255, 1);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  animation: slide_in_from_bottom .25s ease-in-out 1;
+  z-index: 0;
+}
+
+.results_comment {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+  background-color: rgba(255,255,255, 1);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  animation: slide_in_from_bottom .25s ease-in-out 1;
+  z-index: 0;
+}
+
+.results_comment > * {
+  z-index: 0;
+  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+}
+
+.results_all_comments {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: baseline;
+  margin: 0 auto 0 auto;
+}
+
+.results_all_comments > * {
+  z-index: 0;
+  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+}
+
+.results_all_comments ul {
+  background-color: #FFF;
+  list-style: none;
+  text-align: left;
+  min-width: 75%;
+  width: 75%;
+  max-width: 75%;
+  padding-bottom:10px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25), 0 0 2px 0 rgba(0, 0, 0, 0.25), 0 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.results_all_comments li {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.results_all_comments li h5 {
+  font: 400 9pt 'Lato', sans-serif;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-left:5px;
+}
+
+.results_all_comments li p{
+  font: 300 12pt 'Lato', sans-serif;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  z-index: -1;
+}
