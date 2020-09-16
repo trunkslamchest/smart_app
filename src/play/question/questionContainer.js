@@ -55,22 +55,24 @@ class QuestionContainer extends React.Component{
   }
 
   render(){
+
+    let questionWrapper = <LoadingSpinnerRoller />
+
+    if(this.state.showTimer){
+      questionWrapper = <QuestionCard
+        time={ this.state.time }
+        enableQuestion={ this.state.enableQuestion }
+        onClickFunctions={ this.onClickFunctions }
+        showTimer={ this.state.showTimer }
+        showHeader={ this.state.showHeader }
+        showQuestion={ this.state.showQuestion }
+        showChoices={ this.state.showChoices }
+      />
+    }
+
     return(
       <>
-        {
-          this.state.showTimer ?
-            <QuestionCard
-              time={ this.state.time }
-              enableQuestion={ this.state.enableQuestion }
-              onClickFunctions={ this.onClickFunctions }
-              showTimer={ this.state.showTimer }
-              showHeader={ this.state.showHeader }
-              showQuestion={ this.state.showQuestion }
-              showChoices={ this.state.showChoices }
-            />
-          :
-            <LoadingSpinnerRoller />
-        }
+        { questionWrapper }
       </>
     )
   }
