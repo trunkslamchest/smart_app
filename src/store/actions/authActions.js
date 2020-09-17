@@ -46,7 +46,7 @@ const initAuth = (authType) => {
 }
 
 export const authFail = (error) => {
-  // console.log(error)
+  console.log(error)
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,

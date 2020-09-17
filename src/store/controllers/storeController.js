@@ -24,7 +24,7 @@ class StoreController extends React.Component {
   }
 
   componentWillUnmount(){
-
+    this.props.showModal(false)
   }
 
   render(){

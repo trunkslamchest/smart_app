@@ -1,9 +1,6 @@
 import React from 'react'
 
-// import { Route } from 'react-router-dom'
-
 import { connect } from 'react-redux'
-// import * as actionTypes from '../actions/actionTypes'
 import * as actions from '../actions/actionIndex'
 
 import { routes } from '../../utility/paths'
@@ -13,40 +10,56 @@ class AuthController extends React.Component {
   state = {
     authCert: false,
     authValid: false,
-    initAuthQuestions: false,
+    authFail: false,
     initAuthStart: false,
+    initAuthFail: false,
     initAuthUser: false,
+    initAuthQuestions: false,
     initAuthDelete: false,
     initAuthLogOut: false,
   }
 
   componentDidMount(){
+    if (!localStorage.token) this.resetLocalStorage()
+    else this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken }, this.props)
+    this.resetLocalAuthState()
+  }
 
+  initAuthModule = () => {
+    this.setState({
+      authCert: false,
+      authValid: false,
+      authFail: false,
+      initAuthStart: true,
+      initAuthUser: false,
+      initAuthQuestions: false,
+      initAuthDelete: false,
+      initAuthLogOut: false,
+    })
+  }
+
+  deleteUserModule = () => {
+    this.setState({ initAuthDelete: true, initAuthStart: false })
+    this.props.onAuthDelete()
   }
 
   componentDidUpdate(){
 
-    if(this.props.auth.start && !this.state.initAuthStart){
-      this.setState({
-        authCert: false,
-        authValid: false,
-        initAuthQuestions: false,
-        initAuthStart: true,
-        initAuthUser: false,
-        initAuthDelete: false,
-        initAuthLogOut: false,
-      })
-    }
+    if(this.props.auth.start && !this.state.initAuthStart) this.initAuthModule()
+
+    if(this.props.auth.fail && !this.state.authFail && !this.state.authValid) this.setState({ authFail: true })
+
+    if(this.state.authFail && this.props.auth.error.message === 'USER_NOT_FOUND' && this.props.auth.authType === 'refresh') this.resetLocalStorage()
 
     if(this.props.auth.success && this.state.initAuthStart && !this.state.authValid){
-      if(!this.state.initAuthDelete && this.props.auth.authType === 'deleteProfile') { this.setState({ initAuthDelete: true, initAuthStart: false }) }
+      if(!this.state.initAuthDelete && this.props.auth.authType === 'deleteProfile') this.deleteUserModule()
       if(!this.state.initAuthUser && this.props.auth.authType !== 'deleteProfile') { this.setState({ initAuthUser: true, initAuthStart: false }) }
     }
 
-    if(this.state.initAuthDelete){
-        this.props.onAuthDelete()
-        this.setState({ initAuthDelete: false })
-    }
+    // if(this.state.initAuthDelete){
+    //     this.props.onAuthDelete()
+    //     this.setState({ initAuthDelete: false })
+    // }
 
     if(this.state.initAuthUser){
         this.props.onAuthUser()
@@ -98,19 +111,29 @@ class AuthController extends React.Component {
 
   }
 
+  resetLocalStorage = () => {
+    localStorage.clear()
+    localStorage.access = 'guest'
+  }
+
   resetLocalAuthState = () => {
     this.setState({
       authCert: false,
       authValid: false,
-      initAuthQuestions: false,
-      initAuthUser: false,
+      authFail: false,
       initAuthStart: false,
+      initAuthFail: false,
+      initAuthUser: false,
+      initAuthQuestions: false,
       initAuthDelete: false,
       initAuthLogOut: false,
     })
   }
 
   render(){
+
+    console.log(this.state)
+
     return(
       <>
         { this.props.children }
@@ -132,7 +155,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // AUTH
-    onAuthStart: () => dispatch(actions.authStart()),
+    onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props)),
     onAuthSuccess: (token, refreshToken, id, expires) => dispatch(actions.authSuccess(token, refreshToken, id, expires)),
     onAuthFail: (error) => dispatch(actions.authFail(error)),
     onAuthLogIn: (email, password, props) => dispatch(actions.authLogIn(email, password, props)),
