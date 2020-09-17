@@ -11,12 +11,15 @@ class AuthController extends React.Component {
     authCert: false,
     authValid: false,
     authFail: false,
+    authUser: false,
+    authQuestions: false,
+    authDeleteUser: false,
+    authLogOut: false,
     initAuthStart: false,
-    initAuthFail: false,
     initAuthUser: false,
     initAuthQuestions: false,
-    initAuthDelete: false,
-    initAuthLogOut: false,
+    initAuthDeleteUser: false,
+    initAuthLogOut: false
   }
 
   componentDidMount(){
@@ -25,90 +28,119 @@ class AuthController extends React.Component {
     this.resetLocalAuthState()
   }
 
-  initAuthModule = () => {
-    this.setState({
-      authCert: false,
-      authValid: false,
-      authFail: false,
-      initAuthStart: true,
-      initAuthUser: false,
-      initAuthQuestions: false,
-      initAuthDelete: false,
-      initAuthLogOut: false,
-    })
-  }
-
-  deleteUserModule = () => {
-    this.setState({ initAuthDelete: true, initAuthStart: false })
-    this.props.onAuthDelete()
-  }
-
   componentDidUpdate(){
 
     if(this.props.auth.start && !this.state.initAuthStart) this.initAuthModule()
 
-    if(this.props.auth.fail && !this.state.authFail && !this.state.authValid) this.setState({ authFail: true })
+    if(this.props.auth.success && this.state.initAuthStart && !this.state.initAuthUser && !this.state.authValid) this.authUserModule()
 
-    if(this.state.authFail && this.props.auth.error.message === 'USER_NOT_FOUND' && this.props.auth.authType === 'refresh') this.resetLocalStorage()
+    if(this.props.user.info && this.props.user.questions && !this.state.initAuthStart && !this.state.authUser && !this.state.authValid) this.setState({ initAuthUser: false, authUser: true })
 
-    if(this.props.auth.success && this.state.initAuthStart && !this.state.authValid){
-      if(!this.state.initAuthDelete && this.props.auth.authType === 'deleteProfile') this.deleteUserModule()
-      if(!this.state.initAuthUser && this.props.auth.authType !== 'deleteProfile') { this.setState({ initAuthUser: true, initAuthStart: false }) }
+    if(this.props.auth.fail && !this.state.authFail && !this.state.authValid) this.authFailModule()
+
+    if(this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp' || this.props.auth.authType === 'refresh' ) {
+      if(!this.state.initAuthStart && this.state.authUser && !this.state.initAuthQuestions && !this.state.authQuestions && !this.state.authCert && !this.state.authValid) this.authQuestionsModule()
     }
 
-    // if(this.state.initAuthDelete){
-    //     this.props.onAuthDelete()
-    //     this.setState({ initAuthDelete: false })
-    // }
+    if(this.props.questions.totals && !this.state.authQuestions && !this.state.authValid) this.setState({ initAuthQuestions: false, authQuestions: true })
 
-    if(this.state.initAuthUser){
-        this.props.onAuthUser()
-        this.setState({ initAuthUser: false, initAuthQuestions: true })
+    if(this.props.auth.authType === 'deleteProfile' && this.state.authUser) this.setState({ initAuthDeleteUser: true })
+
+    if(this.state.initAuthDeleteUser && !this.state.authDeleteUser) this.authDeleteUserModule()
+
+    if(this.state.authUser && !this.state.authCert) {
+      if(this.state.authQuestions || this.state.authDelete) this.authCertModule()
     }
 
-    if(this.props.user.info && this.props.user.questions && this.state.initAuthQuestions && !this.state.authValid){
-      this.props.onGetQuestionTotals()
-      this.setState({ initAuthQuestions: false, initAuthUser: false })
-    }
-
-    if((this.props.auth.authType !== 'deleteProfile' && this.props.questions.totals) && !this.state.initAuthDelete && !this.state.initAuthQuestions && !this.state.authCert && !this.state.authValid){
-      this.props.onAuthCert(true)
-      this.setState({ authCert: true })
-    }
-
-    if(this.props.auth.cert && !this.state.authValid){
-      if(this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') {
-        this.props.onAuthClearState()
-        this.resetLocalAuthState()
-        this.props.onAuthValid(true)
-        this.setState({ authValid: true })
-        this.props.history.push( routes.dashboard )
-      }
-      if(this.props.auth.authType === 'refresh'){
-        this.props.onAuthClearState()
-        this.resetLocalAuthState()
-        this.props.onAuthValid(true)
-        this.setState({ authValid: true })
-      }
-    }
+    if(this.props.auth.cert && !this.state.authValid) this.authValidModule()
 
     if(this.props.modal.login && this.props.auth.valid) this.props.onLogInModal(false)
+
     if(this.props.modal.signup && this.props.auth.valid) this.props.onSignUpModal(false)
 
     if(this.props.auth.authType === 'logOut' && !this.state.initAuthLogOut) { this.setState({ initAuthLogOut: true }) }
 
-    if(this.state.initAuthLogOut) {
-      this.props.onAuthLogOut()
-      this.resetLocalAuthState()
-      if(this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
-      if(this.props.modal.logout) this.props.onLogOutModal(false)
-      this.props.history.push( routes.home )
-    }
+    if(this.state.initAuthLogOut) this.authLogOutModule()
 
   }
 
   componentWillUnmount(){
 
+  }
+
+  initAuthModule = () => {
+    this.setState({
+      authCert: false,
+      authValid: false,
+      authFail: false,
+      authUser: false,
+      authQuestions: false,
+      authDeleteUser: false,
+      authLogOut: false,
+      initAuthStart: true,
+      initAuthUser: false,
+      initAuthQuestions: false,
+      initAuthDeleteUser: false,
+      initAuthLogOut: false
+    })
+  }
+
+  authFailModule = () => {
+    if(this.props.auth.error.message === 'USER_NOT_FOUND' && this.props.auth.authType === 'refresh') this.resetLocalStorage()
+    this.setState({ authFail: true })
+  }
+
+  authUserModule = () => {
+    this.props.onAuthUser()
+    this.setState({ initAuthStart: false, initAuthUser: true })
+  }
+
+  authQuestionsModule = () => {
+    this.props.onGetQuestionTotals()
+    this.setState({ initAuthQuestions: true })
+  }
+
+  authDeleteUserModule = () => {
+    this.props.onAuthDelete()
+    this.setState({ initAuthDeleteUser: false, authDelete: true })
+  }
+
+  authLogOutModule = () => {
+    this.props.onAuthLogOut()
+    this.resetLocalAuthState()
+    this.resetLocalStorage()
+    if(this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
+    if(this.props.modal.logout) this.props.onLogOutModal(false)
+    this.props.history.push( routes.home )
+  }
+
+  authCertModule = () => {
+    this.props.onAuthCert(true)
+    if(this.state.authQuestions) this.setState({ authUser: false, authQuestions: false })
+    if(this.state.authDelete) this.setState({ authUser: false, authDelete: false })
+    this.setState({ authCert: true })
+  }
+
+  authValidModule = () => {
+    if(this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') {
+      this.props.onAuthClearState()
+      this.resetLocalAuthState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+      this.props.history.push( routes.dashboard )
+    }
+    if(this.props.auth.authType === 'refresh'){
+      this.props.onAuthClearState()
+      this.resetLocalAuthState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+    }
+    if(this.props.auth.authType === 'deleteProfile'){
+      this.props.onAuthClearState()
+      this.resetLocalAuthState()
+      this.props.onAuthValid(true)
+      this.setState({ authValid: true })
+    }
   }
 
   resetLocalStorage = () => {
@@ -119,27 +151,20 @@ class AuthController extends React.Component {
   resetLocalAuthState = () => {
     this.setState({
       authCert: false,
-      authValid: false,
       authFail: false,
+      authUser: false,
+      authQuestions: false,
+      authDeleteUser: false,
+      authLogOut: false,
       initAuthStart: false,
-      initAuthFail: false,
       initAuthUser: false,
       initAuthQuestions: false,
-      initAuthDelete: false,
-      initAuthLogOut: false,
+      initAuthDeleteUser: false,
+      initAuthLogOut: false
     })
   }
 
-  render(){
-
-    console.log(this.state)
-
-    return(
-      <>
-        { this.props.children }
-      </>
-    )
-  }
+  render(){ return( <> { this.props.children } </> ) }
 }
 
 const mapStateToProps = state => {

@@ -24,136 +24,34 @@ class PlayController extends React.Component {
   }
 
   componentDidMount(){
-    if(this.props.auth.valid) {
-      if(!this.props.play.gameState) {
-        this.props.onSetGameState('init')
-        if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
-      }
-    }
+    if(this.props.auth.valid) this.initGameModule()
   }
 
   componentDidUpdate(){
-
     if(this.props.auth.valid) {
-      if(!this.props.play.gameState) {
-        this.props.onSetGameState('init')
-        if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
-      }
+      this.initGameModule()
 
-      if(this.props.play.gameState === 'init'){
-        if (this.props.play.gameMode === 'quick_play') {
-          let questionObj = { answeredIds: [] }
-            if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-            this.props.onGetQuickQuestion(questionObj)
-            this.props.onSetGameState('mount')
-        }
-        if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
-          this.props.history.push( routes[this.props.play.gameMode] + '/select' )
-          this.props.onSetGameState('selection')
-        }
-      }
+      if(this.props.play.gameState === 'init') this.setGameModeModule()
 
-      if(this.props.play.gameState === 'selection' && this.props.play.gameQset){
-        let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
+      if(this.props.play.gameState === 'selection' && this.props.play.gameQset) this.setGameQsetModule()
 
-        if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-        if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
-        if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
-        this.props.onSetGameState('mount')
-      }
+      if(this.props.play.gameState === 'mount' && this.props.play.question) this.setGameQuestionModule()
 
-      if(this.props.play.gameState === 'mount' && this.props.play.question){
-        if(this.props.play.question.completed){
-          this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-          this.props.onSetGameState('completed')
-        } else {
-          this.props.history.push( routes[this.props.play.gameMode] + '/question' )
-          this.props.onSetGameState('question')
-        }
-        if(!!this.state.updatedUserQuestions) this.setState({ updatedUserQuestions: false })
-        if(!!this.state.updatedQuestionTotals) this.setState({ updatedQuestionTotals: false })
-        if(!!this.state.updatedUserVotes) this.setState({ updatedUserVotes: false })
-        if(!!this.state.updatedUserComments) this.setState({ updatedUserComments: false })
-      }
+      if(this.props.play.gameState === 'question' && this.props.play.question.completed) this.setGameCompletedModule()
 
-      if(this.props.play.gameState === 'question' && this.props.play.question.completed){
-        this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-        this.props.onSetGameState('completed')
-      }
+      if(this.props.play.gameState === 'question' && this.props.play.answer) this.props.onSetGameState('answered')
 
-      if(this.props.play.gameState === 'question' && this.props.play.answer){
-        this.props.onSetGameState('answered')
-      }
+      if(this.props.play.gameState === 'answered' && !this.props.play.results) this.getResultsModule()
 
-      if(this.props.play.gameState === 'answered' && !this.props.play.results){
-        this.props.onGetResults({
-          uid: localStorage.id,
-          qid: this.props.play.question.id,
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-          answer: this.props.play.answer.choice,
-          time: this.props.play.answer.time
-        })
-      }
+      if(this.props.play.gameState === 'answered' && this.props.play.question.answers) this.setResultsModule()
 
-      if(this.props.play.gameState === 'answered' && this.props.play.question.answers){
-        this.props.history.push( routes[this.props.play.gameMode] + '/results' )
-        this.props.onSetGameState('results')
-      }
+      if(this.props.play.gameState === 'results' && !this.state.updatedQuestionTotals) this.updateQuestionTotalsModule()
 
-      if(this.props.play.gameState === 'results' && !this.state.updatedUserQuestions){
-        this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
-        this.props.onUpdateUserQuestionTotalsFromPlayController({
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-          answer: this.props.play.answer,
-          result: this.props.play.results.result
-        }, this.props.questions.totals)
-        this.props.onUpdateUserQuestionsFromPlayController({
-          qid: this.props.play.question.id,
-          question: this.props.play.question.question,
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-          answer: this.props.play.answer,
-          results: this.props.play.results
-        })
-        this.setState({ updatedUserQuestions: true })
-      }
+      if(this.props.play.gameState === 'results' && !this.state.updatedUserQuestions) this.updateUserQuestionsModule()
 
-      if(this.props.play.gameState === 'results' && !this.state.updatedQuestionTotals){
-        this.props.onUpdateQuestionTotalsFromPlayController({
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-          result: this.props.play.results.result
-        })
-        this.setState({ updatedQuestionTotals: true })
-      }
+      if(this.props.play.gameState === 'results' && this.props.play.voted && !this.state.updatedUserVotes) this.updateUserVotesModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.voted && !this.state.updatedUserVotes){
-        this.props.onUpdateUserVotesFromPlayController(this.props.play.question.id, {
-          answer: this.props.play.answer.choice,
-          correct_answer: this.props.play.results.correct_answer,
-          question: this.props.play.question.question,
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-          result: this.props.play.results.result,
-          vote: this.props.play.question.votes.vote
-        })
-        this.setState({ updatedUserVotes: true })
-      }
-
-      if(this.props.play.gameState === 'results' && this.props.play.commented && !this.state.updatedUserComments){
-        this.props.onUpdateUserCommentsFromPlayController(this.props.play.comment.cid, {
-          answer: this.props.play.answer.choice,
-          category: this.props.play.question.category,
-          comment: this.props.play.comment.comment,
-          correct_answer: this.props.play.results.correct_answer,
-          question: this.props.play.question.question,
-          difficulty: this.props.play.question.difficulty,
-          result: this.props.play.results.result
-        })
-        this.setState({ updatedUserComments: true })
-      }
+      if(this.props.play.gameState === 'results' && this.props.play.commented && !this.state.updatedUserComments) this.updateUserCommentsModule()
     }
   }
 
@@ -166,6 +64,121 @@ class PlayController extends React.Component {
     if(this.props.play.results) this.props.onResetResults()
     if(this.props.play.voted) this.props.onResetVote()
     if(this.props.play.commented) this.props.onResetComment()
+  }
+
+  initGameModule = () => {
+    if(!this.props.play.gameState) {
+      this.props.onSetGameState('init')
+      if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
+    }
+  }
+
+  setGameModeModule = () => {
+    if (this.props.play.gameMode === 'quick_play') {
+      let questionObj = { answeredIds: [] }
+      if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+      this.props.onGetQuickQuestion(questionObj)
+      this.props.onSetGameState('mount')
+    }
+    if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
+      this.props.history.push( routes[this.props.play.gameMode] + '/select' )
+      this.props.onSetGameState('selection')
+    }
+  }
+
+  setGameQsetModule = () => {
+    let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
+    if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+    if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
+    if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
+    this.props.onSetGameState('mount')
+  }
+
+  setGameQuestionModule = () => {
+    if(this.props.play.question.completed) this.setGameCompletedModule()
+    else {
+      this.props.history.push( routes[this.props.play.gameMode] + '/question' )
+      this.props.onSetGameState('question')
+    }
+    if(!!this.state.updatedUserQuestions) this.setState({ updatedUserQuestions: false })
+    if(!!this.state.updatedQuestionTotals) this.setState({ updatedQuestionTotals: false })
+    if(!!this.state.updatedUserVotes) this.setState({ updatedUserVotes: false })
+    if(!!this.state.updatedUserComments) this.setState({ updatedUserComments: false })
+  }
+
+  setGameCompletedModule = () => {
+    this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+    this.props.onSetGameState('completed')
+  }
+
+  getResultsModule = () => {
+    this.props.onGetResults({
+      uid: localStorage.id,
+      qid: this.props.play.question.id,
+      difficulty: this.props.play.question.difficulty,
+      category: this.props.play.question.category,
+      answer: this.props.play.answer.choice,
+      time: this.props.play.answer.time
+    })
+  }
+
+  setResultsModule = () => {
+    this.props.history.push( routes[this.props.play.gameMode] + '/results' )
+    this.props.onSetGameState('results')
+  }
+
+  updateUserQuestionsModule = () => {
+    this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
+    this.props.onUpdateUserQuestionTotalsFromPlayController({
+      difficulty: this.props.play.question.difficulty,
+      category: this.props.play.question.category,
+      answer: this.props.play.answer,
+      result: this.props.play.results.result
+    }, this.props.questions.totals)
+    this.props.onUpdateUserQuestionsFromPlayController({
+      qid: this.props.play.question.id,
+      question: this.props.play.question.question,
+      difficulty: this.props.play.question.difficulty,
+      category: this.props.play.question.category,
+      answer: this.props.play.answer,
+      results: this.props.play.results
+    })
+    this.setState({ updatedUserQuestions: true })
+  }
+
+  updateQuestionTotalsModule = () => {
+    this.props.onUpdateQuestionTotalsFromPlayController({
+      difficulty: this.props.play.question.difficulty,
+      category: this.props.play.question.category,
+      result: this.props.play.results.result
+    })
+    this.setState({ updatedQuestionTotals: true })
+  }
+
+  updateUserVotesModule = () => {
+    this.props.onUpdateUserVotesFromPlayController(this.props.play.question.id, {
+      answer: this.props.play.answer.choice,
+      correct_answer: this.props.play.results.correct_answer,
+      question: this.props.play.question.question,
+      difficulty: this.props.play.question.difficulty,
+      category: this.props.play.question.category,
+      result: this.props.play.results.result,
+      vote: this.props.play.question.votes.vote
+    })
+    this.setState({ updatedUserVotes: true })
+  }
+
+  updateUserCommentsModule = () => {
+    this.props.onUpdateUserCommentsFromPlayController(this.props.play.comment.cid, {
+      answer: this.props.play.answer.choice,
+      category: this.props.play.question.category,
+      comment: this.props.play.comment.comment,
+      correct_answer: this.props.play.results.correct_answer,
+      question: this.props.play.question.question,
+      difficulty: this.props.play.question.difficulty,
+      result: this.props.play.results.result
+    })
+    this.setState({ updatedUserComments: true })
   }
 
   render(){

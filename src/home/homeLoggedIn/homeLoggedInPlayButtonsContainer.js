@@ -20,6 +20,8 @@ const HomeLoggedInPlayButtonsContainer = (props) => {
     if(props.play.question) props.onResetQuestion()
     if(props.play.answer) props.onResetAnswer()
     if(props.play.results) props.onResetResults()
+    if(props.play.voted) props.onResetVote()
+    if(props.play.commented) props.onResetComment()
   }
 
   return(

@@ -2,9 +2,6 @@ import React from 'react'
 
 import { Route, Switch } from 'react-router-dom'
 
-// import { connect } from 'react-redux'
-// import * as actions from './store/actions/actionIndex'
-
 import { routes } from './utility/paths'
 
 import StoreController from './store/controllers/storeController'
@@ -60,24 +57,3 @@ const App = (props) => {
 }
 
 export default App
-
-
-// const mapStateToProps = (state) => {
-//   return{
-//     auth: state.auth,
-//     modal: state.modal,
-//     logIn: state.logIn,
-//     play: state.play,
-//     questions: state.questions,
-//     signUp: state.signUp,
-//     user: state.user
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props))
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App)
