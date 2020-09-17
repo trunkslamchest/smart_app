@@ -4,9 +4,9 @@ const signUpObjTemplate = (email, user_name) => {
   let obj = {
     info: {
       dob: {
-        day: 'null',
+        day: 0,
         month: 'null',
-        year: 'null'
+        year: 0
       },
       email: email,
       first_name: 'null',
