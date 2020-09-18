@@ -8,6 +8,7 @@
   border: 0px solid rgb(175, 175, 175, 1);
   max-height: 57px;
   min-width: 150px;
+  outline: -webkit-focus-ring-color auto 0px;
 }
 
 .header_button2:hover {

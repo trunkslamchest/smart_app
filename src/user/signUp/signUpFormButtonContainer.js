@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SignUpFormButton from './signUpFormButton'
+import SignUpFormButton from './signUpFormButton/signUpFormButton'
 
 const SignUpFormButtonContainer = (props) => {
   return(

@@ -22,6 +22,7 @@
   font: 400 15px Roboto;
   padding: 15px 30px 15px 30px;
   border: 0px solid;
+  outline: -webkit-focus-ring-color auto 0px;
 }
 
 .def_button:hover {

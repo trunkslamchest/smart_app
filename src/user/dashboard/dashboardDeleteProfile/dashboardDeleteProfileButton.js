@@ -8,10 +8,8 @@ const DashboardDeleteProfileButton = (props) => {
       type='button'
       id={props.id}
       name={props.name}
-      className={props.className}
+      className='delete_profile_button'
       onClick={props.onClick}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave}
     >
       {props.children}
     </button>

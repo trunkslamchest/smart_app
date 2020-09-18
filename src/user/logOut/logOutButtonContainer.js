@@ -1,6 +1,6 @@
 import React from 'react'
 
-import LogOutButton from './logOutButton'
+import LogOutButton from './logOutButton/logOutButton'
 
 export default class LogOutButtonContainer extends React.Component {
 
@@ -20,22 +20,18 @@ export default class LogOutButtonContainer extends React.Component {
         <LogOutButton
           id='log_out_form_confirm'
           name='log_out_form_confirm'
-          className='confirm_button'
+          className='log_out_button'
           onClick={this.props.onConfirm}
-          onMouseEnter={this.onHoverConfirm}
-          onMouseLeave={this.offHoverConfirm}
         >
-          {this.state.hoverConfirm ? '✔' : 'Yes'}
+          Yes
         </LogOutButton>
         <LogOutButton
           id='log_out_form_cancel'
           name='log_out_form_cancel'
-          className='cancel_button'
+          className='log_out_button'
           onClick={this.props.onCancel}
-          onMouseEnter={this.onHoverCancel}
-          onMouseLeave={this.offHoverCancel}
         >
-          {this.state.hoverCancel ? '✘' : 'No'}
+          No
         </LogOutButton>
       </div>
     )

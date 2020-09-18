@@ -3,9 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/actionIndex'
 
-import HeaderButton2 from '../headerButton2'
-
-import '../headerButton2.css'
+import HeaderButton2 from '../headerButton2/headerButton2'
 
 const GuestHeader = (props) => {
 

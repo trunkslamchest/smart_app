@@ -5,10 +5,9 @@ import { connect } from 'react-redux'
 import MyProfileMenu from '../../menus/myProfileMenu/myProfileMenu'
 import PlayMenu from '../../menus/playMenu/playMenu'
 
-import HeaderButton2 from '../headerButton2'
+import HeaderButton2 from '../headerButton2/headerButton2'
 
 import '../header.css'
-import '../headerButton2.css'
 
 class NormalHeader extends React.Component {
 

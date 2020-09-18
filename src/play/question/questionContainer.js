@@ -50,7 +50,8 @@ class QuestionContainer extends React.Component{
       this.setState({ time: (0.00).toFixed(2)})
       clearInterval(this.timerInterval)
       this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
-    } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
+    }
+    // } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
   }
 
   onClickFunctions = (event) => {

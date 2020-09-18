@@ -7,7 +7,7 @@ import { routes } from '../../utility/paths.js'
 import GuestHeader from './headers/guestHeader'
 import NormalHeader from './headers/normalHeader'
 
-import HeaderButton from './headerButton'
+import HeaderButton from './headerButton/headerButton'
 
 import './header.css'
 
