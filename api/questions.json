@@ -1,0 +1,4835 @@
+{
+  "Easy": {
+    "categories": {
+      "Anime": {
+        "-MGPR-PRZ_C-iBKBg9Ai": {
+          "type": "multiple",
+          "question": "The characters of Log Horizon are trapped in what game?",
+          "correct": "Elder Tale",
+          "choices": [
+            "Elder Tale",
+            "Sword Art Online",
+            "Tower Unite",
+            "Yggdrasil"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6J": {
+          "type": "multiple",
+          "question": "Who is the true moon princess in Sailor Moon?",
+          "correct": "Sailor Moon",
+          "choices": [
+            "Sailor Venus",
+            "Sailor Mars",
+            "Sailor Jupiter",
+            "Sailor Moon"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6T": {
+          "type": "multiple",
+          "question": "Who is the author of the manga series Astro Boy?",
+          "correct": "Osamu Tezuka",
+          "choices": [
+            "Mitsuteri Yokoyama",
+            "Takao Saito",
+            "Osamu Tezuka",
+            "Yoshihiro Tatsumi"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6g": {
+          "type": "multiple",
+          "question": "What is the last name of Edward and Alphonse in the Fullmetal Alchemist series.",
+          "correct": "Elric",
+          "choices": [
+            "Ellis",
+            "Elric",
+            "Eliek",
+            "Elwood"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Art": {
+        "-MGPR-PXl6sGRv_GGorr": {
+          "type": "multiple",
+          "question": "Which Van Gogh painting depicts the view from his asylum in Saint-Remy-de-Provence in southern France?",
+          "correct": "The Starry Night",
+          "choices": [
+            "Wheatfields with Crows",
+            "The Sower with Setting Sun",
+            "The Starry Night",
+            "The Church at Auvers"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorl": {
+          "type": "multiple",
+          "question": "Who painted the Mona Lisa?",
+          "correct": "Leonardo da Vinci",
+          "choices": [
+            "Pablo Picasso",
+            "Leonardo da Vinci",
+            "Claude Monet",
+            "Vincent van Gogh"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7E": {
+          "type": "multiple",
+          "question": "Who painted the Sistine Chapel?",
+          "correct": "Michelangelo",
+          "choices": [
+            "Michelangelo",
+            "Leonardo da Vinci",
+            "Pablo Picasso",
+            "Raphael"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorM": {
+          "type": "multiple",
+          "question": "Who painted Swans Reflecting Elephants, Sleep, and The Persistence of Memory?",
+          "correct": "Salvador Dali",
+          "choices": [
+            "Jackson Pollock",
+            "Vincent van Gogh",
+            "Edgar Degas",
+            "Salvador Dali"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Books": {
+        "-MGPR-PW_82IJBhRXe6r": {
+          "type": "multiple",
+          "question": "Who wrote the children's story The Little Match Girl?",
+          "correct": "Hans Christian Andersen",
+          "choices": [
+            "Charles Dickens",
+            "Hans Christian Andersen",
+            "Lewis Carroll",
+            "Oscar Wilde"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe79": {
+          "type": "multiple",
+          "question": "In the The Hobbit, who kills Smaug?",
+          "correct": "Bard",
+          "choices": [
+            "Bilbo Baggins",
+            "Gandalf the Grey",
+            "Frodo",
+            "Bard"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqo": {
+          "type": "multiple",
+          "question": "What is the name of the gang that Ponyboy is a part of in the book, The Outsiders?",
+          "correct": "The Greasers",
+          "choices": [
+            "The Greasers",
+            "The Outsiders",
+            "The Warriors",
+            "The Socs"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Celebrities": {
+        "-MGPR-PYWEFdg5Ew-18R": {
+          "type": "multiple",
+          "question": "What was the cause of Marilyn Monroes suicide?",
+          "correct": "Drug Overdose",
+          "choices": [
+            "Drug Overdose",
+            "Knife Attack",
+            "House Fire",
+            "Gunshot"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGos3": {
+          "type": "multiple",
+          "question": "Gwyneth Paltrow has a daughter named...?",
+          "correct": "Apple",
+          "choices": [
+            "Lily",
+            "French",
+            "Apple",
+            "Dakota"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7B": {
+          "type": "multiple",
+          "question": "Which celebrity announced his presidency in 2015?",
+          "correct": "Kanye West",
+          "choices": [
+            "Donald Trump",
+            "Leonardo DiCaprio",
+            "Kanye West",
+            "Miley Cyrus"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorf": {
+          "type": "multiple",
+          "question": "Neil Hamburger is played by which comedian?",
+          "correct": "Gregg Turkington",
+          "choices": [
+            "Nathan Fielder",
+            "Tim Heidecker",
+            "Gregg Turkington",
+            "Todd Glass"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Computers": {
+        "-MGPR-PSClR2D9ABR8uc": {
+          "type": "multiple",
+          "question": "What is the domain name for the country Tuvalu?",
+          "correct": ".tv",
+          "choices": [
+            ".tu",
+            ".tt",
+            ".tv",
+            ".tl"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZp": {
+          "type": "multiple",
+          "question": "Which coding bootcamp is rated #1 by CourseReport.com?",
+          "correct": "The Flatiron School",
+          "choices": [
+            "CodeSmith",
+            "General Assembly",
+            "App Academy",
+            "The Flatiron School"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe72": {
+          "type": "multiple",
+          "question": "What does CPU stand for?",
+          "correct": "Central Processing Unit",
+          "choices": [
+            "Central Process Unit",
+            "Central Processing Unit",
+            "Computer Personal Unit",
+            "Central Processor Unit"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqq": {
+          "type": "multiple",
+          "question": "When Gmail first launched, how much storage did it provide for your email?",
+          "correct": "1GB",
+          "choices": [
+            "512MB",
+            "1GB",
+            "5GB",
+            "Unlimited"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Film": {
+        "-MGPR-PSClR2D9ABR8ud": {
+          "type": "multiple",
+          "question": "What breed of dog was Marley in the film Marley & Me?",
+          "correct": "Labrador Retriever",
+          "choices": [
+            "Golden Retriever",
+            "Labrador Retriever",
+            "Dalmatian",
+            "Shiba Inu"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PSClR2D9ABR8uf": {
+          "type": "multiple",
+          "question": "Which of the following movies was not based on a novel by Stephen King? ",
+          "correct": "The Thing",
+          "choices": [
+            "Carrie",
+            "Misery",
+            "The Green Mile",
+            "The Thing"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6W": {
+          "type": "multiple",
+          "question": "At the end of the 2001 film Rat Race, whose concert do the contestants crash?",
+          "correct": "Smash Mouth",
+          "choices": [
+            "Bowling for Soup",
+            "Smash Mouth",
+            "Sum 41",
+            "Linkin Park"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqn": {
+          "type": "multiple",
+          "question": "Who plays the character of Po in the Kung Fu Panda movies?",
+          "correct": "Jack Black",
+          "choices": [
+            "Jack Black",
+            "Mirana Jonnes",
+            "McConahey Ramses",
+            "Jim Petersson"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PYWEFdg5Ew-18V": {
+          "type": "multiple",
+          "question": "Who directed the Kill Bill movies?",
+          "correct": "Quentin Tarantino",
+          "choices": [
+            "Arnold Schwarzenegger",
+            "David Lean",
+            "Stanley Kubrick",
+            "Quentin Tarantino"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "General": {
+        "-MGPR-PVHEyIMLVz4IZn": {
+          "type": "multiple",
+          "question": "Which of the following is the IATA code for Manchester Airport?",
+          "correct": "MAN",
+          "choices": [
+            "MAN",
+            "EGLL",
+            "LHR",
+            "MAP"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZo": {
+          "type": "multiple",
+          "question": "Is Ali Trustable?",
+          "correct": "No",
+          "choices": [
+            "Yes",
+            "No",
+            "Maybe",
+            "Only if he has candy"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6C": {
+          "type": "multiple",
+          "question": "Which American president appears on a one dollar bill?",
+          "correct": "George Washington",
+          "choices": [
+            "Thomas Jefferson",
+            "Abraham Lincoln",
+            "George Washington",
+            "Benjamin Franklin"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6z": {
+          "type": "multiple",
+          "question": "Who is depicted on the US hundred dollar bill?",
+          "correct": "Benjamin Franklin",
+          "choices": [
+            "George Washington",
+            "Abraham Lincoln",
+            "Benjamin Franklin",
+            "Thomas Jefferson"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoql": {
+          "type": "multiple",
+          "question": "What is the first book of the Old Testament?",
+          "correct": "Genesis",
+          "choices": [
+            "Genesis",
+            "Exodus",
+            "Leviticus",
+            "Numbers"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqy": {
+          "type": "multiple",
+          "question": "What is on display in the Madame Tussaud's museum in London?",
+          "correct": "Wax sculptures",
+          "choices": [
+            "Designer clothing",
+            "Unreleased film reels",
+            "Vintage cars",
+            "Wax sculptures"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "History": {
+        "-MGPR-PVHEyIMLVz4IZl": {
+          "type": "multiple",
+          "question": "Which of the following was Brazil was a former colony under?",
+          "correct": "Portugal",
+          "choices": [
+            "Spain",
+            "The Netherlands",
+            "Portugal",
+            "France"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6U": {
+          "type": "multiple",
+          "question": "How was Socrates executed?",
+          "correct": "Poison",
+          "choices": [
+            "Decapitation",
+            "Firing squad",
+            "Crucifixion ",
+            "Poison"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6c": {
+          "type": "multiple",
+          "question": "Which modern country is known as The Graveyard of Empires?",
+          "correct": "Afghanistan",
+          "choices": [
+            "China",
+            "Afghanistan",
+            "Iraq",
+            "Russia"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Mathematics": {
+        "-MGPR-PXl6sGRv_GGori": {
+          "type": "multiple",
+          "question": "In Roman Numerals, what does XL equate to?",
+          "correct": "40",
+          "choices": [
+            "15",
+            "40",
+            "60",
+            "90"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGord": {
+          "type": "multiple",
+          "question": "What is the square root of 49?",
+          "correct": "7",
+          "choices": [
+            "4",
+            "7",
+            "9",
+            "12"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe73": {
+          "type": "multiple",
+          "question": "How many sides does a trapezium have?",
+          "correct": "4",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Music": {
+        "-MGPR-PVHEyIMLVz4IZO": {
+          "type": "multiple",
+          "question": "How many studio albums have the duo Daft Punk released?",
+          "correct": "4",
+          "choices": [
+            "1",
+            "4",
+            "5",
+            "2"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZU": {
+          "type": "multiple",
+          "question": "What is the stage name of English female rapper Mathangi Arulpragasam, who is known for the song Paper Planes?",
+          "correct": "M.I.A.",
+          "choices": [
+            "K.I.A.",
+            "C.I.A.",
+            "M.I.A.",
+            "A.I.A."
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe68": {
+          "type": "multiple",
+          "question": "Who is the frontman of the band 30 Seconds to Mars?",
+          "correct": "Jared Leto",
+          "choices": [
+            "Jared Leto",
+            "Gerard Way",
+            "Matthew Bellamy",
+            "Mike Shinoda"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Mythology": {
+        "-MGPR-PW_82IJBhRXe7K": {
+          "type": "multiple",
+          "question": "What mytological creatures have women's faces and vultures&#039; bodies?",
+          "correct": "Harpies",
+          "choices": [
+            "Mermaids",
+            "Nymph",
+            "Harpies",
+            "Lilith"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorB": {
+          "type": "multiple",
+          "question": "Who was the only god from Greece who did not get a name change in Rome?",
+          "correct": "Apollo",
+          "choices": [
+            "Apollo",
+            "Demeter",
+            "Zeus",
+            "Athena"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Nature": {
+        "-MGPR-PW_82IJBhRXe63": {
+          "type": "multiple",
+          "question": "What is the primary function of a Tree?",
+          "correct": "Provide Oxygen",
+          "choices": [
+            "Provide Shade",
+            "Provide Water",
+            "Provide Oxygen",
+            "Provide Fire"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6v": {
+          "type": "multiple",
+          "question": "How many bones are in the human body?",
+          "correct": "206",
+          "choices": [
+            "200",
+            "203",
+            "206",
+            "209"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Science": {
+        "-MGPR-PW_82IJBhRXe7L": {
+          "type": "multiple",
+          "question": "Who is the chemical element Curium named after?",
+          "correct": "Marie & Pierre Curie",
+          "choices": [
+            "The Curiosity Rover",
+            "Curious George",
+            "Marie & Pierre Curie",
+            "Stephen Curry"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor7": {
+          "type": "multiple",
+          "question": "What animal takes part in Schrodinger's most famous thought experiment?",
+          "correct": "Cat",
+          "choices": [
+            "Dog",
+            "Cat",
+            "Bat",
+            "Butterfly"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6s": {
+          "type": "multiple",
+          "question": "Which element has the highest melting point?",
+          "correct": "Carbon",
+          "choices": [
+            "Tungsten",
+            "Platinum",
+            "Carbon",
+            "Osmium"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Sports": {
+        "-MGPR-PXl6sGRv_GGor9": {
+          "type": "multiple",
+          "difficulty": "Easy",
+          "question": "Which country hosted the 2018 FIFA World Cup?",
+          "correct": "Russia",
+          "choices": [
+            "Germany",
+            "United States",
+            "Russia",
+            "Saudi Arabia"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe70": {
+          "type": "multiple",
+          "question": "Which country is hosting the 2022 FIFA World Cup?",
+          "correct": "Qatar",
+          "choices": [
+            "Qatar",
+            "Uganda",
+            "Vietnam",
+            "Bolivia"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqh": {
+          "type": "multiple",
+          "question": "In 2016, who won the Formula 1 World Constructor's Championship for the third time in a row?",
+          "correct": "Mercedes-AMG Petronas",
+          "choices": [
+            "Scuderia Ferrari",
+            "McLaren Honda",
+            "Red Bull Racing Renault",
+            "Mercedes-AMG Petronas"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Television": {
+        "-MGPR-PW_82IJBhRXe6A": {
+          "type": "multiple",
+          "question": "Who is the star of the AMC series Breaking Bad?",
+          "correct": "Walter White",
+          "choices": [
+            "Saul Goodman",
+            "Jesse Pinkman",
+            "Skyler White",
+            "Walter White"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6B": {
+          "type": "multiple",
+          "question": "In the original Star Trek TV series, what was Captain James T. Kirk's middle name?",
+          "correct": "Tiberius",
+          "choices": [
+            "Tiberius",
+            "Trevor",
+            "Travis",
+            "Tyrone"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6y": {
+          "type": "multiple",
+          "question": "What country is Cory In The House set in?",
+          "correct": "The United States of America",
+          "choices": [
+            "Canada",
+            "Venezuala",
+            "The United States of America",
+            "England"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorW": {
+          "type": "multiple",
+          "question": "On the NBC show Community, whose catch-phrase was Pop! Pop!?",
+          "correct": "Magnitude",
+          "choices": [
+            "Magnitude",
+            "Star Burns",
+            "Leonard",
+            "Senoir Chang"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorC": {
+          "type": "multiple",
+          "question": "What Nickelodeon game show featured a house on the set that the contestants would ransack to find hidden objects?",
+          "correct": "Finders Keepers",
+          "choices": [
+            "Double Dare",
+            "Nickelodeon Guts",
+            "Nick Arcade",
+            "Finders Keepers"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqj": {
+          "type": "multiple",
+          "question": "In Game of Thrones, what continent lies across the Narrow Sea from Westeros?",
+          "correct": "Essos",
+          "choices": [
+            "Easteros",
+            "Essos",
+            "Westereast",
+            "Esuntos"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Theatre": {
+        "-MGPR-PW_82IJBhRXe7E": {
+          "type": "multiple",
+          "question": "In which Shakespearean play will you find the suicide of Ophelia?",
+          "correct": "Hamlet",
+          "choices": [
+            "Macbeth",
+            "Othello",
+            "King Lear",
+            "Hamlet"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Vehicles": {
+        "-MGPR-PW_82IJBhRXe7-": {
+          "type": "multiple",
+          "question": "Jaguar Cars was previously owned by which car manfacturer?",
+          "correct": "Ford",
+          "choices": [
+            "Chrysler",
+            "General Motors",
+            "Fiat",
+            "Ford"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "k-MGPR-PXl6sGRv_GGor8ey": {
+          "type": "multiple",
+          "question": "Which Japanese company is the world's largest manufacturer of motorcycles?",
+          "correct": "Honda",
+          "choices": [
+            "Yamaha",
+            "Honda",
+            "Suzuki",
+            "Kawasaki"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor1": {
+          "type": "multiple",
+          "question": "Which animal features on the logo for Abarth, the motorsport division of Fiat?",
+          "correct": "Scorpion",
+          "choices": [
+            "Snake",
+            "Bull",
+            "Scorpion",
+            "Horse"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Video Games": {
+        "-MGPR-PVHEyIMLVz4IZN": {
+          "type": "multiple",
+          "question": "Who is Sonic's sidekick?",
+          "correct": "Tails",
+          "choices": [
+            "Shadow",
+            "Amy",
+            "Tails",
+            "Knuckles"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZY": {
+          "type": "multiple",
+          "question": "The Touhou Project series of games is often associated with which genre?",
+          "correct": "Shoot 'Em Up",
+          "choices": [
+            "Survivial",
+            "First Person Shooter",
+            "Shoot 'Em Up",
+            "Open World"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe64": {
+          "type": "multiple",
+          "question": "What is the main character of Metal Gear Solid 2?",
+          "correct": "Raiden",
+          "choices": [
+            "Raiden",
+            "Solidus Snake",
+            "Big Boss",
+            "Venom Snake"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe69": {
+          "type": "multiple",
+          "question": "Half-Life by Valve uses the GoldSrc game engine, which is a highly modified version of what engine?",
+          "correct": "Quake Engine",
+          "choices": [
+            "Doom Engine",
+            "id Engine",
+            "Source Engine",
+            "Quake Engine"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      }
+    }
+  },
+  "Medium": {
+    "categories": {
+      "Anime": {
+        "-MGPR-PSClR2D9ABR8ug": {
+          "type": "multiple",
+          "question": "Which studio animated Soul Eater?",
+          "correct": "Bones",
+          "choices": [
+            "Kyoto Animation",
+            "xebec",
+            "Bones",
+            "Production I.G"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZV": {
+          "type": "multiple",
+          "question": "The main protagonist of the fourth part of JoJo's Bizarre Adventure is which of the following?",
+          "correct": "Josuke Higashikata",
+          "choices": [
+            "Yoshikage kira",
+            "Koichi Hirose",
+            "Joey JoJo",
+            "Josuke Higashikata"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZm": {
+          "type": "multiple",
+          "question": "Which Japanese music group was formed to produce theme music for the anime Guilty Crown?",
+          "correct": "Egoist",
+          "choices": [
+            "Goose House",
+            "Egoist",
+            "Babymetal",
+            "Garnidelia"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6h": {
+          "type": "multiple",
+          "question": "In Shakugan no Shana, what was the Shana usually referred as?",
+          "correct": "Flame-Haired Burning-Eyed Hunter",
+          "choices": [
+            "Flame Haze",
+            "Flame-Haired Burning-Eyed Haze",
+            "Flame-Haired Burning-Eyed Hunter",
+            "Shana"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6j": {
+          "type": "multiple",
+          "question": "Which animation studio animated the 2016 anime Mob Psycho 100?",
+          "correct": "Bones",
+          "choices": [
+            "Bones",
+            "A-1 Pictures",
+            "Shaft",
+            "Madhouse"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6m": {
+          "type": "multiple",
+          "question": "Who voices Shou Suzuki in the English dub of Mob Psycho 100?",
+          "correct": "Casey Mongillo",
+          "choices": [
+            "Casey Mongillo",
+            "Ben Diskin",
+            "Chris Niosi",
+            "David Naughton"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6n": {
+          "type": "multiple",
+          "question": "What studio animated Ouran High School Host Club?",
+          "correct": "Bones",
+          "choices": [
+            "Production I.G",
+            "Kyoto Animation",
+            "Bones",
+            "xebec"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Art": {
+        "-MGPR-PSClR2D9ABR8uh": {
+          "type": "multiple",
+          "question": "Which artist's style was to use small different colored dots to create a picture?",
+          "correct": "Georges Seurat",
+          "choices": [
+            "Georges Seurat",
+            "Paul Cezanne",
+            "Vincent Van Gogh",
+            "Henri Rousseau"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe71": {
+          "type": "multiple",
+          "question": "Which one of these paintings is not by Caspar David Friedrich?",
+          "correct": "The Black Sea",
+          "choices": [
+            "The Black Sea",
+            "The Sea of Ice",
+            "Wanderer above the Sea of Fog",
+            "The Monk by the Sea"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorN": {
+          "type": "multiple",
+          "question": "Which of these are the name of a famous marker brand?",
+          "correct": "Copic",
+          "choices": [
+            "Dopix",
+            "Cofix",
+            "Marx",
+            "Copic"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor_": {
+          "type": "multiple",
+          "question": "Which time signature is commonly known as Cut Time?",
+          "correct": "2/2",
+          "choices": [
+            "2/2",
+            "4/4",
+            "3/4",
+            "6/8"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Books": {
+        "-MGPR-PSClR2D9ABR8un": {
+          "type": "multiple",
+          "question": "Who wrote the 1967 horror novel Rosemary's Baby?",
+          "correct": "Ira Levin",
+          "choices": [
+            "Ira Levin",
+            "Stephen King",
+            "Robert Bloch",
+            "Mary Shelley"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6p": {
+          "type": "multiple",
+          "question": "What position does Harry Potter play in Quidditch?",
+          "correct": "Seeker",
+          "choices": [
+            "Beater",
+            "Chaser",
+            "Keeper",
+            "Seeker"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Computers": {
+        "-MGPR-PW_82IJBhRXe7F": {
+          "type": "multiple",
+          "question": "What was the first Android version specifically optimized for tablets?",
+          "correct": "Honeycomb",
+          "choices": [
+            "Eclair",
+            "Froyo",
+            "Marshmellow",
+            "Honeycomb"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Celebrities": {
+        "-MGPR-PYWEFdg5Ew-18X": {
+          "type": "multiple",
+          "question": "Which of these people is NOT a part of the Internet comedy group Mega64?",
+          "correct": "Jon Jafari",
+          "choices": [
+            "Rocco Botte",
+            "Derrick Acosta",
+            "Jon Jafari",
+            "Shawn Chatfield"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7A": {
+          "type": "multiple",
+          "question": "What is generally considered to be William Shakespeare's birth date?",
+          "correct": "April 23rd, 1564",
+          "choices": [
+            "July 4th, 1409",
+            "September 29th, 1699",
+            "April 23rd, 1564",
+            "December 1st, 1750"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PYWEFdg5Ew-18S": {
+          "type": "multiple",
+          "question": "Where was Kanye West born?",
+          "correct": "Atlanta, Georgia",
+          "choices": [
+            "Chicago, Illinois",
+            "Atlanta, Georgia",
+            "Los Angeles, California",
+            "Detroit, Michigan"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorn": {
+          "type": "multiple",
+          "question": "Which TV chef wrote an autobiography titled Humble Pie?",
+          "correct": "Gordon Ramsay",
+          "choices": [
+            "Jamie Oliver",
+            "Ainsley Harriott",
+            "Gordon Ramsay",
+            "Antony Worrall Thompson"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Film": {
+        "-MGPR-PSClR2D9ABR8ui": {
+          "type": "multiple",
+          "question": "Which actor played the main character in the 1990 film Edward Scissorhands?",
+          "correct": "Johnny Depp",
+          "choices": [
+            "Clint Eastwood",
+            "Leonardo DiCaprio",
+            "Ben Stiller",
+            "Johnny Depp"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZW": {
+          "type": "multiple",
+          "question": "Which one of these films are shot entirely in one-take?",
+          "correct": "Russian Ark",
+          "choices": [
+            "Russian Ark",
+            "Good Will Hunting",
+            "Birdman",
+            "Schindler's List"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZk": {
+          "type": "multiple",
+          "question": "What character in the Winnie the Pooh films was added by Disney and does not appear in the original books?",
+          "correct": "Gopher",
+          "choices": [
+            "Tigger",
+            "Gopher",
+            "Heffalumps",
+            "Rabbit"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6O": {
+          "type": "multiple",
+          "question": "What is the correct phrase for the Latin saying Romanes Eunt Domus in Monty Python's Life of Brian?",
+          "correct": "Romani Ite Domum",
+          "choices": [
+            "Romans Go Home",
+            "Roxani Ite Domum",
+            "Tomate Ite Domum",
+            "Romani Ite Domum"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6b": {
+          "type": "multiple",
+          "question": "Who directed the movie Alien?",
+          "correct": "Ridley Scott",
+          "choices": [
+            "Ridley Scott",
+            "Christopher Nolan",
+            "Michael Bay",
+            "James Cameron"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "General": {
+        "-MGPR-PW_82IJBhRXe6R": {
+          "type": "multiple",
+          "question": "The board game Monopoly takes its street names from which real American city?",
+          "correct": "Atlantic City, New Jersey",
+          "choices": [
+            "Las Vegas, Nevada",
+            "Atlantic City, New Jersey",
+            "Duluth, Minnesota",
+            "Charleston, South Carolina"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6Y": {
+          "type": "multiple",
+          "question": "What was Mountain Dew's original slogan?",
+          "correct": "Yahoo! Mountain Dew...It'll tickle your innards!",
+          "choices": [
+            "Give Me A Dew",
+            "Do The Dew",
+            "Yahoo! Mountain Dew...It'll tickle your innards!",
+            "Get 'that barefoot feelin drinkin' Mountain Dew"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6q": {
+          "type": "multiple",
+          "question": "A doctor with a PhD is a doctor of what?",
+          "correct": "Philosophy",
+          "choices": [
+            "Psychology",
+            "Phrenology",
+            "Philosophy",
+            "Physical Therapy"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Geography": {
+        "-MGPR-PVHEyIMLVz4IZP": {
+          "type": "multiple",
+          "question": "What is the name of the capital of Turkey?",
+          "correct": "Ankara",
+          "choices": [
+            "Istanbul",
+            "Ankara",
+            "Izmir",
+            "Bursa"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZT": {
+          "type": "multiple",
+          "question": "The historical city Timbuktu is located in which West African country?",
+          "correct": "Mali",
+          "choices": [
+            "Senegal",
+            "Mali",
+            "Niger",
+            "Burkina Faso"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe65": {
+          "type": "multiple",
+          "question": "Which state of the United States is the smallest?",
+          "correct": "Rhode Island",
+          "choices": [
+            "Maine",
+            "Vermont",
+            "Rhode Island",
+            "Massachusetts"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "History": {
+        "-MGPR-PVHEyIMLVz4IZ_": {
+          "type": "multiple",
+          "question": "What were the first states to break away from Yugoslavia?",
+          "correct": "Slovenia, Croatia",
+          "choices": [
+            "Macedonia, Montenegro",
+            "Slovenia, Macedonia",
+            "Slovenia, Croatia",
+            "Montenegro, Slovenia"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZd": {
+          "type": "multiple",
+          "question": "The United States Army Air Corps became the United States Air Force on what date?",
+          "correct": "September 18, 1947",
+          "choices": [
+            "December 14, 1946",
+            "September 18, 1947",
+            "October 27, 1945",
+            "November 08, 1944"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6G": {
+          "type": "multiple",
+          "question": "The collapse of the Soviet Union took place in which year?",
+          "correct": "1991",
+          "choices": [
+            "1891",
+            "1990",
+            "1991",
+            "1992"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6S": {
+          "type": "multiple",
+          "question": "When did Norway become free from Sweden?",
+          "correct": "1905",
+          "choices": [
+            "1814",
+            "1834",
+            "1905",
+            "1925"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqi": {
+          "type": "multiple",
+          "question": "In the War of the Pacific (1879 - 1883), Bolivia lost its access to the Pacific Ocean after being defeated by which South American country?",
+          "correct": "Chile",
+          "choices": [
+            "Peru",
+            "Brazil",
+            "Argentina",
+            "Chile"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqm": {
+          "type": "multiple",
+          "question": "Which historical conflict killed the most people?",
+          "correct": "World War II",
+          "choices": [
+            "Taiping Rebellion",
+            "Three Kingdoms War",
+            "World War I",
+            "World War II"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Mathematics": {
+        "-MGPR-PXl6sGRv_GGoro": {
+          "type": "multiple",
+          "question": "In base 2, what is 1 + 1?",
+          "correct": "10",
+          "choices": [
+            "01",
+            "2",
+            "10",
+            "11"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorS": {
+          "type": "multiple",
+          "question": "What is the first Mersenne prime over 1000?",
+          "correct": "1279",
+          "choices": [
+            "1009",
+            "1069",
+            "1279",
+            "2203"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe78": {
+          "type": "multiple",
+          "question": "What is the alphanumeric representation of the imaginary number?",
+          "correct": "i",
+          "choices": [
+            "e",
+            "i",
+            "n",
+            "x"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorR": {
+          "type": "multiple",
+          "question": "What Greek letter is used to signify summation?",
+          "correct": "Sigma",
+          "choices": [
+            "Alpha",
+            "Delta",
+            "Omega",
+            "Sigma"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Music": {
+        "-MGPR-PSClR2D9ABR8um": {
+          "type": "multiple",
+          "question": "Which band had hits in 1975 with the songs: One Of These Nights & Lyin' Eyes?",
+          "correct": "The Eagles",
+          "choices": [
+            "Fools Gold",
+            "The Eagles",
+            "The Doobie Brothers",
+            "Fleetwood Mac"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZR": {
+          "type": "multiple",
+          "question": "EDM producer Marshmello performs live wearing clothes and a marshmallow mask of what colour?",
+          "correct": "White",
+          "choices": [
+            "Black",
+            "White",
+            "Blue",
+            "Yellow"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZh": {
+          "type": "multiple",
+          "question": "Which of these bands was a featuring artist in Compton rapper Kendrick Lamar's 2017 album, DAMN?",
+          "correct": "U2",
+          "choices": [
+            "U2",
+            "Radiohead",
+            "Coldplay",
+            "Bon Jovi"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6E": {
+          "type": "multiple",
+          "question": "Which popular rock band has a one-armed drummer?",
+          "correct": "Def Leppard",
+          "choices": [
+            "Def Leppard",
+            "The Beatles",
+            "Lynyrd Skynyrd",
+            "Foreigner"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6I": {
+          "type": "multiple",
+          "question": "Which of these is NOT the name of an album released by American rapper Viper?",
+          "correct": "The Life of Pablo",
+          "choices": [
+            "Kill Urself My Man",
+            "You'll Cowards Don't Even Smoke Crack",
+            "The Life of Pablo",
+            "Yo Wife Handcuffin' Me"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PYWEFdg5Ew-18T": {
+          "type": "multiple",
+          "question": "When did Tame Impala release their second album?",
+          "correct": "2012",
+          "choices": [
+            "1967",
+            "2010",
+            "2012",
+            "2015"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PYWEFdg5Ew-18m": {
+          "type": "multiple",
+          "question": "What was the title of ABBA`s first UK hit single?",
+          "correct": "Waterloo",
+          "choices": [
+            "Mamma Mia",
+            "Waterloo",
+            "Fernando",
+            "Dancing Queen"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Mythology": {
+        "-MGPR-PW_82IJBhRXe6d": {
+          "type": "multiple",
+          "question": "Who is the god of war in Polynesian mythology?",
+          "correct": "Oro",
+          "choices": [
+            "Hina",
+            "Kohara",
+            "Oro",
+            "Māui"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqk": {
+          "type": "multiple",
+          "question": "In African mythology, Anansi is a trickster and storyteller who takes the shape of which animal?",
+          "correct": "Spider",
+          "choices": [
+            "Wild dog",
+            "Spider",
+            "Monkey",
+            "Crocodile"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe70": {
+          "type": "multiple",
+          "question": "In Greek Mythology, who killed Achilles?",
+          "correct": "Paris",
+          "choices": [
+            "Hector",
+            "Helen",
+            "Pericles",
+            "Paris"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Nature": {
+        "-MGPR-PW_82IJBhRXe6w": {
+          "type": "multiple",
+          "question": "Which desert is the only desert in the world where the Saguaro cactus grows indigenously?",
+          "correct": "The Sonoran Desert",
+          "choices": [
+            "The Gobi Desert",
+            "The Yuma Desert",
+            "The Sonoran Desert",
+            "The Arabian Desert"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Politics": {
+        "-MGPR-PVHEyIMLVz4IZM": {
+          "type": "multiple",
+          "question": "Who was the British Prime Minister at the outbreak of the Second World War?",
+          "correct": "Neville Chamberlain",
+          "choices": [
+            "Clement Attlee",
+            "Winston Churchill",
+            "Neville Chamberlain",
+            "Stanley Baldwin"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor2": {
+          "type": "multiple",
+          "question": "Due to the Nagoya Resolution, China agreed to allow Taiwan to compete separately in international sporting events under what name?",
+          "correct": "Chinese Taipei",
+          "choices": [
+            "Chinese Taiwan",
+            "Chinese Taipei",
+            "Republic of Taiwan",
+            "Republic of Taipei "
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7A": {
+          "type": "multiple",
+          "question": "Who became Prime Minister of the United Kingdom in July 2016?",
+          "correct": "Theresa May",
+          "choices": [
+            "Boris Johnson",
+            "David Cameron",
+            "Theresa May",
+            "Tony Blair"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Science": {
+        "-MGPR-PW_82IJBhRXe6u": {
+          "type": "multiple",
+          "question": "What mineral has the lowest number on the Mohs scale?",
+          "correct": "Talc",
+          "choices": [
+            "Quartz",
+            "Diamond",
+            "Gypsum",
+            "Talc"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Sports": {
+        "-MGPR-PW_82IJBhRXe7H": {
+          "type": "multiple",
+          "question": "How many scoring zones are there on a conventional dart board?",
+          "correct": "82",
+          "choices": [
+            "42",
+            "62",
+            "82",
+            "102"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorO": {
+          "type": "multiple",
+          "question": "Which portuguese island is soccer player Cristiano Ronaldo from?",
+          "correct": "Madeira",
+          "choices": [
+            "Terceira",
+            "Madeira",
+            "Santa Maria",
+            "Porto Santo"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor2": {
+          "type": "multiple",
+          "question": "Who won the 2015 College Football Playoff (CFP) National Championship? ",
+          "correct": "Ohio State Buckeyes",
+          "choices": [
+            "Ohio State Buckeyes",
+            "Alabama Crimson Tide",
+            "Clemson Tigers",
+            "Wisconsin Badgers"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Television": {
+        "-MGPR-PVHEyIMLVz4IZi": {
+          "type": "multiple",
+          "question": "What episode of Mr. Bean saw him trying to prevent people from seeing him naked?",
+          "correct": "Mr. Bean in Room 426",
+          "choices": [
+            "Mr. Bean Goes to Town",
+            "The Trouble with Mr. Bean",
+            "Back to School Mr. Bean",
+            "Mr. Bean in Room 426"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorY": {
+          "type": "multiple",
+          "question": "What is the title of The Allman Brothers Band instrumental used as the theme to the BBC motoring show, Top Gear?",
+          "correct": "Jessica",
+          "choices": [
+            "Angela",
+            "Jessica",
+            "Erica",
+            "Sandra"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7D": {
+          "type": "multiple",
+          "question": "What was the name of Ross' pet monkey on Friends?",
+          "correct": "Marcel",
+          "choices": [
+            "Marcel",
+            "Jojo",
+            "George",
+            "Champ"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Theatre": {
+        "-MGPR-PW_82IJBhRXe7J": {
+          "type": "multiple",
+          "question": "Who is the musical director for the award winning musical Hamilton?",
+          "correct": "Alex Lacamoire",
+          "choices": [
+            "Lin-Manuel Miranda",
+            "Renee Elise-Goldberry",
+            "Alex Lacamoire",
+            "Leslie Odom Jr."
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorG": {
+          "type": "multiple",
+          "question": "Which of the following is not a piece from the 1950's musical West Side Story?",
+          "correct": "The Back Alley",
+          "choices": [
+            "Maria",
+            "Tonight",
+            "The Back Alley",
+            "Mambo"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Vehicles": {
+        "-MGPR-PVHEyIMLVz4IZX": {
+          "type": "multiple",
+          "question": "Which one of these chassis codes are used by BMW 3-series?",
+          "correct": "E46",
+          "choices": [
+            "E39",
+            "E85",
+            "E46",
+            "F10"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZc": {
+          "type": "multiple",
+          "question": "What nickname was given to Air Canada Flight 143 after it ran out of fuel and glided to safety in 1983?",
+          "correct": "Gimli Glider",
+          "choices": [
+            "Gimli Glider",
+            "Gimli Microlight",
+            "Gimli Chaser",
+            "Gimli Superb"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorK": {
+          "type": "multiple",
+          "question": "Which of the following is NOT a Russian car manufacturer?",
+          "correct": "BYD",
+          "choices": [
+            "BYD",
+            "Silant",
+            "Dragon",
+            "GAZ"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Video Games": {
+        "-MGPR-PVHEyIMLVz4IZS": {
+          "type": "multiple",
+          "question": "How much does the AWP cost in Counter-Strike: Global Offensive?",
+          "correct": "$4750",
+          "choices": [
+            "$4500",
+            "$4650",
+            "$4750",
+            "$5000"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZZ": {
+          "type": "multiple",
+          "question": "Which is not a playable character in the 2005 video game Killer7?",
+          "correct": "Frank Smith",
+          "choices": [
+            "Frank Smith",
+            "Mask de Smith",
+            "Dan Smith",
+            "Coyote Smith"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZf": {
+          "type": "multiple",
+          "question": "Which of these blocks in Minecraft has the lowest blast resistance?",
+          "correct": "Sand",
+          "choices": [
+            "End Stone",
+            "Water",
+            "Wood Planks",
+            "Sand"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZj": {
+          "type": "multiple",
+          "question": "In Call of Duty: Zombies, what group does Doctor Maxis work for?",
+          "correct": "Group 935",
+          "choices": [
+            "Group Reanimate",
+            "Group Rezurrection",
+            "Group 935",
+            "Group 420"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6F": {
+          "type": "multiple",
+          "question": "Which was the first video game to be produced by development company Rare?",
+          "correct": "Slalom",
+          "choices": [
+            "R.C. Pro-Am",
+            "Donkey Kong Country",
+            "Battletoads",
+            "Slalom"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6M": {
+          "type": "multiple",
+          "question": "In what Half-Life expansion can you find Gordon's picture in an Employee of the Month picture frame?",
+          "correct": "Half-Life: Opposing Force",
+          "choices": [
+            "Half-Life: Blue Shift",
+            "Half-Life: Decay",
+            "Half-Life: Opposing Force",
+            "Half-Life: Xen"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6P": {
+          "type": "multiple",
+          "question": "Mirror's Edge Catalyst takes place in the City of...?",
+          "correct": "Glass",
+          "choices": [
+            "Glass",
+            "Mirrors",
+            "Purity",
+            "Diamonds"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6X": {
+          "type": "multiple",
+          "question": "One of the Nintendo Entertainment System voice channels supports playback of sound samples. Which one?",
+          "correct": "DMC",
+          "choices": [
+            "Noise",
+            "DMC",
+            "Triangle",
+            "Square"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6Z": {
+          "type": "multiple",
+          "question": "In Terraria, which of these items is NOT crafted at a Mythril Anvil?",
+          "correct": "Ankh Charm",
+          "choices": [
+            "Venom Staff",
+            "Sky Fracture",
+            "Orichalcum Tools",
+            "Ankh Charm"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      }
+    }
+  },
+  "Hard": {
+    "categories": {
+      "Anime": {
+        "-MGPR-PSClR2D9ABR8uj": {
+          "type": "multiple",
+          "question": "Akatsuki's subclass in Log Horizon is what?",
+          "correct": " Tracker",
+          "choices": [
+            "Assassin",
+            "Tracker",
+            "Scribe",
+            "Apprentice"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6i": {
+          "type": "multiple",
+          "question": "Which song was the callsign for Stefan Verdemann's KWFM radio station in Monster?",
+          "correct": "Over the Rainbow",
+          "choices": [
+            "What a Wonderful World",
+            "When You Wish Upon A Star",
+            "Singing In The Rain",
+            "Over the Rainbow"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6k": {
+          "type": "multiple",
+          "question": "Which one of these characters is from Legendz: Tale of the Dragon Kings?",
+          "correct": "Shiron",
+          "choices": [
+            "Jack",
+            "Axia",
+            "Shiron",
+            "Drum"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6l": {
+          "type": "multiple",
+          "question": "In Hunter x Hunter, which of the following is NOT a type of Nen aura?",
+          "correct": "Restoration",
+          "choices": [
+            "Emission",
+            "Transmutation",
+            "Specialization",
+            "Restoration"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Art": {
+        "-MGPR-PXl6sGRv_GGorm": {
+          "type": "multiple",
+          "question": "What year was the Mona Lisa finished?",
+          "correct": "1504",
+          "choices": [
+            "1487",
+            "1504",
+            "1511",
+            "1523"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorU": {
+          "type": "multiple",
+          "question": "How many paint and pastel versions of The Scream is Norwegian painter Edvard Munch believed to have produced?",
+          "correct": "4",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Books": {
+        "-MGPR-PW_82IJBhRXe66": {
+          "type": "multiple",
+          "question": "Who wrote the novel Moby-Dick",
+          "correct": "Herman Melville",
+          "choices": [
+            "William Golding",
+            "William Shakespeare",
+            "J. R. R. Tolkien",
+            "Herman Melville"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6o": {
+          "type": "multiple",
+          "question": "What is Hermione Granger's middle name?",
+          "correct": "Jean",
+          "choices": [
+            "Jane",
+            "Emma",
+            "Jean",
+            "Jo"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6q": {
+          "type": "multiple",
+          "question": "Abel Magwitch is a character from which Charles Dickens novel?",
+          "correct": "Great Expectations",
+          "choices": [
+            "Great Expectations",
+            "The Pickwick Papers",
+            "Nicholas Nickleby",
+            "Oliver Twist"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe76": {
+          "type": "multiple",
+          "question": "In the Harry Potter novels, what must a Hogwarts student do to enter the Ravenclaw Common Room?",
+          "correct": "Answer a riddle",
+          "choices": [
+            "Rhythmically tap barrels with a wand",
+            "Speak a password",
+            "Answer a riddle",
+            "Knock in sequence"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PYWEFdg5Ew-18_": {
+          "type": "multiple",
+          "question": "Which fictional English county was the setting for Thomas Hardy's novels?",
+          "correct": "Wessex",
+          "choices": [
+            "Barsetshire",
+            "Fulchester",
+            "Wessex",
+            "Ambridge"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Celebrities": {
+        "-MGPR-PSClR2D9ABR8uk": {
+          "type": "multiple",
+          "question": "What was the religion of famous singer Freddie Mercury?",
+          "correct": "Zoroastrianism",
+          "choices": [
+            "Zoroastrianism",
+            "Paganism",
+            "Ashurism",
+            "Judaism"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorb": {
+          "type": "multiple",
+          "question": "If he was still alive, in what year would Elvis Presley celebrate his 100th birthday?",
+          "correct": "2035",
+          "choices": [
+            "2030",
+            "2035",
+            "2040",
+            "2045"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PYWEFdg5Ew-18W": {
+          "type": "multiple",
+          "question": "Nikki Diamond portrayed which Gladiator in the 1992 TV show Gladiators?",
+          "correct": "Scorpio",
+          "choices": [
+            "Jet",
+            "Nightshade",
+            "Scorpio",
+            "Falcon"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Computers": {
+        "-MGPR-PVHEyIMLVz4IZL": {
+          "type": "multiple",
+          "question": "What was the name of the security vulnerability found in Bash in 2014?",
+          "correct": "Shellshock",
+          "choices": [
+            "Heartbleed",
+            "Bashbug",
+            "Stagefright",
+            "Shellshock"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZQ": {
+          "type": "multiple",
+          "question": "How many Hz does the video standard PAL support?",
+          "correct": "50",
+          "choices": [
+            "59",
+            "60",
+            "56",
+            "50"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZb": {
+          "type": "multiple",
+          "question": "Who is the original author of the realtime physics engine called PhysX?",
+          "correct": "NovodeX",
+          "choices": [
+            "Ageia",
+            "NovodeX",
+            "Nvidia",
+            "AMD"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7G": {
+          "type": "multiple",
+          "question": "The Harvard architecture for micro-controllers added which additional bus?",
+          "correct": "Instruction",
+          "choices": [
+            "Address",
+            "Instruction",
+            "Data",
+            "Control"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqz": {
+          "type": "multiple",
+          "question": "The internet domain .fm is the country-code top-level domain for which Pacific Ocean island nation?",
+          "correct": "Micronesia",
+          "choices": [
+            "Micronesia",
+            "Fiji",
+            "Tuvalu",
+            "Marshall Islands"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor5": {
+          "type": "multiple",
+          "question": "What port does HTTP run on?",
+          "correct": "80",
+          "choices": [
+            "23",
+            "53",
+            "80",
+            "443"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Film": {
+        "-MGPR-PSClR2D9ABR8ul": {
+          "type": "multiple",
+          "question": "What was the name of the planet in Aliens?",
+          "correct": "LV-426",
+          "choices": [
+            "Weyland Yutani Corporation Base",
+            "LV-426",
+            "FR-838",
+            "DI-621"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6e": {
+          "type": "multiple",
+          "question": "Which actor and martial artist starred as Colonel Guile in the 1994 action film adaptation of Street Fighter?",
+          "correct": "Jean-Claude Van Damme",
+          "choices": [
+            "Chuck Norris",
+            "Steven Seagal",
+            "Jean-Claude Van Damme",
+            "Scott Adkins"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "General": {
+        "-MGPR-PW_82IJBhRXe6_": {
+          "type": "multiple",
+          "question": "Who invented Pastafarianism?",
+          "correct": "Bobby Henderson",
+          "choices": [
+            "Eric Tignor",
+            "Bill Nye",
+            "Zach Soldi",
+            "Bobby Henderson"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe77": {
+          "type": "multiple",
+          "question": "A statue of Charles Darwin sits in what London museum?",
+          "correct": "Natural History Museum",
+          "choices": [
+            "Tate",
+            "Natural History Museum",
+            "British Museum",
+            "Science Museum"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGor2": {
+          "type": "multiple",
+          "question": "Disney's Haunted Mansion is home to a trio of Hitchhiking Ghosts. Which of these is NOT one of them?",
+          "correct": "Harry",
+          "choices": [
+            "Gus",
+            "Phineas",
+            "Ezra",
+            "Harry"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Geography": {
+        "-MGPR-PVHEyIMLVz4IZg": {
+          "type": "multiple",
+          "question": "What is the land connecting North America and South America?",
+          "correct": "Isthmus of Panama",
+          "choices": [
+            "Isthmus of Suez",
+            "Urals",
+            "Isthmus of Panama",
+            "Australasia"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe67": {
+          "type": "multiple",
+          "question": "What is the largest city and commercial capital of Sri Lanka?",
+          "correct": "Colombo",
+          "choices": [
+            "Moratuwa",
+            "Colombo",
+            "Negombo",
+            "Kandy"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6K": {
+          "type": "multiple",
+          "question": "What year is on the flag of the US state Wisconsin?",
+          "correct": "1848",
+          "choices": [
+            "1848",
+            "1634",
+            "1783",
+            "1901"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "History": {
+        "-MGPR-PW_82IJBhRXe6N": {
+          "type": "multiple",
+          "question": "What was the real name of the Albanian national leader Skanderbeg?",
+          "correct": "Gjergj Kastrioti",
+          "choices": [
+            "Diturak Zhulati",
+            "Iskander Bejko",
+            "Gjergj Kastrioti",
+            "Mirash Krasniki"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Mathematics": {
+        "-MGPR-PYWEFdg5Ew-18Q": {
+          "type": "multiple",
+          "question": "What is the derivative of Acceleration with respect to time?",
+          "correct": "Jerk",
+          "choices": [
+            "Shift",
+            "Bump",
+            "Jerk",
+            "Slide"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGore": {
+          "type": "multiple",
+          "question": "The decimal number 31 in hexadecimal would be what?",
+          "correct": "1F",
+          "choices": [
+            "1B",
+            "1F",
+            "2E",
+            "3D"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7C": {
+          "type": "multiple",
+          "question": "What is the 100th digit of Pi?",
+          "correct": "9",
+          "choices": [
+            "2",
+            "4",
+            "7",
+            "9"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGos-": {
+          "type": "multiple",
+          "question": "What is the plane curve proposed by Descartes to challenge Fermat's extremum-finding techniques called?",
+          "correct": "Folium of Descartes",
+          "choices": [
+            "Elliptic Paraboloid of Descartes",
+            "Cartesian Coordinates",
+            "Folium of Descartes",
+            "Descarte's Helicoid"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorc": {
+          "type": "multiple",
+          "question": "The French mathematician Evariste Galois is primarily known for his work in which?",
+          "correct": "Galois Theory",
+          "choices": [
+            "Galois Theory",
+            "Galois Continued Fractions",
+            "Galois Method for PDE's ",
+            "Abelian Integration"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Music": {
+        "-MGPR-PW_82IJBhRXe6Q": {
+          "type": "multiple",
+          "question": "Which year was the album Floral Shoppe by Macintosh Plus released?",
+          "correct": "2011",
+          "choices": [
+            "2011",
+            "2012",
+            "2013",
+            "2014"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Mythology": {
+        "-MGPR-PXl6sGRv_GGoqv": {
+          "type": "multiple",
+          "question": "In Greek Mythology, who was the daughter of King Minos?",
+          "correct": "Ariadne",
+          "choices": [
+            "Athena",
+            "Ariadne",
+            "Ariel",
+            "Alana"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorC": {
+          "type": "multiple",
+          "question": "According to Algonquian folklore, how does one transform into a Wendigo?",
+          "correct": "Participating in cannibalism.",
+          "choices": [
+            "Participating in cannibalism",
+            "Excessive mutilation of animal corpses",
+            "Performing a ritual involving murder",
+            "Drinking the blood of many slain animals"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6x": {
+          "type": "multiple",
+          "question": "Nidhogg is a mythical creature from what mythology?",
+          "correct": "Norse",
+          "choices": [
+            "Egyptian",
+            "Norse",
+            "Greek",
+            "Hindu"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Nature": {
+        "-MGPR-PW_82IJBhRXe6f": {
+          "type": "multiple",
+          "question": "What is the collective noun for vultures?",
+          "correct": "Wake",
+          "choices": [
+            "Wake",
+            "Ambush",
+            "Building",
+            "Gaze"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6x": {
+          "type": "multiple",
+          "question": "Which of the following is NOT a word used to describe an earthquake?",
+          "correct": "Drop-slide",
+          "choices": [
+            "Foreshock",
+            "Drop-slide",
+            "Strike-slip",
+            "Temblor"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Politics": {
+        "-MGPR-PXl6sGRv_GGorD": {
+          "type": "multiple",
+          "question": "'Yes, America Can!' was which United States politician's de facto campaign slogan in 2004?",
+          "correct": "George W. Bush",
+          "choices": [
+            "John Kerry",
+            "George W. Bush",
+            "Barack Obama",
+            "Al Gore"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe74": {
+          "type": "multiple",
+          "question": "Which of the following United States Presidents served the shortest term in office?",
+          "correct": "William Henry Harrison",
+          "choices": [
+            "Zachary Taylor",
+            "James A. Garfield",
+            "William Henry Harrison",
+            "Warren G. Harding"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGoqt": {
+          "type": "multiple",
+          "question": "Which of these was an official candidate in the 2017 British General Election?",
+          "correct": "Lord Buckethead",
+          "choices": [
+            "James Francis",
+            "Robert Wimbledon",
+            "Lord Buckethead",
+            "Sir Crumpetsby"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Science": {
+        "-MGPR-PW_82IJBhRXe6L": {
+          "type": "multiple",
+          "question": "The Big Bang Theory was first theorized by a priest of what religious ideology?",
+          "correct": "Catholic",
+          "choices": [
+            "Christian",
+            "Catholic",
+            "Jewish",
+            "Islamic"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Sports": {
+        "-MGPR-PXl6sGRv_GGorV": {
+          "type": "multiple",
+          "question": "Where was the Games of the XXII Olympiad held?",
+          "correct": "Moscow",
+          "choices": [
+            "Barcelona",
+            "Moscow",
+            "Tokyo",
+            "Los Angeles"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe7I": {
+          "type": "multiple",
+          "question": "What is the exact length of one non-curved part in Lane 1 of an Olympic Track?",
+          "correct": "84.39m",
+          "choices": [
+            "84.39m",
+            "100m",
+            "100yd",
+            "109.36yd"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorE": {
+          "type": "multiple",
+          "question": "In a game of snooker, what colour ball is worth 3 points?",
+          "correct": "Green",
+          "choices": [
+            "Yellow",
+            "Brown",
+            "Blue",
+            "Green"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Television": {
+        "-MGPR-PW_82IJBhRXe7-": {
+          "type": "multiple",
+          "question": "In the original Doctor Who series (1963), fourth doctor Tom Baker's scarf was how long?",
+          "correct": "7 Meters",
+          "choices": [
+            "2 Meters",
+            "5 Meters",
+            "7 Meters",
+            "10 Meters"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Theatre": {
+        "-MGPR-PW_82IJBhRXe7J": {
+          "type": "multiple",
+          "question": "In Les Miserables, who is Prison Code 24601?",
+          "correct": "Jean Valjean",
+          "choices": [
+            "Jean Valjean",
+            "Marius Pontmercy",
+            "Javert",
+            "Jean Claude Van Damme"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGord": {
+          "type": "multiple",
+          "question": "In Macbeth, the eyes of what animals were used in the Witches' cauldron?",
+          "correct": "Newts",
+          "choices": [
+            "Humans",
+            "Newts",
+            "Sharks",
+            "Wolves"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PXl6sGRv_GGorF": {
+          "type": "multiple",
+          "question": "Who serves as the speaker of the prologue in Shakespeare's Romeo and Juliet?",
+          "correct": "Chorus",
+          "choices": [
+            "Montague",
+            "Refrain",
+            "Capulet",
+            "Chorus"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Vehicles": {
+        "-MGPR-PXl6sGRv_GGor3": {
+          "type": "multiple",
+          "question": "Complete the following analogy: Audi is to Volkswagen as Infiniti is to ?",
+          "correct": "Nissan",
+          "choices": [
+            "Nissan",
+            "Honda",
+            "Hyundai",
+            "Subaru"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe75": {
+          "type": "multiple",
+          "question": "Volkswagen's legendary VR6 engine has cylinders positioned at what degree angle?",
+          "correct": "15 Degree",
+          "choices": [
+            "15 Degree",
+            "30 Degree",
+            "45 Degree",
+            "90 Degree"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      },
+      "Video Games": {
+        "-MGPR-PVHEyIMLVz4IZa": {
+          "type": "multiple",
+          "question": "What animal is on Link's pajamas in The Legend of Zelda: The Wind Waker?",
+          "correct": "Crawfish",
+          "choices": [
+            "Lobster",
+            "Salmon",
+            "Swordfish",
+            "Crawfish"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PVHEyIMLVz4IZe": {
+          "type": "multiple",
+          "question": "In Earthbound, how does one enter Master Belch's factory?",
+          "correct": "Wait 3 for Minutes",
+          "choices": [
+            "Wait 5 for Minutes",
+            "Wait 3 for Minutes",
+            "Enter the password 'Master Belch Rules'",
+            "Enter the password 'Mr Saturn Drools'"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6D": {
+          "type": "multiple",
+          "question": "The map featured in Arma 3 named Altis is based off of what Greek island?",
+          "correct": "Lemnos",
+          "choices": [
+            "Ithaca",
+            "Lemnos",
+            "Naxos",
+            "Anafi"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6H": {
+          "type": "multiple",
+          "question": "What is the main theme song of Sonic Adventure 2?",
+          "correct": "Live and Learn",
+          "choices": [
+            "Open Your Heart",
+            "Live and Learn",
+            "Can You Feel the Sunshine?",
+            "His World"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6V": {
+          "type": "multiple",
+          "question": "In the Pokemon series, what is Palkia's hidden ability?",
+          "correct": "Telepathy",
+          "choices": [
+            "Telepathy",
+            "Pressure",
+            "Water Bubble",
+            "Hydration"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        },
+        "-MGPR-PW_82IJBhRXe6a": {
+          "type": "multiple",
+          "question": "In Call Of Duty: Zombies, which weapon does NOT deal any damage?",
+          "correct": "31-79 JGb215",
+          "choices": [
+            "Sliquifier",
+            "V-R11",
+            "31-79 JGb215",
+            "Wunderwaffe DG-2"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+      }
+    }
+  }
+}

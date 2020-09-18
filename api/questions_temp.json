@@ -1,0 +1,110 @@
+  {
+    "anime": {
+      "null": "null"
+    },
+    "art": {
+      "null": "null"
+    },
+    "books": {
+      "null": "null"
+    },
+    "celebrities": {
+      "null": "null"
+    },
+    "computers": {
+      "null": "null"
+    },
+    "film": {
+      "null": "null"
+    },
+    "general": {
+      "null": "null"
+    },
+    "geography": {
+      "null": "null"
+    },
+    "history": {
+      "null": "null"
+    },
+    "math": {
+      "null": "null"
+    },
+    "music": {
+      "null": "null"
+    },
+    "mythology": {
+      "null": "null"
+    },
+    "nature": {
+      "null": "null"
+    },
+    "politics": {
+      "null": "null"
+    },
+    "science": {
+      "null": "null"
+    },
+    "sports": {
+      "null": "null"
+    },
+    "television": {
+      "null": "null"
+    },
+    "theatre": {
+      "null": "null"
+    },
+    "vehicles": {
+      "null": "null"
+    },
+    "video_games": {
+      "null": "null"
+    },
+
+
+
+    "answers": {
+      "total": 0,
+      "correct": 0,
+      "incorrect": 0,
+      "avg_time": 0.00
+    },
+    "votes": {
+      "total": 0,
+      "good": 0,
+      "neutral": 0,
+      "bad": 0
+    },
+    "comments": {
+      "null": {
+        "user": "null",
+        "comment": "null"
+      }
+    },
+
+
+
+        "key": {
+          "type": "multiple",
+          "question": "The characters of Log Horizon are trapped in what game?",
+          "correct": "Elder Tale",
+          "choices": [
+            "Elder Tale",
+            "Sword Art Online",
+            "Tower Unite",
+            "Yggdrasil"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "avg_time": 0.00
+          },
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          }
+        }
+  }
