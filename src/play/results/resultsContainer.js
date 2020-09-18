@@ -32,6 +32,10 @@ class ResultsContainer extends React.Component{
   }
 
   componentDidMount(){
+    if(this.props.play.gameMode === 'quick_play') document.title = 'SmartApp™ | Play | Quick Play | Results'
+    if(this.props.play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Results'
+    if(this.props.play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Results'
+
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 1000)
     this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 2000)
     this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2500)

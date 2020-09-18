@@ -19,8 +19,17 @@ class SelectionContainer extends React.Component {
   }
 
   componentDidMount(){
-    if(this.props.play.gameMode === 'by_diff') {this.setState({ set: 'Difficulty', subSet: difficulties })}
-    if(this.props.play.gameMode === 'by_cat') {this.setState({ set: 'Category', subSet: categories })}
+  document.title = "SmartApp™ | Play | Selection"
+
+    if(this.props.play.gameMode === 'by_diff') {
+      document.title = "SmartApp™ | Play | Difficulty | Select"
+      this.setState({ set: 'Difficulty', subSet: difficulties })
+    }
+
+    if(this.props.play.gameMode === 'by_cat') {
+      document.title = "SmartApp™ | Play | Category | Select"
+      this.setState({ set: 'Category', subSet: categories })
+    }
   }
 
   componentDidUpdate(){

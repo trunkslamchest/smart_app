@@ -1,10 +1,11 @@
-import React from 'react'
-
-// import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import './docs.css'
 
 const Privacy = (props) => {
+
+  useEffect(() => { document.title = "SmartApp™ | Privacy Policy" }, [])
+
   return(
     <div className='terms_wrapper'>
       <h1>PRIVACY POLICY</h1>

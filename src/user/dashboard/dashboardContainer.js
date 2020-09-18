@@ -24,6 +24,7 @@ import './dashboardContainer.css'
 class Dashboard extends React.Component{
 
   componentDidMount(){
+    document.title = "SmartApp™ | Dashboard "
   }
 
   render(){

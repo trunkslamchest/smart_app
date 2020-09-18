@@ -21,6 +21,10 @@ class QuestionContainer extends React.Component{
   }
 
   componentDidMount(){
+    if(this.props.play.gameMode === 'quick_play') document.title = 'SmartApp™ | Play | Quick Play | Question'
+    if(this.props.play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Question'
+    if(this.props.play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Question'
+
     this.timerTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
     this.startTimer = setTimeout(() => { this.timerInterval = setInterval(this.timerFunctions, 10)}, 5000)
     this.questionTimeout = setTimeout(() => { this.setState({ showQuestion: true })}, 3000)

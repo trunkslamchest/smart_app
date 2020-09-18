@@ -1,10 +1,11 @@
-import React from 'react'
-
-// import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import './docs.css'
 
 const Disclaimer = (props) => {
+
+  useEffect(() => { document.title = "SmartApp™ | Disclaimer" }, [])
+
   return(
     <div className='terms_wrapper'>
       <h1>DISCLAIMER</h1>

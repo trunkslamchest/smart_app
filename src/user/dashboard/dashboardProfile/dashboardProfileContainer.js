@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { connect } from 'react-redux'
 
@@ -9,6 +9,9 @@ import DashboardProfileError from './dashboardProfileError'
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
+
+  useEffect(() => { document.title = "SmartApp™ | Dashboard | Profile" }, [])
+
 
   let userName = props.user.info.user_name, email = props.user.info.email
   let firstName = '', lastName = '', nameErrors = [], distribNameErrors = <></>

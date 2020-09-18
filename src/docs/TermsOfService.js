@@ -1,10 +1,11 @@
-import React from 'react'
-
-// import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import './docs.css'
 
 const TermsOfService = (props) => {
+
+  useEffect(() => { document.title = "SmartApp™ | Terms Of Service" }, [])
+
   return(
     <div className='terms_wrapper'>
       <h1>TERMS OF USE</h1>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { connect } from 'react-redux'
 
@@ -10,6 +10,8 @@ import LoadingSpinnerRoller from '../UI/loading/spinner/roller'
 import './Home.css'
 
 const HomeContainer = (props) => {
+
+  useEffect(() => { document.title = "SmartApp™ | Get Your Smart On" }, [])
 
   let homePage = <LoadingSpinnerRoller />
 

@@ -8,6 +8,9 @@ import DashboardVoteCard from './dashboardVoteCard'
 import './dashboardVotes.css'
 
 class DashboardVotesContainer extends React.Component {
+
+  componentDidMount(){ document.title = "SmartApp™ | Dashboard | Votes" }
+
   render(){
 
     let distribVotes

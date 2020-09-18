@@ -8,6 +8,9 @@ import DashboardCommentCard from './dashboardCommentCard'
 import './dashboardComments.css'
 
 class DashboardCommentsContainer extends React.Component {
+
+  componentDidMount(){ document.title = "SmartApp™ | Dashboard | Comments" }
+
   render(){
 
     let distribComments
