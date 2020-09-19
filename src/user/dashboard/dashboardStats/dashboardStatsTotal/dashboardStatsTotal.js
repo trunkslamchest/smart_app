@@ -30,7 +30,7 @@ class DashboardStatsTotal extends React.Component {
       let totalQuestionsCorrect = ((this.props.user.questions.totals.all.correct / this.props.user.questions.totals.all.answered) * 100).toFixed(2)
       let rating
 
-      if(this.props.user.questions.totals.all.answered > 5) rating = <h1>{ this.calcRating(totalQuestionsAnswered, totalQuestionsCorrect) }</h1>
+      if(this.props.user.questions.totals.all.answered >= 5) rating = <h1>{ this.calcRating(totalQuestionsAnswered, totalQuestionsCorrect) }</h1>
       else rating = <p>Answer <span>{5 - this.props.user.questions.totals.all.answered}</span> more questions to receive a rating!</p>
 
       totalQuestionsAnswered = this.numZero(totalQuestionsAnswered)

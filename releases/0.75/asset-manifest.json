@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/testSub/static/css/main.f4fe72e3.chunk.css",
+    "main.js": "/testSub/static/js/main.f369f4ee.chunk.js",
+    "main.js.map": "/testSub/static/js/main.f369f4ee.chunk.js.map",
+    "runtime-main.js": "/testSub/static/js/runtime-main.f4dbed52.js",
+    "runtime-main.js.map": "/testSub/static/js/runtime-main.f4dbed52.js.map",
+    "static/js/2.dc14fa95.chunk.js": "/testSub/static/js/2.dc14fa95.chunk.js",
+    "static/js/2.dc14fa95.chunk.js.map": "/testSub/static/js/2.dc14fa95.chunk.js.map",
+    "index.html": "/testSub/index.html",
+    "precache-manifest.4073f5dac47b2620126fc64b2732388e.js": "/testSub/precache-manifest.4073f5dac47b2620126fc64b2732388e.js",
+    "service-worker.js": "/testSub/service-worker.js",
+    "static/css/main.f4fe72e3.chunk.css.map": "/testSub/static/css/main.f4fe72e3.chunk.css.map",
+    "static/js/2.dc14fa95.chunk.js.LICENSE.txt": "/testSub/static/js/2.dc14fa95.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/testSub/static/media/Helvetica.3c896496.otf",
+    "static/media/down_vote1.png": "/testSub/static/media/down_vote1.bb5d9f2e.png",
+    "static/media/footer_logo_postgres.png": "/testSub/static/media/footer_logo_postgres.59bc65ec.png",
+    "static/media/index_logo_blue3.png": "/testSub/static/media/index_logo_blue3.f6c33a67.png",
+    "static/media/up_vote1.png": "/testSub/static/media/up_vote1.574b1cc5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4dbed52.js",
+    "static/js/2.dc14fa95.chunk.js",
+    "static/css/main.f4fe72e3.chunk.css",
+    "static/js/main.f369f4ee.chunk.js"
+  ]
+}

@@ -5,53 +5,53 @@ export const auth = {
   refreshToken: `https://securetoken.googleapis.com/v1/token?key=${process.env.REACT_APP_FIREBASE_API_KEY}`
 }
 
-export const fetch = {
-  get: {
-    user: `${process.env.REACT_APP_LOCAL_GET_USER}`,
-    users: `${process.env.REACT_APP_LOCAL_GET_USERS}`,
-    questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`,
-    questionsTotals: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS_TOTALS}`,
-    quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`,
-    diffQuestion: `${process.env.REACT_APP_LOCAL_GET_DIFF_QUESTION}`,
-    catQuestion: `${process.env.REACT_APP_LOCAL_GET_CAT_QUESTION}`,
-    questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`
-  },
-  post: {
-    user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
-  },
-  patch: {
-    user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
-    questionVote: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_VOTE}`,
-    questionComment: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_COMMENT}`
-  },
-  delete: {
-    user: `${process.env.REACT_APP_LOCAL_DELETE_USER}`
-  }
-}
-
 // export const fetch = {
 //   get: {
-//     user: `${process.env.REACT_APP_DEPLOY_GET_USER}`,
-//     users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`,
-//     questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`,
-//     questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`,
-//     quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`,
-//     diffQuestion: `${process.env.REACT_APP_DEPLOY_GET_DIFF_QUESTION}`,
-//     catQuestion: `${process.env.REACT_APP_DEPLOY_GET_CAT_QUESTION}`,
-//     questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`
+//     user: `${process.env.REACT_APP_LOCAL_GET_USER}`,
+//     users: `${process.env.REACT_APP_LOCAL_GET_USERS}`,
+//     questions: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS}`,
+//     questionsTotals: `${process.env.REACT_APP_LOCAL_GET_QUESTIONS_TOTALS}`,
+//     quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`,
+//     diffQuestion: `${process.env.REACT_APP_LOCAL_GET_DIFF_QUESTION}`,
+//     catQuestion: `${process.env.REACT_APP_LOCAL_GET_CAT_QUESTION}`,
+//     questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`
 //   },
 //   post: {
-//     user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
+//     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
 //   },
 //   patch: {
-//     user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
-//     questionVote: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_VOTE}`,
-//     questionComment: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_COMMENT}`
+//     user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
+//     questionVote: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_VOTE}`,
+//     questionComment: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_COMMENT}`
 //   },
 //   delete: {
-//     user: `${process.env.REACT_APP_DEPLOY_DELETE_USER}`
+//     user: `${process.env.REACT_APP_LOCAL_DELETE_USER}`
 //   }
 // }
+
+export const fetch = {
+  get: {
+    user: `${process.env.REACT_APP_DEPLOY_GET_USER}`,
+    users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`,
+    questions: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS}`,
+    questionsTotals: `${process.env.REACT_APP_DEPLOY_GET_QUESTIONS_TOTALS}`,
+    quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`,
+    diffQuestion: `${process.env.REACT_APP_DEPLOY_GET_DIFF_QUESTION}`,
+    catQuestion: `${process.env.REACT_APP_DEPLOY_GET_CAT_QUESTION}`,
+    questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`
+  },
+  post: {
+    user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
+  },
+  patch: {
+    user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
+    questionVote: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_VOTE}`,
+    questionComment: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_COMMENT}`
+  },
+  delete: {
+    user: `${process.env.REACT_APP_DEPLOY_DELETE_USER}`
+  }
+}
 
 export const routes = {
   root: '/',
