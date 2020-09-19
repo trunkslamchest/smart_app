@@ -5,7 +5,7 @@ import * as actions from '../../../store/actions/actionIndex'
 
 import { routes } from '../../../utility/paths.js'
 
-import DashboardEditProfileForm from './dashboardEditProfileForm'
+import DashboardEditProfileForm from './dashboardEditProfileForm/dashboardEditProfileForm'
 
 import './dashboardEditProfile.css'
 
@@ -13,9 +13,9 @@ class DashboardEditProfile extends React.Component {
 
   state = {
     dob: {
-      day: '',
-      month: '',
-      year: ''
+      day: 0,
+      month: 'null',
+      year: 0
     },
     email: '',
     first_name: '',
@@ -41,13 +41,19 @@ class DashboardEditProfile extends React.Component {
     })
   }
 
-  onChange = (event) => {this.setState({ [event.target.name]: event.target.value })}
+  onChange = (event) => {
+    let val = event.target.value
+    if(event.target.value === "Select") val = 'null'
+    this.setState({ [event.target.name]: val })
+  }
 
   onDOBChange = (event) => {
+    let val = event.target.value
+    if(event.target.value === "Select") val = 'null'
     this.setState({
       dob: {
         ...this.state.dob,
-        [event.target.name]: event.target.value
+        [event.target.name]: val
       }
     })
   }
@@ -97,18 +103,18 @@ class DashboardEditProfile extends React.Component {
   render(){
     return(
       <DashboardEditProfileForm
-        errors={this.state.errors}
-        onChange={this.onChange}
-        onDOBChange={this.onDOBChange}
-        onSubmit={this.onSubmit}
-        onCancel={this.onCancel}
-        onReset={this.onReset}
-        dob={this.state.dob}
-        email={this.state.email}
-        first_name={this.state.first_name}
-        gender={this.state.gender}
-        last_name={this.state.last_name}
-        user_name={this.state.user_name}
+        errors={ this.state.errors }
+        onChange={ this.onChange }
+        onDOBChange={ this.onDOBChange }
+        onSubmit={ this.onSubmit }
+        onCancel={ this.onCancel }
+        onReset={ this.onReset }
+        dob={ this.state.dob }
+        email={ this.state.email }
+        first_name={ this.state.first_name }
+        gender={ this.state.gender }
+        last_name={ this.state.last_name }
+        user_name={ this.state.user_name }
       />
     )
   }
