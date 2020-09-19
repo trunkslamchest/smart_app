@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../../store/actions/actionIndex'
+import * as actions from '../../../../store/actions/actionIndex'
 
-import { routes } from '../../../utility/paths.js'
+import { routes } from '../../../../utility/paths.js'
 
-import DashboardProfileButton from './dashboardProfileButton'
+import DashboardProfileButton from '../dashboardProfileButton/dashboardProfileButton'
 
 import './dashboardProfileButtonContainer.css'
 

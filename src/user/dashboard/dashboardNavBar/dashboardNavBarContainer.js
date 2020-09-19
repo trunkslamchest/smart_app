@@ -2,10 +2,9 @@ import React from 'react'
 
 import { routes } from '../../../utility/paths.js'
 
-import DashboardNavBarButton from './dashboardNavBarButton'
+import DashboardNavBarButton from './dashboardNavBarButton/dashboardNavBarButton'
 
 import './dashboardNavBar.css'
-import './dashboardNavBarButton.css'
 
 const DashboardNavBarContainer = (props) => {
 

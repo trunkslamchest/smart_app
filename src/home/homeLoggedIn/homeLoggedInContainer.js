@@ -1,7 +1,7 @@
 import React from 'react'
 // import { useEffect, useCallback } from 'react'
 
-import HomeLoggedInPlayButtonsContainer from './homeLoggedInPlayButtonsContainer'
+import HomeLoggedInPlayButtonsContainer from './homeLoggedInPlayButtonsContainer/homeLoggedInPlayButtonsContainer'
 
 import index_logo from '../../assets/index_logo_blue3.png'
 

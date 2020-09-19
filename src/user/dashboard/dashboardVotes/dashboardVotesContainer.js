@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
-import DashboardVoteCard from './dashboardVoteCard'
+import DashboardVoteCard from './dashboardVoteCard/dashboardVoteCard'
 
 import './dashboardVotes.css'
 

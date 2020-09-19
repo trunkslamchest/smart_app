@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import * as actions from '../../../store/actions/actionIndex'
 
-import { routes } from '../../utility/paths'
+import { routes } from '../../../utility/paths'
 
-import PlayButton from '../../UI/buttons/playButton/playButton'
+import PlayButton from '../../../UI/buttons/playButton/playButton'
 
-import './homeLoggedIn.css'
+import './homeLoggedInPlayButtonsContainer.css'
 
 const HomeLoggedInPlayButtonsContainer = (props) => {
 

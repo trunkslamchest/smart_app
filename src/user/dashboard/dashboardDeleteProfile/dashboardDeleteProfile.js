@@ -5,8 +5,8 @@ import * as actions from '../../../store/actions/actionIndex'
 
 import Modal from '../../../UI/modal/modal'
 
-import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer'
-import DashboardDeleteProfileForm from './dashboardDeleteProfileForm'
+import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer/dashboardDeleteProfileButtonContainer'
+import DashboardDeleteProfileForm from './dashboardDeleteProfileForm/dashboardDeleteProfileForm'
 
 import './dashboardDeleteProfile.css'
 

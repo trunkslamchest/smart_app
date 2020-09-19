@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './logInFormInput.css'
+
 const LogInFormInput = (props) => {
   return(
     <>

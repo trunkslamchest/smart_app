@@ -3,8 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
-import './dashboardStatsDifficulty.css'
-
 class DashboardStatsDifficultyCard extends React.Component {
 
   numZero = (num) => {

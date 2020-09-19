@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DashboardDeleteProfileButton from './dashboardDeleteProfileButton'
+import DashboardDeleteProfileButton from '../dashboardDeleteProfileButton/dashboardDeleteProfileButton'
 
 import './dashboardDeleteProfileButtonContainer.css'
 

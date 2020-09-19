@@ -2,6 +2,8 @@ import React from 'react'
 
 import { NavLink, useHistory } from 'react-router-dom'
 
+import './dashboardNavBarButton.css'
+
 const DashboardNavBarButton = (props) => {
 
   let currentLocation = useHistory().location.pathname

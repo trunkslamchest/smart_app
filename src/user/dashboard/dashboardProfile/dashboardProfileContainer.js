@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import months from '../../../datasets/months'
-import DashboardProfileButtonContainer from './dashboardProfileButtonContainer'
-import DashboardProfileError from './dashboardProfileError'
+import DashboardProfileButtonContainer from './dashboardProfileButtonContainer/dashboardProfileButtonContainer'
+import DashboardProfileError from './dashboardProfileError/dashboardProfileError'
 
 import './dashboardProfileContainer.css'
 

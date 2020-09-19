@@ -1,7 +1,7 @@
 import React from 'react'
 
-import LogInFormInput from './logInFormInput'
-import LogInFormButtonContainer from './logInFormButtonContainer'
+import LogInFormInput from './logInFormInput/logInFormInput'
+import LogInFormButtonContainer from './logInFormButtonContainer/logInFormButtonContainer'
 
 // import ErrorContainer from '../../error/errorContainer'
 

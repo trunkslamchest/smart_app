@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import * as actions from '../../../store/actions/actionIndex'
 
-import AuthButton from '../../UI/buttons/authButton/authButton'
+import AuthButton from '../../../UI/buttons/authButton/authButton'
 
-import './homeLoggedOut.css'
+import './homeLoggedOutAuthButtonsContainer.css'
 
 const HomeLoggedOutAuthButtonsContainer = (props) => {
 

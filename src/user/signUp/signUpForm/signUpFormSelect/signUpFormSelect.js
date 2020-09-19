@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './signUpFormSelect.css'
+
 const SignUpFormSelect = (props) => {
   return(
     <>

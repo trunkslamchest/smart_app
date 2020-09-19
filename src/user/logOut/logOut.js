@@ -5,7 +5,7 @@ import * as actions from '../../store/actions/actionIndex'
 
 import Modal from '../../UI/modal/modal'
 
-import LogOutButtonContainer from './logOutButtonContainer'
+import LogOutButtonContainer from './logOutButtonContainer/logOutButtonContainer'
 
 import './logOut.css'
 

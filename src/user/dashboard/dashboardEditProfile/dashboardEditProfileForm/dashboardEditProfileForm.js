@@ -1,7 +1,7 @@
 import React from 'react'
 
-import DashboardEditProfileFormInput from './dashboardEditProfileFormInput'
-import DashboardEditProfileFormSelect from './dashboardEditProfileFormSelect'
+import DashboardEditProfileFormInput from './dashboardEditProfileFormInput/dashboardEditProfileFormInput'
+import DashboardEditProfileFormSelect from './dashboardEditProfileFormSelect/dashboardEditProfileFormSelect'
 import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormButtonContainer'
 
 import genders from '../../../../datasets/genders'

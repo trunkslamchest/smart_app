@@ -1,6 +1,6 @@
 import React from 'react'
 
-import HomeLoggedOutAuthButtonsContainer from './homeLoggedOutAuthButtonsContainer'
+import HomeLoggedOutAuthButtonsContainer from './homeLoggedOutAuthButtonsContainer/homeLoggedOutAuthButtonsContainer'
 
 import index_logo from '../../assets/index_logo_blue3.png'
 

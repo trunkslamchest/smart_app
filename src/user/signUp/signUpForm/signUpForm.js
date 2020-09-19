@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom'
 // import months from '../../datasets/months'
 // import states from '../../datasets/states'
 
-import SignUpFormInput from './signUpFormInput'
+import SignUpFormInput from './signUpFormInput/signUpFormInput'
 // import SignUpFormSelect from './signUpFormSelect'
-import SignUpFormButtonContainer from './signUpFormButtonContainer'
+import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
 
-import ErrorContainer from '../../error/errorContainer'
+import ErrorContainer from '../../../error/errorContainer'
+
+import './signUpForm.css'
 
 const SignUpForm = (props) => {
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
-import DashboardCommentCard from './dashboardCommentCard'
+import DashboardCommentCard from './dashboardCommentCard/dashboardCommentCard'
 
 import './dashboardComments.css'
 

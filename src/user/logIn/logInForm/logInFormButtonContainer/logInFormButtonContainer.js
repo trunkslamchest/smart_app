@@ -1,6 +1,8 @@
 import React from 'react'
 
-import LogInFormButton from './logInFormButton/logInFormButton'
+import LogInFormButton from '../logInFormButton/logInFormButton'
+
+import './logInFormButtonContainer.css'
 
 const LogInFormButtonContainer = (props) => {
   return(

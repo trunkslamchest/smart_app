@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DashboardEditProfileFormButton from './dashboardEditProfileFormButton'
+import DashboardEditProfileFormButton from './dashboardEditProfileFormButton/dashboardEditProfileFormButton'
 
 const DashboardEditProfileFormButtonContainer = (props) => {
   return(

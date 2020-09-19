@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
 import Modal from '../../UI/modal/modal'
-import LogInForm from './logInForm'
+import LogInForm from './logInForm/logInForm'
 
 import './logIn.css'
 
