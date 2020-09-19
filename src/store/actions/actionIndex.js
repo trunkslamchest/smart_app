@@ -7,6 +7,7 @@ export {
 } from './modalActions'
 
 export {
+  authUpdateStatus,
   authUser,
   authStart,
   authSuccess,
@@ -19,7 +20,7 @@ export {
   authTimeout,
   authCert,
   authClearState,
-  authClearCreds,
+  clearAuthCreds,
   authValid
   // setAuthRedirectPath,
   // checkAuthState,
@@ -38,7 +39,7 @@ export {
   updateUserQuestionTotalsFromPlayController,
   updateUserVotesFromPlayController,
   updateUserCommentsFromPlayController,
-  deleteUser
+  // deleteUser
 } from './userActions'
 
 export {

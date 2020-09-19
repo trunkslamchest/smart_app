@@ -66,7 +66,6 @@ const mapDispatchToProps = dispatch => {
     onAuthCert: (bool) => dispatch(actions.authCert(bool)),
     onAuthValid: (bool) => dispatch(actions.authValid(bool)),
     onAuthClearState: () => dispatch(actions.authClearState()),
-    onAuthClearCreds: () => dispatch(actions.authClearCreds()),
     // MODAL
     onLogInModal: (bool) => dispatch(actions.login(bool)),
     onLogOutModal: (bool) => dispatch(actions.logout(bool)),
@@ -103,7 +102,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateUserQuestions: () => dispatch(actions.updateUserInfo()),
     onClearUserQuestions: () => dispatch(actions.clearUserQuestions()),
     onUpdateUserQuestionIdsFromPlayController: (ids) => dispatch(actions.updateUserQuestionIdsFromPlayController(ids)),
-    onDeleteUser: (obj, props) => dispatch(actions.deleteUser(obj, props))
+    // onDeleteUser: (obj, props) => dispatch(actions.deleteUser(obj, props))
   }
 }
 

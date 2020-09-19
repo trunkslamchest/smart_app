@@ -12,11 +12,15 @@ import HeaderButton from './headerButton/headerButton'
 import './header.css'
 
 const Header = (props) => {
-  let home_link = null
+  let home_link = <></>
+  let header = <></>
 
-  let header = <GuestHeader />
 
-  if(props.auth.valid) {
+  if(localStorage.access === 'guest' || props.auth.status !== 'authValid') {
+    header = <GuestHeader />
+  }
+
+  if(props.auth.status === 'authValid') {
     home_link =
       <HeaderButton
         link={ routes.home }

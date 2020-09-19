@@ -55,7 +55,7 @@ class Dashboard extends React.Component{
         <DashboardDeleteProfile history={this.props.history} />
         <div className='dashboard_wrapper'>
           <DashboardNavBarContainer />
-          {this.props.auth.valid ? routeBoard : <LoadingSpinnerRoller /> }
+          {this.props.auth.status === 'authValid' ? routeBoard : <LoadingSpinnerRoller /> }
         </div>
       </>
     )

@@ -10,7 +10,7 @@ import {
   storeUserQuestions,
   clearUserInfo,
   clearUserQuestions,
-  deleteUser
+  // deleteUser
 } from './userActions'
 
 import {
@@ -24,11 +24,30 @@ import signUpObjTemplate from '../../templates/signUpObjTemplate'
 
 export const authStart = (authType, obj) => {
   return dispatch => {
-    dispatch(initAuth(authType))
-    if(authType === 'signUp') dispatch(authSignUp(authType, obj))
-    if(authType === 'logIn') dispatch(authLogIn(authType, obj))
-    if(authType === 'refresh') dispatch(authRefresh(authType, obj))
-    if(authType === 'deleteProfile') dispatch(authLogIn(authType, obj))
+    // dispatch(initAuth(authType))
+    // dispatch(authUpdateStatus('authUserGoogleStart', true))
+    if(authType === 'logIn') {
+      dispatch(initAuth(authType))
+      dispatch(authUpdateStatus('authUserGoogleStart', true))
+      dispatch(authLogIn(authType, obj))
+    }
+    if(authType === 'signUp') {
+      dispatch(initAuth(authType))
+      dispatch(authUpdateStatus('authUserGoogleStart', true))
+      dispatch(authSignUp(authType, obj))
+    }
+    if(authType === 'refresh') {
+      dispatch(initAuth(authType))
+      dispatch(authUpdateStatus('authUserGoogleStart', true))
+      dispatch(authRefresh(authType, obj))
+    }
+    if(authType === 'logOut') {
+      dispatch(initAuth(authType))
+      dispatch(authUpdateStatus('initUserLogOut', true))
+      dispatch(authLogOut(authType, obj))
+    }
+
+    // if(authType === 'deleteProfile') dispatch(authLogIn(authType, obj))
   }
 }
 
@@ -36,12 +55,15 @@ const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
     authType: authType,
-    cert: false,
-    error: null,
-    fail: false,
     loading: true,
-    start: true,
-    valid: false
+  }
+}
+
+export const authUpdateStatus = (status, loading) => {
+  return {
+    type: actionTypes.AUTH_UPDATE_STATUS,
+    status: status,
+    loading: loading
   }
 }
 
@@ -49,22 +71,45 @@ export const authFail = (error) => {
   console.log(error)
   return {
     type: actionTypes.AUTH_FAIL,
+    status: 'fail',
     error: error,
     loading: false,
-    start: false,
-    fail: true,
   }
 }
 
 export const authSuccess = (authType, obj) => {
   return dispatch => {
-    if(authType === 'signUp') {
+    if(authType === 'logIn') {
       updateLocalStorage(obj)
-      dispatch(createUser(obj))
-    } else {
-      updateLocalStorage(obj)
+      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authComplete(obj))
     }
+    if(authType === 'signUp') {
+      updateLocalStorage(obj)
+      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      dispatch(createUser(obj))
+    }
+    if(authType === 'refresh') {
+      updateLocalStorage(obj)
+      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      dispatch(authComplete(obj))
+    }
+    // if(authType === 'signUp') {
+    //   updateLocalStorage(obj)
+    //   dispatch(createUser(obj))
+    // } else {
+    //   updateLocalStorage(obj)
+    //   dispatch(authComplete(obj))
+    // }
+  }
+}
+
+const authComplete = (obj) => {
+  return {
+    type: actionTypes.AUTH_SUCCESS,
+    id: obj.id,
+    token: obj.token,
+    refreshToken: obj.refresh
   }
 }
 
@@ -76,27 +121,15 @@ const updateLocalStorage = (obj) => {
   localStorage.expiration = obj.expires
 }
 
-const createUser = (obj, props) => {
+const createUser = (obj) => {
   return dispatch => {
     let id = obj.id, userObj = {}
     userObj[id] = signUpObjTemplate(obj.email, obj.user)
     userFunctions('post', fetch.post.user, userObj)
     .then(res => {
+      dispatch(authUpdateStatus('createUserLocalSuccess', true))
       dispatch(authComplete(obj))
     })
-  }
-}
-
-const authComplete = (obj) => {
-  return {
-    type: actionTypes.AUTH_SUCCESS,
-    id: obj.id,
-    fail: false,
-    loading: true,
-    refreshToken: obj.refresh,
-    start: false,
-    success: true,
-    token: obj.token
   }
 }
 
@@ -107,6 +140,7 @@ export const authUser = () => {
       if(userRes === null) localStorage.clear()
       // if(!!userRes.error) dispatch(authFail(userRes.error))
       else {
+        dispatch(authUpdateStatus('authUserLocalSuccess', true))
         dispatch(storeUserInfo(userRes.info))
         dispatch(storeUserQuestions(userRes.questions))
       }
@@ -173,8 +207,17 @@ export const authDelete = (props) => {
 
     authFunctions('delete', auth.delete, obj)
     .then(authRes => {
-      dispatch(deleteUser({uid: localStorage.id}, props))
-      dispatch(setAuthTypeOnDelete('logOut'))
+      if(authRes) dispatch(deleteUser({uid: localStorage.id}))
+      // dispatch(setAuthTypeOnDelete('logOut'))
+    })
+  }
+}
+
+const deleteUser = (obj) => {
+  return dispatch => {
+    userFunctions('delete', fetch.delete.user, obj)
+    .then(res => {
+      if(res) dispatch(setAuthTypeOnDelete('deleted'))
     })
   }
 }
@@ -190,11 +233,48 @@ export const authLogOut = () => {
   localStorage.clear()
   localStorage.access = 'guest'
   return dispatch => {
+    dispatch(initClearUserInfo())
+    dispatch(initClearUserQuestions())
+    dispatch(initClearQuestionTotals())
+    dispatch(initClearAuthCreds())
+    // dispatch(authClearState())
+  }
+}
+
+const initClearUserInfo = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('initClearUserInfo', true))
     dispatch(clearUserInfo())
+  }
+}
+
+const initClearUserQuestions = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('initClearUserQuestions', true))
     dispatch(clearUserQuestions())
+  }
+}
+
+const initClearQuestionTotals = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('initClearQuestionTotals', true))
     dispatch(clearQuestionTotals())
-    dispatch(authClearState())
-    dispatch(authClearCreds())
+  }
+}
+
+const initClearAuthCreds = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('initClearAuthCreds', true))
+    dispatch(clearAuthCreds())
+  }
+}
+
+export const clearAuthCreds = () => {
+  return {
+    type: actionTypes.CLEAR_AUTH_CREDS,
+    id: null,
+    refreshToken: null,
+    token: null
   }
 }
 
@@ -227,15 +307,6 @@ export const authClearState = () => {
     success: false,
     cert: false,
     valid: false
-  }
-}
-
-export const authClearCreds = () => {
-  return {
-    type: actionTypes.AUTH_CLEAR_CREDS,
-    id: null,
-    refreshToken: null,
-    token: null
   }
 }
 

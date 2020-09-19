@@ -3,12 +3,21 @@ import {
   setQuestion,
   // setGameState
 } from './playActions'
-
+import {
+  authUpdateStatus
+} from './authActions'
 import { fetch } from '../../utility/paths'
 
 import questionsFunctions from '../../utility/questionsFunctions'
 
 export const storeQuestionTotals = (totals) => {
+  return dispatch => {
+    dispatch(authUpdateStatus('storeQuestionsLocal', true))
+    dispatch(initStoreQuestionTotals(totals))
+  }
+}
+
+const initStoreQuestionTotals = (totals) => {
   return {
     type: actionTypes.STORE_QUESTION_TOTALS,
     totals: totals
@@ -19,12 +28,20 @@ export const getQuestionTotals = (props) => {
   return dispatch => {
     questionsFunctions('get', fetch.get.questionsTotals)
     .then(res => {
+      dispatch(authUpdateStatus('getQuestionsLocalSuccess', true))
       dispatch(storeQuestionTotals(res))
     })
   }
 }
 
 export const clearQuestionTotals = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('clearQuestionTotalsSuccess', true))
+    dispatch(initClearQuestionTotals())
+  }
+}
+
+const initClearQuestionTotals = () => {
   return {
     type: actionTypes.CLEAR_QUESTION_TOTALS,
     totals: null

@@ -1,28 +1,40 @@
 import * as actionTypes from '../actions/actionTypes'
 
+// const initialState = {
+//   authType: null,
+//   cert: false,
+//   error: null,
+//   fail: false,
+//   id: null,
+//   loading: false,
+//   refreshToken: null,
+//   start: false,
+//   success: false,
+//   token: null
+// }
+
 const initialState = {
   authType: null,
-  cert: false,
-  error: null,
-  fail: false,
-  id: null,
+  status: null,
   loading: false,
-  refreshToken: null,
-  start: false,
-  success: false,
-  token: null
+  error: null,
+  id: null,
+  token: null,
+  refreshToken: null
+}
+
+const authUpdateStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    loading: action.loading
+  }
 }
 
 const authStart = (currentState, action) => {
   return {
     ...currentState,
-    authType: action.authType,
-    cert: action.cert,
-    error: action.error,
-    fail: action.false,
-    loading: action.loading,
-    start: action.start,
-    valid: action.valid
+    authType: action.authType
   }
 }
 
@@ -30,27 +42,21 @@ const authSuccess = (currentState, action) => {
   return {
     ...currentState,
     id: action.id,
-    fail: action.fail,
-    loading: action.loading,
-    refreshToken: action.refreshToken,
-    start: action.start,
-    success: action.success,
-    token: action.token
+    token: action.token,
+    refreshToken: action.refreshToken
   }
 }
 
 const authFail = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     error: action.error,
-    fail: action.fail,
     loading: action.loading,
     modal: {
       ...currentState.modal,
       login: false
-    },
-    start: action.false,
-    success: action.success
+    }
   }
 }
 
@@ -123,6 +129,15 @@ const authValid = (currentState, action) => {
   }
 }
 
+const clearAuthCreds = (currentState, action) => {
+  return {
+    ...currentState,
+    id: action.id,
+    refreshToken: action.refreshToken,
+    token: action.token
+  }
+}
+
 const authClearState = (currentState, action) => {
   return {
     ...currentState,
@@ -136,17 +151,9 @@ const authClearState = (currentState, action) => {
   }
 }
 
-const authClearCreds = (currentState, action) => {
-  return {
-    ...currentState,
-    id: action.id,
-    refreshToken: action.refreshToken,
-    token: action.token
-  }
-}
-
 const authReducer = (currentState = initialState, action) => {
   switch(action.type) {
+    case actionTypes.AUTH_UPDATE_STATUS: return authUpdateStatus(currentState, action)
     case actionTypes.AUTH_START: return authStart(currentState, action)
     case actionTypes.AUTH_SUCCESS: return authSuccess(currentState, action)
     case actionTypes.AUTH_FAIL: return authFail(currentState, action)
@@ -159,7 +166,7 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_CERT: return authCert(currentState, action)
     case actionTypes.AUTH_VALID: return authValid(currentState, action)
     case actionTypes.AUTH_CLEAR_STATE : return authClearState(currentState, action)
-    case actionTypes.AUTH_CLEAR_CREDS : return authClearCreds(currentState, action)
+    case actionTypes.CLEAR_AUTH_CREDS : return clearAuthCreds(currentState, action)
     default: return currentState
   }
 }

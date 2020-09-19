@@ -1,8 +1,18 @@
 import * as actionTypes from './actionTypes'
 import { routes, fetch } from '../../utility/paths'
+import {
+  authUpdateStatus
+} from './authActions'
 import userFunctions from '../../utility/userFunctions'
 
 export const storeUserInfo = (info) => {
+  return dispatch => {
+    dispatch(authUpdateStatus('storeUserInfo', true))
+    dispatch(initStoreUserInfo(info))
+  }
+}
+
+export const initStoreUserInfo = (info) => {
   return {
     type: actionTypes.STORE_USER_INFO,
     info: info
@@ -10,6 +20,13 @@ export const storeUserInfo = (info) => {
 }
 
 export const storeUserQuestions = (questions) => {
+  return dispatch => {
+    dispatch(authUpdateStatus('storeUserQuestions', true))
+    dispatch(initStoreUserQuestions(questions))
+  }
+}
+
+export const initStoreUserQuestions = (questions) => {
   return {
     type: actionTypes.STORE_USER_QUESTIONS,
     questions: questions
@@ -17,6 +34,13 @@ export const storeUserQuestions = (questions) => {
 }
 
 export const clearUserInfo = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('clearUserInfoSuccess', true))
+    dispatch(initClearUserInfo())
+  }
+}
+
+const initClearUserInfo = () => {
   return {
     type: actionTypes.CLEAR_USER_INFO,
     info: null
@@ -24,6 +48,13 @@ export const clearUserInfo = () => {
 }
 
 export const clearUserQuestions = () => {
+  return dispatch => {
+    dispatch(authUpdateStatus('clearUserQuestionsSuccess', true))
+    dispatch(initClearUserQuestions())
+  }
+}
+
+const initClearUserQuestions = () => {
   return {
     type: actionTypes.CLEAR_USER_QUESTIONS,
     questions: null
@@ -52,6 +83,16 @@ export const updateUserQuestions = () => {
     }
   }
 }
+
+// export const deleteUser = (obj, props) => {
+//   return dispatch => {
+//     userFunctions('delete', fetch.delete.user, obj)
+//     .then(res => {
+//       console.log(res)
+//       if(res) dispatch(authLogOut())
+//     })
+//   }
+// }
 
 export const updateUserQuestionIdsFromPlayController = (ids) => {
   return {
@@ -87,16 +128,5 @@ export const updateUserCommentsFromPlayController = (id, comment) => {
     type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER,
     cid: id,
     comment: comment
-  }
-}
-
-
-export const deleteUser = (obj, props) => {
-  return dispatch => {
-    userFunctions('delete', fetch.delete.user, obj)
-    .then(res => {
-      console.log(res)
-      // if(res) dispatch(authLogOut(props))
-    })
   }
 }
