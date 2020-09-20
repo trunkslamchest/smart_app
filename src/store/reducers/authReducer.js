@@ -4,7 +4,7 @@ const initialState = {
   authType: null,
   status: null,
   loading: false,
-  error: null,
+  errors: [],
   id: null,
   token: null,
   refreshToken: null
@@ -21,7 +21,7 @@ const authUpdateStatus = (currentState, action) => {
 const authStart = (currentState, action) => {
   return {
     ...currentState,
-    error: null,
+    errors: [],
     authType: action.authType
   }
 }
@@ -39,26 +39,22 @@ const authFail = (currentState, action) => {
   return {
     ...currentState,
     status: action.status,
-    error: action.error,
-    loading: action.loading,
-    modal: {
-      ...currentState.modal,
-      login: false
-    }
+    errors: [ ...currentState.errors, action.error ],
+    loading: action.loading
   }
 }
 
 const authSignUp = (currentState, action) => {
   return {
     ...currentState,
-    error: action.error
+    errors: [ ...currentState.errors, action.error ],
   }
 }
 
 const authLogIn = (currentState, action) => {
   return {
     ...currentState,
-    error: action.error
+    errors: [ ...currentState.errors, action.error ],
   }
 }
 
@@ -76,14 +72,14 @@ const authLogOut = (currentState, action) => {
 const authRefresh = (currentState, action) => {
   return {
     ...currentState,
-    error: action.error
+    errors: [ ...currentState.errors, action.error ],
   }
 }
 
 const authUser = (currentState, action) => {
   return {
     ...currentState,
-    error: action.error
+    errors: [ ...currentState.errors, action.error ],
   }
 }
 
@@ -141,6 +137,7 @@ const clearAuthType = (currentState, action) => {
 const clearAuthStatus = (currentState, action) => {
   return {
     ...currentState,
+    errors: action.errors,
     status: action.status,
     loading: action.loading
   }
@@ -159,6 +156,13 @@ const authClearState = (currentState, action) => {
   }
 }
 
+const clearAuthErrors = (currentState, action) => {
+  return {
+    ...currentState,
+    errors: action.errors
+  }
+}
+
 const authReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.AUTH_UPDATE_STATUS: return authUpdateStatus(currentState, action)
@@ -173,10 +177,11 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_DELETE: return authDelete(currentState, action)
     case actionTypes.AUTH_CERT: return authCert(currentState, action)
     case actionTypes.AUTH_VALID: return authValid(currentState, action)
-    case actionTypes.AUTH_CLEAR_STATE : return authClearState(currentState, action)
-    case actionTypes.CLEAR_AUTH_CREDS : return clearAuthCreds(currentState, action)
-    case actionTypes.CLEAR_AUTH_TYPE : return clearAuthType(currentState, action)
-    case actionTypes.CLEAR_AUTH_STATUS : return clearAuthStatus(currentState, action)
+    case actionTypes.AUTH_CLEAR_STATE: return authClearState(currentState, action)
+    case actionTypes.CLEAR_AUTH_CREDS: return clearAuthCreds(currentState, action)
+    case actionTypes.CLEAR_AUTH_TYPE: return clearAuthType(currentState, action)
+    case actionTypes.CLEAR_AUTH_STATUS: return clearAuthStatus(currentState, action)
+    case actionTypes.CLEAR_AUTH_ERRORS: return clearAuthErrors(currentState, action)
     case actionTypes.SET_AUTH_TYPE : return setAuthType(currentState, action)
     default: return currentState
   }

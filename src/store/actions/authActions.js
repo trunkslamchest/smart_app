@@ -229,6 +229,7 @@ export const clearAuthType = () => {
 export const clearAuthStatus = () => {
   return {
     type: actionTypes.CLEAR_AUTH_STATUS,
+    errors: [],
     status: null,
     loading: false
   }
@@ -241,6 +242,13 @@ export const clearAuthCreds = () => {
     id: null,
     refreshToken: null,
     token: null
+  }
+}
+
+export const clearAuthErrors = () => {
+  return {
+    type: actionTypes.CLEAR_AUTH_ERRORS,
+    errors: []
   }
 }
 

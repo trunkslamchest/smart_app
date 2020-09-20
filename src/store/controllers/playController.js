@@ -24,11 +24,11 @@ class PlayController extends React.Component {
   }
 
   componentDidMount(){
-    if(this.props.auth.valid) this.initGameModule()
+    if(this.props.auth.status === 'authValid') this.initGameModule()
   }
 
   componentDidUpdate(){
-    if(this.props.auth.valid) {
+    if(this.props.auth.status === 'authValid') {
       this.initGameModule()
 
       if(this.props.play.gameState === 'init') this.setGameModeModule()

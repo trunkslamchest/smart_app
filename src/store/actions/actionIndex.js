@@ -24,6 +24,7 @@ export {
   clearAuthCreds,
   clearAuthType,
   clearAuthStatus,
+  clearAuthErrors,
   setAuthType
   // setAuthRedirectPath,
   // checkAuthState,

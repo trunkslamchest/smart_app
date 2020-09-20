@@ -11,35 +11,61 @@ import './logIn.css'
 class LogIn extends React.Component {
 
   state = {
-    errors: [],
     email: '',
-    password: ''
+    password: '',
+    enableButton: true,
+    enableInput: true
   }
 
-  onChange = (event) => {this.setState({[event.target.name]: event.target.value})}
+  componentDidUpdate() {
+    if(this.props.auth.loading && this.state.enableButton){
+      this.setState({
+        enableButton: false,
+        enableInput: false,
+      })
+    }
+
+    if(!this.props.auth.loading && !this.state.enableButton){
+      this.setState({
+        enableButton: true,
+        enableInput: true,
+      })
+    }
+  }
+
+  onChange = (event) => { this.setState({[event.target.name]: event.target.value}) }
 
   onSubmit = (event) => {
     event.preventDefault()
-    event.persist()
 
-    this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true})
+    this.setState({
+      enableButton: false,
+      enableInput: false,
+    })
+
+    if(this.state.enableButton) this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true})
   }
 
-  onCancel = () => { this.props.onLogInModal(false) }
+  onCancel = () => {
+    this.props.onLogInModal(false)
+    this.props.onClearAuthErrors()
+  }
 
   render(){
+
     return (
         <Modal
           showModal={ this.props.modal.login }
         >
         <div className='login_wrapper'>
           <LogInForm
-            email={this.state.email}
-            errors={this.state.errors}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-            onCancel={this.onCancel}
-            password={this.state.password}
+            enableButton={ this.state.enableButton }
+            enableInput={ this.state.enableInput }
+            email={ this.state.email }
+            onChange={ this.onChange }
+            onSubmit={ this.onSubmit  }
+            onCancel={ this.onCancel }
+            password={ this.state.password }
           />
         </div>
       </Modal>
@@ -50,15 +76,17 @@ class LogIn extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    login: state.login,
-    modal: state.modal
+    modal: state.modal,
+    user: state.user,
+    question: state.question
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogInModal: (bool) => dispatch(actions.login(bool)),
-    onAuthStart: (type, obj) => dispatch(actions.authStart(type, obj))
+    onAuthStart: (type, obj) => dispatch(actions.authStart(type, obj)),
+    onClearAuthErrors: () => dispatch(actions.clearAuthErrors())
   }
 }
 

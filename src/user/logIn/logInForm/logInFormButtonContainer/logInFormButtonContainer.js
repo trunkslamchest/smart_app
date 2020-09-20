@@ -11,14 +11,16 @@ const LogInFormButtonContainer = (props) => {
         type='submit'
         id='log_in_submit'
         name='log_in_submit'
-        onClick={props.onSubmit}
+        enableButton={ props.enableButton }
+        onClickFunctions={ props.onSubmit }
         value='Login'
       />
       <LogInFormButton
         type='reset'
         id='log_in_cancel'
         name='log_in_cancel'
-        onClick={props.onCancel}
+        enableButton={ props.enableButton }
+        onClickFunctions={ props.onCancel }
         value='Cancel'
       />
     </div>

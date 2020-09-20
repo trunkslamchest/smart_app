@@ -17,7 +17,7 @@ const QuestionCard = (props) => {
     return <button
         key={`answer_button_${i}`}
         value={ i }
-        className={props.enableQuestion ? "question_card_choice_button" : "question_card_choice_button_disabled" }
+        className={ props.enableQuestion ? "question_card_choice_button" : "question_card_choice_button_disabled" }
         name="answer_button"
         onClick={ props.enableQuestion ? onClickFunctions : null }
       >

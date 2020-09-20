@@ -11,6 +11,7 @@ const LogInFormInput = (props) => {
         type={props.type}
         id={props.id}
         name={props.name}
+        disabled={ props.disabled }
         onChange={props.onChange}
         value={props.user_name}
       />
