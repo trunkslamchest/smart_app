@@ -19,9 +19,12 @@ export {
   authDelete,
   authTimeout,
   authCert,
+  authValid,
   authClearState,
   clearAuthCreds,
-  authValid
+  clearAuthType,
+  clearAuthStatus,
+  setAuthType
   // setAuthRedirectPath,
   // checkAuthState,
   // checkAuthTimeout,
@@ -39,7 +42,7 @@ export {
   updateUserQuestionTotalsFromPlayController,
   updateUserVotesFromPlayController,
   updateUserCommentsFromPlayController,
-  // deleteUser
+  deleteUser
 } from './userActions'
 
 export {

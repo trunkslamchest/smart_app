@@ -35,7 +35,7 @@ export const initStoreUserQuestions = (questions) => {
 
 export const clearUserInfo = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearUserInfoSuccess', true))
+    dispatch(authUpdateStatus('clearUserInfo', true))
     dispatch(initClearUserInfo())
   }
 }
@@ -49,7 +49,7 @@ const initClearUserInfo = () => {
 
 export const clearUserQuestions = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearUserQuestionsSuccess', true))
+    dispatch(authUpdateStatus('clearUserQuestions', true))
     dispatch(initClearUserQuestions())
   }
 }
@@ -84,15 +84,17 @@ export const updateUserQuestions = () => {
   }
 }
 
-// export const deleteUser = (obj, props) => {
-//   return dispatch => {
-//     userFunctions('delete', fetch.delete.user, obj)
-//     .then(res => {
-//       console.log(res)
-//       if(res) dispatch(authLogOut())
-//     })
-//   }
-// }
+export const deleteUser = () => {
+  return dispatch => {
+    userFunctions('delete', fetch.delete.user, {uid: localStorage.id})
+    .then(res => {
+      console.log(res)
+      dispatch(authUpdateStatus('deleteLocalUserSuccess', true))
+
+      // if(res) dispatch(authLogOut())
+    })
+  }
+}
 
 export const updateUserQuestionIdsFromPlayController = (ids) => {
   return {

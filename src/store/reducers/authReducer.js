@@ -1,18 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
 
-// const initialState = {
-//   authType: null,
-//   cert: false,
-//   error: null,
-//   fail: false,
-//   id: null,
-//   loading: false,
-//   refreshToken: null,
-//   start: false,
-//   success: false,
-//   token: null
-// }
-
 const initialState = {
   authType: null,
   status: null,
@@ -34,6 +21,7 @@ const authUpdateStatus = (currentState, action) => {
 const authStart = (currentState, action) => {
   return {
     ...currentState,
+    error: null,
     authType: action.authType
   }
 }
@@ -102,10 +90,6 @@ const authUser = (currentState, action) => {
 const authDelete = (currentState, action) => {
   return {
     ...currentState,
-    // error: action.error,
-    // id: null,
-    // refreshToken: null,
-    // token: null
     authType: action.authType
   }
 }
@@ -134,7 +118,31 @@ const clearAuthCreds = (currentState, action) => {
     ...currentState,
     id: action.id,
     refreshToken: action.refreshToken,
-    token: action.token
+    token: action.token,
+    status: action.status
+  }
+}
+
+const setAuthType = (currentState, action) => {
+  return {
+    ...currentState,
+    authType: action.authType
+  }
+}
+
+const clearAuthType = (currentState, action) => {
+  return {
+    ...currentState,
+    authType: action.authType,
+    status: action.status
+  }
+}
+
+const clearAuthStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    loading: action.loading
   }
 }
 
@@ -167,6 +175,9 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_VALID: return authValid(currentState, action)
     case actionTypes.AUTH_CLEAR_STATE : return authClearState(currentState, action)
     case actionTypes.CLEAR_AUTH_CREDS : return clearAuthCreds(currentState, action)
+    case actionTypes.CLEAR_AUTH_TYPE : return clearAuthType(currentState, action)
+    case actionTypes.CLEAR_AUTH_STATUS : return clearAuthStatus(currentState, action)
+    case actionTypes.SET_AUTH_TYPE : return setAuthType(currentState, action)
     default: return currentState
   }
 }

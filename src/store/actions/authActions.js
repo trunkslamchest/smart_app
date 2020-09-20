@@ -8,14 +8,8 @@ import {
 import {
   storeUserInfo,
   storeUserQuestions,
-  clearUserInfo,
-  clearUserQuestions,
-  // deleteUser
+  clearUserInfo
 } from './userActions'
-
-import {
-  clearQuestionTotals
-} from './questionsActions'
 
 import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
@@ -24,8 +18,6 @@ import signUpObjTemplate from '../../templates/signUpObjTemplate'
 
 export const authStart = (authType, obj) => {
   return dispatch => {
-    // dispatch(initAuth(authType))
-    // dispatch(authUpdateStatus('authUserGoogleStart', true))
     if(authType === 'logIn') {
       dispatch(initAuth(authType))
       dispatch(authUpdateStatus('authUserGoogleStart', true))
@@ -46,14 +38,17 @@ export const authStart = (authType, obj) => {
       dispatch(authUpdateStatus('initUserLogOut', true))
       dispatch(authLogOut(authType, obj))
     }
-
-    // if(authType === 'deleteProfile') dispatch(authLogIn(authType, obj))
+    if(authType === 'deleteProfile') {
+      dispatch(initAuth(authType))
+      dispatch(authLogIn(authType, obj))
+    }
   }
 }
 
 const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
+    error: null,
     authType: authType,
     loading: true,
   }
@@ -94,13 +89,9 @@ export const authSuccess = (authType, obj) => {
       dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authComplete(obj))
     }
-    // if(authType === 'signUp') {
-    //   updateLocalStorage(obj)
-    //   dispatch(createUser(obj))
-    // } else {
-    //   updateLocalStorage(obj)
-    //   dispatch(authComplete(obj))
-    // }
+    if(authType === 'deleteProfile') {
+      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+    }
   }
 }
 
@@ -197,7 +188,7 @@ export const authRefresh = (authType, obj) => {
   }
 }
 
-export const authDelete = (props) => {
+export const authDelete = () => {
   return dispatch => {
     const obj = {
       localId: localStorage.id,
@@ -207,71 +198,46 @@ export const authDelete = (props) => {
 
     authFunctions('delete', auth.delete, obj)
     .then(authRes => {
-      if(authRes) dispatch(deleteUser({uid: localStorage.id}))
-      // dispatch(setAuthTypeOnDelete('logOut'))
+        if(!!authRes.error) dispatch(authFail(authRes.error))
+        else dispatch(authUpdateStatus('deleteAuthUserSuccess', true))
     })
-  }
-}
-
-const deleteUser = (obj) => {
-  return dispatch => {
-    userFunctions('delete', fetch.delete.user, obj)
-    .then(res => {
-      if(res) dispatch(setAuthTypeOnDelete('deleted'))
-    })
-  }
-}
-
-const setAuthTypeOnDelete = (authType) => {
-  return {
-    type: actionTypes.AUTH_DELETE,
-    authType: authType
   }
 }
 
 export const authLogOut = () => {
-  localStorage.clear()
-  localStorage.access = 'guest'
-  return dispatch => {
-    dispatch(initClearUserInfo())
-    dispatch(initClearUserQuestions())
-    dispatch(initClearQuestionTotals())
-    dispatch(initClearAuthCreds())
-    // dispatch(authClearState())
-  }
-}
-
-const initClearUserInfo = () => {
   return dispatch => {
     dispatch(authUpdateStatus('initClearUserInfo', true))
     dispatch(clearUserInfo())
   }
 }
 
-const initClearUserQuestions = () => {
-  return dispatch => {
-    dispatch(authUpdateStatus('initClearUserQuestions', true))
-    dispatch(clearUserQuestions())
+export const setAuthType = (authType) => {
+  return {
+    type: actionTypes.SET_AUTH_TYPE,
+    authType: authType
   }
 }
 
-const initClearQuestionTotals = () => {
-  return dispatch => {
-    dispatch(authUpdateStatus('initClearQuestionTotals', true))
-    dispatch(clearQuestionTotals())
+export const clearAuthType = () => {
+  return {
+    type: actionTypes.CLEAR_AUTH_TYPE,
+    status: 'clearAuthTypeSuccess',
+    authType: null
   }
 }
 
-const initClearAuthCreds = () => {
-  return dispatch => {
-    dispatch(authUpdateStatus('initClearAuthCreds', true))
-    dispatch(clearAuthCreds())
+export const clearAuthStatus = () => {
+  return {
+    type: actionTypes.CLEAR_AUTH_STATUS,
+    status: null,
+    loading: false
   }
 }
 
 export const clearAuthCreds = () => {
   return {
     type: actionTypes.CLEAR_AUTH_CREDS,
+    status: 'clearAuthCredsSuccess',
     id: null,
     refreshToken: null,
     token: null

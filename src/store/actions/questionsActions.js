@@ -36,7 +36,7 @@ export const getQuestionTotals = (props) => {
 
 export const clearQuestionTotals = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearQuestionTotalsSuccess', true))
+    dispatch(authUpdateStatus('clearQuestionTotals', true))
     dispatch(initClearQuestionTotals())
   }
 }

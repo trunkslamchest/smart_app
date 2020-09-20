@@ -9,7 +9,7 @@ const LogOutButtonContainer = (props) => {
           id='log_out_form_confirm'
           name='log_out_form_confirm'
           className='log_out_button'
-          onClick={props.onConfirm}
+          onClick={ props.onConfirm }
         >
           Yes
         </LogOutButton>
@@ -17,7 +17,7 @@ const LogOutButtonContainer = (props) => {
           id='log_out_form_cancel'
           name='log_out_form_cancel'
           className='log_out_button'
-          onClick={props.onCancel}
+          onClick={ props.onCancel }
         >
           No
         </LogOutButton>
