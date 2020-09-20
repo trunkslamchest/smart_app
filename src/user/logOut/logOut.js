@@ -5,6 +5,8 @@ import * as actions from '../../store/actions/actionIndex'
 
 import Modal from '../../UI/modal/modal'
 
+import AuthOutDynamicBar from '../../UI/loading/dynamicBar/authOutDynamicBar/authOutDynamicBar'
+
 import LogOutButtonContainer from './logOutButtonContainer/logOutButtonContainer'
 
 import './logOut.css'
@@ -24,6 +26,7 @@ const LogOut = (props) => {
       <div className='alt_header'>
         <h3>Are you sure you want to log out?</h3>
       </div>
+      { props.auth.loading && <AuthOutDynamicBar /> }
       <LogOutButtonContainer
         onConfirm={onConfirm}
         onCancel={onCancel}

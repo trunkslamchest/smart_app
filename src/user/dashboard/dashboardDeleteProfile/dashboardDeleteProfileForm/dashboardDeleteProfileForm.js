@@ -1,6 +1,10 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileFormButtonContainer'
+
+import AuthDeleteDynamicBar from '../../../../UI/loading/dynamicBar/authDeleteDynamicBar/authDeleteDynamicBar'
 
 const DashboardDeleteProfileForm = (props) => {
   return(
@@ -23,6 +27,8 @@ const DashboardDeleteProfileForm = (props) => {
             value={ props.password}
           />
         </div>
+        { props.auth.loading && <AuthDeleteDynamicBar /> }
+
         <DashboardDeleteProfileFormButtonContainer
           onSubmitConfirm={ props.onSubmitConfirm }
           onSubmitCancel={ props.onSubmitCancel }
@@ -32,4 +38,13 @@ const DashboardDeleteProfileForm = (props) => {
   )
 }
 
-export default DashboardDeleteProfileForm
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    modal: state.modal,
+    user: state.user,
+    question: state.question
+  }
+}
+
+export default connect(mapStateToProps)(DashboardDeleteProfileForm)

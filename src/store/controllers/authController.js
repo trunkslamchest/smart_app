@@ -17,6 +17,7 @@ class AuthController extends React.Component {
     initClearUserQuestions: false,
     initUserLogOut: false,
     initAuthDeleteUser: false,
+    authDeleteUser: false,
     initLocalDeleteUser: false,
     authLogInValid: false,
     authLogOutValid: false,
@@ -80,7 +81,6 @@ class AuthController extends React.Component {
     if(this.props.auth.authType === 'deleteProfile') {
       if(this.props.modal.deleteProfile) {
         if(this.props.auth.status === 'authUserGoogleStart' && !this.state.initAuthStart) this.initAuthModule('authUserGoogle')
-        if(this.props.auth.status === 'authUserGoogleSuccess' && !this.state.initAuthDeleteUser) this.initAuthDeleteUserModule('initAuthDeleteUser')
         if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.initLocalDeleteUser) this.initLocalDeleteUserModule('initLocalDeleteUser')
         if(this.props.auth.status === 'deleteLocalUserSuccess' && !this.state.initClearUserInfo) this.initClearUserInfoModule('clearUserInfo')
         if(this.props.auth.status === 'clearUserInfo' && !this.props.user.info) this.props.onAuthUpdateStatus('clearUserInfoSuccess', true)
@@ -186,8 +186,13 @@ class AuthController extends React.Component {
 
   initAuthDeleteUserModule = (status) => {
     this.props.onAuthUpdateStatus(status, true)
-    this.props.onAuthDelete()
     this.setState({ initAuthStart: false, initAuthDeleteUser: true })
+  }
+
+  authDeleteUserModule = (status) => {
+    this.props.onAuthUpdateStatus(status, true)
+    this.props.onAuthDelete({id: this.props.auth.id, token: this.props.auth.token})
+    this.setState({ initAuthDeleteUser: false, authDeleteUser: true })
   }
 
   initLocalDeleteUserModule = (status) => {
@@ -237,7 +242,7 @@ const mapDispatchToProps = dispatch => {
     onAuthLogOut: (props) => dispatch(actions.authLogOut(props)),
     onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
     onAuthUser: (token, refreshToken, id, expires) => dispatch(actions.authUser(token, refreshToken, id, expires)),
-    onAuthDelete: () => dispatch(actions.authDelete()),
+    onAuthDelete: (obj) => dispatch(actions.authDelete(obj)),
     onAuthTimeout: (time) => dispatch(actions.authTimeout(time)),
     onAuthCert: (bool) => dispatch(actions.authCert(bool)),
     onAuthValid: (bool) => dispatch(actions.authValid(bool)),

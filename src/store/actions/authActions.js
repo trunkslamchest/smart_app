@@ -91,6 +91,7 @@ export const authSuccess = (authType, obj) => {
     }
     if(authType === 'deleteProfile') {
       dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      dispatch(authDelete(obj))
     }
   }
 }
@@ -188,15 +189,20 @@ export const authRefresh = (authType, obj) => {
   }
 }
 
-export const authDelete = () => {
+export const authDelete = (obj) => {
   return dispatch => {
-    const obj = {
-      localId: localStorage.id,
-      idToken: localStorage.token,
-      project: process.env.REACT_APP_FIREBASE_PROJECT_ID
+    dispatch(authUpdateStatus('initDeleteAuthUser', true))
+    const delObj = {
+      displayName: obj.user,
+      email: obj.email,
+      expiresIn: obj.expires,
+      localId: obj.id,
+      idToken: obj.token,
+      refreshToken: obj.refresh
+      // targetProjectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
     }
 
-    authFunctions('delete', auth.delete, obj)
+    authFunctions('delete', auth.delete, delObj)
     .then(authRes => {
         if(!!authRes.error) dispatch(authFail(authRes.error))
         else dispatch(authUpdateStatus('deleteAuthUserSuccess', true))

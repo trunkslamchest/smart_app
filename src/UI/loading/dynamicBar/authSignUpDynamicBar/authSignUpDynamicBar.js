@@ -2,9 +2,9 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import './authDynamicBar.css'
+import './authSignUpDynamicBar.css'
 
-const LoadingAuthDynamicBar = (props) => {
+const LoadingAuthSignUpDynamicBar = (props) => {
 
   let loadingBarClass = 'loading_bar_0'
   let loadingText = ''
@@ -24,53 +24,58 @@ const LoadingAuthDynamicBar = (props) => {
     loadingText = 'Google Authentication Success'
   }
 
-  if(props.auth.status === 'authUserLocal'){
+  if(props.auth.status === 'createUserLocalSuccess'){
     loadingBarClass = 'loading_bar_4'
+    loadingText = 'Generating Local User Record'
+  }
+
+  if(props.auth.status === 'authUserLocal'){
+    loadingBarClass = 'loading_bar_5'
     loadingText = 'Authenticating with Local Server'
   }
 
   if(props.auth.status === 'authUserLocalSuccess'){
-    loadingBarClass = 'loading_bar_5'
+    loadingBarClass = 'loading_bar_6'
     loadingText = 'Local Authentication Success'
   }
 
   if(props.auth.status === 'storeUserInfo'){
-    loadingBarClass = 'loading_bar_6'
+    loadingBarClass = 'loading_bar_7'
     loadingText = 'Storing User Information in Redux'
   }
 
   if(props.auth.status === 'storeUserInfoSuccess'){
-    loadingBarClass = 'loading_bar_7'
+    loadingBarClass = 'loading_bar_8'
     loadingText = 'User Information Stored in Redux'
   }
 
   if(props.auth.status === 'storeUserQuestions'){
-    loadingBarClass = 'loading_bar_8'
+    loadingBarClass = 'loading_bar_9'
     loadingText = 'Storing User Questions in Redux'
   }
 
   if(props.auth.status === 'storeUserQuestionsSuccess'){
-    loadingBarClass = 'loading_bar_9'
+    loadingBarClass = 'loading_bar_10'
     loadingText = 'User Information Stored in Redux'
   }
 
   if(props.auth.status === 'getQuestionsLocal'){
-    loadingBarClass = 'loading_bar_10'
+    loadingBarClass = 'loading_bar_11'
     loadingText = 'Fetching Local Question Totals'
   }
 
   if(props.auth.status === 'getQuestionsLocalSuccess'){
-    loadingBarClass = 'loading_bar_11'
+    loadingBarClass = 'loading_bar_12'
     loadingText = 'Fetched Local Question Totals'
   }
 
   if(props.auth.status === 'storeQuestionsLocal'){
-    loadingBarClass = 'loading_bar_12'
+    loadingBarClass = 'loading_bar_13'
     loadingText = 'Storing Question Totals in Redux'
   }
 
   if(props.auth.status === 'storeQuestionsLocalSuccess'){
-    loadingBarClass = 'loading_bar_13'
+    loadingBarClass = 'loading_bar_14'
     loadingText = 'Authentication Validated'
   }
 
@@ -94,4 +99,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(LoadingAuthDynamicBar)
+export default connect(mapStateToProps)(LoadingAuthSignUpDynamicBar)

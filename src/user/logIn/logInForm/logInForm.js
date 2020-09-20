@@ -61,6 +61,7 @@ const LogInForm = (props) => {
     </>
   )
 }
+
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,

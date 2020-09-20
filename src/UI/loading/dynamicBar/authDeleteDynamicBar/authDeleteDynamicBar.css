@@ -1,9 +1,7 @@
 .dyanmic_bar_container {
   margin: 0px auto !important;
-  /* padding: 2.5px; */
   height: 45px;
   width: 50%;
-  /* background: red */
 }
 
 .loading_bar_container {
@@ -103,7 +101,7 @@
 
 .loading_bar_10 {
   height: 15px;
-  width: 60%;
+  width: 65%;
   background: black;
   transition-property: width;
   transition-duration: .1s, .1s;
@@ -112,7 +110,7 @@
 
 .loading_bar_11 {
   height: 15px;
-  width: 75%;
+  width: 70%;
   background: black;
   transition-property: width;
   transition-duration: .1s, .1s;
@@ -121,7 +119,7 @@
 
 .loading_bar_12 {
   height: 15px;
-  width: 90%;
+  width: 75%;
   background: black;
   transition-property: width;
   transition-duration: .1s, .1s;
@@ -129,6 +127,42 @@
 }
 
 .loading_bar_13 {
+  height: 15px;
+  width: 80%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_14 {
+  height: 15px;
+  width: 85%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_15 {
+  height: 15px;
+  width: 90%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_16 {
+  height: 15px;
+  width: 95%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_17 {
   height: 15px;
   width: 100%;
   background: black;
@@ -138,7 +172,7 @@
 }
 
 .loading_text {
-
+  text-align: center;
 }
 
 .loading_text p {

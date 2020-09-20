@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
 
-import AuthDynamicBar from '../../../UI/loading/dynamicBar/authDynamicBar/authDynamicBar'
+import AuthSignUpDynamicBar from '../../../UI/loading/dynamicBar/authSignUpDynamicBar/authSignUpDynamicBar'
 
 import ErrorContainer from '../../../error/errorContainer'
 
@@ -76,7 +76,7 @@ const SignUpForm = (props) => {
         </div>
         <hr />
       </form>
-      { this.props.auth.loading && <AuthDynamicBar /> }
+      { props.auth.loading && <AuthSignUpDynamicBar /> }
       <SignUpFormButtonContainer
         onSubmit={onSubmit}
         onReset={props.onReset}
