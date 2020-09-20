@@ -1,13 +1,21 @@
 .error_container {
-  background: rgba(168, 62, 50, 0.2);
-  border: 1px solid rgba(168, 62, 50, 0.4);
   margin: 0px auto !important;
-  padding: 2.5px;
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  // padding: 2.5px;
+  height: 45px;
+  // width: 50%;
 }
 
 .error_item {
   /* color: white; */
+  background: rgba(168, 62, 50, 0.2);
+  padding: 5px 0px;
+  width: 50%;
+  border: 1px solid rgba(168, 62, 50, 0.4);
   font: 400 12pt 'Lato', sans-serif;
 
 }

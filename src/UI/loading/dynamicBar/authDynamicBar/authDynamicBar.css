@@ -1,0 +1,156 @@
+.dyanmic_bar_container {
+  margin: 0px auto !important;
+  /* padding: 2.5px; */
+  height: 45px;
+  width: 50%;
+  /* background: red */
+}
+
+.loading_bar_container {
+  padding: 1px;
+  border: 1px solid black;
+}
+
+.loading_bar_0 {
+  height: 15px;
+  width: 0%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_1 {
+  height: 15px;
+  width: 5%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_2 {
+  height: 15px;
+  width: 10%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_3 {
+  height: 15px;
+  width: 15%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_4 {
+  height: 15px;
+  width: 20%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_5 {
+  height: 15px;
+  width: 25%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_6 {
+  height: 15px;
+  width: 30%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_7 {
+  height: 15px;
+  width: 35%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_8 {
+  height: 15px;
+  width: 40%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_9 {
+  height: 15px;
+  width: 50%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_10 {
+  height: 15px;
+  width: 60%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_11 {
+  height: 15px;
+  width: 70%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_12 {
+  height: 15px;
+  width: 80%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_13 {
+  height: 15px;
+  width: 90%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_bar_14 {
+  height: 15px;
+  width: 99%;
+  background: black;
+  transition-property: width;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.loading_text {
+
+}
+
+.loading_text p {
+  font: 300 10pt 'Poppins', sans-serif;
+  color: black
+}

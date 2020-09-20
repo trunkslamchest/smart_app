@@ -1,14 +1,13 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 import { Link } from 'react-router-dom'
 
-// import genders from '../../datasets/genders'
-// import months from '../../datasets/months'
-// import states from '../../datasets/states'
-
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
-// import SignUpFormSelect from './signUpFormSelect'
 import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
+
+import AuthDynamicBar from '../../../UI/loading/dynamicBar/authDynamicBar/authDynamicBar'
 
 import ErrorContainer from '../../../error/errorContainer'
 
@@ -77,6 +76,7 @@ const SignUpForm = (props) => {
         </div>
         <hr />
       </form>
+      { this.props.auth.loading && <AuthDynamicBar /> }
       <SignUpFormButtonContainer
         onSubmit={onSubmit}
         onReset={props.onReset}
@@ -86,4 +86,13 @@ const SignUpForm = (props) => {
   )
 }
 
-export default SignUpForm
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    modal: state.modal,
+    user: state.user,
+    question: state.question
+  }
+}
+
+export default connect(mapStateToProps)(SignUpForm)

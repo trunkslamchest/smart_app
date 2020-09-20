@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
-  margin: 20px auto 20px auto;
+  margin: 10px auto 20px auto;
   border: 1px solid rgb(200, 200, 200, 1);
   box-sizing: border-box;
   /* animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1; */
