@@ -41,7 +41,7 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
       if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
-      if(this.props.auth.status === 'authValid' && this.props.modal.login) this.props.onLogInModal(false)
+      // if(this.props.auth.status === 'authValid' && this.props.modal.login) this.props.onLogInModal(false)
     }
 
     if(this.props.auth.authType === 'signUp') {
@@ -52,7 +52,6 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
       if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
-      if(this.props.auth.status === 'authValid' && this.props.modal.signup) this.props.onSignUpModal(false)
     }
 
     if(this.props.auth.authType === 'refresh') {
@@ -91,6 +90,18 @@ class AuthController extends React.Component {
         if(this.props.auth.status === 'clearQuestionTotalsSuccess' && !this.state.initClearAuthCreds) this.initClearAuthCredsModule('initClearAuthCreds')
         if(this.props.auth.status === 'clearAuthCredsSuccess' && !this.state.authDeleteUserValid ) this.authFinalizeDeleteUser('authFinalizeDeleteUser')
       }
+    }
+
+    if(this.props.auth.status === 'authValid' && this.state.authLogInValid && this.props.modal.signup) {
+      this.setState({ authLogInValid: false })
+      this.props.onSignUpModal(false)
+      this.props.history.push( routes.dashboard )
+    }
+
+    if(this.props.auth.status === 'authValid' && this.state.authLogInValid && this.props.modal.login) {
+      this.setState({ authLogInValid: false })
+      this.props.onLogInModal(false)
+      this.props.history.push( routes.dashboard )
     }
 
     if(this.state.authLogOutValid && this.props.modal.logout) {
@@ -144,9 +155,9 @@ class AuthController extends React.Component {
   }
 
   authLogInValidModule = (status) => {
+    this.props.onClearAuthType()
     this.props.onAuthUpdateStatus(status, false)
     this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, initAuthQuestions: false, authLogInValid: true })
-    if(this.props.auth.authType !== 'refresh') this.props.history.push( routes.dashboard )
   }
 
   authInitUserLogOutModule = (status) => {
@@ -197,7 +208,7 @@ class AuthController extends React.Component {
 
   initLocalDeleteUserModule = (status) => {
     this.props.onAuthUpdateStatus(status, true)
-    this.props.onDeleteUser()
+    this.props.onDeleteUser(this.props.auth.id)
     this.setState({ initAuthDeleteUser: false, initLocalDeleteUser: true })
   }
 
@@ -205,7 +216,7 @@ class AuthController extends React.Component {
     this.props.onAuthUpdateStatus(status, true)
     this.props.onClearAuthType()
     this.clearLocalStorage()
-    this.setState({ authLogInValid: false, initClearAuthCreds: false, authDeleteUserValid: true })
+    this.setState({ authLogInValid: false, initClearAuthCreds: false, initLocalDeleteUser: false, authDeleteUserValid: true })
   }
 
   clearLocalStorage = () => {
@@ -288,7 +299,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateUserQuestions: () => dispatch(actions.updateUserInfo()),
     onClearUserQuestions: () => dispatch(actions.clearUserQuestions()),
     onUpdateUserQuestionIdsFromPlayController: (ids) => dispatch(actions.updateUserQuestionIdsFromPlayController(ids)),
-    onDeleteUser: () => dispatch(actions.deleteUser())
+    onDeleteUser: (id) => dispatch(actions.deleteUser(id))
   }
 }
 

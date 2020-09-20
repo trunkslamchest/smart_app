@@ -48,7 +48,10 @@ class SignUp extends React.Component {
     })
   }
 
-  onCancel = () => { this.props.onSignUpModal(false) }
+  onCancel = () => {
+    this.onReset()
+    this.props.onSignUpModal(false)
+  }
 
   render(){
     return (

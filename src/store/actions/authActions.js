@@ -199,7 +199,6 @@ export const authDelete = (obj) => {
       localId: obj.id,
       idToken: obj.token,
       refreshToken: obj.refresh
-      // targetProjectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
     }
 
     authFunctions('delete', auth.delete, delObj)

@@ -84,14 +84,12 @@ export const updateUserQuestions = () => {
   }
 }
 
-export const deleteUser = () => {
+export const deleteUser = (id) => {
   return dispatch => {
-    userFunctions('delete', fetch.delete.user, {uid: localStorage.id})
+    userFunctions('delete', fetch.delete.user, {uid: id})
     .then(res => {
       console.log(res)
       dispatch(authUpdateStatus('deleteLocalUserSuccess', true))
-
-      // if(res) dispatch(authLogOut())
     })
   }
 }
