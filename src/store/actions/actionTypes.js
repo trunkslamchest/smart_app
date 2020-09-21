@@ -1,3 +1,4 @@
+export const LOADINGMODAL = 'LOADINGMODAL'
 export const LOGINMODAL = 'LOGINMODAL'
 export const LOGOUTMODAL = 'LOGOUTMODAL'
 export const SIGNUPMODAL = 'SIGNUPMODAL'

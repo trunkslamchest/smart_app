@@ -1,11 +1,19 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  loading: false,
   login: false,
   logout: false,
   signup: false,
   deleteProfile: false,
   showModal: false
+}
+
+const loadingModal = (currentState, action) => {
+  return {
+    ...currentState,
+    loading: action.loading
+  }
 }
 
 const loginModal = (currentState, action) => {
@@ -45,6 +53,7 @@ const showModal = (currentState, action) => {
 
 const modalReducer = (currentState = initialState, action) => {
   switch(action.type){
+    case actionTypes.LOADINGMODAL: return loadingModal(currentState, action)
     case actionTypes.LOGINMODAL: return loginModal(currentState, action)
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)
     case actionTypes.SIGNUPMODAL: return signupModal(currentState, action)

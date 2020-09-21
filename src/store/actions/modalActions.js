@@ -1,21 +1,28 @@
 import * as actionTypes from './actionTypes'
 
+export const loading = (bool) => {
+  return {
+    type: actionTypes.LOADINGMODAL,
+    loading: bool
+  }
+}
+
 export const login = (bool) => {
-  return{
+  return {
     type: actionTypes.LOGINMODAL,
     login: bool
   }
 }
 
 export const logout = (bool) => {
-  return{
+  return {
     type: actionTypes.LOGOUTMODAL,
     logout: bool
   }
 }
 
 export const signup = (bool) => {
-  return{
+  return {
     type: actionTypes.SIGNUPMODAL,
     signup: bool
   }

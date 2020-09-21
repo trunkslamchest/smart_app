@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import * as actions from './store/actions/actionIndex'
+
 import { Route, Switch } from 'react-router-dom'
 
 import { routes } from './utility/paths'
@@ -14,6 +17,7 @@ import Footer from './UI/footer/footer'
 import LogIn from './user/logIn/logIn'
 import SignUp from './user/signUp/signUp'
 import LogOut from './user/logOut/logOut'
+import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
 import DashboardContainer from './user/dashboard/dashboardContainer'
 
@@ -32,6 +36,8 @@ const App = (props) => {
     <StoreController history={ props.history }>
       <Header />
       <div className='main_container'>
+        { props.auth.loading && <LoadingModal barType={ 'authRefresh' } history={ props.history } /> }
+        {/* <LoadingModal history={ props.history } /> */}
         <LogIn history={ props.history } />
         <LogOut history={ props.history } />
         <SignUp history={ props.history } />
@@ -56,4 +62,17 @@ const App = (props) => {
   )
 }
 
-export default App
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    modal: state.modal
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLoadingModal: (bool) => dispatch(actions.loading(bool))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
