@@ -4,9 +4,18 @@ import { fetch } from '../../utility/paths'
 
 import questionsFunctions from '../../utility/questionsFunctions'
 
+export const updateGameStatus = (status, loading) => {
+  return {
+    type: actionTypes.UPDATE_GAME_STATUS,
+    status: status,
+    loading: loading
+  }
+}
+
 export const setGameMode = (mode) => {
   return {
     type: actionTypes.SET_GAME_MODE,
+    status: 'setGameModeSuccess',
     gameMode: mode
   }
 }
@@ -21,6 +30,7 @@ export const resetGameMode = () => {
 export const setQuestion = (question) => {
   return {
     type: actionTypes.SET_QUESTION,
+    status: 'setQuestionSuccess',
     question: question
   }
 }
@@ -28,6 +38,7 @@ export const setQuestion = (question) => {
 export const updateQuestion = (results) => {
   return {
     type: actionTypes.UPDATE_QUESTION,
+    status: 'updateQuestionSuccess',
     results: results
   }
 }
@@ -56,6 +67,7 @@ export const resetGameState = () => {
 export const setGameQset = (gameQset) => {
   return {
     type: actionTypes.SET_GAME_QSET,
+    status: 'setQsetSuccess',
     gameQset: gameQset
   }
 }
@@ -70,6 +82,7 @@ export const resetGameQset = () => {
 export const setAnswer = (answer) => {
   return {
     type: actionTypes.SET_ANSWER,
+    status: 'setAnswerSuccess',
     answer: answer
   }
 }
@@ -94,6 +107,7 @@ export const getResults = (obj) => {
 export const setResults = (results) => {
   return {
     type: actionTypes.SET_RESULTS,
+    status: 'setResultsSuccess',
     results: results
   }
 }
@@ -107,6 +121,7 @@ export const resetResults = () => {
 
 export const setVote = (obj) => {
   return dispatch => {
+
     questionsFunctions('patchQuestionVote', fetch.patch.questionVote, obj)
     .then(res => {
       dispatch(updateVotes(res))
@@ -114,18 +129,26 @@ export const setVote = (obj) => {
   }
 }
 
+export const updateVoteStatus = (status, loading) => {
+  return {
+    type: actionTypes.UPDATE_VOTE_STATUS,
+    voteStatus: status,
+    voteLoading: loading
+  }
+}
+
 const updateVotes = (obj) => {
   return {
     type: actionTypes.SET_VOTE,
-    votes: obj,
-    voted: true
+    votes: obj
   }
 }
 
 export const resetVote = () => {
   return {
     type: actionTypes.RESET_VOTE,
-    voted: false
+    voteStatus: null,
+    voteLoading: false
   }
 }
 
@@ -138,12 +161,19 @@ export const setComment = (obj) => {
   }
 }
 
+export const updateCommentStatus = (status, loading) => {
+  return {
+    type: actionTypes.UPDATE_COMMENT_STATUS,
+    commentStatus: status,
+    commentLoading: loading
+  }
+}
+
 const updateComments = (res) => {
   return {
     type: actionTypes.SET_COMMENT,
     comments: res.commentsObj,
-    comment: res.commentObj,
-    commented: true
+    comment: res.commentObj
   }
 }
 
@@ -151,6 +181,7 @@ export const resetComment = () => {
   return {
     type: actionTypes.RESET_COMMENT,
     comment: null,
-    commented: false
+    commentStatus: null,
+    commentLoading: false
   }
 }

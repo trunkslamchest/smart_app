@@ -1,8 +1,15 @@
 import * as actionTypes from './actionTypes'
 import { routes, fetch } from '../../utility/paths'
+
 import {
   authUpdateStatus
 } from './authActions'
+
+import {
+  updateVoteStatus,
+  updateCommentStatus
+} from './playActions'
+
 import userFunctions from '../../utility/userFunctions'
 
 export const storeUserInfo = (info) => {
@@ -116,6 +123,13 @@ export const updateUserQuestionTotalsFromPlayController = (result) => {
 }
 
 export const updateUserVotesFromPlayController = (id, vote) => {
+  return dispatch => {
+    dispatch(updateVoteStatus('voteSuccess', true))
+    dispatch(initUpdateUserVotesFromPlayController(id, vote))
+  }
+}
+
+const initUpdateUserVotesFromPlayController = (id, vote) => {
   return {
     type: actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER,
     qid: id,
@@ -124,6 +138,13 @@ export const updateUserVotesFromPlayController = (id, vote) => {
 }
 
 export const updateUserCommentsFromPlayController = (id, comment) => {
+  return dispatch => {
+    dispatch(updateCommentStatus('commentSuccess', true))
+    dispatch(initUpdateUserCommentsFromPlayController(id, comment))
+  }
+}
+
+export const initUpdateUserCommentsFromPlayController = (id, comment) => {
   return {
     type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER,
     cid: id,

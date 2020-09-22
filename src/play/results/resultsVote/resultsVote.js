@@ -52,7 +52,7 @@ const ResultsVote = (props) => {
     )
   })
 
-  if(props.voted && !props.play.voted) voteBlock = <div className='results_vote_blank'></div>
+  if(props.play.voteLoading) voteBlock = <div className='results_vote_blank'>loading</div>
 
   if(props.showVoteButtons){
     voteBlock =
@@ -66,7 +66,7 @@ const ResultsVote = (props) => {
     </div>
   }
 
-  if(props.play.voted){
+  if(props.play.voteStatus === 'displayVotes' && !props.play.voteLoading){
     voteBlock =
     <div className="results_voted">
       <div className="results_voted_header">

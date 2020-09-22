@@ -1,11 +1,15 @@
 import * as actionTypes from './actionTypes'
+
 import {
   setQuestion,
+  updateGameStatus
   // setGameState
 } from './playActions'
+
 import {
   authUpdateStatus
 } from './authActions'
+
 import { fetch } from '../../utility/paths'
 
 import questionsFunctions from '../../utility/questionsFunctions'
@@ -36,7 +40,7 @@ export const getQuestionTotals = (props) => {
 
 export const clearQuestionTotals = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearQuestionTotals', true))
+    dispatch(authUpdateStatus('clearQuestionTotalsSuccess', true))
     dispatch(initClearQuestionTotals())
   }
 }
@@ -49,6 +53,13 @@ const initClearQuestionTotals = () => {
 }
 
 export const updateQuestionTotalsFromPlayController = (result) => {
+  return dispatch => {
+    dispatch(updateGameStatus('updateQuestionTotalsSuccess', true))
+    dispatch(initUpdateQuestionTotalsFromPlayController(result))
+  }
+}
+
+const initUpdateQuestionTotalsFromPlayController = (result) => {
   return {
     type: actionTypes.UPDATE_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
     result: result

@@ -91,7 +91,7 @@ const signUpObjTemplate = (email, user_name) => {
             "correct": 0,
             "incorrect": 0
           },
-          "Math": {
+          "Mathematics": {
             "answered": 0,
             "correct": 0,
             "incorrect": 0

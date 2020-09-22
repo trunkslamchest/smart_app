@@ -70,7 +70,9 @@ class ResultsContainer extends React.Component{
       result: this.props.play.results.result,
       vote: event.target.attributes.vote.value
     })
-    this.setState({ voted: true, showVoteButtons: false })
+    // this.setState({ voted: true, showVoteButtons: false })
+    this.props.onUpdateVoteStatus('initVote', true)
+    this.setState({ showVoteButtons: false })
   }
 
   onClickCommentFunctions = () => { this.setState({ showCommentButton: false, showCommentForm: true }) }
@@ -93,7 +95,10 @@ class ResultsContainer extends React.Component{
         result: this.props.play.results.result,
         comment: this.state.comment
       })
-      this.setState({ showCommentForm: false, commented: true })
+      // this.setState({ showCommentForm: false, commented: true })
+      this.props.onUpdateCommentStatus('initComment', true)
+      this.setState({ showCommentForm: false })
+
     } else alert("Please Enter A Comment")
   }
 
@@ -151,6 +156,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
+    onUpdateVoteStatus: (status, loading) => dispatch(actions.updateVoteStatus(status, loading)),
+    onUpdateCommentStatus: (status, loading) => dispatch(actions.updateCommentStatus(status, loading)),
     onResetGameMode: () => dispatch(actions.resetGameMode()),
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),

@@ -11,11 +11,12 @@ const resultsNextQuestion = (props) => {
 
   const onClickNextQuestionFunctions = () => {
     props.onSetGameState('init')
+    props.onUpdateGameStatus('initGame', true)
     if(props.play.question) props.onResetQuestion()
     if(props.play.answer) props.onResetAnswer()
     if(props.play.results) props.onResetResults()
-    if(props.play.voted) props.onResetVote()
-    if(props.play.commented) props.onResetComment()
+    if(props.play.voteStatus) props.onResetVote()
+    if(props.play.commentStatus) props.onResetComment()
   }
 
   return(
@@ -39,6 +40,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetQuestion: () => dispatch(actions.resetQuestion()),
     onResetAnswer: () => dispatch(actions.resetAnswer()),

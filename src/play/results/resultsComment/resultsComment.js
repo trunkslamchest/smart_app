@@ -10,22 +10,18 @@ import './resultsComment.css'
 
 const ResultsComment = (props) => {
 
-  // const blank = <></>
-
   let commentBlock, allComments
 
-  if(props.commented && !props.play.commented) commentBlock = <div className='results_comment_blank'></div>
+  if(props.play.commentLoading) commentBlock = <div className='results_comment_blank'>loading</div>
 
-  if(props.play.commented && props.commented){
+  if(props.play.commentStatus === 'displayComments' && !props.play.voteLoading){
     allComments = Object.entries(props.play.question.comments).map(comment =>
       <CommentCard
         key={comment[0]}
         comment={comment[1]}
       />
     )
-  }
 
-  if(props.play.commented){
     commentBlock =
       <div className="results_comment">
         <div className="results_all_comments">

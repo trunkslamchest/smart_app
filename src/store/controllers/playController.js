@@ -16,13 +16,6 @@ import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 class PlayController extends React.Component {
 
-  state = {
-    updatedUserQuestions: false,
-    updatedQuestionTotals: false,
-    updatedUserVotes: false,
-    updatedUserComments: false
-  }
-
   componentDidMount(){
     if(this.props.auth.status === 'authValid') this.initGameModule()
   }
@@ -39,35 +32,43 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'question' && this.props.play.question.completed) this.setGameCompletedModule()
 
-      if(this.props.play.gameState === 'question' && this.props.play.answer) this.props.onSetGameState('answered')
+      if(this.props.play.gameState === 'question' && this.props.play.answer) this.setAnsweredModule()
 
       if(this.props.play.gameState === 'answered' && !this.props.play.results) this.getResultsModule()
 
-      if(this.props.play.gameState === 'answered' && this.props.play.question.answers) this.setResultsModule()
+      if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionSuccess' && this.props.play.results) this.updateQuestionTotalsModule()
 
-      if(this.props.play.gameState === 'results' && !this.state.updatedQuestionTotals) this.updateQuestionTotalsModule()
+      if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionTotalsSuccess' && this.props.play.question.answers) this.updateUserQuestionsModule()
 
-      if(this.props.play.gameState === 'results' && !this.state.updatedUserQuestions) this.updateUserQuestionsModule()
+      if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateUserQuestionsSuccess') this.setResultsModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.voted && !this.state.updatedUserVotes) this.updateUserVotesModule()
+      if(this.props.play.gameState === 'results' && this.props.play.status === 'setAllResultsSuccess') this.displayResultsModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.commented && !this.state.updatedUserComments) this.updateUserCommentsModule()
+      if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && !this.props.play.question.votes.vote) this.updateUserVotesModule()
+
+      if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'voteSuccess' && this.props.play.question.votes.vote) this.props.onUpdateVoteStatus('displayVotes', false)
+
+      if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.comment) this.updateUserCommentsModule()
+
+      if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'commentSuccess' && this.props.user.questions.comments[this.props.play.comment.cid]) this.props.onUpdateCommentStatus('displayComments', false)
     }
   }
 
   componentWillUnmount(){
+    if(this.props.play.status) this.props.onUpdateGameStatus(null, false)
     if(this.props.play.gameMode) this.props.onResetGameMode()
     if(this.props.play.gameState)  this.props.onResetGameState()
     if(this.props.play.gameQset) this.props.onResetGameQset()
     if(this.props.play.question) this.props.onResetQuestion()
     if(this.props.play.answer) this.props.onResetAnswer()
     if(this.props.play.results) this.props.onResetResults()
-    if(this.props.play.voted) this.props.onResetVote()
-    if(this.props.play.commented) this.props.onResetComment()
+    if(this.props.play.voteStatus) this.props.onResetVote()
+    if(this.props.play.commentStatus) this.props.onResetComment()
   }
 
   initGameModule = () => {
     if(!this.props.play.gameState) {
+      this.props.onUpdateGameStatus('initGame', true)
       this.props.onSetGameState('init')
       if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
     }
@@ -98,17 +99,20 @@ class PlayController extends React.Component {
     if(this.props.play.question.completed) this.setGameCompletedModule()
     else {
       this.props.history.push( routes[this.props.play.gameMode] + '/question' )
+      this.props.onUpdateGameStatus('displayQuestion', false)
       this.props.onSetGameState('question')
     }
-    if(!!this.state.updatedUserQuestions) this.setState({ updatedUserQuestions: false })
-    if(!!this.state.updatedQuestionTotals) this.setState({ updatedQuestionTotals: false })
-    if(!!this.state.updatedUserVotes) this.setState({ updatedUserVotes: false })
-    if(!!this.state.updatedUserComments) this.setState({ updatedUserComments: false })
   }
 
   setGameCompletedModule = () => {
     this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+    this.props.onUpdateGameStatus('displayCompleted', false)
     this.props.onSetGameState('completed')
+  }
+
+  setAnsweredModule = () => {
+    this.props.onUpdateGameStatus('answered', true)
+    this.props.onSetGameState('answered')
   }
 
   getResultsModule = () => {
@@ -122,9 +126,13 @@ class PlayController extends React.Component {
     })
   }
 
-  setResultsModule = () => {
-    this.props.history.push( routes[this.props.play.gameMode] + '/results' )
-    this.props.onSetGameState('results')
+  updateQuestionTotalsModule = () => {
+    this.props.onUpdateQuestionTotalsFromPlayController({
+      difficulty: this.props.play.question.difficulty,
+      category: this.props.play.question.category,
+      result: this.props.play.results.result
+    })
+    this.props.onUpdateGameStatus('updateQuestionTotalsSuccess', true)
   }
 
   updateUserQuestionsModule = () => {
@@ -143,19 +151,21 @@ class PlayController extends React.Component {
       answer: this.props.play.answer,
       results: this.props.play.results
     })
-    this.setState({ updatedUserQuestions: true })
+    this.props.onUpdateGameStatus('updateUserQuestionsSuccess', true)
   }
 
-  updateQuestionTotalsModule = () => {
-    this.props.onUpdateQuestionTotalsFromPlayController({
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      result: this.props.play.results.result
-    })
-    this.setState({ updatedQuestionTotals: true })
+  setResultsModule = () => {
+    this.props.onSetGameState('results')
+    this.props.onUpdateGameStatus('setAllResultsSuccess', true)
+  }
+
+  displayResultsModule = () => {
+    this.props.onUpdateGameStatus('displayResults', false)
+    this.props.history.push( routes[this.props.play.gameMode] + '/results' )
   }
 
   updateUserVotesModule = () => {
+    this.props.onUpdateVoteStatus('sentVote', true)
     this.props.onUpdateUserVotesFromPlayController(this.props.play.question.id, {
       answer: this.props.play.answer.choice,
       correct_answer: this.props.play.results.correct_answer,
@@ -165,10 +175,10 @@ class PlayController extends React.Component {
       result: this.props.play.results.result,
       vote: this.props.play.question.votes.vote
     })
-    this.setState({ updatedUserVotes: true })
   }
 
   updateUserCommentsModule = () => {
+    this.props.onUpdateCommentStatus('sentComment', true)
     this.props.onUpdateUserCommentsFromPlayController(this.props.play.comment.cid, {
       answer: this.props.play.answer.choice,
       category: this.props.play.question.category,
@@ -178,7 +188,6 @@ class PlayController extends React.Component {
       difficulty: this.props.play.question.difficulty,
       result: this.props.play.results.result
     })
-    this.setState({ updatedUserComments: true })
   }
 
   render(){
@@ -219,6 +228,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
+    onUpdateVoteStatus: (status, loading) => dispatch(actions.updateVoteStatus(status, loading)),
+    onUpdateCommentStatus: (status, loading) => dispatch(actions.updateCommentStatus(status, loading)),
     onResetGameMode: () => dispatch(actions.resetGameMode()),
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
@@ -237,6 +249,7 @@ const mapDispatchToProps = (dispatch) => {
     onResetVote: (obj) => dispatch(actions.resetVote(obj)),
     onSetComment: (obj) => dispatch(actions.setComment(obj)),
     onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    onUpdateQuestion: (obj) => dispatch(actions.updateQuestion(obj)),
     onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
     onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),

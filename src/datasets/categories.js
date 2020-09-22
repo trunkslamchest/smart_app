@@ -8,7 +8,7 @@ const categories = [
   "General",
   "Geography",
   "History",
-  "Math",
+  "Mathematics",
   "Music",
   "Mythology",
   "Nature",

@@ -58,6 +58,9 @@ export {
 } from './questionsActions'
 
 export {
+  updateGameStatus,
+  updateVoteStatus,
+  updateCommentStatus,
   setGameMode,
   resetGameMode,
   setGameState,

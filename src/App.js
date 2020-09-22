@@ -37,10 +37,9 @@ const App = (props) => {
       <Header />
       <div className='main_container'>
         { props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile && <LoadingModal barType={ 'authRefresh' } history={ props.history } /> }
-        {/* <LoadingModal history={ props.history } /> */}
-        <LogIn history={ props.history } />
-        <LogOut history={ props.history } />
-        <SignUp history={ props.history } />
+        { props.modal.login && <LogIn history={ props.history } /> }
+        { props.modal.logout && <LogOut history={ props.history } /> }
+        { props.modal.signup && <SignUp history={ props.history } /> }
         <Switch>
           <Route exact path={ routes.home }>
             <HomeContainer history={ props.history } />

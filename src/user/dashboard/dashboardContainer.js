@@ -29,31 +29,33 @@ class Dashboard extends React.Component{
 
     let routeBoard = <></>
 
-    if(this.props.auth.status === 'authValid') {
-      routeBoard =
-      <>
-        <DashboardNavBarContainer />
-        <Switch>
-          <Route exact path={ routes.dashboard }>
-            <DashboardIndex />
-          </Route>
-          <Route exact path={ routes.dashboard_profile }>
-            <DashboardProfileContainer history={this.props.history} />
-          </Route>
-          <Route path={ routes.dashboard_profile_edit }>
-            <DashboardEditProfileContainer history={this.props.history} />
-          </Route>
-          <Route exact path={ routes.dashboard_stats }>
-            <DashboardStatsContainer history={this.props.history} />
-          </Route>
-          <Route exact path={ routes.dashboard_votes }>
-            <DashboardVotesContainer history={this.props.history} />
-          </Route>
-          <Route exact path={ routes.dashboard_comments }>
-            <DashboardCommentsContainer history={this.props.history} />
-          </Route>
-        </Switch>
-      </>
+    if(!this.props.auth.loading) {
+      if(this.props.auth.status === 'authValid') {
+        routeBoard =
+        <>
+          <DashboardNavBarContainer />
+          <Switch>
+            <Route exact path={ routes.dashboard }>
+              <DashboardIndex />
+            </Route>
+            <Route exact path={ routes.dashboard_profile }>
+              <DashboardProfileContainer history={this.props.history} />
+            </Route>
+            <Route path={ routes.dashboard_profile_edit }>
+              <DashboardEditProfileContainer history={this.props.history} />
+            </Route>
+            <Route exact path={ routes.dashboard_stats }>
+              <DashboardStatsContainer history={this.props.history} />
+            </Route>
+            <Route exact path={ routes.dashboard_votes }>
+              <DashboardVotesContainer history={this.props.history} />
+            </Route>
+            <Route exact path={ routes.dashboard_comments }>
+              <DashboardCommentsContainer history={this.props.history} />
+            </Route>
+          </Switch>
+        </>
+      }
     }
 
     return(

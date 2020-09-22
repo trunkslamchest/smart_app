@@ -1,19 +1,32 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  status: null,
+  loading: false,
   gameMode: null,
   gameState: null,
   gameQset: null,
   question: null,
   answer: null,
   results: null,
-  voted: false,
-  commented: false
+  voteStatus: null,
+  voteLoading: false,
+  commentStatus: null,
+  commentLoading: false
+}
+
+const updateGameStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    loading: action.loading
+  }
 }
 
 const setGameMode = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     gameMode: action.gameMode
   }
 }
@@ -28,6 +41,7 @@ const resetGameMode = (currentState, action) => {
 const setQuestion = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     question: action.question
   }
 }
@@ -35,6 +49,7 @@ const setQuestion = (currentState, action) => {
 const updateQuestion = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     question: { ...currentState.question, ...action.results}
   }
 }
@@ -45,6 +60,22 @@ const resetQuestion = (currentState, action) => {
     question: action.question
   }
 }
+
+const setGameQset = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    gameQset: action.gameQset
+  }
+}
+
+const resetGameQset = (currentState, action) => {
+  return {
+    ...currentState,
+    gameQset: action.gameQset
+  }
+}
+
 
 const setGameState = (currentState, action) => {
   return {
@@ -60,24 +91,10 @@ const resetGameState = (currentState, action) => {
   }
 }
 
-const setGameQset = (currentState, action) => {
-  return {
-    ...currentState,
-    gameQset: action.gameQset
-  }
-}
-
-const resetGameQset = (currentState, action) => {
-  return {
-    ...currentState,
-    gameQset: action.gameQset
-  }
-}
-
-
 const setAnswer = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     answer: action.answer
   }
 }
@@ -99,6 +116,7 @@ const getResults = (currentState, action) => {
 const setResults = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     results: action.results
   }
 }
@@ -113,15 +131,23 @@ const resetResults = (currentState, action) => {
 const setVote = (currentState, action) => {
   return {
     ...currentState,
-    question: { ...currentState.question, votes: action.votes },
-    voted: action.voted
+    question: { ...currentState.question, votes: action.votes }
+  }
+}
+
+const updateVoteStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus,
+    voteLoading: action.voteLoading
   }
 }
 
 const resetVote = (currentState, action) => {
   return {
     ...currentState,
-    voted: action.voted
+    voteStatus: action.voteStatus,
+    voteLoading: action.voteLoading
   }
 }
 
@@ -129,8 +155,15 @@ const setComment = (currentState, action) => {
   return {
     ...currentState,
     question: { ...currentState.question, comments: action.comments },
-    comment: action.comment,
-    commented: action.commented
+    comment: action.comment
+  }
+}
+
+const updateCommentStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    commentStatus: action.commentStatus,
+    commentLoading: action.commentLoading
   }
 }
 
@@ -138,12 +171,16 @@ const resetComment = (currentState, action) => {
   return {
     ...currentState,
     comment: action.comment,
-    commented: action.commented
+    commentStatus: action.commentStatus,
+    commentLoading: action.commentLoading
   }
 }
 
 const playReducer = (currentState = initialState, action) => {
   switch (action.type) {
+    case actionTypes.UPDATE_GAME_STATUS: return updateGameStatus(currentState, action)
+    case actionTypes.UPDATE_VOTE_STATUS: return updateVoteStatus(currentState, action)
+    case actionTypes.UPDATE_COMMENT_STATUS: return updateCommentStatus(currentState, action)
     case actionTypes.SET_GAME_MODE: return setGameMode(currentState, action)
     case actionTypes.RESET_GAME_MODE: return resetGameMode(currentState, action)
     case actionTypes.SET_GAME_STATE: return setGameState(currentState, action)
