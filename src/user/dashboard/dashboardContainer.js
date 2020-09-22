@@ -1,11 +1,11 @@
 import React from 'react'
 
+import { Route, Switch } from 'react-router-dom'
+
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
 import { routes } from '../../utility/paths.js'
-
-import { Route, Switch } from 'react-router-dom'
 
 import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer'
 import DashboardIndex from './dashboardIndex/dashboardIndex'
@@ -17,8 +17,6 @@ import DashboardCommentsContainer from './dashboardComments/dashboardCommentsCon
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
-import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
-
 import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
@@ -28,34 +26,41 @@ class Dashboard extends React.Component{
   }
 
   render(){
-    const routeBoard =
-    <Switch>
-      <Route exact path={ routes.dashboard }>
-        <DashboardIndex />
-      </Route>
-      <Route exact path={ routes.dashboard_profile }>
-        <DashboardProfileContainer history={this.props.history} />
-      </Route>
-      <Route path={ routes.dashboard_profile_edit }>
-        <DashboardEditProfileContainer history={this.props.history} />
-      </Route>
-      <Route exact path={ routes.dashboard_stats }>
-        <DashboardStatsContainer history={this.props.history} />
-      </Route>
-      <Route exact path={ routes.dashboard_votes }>
-        <DashboardVotesContainer history={this.props.history} />
-      </Route>
-      <Route exact path={ routes.dashboard_comments }>
-        <DashboardCommentsContainer history={this.props.history} />
-      </Route>
-    </Switch>
+
+    let routeBoard = <></>
+
+    if(this.props.auth.status === 'authValid') {
+      routeBoard =
+      <>
+        <DashboardNavBarContainer />
+        <Switch>
+          <Route exact path={ routes.dashboard }>
+            <DashboardIndex />
+          </Route>
+          <Route exact path={ routes.dashboard_profile }>
+            <DashboardProfileContainer history={this.props.history} />
+          </Route>
+          <Route path={ routes.dashboard_profile_edit }>
+            <DashboardEditProfileContainer history={this.props.history} />
+          </Route>
+          <Route exact path={ routes.dashboard_stats }>
+            <DashboardStatsContainer history={this.props.history} />
+          </Route>
+          <Route exact path={ routes.dashboard_votes }>
+            <DashboardVotesContainer history={this.props.history} />
+          </Route>
+          <Route exact path={ routes.dashboard_comments }>
+            <DashboardCommentsContainer history={this.props.history} />
+          </Route>
+        </Switch>
+      </>
+    }
 
     return(
       <>
         <DashboardDeleteProfile history={this.props.history} />
         <div className='dashboard_wrapper'>
-          <DashboardNavBarContainer />
-          {this.props.auth.status === 'authValid' ? routeBoard : <LoadingSpinnerRoller /> }
+          { routeBoard }
         </div>
       </>
     )

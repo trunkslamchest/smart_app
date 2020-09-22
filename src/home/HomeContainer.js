@@ -5,17 +5,18 @@ import { connect } from 'react-redux'
 import HomeLoggedInContainer from './homeLoggedIn/homeLoggedInContainer'
 import HomeLoggedOutContainer from './homeLoggedOut/homeLoggedOutContainer'
 
-// import LoadingSpinnerRoller from '../UI/loading/spinner/roller'
-
 import './Home.css'
 
 const HomeContainer = (props) => {
 
   useEffect(() => { document.title = "SmartApp™ | Get Your Smart On" }, [])
 
-  let homePage = <HomeLoggedOutContainer history={props.history} />
+  let homePage = <></>
 
-  if(props.auth.status === 'authValid') homePage = <HomeLoggedInContainer />
+  if(!props.auth.loading) {
+    if(props.auth.status === 'authValid') homePage = <HomeLoggedInContainer />
+    else  homePage = <HomeLoggedOutContainer history={props.history} />
+  }
 
   return(
     <div className='default_wrapper'>
