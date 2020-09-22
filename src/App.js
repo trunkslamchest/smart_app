@@ -32,11 +32,18 @@ import './UI/response.css'
 import './UI/loading.css'
 
 const App = (props) => {
+
+  let loadingModal
+
+  if(props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile){
+    loadingModal = <LoadingModal show={ props.auth.loading } modalType={ 'auth' } barType={ 'authRefresh' } history={ props.history } />
+  }
+
   return (
     <StoreController history={ props.history }>
       <Header />
       <div className='main_container'>
-        { props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile && <LoadingModal barType={ 'authRefresh' } history={ props.history } /> }
+        { loadingModal }
         { props.modal.login && <LogIn history={ props.history } /> }
         { props.modal.logout && <LogOut history={ props.history } /> }
         { props.modal.signup && <SignUp history={ props.history } /> }

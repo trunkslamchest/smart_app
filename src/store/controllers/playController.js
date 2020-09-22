@@ -12,7 +12,8 @@ import QuestionContainer from '../../play/question/questionContainer'
 import ResultsContainer from '../../play/results/resultsContainer'
 import CompletedContainer from '../../play/completed/completedContainer'
 
-import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
+import Wrapper from '../../UI/wrapper/wrapper'
+import LoadingModal from '../../UI/loading/loadingModal/loadingModal'
 
 class PlayController extends React.Component {
 
@@ -30,7 +31,7 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'mount' && this.props.play.question) this.setGameQuestionModule()
 
-      if(this.props.play.gameState === 'question' && this.props.play.question.completed) this.setGameCompletedModule()
+      if(this.props.play.gameState === 'question' && this.props.play.status === 'setQuestionSuccess') this.displayQuestionModule()
 
       if(this.props.play.gameState === 'question' && this.props.play.answer) this.setAnsweredModule()
 
@@ -68,8 +69,9 @@ class PlayController extends React.Component {
 
   initGameModule = () => {
     if(!this.props.play.gameState) {
-      this.props.onUpdateGameStatus('initGame', true)
       this.props.onSetGameState('init')
+      this.props.onUpdateGameStatus('initGame', true)
+      this.props.onLoadingModal(true)
       if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
     }
   }
@@ -99,14 +101,18 @@ class PlayController extends React.Component {
     if(this.props.play.question.completed) this.setGameCompletedModule()
     else {
       this.props.history.push( routes[this.props.play.gameMode] + '/question' )
-      this.props.onUpdateGameStatus('displayQuestion', false)
       this.props.onSetGameState('question')
     }
   }
 
+  displayQuestionModule = () => {
+    this.props.onUpdateGameStatus('displayQuestion', false)
+    this.props.onLoadingModal(false)
+  }
+
   setGameCompletedModule = () => {
+    this.props.onUpdateGameStatus('displayQuestion', false)
     this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-    this.props.onUpdateGameStatus('displayCompleted', false)
     this.props.onSetGameState('completed')
   }
 
@@ -161,6 +167,7 @@ class PlayController extends React.Component {
 
   displayResultsModule = () => {
     this.props.onUpdateGameStatus('displayResults', false)
+    this.props.onLoadingModal(false)
     this.props.history.push( routes[this.props.play.gameMode] + '/results' )
   }
 
@@ -191,8 +198,20 @@ class PlayController extends React.Component {
   }
 
   render(){
+
+    let loadingModal
+
+    if(this.props.play.gameState === 'init' || this.props.play.gameState === 'mount' || this.props.play.gameState === 'question'){
+      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } history={ this.props.history } />
+    }
+
+    if(this.props.play.gameState === 'answered' || this.props.play.gameState === 'results'){
+      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadResults' } history={ this.props.history } />
+    }
+
     return(
       <>
+        { loadingModal }
         {
           (() => {
             switch(this.props.play.gameState) {
@@ -208,7 +227,7 @@ class PlayController extends React.Component {
               case 'completed': return <Route exact path={ routes[this.props.play.gameMode] + '/completed' }>
                                         <CompletedContainer history={ this.props.history } />
                                       </Route>;
-              default: return <LoadingSpinnerRoller />;
+              default: return <Wrapper />;
             }
           })()
         }
@@ -219,6 +238,7 @@ class PlayController extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    modal: state.modal,
     auth: state.auth,
     play: state.play,
     user: state.user,
@@ -228,6 +248,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
     onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
     onUpdateVoteStatus: (status, loading) => dispatch(actions.updateVoteStatus(status, loading)),
     onUpdateCommentStatus: (status, loading) => dispatch(actions.updateCommentStatus(status, loading)),

@@ -7,29 +7,21 @@ import Modal from '../../modal/modal'
 import BaseDynamicBar from '../dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../smallLoadingSpinner/smallLoadingSpinner'
 
-
 import './loadingModal.css'
 import './loadingModalSpinner.css'
 
 class LoadingModal extends React.Component {
 
-  state = {
-
-  }
-
-  componentDidMount(){
-    this.props.onLoadingModal(true)
+  componentWillUnmount(){
+    this.props.onLoadingModal(false)
   }
 
   render(){
-
     return (
-        <Modal
-          showModal={ this.props.modal.loading }
-        >
+      <Modal showModal={ this.props.show }>
         <div className='loading_modal_wrapper'>
           <SmallLoadingSpinner />
-          <BaseDynamicBar barType={ this.props.barType } />
+          <BaseDynamicBar modalType={ this.props.modalType } barType={ this.props.barType } />
         </div>
       </Modal>
     )

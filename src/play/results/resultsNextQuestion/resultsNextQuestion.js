@@ -12,6 +12,7 @@ const resultsNextQuestion = (props) => {
   const onClickNextQuestionFunctions = () => {
     props.onSetGameState('init')
     props.onUpdateGameStatus('initGame', true)
+    props.onLoadingModal(true)
     if(props.play.question) props.onResetQuestion()
     if(props.play.answer) props.onResetAnswer()
     if(props.play.results) props.onResetResults()
@@ -23,7 +24,7 @@ const resultsNextQuestion = (props) => {
     <div className={ props.showNextQuestionButton ? "results_next_question_button_container": "blank"}>
       <NextQuestionButton
         keyName="next_question_button"
-        class={ props.showNextQuestionButton ? "results_next_question_button" : "results_next_question_button_disabled" }
+        class={ props.enableNextQuestionButton ? "results_next_question_button" : "results_next_question_button_disabled" }
         onClick={ props.enableNextQuestionButton ? onClickNextQuestionFunctions : null }
       >
         Next Question
@@ -33,13 +34,15 @@ const resultsNextQuestion = (props) => {
 }
 
 const mapStateToProps = state => {
-  return{
+  return {
+    modal: state.modal,
     play: state.play
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
     onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),
     onResetQuestion: () => dispatch(actions.resetQuestion()),

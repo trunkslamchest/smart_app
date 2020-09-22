@@ -20,7 +20,7 @@ const LogOut = (props) => {
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
-      <BaseDynamicBar barType={ 'authLogOut' } />
+      <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
     </div>
 
   const onCancel = () => { props.onLogOutModal(false) }

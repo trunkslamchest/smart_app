@@ -8,13 +8,21 @@ import { loadingBarTextSwitch } from './barFunctions/loadingBarTextSwitch'
 import './baseDynamicBar.css'
 
 const BaseDynamicBar = (props) => {
+
+  let loadStatus
+
+  if(props.modalType === 'auth') loadStatus = props.auth.status
+  if(props.modalType === 'play') loadStatus = props.play.status
+  if(props.modalType === 'questionVote') loadStatus = props.play.voteStatus
+  if(props.modalType === 'questionComment') loadStatus = props.play.commentStatus
+
   return(
     <div className="dyanmic_bar_container">
       <div className="loading_bar_container">
-        <div className={ loadingBarClassSwitch(props.barType, props.auth.status) }></div>
+        <div className={ loadingBarClassSwitch(props.barType, loadStatus) }></div>
       </div>
       <div className="loading_text">
-        <p>{ loadingBarTextSwitch(props.barType, props.auth.status) }</p>
+        <p>{ loadingBarTextSwitch(props.barType, loadStatus) }</p>
       </div>
     </div>
   )
@@ -22,7 +30,8 @@ const BaseDynamicBar = (props) => {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    play: state.play
   }
 }
 

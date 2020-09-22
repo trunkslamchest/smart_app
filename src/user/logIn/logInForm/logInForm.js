@@ -23,7 +23,7 @@ const LogInForm = (props) => {
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
-      <BaseDynamicBar barType={ 'authLogIn' } />
+      <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
     </div>
 
   return(

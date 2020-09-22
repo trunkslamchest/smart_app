@@ -90,10 +90,34 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'clearLocalStorageSuccess') barClass = 'loading_bar_final'
   }
 
+  if(barType === 'loadQuestion'){
+    if(status === 'initGame') barClass = 'loading_bar_5'
+    if(status === 'setGameModeSuccess') barClass = 'loading_bar_10'
+    if(status === 'setQuestionSuccess') barClass = 'loading_bar_15'
+    if(status === 'displayQuestion') barClass = 'loading_bar_final'
+  }
+
+  if(barType === 'loadResults'){
+    if(status === 'setAnswerSuccess') barClass = 'loading_bar_1'
+    if(status === 'answered') barClass = 'loading_bar_3'
+    if(status === 'setResultsSuccess') barClass = 'loading_bar_6'
+    if(status === 'updateQuestionSuccess') barClass = 'loading_bar_9'
+    if(status === 'updateQuestionTotalsSuccess') barClass = 'loading_bar_12'
+    if(status === 'updateUserQuestionsSuccess') barClass = 'loading_bar_15'
+    if(status === 'setAllResultsSuccess') barClass = 'loading_bar_final'
+  }
+
+  if(barType === 'questionVote'){
+    if(status === 'initVote') barClass = 'loading_bar_5'
+    if(status === 'sentVote') barClass = 'loading_bar_10'
+    if(status === 'voteSuccess') barClass = 'loading_bar_final'
+  }
+
+  if(barType === 'questionComment'){
+    if(status === 'initComment') barClass = 'loading_bar_5'
+    if(status === 'sentComment') barClass = 'loading_bar_10'
+    if(status === 'commentSuccess') barClass = 'loading_bar_final'
+  }
+
   return barClass
 }
-
-  // if(props.auth.status === 'clearLocalStorageSuccess'){
-  //   loadingBarClass = 'loading_bar_17'
-  //   loadingText = 'Account Deletion Finalized'
-  // }

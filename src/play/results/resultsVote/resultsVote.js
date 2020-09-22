@@ -2,6 +2,9 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
+import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
 import up_vote from '../../../assets/up_vote1.png'
 import no_vote from '../../../assets/no_vote1.png'
 import down_vote from '../../../assets/down_vote1.png'
@@ -9,6 +12,12 @@ import down_vote from '../../../assets/down_vote1.png'
 import './resultsVote.css'
 
 const ResultsVote = (props) => {
+
+  const loading =
+    <div className='loading_wrapper_votes'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar modalType={ 'questionVote' } barType={ 'questionVote' } />
+    </div>
 
   const calcVotes = () => {
     if (props.play.question.votes.total === 0) return {
@@ -52,7 +61,7 @@ const ResultsVote = (props) => {
     )
   })
 
-  if(props.play.voteLoading) voteBlock = <div className='results_vote_blank'>loading</div>
+  if(props.play.voteLoading) voteBlock = loading
 
   if(props.showVoteButtons){
     voteBlock =

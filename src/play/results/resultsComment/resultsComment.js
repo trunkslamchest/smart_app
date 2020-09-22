@@ -2,6 +2,9 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
+import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
 import CommentCard from './commentCard/commentCard'
 import CommentButton from './commentButton/commentButton'
 import CommentForm from './commentForm/commentForm'
@@ -12,7 +15,13 @@ const ResultsComment = (props) => {
 
   let commentBlock, allComments
 
-  if(props.play.commentLoading) commentBlock = <div className='results_comment_blank'>loading</div>
+  const loading =
+    <div className='loading_wrapper_comments'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar modalType={ 'questionComment' } barType={ 'questionComment' } />
+    </div>
+
+  if(props.play.commentLoading) commentBlock = loading
 
   if(props.play.commentStatus === 'displayComments' && !props.play.voteLoading){
     allComments = Object.entries(props.play.question.comments).map(comment =>

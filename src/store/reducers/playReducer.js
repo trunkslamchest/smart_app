@@ -94,7 +94,6 @@ const resetGameState = (currentState, action) => {
 const setAnswer = (currentState, action) => {
   return {
     ...currentState,
-    status: action.status,
     answer: action.answer
   }
 }

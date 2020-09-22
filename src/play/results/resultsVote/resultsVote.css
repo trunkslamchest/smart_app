@@ -6,9 +6,9 @@
   justify-content: center;
   align-items: center;
   padding: 0px;
+  border: 1px solid rgb(200, 200, 200, 1);
   background-color: rgba(255,255,255, 1);
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
   animation: slide_in_from_bottom .25s ease-in-out 1;
 }
 
@@ -22,7 +22,7 @@
   padding: 0px;
   background-color: rgba(255,255,255, 1);
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid rgb(200, 200, 200, 1);
   animation: slide_in_from_bottom .25s ease-in-out 1;
 }
 
@@ -33,7 +33,7 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding: 0px 10px 0px 10px;
-  animation: fade_in .5s ease-in-out 1, blur_in .25s ease-in-out 1;
+  animation: fade_in .5s ease-in-out 1;
 }
 
 .results_vote_buttons_container {
@@ -44,7 +44,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  animation: fade_in .5s ease-in-out 1, blur_in .25s ease-in-out 1;
+  animation: fade_in .5s ease-in-out 1;
 }
 
 .results_vote_header {
@@ -55,7 +55,7 @@
 }
 
 .results_vote button {
-  animation: fade_in .25s ease-in-out 1, blur_in .25s ease-in-out 1;
+  animation: fade_in .25s ease-in-out 1;
 }
 
 .results_vote h3 {
@@ -65,11 +65,11 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding: 0px 10px 0px 10px;
-  animation: fade_in .25s ease-in-out 1, blur_in .25s ease-in-out 1, slide_in_from_bottom .25s ease-in-out 1;
+  animation: fade_in .25s ease-in-out 1, slide_in_from_bottom .25s ease-in-out 1;
 }
 
 .results_voted {
-  width:100%;
+  width: 100%;
   min-height: 110px;
   display: flex;
   flex-direction: column;
@@ -78,8 +78,8 @@
   padding: 0px;
   background-color: rgba(255,255,255, 1);
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
-  animation: fade_in .5s ease-in-out 1, blur_in .25s ease-in-out 1;
+  animation: fade_in .5s ease-in-out 1;
+  border: 1px solid rgb(200, 200, 200, 1);
 }
 
 .results_voted_header {
@@ -222,13 +222,13 @@
 }
 
 .no_vote_button:hover {
-  color: rgb(255, 245, 204, 1);
-  background-image: linear-gradient(rgb(64, 64, 64, 1),  rgb(0, 0, 0, 1) );
+  color: rgba(255, 245, 204, 1);
+  background-image: linear-gradient(rgba(64, 64, 64, 1), rgba(0, 0, 0, 1) );
 }
 
 .no_vote_button:active {
-  background-image: linear-gradient(rgb(64, 64, 64, 1),  rgb(0, 0, 0, 1) );
-  animation: scale_out .1s ease-in-out 1, blur_out .1s ease-in-out 1;
+  background-image: linear-gradient(rgba(64, 64, 64, 1), rgba(0, 0, 0, 1) );
+  animation: scale_out .1s ease-in-out 1;
 }
 
 .down_vote_button {

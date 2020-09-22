@@ -27,7 +27,7 @@ const SignUpForm = (props) => {
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
-      <BaseDynamicBar barType={ 'authSignUp' } />
+      <BaseDynamicBar modalType={ 'auth' } barType={ 'authSignUp' } />
     </div>
 
   return(

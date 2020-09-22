@@ -11,7 +11,7 @@ const DashboardDeleteProfileForm = (props) => {
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
-      <BaseDynamicBar barType={ 'authDeleteUser' } />
+      <BaseDynamicBar modalType={ 'auth' } barType={ 'authDeleteUser' } />
     </div>
 
   return(

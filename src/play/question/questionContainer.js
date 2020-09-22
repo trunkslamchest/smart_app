@@ -3,8 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import Wrapper from '../../UI/wrapper/wrapper'
 import QuestionCard from './questionCard/questionCard'
-import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 import './questionContainer.css'
 
@@ -56,15 +56,16 @@ class QuestionContainer extends React.Component{
 
   onClickFunctions = (event) => {
     clearInterval(this.timerInterval)
+    this.props.onLoadingModal(true)
     this.props.onSetAnswer({ choice: this.props.play.question.choices[event.target.value], time: parseFloat((10 - this.state.time).toFixed(2)) })
   }
 
   render(){
 
-    let questionWrapper = <LoadingSpinnerRoller />
+    let questionCard = <></>
 
     if(this.state.showTimer){
-      questionWrapper = <QuestionCard
+      questionCard = <QuestionCard
         time={ this.state.time }
         enableQuestion={ this.state.enableQuestion }
         onClickFunctions={ this.onClickFunctions }
@@ -76,15 +77,16 @@ class QuestionContainer extends React.Component{
     }
 
     return(
-      <>
-        { questionWrapper }
-      </>
+      <Wrapper>
+        { questionCard }
+      </Wrapper>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    modal: state.modal,
     play: state.play,
     user: state.user,
     questions: state.questions
@@ -93,6 +95,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
+    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
     onResetGameMode: () => dispatch(actions.resetGameMode()),
     onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
     onSetGameState: (state) => dispatch(actions.setGameState(state)),

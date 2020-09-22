@@ -90,5 +90,35 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'clearLocalStorageSuccess') barText = 'Account Deletion Finalized'
   }
 
+  if(barType === 'loadQuestion'){
+    if(status === 'initGame') barText = 'Initialzing Game Sequence'
+    if(status === 'setGameModeSuccess') barText = 'Setting Game Mode'
+    if(status === 'setQuestionSuccess') barText = 'Setting Question'
+    if(status === 'displayQuestion') barText = 'Question Load Complete'
+  }
+
+  if(barType === 'loadResults'){
+    if(status === 'setAnswerSuccess') barText = 'Validating User Answer'
+    if(status === 'answered') barText = 'Fetching Local Results'
+    if(status === 'setResultsSuccess') barText = 'Parsing Question Results'
+    if(status === 'updateQuestionSuccess') barText = 'Updated Question Results'
+    if(status === 'updateQuestionTotalsSuccess') barText = 'Updating Question Totals'
+    if(status === 'updateUserQuestionsSuccess') barText = 'Revising User Question Totals'
+    if(status === 'setAllResultsSuccess') barText = 'Question Results Validated'
+  }
+
+  if(barType === 'questionVote'){
+    if(status === 'initVote') barText = 'Validating User Vote'
+    if(status === 'sentVote') barText = 'Fetching Local Votes'
+    if(status === 'voteSuccess') barText = 'Updating Vote Tables'
+  }
+
+  if(barType === 'questionComment'){
+    if(status === 'initComment') barText = 'Validating User Comment'
+    if(status === 'sentComment') barText = 'Fetching Local Comments'
+    if(status === 'commentSuccess') barText = 'Updating Comment Tables'
+  }
+
+
   return barText
 }

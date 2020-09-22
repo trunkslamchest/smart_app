@@ -80,9 +80,15 @@ export const resetGameQset = () => {
 }
 
 export const setAnswer = (answer) => {
+  return dispatch => {
+    dispatch(updateGameStatus('setAnswerSuccess', true))
+    dispatch(initSetAnswer(answer))
+  }
+}
+
+const initSetAnswer = (answer) => {
   return {
     type: actionTypes.SET_ANSWER,
-    status: 'setAnswerSuccess',
     answer: answer
   }
 }

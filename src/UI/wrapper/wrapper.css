@@ -1,0 +1,11 @@
+.empty_wrapper {
+  width: 100wh !important;
+  min-height: 50vh !important;
+  margin: 0px auto 0px auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}

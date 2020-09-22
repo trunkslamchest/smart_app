@@ -10,7 +10,7 @@ import ResultsVote from './resultsVote/resultsVote'
 import ResultsComment from './resultsComment/resultsComment'
 import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
 
-import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
+import Wrapper from '../../UI/wrapper/wrapper'
 
 import './resultsContainer.css'
 
@@ -36,14 +36,14 @@ class ResultsContainer extends React.Component{
     if(this.props.play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Results'
     if(this.props.play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Results'
 
-    this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 1000)
-    this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 2000)
-    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2500)
-    this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 3000)
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 3500)
-    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 3750)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 4250)
-    if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1500)
+    this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
+    if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
+    this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1500)
+    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
+    this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 2500)
+    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 3000)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 3000)
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 3500)
   }
 
   componentWillUnmount(){
@@ -52,8 +52,8 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.difficultyTimeout)
     clearTimeout(this.voteButtonsTimeout)
     clearTimeout(this.commentButtonTimeout)
-    clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableCommentButtonTimeout)
+    clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableNextQuestionTimeout)
   }
 
@@ -70,7 +70,6 @@ class ResultsContainer extends React.Component{
       result: this.props.play.results.result,
       vote: event.target.attributes.vote.value
     })
-    // this.setState({ voted: true, showVoteButtons: false })
     this.props.onUpdateVoteStatus('initVote', true)
     this.setState({ showVoteButtons: false })
   }
@@ -95,16 +94,14 @@ class ResultsContainer extends React.Component{
         result: this.props.play.results.result,
         comment: this.state.comment
       })
-      // this.setState({ showCommentForm: false, commented: true })
       this.props.onUpdateCommentStatus('initComment', true)
       this.setState({ showCommentForm: false })
-
     } else alert("Please Enter A Comment")
   }
 
   render(){
 
-    let results = <LoadingSpinnerRoller />
+    let results = <></>
 
     if(this.state.showHeader) {
       results =
@@ -120,12 +117,10 @@ class ResultsContainer extends React.Component{
           />
           <ResultsVote
             showVoteButtons={ this.state.showVoteButtons }
-            voted={ this.state.voted }
             onClickVoteFunctions={ this.onClickVoteFunctions }
           />
           <ResultsComment
             comment={ this.state.comment }
-            commented={ this.state.commented }
             showCommentButton={ this.state.showCommentButton }
             showCommentForm={ this.state.showCommentForm }
             enableCommentButton={ this.state.enableCommentButton }
@@ -141,7 +136,9 @@ class ResultsContainer extends React.Component{
     }
 
     return(
-      <>{ results }</>
+      <Wrapper>
+        { results }
+      </Wrapper>
     )
   }
 }
