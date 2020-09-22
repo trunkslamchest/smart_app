@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/actionIndex'
 
 import Modal from '../../modal/modal'
-
 import BaseDynamicBar from '../dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../smallLoadingSpinner/smallLoadingSpinner'
+
 
 import './loadingModal.css'
 import './loadingModalSpinner.css'
-
 
 class LoadingModal extends React.Component {
 
@@ -28,11 +28,7 @@ class LoadingModal extends React.Component {
           showModal={ this.props.modal.loading }
         >
         <div className='loading_modal_wrapper'>
-          <div className="spinner_container">
-            <div className="spinner_animation_container">
-              <div className="roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-            </div>
-          </div>
+          <SmallLoadingSpinner />
           <BaseDynamicBar barType={ this.props.barType } />
         </div>
       </Modal>
@@ -42,18 +38,13 @@ class LoadingModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    user: state.user,
-    question: state.question
+    modal: state.modal
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
-    // onAuthStart: (type, obj) => dispatch(actions.authStart(type, obj)),
-    // onClearAuthErrors: () => dispatch(actions.clearAuthErrors())
+    onLoadingModal: (bool) => dispatch(actions.loading(bool))
   }
 }
 

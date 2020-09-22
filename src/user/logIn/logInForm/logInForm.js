@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import LogInFormInput from './logInFormInput/logInFormInput'
 import LogInFormButtonContainer from './logInFormButtonContainer/logInFormButtonContainer'
 
-import AuthDynamicBar from '../../../UI/loading/dynamicBar/authDynamicBar/authDynamicBar'
+import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import ErrorContainer from '../../../error/errorContainer'
 
@@ -18,6 +19,12 @@ const LogInForm = (props) => {
       error={ error }
     />
   })
+
+  const loading =
+    <div className='loading_wrapper'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar barType={ 'authLogIn' } />
+    </div>
 
   return(
     <>
@@ -51,7 +58,7 @@ const LogInForm = (props) => {
           />
         </div>
         { distribErrors }
-        { props.auth.loading && <AuthDynamicBar /> }
+        { props.auth.loading && loading }
         <LogInFormButtonContainer
           enableButton={ props.enableButton }
           onSubmit={ props.onSubmit }

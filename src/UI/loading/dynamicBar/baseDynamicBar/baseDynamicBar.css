@@ -1,5 +1,5 @@
 .dyanmic_bar_container {
-  margin: 0px auto !important;
+  /* margin: 0px auto !important; */
   /* padding: 2.5px; */
   height: 45px;
   width: 50%;
@@ -201,7 +201,7 @@
 }
 
 .loading_text {
-
+  text-align: center;
 }
 
 .loading_text p {

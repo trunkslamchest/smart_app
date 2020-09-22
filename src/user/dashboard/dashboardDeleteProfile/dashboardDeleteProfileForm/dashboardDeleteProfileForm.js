@@ -3,10 +3,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileFormButtonContainer'
-
-import AuthDeleteDynamicBar from '../../../../UI/loading/dynamicBar/authDeleteDynamicBar/authDeleteDynamicBar'
+import BaseDynamicBar from '../../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 const DashboardDeleteProfileForm = (props) => {
+
+  const loading =
+    <div className='loading_wrapper'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar barType={ 'authDeleteUser' } />
+    </div>
+
   return(
     <>
       <div className='alt_header'>
@@ -27,8 +34,7 @@ const DashboardDeleteProfileForm = (props) => {
             value={ props.password}
           />
         </div>
-        { props.auth.loading && <AuthDeleteDynamicBar /> }
-
+        { props.auth.loading && loading }
         <DashboardDeleteProfileFormButtonContainer
           onSubmitConfirm={ props.onSubmitConfirm }
           onSubmitCancel={ props.onSubmitCancel }

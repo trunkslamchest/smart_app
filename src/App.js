@@ -36,7 +36,7 @@ const App = (props) => {
     <StoreController history={ props.history }>
       <Header />
       <div className='main_container'>
-        { props.auth.loading && <LoadingModal barType={ 'authRefresh' } history={ props.history } /> }
+        { props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile && <LoadingModal barType={ 'authRefresh' } history={ props.history } /> }
         {/* <LoadingModal history={ props.history } /> */}
         <LogIn history={ props.history } />
         <LogOut history={ props.history } />

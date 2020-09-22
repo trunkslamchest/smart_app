@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
 import Modal from '../../UI/modal/modal'
-
-import AuthOutDynamicBar from '../../UI/loading/dynamicBar/authOutDynamicBar/authOutDynamicBar'
+import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import LogOutButtonContainer from './logOutButtonContainer/logOutButtonContainer'
 
@@ -17,6 +17,12 @@ const LogOut = (props) => {
     props.onAuthStart('logOut', {})
   }
 
+  const loading =
+    <div className='loading_wrapper'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar barType={ 'authLogOut' } />
+    </div>
+
   const onCancel = () => { props.onLogOutModal(false) }
 
   return(
@@ -26,7 +32,7 @@ const LogOut = (props) => {
       <div className='alt_header'>
         <h3>Are you sure you want to log out?</h3>
       </div>
-      { props.auth.loading && <AuthOutDynamicBar /> }
+      { props.auth.loading && loading }
       <LogOutButtonContainer
         onConfirm={onConfirm}
         onCancel={onCancel}

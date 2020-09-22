@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom'
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
 
-import AuthSignUpDynamicBar from '../../../UI/loading/dynamicBar/authSignUpDynamicBar/authSignUpDynamicBar'
+import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
 
 import ErrorContainer from '../../../error/errorContainer'
 
@@ -21,6 +23,12 @@ const SignUpForm = (props) => {
     if(props.errors.length === 0) signUpFormRef.current.scrollTop = 0
     props.onSubmit(event)
   }
+
+  const loading =
+    <div className='loading_wrapper'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar barType={ 'authSignUp' } />
+    </div>
 
   return(
     <>
@@ -76,7 +84,7 @@ const SignUpForm = (props) => {
         </div>
         <hr />
       </form>
-      { props.auth.loading && <AuthSignUpDynamicBar /> }
+      { props.auth.loading && loading }
       <SignUpFormButtonContainer
         onSubmit={onSubmit}
         onReset={props.onReset}
