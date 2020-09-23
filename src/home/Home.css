@@ -9,13 +9,12 @@
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
-  animation: fade_in .25s ease-in-out 1, blur_in .25s ease-in-out 1, slide_in_from_top.25s ease-in-out 1;
 }
 
 .logo_container {
   width: 75%;
   margin: 30px auto 30px auto;
-  animation: fade_in .1s ease-in-out 1, blur_in .2s ease-in-out 1, slide_in_from_top .3s ease-in-out 1;
+  animation: fade_in .25s ease-in-out 1;
 }
 
 .logo_container img{

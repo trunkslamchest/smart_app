@@ -1,11 +1,12 @@
 .stats_category {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   align-content: center;
+  border: 1px solid rgba(200, 200, 200, 1);
 }
 
 .stats_category ul {
@@ -16,7 +17,6 @@
   justify-content: space-around;
   align-items: center;
   align-content: center;
-  background-color: #FFF;
   max-width: 25%;
   text-align: center;
   list-style: none;
@@ -27,9 +27,7 @@
   padding-inline-start: 0px;
   align-self: auto;
   padding: 10px 0px;
-  background-color: rgba(255,255,255, 1);
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(255,255,255, 1);
 }
 
 .stats_category li {

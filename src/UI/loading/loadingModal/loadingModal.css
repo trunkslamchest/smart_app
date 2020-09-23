@@ -6,7 +6,6 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  /* margin: 0px auto 0px auto; */
   padding: 5px 0px 0px 0px;
   border: 1px solid rgb(200, 200, 200, 1);
   box-sizing: border-box;
@@ -23,8 +22,7 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  /* margin: 0px auto 0px auto; */
-  /* border: 1px solid rgb(200, 200, 200, 1); */
+  border: 1px solid rgba(200, 200, 200, 1);
   box-sizing: border-box;
 }
 
@@ -39,7 +37,6 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  /* margin: 0px auto 0px auto; */
-  /* border: 1px solid rgb(200, 200, 200, 1); */
+  border: 1px solid rgba(200, 200, 200, 1);
   box-sizing: border-box;
 }

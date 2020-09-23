@@ -3,7 +3,7 @@
   min-width: 200px;
   text-rendering: auto;
   color: rgb(235, 235, 235, 1);
-  background-color: rgba(51, 51, 51, 1);
+  background: rgba(51, 51, 51, 1);
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
@@ -15,7 +15,6 @@
   align-items: flex-start;
   cursor: pointer;
   box-sizing: border-box;
-  /* margin: 10px; */
   font: 400 15px Roboto;
   padding: 15px 30px 15px 30px;
   border: 0px solid;
@@ -36,5 +35,5 @@
   transition-property: color;
   transition-duration: .1s, .1s;
   transition-timing-function: ease-in-out;
-  animation: scale_out .1s ease-in-out 1, blur_out .1s ease-in-out 1;
+  animation: scale_out .1s ease-in-out 1;
 }

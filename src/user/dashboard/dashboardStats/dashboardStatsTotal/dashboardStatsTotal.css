@@ -1,7 +1,6 @@
 .stats_total {
-  background-color: rgba(255,255,255, 1);
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255,255,255, 1), rgba(0,0,0, 0.025) );
-  width: 100%;
+  background: rgba(255,255,255, 1);
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -9,7 +8,7 @@
   align-items: center;
   align-content: center;
   font: 300 10pt 'Poppins', sans-serif;
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(200, 200, 200, 1);
 }
 
 .stats_total br {

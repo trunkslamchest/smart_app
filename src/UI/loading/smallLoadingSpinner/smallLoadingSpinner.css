@@ -1,7 +1,4 @@
 .spinner_container {
-  /* width: 100wh !important; */
-  /* min-height: 50vh !important; */
-  /* margin: 0px auto 0px auto; */
   height: 45px;
   padding: 0px 15px;
 }
@@ -19,7 +16,6 @@
 
 .spinner_animation_container {
   margin: 2.5px auto 2.5px auto !important;
-  /* animation: loading_pulse 1.2s ease-in-out infinite !important; */
   display: inline-block;
   position: relative;
   display: flex;
@@ -34,14 +30,11 @@
   width: 25px;
   height: 25px;
   transform: scale(1.0, 1.0);
-  /* background: blue */
-  /* animation: loading_pulse 1.0s ease-in-out infinite !important; */
 }
 
 .roller div {
   animation: roller 0.5s linear infinite;
   transform-origin: 12.5px 12.5px;
-
 }
 
 @keyframes roller {
@@ -60,11 +53,7 @@
   width: 5px;
   height: 5px;
   transform: rotate(45deg);
-
   background: rgba(102, 102, 102, 1);
-  /* margin: -4px 0 0 -4px; */
-  /* animation: loading_pulse 0.5s ease-in-out infinite !important; */
-
 }
 
 .roller div:nth-child(1) {
