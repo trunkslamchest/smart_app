@@ -37,15 +37,16 @@ const ResultsVote = (props) => {
   const votePercents = calcVotes()
 
   const voteButtons = [
-    { type: "up_vote", img: up_vote, vote: "good"},
-    { type: "no_vote", img: no_vote, vote: "neutral"},
-    { type: "down_vote", img: down_vote, vote: "bad"}
+    { type: "up_vote", type_disabled: "up_vote_disabled", img: up_vote, vote: "good"},
+    { type: "no_vote", type_disabled: "no_vote_disabled", img: no_vote, vote: "neutral"},
+    { type: "down_vote", type_disabled: "down_vote_disabled", img: down_vote, vote: "bad"}
   ]
 
   const distribVotesButtons = voteButtons.map(button => {
     return(
       <button
-        className={`${button.type}_button`}
+        className={ props.enableVoteButtons ? `${button.type}_button` : `${button.type_disabled}_button`}
+        disabled={ !props.enableVoteButtons }
         key={`${button.type}_button`}
         name={`${button.type}_button`}
         vote={ button.vote }

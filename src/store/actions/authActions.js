@@ -8,6 +8,7 @@ import {
 import {
   storeUserInfo,
   storeUserQuestions,
+  updateUserInfo,
   clearUserInfo
 } from './userActions'
 
@@ -38,6 +39,11 @@ export const authStart = (authType, obj) => {
       dispatch(authUpdateStatus('initUserLogOut', true))
       dispatch(authLogOut(authType, obj))
     }
+    if(authType === 'editProfile') {
+      dispatch(initAuth(authType))
+      dispatch(authUpdateStatus('initUserEdit', true))
+      dispatch(updateUserInfo(authType, obj))
+    }
     if(authType === 'deleteProfile') {
       dispatch(initAuth(authType))
       dispatch(authLogIn(authType, obj))
@@ -51,6 +57,13 @@ const initAuth = (authType) => {
     error: null,
     authType: authType,
     loading: true,
+  }
+}
+
+export const authUpdateLoadingStatus = (bool) => {
+  return {
+    type: actionTypes.AUTH_UPDATE_LOADING_STATUS,
+    loading: bool
   }
 }
 
@@ -226,7 +239,6 @@ export const setAuthType = (authType) => {
 export const clearAuthType = () => {
   return {
     type: actionTypes.CLEAR_AUTH_TYPE,
-    status: 'clearAuthTypeSuccess',
     authType: null
   }
 }

@@ -18,6 +18,13 @@ const authUpdateStatus = (currentState, action) => {
   }
 }
 
+const authUpdateLoadingStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    loading: action.loading
+  }
+}
+
 const authStart = (currentState, action) => {
   return {
     ...currentState,
@@ -129,8 +136,7 @@ const setAuthType = (currentState, action) => {
 const clearAuthType = (currentState, action) => {
   return {
     ...currentState,
-    authType: action.authType,
-    status: action.status
+    authType: action.authType
   }
 }
 
@@ -165,6 +171,7 @@ const clearAuthErrors = (currentState, action) => {
 
 const authReducer = (currentState = initialState, action) => {
   switch(action.type) {
+    case actionTypes.AUTH_UPDATE_LOADING_STATUS: return authUpdateLoadingStatus(currentState, action)
     case actionTypes.AUTH_UPDATE_STATUS: return authUpdateStatus(currentState, action)
     case actionTypes.AUTH_START: return authStart(currentState, action)
     case actionTypes.AUTH_SUCCESS: return authSuccess(currentState, action)

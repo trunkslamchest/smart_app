@@ -8,6 +8,7 @@ export {
 } from './modalActions'
 
 export {
+  authUpdateLoadingStatus,
   authUpdateStatus,
   authUser,
   authStart,

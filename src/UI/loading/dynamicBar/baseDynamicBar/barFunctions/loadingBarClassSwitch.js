@@ -15,7 +15,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'getQuestionsLocalSuccess') barClass = 'loading_bar_11'
     if(status === 'storeQuestionsLocal') barClass = 'loading_bar_12'
     if(status === 'storeQuestionsLocalSuccess') barClass = 'loading_bar_13'
-    if(status === 'clearAuthTypeSuccess') barClass = 'loading_bar_final'
+    if(status === 'authValid') barClass = 'loading_bar_final'
   }
 
   if(barType === 'authSignUp'){
@@ -33,10 +33,10 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'getQuestionsLocalSuccess') barClass = 'loading_bar_12'
     if(status === 'storeQuestionsLocal') barClass = 'loading_bar_13'
     if(status === 'storeQuestionsLocalSuccess') barClass = 'loading_bar_14'
-    if(status === 'clearAuthTypeSuccess') barClass = 'loading_bar_final'
+    if(status === 'authValid') barClass = 'loading_bar_final'
   }
 
-  if(barType === 'authRefresh'){
+  if(barType === 'refresh'){
     if(status === 'authUserGoogleStart') barClass = 'loading_bar_1'
     if(status === 'authUserGoogle') barClass = 'loading_bar_2'
     if(status === 'authUserGoogleSuccess') barClass = 'loading_bar_3'
@@ -50,7 +50,16 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'getQuestionsLocalSuccess') barClass = 'loading_bar_11'
     if(status === 'storeQuestionsLocal') barClass = 'loading_bar_12'
     if(status === 'storeQuestionsLocalSuccess') barClass = 'loading_bar_13'
-    if(status === 'clearAuthTypeSuccess') barClass = 'loading_bar_final'
+    if(status === 'authValid') barClass = 'loading_bar_final'
+  }
+
+  if(barType === 'editProfile'){
+    if(status === 'initUserEdit') barClass = 'loading_bar_1'
+    if(status === 'updateUserInfo') barClass = 'loading_bar_4'
+    if(status === 'updateUserInfoSuccess') barClass = 'loading_bar_8'
+    if(status === 'storeUserInfo') barClass = 'loading_bar_12'
+    if(status === 'finalizeUpdateUserInfo') barClass = 'loading_bar_16'
+    if(status === 'authValid') barClass = 'loading_bar_final'
   }
 
   if(barType === 'authLogOut'){

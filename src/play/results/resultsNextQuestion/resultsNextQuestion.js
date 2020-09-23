@@ -13,6 +13,7 @@ const resultsNextQuestion = (props) => {
     props.onSetGameState('init')
     props.onUpdateGameStatus('initGame', true)
     props.onLoadingModal(true)
+    props.onDisableNextQuestionButton()
     if(props.play.question) props.onResetQuestion()
     if(props.play.answer) props.onResetAnswer()
     if(props.play.results) props.onResetResults()

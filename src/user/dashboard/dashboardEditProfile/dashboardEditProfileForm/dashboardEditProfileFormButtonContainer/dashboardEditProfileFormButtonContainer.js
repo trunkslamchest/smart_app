@@ -1,6 +1,8 @@
 import React from 'react'
 
-import DashboardEditProfileFormButton from './dashboardEditProfileFormButton/dashboardEditProfileFormButton'
+import DashboardEditProfileFormButton from '../dashboardEditProfileFormButton/dashboardEditProfileFormButton'
+
+import './dashboardEditProfileFormButtonContainer.css'
 
 const DashboardEditProfileFormButtonContainer = (props) => {
   return(
@@ -9,21 +11,24 @@ const DashboardEditProfileFormButtonContainer = (props) => {
         type='submit'
         id='edit_profile_submit'
         name='edit_profile_submit'
-        onClick={props.onSubmit}
-        value='Update Profile'
+        enableButtons={ props.enableButtons }
+        onClickFunctions={ props.onSubmit }
+        value='Confirm'
       />
       <DashboardEditProfileFormButton
         type='reset'
         id='edit_profile_reset'
         name='edit_profile_reset'
-        onClick={props.onReset}
+        enableButtons={ props.enableButtons }
+        onClickFunctions={ props.onReset }
         value='Reset'
       />
       <DashboardEditProfileFormButton
         type='button'
         id='edit_profile_form_cancel'
         name='edit_profile_form_cancel'
-        onClick={props.onCancel}
+        enableButtons={ props.enableButtons }
+        onClickFunctions={ props.onCancel }
         value='Cancel'
       />
     </div>

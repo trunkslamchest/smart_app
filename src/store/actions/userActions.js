@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import { routes, fetch } from '../../utility/paths'
+import { fetch } from '../../utility/paths'
 
 import {
   authUpdateStatus
@@ -40,6 +40,30 @@ export const initStoreUserQuestions = (questions) => {
   }
 }
 
+export const updateUserInfo = (authType, obj) => {
+  return dispatch => {
+    dispatch(authUpdateStatus('updateUserInfo', true))
+    userFunctions('patch', fetch.patch.user, obj)
+    .then(res => {
+      if(res) {
+        dispatch(authUpdateStatus('updateUserInfoSuccess', true))
+        dispatch(storeUserInfo(obj.info))
+      }
+    })
+  }
+}
+
+export const updateUserQuestions = () => {
+  return dispatch => {
+  if(localStorage.id) {
+      userFunctions('getUser', fetch.get.user, localStorage.id)
+      .then(userRes => {
+        dispatch(storeUserQuestions(userRes.questions))
+      })
+    }
+  }
+}
+
 export const clearUserInfo = () => {
   return dispatch => {
     dispatch(authUpdateStatus('clearUserInfo', true))
@@ -65,29 +89,6 @@ const initClearUserQuestions = () => {
   return {
     type: actionTypes.CLEAR_USER_QUESTIONS,
     questions: null
-  }
-}
-
-export const updateUserInfo = (obj, props) => {
-  return dispatch => {
-    userFunctions('patch', fetch.patch.user, obj)
-    .then(res => {
-      if(res) {
-        dispatch(storeUserInfo(obj.info))
-        props.history.push( routes.dashboard_profile )
-      }
-    })
-  }
-}
-
-export const updateUserQuestions = () => {
-  return dispatch => {
-  if(localStorage.id) {
-      userFunctions('getUser', fetch.get.user, localStorage.id)
-      .then(userRes => {
-        dispatch(storeUserQuestions(userRes.questions))
-      })
-    }
   }
 }
 

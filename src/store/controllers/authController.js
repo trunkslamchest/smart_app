@@ -22,13 +22,20 @@ class AuthController extends React.Component {
     authLogInValid: false,
     authLogOutValid: false,
     authDeleteUserValid: false,
+    authUserUpdateValid: false,
     authUserInfoLocal: false,
     authUserQuestionsLocal: false
   }
 
   componentDidMount(){
-    if (!localStorage.token) this.clearLocalStorage()
-    else this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken })
+    if (!localStorage.token) {
+      this.clearLocalStorage()
+      this.props.onAuthUpdateStatus(null, false)
+    }
+    else {
+      this.props.onLoadingModal(true)
+      this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken })
+    }
   }
 
   componentDidUpdate(){
@@ -41,7 +48,6 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
       if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
-      // if(this.props.auth.status === 'authValid' && this.props.modal.login) this.props.onLogInModal(false)
     }
 
     if(this.props.auth.authType === 'signUp') {
@@ -74,6 +80,13 @@ class AuthController extends React.Component {
         if(this.props.auth.status === 'clearQuestionTotals' && !this.props.questions.totals) this.props.onAuthUpdateStatus('clearQuestionTotalsSuccess', true)
         if(this.props.auth.status === 'clearQuestionTotalsSuccess' && !this.state.initClearAuthCreds) this.initClearAuthCredsModule('initClearAuthCreds')
         if(this.props.auth.status === 'clearAuthCredsSuccess' && !this.state.authLogOutValid) this.authFinalizeLogOut('authFinalizeLogOut')
+      }
+    }
+
+    if(this.props.auth.authType === 'editProfile') {
+      if(this.props.modal.loading){
+        if(this.props.auth.status === 'storeUserInfo' && !this.state.authUserUpdateValid) this.authUpdateUserModule('finalizeUpdateUserInfo')
+        if(this.props.auth.status === 'finalizeUpdateUserInfo' && this.state.authUserUpdateValid) this.authFinalizeUpdateUserModule('authValid')
       }
     }
 
@@ -119,7 +132,9 @@ class AuthController extends React.Component {
   }
 
   componentWillUnmount(){
-
+    clearTimeout(this.authWaitTimeoutQuarterSec)
+    clearTimeout(this.authWaitTimeoutHalfSec)
+    clearTimeout(this.authWaitTimeoutOneSec)
   }
 
   authFailModule = () => {
@@ -155,9 +170,10 @@ class AuthController extends React.Component {
   }
 
   authLogInValidModule = (status) => {
-    this.props.onClearAuthType()
-    this.props.onAuthUpdateStatus(status, false)
     this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, initAuthQuestions: false, authLogInValid: true })
+    this.props.onAuthUpdateStatus(status, true)
+    this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
+    this.authWaitTimeoutHalfSec = setTimeout(() => { this.props.onClearAuthType() }, 500)
   }
 
   authInitUserLogOutModule = (status) => {
@@ -189,10 +205,24 @@ class AuthController extends React.Component {
   }
 
   authFinalizeLogOut = (status) => {
-    this.props.onAuthUpdateStatus(status, true)
-    this.props.onClearAuthType()
-    this.clearLocalStorage()
     this.setState({ authLogInValid: false, initClearAuthCreds: false, authLogOutValid: true })
+    this.props.onAuthUpdateStatus(status, true)
+    this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
+    this.authWaitTimeoutHalfSec = setTimeout(() => { this.props.onClearAuthType() }, 500)
+    this.clearLocalStorage()
+  }
+
+  authUpdateUserModule = (status) => {
+    this.props.onAuthUpdateStatus(status, true)
+    this.setState({ authUserUpdateValid: true })
+  }
+
+  authFinalizeUpdateUserModule = (status) => {
+    this.setState({ authUserUpdateValid: false })
+    this.props.onAuthUpdateStatus(status, true)
+    this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
+    this.authWaitTimeoutHalfSec = setTimeout(() => { this.props.onClearAuthType() }, 500)
+    this.props.history.push( routes.dashboard_profile )
   }
 
   initAuthDeleteUserModule = (status) => {
@@ -213,10 +243,11 @@ class AuthController extends React.Component {
   }
 
   authFinalizeDeleteUser = (status) => {
-    this.props.onAuthUpdateStatus(status, true)
-    this.props.onClearAuthType()
-    this.clearLocalStorage()
     this.setState({ authLogInValid: false, initClearAuthCreds: false, initLocalDeleteUser: false, authDeleteUserValid: true })
+    this.props.onAuthUpdateStatus(status, true)
+    this.clearLocalStorage()
+    this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
+    this.authWaitTimeoutHalfSec = setTimeout(() => { this.props.onClearAuthType() }, 500)
   }
 
   clearLocalStorage = () => {
@@ -224,7 +255,6 @@ class AuthController extends React.Component {
     localStorage.clear()
     this.props.onAuthUpdateStatus('clearLocalStorageSuccess', true)
     localStorage.access = 'guest'
-    this.props.onAuthUpdateStatus(null, false)
   }
 
   render(){
@@ -245,6 +275,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // AUTH
+    onAuthUpdateLoadingStatus: (bool) => dispatch(actions.authUpdateLoadingStatus(bool)),
     onAuthUpdateStatus: (status, loading) => dispatch(actions.authUpdateStatus(status, loading)),
     onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props)),
     onAuthSuccess: (token, refreshToken, id, expires) => dispatch(actions.authSuccess(token, refreshToken, id, expires)),
@@ -263,6 +294,7 @@ const mapDispatchToProps = dispatch => {
     onClearAuthStatus: () => dispatch(actions.clearAuthStatus()),
     onSetAuthType: (authType) => dispatch(actions.setAuthType(authType)),
     // MODAL
+    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
     onLogInModal: (bool) => dispatch(actions.login(bool)),
     onLogOutModal: (bool) => dispatch(actions.logout(bool)),
     onSignUpModal: (bool) => dispatch(actions.signup(bool)),

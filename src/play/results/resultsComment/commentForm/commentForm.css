@@ -1,6 +1,6 @@
 .results_comment_text {
   width: 100%;
-  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+  animation: fade_in .3s ease-in-out 1;
 }
 
 .results_comment_form {
@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-content: flex-start;
-  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+  animation: fade_in .3s ease-in-out 1;
 }
 
 .results_comment_form textarea {
@@ -18,6 +18,6 @@
   max-width: 500px;
   margin: 0 auto 0 auto;
   font: 300 12pt 'Lato', sans-serif;
-  border: 1px solid rgb(175, 175, 175, 1);
-  animation: fade_in .3s ease-in-out 1, blur_in .15s ease-in-out 1;
+  border: 1px solid rgba(200, 200, 200, 1);
+  animation: fade_in .3s ease-in-out 1;
 }

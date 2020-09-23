@@ -4,9 +4,6 @@ import './dashboardDeleteProfileButton.css'
 
 const DashboardDeleteProfileButton = (props) => {
 
-  console.log(props)
-
-
   const onClickFunctions = (event) => {
     event.preventDefault()
 

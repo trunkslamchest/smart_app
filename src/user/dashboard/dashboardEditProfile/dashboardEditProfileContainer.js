@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../../store/actions/actionIndex'
+import { loading, authStart, updateUserInfo } from '../../../store/actions/actionIndex'
 
 import { routes } from '../../../utility/paths.js'
 
@@ -23,10 +23,13 @@ class DashboardEditProfile extends React.Component {
     last_name: '',
     user_name: '',
     errors: [],
-    pulledStore: false
+    pulledStore: false,
+    enableButtons: true,
+    enableInputs: true
   }
 
   componentDidMount(){ if(this.props.user.info) this.pulledStore() }
+
   componentDidUpdate(){ if(this.props.user.info && !this.state.pulledStore)this.pulledStore() }
 
   pulledStore = () => {
@@ -62,8 +65,12 @@ class DashboardEditProfile extends React.Component {
     event.persist()
     event.preventDefault()
 
+    this.setState({ enableButtons: false, enableInputs: false })
+
     let id = localStorage.id
-    let userObj = {
+
+    this.props.onLoadingModal(true)
+    this.props.onAuthStart('editProfile', {
       uid: id,
       info: {
         dob: this.state.dob,
@@ -74,8 +81,7 @@ class DashboardEditProfile extends React.Component {
         user_name: this.state.user_name,
         join_date: this.props.user.info.join_date
       }
-    }
-    this.props.onUpdateUserInfo(userObj, this.props)
+    })
   }
 
   onReset = (event) => {
@@ -92,28 +98,43 @@ class DashboardEditProfile extends React.Component {
 
   }
 
-  onCancel = (event) => { this.props.history.push( routes.dashboard_profile ) }
+  onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   componentWillUnmount(){
     this.setState({
-      pulledStore: false
+      dob: {
+        day: 0,
+        month: 'null',
+        year: 0
+      },
+      email: '',
+      first_name: '',
+      gender: '',
+      last_name: '',
+      user_name: '',
+      errors: [],
+      pulledStore: false,
+      enableButtons: true,
+      enableInputs: true
     })
   }
 
   render(){
     return(
       <DashboardEditProfileForm
+        dob={ this.state.dob }
+        email={ this.state.email }
+        enableButtons={ this.state.enableButtons }
+        enableInputs={ this.state.enableInputs }
         errors={ this.state.errors }
+        first_name={ this.state.first_name }
+        gender={ this.state.gender }
+        last_name={ this.state.last_name }
         onChange={ this.onChange }
         onDOBChange={ this.onDOBChange }
         onSubmit={ this.onSubmit }
         onCancel={ this.onCancel }
         onReset={ this.onReset }
-        dob={ this.state.dob }
-        email={ this.state.email }
-        first_name={ this.state.first_name }
-        gender={ this.state.gender }
-        last_name={ this.state.last_name }
         user_name={ this.state.user_name }
       />
     )
@@ -129,7 +150,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateUserInfo: (obj, props) => dispatch(actions.updateUserInfo(obj, props))
+    onLoadingModal: (bool) => dispatch(loading(bool)),
+    onAuthStart: (authType, obj, props) => dispatch(authStart(authType, obj, props)),
+    onUpdateUserInfo: (obj, props) => dispatch(updateUserInfo(obj, props))
   }
 }
 

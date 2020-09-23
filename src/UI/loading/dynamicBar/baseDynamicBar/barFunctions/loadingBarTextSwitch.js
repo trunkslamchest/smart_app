@@ -15,7 +15,7 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'getQuestionsLocalSuccess') barText = 'Fetched Local Question Totals'
     if(status === 'storeQuestionsLocal') barText = 'Saving Question Totals to Redux'
     if(status === 'storeQuestionsLocalSuccess') barText = 'Redux Question Totals Updated'
-    if(status === 'clearAuthTypeSuccess') barText = 'Authentication Validated'
+    if(status === 'authValid') barText = 'Authentication Validated'
   }
 
   if(barType === 'authSignUp'){
@@ -33,10 +33,10 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'getQuestionsLocalSuccess') barText = 'Fetched Local Question Totals'
     if(status === 'storeQuestionsLocal') barText = 'Saving Question Totals to Redux'
     if(status === 'storeQuestionsLocalSuccess') barText = 'Redux Question Totals Updated'
-    if(status === 'clearAuthTypeSuccess') barText = 'Authentication Validated'
+    if(status === 'authValid') barText = 'Authentication Validated'
   }
 
-  if(barType === 'authRefresh'){
+  if(barType === 'refresh'){
     if(status === 'authUserGoogleStart') barText = 'Initializing Google Authentication'
     if(status === 'authUserGoogle') barText = 'Awaiting Response from Google'
     if(status === 'authUserGoogleSuccess') barText = 'Google Authentication Success'
@@ -50,7 +50,16 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'getQuestionsLocalSuccess') barText = 'Fetched Local Question Totals'
     if(status === 'storeQuestionsLocal') barText = 'Saving Question Totals to Redux'
     if(status === 'storeQuestionsLocalSuccess') barText = 'Redux Question Totals Updated'
-    if(status === 'clearAuthTypeSuccess') barText = 'Authentication Validated'
+    if(status === 'authValid') barText = 'Authentication Validated'
+  }
+
+  if(barType === 'editProfile'){
+    if(status === 'initUserEdit') barText = 'Initializing User Update'
+    if(status === 'updateUserInfo') barText = 'Revising User Info'
+    if(status === 'updateUserInfoSuccess') barText = 'User Info Revision Success'
+    if(status === 'storeUserInfo') barText = 'Saving User Updates To Redux'
+    if(status === 'finalizeUpdateUserInfo') barText = 'Finalizing User Updates'
+    if(status === 'authValid') barText = 'User Update Successful'
   }
 
   if(barType === 'authLogOut'){
@@ -119,7 +128,6 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'sentComment') barText = 'Fetching Local Comments'
     if(status === 'commentSuccess') barText = 'Updating Comment Tables'
   }
-
 
   return barText
 }

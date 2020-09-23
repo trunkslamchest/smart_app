@@ -4,8 +4,6 @@ import './logOutButton.css'
 
 const logOutButton = (props) => {
 
-  console.log(props)
-
   const onClickFunctions = (event) => {
     event.preventDefault()
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileFormButtonContainer'
+import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileFormButtonContainer/dashboardDeleteProfileFormButtonContainer'
 import BaseDynamicBar from '../../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 

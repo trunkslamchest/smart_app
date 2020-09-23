@@ -60,6 +60,7 @@ const ResultsComment = (props) => {
         <div className="results_comment_text">
         <CommentForm
           comment={ props.comment }
+          enableAddCommentButton = { props.enableAddCommentButton }
           onAddComment={ props.onAddComment }
           onChangeComment={ props.onChangeComment }
         />

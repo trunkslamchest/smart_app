@@ -20,8 +20,9 @@ const commentForm = (props) => {
       />
       <div className="results_comment_button_container">
         <input
+          disabled={ !props.enableAddCommentButton }
+          className={ props.enableAddCommentButton ? "results_comment_button" : "results_comment_button_disabled" }
           type="submit"
-          className="results_comment_button"
           value="Add Comment"
         />
       </div>

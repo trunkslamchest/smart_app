@@ -2,10 +2,12 @@ import React from 'react'
 
 import DashboardEditProfileFormInput from './dashboardEditProfileFormInput/dashboardEditProfileFormInput'
 import DashboardEditProfileFormSelect from './dashboardEditProfileFormSelect/dashboardEditProfileFormSelect'
-import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormButtonContainer'
+import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormButtonContainer/dashboardEditProfileFormButtonContainer'
 
 import genders from '../../../../datasets/genders'
 import months from '../../../../datasets/months'
+
+import './dashboardEditProfileForm.css'
 
 // import ErrorContainer from '../../../error/errorContainer'
 
@@ -27,12 +29,13 @@ const dashboardEditProfileForm = (props) => {
     if(field[1].type === 'text'){
       component = <>
         <DashboardEditProfileFormInput
-          key={ field[0] }
-          type={ field[1].type }
+          enableInputs={ props.enableInputs }
           id={ field[1].idName }
+          key={ field[0] }
           name={ field[1].idName }
-          placeholder={ field[1].placeholder }
           onChange={ props.onChange }
+          placeholder={ field[1].placeholder }
+          type={ field[1].type }
           value={ props[field[1].idName] === 'null' ? field[1].placeholder : props[field[1].idName] }
         />
         {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
@@ -41,14 +44,15 @@ const dashboardEditProfileForm = (props) => {
     if(field[1].type === 'number'){
       component = <>
         <DashboardEditProfileFormInput
-          key={ field[0] }
-          type={ field[1].type }
+          enableInputs={ props.enableInputs }
           id={ field[1].idName }
-          name={ field[1].idName }
-          min={ field[1].min }
+          key={ field[0] }
           max={ field[1].max }
-          placeholder={ field[1].placeholder }
+          min={ field[1].min }
+          name={ field[1].idName }
           onChange={ field[1].change }
+          placeholder={ field[1].placeholder }
+          type={ field[1].type }
           value={ props.dob[field[1].idName] === 0 ? field[1].val : props.dob[field[1].idName] }
         />
         {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
@@ -57,11 +61,12 @@ const dashboardEditProfileForm = (props) => {
     if(field[1].type === 'select'){
       component = <>
         <DashboardEditProfileFormSelect
-          key={ field[0] }
+          enableInputs={ props.enableInputs }
           id={ field[1].idName }
+          key={ field[0] }
           name={ field[1].idName }
-          options={ field[1].options }
           onChange={ field[1].change }
+          options={ field[1].options }
           value={ field[1].val }
         />
         {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
@@ -86,6 +91,7 @@ const dashboardEditProfileForm = (props) => {
         <label>Gender</label><div className='edit_div'>{ distribFields[4] }</div>
         <label>Date Of Birth</label><div className='edit_div'>{ distribFields[5] }<br />{ distribFields[6] }<br />{ distribFields[7] }</div>
         <DashboardEditProfileFormButtonContainer
+          enableButtons={ props.enableButtons }
           onSubmit={ props.onSubmit }
           onReset={ props.onReset }
           onCancel={ props.onCancel }

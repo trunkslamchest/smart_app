@@ -25,10 +25,10 @@ class ResultsContainer extends React.Component{
     showCommentButton: false,
     showCommentForm:false,
     showNextQuestionButton: false,
+    enableVoteButtons: false,
     enableCommentButton: false,
-    enableNextQuestionButton: false,
-    voted: false,
-    commented: false,
+    enableAddCommentButton: true,
+    enableNextQuestionButton: false
   }
 
   componentDidMount(){
@@ -38,12 +38,13 @@ class ResultsContainer extends React.Component{
 
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
     if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1500)
-    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
-    this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 2500)
-    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 3000)
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 3000)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 3500)
+    this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1250)
+    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 1500)
+    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 1750)
+    this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 2000)
+    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 2250)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2250)
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2500)
   }
 
   componentWillUnmount(){
@@ -51,8 +52,10 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.correctAnswerTimeout)
     clearTimeout(this.difficultyTimeout)
     clearTimeout(this.voteButtonsTimeout)
+    clearTimeout(this.enableVoteButtonsTimeout)
     clearTimeout(this.commentButtonTimeout)
     clearTimeout(this.enableCommentButtonTimeout)
+    clearTimeout(this.enableAddCommentButtonTimeout)
     clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableNextQuestionTimeout)
   }
@@ -71,10 +74,10 @@ class ResultsContainer extends React.Component{
       vote: event.target.attributes.vote.value
     })
     this.props.onUpdateVoteStatus('initVote', true)
-    this.setState({ showVoteButtons: false })
+    this.setState({ showVoteButtons: false, enableVoteButtons: false })
   }
 
-  onClickCommentFunctions = () => { this.setState({ showCommentButton: false, showCommentForm: true }) }
+  onClickCommentFunctions = () => { this.setState({ showCommentButton: false, showCommentForm: true, enableCommentButton: false }) }
 
   onChangeComment = (event) => { this.setState({ comment: event.target.value }) }
 
@@ -95,9 +98,11 @@ class ResultsContainer extends React.Component{
         comment: this.state.comment
       })
       this.props.onUpdateCommentStatus('initComment', true)
-      this.setState({ showCommentForm: false })
+      this.setState({ showCommentForm: false, enableAddCommentButton: false })
     } else alert("Please Enter A Comment")
   }
+
+  onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
 
   render(){
 
@@ -116,6 +121,7 @@ class ResultsContainer extends React.Component{
             showDifficulty={ this.state.showDifficulty }
           />
           <ResultsVote
+            enableVoteButtons={ this.state.enableVoteButtons }
             showVoteButtons={ this.state.showVoteButtons }
             onClickVoteFunctions={ this.onClickVoteFunctions }
           />
@@ -124,6 +130,7 @@ class ResultsContainer extends React.Component{
             showCommentButton={ this.state.showCommentButton }
             showCommentForm={ this.state.showCommentForm }
             enableCommentButton={ this.state.enableCommentButton }
+            enableAddCommentButton={ this.state.enableAddCommentButton }
             onAddComment={ this.onAddComment }
             onChangeComment={ this.onChangeComment }
             onClickCommentFunctions={ this.onClickCommentFunctions }
@@ -131,6 +138,7 @@ class ResultsContainer extends React.Component{
           <ResultsNextQuestion
             showNextQuestionButton={ this.state.showNextQuestionButton }
             enableNextQuestionButton={ this.state.enableNextQuestionButton }
+            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
           />
         </div>
     }

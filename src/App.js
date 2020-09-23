@@ -38,14 +38,11 @@ const App = (props) => {
       <div className='main_container'>
         {
           props.auth.loading &&
-          !props.modal.login &&
-          !props.modal.signup &&
-          !props.modal.logout &&
-          !props.modal.deleteProfile &&
+          (props.auth.authType === 'refresh' || props.auth.authType === 'editProfile') &&
           <LoadingModal
             show={ props.auth.loading }
             modalType={ 'auth' }
-            barType={ 'authRefresh' }
+            barType={ props.auth.authType }
             history={ props.history }
           />
         }

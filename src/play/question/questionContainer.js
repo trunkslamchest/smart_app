@@ -57,6 +57,7 @@ class QuestionContainer extends React.Component{
   onClickFunctions = (event) => {
     clearInterval(this.timerInterval)
     this.props.onLoadingModal(true)
+    this.setState({ enableQuestion: false })
     this.props.onSetAnswer({ choice: this.props.play.question.choices[event.target.value], time: parseFloat((10 - this.state.time).toFixed(2)) })
   }
 
