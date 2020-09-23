@@ -1,17 +1,24 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-// import * as actions from '../../../store/actions/actionIndex'
 
 import LogInFormInput from './logInFormInput/logInFormInput'
 import LogInFormButtonContainer from './logInFormButtonContainer/logInFormButtonContainer'
 
+import ErrorContainer from '../../../error/errorContainer'
+
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import ErrorContainer from '../../../error/errorContainer'
+import './logInForm.css'
 
 const LogInForm = (props) => {
+
+  const loading =
+    <div className='loading_wrapper'>
+      <SmallLoadingSpinner />
+      <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
+    </div>
 
   const distribErrors = props.auth.errors.map(error => {
     return <ErrorContainer
@@ -19,12 +26,6 @@ const LogInForm = (props) => {
       error={ error }
     />
   })
-
-  const loading =
-    <div className='loading_wrapper'>
-      <SmallLoadingSpinner />
-      <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
-    </div>
 
   return(
     <>

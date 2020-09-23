@@ -11,11 +11,28 @@ import './signUp.css'
 class SignUp extends React.Component {
 
   state = {
-    errors: [],
-    TOSagreement: false,
     user_name: '',
     password: '',
     email: '',
+    TOSagreement: false,
+    enableButton: true,
+    enableInput: true
+  }
+
+  componentDidUpdate() {
+    if(this.props.auth.loading && this.state.enableButton){
+      this.setState({
+        enableButton: false,
+        enableInput: false,
+      })
+    }
+
+    if(!this.props.auth.loading && !this.state.enableButton){
+      this.setState({
+        enableButton: true,
+        enableInput: true,
+      })
+    }
   }
 
   onChange = (event) => {this.setState({[event.target.name]: event.target.value})}
@@ -29,18 +46,24 @@ class SignUp extends React.Component {
     event.persist()
     event.preventDefault()
 
-    if (!this.state.TOSagreement) alert('You must agree to the Terms of Service Agreement in order to make a new account.')
-    else this.props.onAuthStart('signUp', {
-          displayName: this.state.user_name,
-          email: this.state.email,
-          password: this.state.password,
-          returnSecureToken: true
-        })
+    this.setState({
+      enableButton: false,
+      enableInput: false,
+    })
+
+    if(this.state.enableButton) {
+      if (!this.state.TOSagreement) alert('You must agree to the Terms of Service Agreement in order to make a new account.')
+      else this.props.onAuthStart('signUp', {
+            displayName: this.state.user_name,
+            email: this.state.email,
+            password: this.state.password,
+            returnSecureToken: true
+          })
+    }
   }
 
   onReset = () => {
     this.setState({
-      errors: [],
       TOSagreement: false,
       user_name: '',
       password: '',
@@ -59,16 +82,17 @@ class SignUp extends React.Component {
         showModal={ this.props.modal.signup }
       >
         <SignUpForm
-          errors={this.state.errors}
-          onChange={this.onChange}
-          onChecked={this.onChecked}
-          onSubmit={this.onSubmit}
-          onCancel={this.onCancel}
-          onReset={this.onReset}
-          user_name={this.state.user_name}
-          password={this.state.password}
-          email={this.state.email}
-          TOSagreement={this.state.TOSagreement}
+          email={ this.state.email }
+          enableButton={ this.state.enableButton }
+          enableInput={ this.state.enableInput }
+          onChange={ this.onChange }
+          onChecked={ this.onChecked }
+          onSubmit={ this.onSubmit }
+          onCancel={ this.onCancel }
+          onReset={ this.onReset }
+          password={ this.state.password }
+          TOSagreement={ this.state.TOSagreement }
+          user_name={ this.state.user_name }
         />
       </Modal>
     )
@@ -79,7 +103,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     modal: state.modal,
-    signUp: state.signUp
+    user: state.user
   }
 }
 
@@ -87,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSignUpModal: (bool) => dispatch(actions.signup(bool)),
     onAuthStart: (type, obj, props) => dispatch(actions.authStart(type, obj, props)),
+    onClearAuthErrors: () => dispatch(actions.clearAuthErrors())
   }
 }
 

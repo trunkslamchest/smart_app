@@ -59,9 +59,9 @@ class LogIn extends React.Component {
         >
         <div className='login_wrapper'>
           <LogInForm
+            email={ this.state.email }
             enableButton={ this.state.enableButton }
             enableInput={ this.state.enableInput }
-            email={ this.state.email }
             onChange={ this.onChange }
             onSubmit={ this.onSubmit  }
             onCancel={ this.onCancel }

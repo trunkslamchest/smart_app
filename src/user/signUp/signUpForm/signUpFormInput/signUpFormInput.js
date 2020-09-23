@@ -5,20 +5,21 @@ import './signUpFormInput.css'
 const SignUpFormInput = (props) => {
   return(
     <>
-      {props.label ? <label htmlFor={props.id}>{props.label}</label> : null}
+      { props.label ? <label htmlFor={props.id}>{props.label}</label> : null }
       <br />
       <input
-        type={props.type}
-        id={props.id}
-        name={props.name}
-        className={props.className ? props.className : null}
-        placeholder={props.placeholder ? props.placeholder : null}
-        min={props.min ? props.min : null}
-        max={props.max ? props.max : null}
-        onChange={props.onChange}
-        onClick={props.onClick ? props.onClick : null}
-        checked={props.checked ? props.checked : false}
-        value={props.value ? props.value : ''}
+        checked={ props.checked ? props.checked : false }
+        className={ props.className ? props.className : null }
+        disabled={ props.disabled }
+        id={ props.id }
+        name={ props.name }
+        max={ props.max ? props.max : null }
+        min={ props.min ? props.min : null }
+        placeholder={ props.placeholder ? props.placeholder : null }
+        onChange={ props.onChange }
+        onClick={ props.onClick ? props.onClick : null }
+        type={ props.type }
+        value={ props.value ? props.value : '' }
       />
     </>
   )

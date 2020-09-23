@@ -43,7 +43,7 @@ const App = (props) => {
     <StoreController history={ props.history }>
       <Header />
       <div className='main_container'>
-        { loadingModal }
+        { props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile && loadingModal }
         { props.modal.login && <LogIn history={ props.history } /> }
         { props.modal.logout && <LogOut history={ props.history } /> }
         { props.modal.signup && <SignUp history={ props.history } /> }

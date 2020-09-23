@@ -7,28 +7,34 @@ import { Link } from 'react-router-dom'
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
 
+import ErrorContainer from '../../../error/errorContainer'
+
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
-
-
-import ErrorContainer from '../../../error/errorContainer'
 
 import './signUpForm.css'
 
 const SignUpForm = (props) => {
-
-  const signUpFormRef = React.createRef()
-
-  const onSubmit = (event) => {
-    if(props.errors.length === 0) signUpFormRef.current.scrollTop = 0
-    props.onSubmit(event)
-  }
 
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
       <BaseDynamicBar modalType={ 'auth' } barType={ 'authSignUp' } />
     </div>
+
+  const distribErrors = props.auth.errors.map(error => {
+    return <ErrorContainer
+      key={ props.auth.errors.indexOf(error) }
+      error={ error }
+    />
+  })
+
+  const signUpFormRef = React.createRef()
+
+  const onSubmit = (event) => {
+    if(props.auth.errors.length === 0) signUpFormRef.current.scrollTop = 0
+    props.onSubmit(event)
+  }
 
   return(
     <>
@@ -39,7 +45,7 @@ const SignUpForm = (props) => {
         id='sign_up_form'
         name='sign_up_form'
         className='sign_up_form'
-        ref={signUpFormRef}
+        ref={ signUpFormRef }
       >
         <div className='sign_up_div'>
           <SignUpFormInput
@@ -47,28 +53,31 @@ const SignUpForm = (props) => {
             id='user_name'
             name='user_name'
             placeholder='User Name'
-            onChange={props.onChange}
-            value={props.user_name}
+            disabled={ !props.enableInput }
+            onChange={ props.onChange }
+            value={ props.user_name }
           />
-          {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null }
+          {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
           <SignUpFormInput
             type='password'
             id='password'
             name='password'
             placeholder='Password'
-            onChange={props.onChange}
-            value={props.password}
+            disabled={ !props.enableInput }
+            onChange={ props.onChange }
+            value={ props.password }
           />
-          {props.errors.password ? <ErrorContainer errors={props.errors.password} /> : null }
+          {/* {props.errors.password ? <ErrorContainer errors={props.errors.password} /> : null } */}
           <SignUpFormInput
             type='text'
             id='email'
             name='email'
             placeholder='Email Address'
-            onChange={props.onChange}
-            value={props.email}
+            disabled={ !props.enableInput }
+            onChange={props.onChange }
+            value={ props.email }
           />
-          {props.errors.email ? <ErrorContainer errors={props.errors.email} /> : null }
+          {/* {props.errors.email ? <ErrorContainer errors={props.errors.email} /> : null } */}
         </div>
         <hr />
         <div className='tos_agree_div'>
@@ -77,18 +86,21 @@ const SignUpForm = (props) => {
             id='TOS_agreement'
             name='TOS_agreement'
             className='TOS_check'
-            checked={props.TOSagreement}
-            onChange={props.onChecked}
+            disabled={ !props.enableInput }
+            checked={ props.TOSagreement }
+            onChange={ props.onChecked }
           />
           I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statelments supplied by this_project.com
         </div>
         <hr />
       </form>
+      { distribErrors }
       { props.auth.loading && loading }
       <SignUpFormButtonContainer
-        onSubmit={onSubmit}
-        onReset={props.onReset}
-        onCancel={props.onCancel}
+        enableButton={ props.enableButton }
+        onSubmit={ onSubmit }
+        onReset={ props.onReset }
+        onCancel={ props.onCancel }
       />
     </>
   )
