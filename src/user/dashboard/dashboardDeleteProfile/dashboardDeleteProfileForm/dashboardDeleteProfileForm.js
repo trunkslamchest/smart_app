@@ -6,6 +6,8 @@ import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileF
 import BaseDynamicBar from '../../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
+import './dashboardDeleteProfileForm.css'
+
 const DashboardDeleteProfileForm = (props) => {
 
   const loading =
@@ -30,12 +32,14 @@ const DashboardDeleteProfileForm = (props) => {
             label='Password'
             id='password'
             name='password'
+            disabled={ !props.enableInput }
             onChange={ props.onChange }
             value={ props.password}
           />
         </div>
         { props.auth.loading && loading }
         <DashboardDeleteProfileFormButtonContainer
+          enableSubmitButton={ props.enableSubmitButton }
           onSubmitConfirm={ props.onSubmitConfirm }
           onSubmitCancel={ props.onSubmitCancel }
         />
@@ -46,10 +50,7 @@ const DashboardDeleteProfileForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    user: state.user,
-    question: state.question
+    auth: state.auth
   }
 }
 

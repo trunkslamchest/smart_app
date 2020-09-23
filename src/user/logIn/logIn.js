@@ -47,12 +47,16 @@ class LogIn extends React.Component {
   }
 
   onCancel = () => {
+    this.setState({
+      enableButton: false,
+      enableInput: false,
+    })
+
     this.props.onLogInModal(false)
     this.props.onClearAuthErrors()
   }
 
   render(){
-
     return (
         <Modal
           showModal={ this.props.modal.login }

@@ -66,7 +66,8 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'clearQuestionTotalsSuccess') barClass = 'loading_bar_10'
     if(status === 'initClearAuthCreds') barClass = 'loading_bar_11'
     if(status === 'authFinalizeLogOut') barClass = 'loading_bar_12'
-    if(status === 'initClearLocalStorage') barClass = 'loading_bar_13'
+    if(status === 'clearAuthTypeSuccess') barClass = 'loading_bar_13'
+    if(status === 'initClearLocalStorage') barClass = 'loading_bar_14'
     if(status === 'clearLocalStorageSuccess') barClass = 'loading_bar_final'
   }
 

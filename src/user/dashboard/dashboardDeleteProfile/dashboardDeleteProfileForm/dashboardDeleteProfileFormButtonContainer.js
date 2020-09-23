@@ -2,6 +2,8 @@ import React from 'react'
 
 import DashboardDeleteProfileFormButton from './dashboardDeleteProfileFormButton'
 
+import './dashboardDeleteProfileFormButtonContainer.css'
+
 const DashboardDeleteProfileFormButtonContainer = (props) => {
   return(
     <div className='delete_form_buttons_container'>
@@ -9,14 +11,16 @@ const DashboardDeleteProfileFormButtonContainer = (props) => {
         type='submit'
         id='delete_profile_submit'
         name='delete_profile_submit'
-        onClick={ props.onSubmitConfirm }
+        enableSubmitButton={ props.enableSubmitButton }
+        onClickFunctions={ props.onSubmitConfirm }
         value='Confirm'
       />
       <DashboardDeleteProfileFormButton
         type='button'
         id='delete_profile_form_cancel'
         name='delete_profile_form_cancel'
-        onClick={ props.onSubmitCancel }
+        enableSubmitButton={ props.enableSubmitButton }
+        onClickFunctions={ props.onSubmitCancel }
         value='Cancel'
       />
     </div>

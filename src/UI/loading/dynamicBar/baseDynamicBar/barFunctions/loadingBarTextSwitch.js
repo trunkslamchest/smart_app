@@ -66,6 +66,7 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'clearQuestionTotalsSuccess') barText = 'Question Totals Dumped'
     if(status === 'initClearAuthCreds') barText = 'Dumping User Credentials'
     if(status === 'authFinalizeLogOut') barText = 'Dumping Local Storage'
+    if(status === 'clearAuthTypeSuccess') barText = 'Dumping Local Authentication'
     if(status === 'initClearLocalStorage') barText = 'Finalizing Log Out'
     if(status === 'clearLocalStorageSuccess') barText = 'Finalized Log Out'
   }

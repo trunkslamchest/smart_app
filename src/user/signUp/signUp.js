@@ -72,8 +72,14 @@ class SignUp extends React.Component {
   }
 
   onCancel = () => {
+    this.setState({
+      enableButton: false,
+      enableInput: false,
+    })
+
     this.onReset()
     this.props.onSignUpModal(false)
+    this.props.onClearAuthErrors()
   }
 
   render(){

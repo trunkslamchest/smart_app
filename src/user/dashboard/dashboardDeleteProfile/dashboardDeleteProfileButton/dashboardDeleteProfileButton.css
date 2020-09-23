@@ -29,3 +29,26 @@
 .delete_profile_button:active {
   animation: scale_out .1s ease-in-out 1;
 }
+
+.delete_profile_button_disabled {
+  -webkit-appearance: none;
+  text-rendering: auto;
+  color: rgb(235, 235, 235, 0.5);
+  background: rgba(174,174,174, 1);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: not-allowed;
+  box-sizing: border-box;
+  margin: 0px 0px 0px 0px;
+  font: 400 15px Roboto;
+  padding: 10px 20px 10px 20px;
+  border: 0px;
+  outline: -webkit-focus-ring-color auto 0px;
+}

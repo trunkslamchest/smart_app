@@ -10,6 +10,7 @@
   line-height: 1.25;
   border: 1px solid rgb(200, 200, 200, 1);
   box-sizing: border-box;
+  outline: -webkit-focus-ring-color auto 0px;
   /* animation: fade_in .4s ease-in-out 1, blur_in .2s ease-in-out 1 scale_in .1 ease-in-out 1; */
 }
 

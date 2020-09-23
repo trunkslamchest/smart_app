@@ -44,7 +44,7 @@
   text-align: center;
   text-decoration: none;
   align-items: center;
-  cursor: default;
+  cursor: not-allowed;
   box-sizing: border-box;
   margin: 0px 0px 0px 0px;
   font: 400 15px Roboto;

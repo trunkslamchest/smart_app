@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from './store/actions/actionIndex'
+import { loading } from './store/actions/actionIndex'
 
 import { Route, Switch } from 'react-router-dom'
 
@@ -32,18 +32,23 @@ import './UI/response.css'
 import './UI/loading.css'
 
 const App = (props) => {
-
-  let loadingModal
-
-  if(props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile){
-    loadingModal = <LoadingModal show={ props.auth.loading } modalType={ 'auth' } barType={ 'authRefresh' } history={ props.history } />
-  }
-
   return (
     <StoreController history={ props.history }>
       <Header />
       <div className='main_container'>
-        { props.auth.loading && !props.modal.login && !props.modal.signup && !props.modal.logout && !props.modal.deleteProfile && loadingModal }
+        {
+          props.auth.loading &&
+          !props.modal.login &&
+          !props.modal.signup &&
+          !props.modal.logout &&
+          !props.modal.deleteProfile &&
+          <LoadingModal
+            show={ props.auth.loading }
+            modalType={ 'auth' }
+            barType={ 'authRefresh' }
+            history={ props.history }
+          />
+        }
         { props.modal.login && <LogIn history={ props.history } /> }
         { props.modal.logout && <LogOut history={ props.history } /> }
         { props.modal.signup && <SignUp history={ props.history } /> }
@@ -77,7 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadingModal: (bool) => dispatch(actions.loading(bool))
+    onLoadingModal: (bool) => dispatch(loading(bool))
   }
 }
 
