@@ -3,6 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import validateLogIn from '../../utility/validation/validateLogIn'
+
 import Modal from '../../UI/modal/modal'
 import LogInForm from './logInForm/logInForm'
 
@@ -12,48 +14,36 @@ class LogIn extends React.Component {
 
   state = {
     email: '',
+    form: { valid: true },
     password: '',
     enableButton: true,
     enableInput: true
   }
 
   componentDidUpdate() {
-    if(this.props.auth.loading && this.state.enableButton){
-      this.setState({
-        enableButton: false,
-        enableInput: false,
-      })
-    }
-
-    if(!this.props.auth.loading && !this.state.enableButton){
-      this.setState({
-        enableButton: true,
-        enableInput: true,
-      })
-    }
+    if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
+    if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true, enableInput: true })
   }
 
   onChange = (event) => { this.setState({[event.target.name]: event.target.value}) }
 
   onSubmit = (event) => {
     event.preventDefault()
-
-    this.setState({
-      enableButton: false,
-      enableInput: false,
-    })
-
-    if(this.state.enableButton) this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true})
+    let authCheck = validateLogIn(this.state.email, this.state.password)
+    this.setState({ enableButton: false, enableInput: false, form: authCheck })
+    if(authCheck.valid) if(this.state.enableButton) this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true})
   }
 
   onCancel = () => {
     this.setState({
-      enableButton: false,
-      enableInput: false,
+      email: '',
+      form: {},
+      password: '',
+      enableButton: true,
+      enableInput: true
     })
-
-    this.props.onLogInModal(false)
     this.props.onClearAuthErrors()
+    this.props.onLogInModal(false)
   }
 
   render(){
@@ -66,6 +56,7 @@ class LogIn extends React.Component {
             email={ this.state.email }
             enableButton={ this.state.enableButton }
             enableInput={ this.state.enableInput }
+            form={ this.state.form }
             onChange={ this.onChange }
             onSubmit={ this.onSubmit  }
             onCancel={ this.onCancel }

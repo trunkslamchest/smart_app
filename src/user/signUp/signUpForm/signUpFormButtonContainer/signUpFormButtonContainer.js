@@ -6,7 +6,7 @@ import './signUpFormButtonContainer.css'
 
 const SignUpFormButtonContainer = (props) => {
   return(
-    <div className='edit_buttons_container'>
+    <div className='sign_up_buttons_container'>
       <SignUpFormButton
         type='submit'
         id='sign_up_form_submit'

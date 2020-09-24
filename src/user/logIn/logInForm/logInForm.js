@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 
 import LogInFormInput from './logInFormInput/logInFormInput'
 import LogInFormButtonContainer from './logInFormButtonContainer/logInFormButtonContainer'
-
-import ErrorContainer from '../../../error/errorContainer'
+import LogInFormErrorItem from './logInFormErrorItem/logInFormErrorItem'
 
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
@@ -14,22 +13,45 @@ import './logInForm.css'
 
 const LogInForm = (props) => {
 
+  let distribEmailErrors,
+      distribPasswordErrors
+      // distribAuthErrors
+
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
       <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
     </div>
 
-  const distribErrors = props.auth.errors.map(error => {
-    return <ErrorContainer
-      key={ props.auth.errors.indexOf(error) }
-      error={ error }
-    />
-  })
+  // const distribErrors = props.auth.errors.map(error => {
+  //   return <ErrorContainer
+  //     key={ props.auth.errors.indexOf(error) }
+  //     error={ error }
+  //   />
+  // })
+
+  if(!props.form.valid) {
+    if(props.form.email.errors){
+      distribEmailErrors = props.form.email.errors.map(error => {
+        return <LogInFormErrorItem
+          key={ props.form.email.errors.indexOf(error) }
+          error={ error }
+        />
+      })
+    }
+    if(props.form.password.errors){
+      distribPasswordErrors = props.form.password.errors.map(error => {
+        return <LogInFormErrorItem
+          key={ props.form.password.errors.indexOf(error) }
+          error={ error }
+        />
+      })
+    }
+  }
 
   return(
     <>
-      <div className='alt_header'>
+      <div className='log_in_header'>
         <h3>Log In</h3>
       </div>
       <form
@@ -39,26 +61,30 @@ const LogInForm = (props) => {
       >
         <div className='log_in_div'>
           <LogInFormInput
-            type='text'
-            label='Email'
-            id='email'
-            name='email'
             disabled={ !props.enableInput }
+            id='email'
+            label='Email'
+            name='email'
             onChange={ props.onChange }
+            placeholder='Email...'
+            type='text'
             value={ props.email }
           />
-          <br />
+          { !props.form.valid && props.form.email.errors.length ? <div className='log_in_error_container'>{ distribEmailErrors }</div> : <br /> }
+        </div>
+        <div className='log_in_div'>
           <LogInFormInput
-            type='password'
-            label='Password'
-            id='password'
-            name='password'
             disabled={ !props.enableInput }
+            id='password'
+            label='Password'
+            name='password'
             onChange={ props.onChange }
+            placeholder='Password...'
+            type='password'
             value={ props.password }
           />
+        { !props.form.valid && props.form.password.errors.length ? <div className='log_in_error_container'>{ distribPasswordErrors }</div> : <br /> }
         </div>
-        { distribErrors }
         { props.auth.loading && loading }
         <LogInFormButtonContainer
           enableButton={ props.enableButton }

@@ -3,5 +3,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
-  margin: 20px auto 20px auto;
+  margin: 20px auto;
+  box-sizing: border-box;
 }

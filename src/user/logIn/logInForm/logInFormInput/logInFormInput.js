@@ -4,18 +4,15 @@ import './logInFormInput.css'
 
 const LogInFormInput = (props) => {
   return(
-    <>
-      <label htmlFor={ props.id }>{ props.label }</label>
-      <br />
-      <input
-        type={ props.type }
-        id={ props.id }
-        name={ props.name }
-        disabled={ props.disabled }
-        onChange={ props.onChange }
-        value={ props.user_name }
-      />
-    </>
+    <input
+      disabled={ props.disabled }
+      id={ props.id }
+      name={ props.name }
+      placeholder={ props.placeholder }
+      onChange={ props.onChange }
+      type={ props.type }
+      value={ props.user_name }
+    />
   )
 }
 

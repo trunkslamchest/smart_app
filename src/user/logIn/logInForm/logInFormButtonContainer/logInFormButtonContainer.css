@@ -3,7 +3,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
-  margin: 10px auto 20px auto;
-  border: 1px solid rgb(200, 200, 200, 1);
+  margin: 20px auto;
   box-sizing: border-box;
 }

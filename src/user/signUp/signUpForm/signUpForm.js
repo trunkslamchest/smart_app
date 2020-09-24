@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom'
 
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
-
-import ErrorContainer from '../../../error/errorContainer'
+import SignUpFormErrorItem from './signUpFormErrorItem/signUpFormErrorItem'
 
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
@@ -16,29 +15,70 @@ import './signUpForm.css'
 
 const SignUpForm = (props) => {
 
+  let distribUserNameErrors,
+      distribEmailErrors,
+      distribPasswordErrors,
+      distribTOSErrors
+      // distribAuthErrors
+
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
       <BaseDynamicBar modalType={ 'auth' } barType={ 'authSignUp' } />
     </div>
 
-  const distribErrors = props.auth.errors.map(error => {
-    return <ErrorContainer
-      key={ props.auth.errors.indexOf(error) }
-      error={ error }
-    />
-  })
+  // const distribErrors = props.auth.errors.map(error => {
+  //   return <ErrorContainer
+  //     key={ props.auth.errors.indexOf(error) }
+  //     error={ error }
+  //   />
+  // })
+
+  if(!props.form.valid) {
+    if(props.form.user_name.errors){
+      distribUserNameErrors = props.form.user_name.errors.map(error => {
+        return <SignUpFormErrorItem
+          key={ props.form.user_name.errors.indexOf(error) }
+          error={ error }
+        />
+      })
+    }
+    if(props.form.email.errors){
+      distribEmailErrors = props.form.email.errors.map(error => {
+        return <SignUpFormErrorItem
+          key={ props.form.email.errors.indexOf(error) }
+          error={ error }
+        />
+      })
+    }
+    if(props.form.password.errors){
+      distribPasswordErrors = props.form.password.errors.map(error => {
+        return <SignUpFormErrorItem
+          key={ props.form.password.errors.indexOf(error) }
+          error={ error }
+        />
+      })
+    }
+    if(props.form.tos.errors){
+      distribTOSErrors = props.form.tos.errors.map(error => {
+        return <SignUpFormErrorItem
+          key={ props.form.tos.errors.indexOf(error) }
+          error={ error }
+        />
+      })
+    }
+  }
 
   const signUpFormRef = React.createRef()
 
   const onSubmit = (event) => {
-    if(props.auth.errors.length === 0) signUpFormRef.current.scrollTop = 0
+    // if(props.auth.errors.length === 0) signUpFormRef.current.scrollTop = 0
     props.onSubmit(event)
   }
 
   return(
     <>
-      <div className='alt_header'>
+      <div className='sign_up_header'>
         <h3>Create New Account</h3>
       </div>
       <form
@@ -57,17 +97,9 @@ const SignUpForm = (props) => {
             onChange={ props.onChange }
             value={ props.user_name }
           />
-          {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
-          <SignUpFormInput
-            type='password'
-            id='password'
-            name='password'
-            placeholder='Password'
-            disabled={ !props.enableInput }
-            onChange={ props.onChange }
-            value={ props.password }
-          />
-          {/* {props.errors.password ? <ErrorContainer errors={props.errors.password} /> : null } */}
+          { !props.form.valid && props.form.user_name.errors.length ? <div className='sign_up_error_container'>{ distribUserNameErrors }</div> : <br /> }
+        </div>
+        <div className='sign_up_div'>
           <SignUpFormInput
             type='text'
             id='email'
@@ -77,24 +109,37 @@ const SignUpForm = (props) => {
             onChange={props.onChange }
             value={ props.email }
           />
-          {/* {props.errors.email ? <ErrorContainer errors={props.errors.email} /> : null } */}
+          { !props.form.valid && props.form.email.errors.length ? <div className='sign_up_error_container'>{ distribEmailErrors }</div> : <br /> }
         </div>
-        <hr />
-        <div className='tos_agree_div'>
+        <div className='sign_up_div'>
           <SignUpFormInput
-            type='checkbox'
-            id='TOS_agreement'
-            name='TOS_agreement'
-            className='TOS_check'
+            type='password'
+            id='password'
+            name='password'
+            placeholder='Password'
             disabled={ !props.enableInput }
-            checked={ props.TOSagreement }
-            onChange={ props.onChecked }
+            onChange={ props.onChange }
+            value={ props.password }
           />
-          I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statelments supplied by this_project.com
+          { !props.form.valid && props.form.password.errors.length ? <div className='sign_up_error_container'>{ distribPasswordErrors }</div> : <br /> }
         </div>
-        <hr />
+        <div className='tos_agree_div'>
+          <div className='tos_agree_statement'>
+            <SignUpFormInput
+              type='checkbox'
+              id='TOS_agreement'
+              name='TOS_agreement'
+              className='TOS_check'
+              disabled={ !props.enableInput }
+              checked={ props.TOSagreement }
+              onChange={ props.onChecked }
+            />
+            <p>I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™.</p>
+          </div>
+          { !props.form.valid && !!props.form.tos.errors.length && <div className='sign_up_error_container'>{ distribTOSErrors }</div> }
+        </div>
       </form>
-      { distribErrors }
+      {/* { distribErrors } */}
       { props.auth.loading && loading }
       <SignUpFormButtonContainer
         enableButton={ props.enableButton }

@@ -1,0 +1,14 @@
+const validateTOS = (tos) => {
+
+  let tosValidation = {
+    valid: true,
+    errors: []
+  }
+
+  if(!tos) tosValidation.errors = [ ...tosValidation.errors, { code: 69, msg: 'You must agree to the Terms of Service Agreement & Privacy Policy before creating a new account' } ]
+  if(!!tosValidation.errors.length) tosValidation.valid = false
+
+  return tosValidation
+}
+
+export default validateTOS
