@@ -3,7 +3,7 @@ import validatePassword from './validationFunctions/validatePassword'
 
 const validateLogIn = (email, password) => {
 
-  let logInValidation = { valid: true, email: {}, password: {} }
+  let logInValidation = { valid: true, email: {}, password: {}, pending: true }
 
   logInValidation.email = validateEmail(email)
   logInValidation.password = validatePassword(password)

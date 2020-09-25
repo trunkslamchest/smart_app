@@ -30,7 +30,7 @@ class Dashboard extends React.Component{
     let routeBoard = <></>
 
     if(!this.props.auth.loading) {
-      if(this.props.auth.status === 'authValid') {
+      if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
         routeBoard =
         <>
           <DashboardNavBarContainer />

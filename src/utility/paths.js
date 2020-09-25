@@ -29,6 +29,11 @@ export const fetch = {
   }
 }
 
+export const check = {
+  user_name: `${process.env.REACT_APP_LOCAL_CHECK_USER_NAME}`,
+  email: `${process.env.REACT_APP_LOCAL_CHECK_EMAIL}`
+}
+
 // export const fetch = {
 //   get: {
 //     user: `${process.env.REACT_APP_DEPLOY_GET_USER}`,
@@ -51,6 +56,11 @@ export const fetch = {
 //   delete: {
 //     user: `${process.env.REACT_APP_DEPLOY_DELETE_USER}`
 //   }
+// }
+
+// export const check = {
+//   user_name: `${process.env.REACT_APP_DEPLOY_CHECK_USER_NAME}`,
+//   email: `${process.env.REACT_APP_DEPLOY_CHECK_EMAIL}`
 // }
 
 export const routes = {

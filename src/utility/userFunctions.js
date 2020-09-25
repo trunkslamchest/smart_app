@@ -60,7 +60,7 @@
         body: JSON.stringify(obj)
       })
       .then(res => res.json())
-    },
+    }
   }
 
   userFunctions.init.prototype = userFunctions.prototype

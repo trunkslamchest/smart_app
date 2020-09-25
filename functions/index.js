@@ -126,6 +126,46 @@ exports.deleteUser = functions
     res.status(200).json({msg: 'Your Profile has been removed.'})
 });
 
+exports.checkUserName = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res);
+    firebase.database().ref('/').once('value', function(snap){
+      let resObj = { valid: true, errors: {} }
+      if(!!req.body.user_name) {
+        let users = Object.values(snap.val())
+        for(let user in users) {
+          if(req.body.user_name === users[user].info.user_name){
+            resObj.valid = false
+            resObj.errors = { code: 41, message: `User Name '${req.body.user_name}' already exists`}
+            break
+          }
+        }
+      }
+      res.json(resObj).status(200)
+    });
+});
+
+exports.checkEmail = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res);
+    firebase.database().ref('/').once('value', function(snap){
+      let resObj = { valid: true, errors: {} }
+      if(!!req.body.email) {
+        let users = Object.values(snap.val())
+        for(let user in users) {
+          if(req.body.email === users[user].info.email){
+            resObj.valid = false
+            resObj.errors = { code: 41, message: `Email '${req.body.email}' already exists`}
+            break
+          }
+        }
+      }
+      res.json(resObj).status(200)
+    });
+});
+
 exports.crossUpdateUserQuestion = functions
   .region('us-east1')
   .https.onRequest((req, res) => {

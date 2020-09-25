@@ -19,7 +19,7 @@ const Header = (props) => {
 
   if(localStorage.access === 'guest') header = <GuestHeader />
 
-  if(props.auth.status === 'authValid') {
+  if(props.auth.status === 'authValid' || props.auth.status === 'fail') {
     home_link =
       <HeaderButton
         link={ routes.home }

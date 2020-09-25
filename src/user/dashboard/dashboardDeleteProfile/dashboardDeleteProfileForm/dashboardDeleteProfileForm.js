@@ -6,7 +6,6 @@ import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileF
 import DashboardDeleteProfileFormInput from './dashboardDeleteProfileFormInput/dashboardDeleteProfileFormInput'
 import DashboardDeleteProfileFormErrorItem from './dashboardDeleteProfileFormErrorItem/dashboardDeleteProfileFormErrorItem'
 
-
 import BaseDynamicBar from '../../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
@@ -14,7 +13,9 @@ import './dashboardDeleteProfileForm.css'
 
 const DashboardDeleteProfileForm = (props) => {
 
-  let distribPasswordErrors
+  let distribPasswordErrors,
+      distribAuthErrors
+
 
   const loading =
     <div className='loading_wrapper'>
@@ -22,15 +23,22 @@ const DashboardDeleteProfileForm = (props) => {
       <BaseDynamicBar modalType={ 'auth' } barType={ 'authDeleteUser' } />
     </div>
 
-  if(!props.form.valid) {
-    if(props.form.password.errors){
-      distribPasswordErrors = props.form.password.errors.map(error => {
-        return <DashboardDeleteProfileFormErrorItem
-          key={ props.form.password.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
+  if(props.auth.status === 'fail'){
+    distribAuthErrors = props.auth.errors.map(error => {
+      return <DashboardDeleteProfileFormErrorItem
+        key={ props.auth.errors.indexOf(error) }
+        error={ error }
+      />
+    })
+  }
+
+  if(!props.form.valid && props.form.password.errors) {
+    distribPasswordErrors = props.form.password.errors.map(error => {
+      return <DashboardDeleteProfileFormErrorItem
+        key={ props.form.password.errors.indexOf(error) }
+        error={ error }
+      />
+    })
   }
 
   return(
@@ -54,6 +62,7 @@ const DashboardDeleteProfileForm = (props) => {
             value={ props.password }
           />
           { !props.form.valid && props.form.password.errors.length ? <div className='delete_profile_error_container'>{ distribPasswordErrors }</div> : <br /> }
+          { props.auth.status === 'fail' && props.auth.errors.length ? <div className='log_in_error_container'>{ distribAuthErrors }</div> : <br /> }
         </div>
         { props.auth.loading && loading }
         <DashboardDeleteProfileFormButtonContainer

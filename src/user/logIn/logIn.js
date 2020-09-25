@@ -16,7 +16,7 @@ class LogIn extends React.Component {
     email: '',
     enableButton: true,
     enableInput: true,
-    form: { valid: true },
+    form: { valid: false, pending: false },
     password: ''
   }
 
@@ -29,9 +29,22 @@ class LogIn extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
+    this.setState({ enableButton: false, enableInput: false, form: { valid: false, pending: true } })
+    this.validateLogIn()
+  }
+
+  validateLogIn = () => {
     let authCheck = validateLogIn(this.state.email, this.state.password)
-    this.setState({ enableButton: false, enableInput: false, form: authCheck })
-    if(authCheck.valid) if(this.state.enableButton) this.props.onAuthStart('logIn', {email: this.state.email, password: this.state.password, returnSecureToken: true})
+    this.setState({ form: authCheck })
+    this.onValidLogIn(authCheck)
+  }
+
+  onValidLogIn = (authCheck) => {
+    if(authCheck.valid) {
+      if(this.state.enableButton) {
+        this.props.onAuthStart('logIn', { email: this.state.email, password: this.state.password, returnSecureToken: true })
+      }
+    }
   }
 
   onCancel = () => {

@@ -18,8 +18,8 @@ const SignUpForm = (props) => {
   let distribUserNameErrors,
       distribEmailErrors,
       distribPasswordErrors,
-      distribTOSErrors
-      // distribAuthErrors
+      distribTOSErrors,
+      distribAuthErrors
 
   const loading =
     <div className='loading_wrapper'>
@@ -27,15 +27,17 @@ const SignUpForm = (props) => {
       <BaseDynamicBar modalType={ 'auth' } barType={ 'authSignUp' } />
     </div>
 
-  // const distribErrors = props.auth.errors.map(error => {
-  //   return <ErrorContainer
-  //     key={ props.auth.errors.indexOf(error) }
-  //     error={ error }
-  //   />
-  // })
+  if(props.auth.status === 'fail'){
+    distribAuthErrors = props.auth.errors.map(error => {
+      return <SignUpFormErrorItem
+        key={ props.auth.errors.indexOf(error) }
+        error={ error }
+      />
+    })
+  }
 
   if(!props.form.valid) {
-    if(props.form.user_name.errors){
+    if(!!props.form.user_name && props.form.user_name.errors){
       distribUserNameErrors = props.form.user_name.errors.map(error => {
         return <SignUpFormErrorItem
           key={ props.form.user_name.errors.indexOf(error) }
@@ -43,7 +45,7 @@ const SignUpForm = (props) => {
         />
       })
     }
-    if(props.form.email.errors){
+    if(!!props.form.email && props.form.email.errors){
       distribEmailErrors = props.form.email.errors.map(error => {
         return <SignUpFormErrorItem
           key={ props.form.email.errors.indexOf(error) }
@@ -51,7 +53,7 @@ const SignUpForm = (props) => {
         />
       })
     }
-    if(props.form.password.errors){
+    if(!!props.form.password && props.form.password.errors){
       distribPasswordErrors = props.form.password.errors.map(error => {
         return <SignUpFormErrorItem
           key={ props.form.password.errors.indexOf(error) }
@@ -59,7 +61,7 @@ const SignUpForm = (props) => {
         />
       })
     }
-    if(props.form.tos.errors){
+    if(!!props.form.tos && props.form.tos.errors){
       distribTOSErrors = props.form.tos.errors.map(error => {
         return <SignUpFormErrorItem
           key={ props.form.tos.errors.indexOf(error) }
@@ -97,7 +99,7 @@ const SignUpForm = (props) => {
             onChange={ props.onChange }
             value={ props.user_name }
           />
-          { !props.form.valid && props.form.user_name.errors.length ? <div className='sign_up_error_container'>{ distribUserNameErrors }</div> : <br /> }
+          { !!props.form.user_name && props.form.user_name.errors.length ? <div className='sign_up_error_container'>{ distribUserNameErrors }</div> : <br /> }
         </div>
         <div className='sign_up_div'>
           <SignUpFormInput
@@ -109,7 +111,7 @@ const SignUpForm = (props) => {
             onChange={props.onChange }
             value={ props.email }
           />
-          { !props.form.valid && props.form.email.errors.length ? <div className='sign_up_error_container'>{ distribEmailErrors }</div> : <br /> }
+          { !!props.form.email && props.form.email.errors.length ? <div className='sign_up_error_container'>{ distribEmailErrors }</div> : <br /> }
         </div>
         <div className='sign_up_div'>
           <SignUpFormInput
@@ -121,7 +123,7 @@ const SignUpForm = (props) => {
             onChange={ props.onChange }
             value={ props.password }
           />
-          { !props.form.valid && props.form.password.errors.length ? <div className='sign_up_error_container'>{ distribPasswordErrors }</div> : <br /> }
+          { !!props.form.password && props.form.password.errors.length ? <div className='sign_up_error_container'>{ distribPasswordErrors }</div> : <br /> }
         </div>
         <div className='tos_agree_div'>
           <div className='tos_agree_statement'>
@@ -136,10 +138,10 @@ const SignUpForm = (props) => {
             />
             <p>I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™.</p>
           </div>
-          { !props.form.valid && !!props.form.tos.errors.length && <div className='sign_up_error_container'>{ distribTOSErrors }</div> }
+          { !!props.form.tos && !!props.form.tos.errors.length && <div className='sign_up_error_container'>{ distribTOSErrors }</div> }
         </div>
       </form>
-      {/* { distribErrors } */}
+      { props.auth.status === 'fail' && props.auth.errors.length ? <div className='sign_up_error_container'>{ distribAuthErrors }</div> : <br /> }
       { props.auth.loading && loading }
       <SignUpFormButtonContainer
         enableButton={ props.enableButton }

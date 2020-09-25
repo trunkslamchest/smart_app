@@ -3,10 +3,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
+import { check } from '../../utility/paths'
+import checkFunctions from '../../utility/checkFunctions'
+
 import validateSignUp from '../../utility/validation/validateSignUp'
 
 import Modal from '../../UI/modal/modal'
 import SignUpForm from './signUpForm/signUpForm'
+
+
 
 import './signUp.css'
 
@@ -16,7 +21,7 @@ class SignUp extends React.Component {
     user_name: '',
     password: '',
     email: '',
-    form: { valid: true },
+    form: { valid: false, pending: false },
     TOSagreement: false,
     enableButton: true,
     enableInput: true
@@ -37,11 +42,30 @@ class SignUp extends React.Component {
   onSubmit = (event) => {
     event.persist()
     event.preventDefault()
-
+    this.setState({ enableButton: false, enableInput: false, form: { valid: false, pending: true } })
     let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.TOSagreement)
-    this.setState({ enableButton: false, enableInput: false, form: authCheck })
+    this.setState({ form: authCheck })
+    if(authCheck.valid) this.checkUserName()
+  }
 
-    if(authCheck.valid){
+  checkUserName = () => {
+    checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name })
+    .then(userNameRes => {
+      if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
+      else this.checkEmail()
+    })
+  }
+
+  checkEmail = () => {
+    checkFunctions('checkEmail', check.email, { email: this.state.email })
+    .then(emailRes => {
+      if(!emailRes.valid) this.setState({ form: { valid: false, email: { valid: emailRes.valid, errors: [emailRes.errors] }, pending: false  } })
+      else this.onValidateSignUp()
+    })
+  }
+
+  onValidateSignUp = () => {
+    if(this.state.form.valid && !this.state.form.pending){
       if(this.state.enableButton) {
         this.props.onAuthStart('signUp', {
           displayName: this.state.user_name,

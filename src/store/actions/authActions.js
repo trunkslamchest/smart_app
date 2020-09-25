@@ -76,7 +76,28 @@ export const authUpdateStatus = (status, loading) => {
 }
 
 export const authFail = (error) => {
-  console.log(error)
+  return dispatch => {
+    let newMessage = '', newCode = 0
+
+    if(error.message === 'EMAIL_NOT_FOUND') {
+      newCode = 421
+      newMessage = 'Email does not exist'
+    } else if(error.message === 'INVALID_PASSWORD') {
+      newCode = 422
+      newMessage = 'Incorrect Password'
+    } else if(error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.'){
+      newCode = 423
+      newMessage = 'Too many failed attempts. Please try again later'
+    } else {
+      newCode = error.code
+      newMessage = error.message
+    }
+
+    dispatch(initAuthFail({ code: newCode, message: newMessage }))
+  }
+}
+
+const initAuthFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
     status: 'fail',

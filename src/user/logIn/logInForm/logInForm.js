@@ -14,8 +14,8 @@ import './logInForm.css'
 const LogInForm = (props) => {
 
   let distribEmailErrors,
-      distribPasswordErrors
-      // distribAuthErrors
+      distribPasswordErrors,
+      distribAuthErrors
 
   const loading =
     <div className='loading_wrapper'>
@@ -23,15 +23,17 @@ const LogInForm = (props) => {
       <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
     </div>
 
-  // const distribErrors = props.auth.errors.map(error => {
-  //   return <ErrorContainer
-  //     key={ props.auth.errors.indexOf(error) }
-  //     error={ error }
-  //   />
-  // })
+  if(props.auth.status === 'fail'){
+    distribAuthErrors = props.auth.errors.map(error => {
+      return <LogInFormErrorItem
+        key={ props.auth.errors.indexOf(error) }
+        error={ error }
+      />
+    })
+  }
 
   if(!props.form.valid) {
-    if(props.form.email.errors){
+    if(!!props.form.email && props.form.email.errors){
       distribEmailErrors = props.form.email.errors.map(error => {
         return <LogInFormErrorItem
           key={ props.form.email.errors.indexOf(error) }
@@ -39,7 +41,7 @@ const LogInForm = (props) => {
         />
       })
     }
-    if(props.form.password.errors){
+    if(!!props.form.password && props.form.password.errors){
       distribPasswordErrors = props.form.password.errors.map(error => {
         return <LogInFormErrorItem
           key={ props.form.password.errors.indexOf(error) }
@@ -70,7 +72,7 @@ const LogInForm = (props) => {
             type='text'
             value={ props.email }
           />
-          { !props.form.valid && props.form.email.errors.length ? <div className='log_in_error_container'>{ distribEmailErrors }</div> : <br /> }
+          { !!props.form.email && props.form.email.errors.length ? <div className='log_in_error_container'>{ distribEmailErrors }</div> : <br /> }
         </div>
         <div className='log_in_div'>
           <LogInFormInput
@@ -83,8 +85,9 @@ const LogInForm = (props) => {
             type='password'
             value={ props.password }
           />
-        { !props.form.valid && props.form.password.errors.length ? <div className='log_in_error_container'>{ distribPasswordErrors }</div> : <br /> }
+        { !!props.form.password && props.form.password.errors.length ? <div className='log_in_error_container'>{ distribPasswordErrors }</div> : <br /> }
         </div>
+        { props.auth.status === 'fail' && props.auth.errors.length ? <div className='log_in_error_container'>{ distribAuthErrors }</div> : <br /> }
         { props.auth.loading && loading }
         <LogInFormButtonContainer
           enableButton={ props.enableButton }
