@@ -51,7 +51,7 @@ class LogIn extends React.Component {
         <Modal
           showModal={ this.props.modal.login }
         >
-        <div className='login_wrapper'>
+        <div className='log_in_wrapper'>
           <LogInForm
             email={ this.state.email }
             enableButton={ this.state.enableButton }

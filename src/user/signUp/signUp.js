@@ -76,20 +76,22 @@ class SignUp extends React.Component {
       <Modal
         showModal={ this.props.modal.signup }
       >
-        <SignUpForm
-          email={ this.state.email }
-          enableButton={ this.state.enableButton }
-          enableInput={ this.state.enableInput }
-          form={ this.state.form }
-          onChange={ this.onChange }
-          onChecked={ this.onChecked }
-          onSubmit={ this.onSubmit }
-          onCancel={ this.onCancel }
-          onReset={ this.onReset }
-          password={ this.state.password }
-          TOSagreement={ this.state.TOSagreement }
-          user_name={ this.state.user_name }
-        />
+        <div className='sign_up_wrapper'>
+          <SignUpForm
+            email={ this.state.email }
+            enableButton={ this.state.enableButton }
+            enableInput={ this.state.enableInput }
+            form={ this.state.form }
+            onChange={ this.onChange }
+            onChecked={ this.onChecked }
+            onSubmit={ this.onSubmit }
+            onCancel={ this.onCancel }
+            onReset={ this.onReset }
+            password={ this.state.password }
+            TOSagreement={ this.state.TOSagreement }
+            user_name={ this.state.user_name }
+          />
+        </div>
       </Modal>
     )
   }
