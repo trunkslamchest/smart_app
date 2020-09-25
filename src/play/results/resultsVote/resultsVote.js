@@ -10,6 +10,7 @@ import no_vote from '../../../assets/no_vote1.png'
 import down_vote from '../../../assets/down_vote1.png'
 
 import './resultsVote.css'
+import './resultsVoteButtons.css'
 
 const ResultsVote = (props) => {
 

@@ -13,7 +13,8 @@ import './resultsComment.css'
 
 const ResultsComment = (props) => {
 
-  let commentBlock, allComments
+  let commentBlock,
+      allComments
 
   const loading =
     <div className='loading_wrapper_comments'>
@@ -23,7 +24,7 @@ const ResultsComment = (props) => {
 
   if(props.play.commentLoading) commentBlock = loading
 
-  if(props.play.commentStatus === 'displayComments' && !props.play.voteLoading){
+  if(props.play.commentStatus === 'displayComments' && !props.play.commentLoading){
     allComments = Object.entries(props.play.question.comments).map(comment =>
       <CommentCard
         key={comment[0]}
@@ -58,12 +59,13 @@ const ResultsComment = (props) => {
     commentBlock =
       <div className="results_comment">
         <div className="results_comment_text">
-        <CommentForm
-          comment={ props.comment }
-          enableAddCommentButton = { props.enableAddCommentButton }
-          onAddComment={ props.onAddComment }
-          onChangeComment={ props.onChangeComment }
-        />
+          <CommentForm
+            comment={ props.comment }
+            commentForm={ props.commentForm }
+            enableAddCommentButton = { props.enableAddCommentButton }
+            onAddComment={ props.onAddComment }
+            onChangeComment={ props.onChangeComment }
+          />
         </div>
       </div>
   }

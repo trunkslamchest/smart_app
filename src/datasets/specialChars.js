@@ -1,78 +1,36 @@
 const specialCharsEmail = [
-  '(',
-  ')',
-  '[',
-  ']',
-  ';',
-  ':',
-  '<',
-  '>',
-  '\\',
-  ','
+  '(', ')', '[', ']', ';',
+  ':', '<', '>', '\\', ','
 ]
 
 const specialCharsUserName = [
-  '!',
-  '@',
-  '#',
-  '%',
-  '^',
-  '&',
-  '(',
-  ')',
-  '[',
-  ']',
-  '{',
-  '}',
-  ';',
-  ':',
-  '<',
-  '>',
-  '\\',
-  '/',
-  '?',
-  '|',
-  '=',
-  '+',
-  ',',
-  '.',
-  '`',
+  '!', '@', '#', '%', '^',
+  '&', '(', ')', '[', ']',
+  '{', '}', ';', ':', '<',
+  '>', '\\', '/', '?', '|',
+  '=', '+', ',', '.', '`',
   '~'
+]
+
+const specialCharsComment = [
+  '^', '[', ']', '{', '}',
+  '|', '`', '~'
 ]
 
 const specialCharsDef = [
-  '!',
-  '@',
-  '#',
-  '$',
-  '%',
-  '^',
-  '&',
-  '*',
-  '(',
-  ')',
-  '[',
-  ']',
-  '{',
-  '}',
-  ';',
-  ':',
-  '<',
-  '>',
-  '\\',
-  '/',
-  '?',
-  '|',
-  '-',
-  '_',
-  '=',
-  '+',
-  ',',
-  '.',
-  '`',
-  '~'
+  '!', '@', '#', '$', '%',
+  '^', '&', '*', '(', ')',
+  '[', ']', '{', '}', ';',
+  ':', '<', '>', '\\', '/',
+  '?', '|', '-', '_', '=',
+  '+', ',', '.', '`', '~'
 ]
 
-const specialChars = { email: specialCharsEmail, user_name: specialCharsUserName, def: specialCharsDef }
+const specialChars = {
+  email: specialCharsEmail,
+  user_name: specialCharsUserName,
+  comment: specialCharsComment,
+  def: specialCharsDef
+}
 
 export default specialChars

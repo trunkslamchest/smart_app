@@ -1,0 +1,48 @@
+select:not(:-internal-list-box) {
+  overflow: hidden !important;
+}
+
+.loading_wrapper {
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px 0px 0px 0px;
+  z-index: 1;
+}
+
+.log_out_wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0px;
+  z-index: 1;
+}
+
+.log_out_header {
+  box-sizing: border-box;
+  margin: 10px auto 5px auto;
+  text-align: center;
+  width: 100%;
+  z-index: 8;
+}
+
+.log_out_header h2 {
+	font: 400 20pt 'Lato', sans-serif;
+}
+
+.log_out_header h3 {
+  font: 300 20pt 'Lato', sans-serif;
+}
+
+.log_out_header h4 {
+  font: 300 15pt 'Lato', sans-serif;
+}
+
+.log_out_header h5 {
+  font: 300 10pt 'Lato', sans-serif;
+}

@@ -6,7 +6,7 @@ import './logOutButtonContainer.css'
 
 const LogOutButtonContainer = (props) => {
     return(
-      <div className='default_centered_buttons_container'>
+      <div className='log_out_buttons_container'>
         <LogOutButton
           id='log_out_form_confirm'
           name='log_out_form_confirm'

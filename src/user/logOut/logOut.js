@@ -48,15 +48,17 @@ class LogOut extends React.Component {
       <Modal
         showModal={ this.props.modal.logout }
       >
-        <div className='alt_header'>
-          <h3>Are you sure you want to log out?</h3>
+        <div className='log_out_wrapper'>
+          <div className='log_out_header'>
+            <h3>Are you sure you want to log out?</h3>
+          </div>
+          { this.props.auth.loading && loading }
+          <LogOutButtonContainer
+            enableButton={ this.state.enableButton }
+            onConfirm={ this.onConfirm }
+            onCancel={ this.onCancel }
+          />
         </div>
-        { this.props.auth.loading && loading }
-        <LogOutButtonContainer
-          enableButton={ this.state.enableButton }
-          onConfirm={ this.onConfirm }
-          onCancel={ this.onCancel }
-        />
       </Modal>
     )
   }
