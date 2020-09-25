@@ -6,11 +6,11 @@ import './dashboardDeleteProfileFormButtonContainer.css'
 
 const DashboardDeleteProfileFormButtonContainer = (props) => {
   return(
-    <div className='delete_form_buttons_container'>
+    <div className='delete_profile_form_buttons_container'>
       <DashboardDeleteProfileFormButton
         type='submit'
-        id='delete_profile_submit'
-        name='delete_profile_submit'
+        id='delete_profile_form_submit'
+        name='delete_profile_form_submit'
         enableSubmitButton={ props.enableSubmitButton }
         onClickFunctions={ props.onSubmitConfirm }
         value='Confirm'

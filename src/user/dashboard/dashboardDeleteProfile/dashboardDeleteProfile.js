@@ -3,6 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { authStart, clearAuthErrors, deleteProfile } from '../../../store/actions/actionIndex'
 
+import validateDeleteProfile from '../../../utility/validation/validateDeleteProfile'
+
 import Modal from '../../../UI/modal/modal'
 
 import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer/dashboardDeleteProfileButtonContainer'
@@ -15,6 +17,7 @@ class DashboardDeleteProfile extends React.Component {
   state = {
     showForm: false,
     password: '',
+    form: { valid: true },
     enableConfirmButton: true,
     enableSubmitButton: true,
     enableInput: true
@@ -33,20 +36,15 @@ class DashboardDeleteProfile extends React.Component {
 
   onSubmitConfirm = (event) => {
     event.preventDefault()
-    event.persist()
-
-    this.setState({ enableSubmitButton: false, enableInput: false })
-
-    if(this.state.enableSubmitButton) {
-      if(this.state.password !== '') this.props.onAuthStart('deleteProfile', {email: this.props.user.info.email, password: this.state.password, returnSecureToken: true})
-    }
+    let authCheck = validateDeleteProfile(this.state.password)
+    this.setState({ enableSubmitButton: false, enableInput: false, form: authCheck })
+    if(authCheck.valid) if(this.state.enableSubmitButton) this.props.onAuthStart('deleteProfile', { email: this.props.user.info.email, password: this.state.password, returnSecureToken: true })
   }
 
   onSubmitCancel = () => {
-    this.setState({ enableSubmitButton: false, enableInput: false })
-    this.setState({ showForm: false })
-    this.props.onDeleteProfileModal(false)
+    this.setState({ showForm: false, enableSubmitButton: true, enableInput: true, form: { valid: true } })
     this.props.onClearAuthErrors()
+    this.props.onDeleteProfileModal(false)
   }
 
   render(){
@@ -54,7 +52,7 @@ class DashboardDeleteProfile extends React.Component {
       <Modal
         showModal={ this.props.modal.deleteProfile }
       >
-        <div className='alt_header'>
+        <div className='delete_profile_header'>
           <h4>Are you sure you want to delete your profile?</h4>
         </div>
         <DashboardDeleteProfileButtonContainer
@@ -67,6 +65,7 @@ class DashboardDeleteProfile extends React.Component {
           <DashboardDeleteProfileForm
             enableSubmitButton={ this.state.enableSubmitButton }
             enableInput={ this.state.enableInput }
+            form={ this.state.form }
             onChange={ this.onChange }
             onSubmitConfirm={ this.onSubmitConfirm }
             onSubmitCancel={ this.onSubmitCancel }

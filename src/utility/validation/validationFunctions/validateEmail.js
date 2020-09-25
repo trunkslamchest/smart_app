@@ -1,4 +1,4 @@
-import specialChars from '../../datasets/specialChars'
+import specialChars from '../../../datasets/specialChars'
 
 const validateEmail = (email) => {
 

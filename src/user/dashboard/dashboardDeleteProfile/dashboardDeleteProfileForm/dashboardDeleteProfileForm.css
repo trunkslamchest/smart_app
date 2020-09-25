@@ -1,16 +1,14 @@
 .delete_profile_form {
   width: 100%;
   text-align: center;
-  margin: 0 auto 0px auto;
-  border: 1px solid rgb(200, 200, 200, 1);
-  box-sizing: border-box;
+  margin: 5px auto;
 }
 
-.delete_profile_form_div {
-  margin: 10px 0px 10px 0px;
+.delete_profile_div {
+  /* margin: 5px 0px; */
 }
 
-.delete_profile_form_div > * {
+/* .delete_profile_form_div > * {
   font: 400 12px "Helvetica", sans-serif;
   padding: 10px;
   width: 50%;
@@ -18,4 +16,13 @@
   line-height: 1.25;
   border: 1px solid rgb(200, 200, 200, 1);
   box-sizing: border-box;
+} */
+
+.delete_profile_error_container {
+  margin: 0px auto 10px auto !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }

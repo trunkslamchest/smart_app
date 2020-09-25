@@ -14,10 +14,10 @@ class LogIn extends React.Component {
 
   state = {
     email: '',
-    form: { valid: true },
-    password: '',
     enableButton: true,
-    enableInput: true
+    enableInput: true,
+    form: { valid: true },
+    password: ''
   }
 
   componentDidUpdate() {
@@ -37,10 +37,10 @@ class LogIn extends React.Component {
   onCancel = () => {
     this.setState({
       email: '',
-      form: {},
-      password: '',
       enableButton: true,
-      enableInput: true
+      enableInput: true,
+      form: { valid: true },
+      password: ''
     })
     this.props.onClearAuthErrors()
     this.props.onLogInModal(false)

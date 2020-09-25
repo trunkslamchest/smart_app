@@ -1,17 +1,11 @@
-import validateUserName from './validateUserName'
-import validateEmail from './validateEmail'
-import validatePassword from './validatePassword'
-import validateTOS from './validateTOS'
+import validateUserName from './validationFunctions/validateUserName'
+import validateEmail from './validationFunctions/validateEmail'
+import validatePassword from './validationFunctions/validatePassword'
+import validateTOS from './validationFunctions/validateTOS'
 
 const validateSignUp = (user_name, email, password, tos) => {
 
-  let signUpValidation = {
-    valid: true,
-    user_name: {},
-    email: {},
-    password: {},
-    tos: {}
-  }
+  let signUpValidation = { valid: true, user_name: {}, email: {}, password: {}, tos: {} }
 
   signUpValidation.user_name = validateUserName(user_name)
   signUpValidation.email = validateEmail(email)

@@ -1,7 +1,7 @@
-.delete_buttons_container {
+.delete_profile_buttons_container {
+  align-items: baseline;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: baseline;
-  margin: 20px auto 20px auto;
+  margin: 10px auto 15px auto;
 }

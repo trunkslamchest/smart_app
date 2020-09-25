@@ -1,6 +1,6 @@
-import specialChars from '../../datasets/specialChars'
-import numbers from '../../datasets/numbers'
-import chars from '../../datasets/chars'
+import specialChars from '../../../datasets/specialChars'
+import numbers from '../../../datasets/numbers'
+import chars from '../../../datasets/chars'
 
 const validatePassword = (password) => {
 

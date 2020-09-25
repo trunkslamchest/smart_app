@@ -1,5 +1,5 @@
-import specialChars from '../../datasets/specialChars'
-import numbers from '../../datasets/numbers'
+import specialChars from '../../../datasets/specialChars'
+import numbers from '../../../datasets/numbers'
 
 const validateUserName = (user_name) => {
 

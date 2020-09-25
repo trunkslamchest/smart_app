@@ -1,13 +1,9 @@
-import validateEmail from './validateEmail'
-import validatePassword from './validatePassword'
+import validateEmail from './validationFunctions/validateEmail'
+import validatePassword from './validationFunctions/validatePassword'
 
 const validateLogIn = (email, password) => {
 
-  let logInValidation = {
-    valid: true,
-    email: {},
-    password: {},
-  }
+  let logInValidation = { valid: true, email: {}, password: {} }
 
   logInValidation.email = validateEmail(email)
   logInValidation.password = validatePassword(password)

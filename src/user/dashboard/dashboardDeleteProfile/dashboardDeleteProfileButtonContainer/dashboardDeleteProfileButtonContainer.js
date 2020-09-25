@@ -6,7 +6,7 @@ import './dashboardDeleteProfileButtonContainer.css'
 
 const DashboardDeleteProfileButtonContainer = (props) => {
   return(
-    <div className='delete_buttons_container'>
+    <div className='delete_profile_buttons_container'>
       <DashboardDeleteProfileButton
         id='delete_profile_form_confirm'
         name='delete_profile_form_confirm'

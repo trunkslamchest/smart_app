@@ -1,16 +1,15 @@
 .modal_container {
-  margin: 0 auto 0 auto;
+  margin: 0px auto;
 }
 
 .modal_wrapper {
   animation: fade_in .2s ease-in-out 1;
   background-color: white;
-  padding: 2.5px;
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
   position: fixed;
   top: 5%;
-  left: 50%;
   transform: translateX(-50%);
-  min-width: 50%;
-  max-width: 75%;
   z-index: 500;
 }
