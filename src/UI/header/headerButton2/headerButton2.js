@@ -5,12 +5,12 @@ import './headerButton2.css'
 const HeaderButton2 = (props) => {
   return(
     <button
-      menu={props.menu}
+      menu={ props.menu }
       className='header_button2'
-      name={props.name}
-      onClick={props.onClick}
+      name={ props.name }
+      onClick={ props.onClick }
     >
-      {props.children}
+      { props.children }
     </button>
   )
 }

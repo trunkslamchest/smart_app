@@ -1,12 +1,11 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import { login, authStart, clearAuthStatus, clearAuthErrors } from '../../store/actions/actionIndex'
 
 import validateLogIn from '../../utility/validation/validateLogIn'
 
-import Modal from '../../UI/modal/modal'
 import LogInForm from './logInForm/logInForm'
+import Modal from '../../UI/modal/modal'
 
 import './logIn.css'
 
@@ -29,22 +28,18 @@ class LogIn extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.setState({ enableButton: false, enableInput: false, form: { valid: false, pending: true } })
-    this.validateLogIn()
-  }
-
-  validateLogIn = () => {
+    this.setState({ form: { valid: false, pending: true } })
+    if(!!this.props.auth.errors.length) {
+      this.props.onClearAuthErrors()
+      this.props.onClearAuthStatus()
+    }
     let authCheck = validateLogIn(this.state.email, this.state.password)
     this.setState({ form: authCheck })
-    this.onValidLogIn(authCheck)
+    if(authCheck.valid) this.onValidateLogIn(authCheck)
   }
 
-  onValidLogIn = (authCheck) => {
-    if(authCheck.valid) {
-      if(this.state.enableButton) {
-        this.props.onAuthStart('logIn', { email: this.state.email, password: this.state.password, returnSecureToken: true })
-      }
-    }
+  onValidateLogIn = () => {
+    if(!this.state.form.pending && this.state.enableButton)this.props.onAuthStart('logIn', { email: this.state.email, password: this.state.password, returnSecureToken: true })
   }
 
   onCancel = () => {
@@ -92,9 +87,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogInModal: (bool) => dispatch(actions.login(bool)),
-    onAuthStart: (type, obj) => dispatch(actions.authStart(type, obj)),
-    onClearAuthErrors: () => dispatch(actions.clearAuthErrors())
+    onLogInModal: (bool) => dispatch(login(bool)),
+    onAuthStart: (type, obj, props) => dispatch(authStart(type, obj, props)),
+    onClearAuthStatus: () => dispatch(clearAuthStatus()),
+    onClearAuthErrors: () => dispatch(clearAuthErrors())
   }
 }
 

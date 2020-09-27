@@ -1,7 +1,16 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../../store/actions/actionIndex'
+import {
+  loading,
+  updateGameStatus,
+  setGameState,
+  resetQuestion,
+  resetAnswer,
+  resetResults,
+  resetVote,
+  resetComment
+} from '../../../store/actions/actionIndex'
 
 import NextQuestionButton from './nextQuestionButton/nextQuestionButton'
 
@@ -10,8 +19,8 @@ import './resultsNextQuestion.css'
 const resultsNextQuestion = (props) => {
 
   const onClickNextQuestionFunctions = () => {
-    props.onSetGameState('init')
-    props.onUpdateGameStatus('initGame', true)
+    props.onSetGameState('reInit')
+    props.onUpdateGameStatus('reInitGame', true)
     props.onLoadingModal(true)
     props.onDisableNextQuestionButton()
     if(props.play.question) props.onResetQuestion()
@@ -43,14 +52,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
-    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
-    onSetGameState: (state) => dispatch(actions.setGameState(state)),
-    onResetQuestion: () => dispatch(actions.resetQuestion()),
-    onResetAnswer: () => dispatch(actions.resetAnswer()),
-    onResetResults: () => dispatch(actions.resetResults()),
-    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
-    onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    onLoadingModal: (bool) => dispatch(loading(bool)),
+    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading)),
+    onSetGameState: (state) => dispatch(setGameState(state)),
+    onResetQuestion: () => dispatch(resetQuestion()),
+    onResetAnswer: () => dispatch(resetAnswer()),
+    onResetResults: () => dispatch(resetResults()),
+    onResetVote: (obj) => dispatch(resetVote(obj)),
+    onResetComment: (obj) => dispatch(resetComment(obj)),
   }
 }
 

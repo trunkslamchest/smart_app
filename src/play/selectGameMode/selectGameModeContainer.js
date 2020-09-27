@@ -4,32 +4,31 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
 import gameModes from '../../datasets/gameModes'
-import difficulties from '../../datasets/difficulties'
-import categories from '../../datasets/categories'
+// import categories from '../../datasets/categories'
 
-import SelectionButton from './selectionButton/selectionButton'
+import SelectGameModeButton from './selectGameModeButton/selectGameModeButton'
 
-import './selectionContainer.css'
+import './selectGameModeContainer.css'
 
-class SelectionContainer extends React.Component {
+class SelectGameModeContainer extends React.Component {
 
   state = {
-    set: null,
-    subSet: null,
     gameModes: null
   }
 
   componentDidMount(){
-    if(this.props.play.gameMode === 'by_diff') {
-      document.title = "SmartApp™ | Play | Difficulty | Select"
-      this.setState({ set: 'Difficulty', subSet: difficulties })
-    } else if(this.props.play.gameMode === 'by_cat') {
-      document.title = "SmartApp™ | Play | Category | Select"
-      this.setState({ set: 'Category', subSet: categories })
-    } else {
-      document.title = "SmartApp™ | Play | Select"
-      this.setState({ gameModes: gameModes })
-    }
+    document.title = "SmartApp™ | Play"
+    this.setState({ gameModes: gameModes })
+
+    // if(this.props.play.gameMode === 'by_diff') {
+    //   document.title = "SmartApp™ | Play | Difficulty | Select"
+    //   this.setState({ set: 'Difficulty', subSet: difficulties })
+    // }
+
+    // if(this.props.play.gameMode === 'by_cat') {
+    //   document.title = "SmartApp™ | Play | Category | Select"
+    //   this.setState({ set: 'Category', subSet: categories })
+    // }
   }
 
   componentDidUpdate(){
@@ -40,33 +39,22 @@ class SelectionContainer extends React.Component {
 
   render(){
 
-    let distribButtons, varHeaderText = ''
+    let distribButtons
 
     if(this.state.gameModes){
-      varHeaderText = 'Game Mode'
       distribButtons = this.state.gameModes.map(gameMode =>
-        <SelectionButton
+        <SelectGameModeButton
           key={ this.state.gameModes.indexOf(gameMode) }
           name={ gameMode.name }
-          gameMode={ gameMode.val }
-        />
-      )
-    }
-
-    if(this.state.subSet){
-      varHeaderText = this.state.set
-      distribButtons = this.state.subSet.map(qSet =>
-        <SelectionButton
-          key={ this.state.subSet.indexOf(qSet) }
-          qSet={ qSet }
+          value={ gameMode.value }
         />
       )
     }
 
     return(
-      <div className='selection_container'>
-        <h1> Select A { varHeaderText } </h1>
-        <div className="selection_buttons_container">
+      <div className='select_game_mode_container'>
+        <h1> Select A Game Mode </h1>
+        <div className="select_game_mode_buttons_container">
           { distribButtons }
         </div>
       </div>
@@ -105,4 +93,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelectionContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SelectGameModeContainer)

@@ -15,18 +15,13 @@ import './signUpForm.css'
 
 const SignUpForm = (props) => {
 
-  let userNameErrors = [],
-      distribUserNameErrors,
-      emailErrors = [],
-      distribEmailErrors,
-      passwordErrors = [],
-      distribPasswordErrors,
-      tosErrors = [],
-      distribTOSErrors,
-      allOtherErrors = [],
-      distribAllOtherErrors
+  let userNameErrors = [], distribUserNameErrors,
+      emailErrors = [], distribEmailErrors,
+      passwordErrors = [], distribPasswordErrors,
+      tosErrors = [], distribTOSErrors,
+      allOtherErrors = [], distribAllOtherErrors
 
-  const signUpFormRef = React.createRef()
+  // const signUpFormRef = React.createRef()
 
   const loading =
     <div className='loading_wrapper'>
@@ -46,10 +41,11 @@ const SignUpForm = (props) => {
     if(!!props.form.tos && props.form.tos.errors) props.form.tos.errors.forEach(error => tosErrors.push(error))
   }
 
-  if(!!emailErrors.length) distribEmailErrors = emailErrors.map(error => <SignUpFormErrorItem key={ emailErrors.indexOf(error) } error={ error } /> )
   if(!!userNameErrors.length) distribUserNameErrors = userNameErrors.map(error =>  <SignUpFormErrorItem key={ userNameErrors.indexOf(error) } error={ error } /> )
+  if(!!emailErrors.length) distribEmailErrors = emailErrors.map(error => <SignUpFormErrorItem key={ emailErrors.indexOf(error) } error={ error } /> )
   if(!!passwordErrors.length) distribPasswordErrors = passwordErrors.map(error => <SignUpFormErrorItem key={ passwordErrors.indexOf(error) } error={ error } /> )
   if(!!tosErrors.length) distribTOSErrors = tosErrors.map(error => <SignUpFormErrorItem key={ tosErrors.indexOf(error) } error={ error } /> )
+  if(!!allOtherErrors.length) distribAllOtherErrors = allOtherErrors.map(error => <SignUpFormErrorItem key={ allOtherErrors.indexOf(error) } error={ error } /> )
 
   const onSubmit = (event) => {
     // if(props.auth.errors.length === 0) signUpFormRef.current.scrollTop = 0
@@ -65,7 +61,7 @@ const SignUpForm = (props) => {
         id='sign_up_form'
         name='sign_up_form'
         className='sign_up_form'
-        ref={ signUpFormRef }
+        // ref={ signUpFormRef }
       >
         <div className='sign_up_div'>
           <SignUpFormInput
@@ -118,7 +114,7 @@ const SignUpForm = (props) => {
           </div>
           { !!tosErrors.length ? <div className='sign_up_error_container'>{ distribTOSErrors }</div> : <br /> }
         </div>
-        { !!allOtherErrors.length ? <div className='sign_up_error_container'>{ distribAllOtherErrors }</div> : <br /> }
+        { !!allOtherErrors.length && <div className='sign_up_error_container'>{ distribAllOtherErrors }</div> }
       </form>
       { props.auth.loading && loading }
       <SignUpFormButtonContainer

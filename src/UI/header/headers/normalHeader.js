@@ -44,7 +44,7 @@ class NormalHeader extends React.Component {
             <HeaderButton2
               menu='playMenu'
               name='header_play_button'
-              onClick={this.switchPlayMenu}
+              onClick={ this.switchPlayMenu }
             >
               Play
             </HeaderButton2>
@@ -57,7 +57,7 @@ class NormalHeader extends React.Component {
             <HeaderButton2
               menu='myProfileMenu'
               name='header_my_profile_button'
-              onClick={this.switchProfileMenu}
+              onClick={ this.switchProfileMenu }
             >
               My Profile
             </HeaderButton2>

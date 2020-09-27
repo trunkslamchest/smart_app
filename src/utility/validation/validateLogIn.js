@@ -10,6 +10,8 @@ const validateLogIn = (email, password) => {
 
   if(!logInValidation.email.valid || !logInValidation.password.valid) logInValidation.valid = false
 
+  logInValidation.pending = false
+
   return logInValidation
 }
 

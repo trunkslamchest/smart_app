@@ -13,9 +13,9 @@ import './logInForm.css'
 
 const LogInForm = (props) => {
 
-  let distribEmailErrors,
-      distribPasswordErrors,
-      distribAuthErrors
+  let emailErrors = [], distribEmailErrors,
+      passwordErrors = [], distribPasswordErrors,
+      allOtherErrors = [], distribAllOtherErrors
 
   const loading =
     <div className='loading_wrapper'>
@@ -24,32 +24,19 @@ const LogInForm = (props) => {
     </div>
 
   if(props.auth.status === 'fail'){
-    distribAuthErrors = props.auth.errors.map(error => {
-      return <LogInFormErrorItem
-        key={ props.auth.errors.indexOf(error) }
-        error={ error }
-      />
-    })
+    if(props.auth.errors[0].code === 421) props.auth.errors.forEach(error => emailErrors.push(error))
+    else if(props.auth.errors[0].code === 423) props.auth.errors.forEach(error => passwordErrors.push(error))
+    else props.auth.errors.forEach(error => allOtherErrors.push(error))
   }
 
   if(!props.form.valid) {
-    if(!!props.form.email && props.form.email.errors){
-      distribEmailErrors = props.form.email.errors.map(error => {
-        return <LogInFormErrorItem
-          key={ props.form.email.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
-    if(!!props.form.password && props.form.password.errors){
-      distribPasswordErrors = props.form.password.errors.map(error => {
-        return <LogInFormErrorItem
-          key={ props.form.password.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
+    if(!!props.form.email && props.form.email.errors) props.form.email.errors.forEach(error => emailErrors.push(error))
+    if(!!props.form.password && props.form.password.errors) props.form.password.errors.forEach(error => passwordErrors.push(error))
   }
+
+  if(!!emailErrors.length) distribEmailErrors = emailErrors.map(error => <LogInFormErrorItem key={ emailErrors.indexOf(error) } error={ error } /> )
+  if(!!passwordErrors.length) distribPasswordErrors = passwordErrors.map(error => <LogInFormErrorItem key={ passwordErrors.indexOf(error) } error={ error } /> )
+  if(!!allOtherErrors.length) distribAllOtherErrors = allOtherErrors.map(error => <LogInFormErrorItem key={ allOtherErrors.indexOf(error) } error={ error } /> )
 
   return(
     <>
@@ -72,7 +59,7 @@ const LogInForm = (props) => {
             type='text'
             value={ props.email }
           />
-          { !!props.form.email && props.form.email.errors.length ? <div className='log_in_error_container'>{ distribEmailErrors }</div> : <br /> }
+          { !!emailErrors.length ? <div className='log_in_error_container'>{ distribEmailErrors }</div> : <br /> }
         </div>
         <div className='log_in_div'>
           <LogInFormInput
@@ -85,9 +72,9 @@ const LogInForm = (props) => {
             type='password'
             value={ props.password }
           />
-        { !!props.form.password && props.form.password.errors.length ? <div className='log_in_error_container'>{ distribPasswordErrors }</div> : <br /> }
+          { !!passwordErrors.length ? <div className='log_in_error_container'>{ distribPasswordErrors }</div> : <br /> }
         </div>
-        { props.auth.status === 'fail' && props.auth.errors.length ? <div className='log_in_error_container'>{ distribAuthErrors }</div> : <br /> }
+        { !!allOtherErrors.length && <div className='log_in_error_container'>{ distribAllOtherErrors }</div> }
         { props.auth.loading && loading }
         <LogInFormButtonContainer
           enableButton={ props.enableButton }

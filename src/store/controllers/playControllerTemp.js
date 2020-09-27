@@ -23,21 +23,15 @@ class PlayController extends React.Component {
 
   componentDidUpdate(){
     if(this.props.auth.status === 'authValid') {
-      if(!this.props.play.gameState) this.initGameModule()
+      this.initGameModule()
 
-      if(this.props.play.gameState === 'reInit' && !this.props.play.question) this.reInitGameModule()
+      if(this.props.play.gameState === 'init') this.setGameModeModule()
 
-      if(this.props.play.gameState === 'init' && !this.props.play.gameMode) this.selectGameModeModule()
-
-      if(this.props.play.gameState === 'select' && this.props.play.status === 'setGameModeSuccess') this.mountGameModeModule()
-
-      if(this.props.play.gameState === 'select' && this.props.play.status === 'selectQset') this.selectQsetModule()
-
-      if(this.props.play.gameState === 'select' && this.props.play.gameQset) this.setQsetModule()
+      if(this.props.play.gameState === 'selection' && this.props.play.gameQset) this.setGameQsetModule()
 
       if(this.props.play.gameState === 'mount' && this.props.play.question) this.setGameQuestionModule()
 
-      if(this.props.play.gameState === 'mount' && this.props.play.status === 'setQuestionSuccess') this.displayQuestionModule()
+      if(this.props.play.gameState === 'question' && this.props.play.status === 'setQuestionSuccess') this.displayQuestionModule()
 
       if(this.props.play.gameState === 'question' && this.props.play.answer) this.setAnsweredModule()
 
@@ -62,7 +56,6 @@ class PlayController extends React.Component {
   }
 
   componentWillUnmount(){
-    localStorage.removeItem('gameMode')
     if(this.props.play.status) this.props.onUpdateGameStatus(null, false)
     if(this.props.play.gameMode) this.props.onResetGameMode()
     if(this.props.play.gameState)  this.props.onResetGameState()
@@ -75,56 +68,28 @@ class PlayController extends React.Component {
   }
 
   initGameModule = () => {
-    this.props.onSetGameState('init')
-    this.props.onUpdateGameStatus('initGame', false)
+    if(!this.props.play.gameState) {
+      this.props.onSetGameState('init')
+      this.props.onUpdateGameStatus('initGame', true)
+      this.props.onLoadingModal(true)
+      if(localStorage.gameMode) this.props.onSetGameMode(localStorage.gameMode)
+    }
   }
 
-  reInitGameModule = () => {
+  setGameModeModule = () => {
     if (this.props.play.gameMode === 'quick_play') {
-      this.props.onUpdateGameStatus('setQuickPlay', true)
       let questionObj = { answeredIds: [] }
       if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
       this.props.onGetQuickQuestion(questionObj)
       this.props.onSetGameState('mount')
-    } else {
-      this.props.onUpdateGameStatus('setQset', true)
-      let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
-      if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-      if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
-      if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
-      this.props.onSetGameState('mount')
+    }
+    if (this.props.play.gameMode === 'by_diff' || this.props.play.gameMode === 'by_cat') {
+      this.props.history.push( routes[this.props.play.gameMode] + '/select' )
+      this.props.onSetGameState('selection')
     }
   }
 
-  selectGameModeModule = () => {
-    if(localStorage.gameMode) {
-      this.props.onSetGameMode(localStorage.gameMode)
-      this.props.onUpdateGameStatus('setGameModeSuccess', false)
-      this.props.onSetGameState('select')
-    } else {
-      this.props.onUpdateGameStatus('selectGameMode', false)
-      this.props.onSetGameState('select')
-    }
-  }
-
-  mountGameModeModule = () => {
-    if (this.props.play.gameMode === 'quick_play') {
-      this.props.onUpdateGameStatus('setQuickPlay', true)
-      let questionObj = { answeredIds: [] }
-      if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-      this.props.onGetQuickQuestion(questionObj)
-      this.props.onSetGameState('mount')
-    } else {
-      this.props.onUpdateGameStatus('selectQset', false)
-    }
-  }
-
-  selectQsetModule = () => {
-    this.props.history.push( routes[this.props.play.gameMode] + '/select' )
-  }
-
-  setQsetModule = () => {
-    this.props.onUpdateGameStatus('setQset', true)
+  setGameQsetModule = () => {
     let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
     if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
     if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
@@ -234,25 +199,14 @@ class PlayController extends React.Component {
 
   render(){
 
-    let loadingModal,
-        selectRoute =
-          <Route exact path={ routes.play }>
-            <SelectionContainer history={ this.props.history } />
-          </Route>
+    let loadingModal
 
-    if(this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
+    if(this.props.play.gameState === 'init' || this.props.play.gameState === 'mount' || this.props.play.gameState === 'question'){
       loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } history={ this.props.history } />
     }
 
-    if(this.props.play.gameState === 'answered' || this.props.play.gameState === 'results') {
+    if(this.props.play.gameState === 'answered' || this.props.play.gameState === 'results'){
       loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadResults' } history={ this.props.history } />
-    }
-
-    if(this.props.play.gameState === 'select' && this.props.play.status === 'selectQset'){
-      selectRoute =
-        <Route exact path={ routes[this.props.play.gameMode] + '/select' }>
-          <SelectionContainer history={ this.props.history } />
-        </Route>
     }
 
     return(
@@ -261,7 +215,9 @@ class PlayController extends React.Component {
         {
           (() => {
             switch(this.props.play.gameState) {
-              case 'select': return selectRoute;
+              case 'selection': return <Route exact path={ routes[this.props.play.gameMode] + '/select' }>
+                                         <SelectionContainer history={ this.props.history } />
+                                       </Route>;
               case 'question': return <Route exact path={ routes[this.props.play.gameMode] + '/question' }>
                                         <QuestionContainer history={ this.props.history } />
                                       </Route>;
