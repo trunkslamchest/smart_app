@@ -176,18 +176,19 @@ export const authUser = () => {
 
 export const authSignUp = (authType, obj) => {
   return dispatch => {
-    authFunctions('signUp', auth.signUp, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else dispatch(authSuccess(authType, {
-        email: authRes.email,
-        expires: authRes.expiresIn,
-        id: authRes.localId,
-        refresh: authRes.refreshToken,
-        token: authRes.idToken,
-        user: authRes.displayName
-      }))
-    })
+    console.log(authType, obj)
+    // authFunctions('signUp', auth.signUp, obj)
+    // .then(authRes => {
+    //   if(!!authRes.error) dispatch(authFail(authRes.error))
+    //   else dispatch(authSuccess(authType, {
+    //     email: authRes.email,
+    //     expires: authRes.expiresIn,
+    //     id: authRes.localId,
+    //     refresh: authRes.refreshToken,
+    //     token: authRes.idToken,
+    //     user: authRes.displayName
+    //   }))
+    // })
   }
 }
 

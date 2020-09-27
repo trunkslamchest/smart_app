@@ -6,7 +6,7 @@
 }
 
 .sign_up_div {
-  /* margin: 0px; */
+  margin: 0px;
 }
 
 .sign_up_error_container {
@@ -41,7 +41,7 @@
 }
 
 .tos_agree_div p {
-  font: 400 11px "Helvetica", sans-serif;
+  font: 400 12px "Lato", sans-serif;
 }
 
 .tos_agree_div input[type="checkbox" i] {

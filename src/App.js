@@ -28,8 +28,8 @@ import Disclaimer from './docs/disclaimer'
 import E404 from './error/E404'
 
 import './App.css'
-import './UI/response.css'
-import './UI/loading.css'
+// import './UI/response.css'
+// import './UI/loading.css'
 
 const App = (props) => {
   return (

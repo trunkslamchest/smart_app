@@ -3,15 +3,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-import { check } from '../../utility/paths'
-import checkFunctions from '../../utility/checkFunctions'
+// import { check } from '../../utility/paths'
+// import checkFunctions from '../../utility/checkFunctions'
 
 import validateSignUp from '../../utility/validation/validateSignUp'
 
 import Modal from '../../UI/modal/modal'
 import SignUpForm from './signUpForm/signUpForm'
-
-
 
 import './signUp.css'
 
@@ -40,42 +38,63 @@ class SignUp extends React.Component {
   }
 
   onSubmit = (event) => {
-    event.persist()
     event.preventDefault()
-    this.setState({ enableButton: false, enableInput: false, form: { valid: false, pending: true } })
+    // this.setState({ enableButton: false, enableInput: false, form: { valid: false, pending: true } })
+    this.setState({ form: { valid: false, pending: true } })
+
     let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.TOSagreement)
     this.setState({ form: authCheck })
-    if(authCheck.valid) this.checkUserName()
-  }
-
-  checkUserName = () => {
-    checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name })
-    .then(userNameRes => {
-      if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
-      else this.checkEmail()
-    })
-  }
-
-  checkEmail = () => {
-    checkFunctions('checkEmail', check.email, { email: this.state.email })
-    .then(emailRes => {
-      if(!emailRes.valid) this.setState({ form: { valid: false, email: { valid: emailRes.valid, errors: [emailRes.errors] }, pending: false  } })
-      else this.onValidateSignUp()
-    })
+    if(authCheck.valid && !this.state.form.pending && this.state.enableButton){
+      this.props.onAuthStart('signUp', {
+        displayName: this.state.user_name,
+        email: this.state.email,
+        password: this.state.password,
+        returnSecureToken: true
+      })
+    }
   }
 
   onValidateSignUp = () => {
-    if(this.state.form.valid && !this.state.form.pending){
-      if(this.state.enableButton) {
-        this.props.onAuthStart('signUp', {
-          displayName: this.state.user_name,
-          email: this.state.email,
-          password: this.state.password,
-          returnSecureToken: true
-        })
-      }
+    console.log(this.state.form.valid, !this.state.form.pending, this.state.enableButton)
+
+    if(this.state.form.valid && !this.state.form.pending && this.state.enableButton){
+      this.props.onAuthStart('signUp', {
+        displayName: this.state.user_name,
+        email: this.state.email,
+        password: this.state.password,
+        returnSecureToken: true
+      })
     }
   }
+
+  // checkUserName = () => {
+  //   checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name })
+  //   .then(userNameRes => {
+  //     if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
+  //     else this.checkEmail()
+  //   })
+  // }
+
+  // checkEmail = () => {
+  //   checkFunctions('checkEmail', check.email, { email: this.state.email })
+  //   .then(emailRes => {
+  //     if(!emailRes.valid) this.setState({ form: { valid: false, email: { valid: emailRes.valid, errors: [emailRes.errors] }, pending: false  } })
+  //     else this.onValidateSignUp()
+  //   })
+  // }
+
+  // onValidateSignUp = () => {
+  //   if(this.state.form.valid && !this.state.form.pending){
+  //     if(this.state.enableButton) {
+  //       this.props.onAuthStart('signUp', {
+  //         displayName: this.state.user_name,
+  //         email: this.state.email,
+  //         password: this.state.password,
+  //         returnSecureToken: true
+  //       })
+  //     }
+  //   }
+  // }
 
   onReset = () => {
     this.setState({
@@ -96,6 +115,9 @@ class SignUp extends React.Component {
   }
 
   render(){
+
+    // console.log(this.state.form.valid, !this.state.form.pending, this.state.enableButton)
+
     return (
       <Modal
         showModal={ this.props.modal.signup }

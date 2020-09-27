@@ -1,20 +1,3 @@
-@import url('./UI/animation.css');
-
-/* input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  border: 1px solid green;
-  -webkit-text-fill-color: green;
-  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
-  transition: background-color 5000s ease-in-out 0s;
-} */
-
 /* html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -37,11 +20,13 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 :focus {
 	outline: 0;
 }
+
 body {
 	line-height: 1;
 	color: black;
 	background: white;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -50,30 +35,33 @@ table {
 	border-collapse: separate;
 	border-spacing: 0;
 }
+
 caption, th, td {
 	text-align: left;
 	font-weight: normal;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: "";
 }
+
 blockquote, q {
 	quotes: "" "";
 } */
 
-::selection {
-  background-color: #000;
+/* ::selection {
+  background-color: #FFF;
   color: #FFF;
-}
+} */
 
-input[type=number]::-webkit-inner-spin-button,
+/* input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
-.input:-internal-autofill-selected {
+/* .input:-internal-autofill-selected {
   width: 25%;
   text-rendering: auto;
   letter-spacing: normal;
@@ -85,21 +73,45 @@ input[type=number]::-webkit-outer-spin-button {
   box-sizing: unset;
   align-items: center;
   white-space: normal;
-  background-color: #fff;
+  background: rgba(175, 175, 175, 1);
   cursor: default;
   margin: 0em;
   color: #000;
   line-height: 1.3;
   padding: 5px;
-  border: 1px solid rgb(175, 175, 175, 1);
+  border: 1px solid rgba(175, 175, 175, 1);
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-}
+} */
 
-::placeholder {
+/* ::placeholder {
   color: #000;
   opacity: 1;
+} */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid rgba(200, 200, 200, 1);
+  -webkit-box-shadow: 0 0 0px 100px #FFF inset;
+}
+
+input:-webkit-autofill:disabled,
+textarea:-webkit-autofill:disabled,
+select:-webkit-autofill:disabled {
+  border: 1px solid rgba(200, 200, 200, 1);
+  -webkit-box-shadow: 0 0 0px 100px rgba(235, 235, 228, 1) inset;
+}
+
+select:not(:-internal-list-box) {
+  overflow: hidden !important;
 }
 
 .blank {
@@ -108,15 +120,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .main_container {
-  margin: 0 auto 0 auto;
-  background-color: #fff;
+  margin: 0px auto;
+  background-color: #FFF;
   z-index: 0;
-}
-
-.main_container > * {
-  text-shadow:1px 1px 1px rgba(0,0,0,0.004) !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .default_wrapper {
@@ -155,7 +161,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
   padding: 10px;
   margin: 0px 0px 0px 0px;
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
 }
 
 .default_header h2 {
@@ -164,7 +169,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
   padding: 10px;
   margin: 0px 0px 0px 0px;
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
 }
 
 .default_header h3 {
@@ -173,7 +177,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
   padding: 10px;
   margin: 0px 0px 0px 0px;
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
 }
 
 .default_link {
@@ -244,10 +247,6 @@ input[type=number]::-webkit-outer-spin-button {
   appearance: none;
 }
 
-select:not(:-internal-list-box) {
-  overflow: hidden !important;
-}
-
 .default_div textarea {
   width: 25%;
   padding: 5px;
@@ -288,7 +287,6 @@ select:not(:-internal-list-box) {
   margin-right: 0px;
   background-color: #fffdf7;
   min-height: 70vh;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25), 0 0 5px 0 rgba(0, 0, 0, 0.25), 0 0 5px 0 rgba(0, 0, 0, 0.25);
   z-index: 0;
 }
 
@@ -304,7 +302,6 @@ select:not(:-internal-list-box) {
   margin-right: 0px;
   flex-grow: 1;
   flex-shrink: 2;
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
   z-index: 1
 }
 
@@ -319,7 +316,6 @@ select:not(:-internal-list-box) {
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
-  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25), 0 0 2.5px 0 rgba(0, 0, 0, 0.25);
 }
 
 .alt_header {
