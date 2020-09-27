@@ -6,13 +6,13 @@ import './headerButton.css'
 const HeaderButton = (props) => {
   return(
     <NavLink
-      menu={props.menu}
+      menu={ props.menu }
       activeClassName='default_active'
-      exact to={props.link}
+      exact to={ props.link }
       className='default_header_link'
-      name={props.name}
+      name={ props.name}
     >
-      {props.children}
+      { props.children }
     </NavLink>
   )
 }

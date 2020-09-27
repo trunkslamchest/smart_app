@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import { loading, setAnswer } from '../../store/actions/actionIndex'
 
 import Wrapper from '../../UI/wrapper/wrapper'
 import QuestionCard from './questionCard/questionCard'
@@ -88,34 +88,14 @@ class QuestionContainer extends React.Component{
 const mapStateToProps = (state) => {
   return {
     modal: state.modal,
-    play: state.play,
-    user: state.user,
-    questions: state.questions
+    play: state.play
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
-    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
-    onResetGameMode: () => dispatch(actions.resetGameMode()),
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
-    onSetGameState: (state) => dispatch(actions.setGameState(state)),
-    onResetGameState: () => dispatch(actions.resetGameState()),
-    onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
-    onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
-    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
-    onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
-    onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
-    onResetQuestion: () => dispatch(actions.resetQuestion()),
-    onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
-    onResetAnswer: () => dispatch(actions.resetAnswer()),
-    onGetResults: (obj) => dispatch(actions.getResults(obj)),
-    onResetResults: () => dispatch(actions.resetResults()),
-    onSetVote: (obj) => dispatch(actions.setVote(obj)),
-    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
-    onSetComment: (obj) => dispatch(actions.setComment(obj)),
-    onResetComment: (obj) => dispatch(actions.resetComment(obj))
+    onLoadingModal: (bool) => dispatch(loading(bool)),
+    onSetAnswer: (obj) => dispatch(setAnswer(obj)),
   }
 }
 

@@ -25,14 +25,14 @@ const MyProfileMenu = (props) => {
     <DropDownMenu
       divClass='myProfileMenu'
       menu='myProfileMenu'
-      showMenu={props.showProfileMenu}
-      switchMenu={props.switchProfileMenu}
+      showMenu={ props.showProfileMenu }
+      switchMenu={ props.switchProfileMenu }
     >
       <MyProfileMenuButton
         menu='myProfileMenu'
         link={ routes.dashboard }
         name='My Profile'
-        onClick={props.switchProfileMenu}
+        onClick={ props.switchProfileMenu }
       >
         Dashboard
       </MyProfileMenuButton>
@@ -40,7 +40,7 @@ const MyProfileMenu = (props) => {
         menu='myProfileMenu'
         link={ routes.dashboard_profile }
         name='View Profile'
-        onClick={props.switchProfileMenu}
+        onClick={ props.switchProfileMenu }
       >
         View Profile
       </MyProfileMenuButton>
@@ -48,14 +48,14 @@ const MyProfileMenu = (props) => {
         menu='myProfileMenu'
         link={ routes.dashboard_profile_edit }
         name='Edit Profile'
-        onClick={props.switchProfileMenu}
+        onClick={ props.switchProfileMenu }
       >
         Edit Profile
       </MyProfileMenuButton>
       <MyProfileMenuButton2
         menu='myProfileMenu'
         name='Log Out'
-        onClick={onLogOut}
+        onClick={ onLogOut }
       >
         Log Out
       </MyProfileMenuButton2>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import * as actions from '../../../store/actions/actionIndex'
+import { login, signup } from '../../../store/actions/actionIndex'
 
 import AuthButton from '../../../UI/buttons/authButton/authButton'
 
@@ -37,8 +37,8 @@ const HomeLoggedOutAuthButtonsContainer = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoginModal: (bool) => dispatch(actions.login(bool)),
-    onSignupModal: (bool) => dispatch(actions.signup(bool))
+    onLoginModal: (bool) => dispatch(login(bool)),
+    onSignupModal: (bool) => dispatch(signup(bool))
   }
 }
 

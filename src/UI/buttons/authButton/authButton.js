@@ -5,11 +5,11 @@ import './authButton.css'
 const AuthButton = (props) => {
   return(
     <button
-      name={props.name}
+      name={ props.name }
       className='auth_button'
-      onClick={props.onClick}
+      onClick={ props.onClick }
     >
-      {props.children}
+      { props.children }
     </button>
   )
 }

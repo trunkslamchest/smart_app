@@ -88,10 +88,7 @@ const LogInForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    user: state.user,
-    question: state.question
+    auth: state.auth
   }
 }
 

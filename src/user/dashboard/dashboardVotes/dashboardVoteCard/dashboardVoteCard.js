@@ -1,8 +1,5 @@
 import React from 'react'
 
-import { connect } from 'react-redux'
-// import * as actions from '../../../store/actions/actionIndex'
-
 import './dashboardVoteCard.css'
 
 class DashboardVoteCard extends React.Component {
@@ -33,17 +30,4 @@ class DashboardVoteCard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    questions: state.questions
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardVoteCard)
+export default DashboardVoteCard

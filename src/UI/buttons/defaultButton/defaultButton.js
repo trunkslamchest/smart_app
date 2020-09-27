@@ -5,12 +5,12 @@ import './defaultButton.css'
 const DefaultButton = (props) => {
   return(
     <button
-      id={props.id}
-      name={props.name}
+      id={ props.id }
+      name={ props.name }
       className='def_button'
-      onClick={props.onClick}
+      onClick={ props.onClick }
     >
-      {props.children}
+      { props.children }
     </button>
   )
 }

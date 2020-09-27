@@ -1,10 +1,15 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import {
+  setGameMode,
+  setGameState,
+  resetGameQset,
+  resetQuestion,
+  resetAnswer,
+  resetResults
+} from '../../store/actions/actionIndex'
 
 import CompletedButtonsContainer from './completedButtonsContainer/completedButtonsContainer'
-
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 import './completedContainer.css'
@@ -57,12 +62,12 @@ class CompletedContainer extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
-    onSetGameState: (state) => dispatch(actions.setGameState(state)),
-    onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
-    onResetQuestion: () => dispatch(actions.resetQuestion()),
-    onResetAnswer: () => dispatch(actions.resetAnswer()),
-    onResetResults: () => dispatch(actions.resetResults()),
+    onSetGameMode: (mode) => dispatch(setGameMode(mode)),
+    onSetGameState: (state) => dispatch(setGameState(state)),
+    onResetGameQset: (set) => dispatch(resetGameQset(set)),
+    onResetQuestion: () => dispatch(resetQuestion()),
+    onResetAnswer: () => dispatch(resetAnswer()),
+    onResetResults: () => dispatch(resetResults()),
   }
 }
 

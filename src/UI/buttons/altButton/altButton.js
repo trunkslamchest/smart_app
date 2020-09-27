@@ -5,11 +5,11 @@ import './altButton.css'
 const AltButton = (props) => {
   return(
     <button
-      name={props.name}
+      name={ props.name }
       className='alt_button'
-      onClick={props.onClick}
+      onClick={ props.onClick }
     >
-      {props.children}
+      { props.children }
     </button>
   )
 }

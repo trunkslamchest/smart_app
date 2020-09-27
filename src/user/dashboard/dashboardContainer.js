@@ -3,7 +3,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import { getQuestionTotals, updateUserQuestions } from '../../store/actions/actionIndex'
 
 import { routes } from '../../utility/paths.js'
 
@@ -71,16 +71,14 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
-    user: state.user,
-    questions: state.questions
+    auth: state.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetQuestionTotals: () => dispatch(actions.getQuestionTotals()),
-    onUpdateUserQuestions: () => dispatch(actions.updateUserQuestions())
+    onGetQuestionTotals: () => dispatch(getQuestionTotals()),
+    onUpdateUserQuestions: () => dispatch(updateUserQuestions())
   }
 }
 
