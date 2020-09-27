@@ -45,6 +45,16 @@
 }
 
 .tos_agree_div input[type="checkbox" i] {
+  cursor: pointer;
+  font: 300 10pt 'Poppins', sans-serif;
+  height: 35px;
+  margin: 0px 5px 0px 0px;
+  padding: 10px;
+  width: 35px;
+}
+
+.tos_agree_div input[type="checkbox" i]:disabled {
+  cursor: not-allowed;
   font: 300 10pt 'Poppins', sans-serif;
   height: 35px;
   margin: 0px 5px 0px 0px;

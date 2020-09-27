@@ -37,7 +37,7 @@
   border: 0px;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0.5);
-  cursor: pointer;
+  cursor: not-allowed;
   display: inline-block;
   font: 400 15px Roboto;
   letter-spacing: normal;

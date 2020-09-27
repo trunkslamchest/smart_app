@@ -82,11 +82,14 @@ export const authFail = (error) => {
     if(error.message === 'EMAIL_NOT_FOUND') {
       newCode = 421
       newMessage = 'Email does not exist'
-    } else if(error.message === 'INVALID_PASSWORD') {
+    } else if(error.message === 'EMAIL_EXISTS') {
       newCode = 422
+      newMessage = 'Email already exists'
+    } else if(error.message === 'INVALID_PASSWORD') {
+      newCode = 423
       newMessage = 'Incorrect Password'
     } else if(error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.'){
-      newCode = 423
+      newCode = 424
       newMessage = 'Too many failed attempts. Please try again later'
     } else {
       newCode = error.code
@@ -176,19 +179,18 @@ export const authUser = () => {
 
 export const authSignUp = (authType, obj) => {
   return dispatch => {
-    console.log(authType, obj)
-    // authFunctions('signUp', auth.signUp, obj)
-    // .then(authRes => {
-    //   if(!!authRes.error) dispatch(authFail(authRes.error))
-    //   else dispatch(authSuccess(authType, {
-    //     email: authRes.email,
-    //     expires: authRes.expiresIn,
-    //     id: authRes.localId,
-    //     refresh: authRes.refreshToken,
-    //     token: authRes.idToken,
-    //     user: authRes.displayName
-    //   }))
-    // })
+    authFunctions('signUp', auth.signUp, obj)
+    .then(authRes => {
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else dispatch(authSuccess(authType, {
+        email: authRes.email,
+        expires: authRes.expiresIn,
+        id: authRes.localId,
+        refresh: authRes.refreshToken,
+        token: authRes.idToken,
+        user: authRes.displayName
+      }))
+    })
   }
 }
 

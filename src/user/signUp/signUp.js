@@ -3,8 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
 
-// import { check } from '../../utility/paths'
-// import checkFunctions from '../../utility/checkFunctions'
+import { check } from '../../utility/paths'
+import checkFunctions from '../../utility/checkFunctions'
 
 import validateSignUp from '../../utility/validation/validateSignUp'
 
@@ -38,6 +38,10 @@ class SignUp extends React.Component {
   }
 
   onSubmit = (event) => {
+    if(!!this.props.auth.errors.length) {
+      this.props.onClearAuthErrors()
+      this.props.onClearAuthStatus()
+    }
     event.preventDefault()
     // this.setState({ enableButton: false, enableInput: false, form: { valid: false, pending: true } })
     this.setState({ form: { valid: false, pending: true } })
@@ -45,6 +49,28 @@ class SignUp extends React.Component {
     let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.TOSagreement)
     this.setState({ form: authCheck })
     if(authCheck.valid && !this.state.form.pending && this.state.enableButton){
+      this.checkUserExists(authCheck.valid)
+      // this.props.onAuthStart('signUp', {
+      //   displayName: this.state.user_name,
+      //   email: this.state.email,
+      //   password: this.state.password,
+      //   returnSecureToken: true
+      // })
+    }
+  }
+
+  checkUserExists = (authCheck) => {
+    checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name })
+    .then(userNameRes => {
+      if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
+      else this.onValidateSignUp(authCheck)
+    })
+  }
+
+  onValidateSignUp = (authCheck) => {
+    console.log(authCheck, !this.state.form.pending, this.state.enableButton)
+
+    if(authCheck && !this.state.form.pending && this.state.enableButton){
       this.props.onAuthStart('signUp', {
         displayName: this.state.user_name,
         email: this.state.email,
@@ -54,18 +80,6 @@ class SignUp extends React.Component {
     }
   }
 
-  onValidateSignUp = () => {
-    console.log(this.state.form.valid, !this.state.form.pending, this.state.enableButton)
-
-    if(this.state.form.valid && !this.state.form.pending && this.state.enableButton){
-      this.props.onAuthStart('signUp', {
-        displayName: this.state.user_name,
-        email: this.state.email,
-        password: this.state.password,
-        returnSecureToken: true
-      })
-    }
-  }
 
   // checkUserName = () => {
   //   checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name })
@@ -106,6 +120,7 @@ class SignUp extends React.Component {
       enableButton: true,
       enableInput: true
     })
+    this.props.onClearAuthErrors()
   }
 
   onCancel = () => {
@@ -155,6 +170,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSignUpModal: (bool) => dispatch(actions.signup(bool)),
     onAuthStart: (type, obj, props) => dispatch(actions.authStart(type, obj, props)),
+    onClearAuthStatus: () => dispatch(actions.clearAuthStatus()),
     onClearAuthErrors: () => dispatch(actions.clearAuthErrors())
   }
 }

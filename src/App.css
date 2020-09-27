@@ -107,6 +107,7 @@ input:-webkit-autofill:disabled,
 textarea:-webkit-autofill:disabled,
 select:-webkit-autofill:disabled {
   border: 1px solid rgba(200, 200, 200, 1);
+  cursor: not-allowed;
   -webkit-box-shadow: 0 0 0px 100px rgba(235, 235, 228, 1) inset;
 }
 

@@ -18,7 +18,7 @@
   align-items: flex-start;
   cursor: pointer;
   box-sizing: border-box;
-  margin: 5px 0px;
+  margin: 0px;
   font: 400 15px Roboto;
   padding: 15px 30px 15px 30px;
   border: 0px solid;
@@ -31,7 +31,6 @@
   transition-property: color;
   transition-duration: .1s, .1s;
   transition-timing-function: ease-in-out;
-  animation: scale_in .1s ease-in-out 1;
 }
 
 .auth_button:active {

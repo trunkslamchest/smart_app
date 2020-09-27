@@ -15,11 +15,18 @@ import './signUpForm.css'
 
 const SignUpForm = (props) => {
 
-  let distribUserNameErrors,
+  let userNameErrors = [],
+      distribUserNameErrors,
+      emailErrors = [],
       distribEmailErrors,
+      passwordErrors = [],
       distribPasswordErrors,
+      tosErrors = [],
       distribTOSErrors,
-      distribAuthErrors
+      allOtherErrors = [],
+      distribAllOtherErrors
+
+  const signUpFormRef = React.createRef()
 
   const loading =
     <div className='loading_wrapper'>
@@ -28,50 +35,21 @@ const SignUpForm = (props) => {
     </div>
 
   if(props.auth.status === 'fail'){
-    distribAuthErrors = props.auth.errors.map(error => {
-      return <SignUpFormErrorItem
-        key={ props.auth.errors.indexOf(error) }
-        error={ error }
-      />
-    })
+    if(props.auth.errors[0].code === 422) props.auth.errors.forEach(error => emailErrors.push(error))
+    else props.auth.errors.forEach(error => allOtherErrors.push(error))
   }
 
   if(!props.form.valid) {
-    if(!!props.form.user_name && props.form.user_name.errors){
-      distribUserNameErrors = props.form.user_name.errors.map(error => {
-        return <SignUpFormErrorItem
-          key={ props.form.user_name.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
-    if(!!props.form.email && props.form.email.errors){
-      distribEmailErrors = props.form.email.errors.map(error => {
-        return <SignUpFormErrorItem
-          key={ props.form.email.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
-    if(!!props.form.password && props.form.password.errors){
-      distribPasswordErrors = props.form.password.errors.map(error => {
-        return <SignUpFormErrorItem
-          key={ props.form.password.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
-    if(!!props.form.tos && props.form.tos.errors){
-      distribTOSErrors = props.form.tos.errors.map(error => {
-        return <SignUpFormErrorItem
-          key={ props.form.tos.errors.indexOf(error) }
-          error={ error }
-        />
-      })
-    }
+    if(!!props.form.user_name && props.form.user_name.errors) props.form.user_name.errors.forEach(user_name => userNameErrors.push(user_name))
+    if(!!props.form.email && props.form.email.errors) props.form.email.errors.forEach(error => emailErrors.push(error))
+    if(!!props.form.password && props.form.password.errors) props.form.password.errors.forEach(error => passwordErrors.push(error))
+    if(!!props.form.tos && props.form.tos.errors) props.form.tos.errors.forEach(error => tosErrors.push(error))
   }
 
-  const signUpFormRef = React.createRef()
+  if(!!emailErrors.length) distribEmailErrors = emailErrors.map(error => <SignUpFormErrorItem key={ emailErrors.indexOf(error) } error={ error } /> )
+  if(!!userNameErrors.length) distribUserNameErrors = userNameErrors.map(error =>  <SignUpFormErrorItem key={ userNameErrors.indexOf(error) } error={ error } /> )
+  if(!!passwordErrors.length) distribPasswordErrors = passwordErrors.map(error => <SignUpFormErrorItem key={ passwordErrors.indexOf(error) } error={ error } /> )
+  if(!!tosErrors.length) distribTOSErrors = tosErrors.map(error => <SignUpFormErrorItem key={ tosErrors.indexOf(error) } error={ error } /> )
 
   const onSubmit = (event) => {
     // if(props.auth.errors.length === 0) signUpFormRef.current.scrollTop = 0
@@ -99,7 +77,7 @@ const SignUpForm = (props) => {
             onChange={ props.onChange }
             value={ props.user_name }
           />
-          { !!props.form.user_name && props.form.user_name.errors.length ? <div className='sign_up_error_container'>{ distribUserNameErrors }</div> : <br /> }
+          { !!userNameErrors.length ? <div className='sign_up_error_container'>{ distribUserNameErrors }</div> : <br /> }
         </div>
         <div className='sign_up_div'>
           <SignUpFormInput
@@ -111,7 +89,7 @@ const SignUpForm = (props) => {
             onChange={props.onChange }
             value={ props.email }
           />
-          { !!props.form.email && props.form.email.errors.length ? <div className='sign_up_error_container'>{ distribEmailErrors }</div> : <br /> }
+          { !!emailErrors.length ? <div className='sign_up_error_container'>{ distribEmailErrors }</div> : <br /> }
         </div>
         <div className='sign_up_div'>
           <SignUpFormInput
@@ -123,7 +101,7 @@ const SignUpForm = (props) => {
             onChange={ props.onChange }
             value={ props.password }
           />
-          { !!props.form.password && props.form.password.errors.length ? <div className='sign_up_error_container'>{ distribPasswordErrors }</div> : <br /> }
+          { !!passwordErrors.length ? <div className='sign_up_error_container'>{ distribPasswordErrors }</div> : <br /> }
         </div>
         <div className='tos_agree_div'>
           <div className='tos_agree_statement'>
@@ -138,10 +116,10 @@ const SignUpForm = (props) => {
             />
             <p>I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™.</p>
           </div>
-          { !!props.form.tos && !!props.form.tos.errors.length && <div className='sign_up_error_container'>{ distribTOSErrors }</div> }
+          { !!tosErrors.length ? <div className='sign_up_error_container'>{ distribTOSErrors }</div> : <br /> }
         </div>
+        { !!allOtherErrors.length ? <div className='sign_up_error_container'>{ distribAllOtherErrors }</div> : <br /> }
       </form>
-      { props.auth.status === 'fail' && props.auth.errors.length ? <div className='sign_up_error_container'>{ distribAuthErrors }</div> : <br /> }
       { props.auth.loading && loading }
       <SignUpFormButtonContainer
         enableButton={ props.enableButton }
