@@ -191,3 +191,17 @@ export const resetComment = () => {
     commentLoading: false
   }
 }
+
+export const deleteQuestionComment = (cid) => {
+  return dispatch => {
+    dispatch(initDeleteQuestionComment(cid))
+  }
+}
+
+const initDeleteQuestionComment = (cid) => {
+  return {
+    type: actionTypes.DELETE_QUESTION_COMMENT,
+    comment: null,
+    cid: cid
+  }
+}

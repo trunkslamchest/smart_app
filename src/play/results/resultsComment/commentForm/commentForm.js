@@ -27,22 +27,22 @@ const commentForm = (props) => {
       onSubmit={ props.onAddComment }
     >
       <textarea
-        rows="5"
+        rows="3"
         id="results_add_comment"
         name="comment_text"
-        placeholder="Add A Comment..."
+        placeholder="Your comment..."
         onChange={ props.onChangeComment }
         value={ props.comment }
       />
-      { !props.commentForm.valid && props.commentForm.errors.length ? <div className='results_comment_error_container'>{ distribCommentErrors }</div> : <br /> }
       <div className="results_comment_button_container">
         <input
           disabled={ !props.enableAddCommentButton }
           className={ props.enableAddCommentButton ? "results_comment_button" : "results_comment_button_disabled" }
           type="submit"
-          value="Add Comment"
+          value="Leave A Comment"
         />
       </div>
+      { !props.commentForm.valid && props.commentForm.errors.length && <div className='results_comment_error_container'>{ distribCommentErrors }</div> }
     </form>
   )
 }

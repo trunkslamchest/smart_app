@@ -17,7 +17,7 @@ class AuthController extends React.Component {
     initClearUserQuestions: false,
     initUserLogOut: false,
     initAuthDeleteUser: false,
-    authDeleteUser: false,
+    // authDeleteUser: false,
     initLocalDeleteUser: false,
     authLogInValid: false,
     authLogOutValid: false,
@@ -67,6 +67,8 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
       if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
+
+      if(this.props.auth.status === 'fail') this.refreshFailModule()
     }
 
     if(this.props.auth.authType === 'logOut') {
@@ -137,14 +139,13 @@ class AuthController extends React.Component {
     clearTimeout(this.authWaitTimeoutOneSec)
   }
 
-  authFailModule = () => {
-    if(this.props.auth.error.message === 'USER_NOT_FOUND' && this.props.auth.authType === 'refresh') this.resetLocalStorage()
-    this.setState({ authFail: true })
-  }
-
   initAuthModule = (status) => {
     this.props.onAuthUpdateStatus(status, true)
     this.setState({ initAuthStart: true })
+  }
+
+  refreshFailModule = () => {
+    this.clearLocalStorage()
   }
 
   authUserLocalModule = (status) => {
@@ -172,8 +173,10 @@ class AuthController extends React.Component {
   authLogInValidModule = (status) => {
     this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, initAuthQuestions: false, authLogInValid: true })
     this.props.onAuthUpdateStatus(status, true)
-    this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
-    this.authWaitTimeoutHalfSec = setTimeout(() => { this.props.onClearAuthType() }, 500)
+    this.props.onAuthUpdateLoadingStatus(false)
+    this.props.onClearAuthType()
+    // this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
+    // this.authWaitTimeoutHalfSec = setTimeout(() => { this.props.onClearAuthType() }, 500)
   }
 
   authInitUserLogOutModule = (status) => {
@@ -225,17 +228,6 @@ class AuthController extends React.Component {
     this.props.history.push( routes.dashboard_profile )
   }
 
-  initAuthDeleteUserModule = (status) => {
-    this.props.onAuthUpdateStatus(status, true)
-    this.setState({ initAuthStart: false, initAuthDeleteUser: true })
-  }
-
-  authDeleteUserModule = (status) => {
-    this.props.onAuthUpdateStatus(status, true)
-    this.props.onAuthDelete({id: this.props.auth.id, token: this.props.auth.token})
-    this.setState({ initAuthDeleteUser: false, authDeleteUser: true })
-  }
-
   initLocalDeleteUserModule = (status) => {
     this.props.onAuthUpdateStatus(status, true)
     this.props.onDeleteUser(this.props.auth.id)
@@ -266,7 +258,7 @@ const mapStateToProps = state => {
   return{
     auth: state.auth,
     modal: state.modal,
-    play: state.play,
+    // play: state.play,
     questions: state.questions,
     user: state.user
   }
@@ -278,59 +270,43 @@ const mapDispatchToProps = dispatch => {
     onAuthUpdateLoadingStatus: (bool) => dispatch(actions.authUpdateLoadingStatus(bool)),
     onAuthUpdateStatus: (status, loading) => dispatch(actions.authUpdateStatus(status, loading)),
     onAuthStart: (authType, obj, props) => dispatch(actions.authStart(authType, obj, props)),
-    onAuthSuccess: (token, refreshToken, id, expires) => dispatch(actions.authSuccess(token, refreshToken, id, expires)),
-    onAuthFail: (error) => dispatch(actions.authFail(error)),
-    onAuthLogIn: (email, password, props) => dispatch(actions.authLogIn(email, password, props)),
-    onAuthLogOut: (props) => dispatch(actions.authLogOut(props)),
-    onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
+    // onAuthSuccess: (token, refreshToken, id, expires) => dispatch(actions.authSuccess(token, refreshToken, id, expires)),
+    // onAuthFail: (error) => dispatch(actions.authFail(error)),
+    // onAuthLogIn: (email, password, props) => dispatch(actions.authLogIn(email, password, props)),
+    // onAuthLogOut: (props) => dispatch(actions.authLogOut(props)),
+    // onAuthRefresh: (obj) => dispatch(actions.authRefresh(obj)),
     onAuthUser: (token, refreshToken, id, expires) => dispatch(actions.authUser(token, refreshToken, id, expires)),
-    onAuthDelete: (obj) => dispatch(actions.authDelete(obj)),
-    onAuthTimeout: (time) => dispatch(actions.authTimeout(time)),
-    onAuthCert: (bool) => dispatch(actions.authCert(bool)),
-    onAuthValid: (bool) => dispatch(actions.authValid(bool)),
-    onAuthClearState: () => dispatch(actions.authClearState()),
+    // onAuthDelete: (obj) => dispatch(actions.authDelete(obj)),
+    // onAuthTimeout: (time) => dispatch(actions.authTimeout(time)),
+    // onAuthCert: (bool) => dispatch(actions.authCert(bool)),
+    // onAuthValid: (bool) => dispatch(actions.authValid(bool)),
+    // onAuthClearState: () => dispatch(actions.authClearState()),
     onClearAuthCreds: () => dispatch(actions.clearAuthCreds()),
     onClearAuthType: () => dispatch(actions.clearAuthType()),
-    onClearAuthStatus: () => dispatch(actions.clearAuthStatus()),
-    onSetAuthType: (authType) => dispatch(actions.setAuthType(authType)),
+    // onClearAuthStatus: () => dispatch(actions.clearAuthStatus()),
+    // onSetAuthType: (authType) => dispatch(actions.setAuthType(authType)),
     // MODAL
     onLoadingModal: (bool) => dispatch(actions.loading(bool)),
     onLogInModal: (bool) => dispatch(actions.login(bool)),
     onLogOutModal: (bool) => dispatch(actions.logout(bool)),
     onSignUpModal: (bool) => dispatch(actions.signup(bool)),
     onDeleteProfileModal: (bool) => dispatch(actions.deleteProfile(bool)),
-    onShowModal: (bool) => dispatch(actions.showModal(bool)),
-    // PLAY
-    onResetGameMode: () => dispatch(actions.resetGameMode()),
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
-    onSetGameState: (state) => dispatch(actions.setGameState(state)),
-    onResetGameState: () => dispatch(actions.resetGameState()),
-    onSetGameQset: (set) => dispatch(actions.setGameQset(set)),
-    onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
-    onResetQuestion: () => dispatch(actions.resetQuestion()),
-    onSetAnswer: (obj) => dispatch(actions.setAnswer(obj)),
-    onResetAnswer: () => dispatch(actions.resetAnswer()),
-    onGetResults: (obj) => dispatch(actions.getResults(obj)),
-    onResetResults: () => dispatch(actions.resetResults()),
-    onSetVote: (obj) => dispatch(actions.setVote(obj)),
-    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
-    onSetComment: (obj) => dispatch(actions.setComment(obj)),
-    onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    // onShowModal: (bool) => dispatch(actions.showModal(bool)),
     // QUESTIONS
-    onStoreQuestionTotals: (totals) => dispatch(actions.storeQuestionTotals(totals)),
+    // onStoreQuestionTotals: (totals) => dispatch(actions.storeQuestionTotals(totals)),
     onGetQuestionTotals: (props) => dispatch(actions.getQuestionTotals(props)),
-    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
-    onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
-    onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
+    // onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
+    // onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
+    // onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
     onClearQuestionTotals: () => dispatch(actions.clearQuestionTotals()),
     // USER
-    onStoreUserInfo: (info) => dispatch(actions.storeUserInfo(info)),
-    onUpdateUserInfo: (obj, props) => dispatch(actions.updateUserInfo(obj, props)),
+    // onStoreUserInfo: (info) => dispatch(actions.storeUserInfo(info)),
+    // onUpdateUserInfo: (obj, props) => dispatch(actions.updateUserInfo(obj, props)),
     onClearUserInfo: () => dispatch(actions.clearUserInfo()),
-    onStoreUserQuestions: (questions) => dispatch(actions.storeUserQuestions(questions)),
-    onUpdateUserQuestions: () => dispatch(actions.updateUserInfo()),
+    // onStoreUserQuestions: (questions) => dispatch(actions.storeUserQuestions(questions)),
+    // onUpdateUserQuestions: () => dispatch(actions.updateUserInfo()),
     onClearUserQuestions: () => dispatch(actions.clearUserQuestions()),
-    onUpdateUserQuestionIdsFromPlayController: (ids) => dispatch(actions.updateUserQuestionIdsFromPlayController(ids)),
+    // onUpdateUserQuestionIdsFromPlayController: (ids) => dispatch(actions.updateUserQuestionIdsFromPlayController(ids)),
     onDeleteUser: (id) => dispatch(actions.deleteUser(id))
   }
 }

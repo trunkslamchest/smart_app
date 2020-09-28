@@ -31,7 +31,7 @@ class ResultsContainer extends React.Component{
     showDifficulty: false,
     showVoteButtons: false,
     showCommentButton: false,
-    showCommentForm: false,
+    showComments: false,
     showNextQuestionButton: false,
     enableVoteButtons: false,
     enableCommentButton: false,
@@ -49,10 +49,10 @@ class ResultsContainer extends React.Component{
     this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1250)
     this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 1500)
     this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 1750)
-    this.commentButtonTimeout = setTimeout(() => { this.setState({ showCommentButton: true })}, 2000)
-    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 2250)
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2250)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2500)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2000)
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2250)
+    this.commentsTimeout = setTimeout(() => { this.setState({ showComments: true })}, 2250)
+    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 2500)
   }
 
   componentDidUpdate(){
@@ -66,7 +66,7 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.difficultyTimeout)
     clearTimeout(this.voteButtonsTimeout)
     clearTimeout(this.enableVoteButtonsTimeout)
-    clearTimeout(this.commentButtonTimeout)
+    clearTimeout(this.commentsTimeout)
     clearTimeout(this.enableCommentButtonTimeout)
     clearTimeout(this.enableAddCommentButtonTimeout)
     clearTimeout(this.nextQuestionButtonTimeout)
@@ -90,7 +90,7 @@ class ResultsContainer extends React.Component{
     this.setState({ showVoteButtons: false, enableVoteButtons: false })
   }
 
-  onClickCommentFunctions = () => { this.setState({ showCommentButton: false, showCommentForm: true, enableCommentButton: false }) }
+  onClickCommentFunctions = () => { this.setState({ enableCommentButton: false }) }
 
   onChangeComment = (event) => { this.setState({ comment: event.target.value }) }
 
@@ -102,7 +102,7 @@ class ResultsContainer extends React.Component{
     this.setState({ commentForm: authCheck })
 
     if (authCheck.valid) {
-      this.setState({ enableAddCommentButton: false, showCommentForm: false })
+      this.setState({ enableAddCommentButton: false })
       this.props.onSetComment({
         uid: localStorage.id,
         qid: this.props.play.question.id,
@@ -142,21 +142,20 @@ class ResultsContainer extends React.Component{
             showVoteButtons={ this.state.showVoteButtons }
             onClickVoteFunctions={ this.onClickVoteFunctions }
           />
+          <ResultsNextQuestion
+            showNextQuestionButton={ this.state.showNextQuestionButton }
+            enableNextQuestionButton={ this.state.enableNextQuestionButton }
+            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
+          />
           <ResultsComment
             comment={ this.state.comment }
             commentForm={ this.state.commentForm }
-            showCommentButton={ this.state.showCommentButton }
-            showCommentForm={ this.state.showCommentForm }
+            showComments={ this.state.showComments }
             enableCommentButton={ this.state.enableCommentButton }
             enableAddCommentButton={ this.state.enableAddCommentButton }
             onAddComment={ this.onAddComment }
             onChangeComment={ this.onChangeComment }
             onClickCommentFunctions={ this.onClickCommentFunctions }
-          />
-          <ResultsNextQuestion
-            showNextQuestionButton={ this.state.showNextQuestionButton }
-            enableNextQuestionButton={ this.state.enableNextQuestionButton }
-            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
           />
         </div>
     }

@@ -103,6 +103,8 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barText = 'Initialzing Game Sequence'
     if(status === 'setGameModeSuccess') barText = 'Setting Game Mode'
+    if(status === 'setQuickPlay') barText = 'Initializing Quick Play'
+    if(status === 'setQset') barText = 'Retrieving Question Set'
     if(status === 'setQuestionSuccess') barText = 'Setting Question'
     if(status === 'displayQuestion') barText = 'Question Load Complete'
   }

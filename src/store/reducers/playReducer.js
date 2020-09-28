@@ -175,6 +175,20 @@ const resetComment = (currentState, action) => {
   }
 }
 
+const deleteQuestionComment = (currentState, action) => {
+  let uComments = { ...currentState.question.comments }
+  delete uComments[action.cid]
+
+  if(Object.keys(uComments).length === 0) uComments = null
+  // console.log(allComments)
+
+  return {
+    ...currentState,
+    question: { ...currentState.question, comments: uComments },
+    comment: action.comment
+  }
+}
+
 const playReducer = (currentState = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_GAME_STATUS: return updateGameStatus(currentState, action)
@@ -198,6 +212,7 @@ const playReducer = (currentState = initialState, action) => {
     case actionTypes.RESET_VOTE: return resetVote(currentState, action)
     case actionTypes.SET_COMMENT: return setComment(currentState, action)
     case actionTypes.RESET_COMMENT: return resetComment(currentState, action)
+    case actionTypes.DELETE_QUESTION_COMMENT: return deleteQuestionComment(currentState, action)
     default: return currentState
   }
 }

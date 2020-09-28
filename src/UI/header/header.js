@@ -13,13 +13,13 @@ import './header.css'
 
 const Header = (props) => {
   let home_link = <></>
-  let header
+  let header = <></>
 
-  if(props.auth.loading) header = <></>
+  // if(props.auth.loading)
 
   if(localStorage.access === 'guest') header = <GuestHeader />
 
-  if(props.auth.status === 'authValid' || props.auth.status === 'fail') {
+  if(props.auth.status === 'authValid') {
     home_link =
       <HeaderButton
         link={ routes.home }

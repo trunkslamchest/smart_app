@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-// import * as actions from '../../../store/actions/actionIndex'
 
 import DashboardCommentCard from './dashboardCommentCard/dashboardCommentCard'
 
@@ -17,23 +15,21 @@ class DashboardCommentsContainer extends React.Component {
 
     const noCommentsHeader =
       <div className="dashboard_alt_header">
-        <h4> You have not commented on any questions yet!</h4>
+        <h4> You have not commented on any questions</h4>
       </div>
 
     if(this.props.user.questions){
       if(this.props.user.questions.comments){
-        let questions = Object.values(this.props.user.questions.comments)
+        let questions = Object.entries(this.props.user.questions.comments)
         distribComments = questions.map(question =>
-          typeof question === 'object' ?
+          typeof question[1] === 'object' &&
             <DashboardCommentCard
-              key={questions.indexOf(question) + 1}
-              commentedQuestion={question}
+              key={ questions.indexOf(question) + 1 }
+              cid={ question[0] }
+              commentedQuestion={ question[1] }
             />
-          : null
         )
-      } else {
-        distribComments = noCommentsHeader
-      }
+      } else distribComments = noCommentsHeader
     }
 
     return(
@@ -50,10 +46,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardCommentsContainer)
+export default connect(mapStateToProps)(DashboardCommentsContainer)

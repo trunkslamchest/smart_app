@@ -31,15 +31,19 @@ const resultsNextQuestion = (props) => {
   }
 
   return(
-    <div className={ props.showNextQuestionButton ? "results_next_question_button_container": "blank"}>
-      <NextQuestionButton
-        keyName="next_question_button"
-        class={ props.enableNextQuestionButton ? "results_next_question_button" : "results_next_question_button_disabled" }
-        onClick={ props.enableNextQuestionButton ? onClickNextQuestionFunctions : null }
-      >
-        Next Question
-      </NextQuestionButton>
-    </div>
+    <>
+      { props.showNextQuestionButton &&
+        <div className="results_next_question_button_container">
+          <NextQuestionButton
+            keyName="next_question_button"
+            class={ props.enableNextQuestionButton ? "results_next_question_button" : "results_next_question_button_disabled" }
+            onClick={ props.enableNextQuestionButton ? onClickNextQuestionFunctions : null }
+          >
+            Next Question
+          </NextQuestionButton>
+        </div>
+      }
+    </>
   )
 }
 

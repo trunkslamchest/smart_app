@@ -172,6 +172,13 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
   }
 }
 
+const deleteUserComment = (currentState, action) => {
+  return {
+    ...currentState,
+    questions: { ...currentState.questions, comments: action.comments }
+  }
+}
+
 const deleteUser = (currentState, action) => {
   return{
     ...currentState,
@@ -194,6 +201,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER: return updateUserVotesFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER: return updateUserCommentsFromPlayController(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
+    case actionTypes.DELETE_USER_COMMENT: return deleteUserComment(currentState, action)
     default: return currentState
   }
 }

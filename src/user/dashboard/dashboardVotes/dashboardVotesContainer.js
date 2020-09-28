@@ -16,7 +16,7 @@ class DashboardVotesContainer extends React.Component {
 
     const noVotesHeader =
       <div className="dashboard_alt_header">
-        <h4> You have not voted on any questions yet!</h4>
+        <h4> You have not voted on any questions</h4>
       </div>
 
     if(this.props.user.questions){

@@ -22,7 +22,7 @@ class PlayController extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.auth.status === 'authValid') {
+    if(this.props.auth.status === 'authValid' && !this.props.auth.loading) {
       if(!this.props.play.gameState) this.initGameModule()
 
       if(this.props.play.gameState === 'reInit' && !this.props.play.question) this.reInitGameModule()
@@ -75,8 +75,9 @@ class PlayController extends React.Component {
   }
 
   initGameModule = () => {
+    this.props.onLoadingModal(true)
+    this.props.onUpdateGameStatus('initGame', true)
     this.props.onSetGameState('init')
-    this.props.onUpdateGameStatus('initGame', false)
   }
 
   reInitGameModule = () => {
@@ -99,7 +100,7 @@ class PlayController extends React.Component {
   selectGameModeModule = () => {
     if(localStorage.gameMode) {
       this.props.onSetGameMode(localStorage.gameMode)
-      this.props.onUpdateGameStatus('setGameModeSuccess', false)
+      this.props.onUpdateGameStatus('setGameModeSuccess', true)
       this.props.onSetGameState('select')
     } else {
       this.props.onUpdateGameStatus('selectGameMode', false)
@@ -115,6 +116,7 @@ class PlayController extends React.Component {
       this.props.onGetQuickQuestion(questionObj)
       this.props.onSetGameState('mount')
     } else {
+      this.props.onLoadingModal(false)
       this.props.onUpdateGameStatus('selectQset', false)
     }
   }
@@ -124,6 +126,7 @@ class PlayController extends React.Component {
   }
 
   setQsetModule = () => {
+    this.props.onLoadingModal(true)
     this.props.onUpdateGameStatus('setQset', true)
     let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
     if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
@@ -202,8 +205,8 @@ class PlayController extends React.Component {
 
   displayResultsModule = () => {
     this.props.onUpdateGameStatus('displayResults', false)
-    this.props.onLoadingModal(false)
     this.props.history.push( routes[this.props.play.gameMode] + '/results' )
+    this.props.onLoadingModal(false)
   }
 
   updateUserVotesModule = () => {
@@ -222,6 +225,7 @@ class PlayController extends React.Component {
   updateUserCommentsModule = () => {
     this.props.onUpdateCommentStatus('sentComment', true)
     this.props.onUpdateUserCommentsFromPlayController(this.props.play.comment.cid, {
+      qid: this.props.play.question.id,
       answer: this.props.play.answer.choice,
       category: this.props.play.question.category,
       comment: this.props.play.comment.comment,

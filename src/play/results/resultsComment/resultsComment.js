@@ -6,72 +6,55 @@ import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDy
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import CommentCard from './commentCard/commentCard'
-import CommentButton from './commentButton/commentButton'
 import CommentForm from './commentForm/commentForm'
 
 import './resultsComment.css'
 
 const ResultsComment = (props) => {
 
-  let commentBlock,
-      allComments
+  let allComments = <h3>No one has commented on this question yet</h3>
 
-  const loading =
+  let commentForm =
     <div className='loading_wrapper_comments'>
       <SmallLoadingSpinner />
       <BaseDynamicBar modalType={ 'questionComment' } barType={ 'questionComment' } />
     </div>
 
-  if(props.play.commentLoading) commentBlock = loading
-
-  if(props.play.commentStatus === 'displayComments' && !props.play.commentLoading){
+  if(props.play.status === 'displayResults' && props.play.question.comments){
     allComments = Object.entries(props.play.question.comments).map(comment =>
       <CommentCard
         key={comment[0]}
         comment={comment[1]}
       />
     )
-
-    commentBlock =
-      <div className="results_comment">
-        <div className="results_all_comments">
-          { allComments }
-        </div>
-      </div>
   }
 
-  if(props.showCommentButton){
-    commentBlock =
-      <div className="results_comment">
-        <div className="results_comment_button_container">
-          <CommentButton
-            keyNameValue="results_comment_button"
-            class={ props.enableCommentButton ? "results_comment_button" : "results_comment_button_disabled" }
-            onClick={ props.enableCommentButton ? props.onClickCommentFunctions : null }
-          >
-            Leave a Comment
-          </CommentButton>
-        </div>
-      </div>
-  }
+  let commentBlock =
+    <div className="results_all_comments">
+      { allComments }
+    </div>
 
-  if(props.showCommentForm){
-    commentBlock =
-      <div className="results_comment">
-        <div className="results_comment_text">
-          <CommentForm
-            comment={ props.comment }
-            commentForm={ props.commentForm }
-            enableAddCommentButton = { props.enableAddCommentButton }
-            onAddComment={ props.onAddComment }
-            onChangeComment={ props.onChangeComment }
-          />
-        </div>
+  if(!props.play.commentLoading)
+    commentForm =
+      <div className="results_comment_text">
+        <CommentForm
+          comment={ props.comment }
+          commentForm={ props.commentForm }
+          enableAddCommentButton = { props.enableAddCommentButton }
+          onAddComment={ props.onAddComment }
+          onChangeComment={ props.onChangeComment }
+        />
       </div>
-  }
 
   return(
-    <>{ commentBlock }</>
+    <>
+      { props.showComments &&
+        <div className="results_comment">
+          { commentForm }
+          { commentBlock }
+        </div>
+      }
+    </>
   )
 }
 

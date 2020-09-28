@@ -9,16 +9,16 @@ const Modal = (props) => {
   const modal =
     <>
       <Backdrop
-        showModal={props.showModal}
+        showModal={ props.showModal }
       />
       <div className='modal_wrapper'>
-        {props.children}
+        { props.children }
       </div>
     </>
 
   return(
     <>
-      { props.showModal ? modal : null }
+      { props.showModal && modal }
     </>
   )
 }

@@ -88,8 +88,12 @@ export const authFail = (error) => {
     } else if(error.message === 'INVALID_PASSWORD') {
       newCode = 423
       newMessage = 'Incorrect Password'
-    } else if(error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.'){
+    } else if(error.message === 'USER_NOT_FOUND') {
+      console.log(error)
       newCode = 424
+      newMessage = 'User does not exist'
+    } else if(error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.'){
+      newCode = 440
       newMessage = 'Too many failed attempts. Please try again later'
     } else {
       newCode = error.code

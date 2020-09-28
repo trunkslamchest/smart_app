@@ -11,6 +11,8 @@ import {
 } from './playActions'
 
 import userFunctions from '../../utility/userFunctions'
+import questionsFunctions from '../../utility/questionsFunctions'
+
 
 export const storeUserInfo = (info) => {
   return dispatch => {
@@ -145,10 +147,26 @@ export const updateUserCommentsFromPlayController = (id, comment) => {
   }
 }
 
-export const initUpdateUserCommentsFromPlayController = (id, comment) => {
+export const initUpdateUserCommentsFromPlayController = (cid, comment) => {
   return {
     type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER,
-    cid: id,
+    cid: cid,
     comment: comment
+  }
+}
+
+export const deleteUserComment = (obj) => {
+  return dispatch => {
+    questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, { cid: obj.cid, qid: obj.qid, difficulty: obj.difficulty, category: obj.category })
+    .then(() => userFunctions('deleteUserComment', fetch.delete.userComment, { uid: obj.uid, cid: obj.cid })
+      .then(cRes => dispatch(initDeleteUserComment(cRes)) )
+    )
+  }
+}
+
+const initDeleteUserComment = (comments) => {
+  return {
+    type: actionTypes.DELETE_USER_COMMENT,
+    comments: comments
   }
 }

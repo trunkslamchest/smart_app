@@ -16,6 +16,8 @@ const BaseDynamicBar = (props) => {
   if(props.modalType === 'questionVote') loadStatus = props.play.voteStatus
   if(props.modalType === 'questionComment') loadStatus = props.play.commentStatus
 
+  // console.log(loadStatus)
+
   return(
     <div className="dyanmic_bar_container">
       <div className="loading_bar_container">
