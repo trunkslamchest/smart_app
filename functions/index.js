@@ -13,12 +13,17 @@ const url = {
   // rootUnsecured: env.parsed.DEPLOY_UNSECURED
   crossRoute: 'https://us-east1-smartapp-b3d27.cloudfunctions.net',
 
-  // crossUpdateUserQuestion: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserQuestion',
-  // crossUpdateUserVote: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserVote',
-  // crossUpdateUserComment: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserComment'
-  crossUpdateUserQuestion: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserQuestion',
-  crossUpdateUserVote: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserVote',
-  crossUpdateUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserComment'
+  crossUpdateUserQuestion: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserQuestion',
+  crossUpdateUserVote: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserVote',
+  crossUpdateUserComment: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserComment',
+  crossDeleteUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/deleteUserComment',
+  crossEditUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/editUserComment'
+
+  // crossUpdateUserQuestion: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserQuestion',
+  // crossUpdateUserVote: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserVote',
+  // crossUpdateUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserComment',
+  // crossDeleteUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/deleteUserComment',
+  // crossEditUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/editUserComment'
 }
 
 var firebaseConfig = {
@@ -83,23 +88,26 @@ exports.users = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSget(req, res);
-    firebase.database().ref('/').once('value', function(users){ res.json(users) });
+    firebase.database().ref('/').once('value', function(users){
+      res.json(users).status(200);
+    });
 });
 
 exports.addUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSpost(req, res);
-    var obj = req.body;
-    firebase.database().ref().update(obj);
-    res.status(200).json(obj);
+    firebase.database().ref().update(req.body);
+    res.json(req.body).status(200);
 });
 
 exports.getUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSpost(req, res);
-    firebase.database().ref('/' + req.body.id).once('value', function(snap){ res.status(200).json(snap.val()) });
+    firebase.database().ref('/' + req.body.id).once('value', function(snap){
+      res.json(snap.val()).status(200)
+    });
 });
 
 exports.updateUser = functions
@@ -111,7 +119,7 @@ exports.updateUser = functions
       updatedInfo['/' + req.body.uid + '/' + 'info'] = req.body.info;
       firebase.database().ref().update(updatedInfo);
     }
-    res.status(200).json(updatedInfo);
+    res.json(updatedInfo).status(200);
 });
 
 exports.deleteUser = functions
@@ -123,7 +131,7 @@ exports.deleteUser = functions
       user = `/${req.body.uid}`
       firebase.database().ref(user).remove()
     }
-    res.status(200).json({msg: 'Your Profile has been removed.'})
+    res.json({msg: 'Your Profile has been removed.'}).status(200)
 });
 
 exports.checkUserName = functions
@@ -133,16 +141,19 @@ exports.checkUserName = functions
     firebase.database().ref('/').once('value', function(snap){
       let resObj = { valid: true, errors: {} }
       if(!!req.body.user_name) {
-        let users = Object.values(snap.val())
-        for(let user in users) {
-          if(req.body.user_name === users[user].info.user_name){
-            resObj.valid = false
-            resObj.errors = { code: 41, message: `User Name '${req.body.user_name}' already exists`}
-            break
+        if(!!snap.val()){
+          let users = Object.values(snap.val())
+          for(let user in users) {
+            if(req.body.user_name === users[user].info.user_name) {
+              resObj.valid = false
+              resObj.errors = { code: 41, message: `User Name '${req.body.user_name}' already exists`}
+              break
+            }
           }
         }
       }
       res.json(resObj).status(200)
+      // res.send('done')
     });
 });
 
@@ -256,16 +267,18 @@ exports.crossUpdateUserComment = functions
       var commentPath = '/' + req.body.uid + '/questions/comments'
 
       updateObj = {
+        qid: req.body.qid,
         question: req.body.question,
         difficulty: req.body.difficulty,
         category: req.body.category,
         answer: req.body.answer,
         correct_answer: req.body.correct_answer,
         result: req.body.result,
-        comment: req.body.comment
+        comment: req.body.comment,
+        timestamp: req.body.timestamp
       }
 
-      commentObj[commentPath] = { ...snap.val().comments, [req.body.qid]: updateObj }
+      commentObj[commentPath] = { ...snap.val().comments, [req.body.cid]: updateObj }
       commentObj[commentPath].total = commentObj[commentPath].total ? commentObj[commentPath].total + 1 : 1
 
       firebase.database().ref().update(commentObj);
@@ -274,13 +287,52 @@ exports.crossUpdateUserComment = functions
     res.end()
 });
 
+exports.deleteUserComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSdelete(req, res);
+    var commentObj = {}, resObj = null
+      var commentPath = '/' + req.body.uid + '/questions/comments/'
+      firebase.database().ref(commentPath + req.body.cid).remove()
+      firebase.database().ref(commentPath).once('value', function(snap){
+        if(!!req.body.cid) {
+          commentObj[commentPath] = { ...snap.val() }
+          commentObj[commentPath].total = commentObj[commentPath].total - 1
+          if(commentObj[commentPath].total === 0) firebase.database().ref(commentPath).remove()
+          else {
+            resObj = commentObj[commentPath]
+            firebase.database().ref().update(commentObj);
+          }
+        }
+      res.json(resObj).status(200)
+      })
+    // res.send('done')
+});
+
+exports.editUserComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSdelete(req, res);
+    console.log(req.body)
+    let resObj = {}
+    if(!!req.body.uid && !!req.body.cid){
+      var commentPath = '/' + req.body.uid + '/questions/comments/' + req.body.cid
+      firebase.database().ref(commentPath).update({comment: req.body.comment})
+      resObj = req.body
+    }
+
+    res.json(resObj).status(200)
+    // res.send('done')
+});
+
 // ~~~~~~~~~~~~~~~~~~~~ QUESTIONS ~~~~~~~~~~~~~~~~~~~~
 
 exports.questions = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSget(req, res)
-    firebase.database().ref('/').once('value', function(questions){ res.json(questions) });
+    firebase.database().ref('/').once('value', function(questions){ res.json(questions).status(200) });
+    // res.send('done')
 });
 
 var calcStats = function(diff, diffCats, statsObj) {
@@ -410,6 +462,7 @@ exports.questionsTotals = functions
         },
         category: catTotals
       }).status(200)
+      // res.send('done')
     });
 });
 
@@ -506,8 +559,6 @@ exports.catQuestion = functions
     setCORSpost(req, res)
     firebase.database().ref().once('value', function(snap){
       var question = {}
-
-
       if(!!req.body.qSet) {
         var easyQs = [], mediumQs = [], hardQs = []
         if(snap.val().Easy.categories[req.body.qSet]) easyQs = pushCats('Easy', Object.entries(snap.val().Easy.categories[req.body.qSet]))
@@ -537,8 +588,8 @@ exports.catQuestion = functions
         }
       }
       res.json(question)
+      // res.send('done')
     })
-  // res.send('done')
 })
 
 exports.questionResults = functions
@@ -614,6 +665,7 @@ exports.questionResults = functions
       }
 
       res.json(resObj).status(200)
+    // res.send('done')
     })
 })
 
@@ -656,6 +708,7 @@ exports.questionVote = functions
       }
 
       res.json(voteObj).status(200)
+    // res.send('done')
     })
 })
 
@@ -663,15 +716,17 @@ exports.questionComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSpatch(req, res)
-    let commentsObj = {}, commentObj = {}
+    let commentsObj = {}, commentObj = {}, resObj = {}
     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
       if(!!req.body.uid) {
 
         var k = firebase.database().ref().push().key
         commentObj = {
           [k]: {
+            cid: k,
             comment: req.body.comment,
-            user: req.body.user_name
+            user: req.body.user_name,
+            timestamp: req.body.timestamp
           }
         }
 
@@ -681,21 +736,27 @@ exports.questionComment = functions
         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments').update(commentsObj)
 
         let crossObj = {
-          uid: req.body.uid,
+          cid: k,
           qid: req.body.qid,
+          uid: req.body.uid,
           question: req.body.question,
           difficulty: req.body.difficulty,
           category: req.body.category,
           answer: req.body.answer,
           correct_answer: req.body.correct_answer,
           result: req.body.result,
-          comment: req.body.comment
+          comment: req.body.comment,
+          timestamp: req.body.timestamp
         }
 
         commentObj = {
           cid: k,
-          comment: req.body.comment
+          qid: req.body.qid,
+          comment: req.body.comment,
+          timestamp: req.body.timestamp
         }
+
+        resObj = { commentsObj, commentObj }
 
         fetch(url.crossUpdateUserComment, {
           method: "POST",
@@ -708,6 +769,43 @@ exports.questionComment = functions
         })
       }
 
-      res.json({commentsObj, commentObj }).status(200)
+      res.json(resObj).status(200)
+    // res.send('done')
     })
 })
+
+exports.deleteQuestionComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSdelete(req, res);
+    firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid).remove()
+
+    res.json({ msg: 'Question Comment Removed' }).status(200)
+    // res.send('done')
+});
+
+exports.editQuestionComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSdelete(req, res);
+    let resObj = {}
+    if(!!req.body.uData && !!req.body.cData){
+      resObj = {
+        qid: req.body.uData.qid,
+        uid: req.body.uData.uid,
+        cid: req.body.uData.cid,
+        answer: req.body.uData.answer,
+        difficulty: req.body.uData.difficulty,
+        category: req.body.uData.category,
+        correct_answer: req.body.uData.correct_answer,
+        result: req.body.uData.result,
+        question: req.body.uData.question,
+        comment: req.body.cData.comment,
+        user_name: req.body.cData.user
+      }
+      firebase.database().ref('/' + req.body.uData.difficulty + '/categories/' + req.body.uData.category + '/' + req.body.uData.qid + '/comments/' + req.body.uData.cid).update(req.body.cData)
+    }
+
+    res.json(resObj).status(200)
+    // res.send('done')
+});
