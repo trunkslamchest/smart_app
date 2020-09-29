@@ -32,6 +32,7 @@ class DashboardCommentCard extends React.Component {
       <div className="comment_card">
         <div className={ comment_header_switch }>
           <h3>{ this.props.commentedQuestion.question }</h3>
+          <h4>{ this.props.commentedQuestion.timestamp }</h4>
         </div>
         <span><h4>Difficulty</h4> { this.props.commentedQuestion.difficulty }</span>
         <span><h4>Category</h4> { this.props.commentedQuestion.category }</span>

@@ -33,6 +33,13 @@
 
 .comment_card_header_incorrect {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 2.5px 10px;
   background-color: rgb(153, 0, 0, 0.5);
   background-image: linear-gradient(45deg, rgba(255,255,255, 0), rgba(255,255,255, 1), rgba(255,255,255, 1) );
   border: 1px solid rgba(200, 200, 200, 1);
@@ -40,20 +47,20 @@
 
 .comment_card_header_incorrect > * {
   text-align: center;
-  padding: 5px 0px 5px 0px;
-  margin: 0px auto 0px auto;
+  /* padding: 5px 0px 5px 0px; */
+  /* margin: 0px auto 0px auto; */
 }
 
 .comment_card h3 {
   text-align: center;
-  height: 100%;
+  /* height: 100%; */
   font: 400 10pt 'Lato', sans-serif;
 }
 
 .comment_card h4 {
 	text-align: center;
-	margin-top: 5px;
-	margin-bottom: 2.5px;
+	/* margin-top: 5px;
+	margin-bottom: 2.5px; */
 	font: 400 8pt 'Lato', sans-serif;
 }
 
