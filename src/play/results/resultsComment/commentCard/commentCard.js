@@ -26,6 +26,11 @@ class commentCard extends React.Component {
 
   componentDidMount(){ this.setState({ editedComment: this.props.comment.comment }) }
 
+  componentDidUpdate(){
+    if(this.props.play.commentLoading && this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: false })
+    if(!this.props.play.commentLoading && !this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: true })
+  }
+
   onEditComment = (event) => { this.setState({ editedComment: event.target.value }) }
 
   onAddEditedComment = (event) => {
@@ -55,9 +60,11 @@ class commentCard extends React.Component {
         }
       })
       this.props.onEditQuestionComment({ comment: this.state.editedComment, cid: this.props.comment.cid })
-      this.setState({ editedComment: '', showEditCommentForm: false })
+      this.setState({ showEditCommentForm: false })
     }
   }
+
+  onCancelEditCommentFunctions = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: true }) }
 
   render() {
 
@@ -79,9 +86,9 @@ class commentCard extends React.Component {
 
       editButton =
         <button
-          id='edit_comment_button'
-          name='edit_comment_button'
-          className='edit_comment_button'
+          id='results_edit_comment_button'
+          name='results_edit_comment_button'
+          className='results_edit_comment_button'
           onClick={ onEditCommentFunctions }
         >
           Edit
@@ -89,9 +96,9 @@ class commentCard extends React.Component {
 
       deleteButton =
         <button
-          id='delete_comment_button'
-          name='delete_comment_button'
-          className='delete_comment_button'
+          id='results_delete_comment_button'
+          name='results_delete_comment_button'
+          className='results_delete_comment_button'
           onClick={ onDeleteCommentFunctions }
         >
           Delete
@@ -126,24 +133,39 @@ class commentCard extends React.Component {
           onChange={ this.onEditComment }
           value={ this.state.editedComment }
         />
-        <div className="results_edit_comment_button_container">
+        <div className="results_edit_comment_buttons_container">
           <input
             disabled={ !this.state.enableEditCommentButton }
-            className={ this.state.enableEditCommentButton ? "results_edit_comment_button" : "results_edit_comment_button_disabled" }
+            className={ this.state.enableEditCommentButton ? "results_edit_comment_confirm_button" : "results_edit_comment_confirm_button_disabled" }
             type="submit"
             value="Edit Comment"
           />
+        <button
+          id='results_edit_comment_cancel_button'
+          name='results_edit_comment_cancel_button'
+          className='results_edit_comment_cancel_button'
+          onClick={ this.onCancelEditCommentFunctions }
+        >
+          Cancel
+        </button>
         </div>
         { !this.state.editCommentForm.valid && this.state.editCommentForm.errors.length && <div className='results_edit_comment_error_container'>{ distribEditCommentErrors }</div> }
       </form>
     } else {
       commentCard =
         <ul>
+          <div className='results_all_comments_comment_header'>
+            <div className='results_all_comments_comment_header_left'>
+              <h5>{ this.props.comment.user }</h5>
+              <span>{ this.props.comment.timestamp }</span>
+            </div>
+            <div className='results_edit_comment_buttons_container'>
+              { editButton }
+              { deleteButton }
+            </div>
+          </div>
           <li>
-            <h5>{ this.props.comment.user }</h5>
             <p>{ this.props.comment.comment }</p>
-            { editButton }
-            { deleteButton }
           </li>
         </ul>
     }

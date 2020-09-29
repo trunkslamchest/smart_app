@@ -9,6 +9,8 @@ import {
 } from '../../store/actions/actionIndex'
 
 import validateComment from '../../utility/validation/validateComment'
+import getTime from '../../utility/getTime'
+
 
 import ResultsHeader from './resultsHeader/resultsHeader'
 import ResultsAnswer from './resultsAnswer/resultsAnswer'
@@ -113,7 +115,8 @@ class ResultsContainer extends React.Component{
         answer: this.props.play.answer.choice,
         correct_answer: this.props.play.results.correct_answer,
         result: this.props.play.results.result,
-        comment: this.state.comment
+        comment: this.state.comment,
+        timestamp: getTime('fullDate')
       })
       this.props.onUpdateCommentStatus('initComment', true)
       this.setState({ comment: '' })

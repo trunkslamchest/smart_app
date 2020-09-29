@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/trunkslamchest/smart_app/tree/0.77"><img align="center" src="https://img.shields.io/badge/Latest%20Repository-0.77-000000"></a>
+  <a href="https://github.com/trunkslamchest/smart_app/tree/0.78"><img align="center" src="https://img.shields.io/badge/Latest%20Repository-0.78-000000"></a>
 </p>
 
 # Contents

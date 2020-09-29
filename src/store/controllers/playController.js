@@ -232,7 +232,8 @@ class PlayController extends React.Component {
       correct_answer: this.props.play.results.correct_answer,
       question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
-      result: this.props.play.results.result
+      result: this.props.play.results.result,
+      timestamp: this.props.play.comment.timestamp
     })
   }
 
