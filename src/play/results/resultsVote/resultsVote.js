@@ -37,7 +37,6 @@ const ResultsVote = (props) => {
     if (props.play.question.votes.total === 0) return 'Not Available'
     else {
       let numRate = parseFloat((props.play.question.votes.good / (props.play.question.votes.good + props.play.question.votes.bad)).toFixed(2))
-      console.log(numRate)
       if(numRate > 1.00) return 'S'
       if(numRate <= 1.00 && numRate >= 0.95) return 'A+'
       if(numRate < 0.95 && numRate >= 0.9) return 'A'

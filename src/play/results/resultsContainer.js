@@ -11,10 +11,10 @@ import {
 import validateComment from '../../utility/validation/validateComment'
 import getTime from '../../utility/getTime'
 
-
 import ResultsHeader from './resultsHeader/resultsHeader'
 import ResultsAnswer from './resultsAnswer/resultsAnswer'
-import ResultsDifficulty from './resultsDifficulty/resultsDifficulty'
+// import ResultsDifficulty from './resultsDifficulty/resultsDifficulty'
+import ResultsStats from './resultsStats/resultsStats'
 import ResultsVote from './resultsVote/resultsVote'
 import ResultsComment from './resultsComment/resultsComment'
 import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
@@ -26,11 +26,13 @@ import './resultsContainer.css'
 class ResultsContainer extends React.Component{
 
   state = {
+    initResults: false,
     comment: '',
     commentForm: { valid: true },
     showHeader: false,
     showCorrectAnswer: false,
-    showDifficulty: false,
+    // showDifficulty: false,
+    showStats: false,
     showVoteButtons: false,
     showCommentButton: false,
     showComments: false,
@@ -48,13 +50,14 @@ class ResultsContainer extends React.Component{
 
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
     if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1250)
-    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 1500)
-    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 1750)
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2000)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2250)
-    this.commentsTimeout = setTimeout(() => { this.setState({ showComments: true })}, 2250)
-    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 2500)
+    // this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1250)
+    this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1500)
+    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 1750)
+    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2000)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2250)
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2500)
+    this.commentsTimeout = setTimeout(() => { this.setState({ showComments: true })}, 2500)
+    this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 2750)
   }
 
   componentDidUpdate(){
@@ -65,7 +68,8 @@ class ResultsContainer extends React.Component{
   componentWillUnmount(){
     clearTimeout(this.headerTimeout)
     clearTimeout(this.correctAnswerTimeout)
-    clearTimeout(this.difficultyTimeout)
+    // clearTimeout(this.difficultyTimeout)
+    clearTimeout(this.statsTimeout)
     clearTimeout(this.voteButtonsTimeout)
     clearTimeout(this.enableVoteButtonsTimeout)
     clearTimeout(this.commentsTimeout)
@@ -138,8 +142,12 @@ class ResultsContainer extends React.Component{
           <ResultsAnswer
             showCorrectAnswer={ this.state.showCorrectAnswer }
           />
-          <ResultsDifficulty
+          {/* <ResultsDifficulty
             showDifficulty={ this.state.showDifficulty }
+          /> */}
+          <ResultsStats
+            showStats={ this.state.showStats }
+
           />
           <ResultsVote
             enableVoteButtons={ this.state.enableVoteButtons }
