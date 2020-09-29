@@ -94,6 +94,19 @@
       .then(res => res.json())
     },
 
+    editQuestionComment: function(url, obj) {
+      return fetch(url, {
+        method: "PATCH",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(obj)
+      })
+      .then(res => res.json())
+    },
+
     deleteQuestionComment: function(url, obj) {
       return fetch(url, {
         method: "PATCH",

@@ -45,6 +45,7 @@ export {
   updateUserQuestionTotalsFromPlayController,
   updateUserVotesFromPlayController,
   updateUserCommentsFromPlayController,
+  editUserComment,
   deleteUserComment,
   deleteUser
 } from './userActions'
@@ -81,6 +82,7 @@ export {
   resetVote,
   setComment,
   resetComment,
+  editQuestionComment,
   deleteQuestionComment
 
 } from './playActions'

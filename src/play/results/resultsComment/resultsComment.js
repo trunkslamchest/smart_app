@@ -23,8 +23,11 @@ const ResultsComment = (props) => {
   if(props.play.status === 'displayResults' && props.play.question.comments){
     allComments = Object.entries(props.play.question.comments).map(comment =>
       <CommentCard
-        key={comment[0]}
-        comment={comment[1]}
+        key={ comment[0] }
+        comment={ comment[1] }
+        userComment= { props.comment }
+        onAddComment={ props.onAddComment }
+        onChangeComment={ props.onChangeComment }
       />
     )
   }

@@ -21,12 +21,7 @@ export const storeUserInfo = (info) => {
   }
 }
 
-export const initStoreUserInfo = (info) => {
-  return {
-    type: actionTypes.STORE_USER_INFO,
-    info: info
-  }
-}
+export const initStoreUserInfo = (info) => { return { type: actionTypes.STORE_USER_INFO, info: info } }
 
 export const storeUserQuestions = (questions) => {
   return dispatch => {
@@ -35,12 +30,7 @@ export const storeUserQuestions = (questions) => {
   }
 }
 
-export const initStoreUserQuestions = (questions) => {
-  return {
-    type: actionTypes.STORE_USER_QUESTIONS,
-    questions: questions
-  }
-}
+export const initStoreUserQuestions = (questions) => { return { type: actionTypes.STORE_USER_QUESTIONS, questions: questions } }
 
 export const updateUserInfo = (authType, obj) => {
   return dispatch => {
@@ -57,7 +47,7 @@ export const updateUserInfo = (authType, obj) => {
 
 export const updateUserQuestions = () => {
   return dispatch => {
-  if(localStorage.id) {
+    if(localStorage.id) {
       userFunctions('getUser', fetch.get.user, localStorage.id)
       .then(userRes => {
         dispatch(storeUserQuestions(userRes.questions))
@@ -73,12 +63,7 @@ export const clearUserInfo = () => {
   }
 }
 
-const initClearUserInfo = () => {
-  return {
-    type: actionTypes.CLEAR_USER_INFO,
-    info: null
-  }
-}
+const initClearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, info: null } }
 
 export const clearUserQuestions = () => {
   return dispatch => {
@@ -87,12 +72,7 @@ export const clearUserQuestions = () => {
   }
 }
 
-const initClearUserQuestions = () => {
-  return {
-    type: actionTypes.CLEAR_USER_QUESTIONS,
-    questions: null
-  }
-}
+const initClearUserQuestions = () => { return { type: actionTypes.CLEAR_USER_QUESTIONS, questions: null } }
 
 export const deleteUser = (id) => {
   return dispatch => {
@@ -104,26 +84,11 @@ export const deleteUser = (id) => {
   }
 }
 
-export const updateUserQuestionIdsFromPlayController = (ids) => {
-  return {
-    type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER,
-    ids: ids
-  }
-}
+export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
 
-export const updateUserQuestionsFromPlayController = (question) => {
-  return {
-    type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER,
-    question: question
-  }
-}
+export const updateUserQuestionsFromPlayController = (question) => { return { type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER, question: question } }
 
-export const updateUserQuestionTotalsFromPlayController = (result) => {
-  return {
-    type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
-    result: result
-  }
-}
+export const updateUserQuestionTotalsFromPlayController = (result) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, result: result } }
 
 export const updateUserVotesFromPlayController = (id, vote) => {
   return dispatch => {
@@ -132,13 +97,7 @@ export const updateUserVotesFromPlayController = (id, vote) => {
   }
 }
 
-const initUpdateUserVotesFromPlayController = (id, vote) => {
-  return {
-    type: actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER,
-    qid: id,
-    vote: vote
-  }
-}
+const initUpdateUserVotesFromPlayController = (id, vote) => { return { type: actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER, qid: id, vote: vote } }
 
 export const updateUserCommentsFromPlayController = (id, comment) => {
   return dispatch => {
@@ -147,13 +106,7 @@ export const updateUserCommentsFromPlayController = (id, comment) => {
   }
 }
 
-export const initUpdateUserCommentsFromPlayController = (cid, comment) => {
-  return {
-    type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER,
-    cid: cid,
-    comment: comment
-  }
-}
+export const initUpdateUserCommentsFromPlayController = (cid, comment) => { return { type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER, cid: cid, comment: comment } }
 
 export const deleteUserComment = (obj) => {
   return dispatch => {
@@ -164,9 +117,18 @@ export const deleteUserComment = (obj) => {
   }
 }
 
-const initDeleteUserComment = (comments) => {
-  return {
-    type: actionTypes.DELETE_USER_COMMENT,
-    comments: comments
+const initDeleteUserComment = (comments) => { return { type: actionTypes.DELETE_USER_COMMENT, comments: comments } }
+
+export const editUserComment = (obj) => {
+  return dispatch => {
+    questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
+    .then((qRes) => {
+      userFunctions('editUserComment', fetch.patch.editUserComment, { uid: qRes.uid, cid: qRes.cid, comment: qRes.comment })
+      .then(cRes => {
+        dispatch(initEditUserComment({cid: cRes.cid, comment: cRes.comment}))
+      })
+    })
   }
 }
+
+const initEditUserComment = (comment) => { return { type: actionTypes.EDIT_USER_COMMENT, cid: comment.cid, comment: comment.comment } }

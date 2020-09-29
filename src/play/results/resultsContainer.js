@@ -116,6 +116,7 @@ class ResultsContainer extends React.Component{
         comment: this.state.comment
       })
       this.props.onUpdateCommentStatus('initComment', true)
+      this.setState({ comment: '' })
     }
   }
 
@@ -142,11 +143,6 @@ class ResultsContainer extends React.Component{
             showVoteButtons={ this.state.showVoteButtons }
             onClickVoteFunctions={ this.onClickVoteFunctions }
           />
-          <ResultsNextQuestion
-            showNextQuestionButton={ this.state.showNextQuestionButton }
-            enableNextQuestionButton={ this.state.enableNextQuestionButton }
-            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
-          />
           <ResultsComment
             comment={ this.state.comment }
             commentForm={ this.state.commentForm }
@@ -156,6 +152,11 @@ class ResultsContainer extends React.Component{
             onAddComment={ this.onAddComment }
             onChangeComment={ this.onChangeComment }
             onClickCommentFunctions={ this.onClickCommentFunctions }
+          />
+          <ResultsNextQuestion
+            showNextQuestionButton={ this.state.showNextQuestionButton }
+            enableNextQuestionButton={ this.state.enableNextQuestionButton }
+            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
           />
         </div>
     }

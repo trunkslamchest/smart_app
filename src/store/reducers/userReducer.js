@@ -5,47 +5,17 @@ const initialState = {
   questions: null
 }
 
-const storeUserInfo = (currentState, action) => {
-  return {
-    ...currentState,
-    info: action.info
-  }
-}
+const storeUserInfo = (currentState, action) => { return { ...currentState, info: action.info } }
 
-const storeUserQuestions = (currentState, action) => {
-  return {
-    ...currentState,
-    questions: action.questions
-  }
-}
+const storeUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
 
-const clearUserInfo = (currentState, action) => {
-  return {
-    ...currentState,
-    info: action.info
-  }
-}
+const clearUserInfo = (currentState, action) => { return { ...currentState, info: action.info } }
 
-const clearUserQuestions = (currentState, action) => {
-  return {
-    ...currentState,
-    questions: action.questions
-  }
-}
+const clearUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
 
-const updateUserInfo = (currentState, action) => {
-  return{
-    ...currentState,
-    info: action.info
-  }
-}
+const updateUserInfo = (currentState, action) => { return{ ...currentState, info: action.info } }
 
-const updateUserQuestions = (currentState, action) => {
-  return{
-    ...currentState,
-    questions: action.questions
-  }
-}
+const updateUserQuestions = (currentState, action) => { return{ ...currentState, questions: action.questions } }
 
 const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
@@ -53,7 +23,7 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   if(currentState.questions.ids) qIds = [ ...currentState.questions.ids, action.ids ]
   if(!currentState.questions.ids) qIds = [ action.ids ]
 
-  return{
+  return {
     ...currentState,
     questions: { ...currentState.questions, ids: qIds }
   }
@@ -172,20 +142,25 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
   }
 }
 
-const deleteUserComment = (currentState, action) => {
+const editUserComment = (currentState, action) => {
   return {
     ...currentState,
-    questions: { ...currentState.questions, comments: action.comments }
+    questions: {
+      ...currentState.questions,
+      comments: {
+        ...currentState.questions.comments,
+        [action.cid]: {
+          ...currentState.questions.comments[action.cid],
+          comment: action.comment
+        }
+      }
+    }
   }
 }
 
-const deleteUser = (currentState, action) => {
-  return{
-    ...currentState,
-    info: action.info,
-    questions: action.questions
-  }
-}
+const deleteUserComment = (currentState, action) => { return { ...currentState, questions: { ...currentState.questions, comments: action.comments } } }
+
+const deleteUser = (currentState, action) => { return { ...currentState, info: action.info, questions: action.questions } }
 
 const userReducer = (currentState = initialState, action) => {
   switch(action.type) {
@@ -200,6 +175,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateUserQuestionTotalsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER: return updateUserVotesFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER: return updateUserCommentsFromPlayController(currentState, action)
+    case actionTypes.EDIT_USER_COMMENT: return editUserComment(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     case actionTypes.DELETE_USER_COMMENT: return deleteUserComment(currentState, action)
     default: return currentState

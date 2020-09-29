@@ -21,8 +21,10 @@ export const fetch = {
   },
   patch: {
     user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
+    editUserComment: `${process.env.REACT_APP_LOCAL_EDIT_USER_COMMENT}`,
+    editQuestionComment: `${process.env.REACT_APP_LOCAL_EDIT_QUESTION_COMMENT}`,
     questionVote: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_VOTE}`,
-    questionComment: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_COMMENT}`
+    questionComment: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_COMMENT}`,
   },
   delete: {
     user: `${process.env.REACT_APP_LOCAL_DELETE_USER}`,
@@ -52,6 +54,8 @@ export const check = {
 //   },
 //   patch: {
 //     user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
+//     editUserComment: `${process.env.REACT_APP_DEPLOY_EDIT_USER_COMMENT}`,
+//     editQuestionComment: `${process.env.REACT_APP_DEPLOY_EDIT_QUESTION_COMMENT}`,
 //     questionVote: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_VOTE}`,
 //     questionComment: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_COMMENT}`
 //   },
