@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-// import { calcRating } from './resultsStatsFunctions'
-
 import './resultsStats.css'
 import './resultsStatsPerf.css'
 import './resultsStatsQuestion.css'
@@ -51,11 +49,11 @@ const ResultsStats = (props) => {
           <div className='results_perf_rank_sub_container'>
             <div className='results_perf_rank'>
               <h4>Rank</h4>
-              <h5>{ props.play.results.performance.rank }</h5>
+              <h5>{ props.play.results.performance.qPerf.rank }</h5>
             </div>
             <div className='results_perf_rating'>
               <h4>Rating</h4>
-              <h5>{ props.play.results.performance.rating }</h5>
+              <h5>{ props.play.results.performance.qPerf.rating }</h5>
             </div>
           </div>
           <span>{ comp.result }</span>

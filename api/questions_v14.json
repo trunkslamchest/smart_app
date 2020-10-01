@@ -3378,7 +3378,7 @@
         "-MGPR-PSClR2D9ABR8uj": {
           "type": "multiple",
           "question": "Akatsuki's subclass in Log Horizon is what?",
-          "correct": " Tracker",
+          "correct": "Tracker",
           "choices": [
             "Assassin",
             "Tracker",

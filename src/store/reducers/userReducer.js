@@ -19,6 +19,30 @@ const updateUserInfo = (currentState, action) => { return{ ...currentState, info
 
 const updateUserQuestions = (currentState, action) => { return{ ...currentState, questions: action.questions } }
 
+const updateUserPerformanceFromPlayController = (currentState, action) => {
+  return {
+    ...currentState,
+    questions: {
+      ...currentState.questions,
+      totals: {
+        ...currentState.questions.totals,
+        all: {
+          ...currentState.questions.totals.all,
+          rank: action.rank,
+          rating: action.rating
+        }
+      }
+    }
+  }
+}
+
+const updateUserExperienceFromPlayController = (currentState, action) => {
+  return {
+    ...currentState,
+    experience: action.total
+  }
+}
+
 const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
 
@@ -172,6 +196,8 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_INFO: return updateUserInfo(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
+    case actionTypes.UPDATE_USER_PERFORMANCE_FROM_PLAY_CONTROLLER: return updateUserPerformanceFromPlayController(currentState, action)
+    case actionTypes.UPDATE_USER_EXPERIENCE_FROM_PLAY_CONTROLLER: return updateUserExperienceFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER: return updateUserQuestionIdsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER: return updateUserQuestionsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateUserQuestionTotalsFromPlayController(currentState, action)

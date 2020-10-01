@@ -84,6 +84,21 @@ export const deleteUser = (id) => {
   }
 }
 
+export const updateUserPerformanceFromPlayController = (perf) => {
+  return {
+    type: actionTypes.UPDATE_USER_PERFORMANCE_FROM_PLAY_CONTROLLER,
+    rank: perf.rank,
+    rating: perf.rating
+  }
+}
+
+export const updateUserExperienceFromPlayController = (xp) => {
+  return {
+    type: actionTypes.UPDATE_USER_EXPERIENCE_FROM_PLAY_CONTROLLER,
+    total: xp
+  }
+}
+
 export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
 
 export const updateUserQuestionsFromPlayController = (question) => { return { type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER, question: question } }

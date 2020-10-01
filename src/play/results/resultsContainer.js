@@ -31,7 +31,6 @@ class ResultsContainer extends React.Component{
     commentForm: { valid: true },
     showHeader: false,
     showCorrectAnswer: false,
-    // showDifficulty: false,
     showStats: false,
     showVoteButtons: false,
     showCommentButton: false,
@@ -50,7 +49,6 @@ class ResultsContainer extends React.Component{
 
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
     if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    // this.difficultyTimeout = setTimeout(() => { this.setState({ showDifficulty: true })}, 1250)
     this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1500)
     this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 1750)
     this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2000)
@@ -68,7 +66,6 @@ class ResultsContainer extends React.Component{
   componentWillUnmount(){
     clearTimeout(this.headerTimeout)
     clearTimeout(this.correctAnswerTimeout)
-    // clearTimeout(this.difficultyTimeout)
     clearTimeout(this.statsTimeout)
     clearTimeout(this.voteButtonsTimeout)
     clearTimeout(this.enableVoteButtonsTimeout)
@@ -142,9 +139,6 @@ class ResultsContainer extends React.Component{
           <ResultsAnswer
             showCorrectAnswer={ this.state.showCorrectAnswer }
           />
-          {/* <ResultsDifficulty
-            showDifficulty={ this.state.showDifficulty }
-          /> */}
           <ResultsStats
             showStats={ this.state.showStats }
 

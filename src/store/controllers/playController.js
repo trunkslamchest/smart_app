@@ -166,7 +166,10 @@ class PlayController extends React.Component {
       difficulty: this.props.play.question.difficulty,
       category: this.props.play.question.category,
       answer: this.props.play.answer.choice,
-      time: this.props.play.answer.time
+      time: this.props.play.answer.time,
+      rating: this.props.user.questions.totals.all.rating,
+      rank: this.props.user.questions.totals.all.rank,
+      experience: this.props.user.experience.total
     })
   }
 
@@ -180,6 +183,14 @@ class PlayController extends React.Component {
   }
 
   updateUserQuestionsModule = () => {
+    this.props.onUpdateUserPerformanceFromPlayController(
+      // qPerf: this.props.play.results.performance.qPerf,
+      this.props.play.results.performance.oPerf
+    )
+    this.props.onUpdateUserExperienceFromPlayController({
+      level: this.props.play.results.experience.level,
+      total: this.props.play.results.experience.newTotal
+    })
     this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
     this.props.onUpdateUserQuestionTotalsFromPlayController({
       difficulty: this.props.play.question.difficulty,
@@ -315,6 +326,8 @@ const mapDispatchToProps = (dispatch) => {
     onResetResults: () => dispatch(actions.resetResults()),
     onResetVote: (obj) => dispatch(actions.resetVote(obj)),
     onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    onUpdateUserPerformanceFromPlayController: (obj) => dispatch(actions.updateUserPerformanceFromPlayController(obj)),
+    onUpdateUserExperienceFromPlayController: (obj) => dispatch(actions.updateUserExperienceFromPlayController(obj)),
     onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
     onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),

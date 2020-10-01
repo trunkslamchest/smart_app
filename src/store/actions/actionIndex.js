@@ -40,6 +40,8 @@ export {
   clearUserQuestions,
   updateUserInfo,
   updateUserQuestions,
+  updateUserPerformanceFromPlayController,
+  updateUserExperienceFromPlayController,
   updateUserQuestionIdsFromPlayController,
   updateUserQuestionsFromPlayController,
   updateUserQuestionTotalsFromPlayController,

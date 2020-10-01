@@ -39,7 +39,7 @@ export const getResults = (obj) => {
   return dispatch => {
     questionsFunctions('getQuestionResults', fetch.get.questionResults, obj)
     .then(res => {
-      dispatch(setResults({ result: res.answerResult, correct_answer: res.correct, performance: res.performance }))
+      dispatch(setResults({ result: res.answerResult, correct_answer: res.correct, performance: res.performance, experience: res.experience }))
       dispatch(updateQuestion({answers: res.answers, diffRating: res.diffRating, votes: res.votes, comments: res.comments }))
     })
   }
