@@ -14,14 +14,15 @@ class DashboardStatsTotal extends React.Component {
     return !!parseInt(a[ a.length - 1]) ? parseFloat(a.join('')) : Math.round(parseInt(num))
   }
 
+  xpBar = () => {
+    let currXP = this.props.user.experience.total
+    let prevLevelXP = parseInt(levels[this.props.user.experience.level - 1])
+    if(this.props.user.experience.level === 1) return currXP
+    else return currXP - prevLevelXP
+  }
+
   render(){
 
-const xpBar = () => {
-  let currXP = this.props.user.experience.total
-  let prevLevelXP = parseInt(levels[this.props.user.experience.level - 1])
-  if(this.props.user.experience.level === 1) return currXP
-  else return currXP - prevLevelXP
-}
 
     const xpBarClass = {
       border: "1px solid rgba(200, 200, 200, 1)",
@@ -29,7 +30,7 @@ const xpBar = () => {
       background: "green",
       height: "10px",
       // width: `${(this.props.user.experience.total / levels[this.props.user.experience.level]) * 100}%`
-      width: `${ xpBar() }%`
+      width: `${ this.xpBar() }%`
     }
 
     let totalStats = <></>, rank = <span>NR</span>, rating = <span>NR</span>,
@@ -45,7 +46,6 @@ const xpBar = () => {
         header = <></>
         rank = this.props.user.questions.totals.all.rank
         rating = this.props.user.questions.totals.all.rating
-
         performance =
           <>
             { header }
@@ -56,7 +56,7 @@ const xpBar = () => {
               </div>
               <div className="stats_total_rating">
                 <h2>SmartApp™ Rating</h2>
-                <h1>{ rating }</h1>
+                <h1>{ (rating * 10).toFixed(2) }</h1>
               </div>
             </div>
           </>

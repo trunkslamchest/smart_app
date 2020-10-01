@@ -1,9 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import levels from '../../../datasets/levels'
+
 import './resultsStats.css'
 import './resultsStatsPerf.css'
 import './resultsStatsQuestion.css'
+import './resultsStatsXP.css'
+
 
 const ResultsStats = (props) => {
 
@@ -41,10 +45,29 @@ const ResultsStats = (props) => {
 
   const comp = calcComp(calcStats())
 
+  const xpBar = () => {
+    let currXP = props.user.experience.total
+    let prevLevelXP = parseInt(levels[props.user.experience.level - 1])
+    if(props.user.experience.level === 1) return currXP
+    else return currXP - prevLevelXP
+  }
+
+  const xpBarClass = {
+    border: "1px solid rgba(200, 200, 200, 1)",
+    boxSizing: "border-box",
+    background: "green",
+    height: "10px",
+    // width: `${(this.props.user.experience.total / levels[this.props.user.experience.level]) * 100}%`
+    width: `${ xpBar() }%`
+  }
+
+
   const perfBlock =
     <div className='results_perf_container'>
       <h3>Your Performance</h3>
+
       <div className='results_perf_sub_container'>
+
         <div className='results_perf_rank_container'>
           <div className='results_perf_rank_sub_container'>
             <div className='results_perf_rank'>
@@ -58,6 +81,7 @@ const ResultsStats = (props) => {
           </div>
           <span>{ comp.result }</span>
         </div>
+
         <div className='results_time_container'>
           <div className='results_time_sub_container'>
             <h4>Time</h4>
@@ -65,7 +89,24 @@ const ResultsStats = (props) => {
           </div>
           <span>{ comp.time }</span>
         </div>
+
       </div>
+
+      <div className='results_xp_container'>
+        <div className='results_xp_count'>
+          <h4>+{ props.play.results.experience.gain }</h4><h5>XP</h5>
+        </div>
+        <div className="results_xp_bar_container">
+          <h4>Level { props.user.experience.level }</h4>
+          <div className="results_xp_bar_sub_container">
+            <div className="results_xp_bar">
+              <div style={ xpBarClass }></div>
+            </div>
+          </div>
+        </div>
+        <h5>{ props.user.experience.total }/{ levels[props.user.experience.level] }</h5>
+      </div>
+
     </div>
 
   const questionBlock =
@@ -120,7 +161,8 @@ const ResultsStats = (props) => {
 const mapStateToProps = state => {
   return {
     play: state.play,
-    question: state.question
+    question: state.question,
+    user: state.user
   }
 }
 
