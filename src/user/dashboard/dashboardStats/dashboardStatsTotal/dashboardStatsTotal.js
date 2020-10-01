@@ -1,18 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import levels from '../../../../datasets/levels'
+
 import './dashboardStatsTotal.css'
+import './dashboardStatsXP.css'
+import './dashboardStatsPerformance.css'
 
 class DashboardStatsTotal extends React.Component {
-
-  calcRating = (answered, correct) => {
-    let questionFactor = ((parseFloat(answered) + parseFloat(correct)) / 2.00) / 100
-    let noAnswersFactor = this.props.user.questions.totals.all.outta_times * 0.25
-    let timeFactor = (10 - this.props.user.questions.totals.all.avg_time) * questionFactor
-    let finalFactor = this.props.user.questions.totals.all.outta_times === 0 ? timeFactor : timeFactor - noAnswersFactor
-    let finalRating = finalFactor.toFixed(2)
-    return finalRating
-  }
 
   numZero = (num) => {
     let a = num.split('')
@@ -21,19 +16,46 @@ class DashboardStatsTotal extends React.Component {
 
   render(){
 
-    let totalStats = <></>
-    let totalQuestionsAnswered = (0).toFixed(2)
-    let totalQuestionsCorrect = (0).toFixed(2)
-    let rating
+    const xpBarClass = {
+      border: "1px solid rgba(200, 200, 200, 1)",
+      boxSizing: "border-box",
+      background: "green",
+      height: "10px",
+      // transitionProperty: "width",
+      // transitionDuration: ".1s, .1s",
+      // transitionTimingFunction: "ease-in-out",
+      width: `${(this.props.user.experience.total / levels[this.props.user.experience.level]) * 100}%`
+    }
+
+    let totalStats = <></>, rank = <span>NR</span>, rating = <span>NR</span>,
+        header = <p>Answer <span>{5 - this.props.user.questions.totals.all.answered}</span> more questions to receive a rank & rating</p>,
+        performance = <p>Answer <span>{5 - this.props.user.questions.totals.all.answered}</span> more questions to receive a rating!</p>,
+        totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
 
     if(this.props.user.questions){
-
       totalQuestionsAnswered = ((this.props.user.questions.totals.all.answered / this.props.questions.totals.all.questions) * 100).toFixed(2)
-
       if(this.props.user.questions.totals.all.answered > 0) totalQuestionsCorrect = ((this.props.user.questions.totals.all.correct / this.props.user.questions.totals.all.answered) * 100).toFixed(2)
 
-      if(this.props.user.questions.totals.all.answered >= 5) rating = <h1>{ this.calcRating(totalQuestionsAnswered, totalQuestionsCorrect) }</h1>
-      else rating = <p>Answer <span>{5 - this.props.user.questions.totals.all.answered}</span> more questions to receive a rating!</p>
+      if(this.props.user.questions.totals.all.answered >= 5) {
+        header = <></>
+        rank = this.props.user.questions.totals.all.rank
+        rating = this.props.user.questions.totals.all.rating
+
+        performance =
+          <>
+            { header }
+            <div className="stats_performance_sub_container">
+              <div className="stats_total_rank">
+                <h2>SmartApp™ Rank</h2>
+                <h1>{ rank }</h1>
+              </div>
+              <div className="stats_total_rating">
+                <h2>SmartApp™ Rating</h2>
+                <h1>{ rating }</h1>
+              </div>
+            </div>
+          </>
+      }
 
       totalQuestionsAnswered = this.numZero(totalQuestionsAnswered)
       totalQuestionsCorrect = this.numZero(totalQuestionsCorrect)
@@ -47,10 +69,24 @@ class DashboardStatsTotal extends React.Component {
             <li>Average Time: { this.props.user.questions.totals.all.avg_time } seconds</li>
             <li>Outta Times: { this.props.user.questions.totals.all.outta_times }</li>
           </ul>
-          <div className="stats_total_rating">
-            <h2><span>SmartApp</span>™ Rating</h2>
-            { rating }
+
+          <div className="stats_xp_perf_container">
+            <div className="stats_experience_container">
+              <h3>Level { this.props.user.experience.level }</h3>
+              <div className="stats_experience_bar_container">
+                <div className="stats_experience_bar">
+                  <div style={ xpBarClass }></div>
+                </div>
+                <h4>{ this.props.user.experience.total }/{ levels[this.props.user.experience.level] }</h4>
+              </div>
+            </div>
+
+            <div className="stats_performance_container">
+              { performance }
+            </div>
+
           </div>
+
         </div>
     }
 

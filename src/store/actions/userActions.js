@@ -14,14 +14,16 @@ import userFunctions from '../../utility/userFunctions'
 import questionsFunctions from '../../utility/questionsFunctions'
 
 
-export const storeUserInfo = (info) => {
+export const storeUserInfo = (info, experience, achievements) => {
   return dispatch => {
     dispatch(authUpdateStatus('storeUserInfo', true))
-    dispatch(initStoreUserInfo(info))
+    dispatch(initStoreUserInfo(info, experience, achievements))
   }
 }
 
-export const initStoreUserInfo = (info) => { return { type: actionTypes.STORE_USER_INFO, info: info } }
+export const initStoreUserInfo = (info, experience, achievements) => {
+  return { type: actionTypes.STORE_USER_INFO, info: info, experience: experience, achievements: achievements }
+}
 
 export const storeUserQuestions = (questions) => {
   return dispatch => {
@@ -36,11 +38,9 @@ export const updateUserInfo = (authType, obj) => {
   return dispatch => {
     dispatch(authUpdateStatus('updateUserInfo', true))
     userFunctions('patch', fetch.patch.user, obj)
-    .then(res => {
-      if(res) {
-        dispatch(authUpdateStatus('updateUserInfoSuccess', true))
-        dispatch(storeUserInfo(obj.info))
-      }
+    .then(() => {
+      dispatch(authUpdateStatus('updateUserInfoSuccess', true))
+      dispatch(storeUserInfo(obj.info))
     })
   }
 }

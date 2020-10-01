@@ -8,6 +8,7 @@ const initialState = {
   gameQset: null,
   question: null,
   answer: null,
+  performance: null,
   results: null,
   voteStatus: null,
   voteLoading: false,
@@ -23,7 +24,7 @@ const resetGameMode = (currentState, action) => { return { ...currentState, game
 
 const setQuestion = (currentState, action) => { return {  ...currentState,  status: action.status,  question: action.question } }
 
-const updateQuestion = (currentState, action) => { return { ...currentState, status: action.status, question: { ...currentState.question, ...action.results} } }
+const updateQuestion = (currentState, action) => { return { ...currentState, status: action.status, question: { ...currentState.question, ...action.results } } }
 
 const resetQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
 
@@ -41,7 +42,7 @@ const resetAnswer = (currentState, action) => { return { ...currentState, answer
 
 const getResults = (currentState, action) => { return { ...currentState, results: action.results } }
 
-const setResults = (currentState, action) => { return { ...currentState, status: action.status, results: action.results } }
+const setResults = (currentState, action) => { return { ...currentState, status: action.status, results: action.results, performance: action.performance } }
 
 const resetResults = (currentState, action) => { return { ...currentState, results: action.results } }
 

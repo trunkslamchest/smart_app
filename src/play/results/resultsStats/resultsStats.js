@@ -1,39 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { calcRating } from './resultsStatsFunctions'
+// import { calcRating } from './resultsStatsFunctions'
 
 import './resultsStats.css'
 import './resultsStatsPerf.css'
 import './resultsStatsQuestion.css'
 
 const ResultsStats = (props) => {
-  const calcDiff = () => {
-    if (props.play.question.answers.correct !== 0) {
-      let diffRate, questionsCorrectDecimal = parseFloat((props.play.question.answers.incorrect / props.play.question.answers.total).toFixed(2))
-      if(props.play.question.answers.outta_time > 0) diffRate = questionsCorrectDecimal + parseFloat((props.play.question.answers.outta_time * 0.15).toFixed(2))
-      else diffRate = questionsCorrectDecimal
-
-      return calcRating(diffRate)
-    } else return 'S'
-  }
-
-  const calcPerf = () => {
-    let perfObj = {}, basePerf = 1.00, diffPerf = 0, timePerf = 0, finalPerf = 0, rank = ''
-    if(props.play.results.result === 'Outta Time') finalPerf = 0.25
-    else if(props.play.results.result === 'Incorrect') finalPerf = 0.5
-    else {
-      if(props.play.question.difficulty === 'Easy') diffPerf = 0.9
-      if(props.play.question.difficulty === 'Medium') diffPerf = 1
-      if(props.play.question.difficulty === 'Hard') diffPerf = 1.1
-      timePerf = parseFloat(((10.00 - props.play.answer.time) / 10.00).toFixed(2))
-      finalPerf = parseFloat(((basePerf + timePerf + diffPerf) / 3.00).toFixed(2))
-    }
-
-    rank = calcRating(finalPerf)
-    perfObj = { final: finalPerf, rank: rank }
-    return perfObj
-  }
 
   const calcStats = () => {
     let calcObj = {}, calcCorrect = 0, calcIncorrect = 0, calcOuttaTime = 0, calcTrend = 'none'
@@ -67,10 +41,7 @@ const ResultsStats = (props) => {
     return compareObj
   }
 
-  const diff = calcDiff()
-  const stats = calcStats()
-  const perf = calcPerf()
-  const comp = calcComp(stats)
+  const comp = calcComp(calcStats())
 
   const perfBlock =
     <div className='results_perf_container'>
@@ -80,11 +51,11 @@ const ResultsStats = (props) => {
           <div className='results_perf_rank_sub_container'>
             <div className='results_perf_rank'>
               <h4>Rank</h4>
-              <h5>{ perf.rank }</h5>
+              <h5>{ props.play.results.performance.rank }</h5>
             </div>
             <div className='results_perf_rating'>
               <h4>Rating</h4>
-              <h5>{ perf.final }</h5>
+              <h5>{ props.play.results.performance.rating }</h5>
             </div>
           </div>
           <span>{ comp.result }</span>
@@ -112,7 +83,7 @@ const ResultsStats = (props) => {
             </div>
             <div className='results_diff_rating'>
               <h5>Rating</h5>
-              <h6>{ diff }</h6>
+              <h6>{ props.play.question.diffRating }</h6>
             </div>
           </div>
         </div>

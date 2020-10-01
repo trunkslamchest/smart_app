@@ -26,7 +26,9 @@ const signUpObjTemplate = (email, user_name) => {
           "correct": 0,
           "incorrect": 0,
           "avg_time": 0,
-          "outta_times": 0
+          "outta_times": 0,
+          "rating": 0,
+          "rank": "NR"
         },
         "difficulty": {
           "Easy": {
@@ -148,6 +150,13 @@ const signUpObjTemplate = (email, user_name) => {
           }
         }
       }
+    },
+    experience:{
+      "level": 1,
+      "total": 0
+    },
+    achievements:{
+      "total": 0
     }
   }
 }

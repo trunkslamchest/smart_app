@@ -173,8 +173,9 @@ export const authUser = () => {
       if(userRes === null) localStorage.clear()
       // if(!!userRes.error) dispatch(authFail(userRes.error))
       else {
+        console.log(userRes)
         dispatch(authUpdateStatus('authUserLocalSuccess', true))
-        dispatch(storeUserInfo(userRes.info))
+        dispatch(storeUserInfo(userRes.info, userRes.experience, userRes.achievements))
         dispatch(storeUserQuestions(userRes.questions))
       }
     })

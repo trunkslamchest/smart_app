@@ -1,11 +1,13 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  achievements: null,
+  experience: null,
   info: null,
-  questions: null
+  questions: null,
 }
 
-const storeUserInfo = (currentState, action) => { return { ...currentState, info: action.info } }
+const storeUserInfo = (currentState, action) => { return { ...currentState, info: action.info, experience: action.experience, achievements: action.achievements } }
 
 const storeUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
 
