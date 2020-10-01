@@ -16,15 +16,20 @@ class DashboardStatsTotal extends React.Component {
 
   render(){
 
+const xpBar = () => {
+  let currXP = this.props.user.experience.total
+  let prevLevelXP = parseInt(levels[this.props.user.experience.level - 1])
+  if(this.props.user.experience.level === 1) return currXP
+  else return currXP - prevLevelXP
+}
+
     const xpBarClass = {
       border: "1px solid rgba(200, 200, 200, 1)",
       boxSizing: "border-box",
       background: "green",
       height: "10px",
-      // transitionProperty: "width",
-      // transitionDuration: ".1s, .1s",
-      // transitionTimingFunction: "ease-in-out",
-      width: `${(this.props.user.experience.total / levels[this.props.user.experience.level]) * 100}%`
+      // width: `${(this.props.user.experience.total / levels[this.props.user.experience.level]) * 100}%`
+      width: `${ xpBar() }%`
     }
 
     let totalStats = <></>, rank = <span>NR</span>, rating = <span>NR</span>,
