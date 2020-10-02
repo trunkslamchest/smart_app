@@ -21,11 +21,7 @@ const ResultsVote = (props) => {
     </div>
 
   const calcVotePercents = () => {
-    if (props.play.question.votes.total === 0) return {
-      good: '0%',
-      neutral: '0%',
-      bad: '0%',
-    }
+    if (props.play.question.votes.total === 0) return { good: '0%', neutral: '0%', bad: '0%' }
     else return {
       good: `${((props.play.question.votes.good / props.play.question.votes.total) * 100).toFixed(2)}%`,
       neutral: `${((props.play.question.votes.neutral / props.play.question.votes.total) * 100).toFixed(2)}%`,
@@ -33,35 +29,9 @@ const ResultsVote = (props) => {
     }
   }
 
-  const calcVoteRating = () => {
-    if (props.play.question.votes.total === 0) return 'Not Available'
-    else {
-      let numRate = parseFloat((props.play.question.votes.good / (props.play.question.votes.good + props.play.question.votes.bad)).toFixed(2))
-      if(numRate > 1.00) return 'S'
-      if(numRate <= 1.00 && numRate >= 0.95) return 'A+'
-      if(numRate < 0.95 && numRate >= 0.9) return 'A'
-      if(numRate < 0.9 && numRate >= 0.85) return 'A-'
-      if(numRate < 0.85 && numRate >= 0.8) return 'B+'
-      if(numRate < 0.8 && numRate >= 0.75) return 'B'
-      if(numRate < 0.75 && numRate >= 0.7) return 'B-'
-      if(numRate < 0.7 && numRate >= 0.65) return 'C+'
-      if(numRate < 0.65 && numRate >= 0.6) return 'C'
-      if(numRate < 0.6 && numRate >= 0.55) return 'C-'
-      if(numRate < 0.55 && numRate >= 0.5) return 'D+'
-      if(numRate < 0.5 && numRate >= 0.45) return 'D'
-      if(numRate < 0.45 && numRate >= 0.4) return 'D-'
-      if(numRate < 0.4 && numRate >= 0.35) return 'F+'
-      if(numRate < 0.35 && numRate >= 0.3) return 'F'
-      if(numRate < 0.3 && numRate >= 0.25) return 'F-'
-      if(numRate < 0.25) return 'F-'
-    }
-  }
-
   let voteBlock
 
   const votePercents = calcVotePercents()
-
-  const voteRating = calcVoteRating()
 
   const voteButtons = [
     { type: "up_vote", type_disabled: "up_vote_disabled", img: up_vote, vote: "good"},
@@ -109,10 +79,9 @@ const ResultsVote = (props) => {
     voteBlock =
     <div className="results_vote_container">
       <div className="results_vote_wrapper">
-
         <div className="results_vote_header">
           <h5>Approval Rating ({ props.play.question.votes.total } { props.play.question.votes.total === 1 ? 'vote' : 'votes'})</h5>
-          <h4>{ voteRating }</h4>
+          <h4>{ props.play.question.votes.rating }</h4>
         </div>
         <div className="results_vote_totals">
             <ul>
@@ -121,7 +90,6 @@ const ResultsVote = (props) => {
               <li><h5>Down Votes ({ props.play.question.votes.bad })</h5> { votePercents.bad }</li>
             </ul>
         </div>
-
       </div>
     </div>
   }

@@ -183,10 +183,7 @@ class PlayController extends React.Component {
   }
 
   updateUserQuestionsModule = () => {
-    this.props.onUpdateUserPerformanceFromPlayController(
-      // qPerf: this.props.play.results.performance.qPerf,
-      this.props.play.results.performance.oPerf
-    )
+    this.props.onUpdateUserPerformanceFromPlayController(this.props.play.results.performance.oPerf)
     this.props.onUpdateUserExperienceFromPlayController({
       level: this.props.play.results.experience.level,
       total: this.props.play.results.experience.newTotal
