@@ -28,7 +28,7 @@ const ResultsStats = (props) => {
     let compareObj = {}, calcAvgTime = '', calcAnswer = ''
     if(props.play.results.result !== 'Outta Time') {
       if(props.play.results.result === 'Correct'){
-        if(stats.trend === 'Correct')calcAnswer = `On Par with ${ (stats.correct * 100).toFixed(2) }% of users`
+        if(stats.trend === 'Correct') calcAnswer = `On Par with ${ (stats.correct * 100).toFixed(2) }% of users`
         else calcAnswer = `Better than ${ (stats.incorrect * 100).toFixed(2) }% of users`
       } else {
         if(stats.trend === 'Incorrect') calcAnswer = `On Par with ${ (stats.incorrect * 100).toFixed(2) }% of users`
@@ -37,6 +37,9 @@ const ResultsStats = (props) => {
       if(props.play.answer.time > props.play.question.answers.avg_time) calcAvgTime = `Worse than the average of ${ props.play.question.answers.avg_time } seconds`
       else if(props.play.answer.time === props.play.question.answers.avg_time) calcAvgTime = `On par with the average of ${ props.play.question.answers.avg_time } seconds`
       else calcAvgTime = `Better than the average of ${ props.play.question.answers.avg_time } seconds`
+    } else {
+      calcAnswer = 'Not enough statistics to compile'
+      calcAvgTime = 'Not enough time to compile'
     }
 
     compareObj = { time: calcAvgTime, result: calcAnswer }
@@ -57,7 +60,6 @@ const ResultsStats = (props) => {
     boxSizing: "border-box",
     background: "green",
     height: "10px",
-    // width: `${(this.props.user.experience.total / levels[this.props.user.experience.level]) * 100}%`
     width: `${ xpBar() }%`
   }
 
