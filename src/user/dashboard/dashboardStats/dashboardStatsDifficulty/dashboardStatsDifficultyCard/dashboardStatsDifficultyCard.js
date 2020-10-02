@@ -11,7 +11,7 @@ class DashboardStatsDifficultyCard extends React.Component {
   }
 
   render(){
-    let questionsAnswered = ((this.props.difficulty[1].answered / this.props.questions.totals.difficulty[this.props.difficulty[0]].questions) * 100).toFixed(2)
+    let questionsAnswered = ((this.props.difficulty[1].answered / this.props.questions.totals.difficulty[this.props.difficulty[0]].totals.questions) * 100).toFixed(2)
     let questionsCorrect = "0.00"
 
     if(this.props.difficulty[1].answered > 0) questionsCorrect = parseFloat((this.props.difficulty[1].correct / this.props.difficulty[1].answered) * 100).toFixed(2)
@@ -21,9 +21,9 @@ class DashboardStatsDifficultyCard extends React.Component {
 
     return(
       <ul>
-        <h3>{this.props.difficulty[0]}</h3>
-        <li>{this.props.difficulty[1].answered}/{this.props.questions.totals.difficulty[this.props.difficulty[0]].questions} answered ({ questionsAnswered }%)</li>
-        <li>{this.props.difficulty[1].correct}/{this.props.difficulty[1].answered} correct ({ questionsCorrect }%)</li>
+        <h3>{ this.props.difficulty[0] }</h3>
+        <li>{ this.props.difficulty[1].answered }/{ this.props.questions.totals.difficulty[this.props.difficulty[0]].totals.questions } answered ({ questionsAnswered }%)</li>
+        <li>{ this.props.difficulty[1].correct }/{ this.props.difficulty[1].answered } correct ({ questionsCorrect }%)</li>
       </ul>
     )
   }

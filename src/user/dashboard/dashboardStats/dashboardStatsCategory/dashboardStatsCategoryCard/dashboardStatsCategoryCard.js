@@ -11,7 +11,7 @@ class DashboardStatsCategoryCard extends React.Component {
   }
 
   render(){
-    let questionsAnswered = ((this.props.category[1].answered / this.props.questions.totals.category[this.props.category[0]].questions) * 100).toFixed(2)
+    let questionsAnswered = ((this.props.category[1].answered / this.props.questions.totals.category[this.props.category[0]].totals.questions) * 100).toFixed(2)
     let questionsCorrect = "0.00"
 
     if(this.props.category[1].answered > 0) questionsCorrect = ((this.props.category[1].correct / this.props.category[1].answered) * 100).toFixed(2)
@@ -21,9 +21,9 @@ class DashboardStatsCategoryCard extends React.Component {
 
     return(
       <ul>
-        <h3>{this.props.category[0]}</h3>
-        <li>{this.props.category[1].answered}/{this.props.questions.totals.category[`${this.props.category[0]}`].questions} answered ({ questionsAnswered }%)</li>
-        <li>{this.props.category[1].correct}/{this.props.category[1].answered} correct ({ questionsCorrect }%)</li>
+        <h3>{ this.props.category[0] }</h3>
+        <li>{ this.props.category[1].answered }/{ this.props.questions.totals.category[`${ this.props.category[0] }`].totals.questions } answered ({ questionsAnswered }%)</li>
+        <li>{ this.props.category[1].correct }/{ this.props.category[1].answered } correct ({ questionsCorrect }%)</li>
       </ul>
     )
   }

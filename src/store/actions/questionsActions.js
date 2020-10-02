@@ -3,7 +3,6 @@ import * as actionTypes from './actionTypes'
 import {
   setQuestion,
   updateGameStatus
-  // setGameState
 } from './playActions'
 
 import {

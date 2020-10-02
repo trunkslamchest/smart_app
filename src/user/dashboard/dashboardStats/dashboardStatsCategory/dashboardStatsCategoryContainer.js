@@ -13,18 +13,17 @@ class DashboardStatsCategoryContainer extends React.Component {
     var distribCats
 
     if(this.props.user.questions){
-        let cats = Object.entries(this.props.user.questions.totals.categories)
-        distribCats = cats.map(cat => {
-          let statCard
-          if(this.props.questions.totals.category[`${cat[0]}`]) {
-            statCard = <DashboardStatsCategoryCard
-                        key={cats.indexOf(cat) + 1}
-                        category={cat}
-                      />
-          }
-          return statCard
+      let cats = Object.entries(this.props.user.questions.totals.categories)
+      distribCats = cats.map(cat => {
+        let statCard
+        if(this.props.questions.totals.category[`${ cat[0] }`]) {
+          statCard = <DashboardStatsCategoryCard
+                      key={ cats.indexOf(cat) + 1 }
+                      category={ cat }
+                    />
         }
-      )
+        return statCard
+      })
     }
 
     return(
