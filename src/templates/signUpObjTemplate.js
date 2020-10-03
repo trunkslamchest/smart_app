@@ -34,119 +34,211 @@ const signUpObjTemplate = (email, user_name) => {
           "Easy": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Medium": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Hard": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           }
         },
         "categories": {
           "Anime": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Art": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Books": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Celebrities": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Computers": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Film": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "General": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Geography": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "History": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Mathematics": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Music": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Mythology": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Nature": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Politics": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Science": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Sports": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Television": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Theatre": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Vehicles": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           },
           "Video Games": {
             "answered": 0,
             "correct": 0,
-            "incorrect": 0
+            "incorrect": 0,
+            "avg_time": 0,
+            "outta_times": 0,
+            "rating": 0,
+            "rank": "NR"
           }
         }
       }
