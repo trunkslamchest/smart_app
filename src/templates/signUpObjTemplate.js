@@ -2,18 +2,18 @@ import getTime from '../utility/getTime'
 
 const signUpObjTemplate = (email, user_name) => {
   return {
-    info: {
-      dob: {
-        day: 0,
-        month: 'null',
-        year: 0
+    "info": {
+      "dob": {
+        "day": 0,
+        "month": "null",
+        "year": 0
       },
-      email: email,
-      first_name: 'null',
-      gender: 'null',
-      last_name: 'null',
-      user_name: user_name,
-      join_date: {
+      "email": `${ email }`,
+      "first_name": "null",
+      "gender": "null",
+      "last_name": "null",
+      "user_name": `${ user_name }`,
+      "join_date": {
         day: getTime('day'),
         month: getTime('month'),
         year: getTime('year')
@@ -28,7 +28,16 @@ const signUpObjTemplate = (email, user_name) => {
           "avg_time": 0,
           "outta_times": 0,
           "rating": 0,
-          "rank": "NR"
+          "rank": "NR",
+          "votes": {
+            "total": 0,
+            "good": 0,
+            "neutral": 0,
+            "bad": 0
+          },
+          "comments": {
+            "total": 0
+          }
         },
         "difficulty": {
           "Easy": {
@@ -245,6 +254,7 @@ const signUpObjTemplate = (email, user_name) => {
     },
     experience:{
       "level": 1,
+      "avg": 0,
       "total": 0
     },
     achievements:{

@@ -51,9 +51,9 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'results' && this.props.play.status === 'setAllResultsSuccess') this.displayResultsModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && !this.props.play.question.votes.vote) this.updateUserVotesModule()
+      if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && this.props.play.results.vote) this.updateUserVotesModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'voteSuccess' && this.props.play.question.votes.vote) this.props.onUpdateVoteStatus('displayVotes', false)
+      // if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'voteSuccess' && this.props.play.results.vote) this.props.onUpdateVoteStatus('displayVotes', false)
 
       if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.comment) this.updateUserCommentsModule()
 
@@ -228,14 +228,17 @@ class PlayController extends React.Component {
 
   updateUserVotesModule = () => {
     this.props.onUpdateVoteStatus('sentVote', true)
-    this.props.onUpdateUserVotesFromPlayController(this.props.play.question.id, {
+    this.props.onUpdateUserVotesFromPlayController({
+      vid: this.props.play.results.vote.vid,
+      qid: this.props.play.question.id,
       answer: this.props.play.answer.choice,
       correct_answer: this.props.play.results.correct_answer,
       question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
       category: this.props.play.question.category,
       result: this.props.play.results.result,
-      vote: this.props.play.question.votes.vote
+      vote: this.props.play.results.vote.vote,
+      value: this.props.play.results.vote.value
     })
   }
 

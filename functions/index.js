@@ -84,7 +84,6 @@ exports.test1 = functions
 
 // ~~~~~~~~~~~~~~~~~~~~ USERS ~~~~~~~~~~~~~~~~~~~~
 
-
 var calcRating = function(stat) {
   if(stat > 1.00) return 'S'
   if(stat <= 1.00 && stat >= 0.95) return 'A+'
@@ -104,13 +103,6 @@ var calcRating = function(stat) {
   if(stat < 0.3 && stat >= 0.25) return 'F-'
   if(stat < 0.25) return 'E'
 }
-
-exports.test1 = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res);
-    res.send('test1 successful').status(200);
-});
 
 exports.users = functions
   .region('us-east1')
@@ -235,6 +227,7 @@ exports.crossUpdateUserQuestion = functions
       }
 
       tObj[totalsPath + '/all'] = {
+        ...snap.val().questions.totals.all,
         answered: snap.val().questions.totals.all.answered + 1,
         avg_time: snap.val().questions.totals.all.avg_time === 0 ? req.body.time : parseFloat(((parseFloat(snap.val().questions.totals.all.avg_time) + req.body.time) / 2.00).toFixed(2)),
         correct: req.body.result === 'Correct' ? snap.val().questions.totals.all.correct + 1 : snap.val().questions.totals.all.correct,
@@ -280,25 +273,26 @@ exports.crossUpdateUserVote = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORScrossPatch(req, res);
-    var voteObj = {}, updateObj = {}
+    var voteObj = {}, voteTotalsObj = {}, voteTotalsBlankObj = { good: 0, neutral: 0, bad: 0, total: 0 }
+    firebase.database().ref('/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+      var votePath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/vote/'
 
-    firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
-      var votePath = '/' + req.body.uid + '/questions/votes'
-
-      updateObj = {
-        question: req.body.question,
-        difficulty: req.body.difficulty,
-        category: req.body.category,
-        answer: req.body.answer,
-        correct_answer: req.body.correct_answer,
-        result: req.body.result,
-        vote: req.body.vote
+      voteObj[votePath] = {
+        ...snap.val().votes,
+        [req.body.vid]: {
+          vote: req.body.vote,
+          value: req.body.value
+        }
       }
 
-      voteObj[votePath] = { ...snap.val().votes, [req.body.qid]: updateObj }
-      voteObj[votePath].total = voteObj[votePath].total ? voteObj[votePath].total + 1 : 1
-
       firebase.database().ref().update(voteObj);
+    })
+
+    firebase.database().ref('/' + req.body.uid + '/questions/totals/all/').once('value', function(snap){
+      var voteTotalPath = '/' + req.body.uid + '/questions/totals/all/votes'
+      if(!snap.val().votes) voteTotalsObj[voteTotalPath] = { ...voteTotalsBlankObj, [req.body.vote]: 1, total: 1 }
+      else voteTotalsObj[voteTotalPath] = { ...snap.val().votes, [req.body.vote]: snap.val().votes[req.body.vote] + 1, total: snap.val().votes.total + 1 }
+      firebase.database().ref().update(voteTotalsObj);
     })
 
     res.end()
@@ -444,7 +438,7 @@ var calcTotals = function(diffCats, obj) {
 }
 
 var calcQperf = function(time, result, diff) {
-  var basePerf = 1.00, diffPerf = 0, timePerf = 0, finalPerf = 0
+  let perfObj = {}, basePerf = 1.00, diffPerf = 0, timePerf = 0, finalPerf = 0, rank = ''
   if(result === 'Outta Time') finalPerf = 0.2
   else if(result === 'Incorrect') finalPerf = 0.25
   else {
@@ -455,7 +449,9 @@ var calcQperf = function(time, result, diff) {
     finalPerf = parseFloat(((basePerf + timePerf + diffPerf) / 3.00).toFixed(2))
   }
 
-  return { rating: finalPerf, rank: calcRating(finalPerf) }
+  rank = calcRating(finalPerf)
+  perfObj = { rating: finalPerf, rank: rank }
+  return perfObj
 }
 
 var calcOperf = function(qRating, oRating) {
@@ -584,13 +580,6 @@ exports.createKeys = functions
 
     console.log(keys)
     res.json(keys)
-});
-
-exports.test1 = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-    res.status(200).send('test1 successful');
 });
 
 exports.questions = functions
@@ -826,12 +815,14 @@ exports.questionResults = functions
           calcXP = calcExperience(req.body.difficulty, req.body.time, calcResult)
         }
 
+        let qPerf = calcQperf(req.body.time, calcResult, req.body.difficulty)
+        let oPerf = calcOperf(qPerf.rating, req.body.rating, req.body.rank)
+        perfObj = { qPerf: qPerf, oPerf: oPerf }
         calcDiffRank = calcDiffRate(calcCorrect, calcIncorrect, calcOuttaTime, calcTotal)
 
-        let qPerf = calcQperf(req.body.time, calcResult, req.body.difficulty)
+        let newXP = calcXP + req.body.experience
+        xpObj = { gain: calcXP, prevTotal: req.body.experience, newTotal: newXP, level: parseInt(calcXPlevel(newXP)) }
 
-        perfObj = { qPerf: qPerf, oPerf: calcOperf(qPerf.rating, req.body.rating, req.body.rank) }
-        xpObj = { gain: calcXP, prevTotal: req.body.experience, newTotal: calcXP + req.body.experience, level: parseInt(calcXPlevel(calcXP + req.body.experience)) }
         diffObj = { ...snap.val().rating, difficulty: calcDiffRank }
 
         calcObj = {
@@ -896,6 +887,9 @@ exports.questionVote = functions
     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
       if(!!req.body.uid) {
 
+        var vid = firebase.database().ref().push().key,
+            voteValue
+
         voteObj = { ...snap.val().votes }
         voteObj[req.body.vote] = voteObj[req.body.vote] + 1
         voteObj.total = voteObj.total + 1
@@ -906,10 +900,17 @@ exports.questionVote = functions
         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/votes').update(voteObj)
         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/rating').update(ratingObj)
 
-        voteObj['rating'] = voteRating
-        voteObj['vote'] = req.body.vote
+        if(req.body.vote === 'good') voteValue = 1
+        if(req.body.vote === 'neutral') voteValue = 0
+        if(req.body.vote === 'bad') voteValue = -1
+
+        voteObj["vid"] = vid
+        voteObj["rating"] = voteRating
+        voteObj["vote"] = req.body.vote
+        voteObj["value"] = voteValue
 
         let crossObj = {
+          vid: vid,
           uid: req.body.uid,
           qid: req.body.qid,
           question: req.body.question,
@@ -918,7 +919,8 @@ exports.questionVote = functions
           answer: req.body.answer,
           correct_answer: req.body.correct_answer,
           result: req.body.result,
-          vote: req.body.vote
+          vote: req.body.vote,
+          value: voteValue
         }
 
         fetch(url.crossUpdateUserVote, {

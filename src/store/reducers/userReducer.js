@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes'
 
 import { userQuestionRating } from '../../utility/calculation/calcRating'
 import { userQuestionRank } from '../../utility/calculation/calcRank'
-
+import { userQuestionAvgTime } from '../../utility/calculation/calcAvgTime'
 
 const initialState = {
   achievements: null,
@@ -25,14 +25,10 @@ const updateUserQuestions = (currentState, action) => { return{ ...currentState,
 
 const updateUserPerformanceFromPlayController = (currentState, action) => {
 
-  // console.log(action.res)
-
-  let newDrating = userQuestionRating(action.res.dRating, action.res.qPerf.rating)
-  let newDrank = userQuestionRank(newDrating)
-  let newCrating = userQuestionRating(action.res.cRating, action.res.qPerf.rating)
-  let newCrank = userQuestionRank(newCrating)
-
-  // console.log(newDrank, newCrank)
+  let newDrating = userQuestionRating(action.res.dRating, action.res.qPerf.rating),
+      newDrank = userQuestionRank(newDrating),
+      newCrating = userQuestionRating(action.res.cRating, action.res.qPerf.rating),
+      newCrank = userQuestionRank(newCrating)
 
   return {
     ...currentState,
@@ -66,12 +62,7 @@ const updateUserPerformanceFromPlayController = (currentState, action) => {
   }
 }
 
-const updateUserExperienceFromPlayController = (currentState, action) => {
-  return {
-    ...currentState,
-    experience: action.total
-  }
-}
+const updateUserExperienceFromPlayController = (currentState, action) => { return { ...currentState, experience: action.total } }
 
 const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
@@ -129,10 +120,17 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
 }
 
 const updateUserQuestionTotalsFromPlayController = (currentState, action) => {
-  let uTotals = { ...currentState.questions.totals }
+  let uTotals = { ...currentState.questions.totals },
+      nTotalAvgTime = userQuestionAvgTime(uTotals.all.avg_time, action.result.answer.time),
+      nDiffAvgTime = userQuestionAvgTime(uTotals.difficulty[action.result.difficulty].avg_time, action.result.answer.time),
+      nCatAvgTime = userQuestionAvgTime(uTotals.categories[action.result.category].avg_time, action.result.answer.time)
 
-  if(uTotals.all.avg_time === 0) uTotals.all.avg_time = action.result.answer.time
-  else uTotals.all.avg_time = parseFloat(((uTotals.all.avg_time + action.result.answer.time) / 2.00).toFixed(2))
+  uTotals.all.answered += 1
+  uTotals.all.avg_time = nTotalAvgTime
+  uTotals.difficulty[action.result.difficulty].answered += 1
+  uTotals.difficulty[action.result.difficulty].avg_time = nDiffAvgTime
+  uTotals.categories[action.result.category].answered += 1
+  uTotals.categories[action.result.category].avg_time = nCatAvgTime
 
   if(action.result.result === 'Correct') {
     uTotals.difficulty[action.result.difficulty].correct += 1
@@ -152,31 +150,42 @@ const updateUserQuestionTotalsFromPlayController = (currentState, action) => {
     uTotals.all.outta_times += 1
   }
 
-  uTotals.difficulty[action.result.difficulty].answered += 1
-  uTotals.categories[action.result.category].answered += 1
-  uTotals.all.answered += 1
-
-  return {
-    ...currentState,
-    questions: { ...currentState.questions, totals: uTotals }
-  }
+  return { ...currentState, questions: { ...currentState.questions, totals: uTotals } }
 }
 
 const updateUserVotesFromPlayController = (currentState, action) => {
-  let uVotes, vote = { [action.qid]: action.vote }
+  let vote = { vote: action.res.vote, value: action.res.value },
+      voteTotals = { ...currentState.questions.totals.all.votes }
 
-  if(currentState.questions.votes){
-    uVotes = { ...currentState.questions.votes }
-    uVotes[action.qid] = action.vote
-    uVotes.total += 1
-  } else {
-    uVotes = vote
-    uVotes["total"] = 1
-  }
+    voteTotals[action.res.vote] += 1
+    voteTotals.total += 1
 
   return {
     ...currentState,
-    questions: { ...currentState.questions, votes: uVotes }
+    questions: { ...currentState.questions,
+      [action.res.difficulty]: {
+        ...currentState.questions[action.res.difficulty],
+        categories: {
+          ...currentState.questions[action.res.difficulty].categories,
+          [action.res.category]: {
+            ...currentState.questions[action.res.difficulty].categories[action.res.category],
+            [action.res.qid]: {
+              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
+              vote: {
+                [action.res.vid]: vote
+              }
+            }
+          }
+        }
+      },
+      totals: {
+        ...currentState.questions.totals,
+        all: {
+          ...currentState.questions.totals.all,
+          votes: voteTotals
+        }
+      }
+    }
   }
 }
 

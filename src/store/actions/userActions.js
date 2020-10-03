@@ -106,14 +106,19 @@ export const updateUserQuestionsFromPlayController = (question) => { return { ty
 
 export const updateUserQuestionTotalsFromPlayController = (result) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, result: result } }
 
-export const updateUserVotesFromPlayController = (id, vote) => {
+export const updateUserVotesFromPlayController = (res) => {
   return dispatch => {
     dispatch(updateVoteStatus('voteSuccess', true))
-    dispatch(initUpdateUserVotesFromPlayController(id, vote))
+    dispatch(initUpdateUserVotesFromPlayController(res))
   }
 }
 
-const initUpdateUserVotesFromPlayController = (id, vote) => { return { type: actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER, qid: id, vote: vote } }
+const initUpdateUserVotesFromPlayController = (res) => {
+  return {
+    type: actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER,
+    res: res
+  }
+}
 
 export const updateUserCommentsFromPlayController = (id, comment) => {
   return dispatch => {

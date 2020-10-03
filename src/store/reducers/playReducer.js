@@ -46,7 +46,19 @@ const setResults = (currentState, action) => { return { ...currentState, status:
 
 const resetResults = (currentState, action) => { return { ...currentState, results: action.results } }
 
-const setVote = (currentState, action) => { return { ...currentState, question: { ...currentState.question, votes: action.votes } } }
+const setVote = (currentState, action) => {
+  return {
+    ...currentState,
+    question: {
+      ...currentState.question,
+      votes: action.votes
+    },
+    results: {
+      ...currentState.results,
+      vote: action.vote
+    }
+  }
+}
 
 const updateVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus, voteLoading: action.voteLoading } }
 
