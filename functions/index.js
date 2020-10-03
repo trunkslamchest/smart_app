@@ -246,19 +246,28 @@ exports.crossUpdateUserQuestion = functions
 
       dtObj[totalsPath + '/difficulty/' + req.body.difficulty] = {
         answered: snap.val().questions.totals.difficulty[req.body.difficulty].answered + 1,
+        avg_time: snap.val().questions.totals.difficulty[req.body.difficulty].avg_time === 0 ? req.body.time : parseFloat(((parseFloat(snap.val().questions.totals.difficulty[req.body.difficulty].avg_time) + req.body.time) / 2.00).toFixed(2)),
         correct: req.body.result === 'Correct' ? snap.val().questions.totals.difficulty[req.body.difficulty].correct + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].correct,
-        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.difficulty[req.body.difficulty].incorrect + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].incorrect
+        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.difficulty[req.body.difficulty].incorrect + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].incorrect,
+        outta_times: req.body.result === 'Outta Time' ? snap.val().questions.totals.difficulty[req.body.difficulty].outta_times + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].outta_times,
+        rating: snap.val().questions.totals.difficulty[req.body.difficulty].rating === 0 ? req.body.performance.qPerf.rating : parseFloat(((parseFloat(snap.val().questions.totals.difficulty[req.body.difficulty].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)),
+        rank: snap.val().questions.totals.difficulty[req.body.difficulty].rank === 'NR' ? req.body.performance.qPerf.rank : calcRating(parseFloat(((parseFloat(snap.val().questions.totals.difficulty[req.body.difficulty].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)))
       }
 
       ctObj[totalsPath + '/categories/' + req.body.category] = {
         answered: snap.val().questions.totals.categories[req.body.category].answered + 1,
+        avg_time: snap.val().questions.totals.categories[req.body.category].avg_time === 0 ? req.body.time : parseFloat(((parseFloat(snap.val().questions.totals.categories[req.body.category].avg_time) + req.body.time) / 2.00).toFixed(2)),
         correct: req.body.result === 'Correct' ? snap.val().questions.totals.categories[req.body.category].correct + 1 : snap.val().questions.totals.categories[req.body.category].correct,
-        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.categories[req.body.category].incorrect + 1 : snap.val().questions.totals.categories[req.body.category].incorrect
+        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.categories[req.body.category].incorrect + 1 : snap.val().questions.totals.categories[req.body.category].incorrect,
+        outta_times: req.body.result === 'Outta Time' ? snap.val().questions.totals.categories[req.body.category].outta_times + 1 : snap.val().questions.totals.categories[req.body.category].outta_times,
+        rating: snap.val().questions.totals.categories[req.body.category].rating === 0 ? req.body.performance.qPerf.rating : parseFloat(((parseFloat(snap.val().questions.totals.categories[req.body.category].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)),
+        rank: snap.val().questions.totals.categories[req.body.category].rank === 'NR' ? req.body.performance.qPerf.rank : calcRating(parseFloat(((parseFloat(snap.val().questions.totals.categories[req.body.category].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)))
       }
 
+
+      firebase.database().ref().update(xpObj);
       firebase.database().ref().update(idObj);
       firebase.database().ref().update(qObj);
-      firebase.database().ref().update(xpObj);
       firebase.database().ref().update(tObj);
       firebase.database().ref().update(dtObj);
       firebase.database().ref().update(ctObj);
@@ -367,8 +376,10 @@ exports.editUserComment = functions
 
 var calcStats = function(diff, diffCats, statsObj) {
   var questions = diffCats[diff][1]
+
   for(question in questions) {
     statsObj.totalSum++
+    statsObj.timeTotalSum += questions[question].answers.total_time
     questions[question].answers.total && (statsObj.answersSum += questions[question].answers.total)
     questions[question].answers.correct && (statsObj.correctSum += questions[question].answers.correct)
     questions[question].answers.incorrect && (statsObj.incorrectSum += questions[question].answers.incorrect)
@@ -385,25 +396,14 @@ var calcStats = function(diff, diffCats, statsObj) {
 
 var calcAvg = function(obj) {
   var funcAvg = function(part, all) { return parseFloat(((part / all) * 100).toFixed(2)) }
-  var avgObj = {
-    questions: {
-      correct: 0,
-      incorrect: 0,
-      outta_time: 0,
-      time: 0
-    },
-    votes: {
-      good: 0,
-      bad: 0,
-      neutral: 0
-    }
-  }
+  var funcAvgTime = function(part, all) { return part / all }
 
-  avgObj = {
+  var avgObj = {
     questions: {
       correct: funcAvg(obj.correct, obj.answers),
       incorrect: funcAvg(obj.incorrect, obj.answers),
-      outtaTime: funcAvg(obj.outta_time, obj.answers)
+      outtaTime: funcAvg(obj.outta_time, obj.answers),
+      avgTime: funcAvgTime(obj.total_time, obj.answers)
     },
     votes: {
       good: funcAvg(obj.votes.good, obj.votes.total),
@@ -418,18 +418,8 @@ var calcAvg = function(obj) {
 var calcTotals = function(diffCats, obj) {
   for(diff in diffCats){
     var statsObj = {
-      totalSum: 0,
-      answersSum: 0,
-      correctSum: 0,
-      incorrectSum: 0,
-      outtaTimeSum: 0,
-      commentSum: 0,
-      voteSum: {
-        total: 0,
-        good: 0,
-        neutral: 0,
-        bad: 0,
-      }
+      totalSum: 0, answersSum: 0, correctSum: 0, incorrectSum: 0, outtaTimeSum: 0, commentSum: 0, timeTotalSum: 0,
+      voteSum: { total: 0, good: 0, neutral: 0, bad: 0 }
     }
 
     calcStats(diff, diffCats, statsObj)
@@ -439,6 +429,7 @@ var calcTotals = function(diffCats, obj) {
     obj['correct'] = obj['correct'] ? obj['correct'] + statsObj.correctSum : statsObj.correctSum
     obj['incorrect'] = obj['incorrect'] ? obj['incorrect'] + statsObj.incorrectSum : statsObj.incorrectSum
     obj['outta_time'] = obj['outta_time'] ? obj['outta_time'] + statsObj.outtaTimeSum : statsObj.outtaTimeSum
+    obj['total_time'] = obj['total_time'] ? obj['total_time'] + statsObj.timeTotalSum : statsObj.timeTotalSum
     obj['votes'] = obj['votes'] ?
       {
         total: obj["votes"].total + statsObj.voteSum.total,
@@ -453,20 +444,18 @@ var calcTotals = function(diffCats, obj) {
 }
 
 var calcQperf = function(time, result, diff) {
-  let perfObj = {}, basePerf = 1.00, diffPerf = 0, timePerf = 0, finalPerf = 0, rank = ''
-  if(result === 'Outta Time') finalPerf = 0.25
-  else if(result === 'Incorrect') finalPerf = 0.5
+  var basePerf = 1.00, diffPerf = 0, timePerf = 0, finalPerf = 0
+  if(result === 'Outta Time') finalPerf = 0.2
+  else if(result === 'Incorrect') finalPerf = 0.25
   else {
-    if(diff === 'Easy') diffPerf = 0.9
-    if(diff === 'Medium') diffPerf = 1
-    if(diff === 'Hard') diffPerf = 1.1
+    if(diff === 'Easy') diffPerf = 0.8
+    if(diff === 'Medium') diffPerf = 0.9
+    if(diff === 'Hard') diffPerf = 1
     timePerf = parseFloat(((10.00 - time) / 10.00).toFixed(2))
     finalPerf = parseFloat(((basePerf + timePerf + diffPerf) / 3.00).toFixed(2))
   }
 
-  rank = calcRating(finalPerf)
-  perfObj = { rating: finalPerf, rank: rank }
-  return perfObj
+  return { rating: finalPerf, rank: calcRating(finalPerf) }
 }
 
 var calcOperf = function(qRating, oRating) {
@@ -489,7 +478,7 @@ var calcExperience = function(diff, time, result) {
 }
 
 var calcXPlevel = function(xp) {
-  let baseLevel = 1
+  var baseLevel = 1
 
   const levels = {
     1: 100,
@@ -509,11 +498,7 @@ var calcXPlevel = function(xp) {
     15: 1500,
   }
 
-  for(let level in levels){
-    if(xp > levels[level]) {
-      baseLevel = parseInt(level) + 1
-    }
-  }
+  for(let level in levels){ if(xp > levels[level])  baseLevel = parseInt(level) + 1 }
 
   return baseLevel
 }
@@ -583,9 +568,7 @@ var pushCats = function(diff, questions) {
       q[1]["difficulty"] = diff
       return q
     })
-  } else {
-    return []
-  }
+  } else return []
 }
 
 exports.createKeys = functions
@@ -624,7 +607,6 @@ exports.questionsTotals = functions
     setCORSget(req, res)
     var catStats = {}, catTotals = {}, catAvg = {}
     firebase.database().ref('/').once('value', function(questions){
-
       var easyCats = Object.entries(questions.val().Easy.categories)
       var mediumCats = Object.entries(questions.val().Medium.categories)
       var hardCats = Object.entries(questions.val().Hard.categories)
@@ -642,23 +624,14 @@ exports.questionsTotals = functions
 
       for(cat in allCats){
         var statsObj = {
-          totalSum: 0,
-          answersSum: 0,
-          correctSum: 0,
-          incorrectSum: 0,
-          commentSum: 0,
-          outtaTimeSum: 0,
-          voteSum: {
-            total: 0,
-            good: 0,
-            neutral: 0,
-            bad: 0,
-          }
+          totalSum: 0, answersSum: 0, correctSum: 0, incorrectSum: 0, commentSum: 0, outtaTimeSum: 0, timeTotalSum: 0,
+          voteSum: { total: 0, good: 0, neutral: 0, bad: 0 }
         }
 
         calcStats(cat, allCats, statsObj)
 
         let catName = allCats[cat][0]
+
         if(catTotals[catName]){
           catTotals[catName] = {
             questions: catTotals[catName].questions + statsObj.totalSum,
@@ -666,6 +639,7 @@ exports.questionsTotals = functions
             correct: catTotals[catName].correct + statsObj.correctSum,
             incorrect: catTotals[catName].incorrect + statsObj.incorrectSum,
             outta_time: catTotals[catName].outta_time + statsObj.outtaTimeSum,
+            total_time: catTotals[catName].total_time + statsObj.timeTotalSum,
             votes: {
                 total: catTotals[catName].votes.total + statsObj.voteSum.total,
                 good: catTotals[catName].votes.good + statsObj.voteSum.good,
@@ -681,10 +655,12 @@ exports.questionsTotals = functions
             correct: statsObj.correctSum,
             incorrect: statsObj.incorrectSum,
             outta_time: statsObj.outtaTimeSum,
+            total_time: statsObj.timeTotalSum,
             votes: statsObj.voteSum,
             comments: statsObj.commentSum
           }
         }
+
         catAvg[catName] = calcAvg(catTotals[catName])
         catStats[catName] = {
           totals: catTotals[catName],
@@ -693,23 +669,11 @@ exports.questionsTotals = functions
       }
 
       res.json({
-        all: {
-          totals: allTotals,
-          averages: allAverages
-        },
+        all: { totals: allTotals, averages: allAverages },
         difficulty: {
-          Easy: {
-            totals: easyTotals,
-            averages: easyAverages
-          },
-          Medium: {
-            totals: mediumTotals,
-            averages: mediumAverages
-          },
-          Hard: {
-            totals: hardTotals,
-            averages: hardAverages
-          }
+          Easy: { totals: easyTotals, averages: easyAverages },
+          Medium: { totals: mediumTotals, averages: mediumAverages },
+          Hard: { totals: hardTotals, averages: hardAverages }
         },
         category: catStats
       }).status(200)
@@ -836,7 +800,8 @@ exports.questionResults = functions
 
         var question = snap.val()
 
-        let calcTime = req.body.time,
+        let calcTotalTime = req.body.time,
+            calcAvgTime = req.body.time,
             calcTotal = question.answers.total + 1,
             calcCorrect = question.answers.correct,
             calcIncorrect = question.answers.incorrect,
@@ -845,7 +810,8 @@ exports.questionResults = functions
             calcDiffRank = '',
             calcXP = 0
 
-        if(question.answers.total !== 0) calcTime = parseFloat(((req.body.time + question.answers.avg_time) / question.answers.total).toFixed(2))
+        calcTotalTime = req.body.time + question.answers.total_time
+        if(!!question.answers.total) calcAvgTime = (req.body.time + question.answers.avg_time) / 2.00
 
         if(req.body.answer === question.correct) {
           calcCorrect = question.answers.correct + 1
@@ -860,23 +826,22 @@ exports.questionResults = functions
           calcXP = calcExperience(req.body.difficulty, req.body.time, calcResult)
         }
 
-        let qPerf = calcQperf(req.body.time, calcResult, req.body.difficulty)
-        let oPerf = calcOperf(qPerf.rating, req.body.rating, req.body.rank)
-        perfObj = { qPerf: qPerf, oPerf: oPerf }
         calcDiffRank = calcDiffRate(calcCorrect, calcIncorrect, calcOuttaTime, calcTotal)
 
+        let qPerf = calcQperf(req.body.time, calcResult, req.body.difficulty)
+
+        perfObj = { qPerf: qPerf, oPerf: calcOperf(qPerf.rating, req.body.rating, req.body.rank) }
+        xpObj = { gain: calcXP, prevTotal: req.body.experience, newTotal: calcXP + req.body.experience, level: parseInt(calcXPlevel(calcXP + req.body.experience)) }
+        diffObj = { ...snap.val().rating, difficulty: calcDiffRank }
+
         calcObj = {
-          avg_time: calcTime,
+          total: calcTotal,
           correct: calcCorrect,
           incorrect: calcIncorrect,
           outta_time: calcOuttaTime,
-          total: calcTotal
+          total_time: calcTotalTime,
+          avg_time: calcAvgTime
         }
-
-        diffObj = { ...snap.val().rating, difficulty: calcDiffRank }
-
-        let newXP = calcXP + req.body.experience
-        xpObj = { gain: calcXP, prevTotal: req.body.experience, newTotal: newXP, level: parseInt(calcXPlevel(newXP)) }
 
         resObj = {
           qid: req.body.qid,
