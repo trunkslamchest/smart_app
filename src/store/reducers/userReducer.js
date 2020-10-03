@@ -1,5 +1,9 @@
 import * as actionTypes from '../actions/actionTypes'
 
+import { userQuestionRating } from '../../utility/calculation/calcRating'
+import { userQuestionRank } from '../../utility/calculation/calcRank'
+
+
 const initialState = {
   achievements: null,
   experience: null,
@@ -20,6 +24,16 @@ const updateUserInfo = (currentState, action) => { return{ ...currentState, info
 const updateUserQuestions = (currentState, action) => { return{ ...currentState, questions: action.questions } }
 
 const updateUserPerformanceFromPlayController = (currentState, action) => {
+
+  // console.log(action.res)
+
+  let newDrating = userQuestionRating(action.res.dRating, action.res.qPerf.rating)
+  let newDrank = userQuestionRank(newDrating)
+  let newCrating = userQuestionRating(action.res.cRating, action.res.qPerf.rating)
+  let newCrank = userQuestionRank(newCrating)
+
+  // console.log(newDrank, newCrank)
+
   return {
     ...currentState,
     questions: {
@@ -28,8 +42,24 @@ const updateUserPerformanceFromPlayController = (currentState, action) => {
         ...currentState.questions.totals,
         all: {
           ...currentState.questions.totals.all,
-          rank: action.rank,
-          rating: action.rating
+          rank: action.res.oPerf.rank,
+          rating: action.res.oPerf.rating
+        },
+        difficulty: {
+          ...currentState.questions.totals.difficulty,
+          [action.res.difficulty]: {
+            ...currentState.questions.totals.difficulty[action.res.difficulty],
+            rank: newDrank,
+            rating: newDrating
+          }
+        },
+        categories: {
+          ...currentState.questions.totals.categories,
+          [action.res.category]: {
+            ...currentState.questions.totals.categories[action.res.category],
+            rank: newCrank,
+            rating: newCrating
+          }
         }
       }
     }

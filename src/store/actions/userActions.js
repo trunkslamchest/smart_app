@@ -86,11 +86,10 @@ export const deleteUser = (id) => {
   }
 }
 
-export const updateUserPerformanceFromPlayController = (perf) => {
+export const updateUserPerformanceFromPlayController = (res) => {
   return {
     type: actionTypes.UPDATE_USER_PERFORMANCE_FROM_PLAY_CONTROLLER,
-    rank: perf.rank,
-    rating: perf.rating
+    res: res
   }
 }
 
