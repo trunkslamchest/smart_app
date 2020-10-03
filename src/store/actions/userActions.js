@@ -127,29 +127,36 @@ export const updateUserCommentsFromPlayController = (id, comment) => {
   }
 }
 
-export const initUpdateUserCommentsFromPlayController = (cid, comment) => { return { type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER, cid: cid, comment: comment } }
+export const initUpdateUserCommentsFromPlayController = (res) => {
+  return {
+    type: actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER,
+    res: res
+  }
+}
 
 export const deleteUserComment = (obj) => {
   return dispatch => {
     questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, { cid: obj.cid, qid: obj.qid, difficulty: obj.difficulty, category: obj.category })
-    .then(() => userFunctions('deleteUserComment', fetch.delete.userComment, { uid: obj.uid, cid: obj.cid })
-      .then(cRes => dispatch(initDeleteUserComment(cRes)) )
+    .then(() => userFunctions('deleteUserComment', fetch.delete.userComment, { uid: obj.uid, qid: obj.qid, cid: obj.cid, difficulty: obj.difficulty, category: obj.category })
+      .then(cRes => {
+        dispatch(initDeleteUserComment(cRes))
+      })
     )
   }
 }
 
-const initDeleteUserComment = (comments) => { return { type: actionTypes.DELETE_USER_COMMENT, comments: comments } }
+const initDeleteUserComment = (res) => { return { type: actionTypes.DELETE_USER_COMMENT, res: res } }
 
 export const editUserComment = (obj) => {
   return dispatch => {
     questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
     .then((qRes) => {
-      userFunctions('editUserComment', fetch.patch.editUserComment, { uid: qRes.uid, cid: qRes.cid, comment: qRes.comment })
+      userFunctions('editUserComment', fetch.patch.editUserComment, { uid: qRes.uid, cid: qRes.cid, qid: qRes.qid, difficulty: qRes.difficulty, category: qRes.category, comment: qRes.comment })
       .then(cRes => {
-        dispatch(initEditUserComment({cid: cRes.cid, comment: cRes.comment}))
+        dispatch(initEditUserComment(cRes))
       })
     })
   }
 }
 
-const initEditUserComment = (comment) => { return { type: actionTypes.EDIT_USER_COMMENT, cid: comment.cid, comment: comment.comment } }
+const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, res: res } }

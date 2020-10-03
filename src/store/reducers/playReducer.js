@@ -64,11 +64,35 @@ const updateVoteStatus = (currentState, action) => { return { ...currentState, v
 
 const resetVote = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus, voteLoading: action.voteLoading } }
 
-const setComment = (currentState, action) => { return { ...currentState, question: { ...currentState.question, comments: action.comments }, comment: action.comment } }
+const setComment = (currentState, action) => {
+  return {
+    ...currentState,
+    question: {
+      ...currentState.question,
+      comments: action.comments
+    },
+    results: {
+      ...currentState.results,
+      comment: action.comment
+    }
+  }
+}
 
 const updateCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus, commentLoading: action.commentLoading } }
 
-const resetComment = (currentState, action) => { return { ...currentState, comment: action.comment, commentStatus: action.commentStatus, commentLoading: action.commentLoading } }
+const resetComment = (currentState, action) => {
+
+  let removedCommentResults = { ...currentState.results }
+
+  delete removedCommentResults.comment
+
+  return {
+    ...currentState,
+    commentStatus: action.commentStatus,
+    commentLoading: action.commentLoading,
+    results: removedCommentResults
+  }
+}
 
 const deleteQuestionComment = (currentState, action) => {
   let uComments = { ...currentState.question.comments }

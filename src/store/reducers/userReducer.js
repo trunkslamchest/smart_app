@@ -157,8 +157,8 @@ const updateUserVotesFromPlayController = (currentState, action) => {
   let vote = { vote: action.res.vote, value: action.res.value },
       voteTotals = { ...currentState.questions.totals.all.votes }
 
-    voteTotals[action.res.vote] += 1
-    voteTotals.total += 1
+  voteTotals[action.res.vote] += 1
+  voteTotals.total += 1
 
   return {
     ...currentState,
@@ -190,40 +190,101 @@ const updateUserVotesFromPlayController = (currentState, action) => {
 }
 
 const updateUserCommentsFromPlayController = (currentState, action) => {
-  let uComments, comment = { [action.cid]: action.comment }
+  let comment = { comment: action.res.comment, timestamp: action.res.timestamp },
+      commentTotals = { ...currentState.questions.totals.all.comments }
 
-  if(currentState.questions.comments){
-    uComments = { ...currentState.questions.comments }
-    uComments[action.cid] = action.comment
-    uComments.total += 1
-  } else {
-    uComments = comment
-    uComments["total"] = 1
-  }
+  commentTotals.total += 1
 
   return {
     ...currentState,
-    questions: { ...currentState.questions, comments: uComments }
-  }
-}
-
-const editUserComment = (currentState, action) => {
-  return {
-    ...currentState,
-    questions: {
-      ...currentState.questions,
-      comments: {
-        ...currentState.questions.comments,
-        [action.cid]: {
-          ...currentState.questions.comments[action.cid],
-          comment: action.comment
+    questions: { ...currentState.questions,
+      [action.res.difficulty]: {
+        ...currentState.questions[action.res.difficulty],
+        categories: {
+          ...currentState.questions[action.res.difficulty].categories,
+          [action.res.category]: {
+            ...currentState.questions[action.res.difficulty].categories[action.res.category],
+            [action.res.qid]: {
+              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
+              comments: {
+                ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
+                [action.res.cid]: comment
+              }
+            }
+          }
+        }
+      },
+      totals: {
+        ...currentState.questions.totals,
+        all: {
+          ...currentState.questions.totals.all,
+          comments: commentTotals
         }
       }
     }
   }
 }
 
-const deleteUserComment = (currentState, action) => { return { ...currentState, questions: { ...currentState.questions, comments: action.comments } } }
+const editUserComment = (currentState, action) => {
+  return {
+    ...currentState,
+    questions: { ...currentState.questions,
+      [action.res.difficulty]: {
+        ...currentState.questions[action.res.difficulty],
+        categories: {
+          ...currentState.questions[action.res.difficulty].categories,
+          [action.res.category]: {
+            ...currentState.questions[action.res.difficulty].categories[action.res.category],
+            [action.res.qid]: {
+              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
+              comments: {
+                ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
+                [action.res.cid]: {
+                ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments[action.res.cid],
+                comment: action.res.comment
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+const deleteUserComment = (currentState, action) => {
+  let comments = { ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments },
+      commentTotals = { ...currentState.questions.totals.all.comments }
+
+  delete comments[action.res.cid]
+  commentTotals.total -= 1
+
+  return {
+    ...currentState,
+    questions: { ...currentState.questions,
+      [action.res.difficulty]: {
+        ...currentState.questions[action.res.difficulty],
+        categories: {
+          ...currentState.questions[action.res.difficulty].categories,
+          [action.res.category]: {
+            ...currentState.questions[action.res.difficulty].categories[action.res.category],
+            [action.res.qid]: {
+              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
+              comments: comments
+            }
+          }
+        }
+      },
+      totals: {
+        ...currentState.questions.totals,
+        all: {
+          ...currentState.questions.totals.all,
+          comments: commentTotals
+        }
+      }
+    }
+  }
+}
 
 const deleteUser = (currentState, action) => { return { ...currentState, info: action.info, questions: action.questions } }
 

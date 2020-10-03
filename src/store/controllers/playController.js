@@ -53,11 +53,17 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && this.props.play.results.vote) this.updateUserVotesModule()
 
-      // if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'voteSuccess' && this.props.play.results.vote) this.props.onUpdateVoteStatus('displayVotes', false)
+      if(this.props.play.gameState === 'results'
+         && this.props.play.voteStatus === 'voteSuccess'
+         && this.props.user.questions[this.props.play.question.difficulty].categories[this.props.play.question.category][this.props.play.question.id].vote)
+         this.props.onUpdateVoteStatus('displayVotes', false)
 
-      if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.comment) this.updateUserCommentsModule()
+      if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.results.comment) this.updateUserCommentsModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'commentSuccess' && this.props.user.questions.comments[this.props.play.comment.cid]) this.props.onUpdateCommentStatus('displayComments', false)
+      if(this.props.play.gameState === 'results' &&
+         this.props.play.commentStatus === 'commentSuccess' &&
+         this.props.user.questions[this.props.play.question.difficulty].categories[this.props.play.question.category][this.props.play.question.id].comments[this.props.play.results.comment.cid])
+        this.displayCommentsModule()
     }
   }
 
@@ -244,17 +250,23 @@ class PlayController extends React.Component {
 
   updateUserCommentsModule = () => {
     this.props.onUpdateCommentStatus('sentComment', true)
-    this.props.onUpdateUserCommentsFromPlayController(this.props.play.comment.cid, {
+    this.props.onUpdateUserCommentsFromPlayController({
+      cid: this.props.play.results.comment.cid,
       qid: this.props.play.question.id,
       answer: this.props.play.answer.choice,
       category: this.props.play.question.category,
-      comment: this.props.play.comment.comment,
+      comment: this.props.play.results.comment.comment,
       correct_answer: this.props.play.results.correct_answer,
       question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
       result: this.props.play.results.result,
-      timestamp: this.props.play.comment.timestamp
+      timestamp: this.props.play.results.comment.timestamp
     })
+  }
+
+  displayCommentsModule = () => {
+    this.props.onUpdateCommentStatus('displayComments', false)
+    this.props.onResetComment()
   }
 
   render(){

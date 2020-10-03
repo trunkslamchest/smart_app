@@ -302,27 +302,20 @@ exports.crossUpdateUserComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORScrossPatch(req, res);
-    var commentObj = {}, updateObj = {}
+    var commentObj = {}, commentTotalObj = {}
 
-    firebase.database().ref('/' + req.body.uid + '/questions/').once('value', function(snap){
-      var commentPath = '/' + req.body.uid + '/questions/comments'
-
-      updateObj = {
-        qid: req.body.qid,
-        question: req.body.question,
-        difficulty: req.body.difficulty,
-        category: req.body.category,
-        answer: req.body.answer,
-        correct_answer: req.body.correct_answer,
-        result: req.body.result,
-        comment: req.body.comment,
-        timestamp: req.body.timestamp
-      }
-
-      commentObj[commentPath] = { ...snap.val().comments, [req.body.cid]: updateObj }
-      commentObj[commentPath].total = commentObj[commentPath].total ? commentObj[commentPath].total + 1 : 1
-
+    firebase.database().ref('/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+      var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/'
+      if(!snap.val().comments) commentObj[commentPath] = { [req.body.cid]: { comment: req.body.comment, timestamp: req.body.timestamp } }
+      else commentObj[commentPath] = { ...snap.val().comments, [req.body.cid]: { comment: req.body.comment, timestamp: req.body.timestamp } }
       firebase.database().ref().update(commentObj);
+    })
+
+    firebase.database().ref('/' + req.body.uid + '/questions/totals/all/').once('value', function(snap){
+      var commentTotalPath = '/' + req.body.uid + '/questions/totals/all/comments'
+      if(!snap.val().comments) commentTotalObj[commentTotalPath] = { total: 1 }
+      else commentTotalObj[commentTotalPath] = { total: snap.val().comments.total + 1 }
+      firebase.database().ref().update(commentTotalObj);
     })
 
     res.end()
@@ -332,21 +325,20 @@ exports.deleteUserComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSdelete(req, res);
-    var commentObj = {}, resObj = null
-      var commentPath = '/' + req.body.uid + '/questions/comments/'
-      firebase.database().ref(commentPath + req.body.cid).remove()
-      firebase.database().ref(commentPath).once('value', function(snap){
-        if(!!req.body.cid) {
-          commentObj[commentPath] = { ...snap.val() }
-          commentObj[commentPath].total = commentObj[commentPath].total - 1
-          if(commentObj[commentPath].total === 0) firebase.database().ref(commentPath).remove()
-          else {
-            resObj = commentObj[commentPath]
-            firebase.database().ref().update(commentObj);
-          }
-        }
-      res.json(resObj).status(200)
-      })
+    var commentTotalsObj = {}
+    var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid
+    var commentTotalsPath = '/' + req.body.uid + '/questions/totals/all/comments/'
+
+    firebase.database().ref(commentPath).remove()
+    firebase.database().ref(commentTotalsPath).once('value', function(snap){
+      if(!!req.body.cid) {
+        commentTotalsObj[commentTotalsPath] = { ...snap.val() }
+        commentTotalsObj[commentTotalsPath].total = commentTotalsObj[commentTotalsPath].total - 1
+        if(commentTotalsObj[commentTotalsPath].total === 0) firebase.database().ref(commentTotalsPath).remove()
+        else firebase.database().ref().update(commentTotalsObj);
+      }
+      res.json({ difficulty: req.body.difficulty, category: req.body.category, qid: req.body.qid, cid: req.body.cid }).status(200)
+    })
     // res.send('done')
 });
 
@@ -354,10 +346,9 @@ exports.editUserComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSdelete(req, res);
-    console.log(req.body)
     let resObj = {}
     if(!!req.body.uid && !!req.body.cid){
-      var commentPath = '/' + req.body.uid + '/questions/comments/' + req.body.cid
+      var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid
       firebase.database().ref(commentPath).update({comment: req.body.comment})
       resObj = req.body
     }
@@ -947,10 +938,10 @@ exports.questionComment = functions
     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
       if(!!req.body.uid) {
 
-        var k = firebase.database().ref().push().key
+        var cid = firebase.database().ref().push().key
         commentObj = {
-          [k]: {
-            cid: k,
+          [cid]: {
+            cid: cid,
             comment: req.body.comment,
             user: req.body.user_name,
             timestamp: req.body.timestamp
@@ -963,21 +954,18 @@ exports.questionComment = functions
         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments').update(commentsObj)
 
         let crossObj = {
-          cid: k,
+          cid: cid,
           qid: req.body.qid,
           uid: req.body.uid,
-          question: req.body.question,
           difficulty: req.body.difficulty,
           category: req.body.category,
-          answer: req.body.answer,
-          correct_answer: req.body.correct_answer,
           result: req.body.result,
           comment: req.body.comment,
           timestamp: req.body.timestamp
         }
 
         commentObj = {
-          cid: k,
+          cid: cid,
           qid: req.body.qid,
           comment: req.body.comment,
           timestamp: req.body.timestamp
@@ -1007,7 +995,7 @@ exports.deleteQuestionComment = functions
     setCORSdelete(req, res);
     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid).remove()
 
-    res.json({ msg: 'Question Comment Removed' }).status(200)
+    res.json({ difficulty: req.body.difficulty, category: req.body.category, qid: req.body.qid, cid: req.body.cid }).status(200)
     // res.send('done')
 });
 
