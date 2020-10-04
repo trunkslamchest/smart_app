@@ -1,0 +1,40 @@
+.dashboard_answers_diff_card_container {
+  border: 1px solid rgba(200, 200, 200, 1);
+  box-sizing: border-box;
+}
+
+.dashboard_answers_diff_card_container button {
+  font: 300 20pt 'Lato', sans-serif;
+  margin: 0px auto;
+  text-align: center;
+  border: 1px solid rgba(200, 200, 200, 1);
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  padding: 0px;
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+
+}
+
+.dashboard_answers_diff_card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: 1px solid rgba(200, 200, 200, 1);
+  box-sizing: border-box;
+}
+
+.dashboard_answers_diff_card h3 {
+  font: 300 20pt 'Lato', sans-serif;
+  margin: 0px auto;
+  text-align: center;
+  border: 1px solid rgba(200, 200, 200, 1);
+  box-sizing: border-box;
+}
+
+.dashboard_answers_cat_card_container {
+  border: 1px solid rgba(200, 200, 200, 1);
+  box-sizing: border-box;
+}

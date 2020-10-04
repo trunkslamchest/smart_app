@@ -11,8 +11,7 @@ import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer
 import DashboardIndex from './dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
-import DashboardVotesContainer from './dashboardVotes/dashboardVotesContainer'
-import DashboardCommentsContainer from './dashboardComments/dashboardCommentsContainer'
+import DashboardAnswersContainer from './dashboardAnswers/dashboardAnswersContainer'
 
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
@@ -21,9 +20,7 @@ import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
 
-  componentDidMount(){
-    document.title = "SmartApp™ | Dashboard "
-  }
+  componentDidMount(){ document.title = "SmartApp™ | Dashboard " }
 
   render(){
 
@@ -47,11 +44,8 @@ class Dashboard extends React.Component{
             <Route exact path={ routes.dashboard_stats }>
               <DashboardStatsContainer history={this.props.history} />
             </Route>
-            <Route exact path={ routes.dashboard_votes }>
-              <DashboardVotesContainer history={this.props.history} />
-            </Route>
-            <Route exact path={ routes.dashboard_comments }>
-              <DashboardCommentsContainer history={this.props.history} />
+            <Route exact path={ routes.dashboard_answers }>
+              <DashboardAnswersContainer history={this.props.history} />
             </Route>
           </Switch>
         </>

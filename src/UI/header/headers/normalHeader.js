@@ -16,7 +16,7 @@ class NormalHeader extends React.Component {
     showProfileMenu: false,
   }
 
-  switchPlayMenu = (bool) => {
+  switchPlayMenu = () => {
     let switchMenu = !this.state.showPlayMenu
     this.setState({
       showPlayMenu: switchMenu,

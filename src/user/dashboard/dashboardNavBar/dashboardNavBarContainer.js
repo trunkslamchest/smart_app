@@ -11,8 +11,7 @@ const DashboardNavBarContainer = (props) => {
   const buttons = [
     { name: 'profile', text: 'My Profile' },
     { name: 'stats', text: 'My Stats' },
-    { name: 'votes', text: 'My Votes' },
-    { name: 'comments', text: 'My Comments' }
+    { name: 'answers', text: 'My Answers' }
   ]
 
   const distribButtons = buttons.map(button =>

@@ -80,6 +80,8 @@ export const routes = {
   dashboard_stats: '/testSub/dashboard/stats',
   dashboard_votes: '/testSub/dashboard/votes',
   dashboard_comments: '/testSub/dashboard/comments',
+  dashboard_answers: '/testSub/dashboard/answers',
+
   dashboard_test: '/testSub/dashboard/test',
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
@@ -105,6 +107,8 @@ export const routes = {
   // dashboard_votes: '/smartapp/dashboard/votes',
   // dashboard_comments: '/smartapp/dashboard/comments',
   // dashboard_test: '/smartapp/dashboard/test',
+  // dashboard_answers: '/smartapp/dashboard/answers',
+
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',
   // quick_question: '/smartapp/play/quick/question',
