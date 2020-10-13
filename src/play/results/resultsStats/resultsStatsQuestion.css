@@ -5,8 +5,6 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   width: 60%;
 }
 
@@ -14,8 +12,6 @@
   position: relative;
   top: .2em;
   font: 600 15pt "LatoThin";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_question_sub_container {
@@ -26,8 +22,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: 5px 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff_container {
@@ -38,28 +32,20 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff_container h4 {
   font: 400 10pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff_container h5 {
   font: 300 10pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff_container h6 {
   position: relative;
   top: -.15em;
   font: 300 12pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff_sub_container {
@@ -69,20 +55,14 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_diff_rating {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_container {
@@ -93,28 +73,20 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_container h4 {
   font: 400 10pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_container h5 {
   position: relative;
   top: -.15em;
   font: 300 12pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_container h6 {
   font: 400 12pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_sub_container {
@@ -124,24 +96,16 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_correct {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_incorrect {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_totals_outta_time {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }

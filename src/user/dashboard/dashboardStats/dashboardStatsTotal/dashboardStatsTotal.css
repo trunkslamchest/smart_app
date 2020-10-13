@@ -4,7 +4,6 @@
 
 .stats_total {
   background: rgba(255,255,255, 1);
-  /* width: 100%; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -12,14 +11,10 @@
   align-items: center;
   align-content: center;
   font: 300 10pt 'Poppins', sans-serif;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total br {
   line-height: 0em;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total ul {
@@ -32,14 +27,10 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total li {
   font-size: 10pt;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_xp_perf_container {
@@ -52,6 +43,4 @@
   align-items: center;
   align-content: center;
   font: 300 10pt 'Poppins', sans-serif;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }

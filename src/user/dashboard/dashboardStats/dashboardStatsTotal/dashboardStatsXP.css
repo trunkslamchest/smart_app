@@ -6,19 +6,12 @@
   align-items: center;
   align-content: center;
   text-align: center;
-  /* flex-grow: 1; */
   width: 100%;
-  /* margin: 0px 0px 5px 0px; */
   padding: 0px 5px 5px 5px;
-
   align-self: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_experience_container h4 {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   padding-left: 5px;
 }
 
@@ -29,20 +22,12 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   height: 15px;
   width: 100%;
-  /* margin: 0px 5px; */
-
 }
 
 
 .stats_experience_bar {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
-  /* background: green; */
-  /* margin-left: 5px; */
   height: 10px;
   width: 100%;
 }

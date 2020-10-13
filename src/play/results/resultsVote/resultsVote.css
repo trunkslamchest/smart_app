@@ -2,8 +2,6 @@
   animation: fade_in .25s ease-in-out 1;
   background: rgba(255,255,255, 1);
   align-items: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,8 +13,6 @@
 .results_vote_container {
   animation: fade_in .25s ease-in-out 1;
   background: rgba(255,255,255, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   min-height: 75px;
   padding: 0px;
   width: 100%;
@@ -24,8 +20,6 @@
 
 .results_vote_wrapper {
   background: rgba(255,255,255, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -39,8 +33,6 @@
 }
 
 .results_vote_header {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -54,8 +46,6 @@
 }
 
 .results_vote_header h3 {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   font: 400 15pt 'Lato', sans-serif;
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -65,8 +55,6 @@
 }
 
 .results_vote_header h4 {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   font: 300 15pt 'Lato', sans-serif;
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -76,8 +64,6 @@
 }
 
 .results_vote_header h5 {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   font: 300 10pt 'Lato', sans-serif;
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -87,8 +73,6 @@
 }
 
 .results_vote_totals {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   font: 300 14pt 'Lato', sans-serif;
   display: flex;
   flex-direction: row;
@@ -102,8 +86,6 @@
 }
 
 .results_vote_totals ul {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -123,8 +105,6 @@
 }
 
 .results_vote_totals li {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   align-content: center;
   align-items: center;
   display: flex;
@@ -136,8 +116,6 @@
 }
 
 .results_vote_totals li h5 {
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   align-content: center;
   align-items: center;
   display: flex;

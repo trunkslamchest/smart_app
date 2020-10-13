@@ -27,7 +27,7 @@ class DashboardStatsCategoryContainer extends React.Component {
     }
 
     return(
-      <div className="stats_category">
+      <div className="stats_category_container">
         { distribCats }
       </div>
     )

@@ -13,7 +13,6 @@ import getTime from '../../utility/getTime'
 
 import ResultsHeader from './resultsHeader/resultsHeader'
 import ResultsAnswer from './resultsAnswer/resultsAnswer'
-// import ResultsDifficulty from './resultsDifficulty/resultsDifficulty'
 import ResultsStats from './resultsStats/resultsStats'
 import ResultsVote from './resultsVote/resultsVote'
 import ResultsComment from './resultsComment/resultsComment'

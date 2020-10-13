@@ -2,8 +2,6 @@
   animation: fade_in .25s ease-in-out 1;
   align-items: baseline;
   background: rgba(255,255,255, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: center;

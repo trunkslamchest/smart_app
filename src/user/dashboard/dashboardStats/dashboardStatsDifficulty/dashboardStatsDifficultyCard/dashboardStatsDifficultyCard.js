@@ -6,9 +6,7 @@ import { connect } from 'react-redux'
 import trend_arrow_up from '../../../../../assets/trends/trend_arrow_up.png'
 import trend_arrow_down from '../../../../../assets/trends/trend_arrow_down.png'
 
-
 import './dashboardStatsDifficultyCard.css'
-
 
 class DashboardStatsDifficultyCard extends React.Component {
 

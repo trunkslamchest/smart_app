@@ -134,8 +134,6 @@ select:not(:-internal-list-box) {
   flex-wrap: wrap;
   margin: 0px auto 0px auto;
   padding: 0px 0px 0px 0px;
-  border: 1px solid rgb(200, 200, 200, 1);
-  box-sizing: border-box;
   min-height: 85.75vh;
 }
 
@@ -334,7 +332,7 @@ select:not(:-internal-list-box) {
 }
 
 .alt_header h2 {
-	font: 400 20pt 'Lato', sans-serif;
+  font: 400 20pt 'Lato', sans-serif;
 }
 
 .alt_header h3 {

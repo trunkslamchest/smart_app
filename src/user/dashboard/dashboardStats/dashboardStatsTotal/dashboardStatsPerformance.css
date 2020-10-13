@@ -9,8 +9,6 @@
   width: 100%;
   margin: 0 auto 0 auto;
   align-self: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_performance_container p {
@@ -22,8 +20,6 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_performance_container p span {
@@ -35,8 +31,6 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_performance_sub_container {
@@ -50,8 +44,6 @@
   width: 100%;
   margin: 0 auto 0 auto;
   align-self: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total_rating {
@@ -59,8 +51,6 @@
   width: 50%;
   margin: 0 auto 0 auto;
   align-self: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total_rank {
@@ -68,8 +58,6 @@
   width: 50%;
   margin: 0 auto 0 auto;
   align-self: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total_rating h1, .stats_total_rank h1 {
@@ -81,8 +69,6 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total_rating h2, .stats_total_rank h2 {
@@ -94,8 +80,6 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .stats_total_rating h2 span, .stats_total_rank h2 span {
@@ -107,6 +91,4 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }

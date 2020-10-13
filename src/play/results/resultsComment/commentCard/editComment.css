@@ -1,14 +1,10 @@
 .results_edit_comment_text {
   animation: fade_in .3s ease-in-out 1;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   width: 100%;
 }
 
 .results_edit_comment_form {
   animation: fade_in .25s ease-in-out 1;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   align-content: flex-start;
   display: flex;
   flex-direction: column;
@@ -19,8 +15,6 @@
 
 .results_edit_comment_form textarea {
   animation: fade_in .25s ease-in-out 1;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   font: 300 12pt 'Lato', sans-serif;
   margin: 0 auto 0 auto;
   max-width: 500px;
@@ -32,8 +26,6 @@
 .results_all_comments_comment_header_left {
   align-content: center;
   align-items: baseline;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -43,20 +35,16 @@
 .results_edit_comment_buttons_container {
   animation: fade_in .3s ease-in-out 1;
   align-items: baseline;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin: 0px auto; */
-  /* width: 100%; */
 }
 
 .results_edit_comment_button {
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
@@ -90,7 +78,7 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(174,174,174, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0.5);
   cursor: pointer;
@@ -115,7 +103,7 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
@@ -149,7 +137,7 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(174,174,174, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0.5);
   cursor: pointer;
@@ -174,7 +162,7 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
@@ -208,7 +196,7 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(174,174,174, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0.5);
   cursor: pointer;
@@ -233,7 +221,7 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
@@ -267,9 +255,9 @@
   -webkit-appearance: none;
   align-items: flex-start;
   background: rgba(174,174,174, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
-  color: rgb(235, 235, 235, 0.5);
+  color: rgba(235, 235, 235, 0.5);
   cursor: pointer;
   display: inline-block;
   font: 400 15px Roboto;

@@ -1,7 +1,7 @@
 .results_next_question_button {
   align-items: flex-start;
   background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
@@ -37,7 +37,7 @@
 .results_next_question_button_disabled {
   align-items: flex-start;
   background: rgba(174,174,174, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
+  border: 0px;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0.5);
   cursor: pointer;

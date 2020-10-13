@@ -5,17 +5,11 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   width: 60%;
 }
 
 .results_perf_container h3 {
-  /* position: relative;
-  top: .15em; */
   font: 600 15pt "LatoThin";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_sub_container {
@@ -26,8 +20,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: 5px 0px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rank_container {
@@ -38,14 +30,10 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rank_container span {
   font: 300 8pt "LatoItalic";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rank_sub_container {
@@ -55,48 +43,34 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rank {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rank h4 {
   font: 400 10pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rank h5 {
   position: relative;
   top: -.15em;
   font: 400 12pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rating {
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rating h4 {
   font: 400 10pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_perf_rating h5 {
   position: relative;
   top: -.15em;
   font: 400 12pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_time_container {
@@ -107,8 +81,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: 0px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_time_sub_container {
@@ -118,26 +90,18 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_time_sub_container h4 {
   font: 400 10pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_time_sub_container h5 {
   position: relative;
   top: -.15em;
   font: 400 12pt "Lato";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }
 
 .results_time_container span {
   font: 300 8pt "LatoItalic";
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
 }

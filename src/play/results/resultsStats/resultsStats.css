@@ -1,6 +1,5 @@
 .results_stats_container {
   animation: fade_in .25s ease-in-out 1;
-  /* padding: 10px 0px 10px 0px; */
   align-content: flex-start;
   align-items: center;
   display: flex;
@@ -8,8 +7,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   background: rgba(255,255,255, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   text-align: center;
   width: 100%;
 }

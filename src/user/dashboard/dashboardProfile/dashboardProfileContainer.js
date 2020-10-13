@@ -65,7 +65,7 @@ const DashboardProfileContainer = (props) => {
 
   return(
     <div className='dashboard_profile_wrapper'>
-      <div className='alt_header'>
+      <div className='dashboard_profile_header'>
         <h3>{ userName }</h3>
         <h5>{ email }</h5>
       </div>

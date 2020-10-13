@@ -24,8 +24,8 @@ const DashboardStatsLegend = () => {
   return (
     <div className="dashboard_stats_legend_container">
       <span>{ arrow_up } = Higher than global user average { arrow_down } = Lower than global user average</span>
-      <span><span>SmartApp™ Rating</span> = (((1 + QDR + (10 - time) / 10) / 3)) * 10</span>
-      <span><span>SmartApp™ Rank</span> is weighed on a scale from 0.25 to 1.0, with rank improvements ratioed to every 0.5 increase.</span>
+      <span>SmartApp™ Rating = (((1 + QDR + ((10 - time) / 10)) / 3)) * 10</span>
+      <span>SmartApp™ Rank is weighed on a scale from 0.25 to 1.0, with rank improvements ratioed to every 0.5 increase.</span>
     </div>
   )
 }

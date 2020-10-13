@@ -7,7 +7,6 @@
   flex-wrap: wrap;
   margin: 0 auto 0px auto;
   padding: 10px 10px 150px 10px;
-  border: 1px solid rgba(200, 200, 200, 1);
   animation: fade_in .3s ease-in-out 1;
 }
 

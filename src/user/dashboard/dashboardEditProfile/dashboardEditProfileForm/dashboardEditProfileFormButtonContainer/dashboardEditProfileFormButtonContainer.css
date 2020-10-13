@@ -4,7 +4,5 @@
   justify-content: center;
   align-items: baseline;
   margin: 20px auto 20px auto;
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
   animation: fade_in .3s ease-in-out 1;
 }

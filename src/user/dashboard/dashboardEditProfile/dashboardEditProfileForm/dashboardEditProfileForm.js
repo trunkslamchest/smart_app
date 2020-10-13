@@ -9,8 +9,6 @@ import months from '../../../../datasets/months'
 
 import './dashboardEditProfileForm.css'
 
-// import ErrorContainer from '../../../error/errorContainer'
-
 const dashboardEditProfileForm = (props) => {
 
   const fields = [
@@ -38,7 +36,6 @@ const dashboardEditProfileForm = (props) => {
           type={ field[1].type }
           value={ props[field[1].idName] === 'null' ? field[1].placeholder : props[field[1].idName] }
         />
-        {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
       </>
     }
     if(field[1].type === 'number'){
@@ -55,7 +52,6 @@ const dashboardEditProfileForm = (props) => {
           type={ field[1].type }
           value={ props.dob[field[1].idName] === 0 ? field[1].val : props.dob[field[1].idName] }
         />
-        {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
       </>
     }
     if(field[1].type === 'select'){
@@ -69,7 +65,6 @@ const dashboardEditProfileForm = (props) => {
           options={ field[1].options }
           value={ field[1].val }
         />
-        {/* {props.errors.user_name ? <ErrorContainer errors={props.errors.user_name} /> : null } */}
       </>
     }
     return component
@@ -77,7 +72,7 @@ const dashboardEditProfileForm = (props) => {
 
   return(
     <>
-      <div className='alt_header'>
+      <div className='edit_profile_form_header'>
         <h3>Edit Profile</h3>
       </div>
       <form
