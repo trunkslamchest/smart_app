@@ -102,7 +102,12 @@ export const updateUserExperienceFromPlayController = (xp) => {
 
 export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
 
-export const updateUserQuestionsFromPlayController = (question) => { return { type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER, question: question } }
+export const updateUserQuestionsFromPlayController = (question) => {
+  return {
+    type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER,
+    question: question
+  }
+}
 
 export const updateUserQuestionTotalsFromPlayController = (result) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, result: result } }
 

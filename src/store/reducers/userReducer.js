@@ -88,7 +88,8 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
             correct_answer: action.question.results.correct_answer,
             question: action.question.question,
             result: action.question.results.result,
-            time: action.question.answer.time
+            time: action.question.answer.time,
+            performance: action.question.results.performance.qPerf
           }
         }
       }
@@ -100,7 +101,8 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
         correct_answer: action.question.results.correct_answer,
         question: action.question.question,
         result: action.question.results.result,
-        time: action.question.answer.time
+        time: action.question.answer.time,
+        performance: action.question.results.performance.qPerf
       }
     }
   } else {
@@ -109,7 +111,8 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
       correct_answer: action.question.results.correct_answer,
       question: action.question.question,
       result: action.question.results.result,
-      time: action.question.answer.time
+      time: action.question.answer.time,
+      performance: action.question.results.performance.qPerf
     }
   }
 
