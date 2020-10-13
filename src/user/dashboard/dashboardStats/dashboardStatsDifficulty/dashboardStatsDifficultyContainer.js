@@ -23,7 +23,7 @@ class DashboardStatsDifficultyContainer extends React.Component {
     }
 
     return(
-      <div className="stats_difficulty">
+      <div className="stats_difficulty_container">
         { distribDiffs[0] }
         { distribDiffs[2] }
         { distribDiffs[1] }
