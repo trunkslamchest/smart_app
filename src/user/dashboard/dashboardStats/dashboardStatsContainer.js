@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import DashboardStatsTotal from './dashboardStatsTotal/dashboardStatsTotal'
 import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'
 import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardStatsCategoryContainer'
+import DashboardStatsLegend from './dashboardStatsLegend/dashboardStatsLegend'
 
 import './dashboardStats.css'
 
@@ -15,6 +16,7 @@ const DashboardStatsContainer = (props) => {
       <DashboardStatsTotal />
       <DashboardStatsDifficultyContainer />
       <DashboardStatsCategoryContainer />
+      <DashboardStatsLegend />
     </div>
   )
 }
