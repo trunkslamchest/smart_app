@@ -87,19 +87,16 @@ class DashboardStatsTotal extends React.Component {
           <ul>
             <li>{ this.props.user.questions.totals.all.answered }/{ this.props.questions.totals.all.totals.questions } answered ({ totalQuestionsAnswered }%)</li>
             <li>
-                { this.props.user.questions.totals.all.correct }/{ this.props.user.questions.totals.all.answered } correct ({ totalQuestionsCorrect }%)
-                { totalQuestionsCorrect > this.props.questions.totals.all.averages.questions.correct ? arrow_up : arrow_down }
+              { this.props.user.questions.totals.all.correct }/{ this.props.user.questions.totals.all.answered } correct ({ totalQuestionsCorrect }%)
+              { totalQuestionsCorrect > this.props.questions.totals.all.averages.questions.correct ? arrow_up : arrow_down }
             </li>
             <br />
             <li>
               Average Time: { this.props.user.questions.totals.all.avg_time } seconds
               { this.props.user.questions.totals.all.avg_time < this.props.questions.totals.all.averages.questions.avgTime ? arrow_up : arrow_down }
-
-
             </li>
             <li>Outta Times: { this.props.user.questions.totals.all.outta_times }</li>
           </ul>
-
           <div className="stats_xp_perf_container">
             <div className="stats_experience_container">
               <h3>Level { this.props.user.experience.level }</h3>
@@ -110,13 +107,10 @@ class DashboardStatsTotal extends React.Component {
                 <h4>{ this.props.user.experience.total }/{ levels[this.props.user.experience.level] }</h4>
               </div>
             </div>
-
             <div className="stats_performance_container">
               { performance }
             </div>
-
           </div>
-
         </div>
     }
 

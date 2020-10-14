@@ -22,21 +22,21 @@ class DashboardStatsDifficultyCard extends React.Component {
         arrow_up,
         arrow_down
 
-  if(stats.rating !== 0) {
-    arrow_up =
-      <img
-        alt='Higher than global average'
-        className='trend_arrow'
-        src={ trend_arrow_up }
-      />
+    if(stats.rating !== 0) {
+      arrow_up =
+        <img
+          alt='Higher than global average'
+          className='trend_arrow'
+          src={ trend_arrow_up }
+        />
 
-    arrow_down =
-      <img
-        alt='Lower than global average'
-        className='trend_arrow'
-        src={ trend_arrow_down }
-      />
-  }
+      arrow_down =
+        <img
+          alt='Lower than global average'
+          className='trend_arrow'
+          src={ trend_arrow_down }
+        />
+    }
 
     let questionsAnswered = ((stats.answered / this.props.questions.totals.difficulty[diff].totals.questions) * 100).toFixed(2)
     let questionsCorrect = "0.00"

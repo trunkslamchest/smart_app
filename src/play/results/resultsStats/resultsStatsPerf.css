@@ -55,7 +55,7 @@
 
 .results_perf_rank h5 {
   position: relative;
-  top: -.15em;
+  /* top: -.15em; */
   font: 400 12pt "Lato";
 }
 
@@ -69,7 +69,7 @@
 
 .results_perf_rating h5 {
   position: relative;
-  top: -.15em;
+  /* top: -.15em; */
   font: 400 12pt "Lato";
 }
 
@@ -92,6 +92,10 @@
   margin: 0px 10px;
 }
 
+.results_time_container h4 {
+  font: 400 10pt "Lato";
+}
+
 .results_time_sub_container {
   align-content: center;
   align-items: center;
@@ -101,13 +105,9 @@
   justify-content: center;
 }
 
-.results_time_sub_container h4 {
-  font: 400 10pt "Lato";
-}
-
 .results_time_sub_container h5 {
   position: relative;
-  top: -.15em;
+  /* top: -.15em; */
   font: 400 12pt "Lato";
 }
 

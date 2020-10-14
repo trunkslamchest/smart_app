@@ -10,7 +10,7 @@
 
 .results_question_container h3 {
   position: relative;
-  top: .2em;
+  /* top: .2em; */
   font: 600 15pt "LatoThin";
 }
 
@@ -44,7 +44,7 @@
 
 .results_diff_container h6 {
   position: relative;
-  top: -.15em;
+  /* top: -.15em; */
   font: 300 12pt "Lato";
 }
 
@@ -81,7 +81,7 @@
 
 .results_totals_container h5 {
   position: relative;
-  top: -.15em;
+  /* top: -.15em; */
   font: 300 12pt "Lato";
 }
 

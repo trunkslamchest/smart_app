@@ -16,9 +16,9 @@ const DashboardNavBarContainer = (props) => {
 
   const distribButtons = buttons.map(button =>
     <DashboardNavBarButton
-      key={buttons.indexOf(button)}
-      name={`dashboard_${button.name}_button`}
+      key={ buttons.indexOf(button) }
       link={ routes[`dashboard_${button.name}`] }
+      name={`dashboard_${button.name}_button`}
     >
       { button.text }
     </DashboardNavBarButton>

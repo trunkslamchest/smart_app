@@ -84,7 +84,7 @@ const ResultsStats = (props) => {
             </div>
           </div>
         </div>
-        <h5>{ props.user.experience.total }/{ levels[props.user.experience.level] }</h5>
+        <h4>{ props.user.experience.total }</h4><h5>/{ levels[props.user.experience.level] }</h5>
       </div>
 
     </div>

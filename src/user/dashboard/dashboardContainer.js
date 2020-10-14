@@ -29,33 +29,31 @@ class Dashboard extends React.Component{
     if(!this.props.auth.loading) {
       if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
         routeBoard =
-        <>
-          <DashboardNavBarContainer />
           <Switch>
             <Route exact path={ routes.dashboard }>
               <DashboardIndex />
             </Route>
             <Route exact path={ routes.dashboard_profile }>
-              <DashboardProfileContainer history={this.props.history} />
+              <DashboardProfileContainer history={ this.props.history } />
             </Route>
             <Route path={ routes.dashboard_profile_edit }>
-              <DashboardEditProfileContainer history={this.props.history} />
+              <DashboardEditProfileContainer history={ this.props.history } />
             </Route>
             <Route exact path={ routes.dashboard_stats }>
-              <DashboardStatsContainer history={this.props.history} />
+              <DashboardStatsContainer history={ this.props.history } />
             </Route>
             <Route exact path={ routes.dashboard_answers }>
-              <DashboardAnswersContainer history={this.props.history} />
+              <DashboardAnswersContainer history={ this.props.history } />
             </Route>
           </Switch>
-        </>
       }
     }
 
     return(
       <>
-        <DashboardDeleteProfile history={this.props.history} />
+        <DashboardDeleteProfile history={ this.props.history } />
         <div className='dashboard_wrapper'>
+          <DashboardNavBarContainer />
           { routeBoard }
         </div>
       </>

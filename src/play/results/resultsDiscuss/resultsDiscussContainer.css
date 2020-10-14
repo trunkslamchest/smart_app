@@ -1,0 +1,16 @@
+.results_discuss_container {
+  align-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: auto;
+  justify-content: center;
+  margin: 0px auto 0px auto;
+  padding: 0px;
+  width: 100%;
+}
+
+.results_discuss_container > * {
+  z-index: 3;
+}

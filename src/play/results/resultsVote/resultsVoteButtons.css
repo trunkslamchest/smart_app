@@ -12,8 +12,8 @@
 
 .up_vote_button {
   align-items: flex-start;
-  color: rgb(255, 255, 255, 1);
-  background-color: rgba(0, 128, 43, 1);
+  color: rgba(255, 255, 255, 1);
+  background: rgba(0, 128, 43, 1);
   border: 0px solid;
   box-sizing: border-box;
   cursor: pointer;
@@ -22,7 +22,6 @@
   letter-spacing: normal;
   width: 50px;
   height: 50px;
-  margin: 5px 0px;
   padding: 10px 12.5px;
   text-align: center;
   text-decoration: none;
@@ -37,7 +36,7 @@
 
 .up_vote_disabled_button {
   align-items: flex-start;
-  color: rgb(235, 235, 235, 0.5);
+  color: rgba(235, 235, 235, 0.5);
   background: rgba(174,174,174, 1);
   border: 0px solid;
   box-sizing: border-box;
@@ -47,7 +46,6 @@
   letter-spacing: normal;
   width: 50px;
   height: 50px;
-  margin: 5px 0px;
   padding: 10px 12.5px;
   text-align: center;
   text-decoration: none;
@@ -77,10 +75,9 @@
 
 .no_vote_button {
   align-items: flex-start;
-  color: rgb(255, 255, 255, 1);
-  background-color: rgba(89, 89, 89, 1);
+  color: rgba(255, 255, 255, 1);
+  background: rgba(89, 89, 89, 1);
   border: 0px solid;
-  border-radius: 0px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
@@ -88,7 +85,6 @@
   letter-spacing: normal;
   width: 50px;
   height: 50px;
-  margin: 5px 0px;
   padding: 10px 12.5px;
   text-align: center;
   text-decoration: none;
@@ -103,10 +99,9 @@
 
 .no_vote_disabled_button {
   align-items: flex-start;
-  color: rgb(235, 235, 235, 0.5);
+  color: rgba(235, 235, 235, 0.5);
   background: rgba(174,174,174, 1);
   border: 0px solid;
-  border-radius: 0px;
   box-sizing: border-box;
   cursor: not-allowed;
   display: inline-block;
@@ -114,7 +109,6 @@
   letter-spacing: normal;
   width: 50px;
   height: 50px;
-  margin: 5px 0px;
   padding: 10px 12.5px;
   text-align: center;
   text-decoration: none;
@@ -154,7 +148,6 @@
   letter-spacing: normal;
   width: 50px;
   height: 50px;
-  margin: 5px 0px;
   padding: 10px 12.5px;
   text-align: center;
   text-decoration: none;
@@ -179,7 +172,6 @@
   letter-spacing: normal;
   width: 50px;
   height: 50px;
-  margin: 5px 0px;
   padding: 10px 12.5px;
   text-align: center;
   text-decoration: none;

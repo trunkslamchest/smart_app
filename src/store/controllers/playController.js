@@ -228,7 +228,7 @@ class PlayController extends React.Component {
 
   displayResultsModule = () => {
     this.props.onUpdateGameStatus('displayResults', false)
-    this.props.history.push( routes[this.props.play.gameMode] + '/results' )
+    this.props.history.push( routes[this.props.play.gameMode] + '/results/stats' )
     this.props.onLoadingModal(false)
   }
 
@@ -302,7 +302,7 @@ class PlayController extends React.Component {
               case 'question': return <Route exact path={ routes[this.props.play.gameMode] + '/question' }>
                                         <QuestionContainer history={ this.props.history } />
                                       </Route>;
-              case 'results': return <Route exact path={ routes[this.props.play.gameMode] + '/results' }>
+              case 'results': return <Route path={ routes[this.props.play.gameMode] + '/results' }>
                                        <ResultsContainer history={ this.props.history } />
                                      </Route>;
               case 'completed': return <Route exact path={ routes[this.props.play.gameMode] + '/completed' }>
