@@ -17,6 +17,7 @@ import ResultsStats from './resultsStats/resultsStats'
 import ResultsVote from './resultsVote/resultsVote'
 import ResultsComment from './resultsComment/resultsComment'
 import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
+import StatsLegend from '../../UI/statsLegend/statsLegend'
 
 import Wrapper from '../../UI/wrapper/wrapper'
 
@@ -38,7 +39,8 @@ class ResultsContainer extends React.Component{
     enableVoteButtons: false,
     enableCommentButton: false,
     enableAddCommentButton: true,
-    enableNextQuestionButton: false
+    enableNextQuestionButton: false,
+    showLegend: false
   }
 
   componentDidMount(){
@@ -55,6 +57,8 @@ class ResultsContainer extends React.Component{
     this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2500)
     this.commentsTimeout = setTimeout(() => { this.setState({ showComments: true })}, 2500)
     this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true })}, 2750)
+    this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 2750)
+
   }
 
   componentDidUpdate(){
@@ -73,6 +77,7 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.enableAddCommentButtonTimeout)
     clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableNextQuestionTimeout)
+    clearTimeout(this.showLegendTimeout)
   }
 
   onClickVoteFunctions = (event) => {
@@ -162,6 +167,7 @@ class ResultsContainer extends React.Component{
             enableNextQuestionButton={ this.state.enableNextQuestionButton }
             onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
           />
+          { this.state.showLegend && <StatsLegend /> }
         </div>
     }
 

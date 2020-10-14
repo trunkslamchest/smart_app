@@ -77,6 +77,15 @@
 
 }
 
+.stats_difficulty_rank_rating_sub_wrapper {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 .stats_difficulty_answers_container {
   display: flex;
   flex-direction: column;

@@ -3,50 +3,15 @@ import { connect } from 'react-redux'
 
 import levels from '../../../datasets/levels'
 
+import trend_arrow_up from '../../../assets/trends/trend_arrow_up.png'
+import trend_arrow_down from '../../../assets/trends/trend_arrow_down.png'
+
 import './resultsStats.css'
 import './resultsStatsPerf.css'
 import './resultsStatsQuestion.css'
 import './resultsStatsXP.css'
 
-
 const ResultsStats = (props) => {
-
-  const calcStats = () => {
-    let calcObj = {}, calcCorrect = 0, calcIncorrect = 0, calcOuttaTime = 0, calcTrend = 'none'
-    if(props.play.question.answers.correct !== 0) calcCorrect = parseFloat((props.play.question.answers.correct / props.play.question.answers.total).toFixed(2))
-    if(props.play.question.answers.incorrect !== 0) calcIncorrect = parseFloat((props.play.question.answers.incorrect / props.play.question.answers.total).toFixed(2))
-    if(props.play.question.answers.outta_time !== 0) calcOuttaTime = parseFloat((props.play.question.answers.outta_time / props.play.question.answers.total).toFixed(2))
-    if(calcCorrect > calcIncorrect && calcCorrect > calcOuttaTime) calcTrend = 'Correct'
-    if(calcIncorrect > calcCorrect && calcIncorrect > calcOuttaTime) calcTrend = 'Incorrect'
-    if(calcOuttaTime > calcIncorrect && calcOuttaTime > calcCorrect) calcTrend = 'Outta Time'
-
-    calcObj = { correct: calcCorrect, incorrect: calcIncorrect, trend: calcTrend }
-    return calcObj
-  }
-
-  const calcComp = (stats) => {
-    let compareObj = {}, calcAvgTime = '', calcAnswer = ''
-    if(props.play.results.result !== 'Outta Time') {
-      if(props.play.results.result === 'Correct'){
-        if(stats.trend === 'Correct') calcAnswer = `On Par with ${ (stats.correct * 100).toFixed(2) }% of users`
-        else calcAnswer = `Better than ${ (stats.incorrect * 100).toFixed(2) }% of users`
-      } else {
-        if(stats.trend === 'Incorrect') calcAnswer = `On Par with ${ (stats.incorrect * 100).toFixed(2) }% of users`
-        else calcAnswer = `Worse than ${ (stats.correct * 100).toFixed(2) }% of users`
-      }
-      if(props.play.answer.time > props.play.question.answers.avg_time) calcAvgTime = `Worse than the average of ${ props.play.question.answers.avg_time } seconds`
-      else if(props.play.answer.time === props.play.question.answers.avg_time) calcAvgTime = `On par with the average of ${ props.play.question.answers.avg_time } seconds`
-      else calcAvgTime = `Better than the average of ${ props.play.question.answers.avg_time } seconds`
-    } else {
-      calcAnswer = 'Not enough statistics to compile'
-      calcAvgTime = 'Not enough time to compile'
-    }
-
-    compareObj = { time: calcAvgTime, result: calcAnswer }
-    return compareObj
-  }
-
-  const comp = calcComp(calcStats())
 
   const xpBar = () => {
     let currXP = props.user.experience.total
@@ -63,13 +28,24 @@ const ResultsStats = (props) => {
     width: `${ xpBar() }%`
   }
 
+  const arrow_up =
+    <img
+      alt='Higher than global average'
+      className='trend_arrow'
+      src={ trend_arrow_up }
+    />
+
+  const arrow_down =
+    <img
+      alt='Lower than global average'
+      className='trend_arrow'
+      src={ trend_arrow_down }
+    />
 
   const perfBlock =
     <div className='results_perf_container'>
       <h3>Your Performance</h3>
-
       <div className='results_perf_sub_container'>
-
         <div className='results_perf_rank_container'>
           <div className='results_perf_rank_sub_container'>
             <div className='results_perf_rank'>
@@ -78,18 +54,20 @@ const ResultsStats = (props) => {
             </div>
             <div className='results_perf_rating'>
               <h4>Rating</h4>
-              <h5>{ props.play.results.performance.qPerf.rating }</h5>
+              <div className='results_perf_rating_sub_wrapper'>
+                <h5>{ props.play.results.performance.qPerf.rating }</h5>
+                { props.play.results.performance.qPerf.rating > props.play.question.perfRating ? arrow_up : arrow_down }
+              </div>
             </div>
           </div>
-          <span>{ comp.result }</span>
         </div>
 
         <div className='results_time_container'>
+          <h4>Time</h4>
           <div className='results_time_sub_container'>
-            <h4>Time</h4>
             <h5>{ props.play.answer.time } seconds</h5>
+            { props.play.answer.time < props.play.question.answers.avg_time ? arrow_up : arrow_down }
           </div>
-          <span>{ comp.time }</span>
         </div>
 
       </div>

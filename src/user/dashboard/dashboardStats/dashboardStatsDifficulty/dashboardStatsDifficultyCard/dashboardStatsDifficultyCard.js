@@ -17,22 +17,26 @@ class DashboardStatsDifficultyCard extends React.Component {
 
   render(){
 
-    const diff = this.props.difficulty[0]
-    const stats = this.props.difficulty[1]
+    let diff = this.props.difficulty[0],
+        stats = this.props.difficulty[1],
+        arrow_up,
+        arrow_down
 
-    const arrow_up =
+  if(stats.rating !== 0) {
+    arrow_up =
       <img
         alt='Higher than global average'
         className='trend_arrow'
         src={ trend_arrow_up }
       />
 
-    const arrow_down =
+    arrow_down =
       <img
         alt='Lower than global average'
         className='trend_arrow'
         src={ trend_arrow_down }
       />
+  }
 
     let questionsAnswered = ((stats.answered / this.props.questions.totals.difficulty[diff].totals.questions) * 100).toFixed(2)
     let questionsCorrect = "0.00"
@@ -54,20 +58,23 @@ class DashboardStatsDifficultyCard extends React.Component {
               </div>
               <div className="stats_difficulty_rank_rating_sub_container">
                 <h4>Rating</h4>
-                <span>{ stats.rating }</span>
+                <div className="stats_difficulty_rank_rating_sub_wrapper">
+                  <span>{ stats.rating }</span>
+                  { stats.rating >= this.props.questions.totals.difficulty[diff].averages.questions.performance ? arrow_up : arrow_down }
+                </div>
               </div>
             </div>
             <div className="stats_difficulty_answers_container">
               <span>{ stats.answered }/{ this.props.questions.totals.difficulty[diff].totals.questions } answered ({ questionsAnswered }%)</span>
               <span>
                 { stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)
-                { questionsCorrect > this.props.questions.totals.difficulty[diff].averages.questions.correct ? arrow_up : arrow_down }
+                { questionsCorrect >= this.props.questions.totals.difficulty[diff].averages.questions.correct ? arrow_up : arrow_down }
               </span>
             </div>
             <div className="stats_difficulty_time_container">
               <span>
                 Average Time: { stats.avg_time } seconds
-                { stats.avg_time < this.props.questions.totals.difficulty[diff].averages.questions.avgTime ? arrow_up : arrow_down }
+                { stats.avg_time <= this.props.questions.totals.difficulty[diff].averages.questions.avgTime ? arrow_up : arrow_down }
               </span>
               <span>Outta Times: { stats.outta_times }</span>
             </div>

@@ -73,6 +73,15 @@
   font: 400 12pt "Lato";
 }
 
+.results_perf_rating_sub_wrapper {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
 .results_time_container {
   align-content: center;
   align-items: center;
@@ -87,7 +96,7 @@
   align-content: center;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
 }

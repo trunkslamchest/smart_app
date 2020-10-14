@@ -58,20 +58,23 @@ class DashboardStatsCategoryCard extends React.Component {
               </div>
               <div className="stats_category_rank_rating_sub_container">
                 <h4>Rating</h4>
-                <span>{ stats.rating }</span>
+                <div className="stats_category_rank_rating_sub_wrapper">
+                  <span>{ stats.rating }</span>
+                  { stats.rating >= this.props.questions.totals.category[cat].averages.questions.performance ? arrow_up : arrow_down }
+                </div>
               </div>
             </div>
             <div className="stats_category_answers_container">
               <span>{ stats.answered }/{ this.props.questions.totals.category[cat].totals.questions } answered ({ questionsAnswered }%)</span>
               <span>
                 { stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)
-                { questionsCorrect > this.props.questions.totals.category[cat].averages.questions.correct ? arrow_up : arrow_down }
+                { questionsCorrect >= this.props.questions.totals.category[cat].averages.questions.correct ? arrow_up : arrow_down }
               </span>
             </div>
             <div className="stats_category_time_container">
               <span>
                 Average Time: { stats.avg_time } seconds
-                { stats.avg_time < this.props.questions.totals.category[cat].averages.questions.avgTime ? arrow_up : arrow_down }
+                { stats.avg_time <= this.props.questions.totals.category[cat].averages.questions.avgTime ? arrow_up : arrow_down }
               </span>
               <span>Outta Times: { stats.outta_times }</span>
             </div>

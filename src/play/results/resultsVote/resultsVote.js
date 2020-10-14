@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import up_vote from '../../../assets/up_vote1.png'
-import no_vote from '../../../assets/no_vote1.png'
-import down_vote from '../../../assets/down_vote1.png'
+import up_vote from '../../../assets/votes/up_vote1.png'
+import no_vote from '../../../assets/votes/no_vote1.png'
+import down_vote from '../../../assets/votes/down_vote1.png'
 
 import './resultsVote.css'
 import './resultsVoteButtons.css'

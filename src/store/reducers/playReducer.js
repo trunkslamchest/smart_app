@@ -24,7 +24,12 @@ const resetGameMode = (currentState, action) => { return { ...currentState, game
 
 const setQuestion = (currentState, action) => { return {  ...currentState,  status: action.status,  question: action.question } }
 
-const updateQuestion = (currentState, action) => { return { ...currentState, status: action.status, question: { ...currentState.question, ...action.results } } }
+const updateQuestion = (currentState, action) => {
+  return {
+    ...currentState, status: action.status,
+    question: { ...currentState.question, ...action.results }
+  }
+}
 
 const resetQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
 

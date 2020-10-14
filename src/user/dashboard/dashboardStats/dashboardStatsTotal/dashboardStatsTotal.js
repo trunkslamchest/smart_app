@@ -70,7 +70,10 @@ class DashboardStatsTotal extends React.Component {
               </div>
               <div className="stats_total_rating">
                 <h2>SmartApp™ Rating</h2>
-                <h1>{ (rating * 10).toFixed(2) }</h1>
+                <div className="stats_total_rating_sub_container">
+                  <h1>{ (rating * 10).toFixed(2) }</h1>
+                  { rating > this.props.questions.totals.all.averages.questions.performance ? arrow_up : arrow_down }
+                </div>
               </div>
             </div>
           </>

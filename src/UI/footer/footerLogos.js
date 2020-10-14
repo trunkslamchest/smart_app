@@ -5,10 +5,10 @@ import FooterLogoImg from './footerLogoImg'
 
 import './footerLogos.css'
 
-import flatiron_logo from '../../assets/footer_logo_flatiron.png'
-import postgres_logo from '../../assets/footer_logo_postgres.png'
-import rails_logo from '../../assets/footer_logo_rails.png'
-import react_logo from '../../assets/footer_logo_react.png'
+import flatiron_logo from '../../assets/footer/footer_logo_flatiron.png'
+import postgres_logo from '../../assets/footer/footer_logo_postgres.png'
+import rails_logo from '../../assets/footer/footer_logo_rails.png'
+import react_logo from '../../assets/footer/footer_logo_react.png'
 
 const FooterLogos = (props) => {
   return(

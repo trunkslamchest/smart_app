@@ -3,6 +3,10 @@
   visibility: hidden;
 }
 
+.trend_arrow {
+  padding: 0px 2.5px;
+}
+
 .results_container {
   align-content: flex-start;
   align-items: center;
@@ -12,7 +16,7 @@
   height: auto;
   justify-content: center;
   margin: 0px auto 0px auto;
-  padding: 0px 0px 20px 0px;
+  padding: 0px;
   width: 100%;
 }
 

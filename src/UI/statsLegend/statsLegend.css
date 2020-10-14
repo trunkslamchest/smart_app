@@ -3,7 +3,7 @@
   opacity: 0.5;
 }
 
-.dashboard_stats_legend_container {
+.stats_legend_container {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -12,7 +12,7 @@
   /* opacity: 0.7; */
 }
 
-.dashboard_stats_legend_container span {
+.stats_legend_container span {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-.dashboard_stats_legend_container span span {
+.stats_legend_container span span {
   color: rgba(102, 102, 102, 1);
   font: 300 8pt "LatoItalic";
   text-align: center;
