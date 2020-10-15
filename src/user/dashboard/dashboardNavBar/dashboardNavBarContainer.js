@@ -9,9 +9,10 @@ import './dashboardNavBar.css'
 const DashboardNavBarContainer = (props) => {
 
   const buttons = [
-    { name: 'profile', text: 'My Profile' },
-    { name: 'stats', text: 'My Stats' },
-    { name: 'answers', text: 'My Answers' }
+    { name: 'profile', text: 'Profile' },
+    { name: 'stats', text: 'Stats' },
+    { name: 'answers', text: 'Answers' },
+    { name: 'achievements', text: 'Achievements' }
   ]
 
   const distribButtons = buttons.map(button =>

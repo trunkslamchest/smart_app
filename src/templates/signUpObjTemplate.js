@@ -252,13 +252,14 @@ const signUpObjTemplate = (email, user_name) => {
         }
       }
     },
-    experience:{
+    experience: {
       "level": 1,
       "avg": 0,
       "total": 0
     },
-    achievements:{
-      "total": 0
+    achievements: {
+      "total": 0,
+      "unlocked": "null"
     }
   }
 }

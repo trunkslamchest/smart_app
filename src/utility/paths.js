@@ -14,7 +14,8 @@ export const fetch = {
     quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`,
     diffQuestion: `${process.env.REACT_APP_LOCAL_GET_DIFF_QUESTION}`,
     catQuestion: `${process.env.REACT_APP_LOCAL_GET_CAT_QUESTION}`,
-    questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`
+    questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`,
+    achievements: `${process.env.REACT_APP_LOCAL_GET_ACHIEVEMENTS}`
   },
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
@@ -47,7 +48,8 @@ export const check = {
 //     quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`,
 //     diffQuestion: `${process.env.REACT_APP_DEPLOY_GET_DIFF_QUESTION}`,
 //     catQuestion: `${process.env.REACT_APP_DEPLOY_GET_CAT_QUESTION}`,
-//     questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`
+//     questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`,
+//     achievements: `${process.env.REACT_APP_DEPLOY_GET_ACHIEVEMENTS}`
 //   },
 //   post: {
 //     user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
@@ -81,6 +83,7 @@ export const routes = {
   dashboard_votes: '/testSub/dashboard/votes',
   dashboard_comments: '/testSub/dashboard/comments',
   dashboard_answers: '/testSub/dashboard/answers',
+  dashboard_achievements: '/testSub/dashboard/achievements',
 
   dashboard_test: '/testSub/dashboard/test',
   play: '/testSub/play',
@@ -108,6 +111,7 @@ export const routes = {
   // dashboard_comments: '/smartapp/dashboard/comments',
   // dashboard_test: '/smartapp/dashboard/test',
   // dashboard_answers: '/smartapp/dashboard/answers',
+  // dashboard_achievements: '/smartapp/dashboard/achievements',
 
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',

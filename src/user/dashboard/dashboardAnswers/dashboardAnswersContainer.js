@@ -4,7 +4,7 @@ import { connect} from 'react-redux'
 
 import DashboardAnswersDiffCard from './dashboardAnswersDiffCard/dashboardAnswersDiffCard'
 
-import './dashboardAnswers.css'
+import './dashboardAnswersContainer.css'
 
 class DashboardAnswersContainer extends React.Component {
 
@@ -25,7 +25,7 @@ class DashboardAnswersContainer extends React.Component {
 
     return(
       <div className='dashboard_answers_container'>
-        { diffCards }
+        { this.props.user.questions.totals.all.answered === 0 ? <h3>You have not answered any questions yet</h3> : diffCards }
       </div>
     )
   }

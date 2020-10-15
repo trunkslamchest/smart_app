@@ -18,6 +18,7 @@ import authReducer from './store/reducers/authReducer'
 import userReducer from './store/reducers/userReducer'
 import questionsReducer from './store/reducers/questionsReducer'
 import playReducer from './store/reducers/playReducer'
+import achievementReducer from './store/reducers/achievementReducer'
 
 const history = createBrowserHistory();
 
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   questions: questionsReducer,
-  play: playReducer
+  play: playReducer,
+  achievements: achievementReducer
 })
 
 // const logger = (store) => {

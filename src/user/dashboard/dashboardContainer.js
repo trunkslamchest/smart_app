@@ -12,6 +12,8 @@ import DashboardIndex from './dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
 import DashboardAnswersContainer from './dashboardAnswers/dashboardAnswersContainer'
+import DashboardAchievementsContainer from './dashboardAchievements/dashboardAchievementsContainer'
+
 
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
@@ -44,6 +46,9 @@ class Dashboard extends React.Component{
             </Route>
             <Route exact path={ routes.dashboard_answers }>
               <DashboardAnswersContainer history={ this.props.history } />
+            </Route>
+            <Route exact path={ routes.dashboard_achievements }>
+              <DashboardAchievementsContainer history={ this.props.history } />
             </Route>
           </Switch>
       }

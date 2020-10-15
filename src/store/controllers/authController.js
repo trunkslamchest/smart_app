@@ -24,6 +24,7 @@ class AuthController extends React.Component {
     authDeleteUserValid: false,
     authUserUpdateValid: false,
     authUserInfoLocal: false,
+    authAchievements: false,
     authUserQuestionsLocal: false
   }
 
@@ -60,14 +61,26 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
     }
 
+    // if(this.props.auth.authType === 'refresh') {
+    //   if(this.props.auth.status === 'authUserGoogleSuccess' && !this.state.initAuthLocalUser) this.authUserLocalModule('authUserLocal')
+    //   if(this.props.auth.status === 'storeUserInfo' && this.props.user.info && !this.state.authUserInfoLocal) this.authUserInfoLocalModule('storeUserInfoSuccess')
+    //   if(this.props.auth.status === 'storeUserQuestions' && this.props.user.questions && !this.state.authUserQuestionsLocal) this.authUserQuestionsLocalModule('storeUserQuestionsSuccess')
+    //   if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
+    //   if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
+    //   if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
+    //   if(this.props.auth.status === 'fail') this.refreshFailModule()
+    // }
+
     if(this.props.auth.authType === 'refresh') {
       if(this.props.auth.status === 'authUserGoogleSuccess' && !this.state.initAuthLocalUser) this.authUserLocalModule('authUserLocal')
       if(this.props.auth.status === 'storeUserInfo' && this.props.user.info && !this.state.authUserInfoLocal) this.authUserInfoLocalModule('storeUserInfoSuccess')
       if(this.props.auth.status === 'storeUserQuestions' && this.props.user.questions && !this.state.authUserQuestionsLocal) this.authUserQuestionsLocalModule('storeUserQuestionsSuccess')
-      if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
+      if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.authAchievements) this.authAchievementsModule('getAchievements')
+      if(this.props.auth.status === 'storeAchievementsSuccess' && this.props.user.info && this.props.user.questions && this.props.achievements.all && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
+
+      // if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
       if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
-
       if(this.props.auth.status === 'fail') this.refreshFailModule()
     }
 
@@ -164,14 +177,21 @@ class AuthController extends React.Component {
     this.setState({ authUserQuestionsLocal: true })
   }
 
+  authAchievementsModule = (status) => {
+    this.props.onAuthUpdateStatus(status, true)
+    this.props.onStoreAchievements()
+
+    this.setState({ initAuthLocalUser: false, authAchievements: true })
+  }
+
   authQuestionsLocalModule = (status) => {
     this.props.onAuthUpdateStatus(status, true)
     this.props.onGetQuestionTotals()
-    this.setState({ initAuthLocalUser: false, initAuthQuestions: true })
+    this.setState({ initAuthQuestions: true })
   }
 
   authLogInValidModule = (status) => {
-    this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, initAuthQuestions: false, authLogInValid: true })
+    this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, authAchievements: false, initAuthQuestions: false, authLogInValid: true })
     this.props.onAuthUpdateStatus(status, true)
     this.props.onAuthUpdateLoadingStatus(false)
     this.props.onClearAuthType()
@@ -259,6 +279,7 @@ const mapStateToProps = state => {
     auth: state.auth,
     modal: state.modal,
     // play: state.play,
+    achievements: state.achievements,
     questions: state.questions,
     user: state.user
   }
@@ -307,7 +328,9 @@ const mapDispatchToProps = dispatch => {
     // onUpdateUserQuestions: () => dispatch(actions.updateUserInfo()),
     onClearUserQuestions: () => dispatch(actions.clearUserQuestions()),
     // onUpdateUserQuestionIdsFromPlayController: (ids) => dispatch(actions.updateUserQuestionIdsFromPlayController(ids)),
-    onDeleteUser: (id) => dispatch(actions.deleteUser(id))
+    onDeleteUser: (id) => dispatch(actions.deleteUser(id)),
+    // ACHIEVEMENTS
+    onStoreAchievements: () => dispatch(actions.storeAchievements())
   }
 }
 

@@ -17,13 +17,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       },
@@ -43,13 +49,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       },
@@ -69,13 +81,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         },
         "-MGPR-PSClR2D9ABR8uf": {
@@ -93,13 +111,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       }
@@ -123,13 +147,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       },
@@ -149,13 +179,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       },
@@ -175,13 +211,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       }
@@ -193,7 +235,7 @@
         "-MGPR-PSClR2D9ABR8uj": {
           "type": "multiple",
           "question": "Akatsuki's subclass in Log Horizon is what?",
-          "correct": " Tracker",
+          "correct": "Tracker",
           "choices": [
             "Assassin",
             "Tracker",
@@ -205,13 +247,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       },
@@ -231,13 +279,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       },
@@ -257,13 +311,19 @@
             "correct": 0,
             "incorrect": 0,
             "outta_time": 0,
-            "avg_time": 0.00
+            "total_time": 0,
+            "avg_time": 0
           },
           "votes": {
             "total": 0,
             "good": 0,
             "neutral": 0,
             "bad": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
           }
         }
       }

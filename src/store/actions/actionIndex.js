@@ -4,7 +4,7 @@ export {
   logout,
   signup,
   deleteProfile,
-  showModal,
+  showModal
 } from './modalActions'
 
 export {
@@ -86,5 +86,9 @@ export {
   resetComment,
   editQuestionComment,
   deleteQuestionComment
-
 } from './playActions'
+
+export {
+  storeAchievements,
+  clearAchievements
+} from './achievementActions'

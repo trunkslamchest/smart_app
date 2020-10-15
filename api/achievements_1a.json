@@ -1,0 +1,81 @@
+{
+  "achievements": {
+    "OneAnswer": {
+      "title": "On Your Marks",
+      "text": "Answer 1 question",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FOneAnswer.png?alt=media&token=36b1d197-7287-4d28-afbf-7e00467c4997",
+      "total": 0,
+      "limit": 1
+    },
+    "OneCorrect": {
+      "title": "This Usually Doesn't Happen",
+      "text": "Answer 1 question correctly",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FOneCorrect.png?alt=media&token=d55ebe77-e911-4253-900e-3643f8709b26",
+      "total": 0,
+      "limit": 1
+    },
+    "OneCorrectOneSec": {
+      "title": "Beginner's Luck",
+      "text": "Answer a question correctly in less than 1 second",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FOneCorrectOneSec.png?alt=media&token=fa841673-5ed1-44b2-880a-4dc1e78ad843",
+      "total": 0,
+      "limit": 1,
+      "time_limit": 1.00
+    },
+    "OneAnswerOneCorrect": {
+      "title": "Hit The Ground Running",
+      "text": "Answer your first question correctly",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FOneAnswerOneCorrect.png?alt=media&token=3750d63a-01a2-4e09-af16-eb86062729f1",
+      "total": 0,
+      "limit": 1
+    },
+    "OneAnswerOneCorrectOneSec": {
+      "title": "One Hit Wonder",
+      "text": "Answer your first question correctly in less than 1 second",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FOneAnswerOneCorrectOneSec.png?alt=media&token=bda91f8f-d120-421e-bcd9-9c8a0cd6fdd7",
+      "total": 0,
+      "limit": 1
+    },
+    "FiveAnswer": {
+      "title": "Up To Speed",
+      "text": "Answer 5 questions",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FFiveAnswer.png?alt=media&token=8c5caab4-c1de-443b-b00e-e850171d875a",
+      "total": 0,
+      "limit": 5
+    },
+    "FiveCorrect": {
+      "title": "Five Spot",
+      "text": "Answer 5 questions correctly",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FFiveCorrect.png?alt=media&token=442a4d04-2def-4f76-bc26-9868edfb25f5",
+      "total": 0,
+      "limit": 5
+    },
+    "FiveCorrectOneSec": {
+      "title": "Quick Witted",
+      "text": "Answer five questions correctly in less than 1 second",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FFiveCorrectOneSec.png?alt=media&token=52b0c233-641a-4c00-a2f8-bde4ecf125ec",
+      "total": 0,
+      "limit": 5,
+      "time_limit": 1.00
+    },
+    "FiveAnswerFiveCorrect": {
+      "title": "Lightning In A Bottle",
+      "text": "Answer your first five questions correctly",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FFiveAnswerFiveCorrect.png?alt=media&token=69dcb225-f45e-4639-b59a-141b8cae6c42",
+      "total": 0,
+      "limit": 5
+    },
+    "FiveAnswerFiveCorrectOneSec": {
+      "title": "Luck Of The Irish",
+      "text": "Answer each of your first five questions correctly in less than 1 second",
+      "img": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/achievements%2FFiveAnswerFiveCorrectOneSec.png?alt=media&token=cb8bd688-965f-4d9b-b28c-e3c77fa595ac",
+      "total": 0,
+      "limit": 5
+    }
+  },
+  "totals": {
+    "all": 10,
+    "all_unlocked": 0,
+    "unlocked": 0
+  }
+}
