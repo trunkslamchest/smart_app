@@ -64,13 +64,11 @@ const ResultsVote = (props) => {
   if(props.showVoteButtons){
     voteBlock =
     <div className="results_vote_container">
-      <div className="results_vote_wrapper">
-        <div className="results_vote_header">
-          <h3>Rate this question</h3>
-        </div>
-        <div className="results_vote_buttons_container">
-          { distribVotesButtons }
-        </div>
+      <div className="results_vote_header">
+        <h3>Rate this question</h3>
+      </div>
+      <div className="results_vote_buttons_container">
+        { distribVotesButtons }
       </div>
     </div>
   }
@@ -78,18 +76,16 @@ const ResultsVote = (props) => {
   if(props.play.voteStatus === 'displayVotes' && !props.play.voteLoading){
     voteBlock =
     <div className="results_vote_container">
-      <div className="results_vote_wrapper">
-        <div className="results_vote_header">
-          <h5>Approval Rating ({ props.play.question.votes.total } { props.play.question.votes.total === 1 ? 'vote' : 'votes'})</h5>
-          <h4>{ props.play.question.votes.rating }</h4>
-        </div>
-        <div className="results_vote_totals">
-            <ul>
-              <li><h5>Up Votes ({ props.play.question.votes.good })</h5> { votePercents.good }</li>
-              <li><h5>No Votes ({ props.play.question.votes.neutral })</h5> { votePercents.neutral }</li>
-              <li><h5>Down Votes ({ props.play.question.votes.bad })</h5> { votePercents.bad }</li>
-            </ul>
-        </div>
+      <div className="results_vote_header">
+        <h5>Approval Rating ({ props.play.question.votes.total } { props.play.question.votes.total === 1 ? 'vote' : 'votes'})</h5>
+        <h4>{ props.play.question.votes.rating }</h4>
+      </div>
+      <div className="results_vote_totals">
+          <ul>
+            <li><h5>Up Votes ({ props.play.question.votes.good })</h5> { votePercents.good }</li>
+            <li><h5>No Votes ({ props.play.question.votes.neutral })</h5> { votePercents.neutral }</li>
+            <li><h5>Down Votes ({ props.play.question.votes.bad })</h5> { votePercents.bad }</li>
+          </ul>
       </div>
     </div>
   }

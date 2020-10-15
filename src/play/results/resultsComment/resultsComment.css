@@ -43,11 +43,10 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  max-width: 500px;
-  min-width: 60%;
-  padding: 5px 0px;
+  padding: 10px 0px;
   padding-inline-start: 0px;
   text-align: center;
+  width: 100%;
 }
 
 .results_all_comments ul {
@@ -57,12 +56,10 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  max-width: 500px;
-  min-width: 60%;
-  padding: 5px 0px;
+  padding: 5px 0px 0px 0px;
   padding-inline-start: 0px;
   text-align: left;
-  /* width: 75%; */
+  width: 75%;
 }
 
 .results_all_comments li {
@@ -72,21 +69,21 @@
 }
 
 .results_all_comments li p {
-  font: 300 12pt 'Lato', sans-serif;
+  font: 300 10pt 'Lato', sans-serif;
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-top: 0px;
-  padding-bottom: 0px;
+  padding-bottom: 5px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 20px;
   z-index: -1;
 }
 
 .results_all_comments_comment_header {
   align-content: center;
-  align-items: baseline;
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -106,7 +103,7 @@
 }
 
 .results_all_comments_comment_header span {
-  font: 300 8pt 'Lato', sans-serif;
+  font: 300 7pt 'LatoItalic', sans-serif;
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;

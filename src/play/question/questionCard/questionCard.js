@@ -26,7 +26,7 @@ const QuestionCard = (props) => {
     })
 
   return(
-    <div className="question_card">
+    <>
       <div className={ props.showTimer ? "question_card_timer" : "blank" } >
         <h2>Time Left</h2>
         <h1>{ props.showTimer && props.time }</h1>
@@ -51,7 +51,7 @@ const QuestionCard = (props) => {
           </>
         }
       </div>
-    </div>
+    </>
   )
 }
 

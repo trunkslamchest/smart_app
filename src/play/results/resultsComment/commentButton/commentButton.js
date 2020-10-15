@@ -8,7 +8,7 @@ const commentButton = (props) => {
       key={ props.keyNameValue }
       name={ props.keyNameValue }
       value={ props.keyNameValue }
-      className={ props.class }
+      className={ props.className }
       onClick={ props.onClick }
     >
       { props.children }

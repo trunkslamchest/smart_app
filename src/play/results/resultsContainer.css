@@ -15,9 +15,9 @@
   flex-wrap: nowrap;
   height: auto;
   justify-content: center;
-  margin: 0px auto 0px auto;
+  margin: 10px auto;
   padding: 0px;
-  width: 100%;
+  width: 75%;
 }
 
 .results_container > * {

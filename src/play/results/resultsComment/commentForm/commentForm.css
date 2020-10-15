@@ -1,8 +1,3 @@
-.results_comment_text {
-  animation: fade_in .3s ease-in-out 1;
-  width: 100%;
-}
-
 .results_comment_form {
   animation: fade_in .25s ease-in-out 1;
   align-content: flex-start;
@@ -10,7 +5,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 100%;
+  padding: 20px 0px 5px 0px;
+  width: 75%;
 }
 
 .results_comment_form textarea {
@@ -19,10 +15,9 @@
   box-sizing: border-box;
   font: 300 12pt 'Lato', sans-serif;
   margin: 0 auto 0 auto;
-  max-width: 500px;
-  min-width: 60%;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 5px;
+  width: 100%;
 }
 
 .results_comment_error_container {
@@ -38,6 +33,15 @@
   min-width: 60%;
 }
 
+.results_comment_button_container {
+  animation: fade_in .3s ease-in-out 1;
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0px auto;
+}
+
 .results_comment_button {
   -webkit-appearance: none;
   align-items: flex-start;
@@ -50,8 +54,6 @@
   font: 400 15px Roboto;
   letter-spacing: normal;
   margin: 0px;
-  max-width: 500px;
-  min-width: 60%;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px 20px;
   text-align: center;
@@ -61,6 +63,7 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  width: 100%;
 }
 
 .results_comment_button:hover {
@@ -84,8 +87,6 @@
   font: 400 15px Roboto;
   letter-spacing: normal;
   margin: 0px;
-  max-width: 500px;
-  min-width: 60%;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px 20px;
   text-align: center;
@@ -95,4 +96,5 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  width: 100%;
 }

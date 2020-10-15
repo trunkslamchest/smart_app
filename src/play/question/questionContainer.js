@@ -3,7 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { loading, setAnswer } from '../../store/actions/actionIndex'
 
-import Wrapper from '../../UI/wrapper/wrapper'
 import QuestionCard from './questionCard/questionCard'
 
 import './questionContainer.css'
@@ -78,9 +77,9 @@ class QuestionContainer extends React.Component{
     }
 
     return(
-      <Wrapper>
+      <div className='question_container'>
         { questionCard }
-      </Wrapper>
+      </div>
     )
   }
 }

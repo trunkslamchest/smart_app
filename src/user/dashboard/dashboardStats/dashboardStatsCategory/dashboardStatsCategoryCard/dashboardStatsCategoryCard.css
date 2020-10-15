@@ -92,6 +92,15 @@
   padding: 2.5px 0px;
 }
 
+.stats_category_answers_container span {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 .stats_category_answers_sub_container {
   padding: 0px 5px;
 }
@@ -109,6 +118,15 @@
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 2.5px 0px;
+}
+
+.stats_category_time_container span {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .stats_category_time_sub_container {

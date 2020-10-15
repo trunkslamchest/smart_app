@@ -1,5 +1,6 @@
 .trend_arrow {
-  padding: 0px 2.5px;
+  padding: 0px;
+  margin: 0px 2.5px;
 }
 
 .stats_total {
@@ -11,6 +12,7 @@
   align-items: center;
   align-content: center;
   font: 300 10pt 'Poppins', sans-serif;
+  padding: 0px 0px 10px 0px;
 }
 
 .stats_total br {
@@ -21,8 +23,7 @@
   text-align:center;
   width: 50% !important;
   list-style: none;
-  padding: 10px;
-  margin: 50px;
+  padding: 10px 0px;
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
@@ -30,6 +31,12 @@
 }
 
 .stats_total li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   font-size: 10pt;
 }
 

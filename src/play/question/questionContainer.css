@@ -1,3 +1,16 @@
 .blank {
   opacity: 0;
 }
+
+.question_container {
+  align-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: auto;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 0px;
+  width: 75%;
+}

@@ -1,9 +1,9 @@
 .results_answer_header {
   animation: fade_in.25s ease-in-out 1;
-  padding: 10px 0px 10px 0px;
+  padding: 20px 0px 10px 0px;
   background: rgba(255,255,255, 1);
   text-align: center;
-  width: 60%;
+  width: 100%;
 }
 
 .results_answer_header h3 {

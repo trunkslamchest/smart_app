@@ -25,10 +25,8 @@ const ResultsNavBarContainer = (props) => {
   )
 
   return(
-    <div className='results_navbar'>
-      <ul>
-        { distribButtons }
-      </ul>
+    <div className='results_navbar_container'>
+      { distribButtons }
     </div>
   )
 }

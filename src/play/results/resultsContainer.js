@@ -15,7 +15,6 @@ import ResultsVote from './resultsVote/resultsVote'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
 import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
 import StatsLegend from '../../UI/statsLegend/statsLegend'
-import Wrapper from '../../UI/wrapper/wrapper'
 
 import './resultsContainer.css'
 
@@ -68,7 +67,7 @@ class ResultsContainer extends React.Component{
 
   render(){
     return(
-      <Wrapper>
+      <div className='results_container'>
         <ResultsNavBarContainer />
         <Switch>
           <Route exact path={ routes[this.props.play.gameMode] + '/results/stats' }>
@@ -89,7 +88,7 @@ class ResultsContainer extends React.Component{
           onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
         />
         { this.state.showLegend && <StatsLegend /> }
-      </Wrapper>
+      </div>
     )
   }
 }

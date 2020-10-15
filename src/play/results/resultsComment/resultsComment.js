@@ -39,23 +39,21 @@ const ResultsComment = (props) => {
 
   if(!props.play.commentLoading)
     commentForm =
-      <div className="results_comment_text">
-        <CommentForm
-          comment={ props.comment }
-          commentForm={ props.commentForm }
-          enableAddCommentButton = { props.enableAddCommentButton }
-          onAddComment={ props.onAddComment }
-          onChangeComment={ props.onChangeComment }
-        />
-      </div>
+      <CommentForm
+        comment={ props.comment }
+        commentForm={ props.commentForm }
+        enableAddCommentButton = { props.enableAddCommentButton }
+        onAddComment={ props.onAddComment }
+        onChangeComment={ props.onChangeComment }
+      />
 
   return(
     <>
       { props.showComments &&
-        <div className="results_comment">
+        <>
           { commentForm }
           { commentBlock }
-        </div>
+        </>
       }
     </>
   )

@@ -34,10 +34,10 @@
 
 .results_edit_comment_buttons_container {
   animation: fade_in .3s ease-in-out 1;
-  align-items: baseline;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .results_edit_comment_button {
