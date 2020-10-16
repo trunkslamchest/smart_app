@@ -64,6 +64,23 @@ const updateUserPerformanceFromPlayController = (currentState, action) => {
 
 const updateUserExperienceFromPlayController = (currentState, action) => { return { ...currentState, experience: action.total } }
 
+const updateUserAchievementsFromPlayController = (currentState, action) => {
+  let unlockedArr = []
+
+  if(currentState.achievements.unlocked[0] === 'null') unlockedArr = action.achievements.unlocked
+  else unlockedArr = [ ...currentState.achievements.unlocked, ...action.achievements.unlocked ]
+
+  return {
+    ...currentState,
+    achievements: {
+      ...currentState.achievements,
+      total: currentState.achievements.total + action.achievements.total,
+      unlocked: unlockedArr
+    }
+  }
+}
+
+
 const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
 
@@ -296,6 +313,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_PERFORMANCE_FROM_PLAY_CONTROLLER: return updateUserPerformanceFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_EXPERIENCE_FROM_PLAY_CONTROLLER: return updateUserExperienceFromPlayController(currentState, action)
+    case actionTypes.UPDATE_USER_ACHIEVEMENTS_FROM_PLAY_CONTROLLER: return updateUserAchievementsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER: return updateUserQuestionIdsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER: return updateUserQuestionsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateUserQuestionTotalsFromPlayController(currentState, action)

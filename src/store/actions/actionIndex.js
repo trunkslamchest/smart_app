@@ -42,6 +42,7 @@ export {
   updateUserQuestions,
   updateUserPerformanceFromPlayController,
   updateUserExperienceFromPlayController,
+  updateUserAchievementsFromPlayController,
   updateUserQuestionIdsFromPlayController,
   updateUserQuestionsFromPlayController,
   updateUserQuestionTotalsFromPlayController,
@@ -90,5 +91,6 @@ export {
 
 export {
   storeAchievements,
-  clearAchievements
+  clearAchievements,
+  updateAchievements
 } from './achievementActions'

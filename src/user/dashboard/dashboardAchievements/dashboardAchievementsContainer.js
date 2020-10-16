@@ -10,15 +10,30 @@ class DashboardAchievementsContainer extends React.Component {
 
   render(){
 
-    let distribUnlockedAchievements
+    let distribUnlockedAchievements, distribLockedAchievements
 
     if(this.props.achievements.all){
-      let achievements = Object.entries(this.props.achievements.all)
-      distribUnlockedAchievements = achievements.map(achievement => {
+      let allAchievements = Object.entries(this.props.achievements.all)
+      let unlockedAchievements = allAchievements.filter(achievement => this.props.user.achievements.unlocked.includes(achievement[0]))
+      let lockedAchievements = allAchievements.filter(achievement => !this.props.user.achievements.unlocked.includes(achievement[0]))
+
+      distribUnlockedAchievements = unlockedAchievements.map(achievement => {
         return (
           <DashboardAchievementCard
-              key={ achievements.indexOf(achievement) }
+              key={ allAchievements.indexOf(achievement) }
               name={ achievement[0] }
+              unlocked={ true }
+              achievement={ achievement[1] }
+          />
+        )
+      })
+
+      distribLockedAchievements = lockedAchievements.map(achievement => {
+        return (
+          <DashboardAchievementCard
+              key={ allAchievements.indexOf(achievement) }
+              name={ achievement[0] }
+              unlocked={ false }
               achievement={ achievement[1] }
           />
         )
@@ -38,7 +53,9 @@ class DashboardAchievementsContainer extends React.Component {
         </div>
         <div className='dashboard_achievements_locked_container'>
           <h3>Locked</h3>
-          {/* { distriblockedAchievements } */}
+          <div className='dashboard_achievements_locked_sub_container'>
+            { distribLockedAchievements }
+          </div>
         </div>
       </div>
     )

@@ -6,15 +6,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   width: 75%;
-  margin: 5px 0px;
-}
-
-.results_xp_container h4 {
-  font: 600 12pt "Lato";
-}
-
-.results_xp_container h5 {
-  font: 400 10pt "Lato";
+  padding: 10px 0px;
 }
 
 .results_xp_count {
@@ -24,14 +16,18 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  align-self: flex-end;
+  margin: 0px 5px;
 }
 
 .results_xp_count h4 {
   font: 600 12pt "Lato";
+  align-self: flex-end;
 }
 
 .results_xp_count h5 {
   font: 400 10pt "Lato";
+  align-self: flex-end;
 }
 
 .results_xp_bar_container {
@@ -46,10 +42,32 @@
 
 .results_xp_bar_container h4 {
   font: 400 10pt "Lato";
+  align-self: center;
 }
 
 .results_xp_bar_container h5 {
   font: 300 10pt "Lato";
+}
+
+.results_xp_total {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 0px 5px;
+}
+
+.results_xp_total h4 {
+  font: 600 12pt "Lato";
+  align-self: flex-end;
+}
+
+.results_xp_total h5 {
+  font: 400 10pt "Lato";
+  align-self: flex-end;
 }
 
 .results_xp_bar_sub_container {

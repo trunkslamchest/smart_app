@@ -259,7 +259,7 @@ const signUpObjTemplate = (email, user_name) => {
     },
     achievements: {
       "total": 0,
-      "unlocked": "null"
+      "unlocked": [ "null" ]
     }
   }
 }

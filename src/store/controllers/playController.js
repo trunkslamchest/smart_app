@@ -210,6 +210,9 @@ class PlayController extends React.Component {
       level: this.props.play.results.experience.level,
       total: this.props.play.results.experience.newTotal
     })
+    if(this.props.play.results.achievements.total > 0){
+      this.props.onUpdateUserAchievementsFromPlayController(this.props.play.results.achievements)
+    }
     this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
     this.props.onUpdateUserQuestionTotalsFromPlayController({
       difficulty: this.props.play.question.difficulty,
@@ -356,6 +359,7 @@ const mapDispatchToProps = (dispatch) => {
     onResetComment: (obj) => dispatch(actions.resetComment(obj)),
     onUpdateUserPerformanceFromPlayController: (obj) => dispatch(actions.updateUserPerformanceFromPlayController(obj)),
     onUpdateUserExperienceFromPlayController: (obj) => dispatch(actions.updateUserExperienceFromPlayController(obj)),
+    onUpdateUserAchievementsFromPlayController: (obj) => dispatch(actions.updateUserAchievementsFromPlayController(obj)),
     onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
     onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),

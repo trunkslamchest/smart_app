@@ -83,7 +83,9 @@ const ResultsStats = (props) => {
                   </div>
                 </div>
               </div>
+              <div className='results_xp_total'>
               <h4>{ props.user.experience.total }</h4><h5>/{ levels[props.user.experience.level] }</h5>
+              </div>
             </div>
           </div>
           <div className='results_question_container'>

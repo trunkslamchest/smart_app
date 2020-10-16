@@ -82,27 +82,85 @@ exports.test1 = functions
     res.status(200).send('test1 successful');
 });
 
-// ~~~~~~~~~~~~~~~~~~~~ USERS ~~~~~~~~~~~~~~~~~~~~
+exports.createKeys = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+    var keys = []
 
-var calcRating = function(stat) {
-  if(stat > 1.00) return 'S'
-  if(stat <= 1.00 && stat >= 0.95) return 'A+'
-  if(stat < 0.95 && stat >= 0.9) return 'A'
-  if(stat < 0.9 && stat >= 0.85) return 'A-'
-  if(stat < 0.85 && stat >= 0.8) return 'B+'
-  if(stat < 0.8 && stat >= 0.75) return 'B'
-  if(stat < 0.75 && stat >= 0.7) return 'B-'
-  if(stat < 0.7 && stat >= 0.65) return 'C+'
-  if(stat < 0.65 && stat >= 0.6) return 'C'
-  if(stat < 0.6 && stat >= 0.55) return 'C-'
-  if(stat < 0.55 && stat >= 0.5) return 'D+'
-  if(stat < 0.5 && stat >= 0.45) return 'D'
-  if(stat < 0.45 && stat >= 0.4) return 'D-'
-  if(stat < 0.4 && stat >= 0.35) return 'F+'
-  if(stat < 0.35 && stat >= 0.3) return 'F'
-  if(stat < 0.3 && stat >= 0.25) return 'F-'
-  if(stat < 0.25) return 'E'
-}
+    for(i = 0; i < 500; i++){
+      var createKey = firebase.database().ref().push().key
+      keys.push(createKey)
+    }
+
+    console.log(keys)
+    res.json(keys)
+});
+
+// ~~~~~~~~~~~~~~~~~~~~ ACHIEVEMENTS ~~~~~~~~~~~~~~~~~~~~
+
+exports.getAchievements = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSget(req, res)
+    firebase.database().ref('/').once('value', function(achievements){ res.json(achievements).status(200) });
+    // res.send('done')
+});
+
+exports.getAchievementsFromResults = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSget(req, res)
+    firebase.database().ref('/').once('value', function(snap){
+      let achievements = snap.val().achievements, totals = snap.val().totals, resObj = {}
+
+      for(achievement in achievements){
+        resObj[achievement] = {
+          limit: achievements[achievement].limit,
+          total: achievements[achievement].total,
+        }
+        if(achievements[achievement].time_limit) resObj[achievement].time_limit = achievements[achievement].time_limit
+      }
+
+      resObj.totals = totals
+
+      res.json(resObj).status(200)
+    });
+    // res.send('done')
+});
+
+exports.crossUpdateAchievements = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSget(req, res)
+    var achievementsObj = {}, achievementObj = {}, totalsObj = {}
+    firebase.database().ref('/').once('value', function(snap){
+
+      let achievements = snap.val().achievements
+
+      for(let achievement in achievements){
+        achievementObj[achievement] = {
+          ...achievements[achievement],
+          total: req.body[achievement].total
+        }
+      }
+
+      achievementsObj['/achievements'] = achievementObj
+
+      totalsObj['/totals'] = {
+        ...snap.val().totals,
+        all_unlocked: req.body.totals.all_unlocked
+      }
+
+      firebase.database().ref().update(achievementsObj);
+      firebase.database().ref().update(totalsObj);
+    });
+
+    res.end()
+    // res.send('done')
+});
+
+// ~~~~~~~~~~~~~~~~~~~~ USERS ~~~~~~~~~~~~~~~~~~~~
 
 exports.users = functions
   .region('us-east1')
@@ -201,18 +259,29 @@ exports.crossUpdateUserQuestion = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORScrossPatch(req, res);
-    var idObj = {}, qObj = {}, tObj = {}, dtObj = {}, ctObj = {}, xpObj = {}
+    var idObj = {}, questionObj = {}, totalsObj = {}, diffTotalsObj = {}, catTotalsObj = {}, xpObj = {}, achievementsObj = {}
     firebase.database().ref('/' + req.body.uid).once('value', function(snap){
 
       var idPath = '/' + req.body.uid + '/questions/ids',
           diffPath = '/' + req.body.uid + '/questions/' + req.body.difficulty,
           totalsPath = '/' + req.body.uid + '/questions/totals'
-          xpPath = '/' + req.body.uid + '/experience'
+          xpPath = '/' + req.body.uid + '/experience',
+          achievementsPath = '/' + req.body.uid + '/achievements'
 
       if(!snap.val().questions.ids) idObj[idPath] = [ req.body.qid ]
       else idObj[idPath] = [ ...snap.val().questions.ids, req.body.qid ]
 
-      qObj[diffPath + '/categories/' + req.body.category + '/' + req.body.qid ] = {
+      if(req.body.achievements.total > 0) {
+        if(snap.val().achievements.unlocked[0] === "null") {
+          achievementsObj[achievementsPath] = { total: req.body.achievements.total, unlocked: req.body.achievements.unlocked }
+          firebase.database().ref().update(achievementsObj)
+        } else {
+          achievementsObj[achievementsPath] = { total: req.body.achievements.total, unlocked: [ ...snap.val().achievements.unlocked, ...req.body.achievements.unlocked ] }
+          firebase.database().ref().update(achievementsObj)
+        }
+      }
+
+      questionObj[diffPath + '/categories/' + req.body.category + '/' + req.body.qid ] = {
         time: req.body.time,
         result: req.body.result,
         answer: req.body.answer,
@@ -221,49 +290,17 @@ exports.crossUpdateUserQuestion = functions
         performance: req.body.performance.qPerf
       }
 
-      xpObj[xpPath] = {
-        level: parseInt(req.body.experience.level),
-        total: req.body.experience.newTotal
-      }
+      xpObj[xpPath] = { level: parseInt(req.body.experience.level), total: req.body.experience.newTotal }
+      totalsObj[totalsPath + '/all'] = { ...req.body.totals }
+      diffTotalsObj[totalsPath + '/difficulty/' + req.body.difficulty] = { ...req.body.diffTotals }
+      catTotalsObj[totalsPath + '/categories/' + req.body.category] = { ...req.body.catTotals }
 
-      tObj[totalsPath + '/all'] = {
-        ...snap.val().questions.totals.all,
-        answered: snap.val().questions.totals.all.answered + 1,
-        avg_time: snap.val().questions.totals.all.avg_time === 0 ? req.body.time : parseFloat(((parseFloat(snap.val().questions.totals.all.avg_time) + req.body.time) / 2.00).toFixed(2)),
-        correct: req.body.result === 'Correct' ? snap.val().questions.totals.all.correct + 1 : snap.val().questions.totals.all.correct,
-        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.all.incorrect + 1 : snap.val().questions.totals.all.incorrect,
-        outta_times: req.body.result === 'Outta Time' ? snap.val().questions.totals.all.outta_times + 1 : snap.val().questions.totals.all.outta_times,
-        rating: snap.val().questions.totals.all.rating === 0 ? req.body.performance.qPerf.rating : parseFloat(((parseFloat(snap.val().questions.totals.all.rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)),
-        rank: snap.val().questions.totals.all.rank === 'NR' ? req.body.performance.qPerf.rank : calcRating(parseFloat(((parseFloat(snap.val().questions.totals.all.rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)))
-      }
-
-      dtObj[totalsPath + '/difficulty/' + req.body.difficulty] = {
-        answered: snap.val().questions.totals.difficulty[req.body.difficulty].answered + 1,
-        avg_time: snap.val().questions.totals.difficulty[req.body.difficulty].avg_time === 0 ? req.body.time : parseFloat(((parseFloat(snap.val().questions.totals.difficulty[req.body.difficulty].avg_time) + req.body.time) / 2.00).toFixed(2)),
-        correct: req.body.result === 'Correct' ? snap.val().questions.totals.difficulty[req.body.difficulty].correct + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].correct,
-        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.difficulty[req.body.difficulty].incorrect + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].incorrect,
-        outta_times: req.body.result === 'Outta Time' ? snap.val().questions.totals.difficulty[req.body.difficulty].outta_times + 1 : snap.val().questions.totals.difficulty[req.body.difficulty].outta_times,
-        rating: snap.val().questions.totals.difficulty[req.body.difficulty].rating === 0 ? req.body.performance.qPerf.rating : parseFloat(((parseFloat(snap.val().questions.totals.difficulty[req.body.difficulty].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)),
-        rank: snap.val().questions.totals.difficulty[req.body.difficulty].rank === 'NR' ? req.body.performance.qPerf.rank : calcRating(parseFloat(((parseFloat(snap.val().questions.totals.difficulty[req.body.difficulty].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)))
-      }
-
-      ctObj[totalsPath + '/categories/' + req.body.category] = {
-        answered: snap.val().questions.totals.categories[req.body.category].answered + 1,
-        avg_time: snap.val().questions.totals.categories[req.body.category].avg_time === 0 ? req.body.time : parseFloat(((parseFloat(snap.val().questions.totals.categories[req.body.category].avg_time) + req.body.time) / 2.00).toFixed(2)),
-        correct: req.body.result === 'Correct' ? snap.val().questions.totals.categories[req.body.category].correct + 1 : snap.val().questions.totals.categories[req.body.category].correct,
-        incorrect: req.body.result === 'Incorrect' ? snap.val().questions.totals.categories[req.body.category].incorrect + 1 : snap.val().questions.totals.categories[req.body.category].incorrect,
-        outta_times: req.body.result === 'Outta Time' ? snap.val().questions.totals.categories[req.body.category].outta_times + 1 : snap.val().questions.totals.categories[req.body.category].outta_times,
-        rating: snap.val().questions.totals.categories[req.body.category].rating === 0 ? req.body.performance.qPerf.rating : parseFloat(((parseFloat(snap.val().questions.totals.categories[req.body.category].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)),
-        rank: snap.val().questions.totals.categories[req.body.category].rank === 'NR' ? req.body.performance.qPerf.rank : calcRating(parseFloat(((parseFloat(snap.val().questions.totals.categories[req.body.category].rating) + req.body.performance.qPerf.rating) / 2.00).toFixed(2)))
-      }
-
-
-      firebase.database().ref().update(xpObj);
       firebase.database().ref().update(idObj);
-      firebase.database().ref().update(qObj);
-      firebase.database().ref().update(tObj);
-      firebase.database().ref().update(dtObj);
-      firebase.database().ref().update(ctObj);
+      firebase.database().ref().update(questionObj);
+      firebase.database().ref().update(totalsObj);
+      firebase.database().ref().update(diffTotalsObj);
+      firebase.database().ref().update(catTotalsObj);
+      firebase.database().ref().update(xpObj);
     })
 
     res.end()
@@ -560,21 +597,6 @@ var pushCats = function(diff, questions) {
   } else return []
 }
 
-exports.createKeys = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-    var keys = []
-
-    for(i = 0; i < 500; i++){
-      var createKey = firebase.database().ref().push().key
-      keys.push(createKey)
-    }
-
-    console.log(keys)
-    res.json(keys)
-});
-
 exports.questions = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -774,109 +796,190 @@ exports.catQuestion = functions
     })
 })
 
+var calcAchievements = function(allAchievements, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
+  let unlockedAchievements = [], resAchievementsObj = {}, crossAchievementsObj = {}
+
+  if(userTotals.answered === 1) {
+    unlockedAchievements.push("OneAnswer")
+    if(questionResults.result === "Correct"){
+      unlockedAchievements.push("OneAnswerOneCorrect")
+      if(questionResults.time < 1) unlockedAchievements.push("OneAnswerOneCorrectOneSec")
+    }
+  }
+
+  if(questionResults.result === "Correct") {
+    if(userTotals.correct === 1) unlockedAchievements.push("OneCorrect")
+    if(!userAchievements.unlocked.includes("OneCorrectOneSec") && questionResults.time < 1) unlockedAchievements.push("OneCorrectOneSec")
+  }
+
+  if(userTotals.answered === 5) unlockedAchievements.push("FiveAnswer")
+  if(userTotals.correct === 5) unlockedAchievements.push("FiveCorrect")
+
+  if(unlockedAchievements.length === 0 && userAchievements[0] === "null") {
+    resAchievementsObj = { total: 0, unlocked: [] }
+    crossAchievementsObj = { total: 0, unlocked: [ "null" ] }
+  } else {
+    unlockedAchievements.forEach(achievement => allAchievements[achievement].total += 1)
+    resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
+    crossAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }
+    allAchievements.totals.all_unlocked += unlockedAchievements.length
+  }
+
+  achievementsObj = { res: resAchievementsObj, cross: crossAchievementsObj, all: allAchievements }
+  return achievementsObj
+}
+
 exports.questionResults = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSpost(req, res)
-    firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
-      let calcObj = {}, resObj = {}, crossObj = {}, perfObj = {}, ratingObj = {}, xpObj = {}
-      if(!!req.body.uid) {
+    fetch(url.getAchievementsFromResults)
+    .then(res => res.json())
+    .then(achievementsRes => {
+      firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+        let calcObj = {}, resObj = {}, crossObj = {}, questionObj = {}, totalsObj = {}, diffTotalsObj = {}, catTotalsObj = {}, perfObj = {}, ratingObj = {}, xpObj = {}, achievementsObj = {}
+        if(!!req.body.uid) {
 
-        var question = snap.val()
+          var question = snap.val()
 
-        let calcTotalTime = req.body.time,
-            calcAvgTime = req.body.time,
-            calcTotal = question.answers.total + 1,
-            calcCorrect = question.answers.correct,
-            calcIncorrect = question.answers.incorrect,
-            calcOuttaTime = question.answers.outta_time,
-            calcResult = '',
-            calcDiffRank = '',
-            calcXP = 0
+          let calcTotalTime = req.body.time,
+              calcAvgTime = req.body.time,
+              calcTotal = question.answers.total + 1,
+              calcCorrect = question.answers.correct,
+              calcIncorrect = question.answers.incorrect,
+              calcOuttaTime = question.answers.outta_time,
+              calcResult = '',
+              calcDiffRank = '',
+              calcXP = 0
 
-        calcTotalTime = req.body.time + question.answers.total_time
-        if(!!question.answers.total) calcAvgTime = (req.body.time + question.answers.avg_time) / 2.00
+          calcTotalTime = req.body.time + question.answers.total_time
+          if(!!question.answers.total) calcAvgTime = (req.body.time + question.answers.avg_time) / 2.00
 
-        if(req.body.answer === question.correct) {
-          calcCorrect = question.answers.correct + 1
-          calcResult = 'Correct'
-          calcXP = calcExperience(req.body.difficulty, req.body.time, calcResult)
-        } else if (req.body.answer === 'outta_time'){
-          calcOuttaTime = question.answers.outta_time + 1
-          calcResult = 'Outta Time'
-        } else {
-          calcIncorrect = question.answers.incorrect + 1
-          calcResult = 'Incorrect'
-          calcXP = calcExperience(req.body.difficulty, req.body.time, calcResult)
+          if(req.body.answer === question.correct) {
+            calcCorrect = question.answers.correct + 1
+            calcResult = 'Correct'
+            calcXP = calcExperience(req.body.difficulty, req.body.time, calcResult)
+          } else if (req.body.answer === 'outta_time'){
+            calcOuttaTime = question.answers.outta_time + 1
+            calcResult = 'Outta Time'
+          } else {
+            calcIncorrect = question.answers.incorrect + 1
+            calcResult = 'Incorrect'
+            calcXP = calcExperience(req.body.difficulty, req.body.time, calcResult)
+          }
+
+          let qPerf = calcQperf(req.body.time, calcResult, req.body.difficulty)
+          let oPerf = calcOperf(qPerf.rating, req.body.rating, req.body.rank)
+          let aPerf = question.rating.performance === 0 ? qPerf.rating : ((qPerf.rating + question.rating.performance) / 2.00)
+          let newXP = calcXP + req.body.experience
+
+          calcDiffRank = calcDiffRate(calcCorrect, calcIncorrect, calcOuttaTime, calcTotal)
+
+          perfObj = { qPerf: qPerf, oPerf: oPerf }
+          xpObj = { gain: calcXP, prevTotal: req.body.experience, newTotal: newXP, level: parseInt(calcXPlevel(newXP)) }
+          ratingObj = { ...snap.val().rating, difficulty: calcDiffRank, performance: aPerf }
+          calcObj = { total: calcTotal, correct: calcCorrect, incorrect: calcIncorrect, outta_time: calcOuttaTime, total_time: calcTotalTime, avg_time: calcAvgTime }
+
+
+          totalsObj = {
+            ...req.body.userTotals.all,
+            answered: req.body.userTotals.all.answered + 1,
+            avg_time: req.body.userTotals.all.avg_time === 0 ? req.body.time : parseFloat(((parseFloat(req.body.userTotals.all.avg_time) + req.body.time) / 2.00).toFixed(2)),
+            correct: calcResult === 'Correct' ? req.body.userTotals.all.correct + 1 : req.body.userTotals.all.correct,
+            incorrect: calcResult === 'Incorrect' ? req.body.userTotals.all.incorrect + 1 : req.body.userTotals.all.incorrect,
+            outta_times: calcResult === 'Outta Time' ? req.body.userTotals.all.outta_times + 1 : req.body.userTotals.all.outta_times,
+            rating: req.body.userTotals.all.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(req.body.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
+            rank: req.body.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(req.body.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
+          }
+
+          diffTotalsObj = {
+            answered: req.body.userTotals.difficulty[req.body.difficulty].answered + 1,
+            avg_time: req.body.userTotals.difficulty[req.body.difficulty].avg_time === 0 ? req.body.time : parseFloat(((parseFloat(req.body.userTotals.difficulty[req.body.difficulty].avg_time) + req.body.time) / 2.00).toFixed(2)),
+            correct: calcResult === 'Correct' ? req.body.userTotals.difficulty[req.body.difficulty].correct + 1 : req.body.userTotals.difficulty[req.body.difficulty].correct,
+            incorrect: calcResult === 'Incorrect' ? req.body.userTotals.difficulty[req.body.difficulty].incorrect + 1 : req.body.userTotals.difficulty[req.body.difficulty].incorrect,
+            outta_times: calcResult === 'Outta Time' ? req.body.userTotals.difficulty[req.body.difficulty].outta_times + 1 : req.body.userTotals.difficulty[req.body.difficulty].outta_times,
+            rating: req.body.userTotals.difficulty[req.body.difficulty].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(req.body.userTotals.difficulty[req.body.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
+            rank: req.body.userTotals.difficulty[req.body.difficulty].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(req.body.userTotals.difficulty[req.body.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
+          }
+
+          catTotalsObj = {
+            answered: req.body.userTotals.categories[req.body.category].answered + 1,
+            avg_time: req.body.userTotals.categories[req.body.category].avg_time === 0 ? req.body.time : parseFloat(((parseFloat(req.body.userTotals.categories[req.body.category].avg_time) + req.body.time) / 2.00).toFixed(2)),
+            correct: calcResult === 'Correct' ? req.body.userTotals.categories[req.body.category].correct + 1 : req.body.userTotals.categories[req.body.category].correct,
+            incorrect: calcResult === 'Incorrect' ? req.body.userTotals.categories[req.body.category].incorrect + 1 : req.body.userTotals.categories[req.body.category].incorrect,
+            outta_times: calcResult === 'Outta Time' ? req.body.userTotals.categories[req.body.category].outta_times + 1 : req.body.userTotals.categories[req.body.category].outta_times,
+            rating: req.body.userTotals.categories[req.body.category].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(req.body.userTotals.categories[req.body.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
+            rank: req.body.userTotals.categories[req.body.category].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(req.body.userTotals.categories[req.body.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
+          }
+
+          questionObj = {
+            time: req.body.time,
+            result: calcResult,
+            performance: perfObj,
+            experience: xpObj
+          }
+
+          achievementsObj = calcAchievements(achievementsRes, req.body.achievements, questionObj, totalsObj, diffTotalsObj, catTotalsObj)
+
+          resObj = {
+            qid: req.body.qid,
+            answerResult: calcResult,
+            correct: question.correct,
+            answers: calcObj,
+            comments: question.comments,
+            votes: question.votes,
+            diffRating: calcDiffRank,
+            perfRating: aPerf,
+            performance: perfObj,
+            experience: xpObj,
+            achievements: { user: achievementsObj.res, all: achievementsObj.all }
+          }
+
+          crossObj = {
+            uid: req.body.uid,
+            qid: req.body.qid,
+            difficulty: req.body.difficulty,
+            category: req.body.category,
+            time: req.body.time,
+            result: calcResult,
+            answer: req.body.answer,
+            correct_answer: question.correct,
+            question: question.question,
+            performance: perfObj,
+            experience: xpObj,
+            totals: totalsObj,
+            diffTotals: diffTotalsObj,
+            catTotals: catTotalsObj,
+            achievements: achievementsObj.cross
+          }
+
+          firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/answers').update(calcObj)
+          firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/rating').update(ratingObj)
+
+          fetch(url.crossUpdateUserQuestion, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+              "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+              "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(crossObj)
+          })
+
+          fetch(url.crossUpdateAchievements, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+              "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+              "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(achievementsObj.all)
+          })
         }
 
-        let qPerf = calcQperf(req.body.time, calcResult, req.body.difficulty)
-        let oPerf = calcOperf(qPerf.rating, req.body.rating, req.body.rank)
-        let aPerf = question.rating.performance === 0 ? qPerf.rating : ((qPerf.rating + question.rating.performance) / 2.00)
-        let newXP = calcXP + req.body.experience
-        calcDiffRank = calcDiffRate(calcCorrect, calcIncorrect, calcOuttaTime, calcTotal)
-
-        perfObj = { qPerf: qPerf, oPerf: oPerf }
-        xpObj = { gain: calcXP, prevTotal: req.body.experience, newTotal: newXP, level: parseInt(calcXPlevel(newXP)) }
-
-        ratingObj = {
-          ...snap.val().rating,
-          difficulty: calcDiffRank,
-          performance: aPerf
-        }
-
-        calcObj = {
-          total: calcTotal,
-          correct: calcCorrect,
-          incorrect: calcIncorrect,
-          outta_time: calcOuttaTime,
-          total_time: calcTotalTime,
-          avg_time: calcAvgTime
-        }
-
-        resObj = {
-          qid: req.body.qid,
-          answerResult: calcResult,
-          correct: question.correct,
-          answers: calcObj,
-          comments: question.comments,
-          votes: question.votes,
-          diffRating: calcDiffRank,
-          perfRating: aPerf,
-          performance: perfObj,
-          experience: xpObj
-        }
-
-        crossObj = {
-          uid: req.body.uid,
-          qid: req.body.qid,
-          time: req.body.time,
-          result: calcResult,
-          answer: req.body.answer,
-          correct_answer: question.correct,
-          question: question.question,
-          difficulty: req.body.difficulty,
-          category: req.body.category,
-          performance: perfObj,
-          experience: xpObj
-        }
-
-        firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/answers').update(calcObj)
-        firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/rating').update(ratingObj)
-
-        fetch(url.crossUpdateUserQuestion, {
-          method: "POST",
-          mode: 'cors',
-          headers: {
-            "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-            "Content-Type": 'application/json'
-          },
-          body: JSON.stringify(crossObj)
-        })
-      }
-
-      res.json(resObj).status(200)
-    // res.send('done')
+        res.json(resObj).status(200)
+      // res.send('done')
+      })
     })
 })
 

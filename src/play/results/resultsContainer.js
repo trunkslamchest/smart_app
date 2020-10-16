@@ -31,11 +31,11 @@ class ResultsContainer extends React.Component{
   componentDidMount(){
     document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
 
-    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 1750)
-    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2000)
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2250)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2500)
-    this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 2750)
+    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
+    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2250)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
+    this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 3000)
   }
 
   componentWillUnmount(){

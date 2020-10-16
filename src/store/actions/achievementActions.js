@@ -33,3 +33,10 @@ export const clearAchievements = () => {
     totals: null
   }
 }
+
+export const updateAchievements = (obj) => {
+  return {
+    type: actionTypes.UPDATE_ACHIEVEMENTS,
+    res: obj
+  }
+}

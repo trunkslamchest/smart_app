@@ -100,6 +100,13 @@ export const updateUserExperienceFromPlayController = (xp) => {
   }
 }
 
+export const updateUserAchievementsFromPlayController = (achievements) => {
+  return {
+    type: actionTypes.UPDATE_USER_ACHIEVEMENTS_FROM_PLAY_CONTROLLER,
+    achievements: achievements
+  }
+}
+
 export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
 
 export const updateUserQuestionsFromPlayController = (question) => {

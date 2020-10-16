@@ -9,6 +9,7 @@ import {
 import ResultsHeader from '../resultsHeader/resultsHeader'
 import ResultsAnswer from '../resultsAnswer/resultsAnswer'
 import ResultsStats from './resultsStats'
+import ResultsAchievementsContainer from '../resultsAchievements/resultsAchievementsContainer'
 
 import './resultsStatsContainer.css'
 
@@ -17,16 +18,19 @@ class ResultsStatsContainer extends React.Component{
   state = {
     showHeader: false,
     showCorrectAnswer: false,
+    showAchievements: false,
     showStats: false,
   }
 
   componentDidMount(){
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
     if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1500)
+    this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1250)
+    this.showAchievementsTimeout = setTimeout(() => { this.setState({ showAchievements: true })}, 1500)
   }
 
   componentWillUnmount(){
+    clearTimeout(this.showAchievementsTimeout)
     clearTimeout(this.headerTimeout)
     clearTimeout(this.correctAnswerTimeout)
     clearTimeout(this.statsTimeout)
@@ -38,6 +42,7 @@ class ResultsStatsContainer extends React.Component{
         <ResultsHeader showHeader={ this.state.showHeader } />
         <ResultsAnswer showCorrectAnswer={ this.state.showCorrectAnswer } />
         <ResultsStats showStats={ this.state.showStats } />
+        <ResultsAchievementsContainer showAchievements={ this.state.showAchievements } />
       </div>
     )
   }
@@ -47,6 +52,7 @@ const mapStateToProps = (state) => {
   return {
     play: state.play,
     user: state.user,
+    achievements: state.achievements,
     questions: state.questions
   }
 }
