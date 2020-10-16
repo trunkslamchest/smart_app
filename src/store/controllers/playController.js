@@ -166,6 +166,10 @@ class PlayController extends React.Component {
   }
 
   getResultsModule = () => {
+    let Easy = this.props.user.questions.Easy
+    let Medium = this.props.user.questions.Medium
+    let Hard = this.props.user.questions.Hard
+
     this.props.onGetResults({
       uid: localStorage.id,
       qid: this.props.play.question.id,
@@ -175,7 +179,10 @@ class PlayController extends React.Component {
       time: this.props.play.answer.time,
       rating: this.props.user.questions.totals.all.rating,
       rank: this.props.user.questions.totals.all.rank,
-      experience: this.props.user.experience.total
+      experience: this.props.user.experience.total,
+      achievements: this.props.user.achievements,
+      userQuestions: { Easy, Medium, Hard },
+      userTotals: this.props.user.questions.totals
     })
   }
 
