@@ -12,6 +12,7 @@ import PlayController from './store/controllers/playController'
 
 import Header from './UI/header/header'
 import HomeContainer from './home/HomeContainer'
+import UserProfileContainer from './user/profile/userProfileContainer'
 import Footer from './UI/footer/footer'
 
 import LogIn from './user/logIn/logIn'
@@ -53,6 +54,9 @@ const App = (props) => {
           </Route>
           <Route path={ routes.dashboard }>
             <DashboardContainer history={ props.history } />
+          </Route>
+          <Route path={ routes.user_profile }>
+            <UserProfileContainer history={ props.history } />
           </Route>
           <Route path={ routes.play }>
             <PlayController history={ props.history } />

@@ -18,7 +18,8 @@ export const fetch = {
     achievements: `${process.env.REACT_APP_LOCAL_GET_ACHIEVEMENTS}`
   },
   post: {
-    user: `${process.env.REACT_APP_LOCAL_ADD_USER}`
+    user: `${process.env.REACT_APP_LOCAL_ADD_USER}`,
+    userProfile: `${process.env.REACT_APP_LOCAL_GET_USER_PROFILE}`,
   },
   patch: {
     user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
@@ -53,6 +54,7 @@ export const check = {
 //   },
 //   post: {
 //     user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
+//     userProfile: `${process.env.REACT_APP_DEPLOY_GET_USER_PROFILE}`,
 //   },
 //   patch: {
 //     user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
@@ -76,6 +78,7 @@ export const check = {
 export const routes = {
   root: '/',
   home: '/testSub',
+
   dashboard: '/testSub/dashboard',
   dashboard_profile: '/testSub/dashboard/profile',
   dashboard_profile_edit: '/testSub/dashboard/profile/edit',
@@ -84,8 +87,10 @@ export const routes = {
   dashboard_comments: '/testSub/dashboard/comments',
   dashboard_answers: '/testSub/dashboard/answers',
   dashboard_achievements: '/testSub/dashboard/achievements',
-
   dashboard_test: '/testSub/dashboard/test',
+
+  user_profile: '/testSub/users',
+
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
   quick_question: '/testSub/play/quick/question',
@@ -95,6 +100,7 @@ export const routes = {
   by_cat: '/testSub/play/category',
   by_cat_select: '/testSub/play/category/select',
   by_cat_question: '/testSub/play/category/question',
+
   tos: '/testSub/terms_of_service',
   privacy: '/testSub/privacy',
   disclaimer: '/testSub/disclamier'
@@ -103,6 +109,7 @@ export const routes = {
 // export const routes = {
   // root: '/',
   // home: '/smartapp',
+
   // dashboard: '/smartapp/dashboard',
   // dashboard_profile: '/smartapp/dashboard/profile',
   // dashboard_profile_edit: '/smartapp/dashboard/profile/edit',
@@ -113,6 +120,9 @@ export const routes = {
   // dashboard_answers: '/smartapp/dashboard/answers',
   // dashboard_achievements: '/smartapp/dashboard/achievements',
 
+  // user_profile: '/smartapp/users',
+
+
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',
   // quick_question: '/smartapp/play/quick/question',
@@ -122,6 +132,7 @@ export const routes = {
   // by_cat: '/smartapp/play/category',
   // by_cat_select: '/smartapp/play/category/select',
   // by_cat_question: '/smartapp/play/category/question',
+
   // tos: '/smartapp/terms_of_service',
   // privacy: '/smartapp/privacy',
   // disclaimer: '/smartapp/disclamier'

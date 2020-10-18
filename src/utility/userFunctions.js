@@ -23,6 +23,19 @@
       .then(res => res.json())
     },
 
+    getUserProfile: function(url, user_name) {
+      return fetch(url, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({user_name})
+      })
+      .then(res => res.json())
+    },
+
     patch: function(url, obj){
       return fetch(url, {
         method: "PATCH",

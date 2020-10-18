@@ -94,3 +94,10 @@ export {
   clearAchievements,
   updateAchievements
 } from './achievementActions'
+
+export {
+  getUserProfile,
+  clearUserProfile,
+  updateUserProfileStatus,
+  updateUserProfileLoadingStatus
+} from './profileActions'

@@ -80,7 +80,6 @@ const updateUserAchievementsFromPlayController = (currentState, action) => {
   }
 }
 
-
 const updateUserQuestionIdsFromPlayController = (currentState, action) => {
   let qIds
 
