@@ -17,8 +17,6 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0px;
-  /* padding: 5px 0px; */
-  background: rgba(255,255,255, 1);
 }
 
 .stats_difficulty_sub_container h3 {
@@ -28,9 +26,17 @@
 .stats_difficulty_wrapper {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 5px 0px;
+}
+
+.stats_difficulty_sub_wrapper {
+  width: 100%;
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .stats_difficulty_stats_container {

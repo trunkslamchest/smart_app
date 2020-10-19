@@ -10,7 +10,7 @@ import './dashboardStatsDifficulty.css'
 class DashboardStatsDifficultyContainer extends React.Component {
   render(){
 
-    var distribDiffs = <></>
+    var distribDiffs
 
     if(this.props.user.questions){
       let diffs = Object.entries(this.props.user.questions.totals.difficulty)

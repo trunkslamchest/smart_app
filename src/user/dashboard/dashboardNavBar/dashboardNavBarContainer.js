@@ -11,7 +11,6 @@ const DashboardNavBarContainer = (props) => {
   const buttons = [
     { name: 'profile', text: 'Profile' },
     { name: 'stats', text: 'Stats' },
-    { name: 'answers', text: 'Answers' },
     { name: 'achievements', text: 'Achievements' },
     { name: 'settings', text: 'Settings' },
   ]

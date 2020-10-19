@@ -11,7 +11,6 @@ import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer
 import DashboardIndex from './dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
-import DashboardAnswersContainer from './dashboardAnswers/dashboardAnswersContainer'
 import DashboardAchievementsContainer from './dashboardAchievements/dashboardAchievementsContainer'
 import DashboardSettingsContainer from './dashboardSettings/dashboardSettingsContainer'
 
@@ -43,9 +42,6 @@ class Dashboard extends React.Component{
             </Route>
             <Route exact path={ routes.dashboard_stats }>
               <DashboardStatsContainer history={ this.props.history } />
-            </Route>
-            <Route exact path={ routes.dashboard_answers }>
-              <DashboardAnswersContainer history={ this.props.history } />
             </Route>
             <Route exact path={ routes.dashboard_achievements }>
               <DashboardAchievementsContainer history={ this.props.history } />

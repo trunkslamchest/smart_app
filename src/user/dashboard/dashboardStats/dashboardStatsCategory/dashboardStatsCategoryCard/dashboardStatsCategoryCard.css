@@ -17,7 +17,6 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0px;
-  padding: 5px 0px;
 }
 
 .stats_category_sub_container h3 {
@@ -29,6 +28,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding: 5px;
 }
 
 .stats_category_stats_container {

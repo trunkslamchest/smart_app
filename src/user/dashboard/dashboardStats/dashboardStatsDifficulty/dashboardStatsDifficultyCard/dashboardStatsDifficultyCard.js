@@ -3,6 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
+import DashboardStatsDifficultyAnswersContainer from '../dashboardStatsDifficultyAnswers/dashboardStatsDifficultyAnswersContainer'
+
 import trend_arrow_up from '../../../../../assets/trends/trend_arrow_up.png'
 import trend_arrow_down from '../../../../../assets/trends/trend_arrow_down.png'
 
@@ -11,7 +13,7 @@ import './dashboardStatsDifficultyCardButton.css'
 
 class DashboardStatsDifficultyCard extends React.Component {
 
-  state = { showStats: false }
+  state = { showStats: false, showAnswers: false }
 
   constructor(props) {
     super(props)
@@ -20,20 +22,23 @@ class DashboardStatsDifficultyCard extends React.Component {
   }
 
   componentDidMount() { document.addEventListener('click', this.onClickListen) }
+
   componentWillUnmount() { document.removeEventListener('click', this.onClickListen) }
 
   setDiffRef(node){ this.diffRef = node }
   setStatsRef(node){ this.statsRef = node }
 
-  onClickListen = (event) => {
-    if(!!this.statsRef && (!this.diffRef.contains(event.target) && !this.statsRef.contains(event.target))) this.setState({ showStats: false })
-  }
+  onClickListen = (event) => { if(!!this.statsRef && (!this.diffRef.contains(event.target) && !this.statsRef.contains(event.target))) this.setState({ showStats: false, showAnswers: false }) }
 
   onDropDown = () => {
     let switchStats = !this.state.showStats
     this.setState({ showStats: switchStats })
   }
 
+  onShowAnswers = () => {
+    let switchAnswers = !this.state.showAnswers
+    this.setState({ showAnswers: switchAnswers })
+  }
 
   numZero = (num) => {
     let a = num.split('')
@@ -48,19 +53,8 @@ class DashboardStatsDifficultyCard extends React.Component {
         arrow_down
 
     if(stats.rating !== 0) {
-      arrow_up =
-        <img
-          alt='Higher than global average'
-          className='trend_arrow'
-          src={ trend_arrow_up }
-        />
-
-      arrow_down =
-        <img
-          alt='Lower than global average'
-          className='trend_arrow'
-          src={ trend_arrow_down }
-        />
+      arrow_up = <img alt='Higher than global average' className='trend_arrow' src={ trend_arrow_up } />
+      arrow_down = <img alt='Lower than global average' className='trend_arrow' src={ trend_arrow_down } />
     }
 
     let questionsAnswered = ((stats.answered / this.props.questions.totals.difficulty[diff].totals.questions) * 100).toFixed(2)
@@ -84,38 +78,53 @@ class DashboardStatsDifficultyCard extends React.Component {
           <div className="stats_difficulty_wrapper"
             ref={ this.setStatsRef }
           >
-            <div className="stats_difficulty_stats_container">
-              <div className="stats_difficulty_rank_rating_container">
-                <div className="stats_difficulty_rank_rating_sub_container">
-                  <h4>Rank</h4>
-                  <span>{ stats.rank }</span>
-                </div>
-                <div className="stats_difficulty_rank_rating_sub_container">
-                  <h4>Rating</h4>
-                  <div className="stats_difficulty_rank_rating_sub_wrapper">
-                    <span>{ stats.rating }</span>
-                    { stats.rating >= this.props.questions.totals.difficulty[diff].averages.questions.performance ? arrow_up : arrow_down }
+            <div className="stats_difficulty_sub_wrapper">
+              <div className="stats_difficulty_stats_container">
+                <div className="stats_difficulty_rank_rating_container">
+                  <div className="stats_difficulty_rank_rating_sub_container">
+                    <h4>Rank</h4>
+                    <span>{ stats.rank }</span>
+                  </div>
+                  <div className="stats_difficulty_rank_rating_sub_container">
+                    <h4>Rating</h4>
+                    <div className="stats_difficulty_rank_rating_sub_wrapper">
+                      <span>{ stats.rating }</span>
+                      { stats.rating >= this.props.questions.totals.difficulty[diff].averages.questions.performance ? arrow_up : arrow_down }
+                    </div>
                   </div>
                 </div>
+                <div className="stats_difficulty_answers_container">
+                  <span>{ stats.answered }/{ this.props.questions.totals.difficulty[diff].totals.questions } answered ({ questionsAnswered }%)</span>
+                  <span>
+                    { stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)
+                    { questionsCorrect >= this.props.questions.totals.difficulty[diff].averages.questions.correct ? arrow_up : arrow_down }
+                  </span>
+                </div>
+                <div className="stats_difficulty_time_container">
+                  <span>
+                    Average Time: { stats.avg_time } seconds
+                    { stats.avg_time <= this.props.questions.totals.difficulty[diff].averages.questions.avgTime ? arrow_up : arrow_down }
+                  </span>
+                  <span>Outta Times: { stats.outta_times }</span>
+                </div>
               </div>
-              <div className="stats_difficulty_answers_container">
-                <span>{ stats.answered }/{ this.props.questions.totals.difficulty[diff].totals.questions } answered ({ questionsAnswered }%)</span>
-                <span>
-                  { stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)
-                  { questionsCorrect >= this.props.questions.totals.difficulty[diff].averages.questions.correct ? arrow_up : arrow_down }
-                </span>
+              <div className="stats_difficulty_graph_container">
+                <span>temp graph</span>
               </div>
-              <div className="stats_difficulty_time_container">
-                <span>
-                  Average Time: { stats.avg_time } seconds
-                  { stats.avg_time <= this.props.questions.totals.difficulty[diff].averages.questions.avgTime ? arrow_up : arrow_down }
-                </span>
-                <span>Outta Times: { stats.outta_times }</span>
-              </div>
+
             </div>
-            <div className="stats_difficulty_graph_container">
-              <span>temp graph</span>
-            </div>
+            <button
+                className={ this.state.showAnswers ? "stats_difficulty_answers_button_active" : "stats_difficulty_answers_button" }
+                onClick={ this.onShowAnswers }
+              >
+                <span>View Answers</span>
+              </button>
+            { this.state.showAnswers &&
+              <DashboardStatsDifficultyAnswersContainer
+                diff={ diff }
+                cats={ this.props.user.questions[diff].categories }
+              />
+            }
           </div>
         }
       </div>
