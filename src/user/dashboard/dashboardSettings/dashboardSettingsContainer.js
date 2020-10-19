@@ -19,6 +19,7 @@ class DashboardSettingsContainer extends React.Component {
           private: false,
           showAchievements: false,
           showExperience: false,
+          showStats: false,
           showEmail: false,
           showRealName: false,
           showAge: false,
@@ -47,6 +48,7 @@ class DashboardSettingsContainer extends React.Component {
             private: this.props.user.settings.privacy.profile.private,
             showAchievements: this.props.user.settings.privacy.profile.showAchievements,
             showExperience: this.props.user.settings.privacy.profile.showExperience,
+            showStats: this.props.user.settings.privacy.profile.showStats,
             showEmail: this.props.user.settings.privacy.profile.showEmail,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
             showAge: this.props.user.settings.privacy.profile.showAge,
@@ -94,6 +96,7 @@ class DashboardSettingsContainer extends React.Component {
             private: this.props.user.settings.privacy.profile.private,
             showAchievements: this.props.user.settings.privacy.profile.showAchievements,
             showExperience: this.props.user.settings.privacy.profile.showExperience,
+            showStats: this.props.user.settings.privacy.profile.showStats,
             showEmail: this.props.user.settings.privacy.profile.showEmail,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
             showAge: this.props.user.settings.privacy.profile.showAge,
@@ -107,9 +110,6 @@ class DashboardSettingsContainer extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
-
-    console.log(this.state)
-
     return(
       <div className="dashboard_settings_container">
         <DashboardSettingsFormContainer
@@ -121,6 +121,7 @@ class DashboardSettingsContainer extends React.Component {
           private={ this.state.settings.privacy.profile.private }
           showAchievements={ this.state.settings.privacy.profile.showAchievements }
           showExperience={ this.state.settings.privacy.profile.showExperience }
+          showStats={ this.state.settings.privacy.profile.showStats }
           showEmail={ this.state.settings.privacy.profile.showEmail }
           showRealName={ this.state.settings.privacy.profile.showRealName }
           showAge={ this.state.settings.privacy.profile.showAge }

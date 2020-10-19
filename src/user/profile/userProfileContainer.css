@@ -8,3 +8,9 @@
   padding: 0px 0px 0px 0px;
   min-height: 85.75vh;
 }
+
+.user_profile_container h2 {
+  font: 600 15pt "LatoThin";
+  text-align: center;
+  padding: 25px 0px;
+}

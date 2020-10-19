@@ -17,6 +17,7 @@ class DashboardSettingsFormContainer extends React.Component {
       { name: 'private', text: 'Set your public profile to private' },
       { name: 'showAchievements', text: 'Display your achievements on your public profile' },
       { name: 'showExperience', text: 'Display your experience levels on your public profile' },
+      { name: 'showStats', text: 'Display your statistics on your public profile' },
       { name: 'showEmail', text: 'Display your email on your public profile' },
       { name: 'showRealName', text: 'Display your real name on your public profile' },
       { name: 'showAge', text: 'Display your age on your public profile' },
