@@ -266,6 +266,7 @@ const signUpObjTemplate = (email, user_name) => {
         "profile": {
           "private": false,
           "showAchievements": true,
+          "showExperience": true,
           "showEmail": true,
           "showRealName": true,
           "showAge": true,

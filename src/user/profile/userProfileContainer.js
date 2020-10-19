@@ -4,7 +4,7 @@ import { getUserProfile, clearUserProfile, updateUserProfileStatus } from '../..
 
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
 import UserProfileAchievementsContainer from './userProfileAchievements/userProfileAchievementsContainer'
-
+import UserProfileExperience from './userProfileExperience/userProfileExperience'
 
 import './userProfileContainer.css'
 
@@ -42,7 +42,9 @@ class UserProfileContainer extends React.Component {
               info={ this.props.profile.userData.info }
               history={ this.props.history }
             />
+            <UserProfileExperience history={ this.props.history } />
             <UserProfileAchievementsContainer history={ this.props.history } />
+
           </>
       }
     }
