@@ -13,7 +13,7 @@ import DashboardProfileContainer from './dashboardProfile/dashboardProfileContai
 import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
 import DashboardAnswersContainer from './dashboardAnswers/dashboardAnswersContainer'
 import DashboardAchievementsContainer from './dashboardAchievements/dashboardAchievementsContainer'
-
+import DashboardSettingsContainer from './dashboardSettings/dashboardSettingsContainer'
 
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
@@ -22,7 +22,7 @@ import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
 
-  componentDidMount(){ document.title = "SmartApp™ | Dashboard " }
+  componentDidMount(){ document.title = "SmartApp™ | Dashboard" }
 
   render(){
 
@@ -49,6 +49,9 @@ class Dashboard extends React.Component{
             </Route>
             <Route exact path={ routes.dashboard_achievements }>
               <DashboardAchievementsContainer history={ this.props.history } />
+            </Route>
+            <Route exact path={ routes.dashboard_settings }>
+              <DashboardSettingsContainer history={ this.props.history } />
             </Route>
           </Switch>
       }

@@ -56,3 +56,32 @@
   margin-top: -5px;
   font: 300 12pt 'Poppins', sans-serif;
 }
+
+.dashboard_profile_body a {
+  color: rgba(4, 108, 196, 1);
+  margin: 0px;
+  text-decoration: none;
+}
+
+.dashboard_profile_body a:active {
+  color: rgba(244, 166, 66, 1);
+  margin: 0px;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.dashboard_profile_body a:hover {
+  color: rgba(244, 166, 66, 1);
+  margin: 0px;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.dashboard_profile_body a:visited {
+  margin: 0px;
+  text-decoration: none;
+}

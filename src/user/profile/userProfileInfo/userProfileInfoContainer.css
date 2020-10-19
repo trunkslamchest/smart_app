@@ -1,3 +1,64 @@
 .user_profile_info_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 
+.user_profile_info_container > * {
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  margin: 0px auto 0px auto;
+}
+
+.user_profile_user_name_email_container {
+  width: 100%;
+  padding: 5px 0px 5px 0px;
+  z-index:8;
+}
+
+.user_profile_user_name_email_container h3 {
+  font: 300 20pt 'Lato', sans-serif;
+}
+
+.user_profile_user_name_email_container h4 {
+  font: 300 15pt 'Lato', sans-serif;
+}
+
+.user_profile_user_name_email_container h5 {
+  font: 300 10pt 'Lato', sans-serif;
+}
+
+.user_profile_name_container {
+  width: 100%;
+  padding: 0px 0px 5px 0px;
+  margin: 0px;
+}
+
+.user_profile_name_container span {
+  font: 300 12pt 'Poppins', sans-serif;
+}
+
+.user_profile_dob_container {
+  width: 100%;
+  padding: 0px 0px 5px 0px;
+  margin: 0px;
+}
+
+.user_profile_dob_container span {
+  font: 300 12pt 'Poppins', sans-serif;
+}
+
+.user_profile_user_join_date_container {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.user_profile_user_join_date_container h3 {
+  font: 300 12pt 'Poppins', sans-serif;
+}
+
+.user_profile_user_join_date_container span {
+  font: 300 12pt 'Poppins', sans-serif;
 }

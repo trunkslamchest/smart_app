@@ -19,7 +19,7 @@ const signUpObjTemplate = (email, user_name) => {
         year: getTime('year')
       }
     },
-    questions: {
+    "questions": {
       "totals": {
         "all": {
           "answered": 0,
@@ -252,14 +252,25 @@ const signUpObjTemplate = (email, user_name) => {
         }
       }
     },
-    experience: {
+    "experience": {
       "level": 1,
       "avg": 0,
       "total": 0
     },
-    achievements: {
+    "achievements": {
       "total": 0,
       "unlocked": [ "null" ]
+    },
+    "settings": {
+      "privacy": {
+        "profile": {
+          "private": false,
+          "showEmail": true,
+          "showRealName": true,
+          "showAge": true,
+          "showGender": true
+        }
+      }
     }
   }
 }

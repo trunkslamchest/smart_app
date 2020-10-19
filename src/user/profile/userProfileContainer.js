@@ -13,8 +13,12 @@ class UserProfileContainer extends React.Component {
   }
 
   componentDidMount() {
+
     let parseLocation = this.props.history.location.pathname.split("/")
     let user_name = parseLocation[parseLocation.length - 1]
+
+    document.title = `SmartApp™ | ${ user_name}'s Profile`
+
     this.props.onGetUserProfile(user_name)
   }
 
@@ -25,19 +29,24 @@ class UserProfileContainer extends React.Component {
 
   render(){
 
-    let userProfileInfo = <></>
+    let userProfileBlock = <></>
 
     if(this.props.profile.status === 'display'){
-      userProfileInfo =
-        <UserProfileInfoContainer
-          info={ this.props.profile.userData.info }
-          history={ this.props.history }
-        />
+      if(typeof this.props.profile.userData === 'string') userProfileBlock = <h3>{ this.props.profile.userData }</h3>
+      else {
+        userProfileBlock =
+          <>
+            <UserProfileInfoContainer
+              info={ this.props.profile.userData.info }
+              history={ this.props.history }
+            />
+          </>
+      }
     }
 
     return(
       <div className="user_profile_container">
-        { userProfileInfo }
+        { userProfileBlock }
       </div>
     )
   }

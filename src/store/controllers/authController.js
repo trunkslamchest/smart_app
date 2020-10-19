@@ -88,7 +88,7 @@ class AuthController extends React.Component {
 
     if(this.props.auth.authType === 'editProfile') {
       if(this.props.modal.loading){
-        if(this.props.auth.status === 'storeUserInfo' && !this.state.authUserUpdateValid) this.authUpdateUserModule('finalizeUpdateUserInfo')
+        if(this.props.auth.status === 'updateUserInfoSuccess' && !this.state.authUserUpdateValid) this.authUpdateUserModule('finalizeUpdateUserInfo')
         if(this.props.auth.status === 'finalizeUpdateUserInfo' && this.state.authUserUpdateValid) this.authFinalizeUpdateUserModule('authValid')
       }
     }
@@ -312,6 +312,9 @@ const mapDispatchToProps = dispatch => {
     // onStoreUserInfo: (info) => dispatch(actions.storeUserInfo(info)),
     // onUpdateUserInfo: (obj, props) => dispatch(actions.updateUserInfo(obj, props)),
     onClearUserInfo: () => dispatch(actions.clearUserInfo()),
+    // onStoreUserSettings: (settings) => dispatch(actions.storeUserSettings(settings)),
+    // onUpdateUserSettings: (obj) => dispatch(actions.updateUserSettings(obj)),
+    onClearUserSettings: () => dispatch(actions.clearUserSettings()),
     // onStoreUserQuestions: (questions) => dispatch(actions.storeUserQuestions(questions)),
     // onUpdateUserQuestions: () => dispatch(actions.updateUserInfo()),
     onClearUserQuestions: () => dispatch(actions.clearUserQuestions()),

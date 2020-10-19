@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
-
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { routes } from '../../../utility/paths'
 
 import months from '../../../datasets/months'
 import DashboardProfileButtonContainer from './dashboardProfileButtonContainer/dashboardProfileButtonContainer'
@@ -12,7 +14,6 @@ const DashboardProfileContainer = (props) => {
 
   useEffect(() => { document.title = "SmartApp™ | Dashboard | Profile" }, [])
 
-
   let userName = props.user.info.user_name, email = props.user.info.email
   let firstName = '', lastName = '', nameErrors = [], distribNameErrors = <></>
   let dobDay = '', dobMonth = '', dobYear = '', fulldob, dobErrors = [], distribDobErrors = <></>
@@ -20,11 +21,8 @@ const DashboardProfileContainer = (props) => {
   let joinDate
 
   const formatDay = (day) => {
-
     if(day === '') return ''
-
     const number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
-
     if (day > 10 && day < 19) return day + number_ends[3]
     else {
       if ((number_split === '1')) return day + number_ends[0]
@@ -51,8 +49,7 @@ const DashboardProfileContainer = (props) => {
   if(props.user.info.dob.year === 0) dobErrors.push('Update your profile to add your Birth Year')
   else dobYear = props.user.info.dob.year
 
-  if(props.user.info.dob.day === 0 && props.user.info.dob.year === 0) fulldob = `${ dobMonth } ${ formatDay(dobDay) } ${ dobYear }`
-  else fulldob = `${ dobMonth } ${ formatDay(dobDay) }, ${ dobYear }`
+  fulldob = `${ dobMonth } ${ formatDay(dobDay) } ${ dobYear }`
 
   if(props.user.info.gender === 'null') genderErrors.push('Update your profile to add your Gender')
   else gender = props.user.info.gender
@@ -76,18 +73,23 @@ const DashboardProfileContainer = (props) => {
           { !!nameErrors.length && <ul>{ distribNameErrors }</ul> }
         </ul>
         <ul>
-          <li>Date of Birth</li>
-          <li>{ fulldob }</li>
-          { !!dobErrors.length && <ul>{ distribDobErrors }</ul> }
-        </ul>
-        <ul>
           <li>Gender</li>
           <li>{ gender }</li>
           { !!genderErrors.length && <ul>{ distribGenderErrors }</ul> }
         </ul>
         <ul>
+          <li>Date of Birth</li>
+          <li>{ fulldob }</li>
+          { !!dobErrors.length && <ul>{ distribDobErrors }</ul> }
+        </ul>
+        <ul>
           <li>Join Date</li>
           <li>{ joinDate }</li>
+        </ul>
+        <ul>
+          <li>
+            <Link to={ routes.user_profile + '/' + userName } target='_blank'>View My Public Profile</Link>
+          </li>
         </ul>
           <DashboardProfileButtonContainer history={ props.history } />
       </div>

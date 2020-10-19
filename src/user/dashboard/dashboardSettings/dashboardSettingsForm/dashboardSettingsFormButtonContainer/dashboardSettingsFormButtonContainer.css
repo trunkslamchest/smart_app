@@ -1,0 +1,7 @@
+.dashboard_settings_buttons_container {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px auto 15px auto;
+}

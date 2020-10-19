@@ -8,20 +8,29 @@ const initialState = {
   achievements: null,
   experience: null,
   info: null,
+  settings: null,
   questions: null,
 }
 
-const storeUserInfo = (currentState, action) => { return { ...currentState, info: action.info, experience: action.experience, achievements: action.achievements } }
-
-const storeUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
-
-const clearUserInfo = (currentState, action) => { return { ...currentState, info: action.info } }
-
-const clearUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
+const storeUserInfo = (currentState, action) => { return { ...currentState, info: action.info, experience: action.experience, achievements: action.achievements, settings: action.settings } }
 
 const updateUserInfo = (currentState, action) => { return{ ...currentState, info: action.info } }
 
+const clearUserInfo = (currentState, action) => { return { ...currentState, info: action.info } }
+
+const storeUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
+
+const updateUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
+
+const clearUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
+
+
+const storeUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
+
 const updateUserQuestions = (currentState, action) => { return{ ...currentState, questions: action.questions } }
+
+const clearUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
+
 
 const updateUserPerformanceFromPlayController = (currentState, action) => {
 
@@ -305,11 +314,14 @@ const deleteUser = (currentState, action) => { return { ...currentState, info: a
 const userReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.STORE_USER_INFO: return storeUserInfo(currentState, action)
-    case actionTypes.STORE_USER_QUESTIONS: return storeUserQuestions(currentState, action)
-    case actionTypes.CLEAR_USER_INFO: return clearUserInfo(currentState, action)
-    case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_INFO: return updateUserInfo(currentState, action)
+    case actionTypes.CLEAR_USER_INFO: return clearUserInfo(currentState, action)
+    case actionTypes.STORE_USER_SETTINGS: return storeUserSettings(currentState, action)
+    case actionTypes.UPDATE_USER_SETTINGS: return updateUserSettings(currentState, action)
+    case actionTypes.CLEAR_USER_SETTINGS: return clearUserSettings(currentState, action)
+    case actionTypes.STORE_USER_QUESTIONS: return storeUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
+    case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_PERFORMANCE_FROM_PLAY_CONTROLLER: return updateUserPerformanceFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_EXPERIENCE_FROM_PLAY_CONTROLLER: return updateUserExperienceFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_ACHIEVEMENTS_FROM_PLAY_CONTROLLER: return updateUserAchievementsFromPlayController(currentState, action)

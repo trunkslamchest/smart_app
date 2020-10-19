@@ -84,9 +84,7 @@ class DashboardEditProfile extends React.Component {
     })
   }
 
-  onReset = (event) => {
-    event.persist()
-    event.preventDefault()
+  onReset = () => {
     this.setState({
       dob: this.props.user.info.dob,
       email: this.props.user.info.email,

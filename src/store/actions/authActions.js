@@ -7,9 +7,10 @@ import {
 
 import {
   storeUserInfo,
-  storeUserQuestions,
   updateUserInfo,
-  clearUserInfo
+  clearUserInfo,
+  clearUserSettings,
+  storeUserQuestions
 } from './userActions'
 
 import authFunctions from '../../utility/authFunctions'
@@ -174,7 +175,7 @@ export const authUser = () => {
       // if(!!userRes.error) dispatch(authFail(userRes.error))
       else {
         dispatch(authUpdateStatus('authUserLocalSuccess', true))
-        dispatch(storeUserInfo(userRes.info, userRes.experience, userRes.achievements))
+        dispatch(storeUserInfo(userRes.info, userRes.experience, userRes.achievements, userRes.settings))
         dispatch(storeUserQuestions(userRes.questions))
       }
     })
@@ -254,6 +255,8 @@ export const authLogOut = () => {
   return dispatch => {
     dispatch(authUpdateStatus('initClearUserInfo', true))
     dispatch(clearUserInfo())
+    dispatch(clearUserSettings())
+
   }
 }
 

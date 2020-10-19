@@ -35,11 +35,14 @@ export {
 
 export {
   storeUserInfo,
-  clearUserInfo,
-  storeUserQuestions,
-  clearUserQuestions,
   updateUserInfo,
+  clearUserInfo,
+  storeUserSettings,
+  updateUserSettings,
+  clearUserSettings,
+  storeUserQuestions,
   updateUserQuestions,
+  clearUserQuestions,
   updateUserPerformanceFromPlayController,
   updateUserExperienceFromPlayController,
   updateUserAchievementsFromPlayController,

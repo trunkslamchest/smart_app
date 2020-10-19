@@ -23,6 +23,7 @@ export const fetch = {
   },
   patch: {
     user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
+    userSettings: `${process.env.REACT_APP_LOCAL_UPDATE_USER_SETTINGS}`,
     editUserComment: `${process.env.REACT_APP_LOCAL_EDIT_USER_COMMENT}`,
     editQuestionComment: `${process.env.REACT_APP_LOCAL_EDIT_QUESTION_COMMENT}`,
     questionVote: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_VOTE}`,
@@ -58,6 +59,7 @@ export const check = {
 //   },
 //   patch: {
 //     user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
+//     userSettings: `${process.env.REACT_APP_DEPLOY_UPDATE_USER_SETTINGS}`,
 //     editUserComment: `${process.env.REACT_APP_DEPLOY_EDIT_USER_COMMENT}`,
 //     editQuestionComment: `${process.env.REACT_APP_DEPLOY_EDIT_QUESTION_COMMENT}`,
 //     questionVote: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_VOTE}`,
@@ -87,6 +89,7 @@ export const routes = {
   dashboard_comments: '/testSub/dashboard/comments',
   dashboard_answers: '/testSub/dashboard/answers',
   dashboard_achievements: '/testSub/dashboard/achievements',
+  dashboard_settings: '/testSub/dashboard/settings',
   dashboard_test: '/testSub/dashboard/test',
 
   user_profile: '/testSub/users',
@@ -119,9 +122,9 @@ export const routes = {
   // dashboard_test: '/smartapp/dashboard/test',
   // dashboard_answers: '/smartapp/dashboard/answers',
   // dashboard_achievements: '/smartapp/dashboard/achievements',
+  // dashboard_settings: '/smartapp/dashboard/settings',
 
   // user_profile: '/smartapp/users',
-
 
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',

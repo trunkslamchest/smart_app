@@ -21,8 +21,6 @@ const SignUpForm = (props) => {
       tosErrors = [], distribTOSErrors,
       allOtherErrors = [], distribAllOtherErrors
 
-  // const signUpFormRef = React.createRef()
-
   const loading =
     <div className='loading_wrapper'>
       <SmallLoadingSpinner />
@@ -47,10 +45,7 @@ const SignUpForm = (props) => {
   if(!!tosErrors.length) distribTOSErrors = tosErrors.map(error => <SignUpFormErrorItem key={ tosErrors.indexOf(error) } error={ error } /> )
   if(!!allOtherErrors.length) distribAllOtherErrors = allOtherErrors.map(error => <SignUpFormErrorItem key={ allOtherErrors.indexOf(error) } error={ error } /> )
 
-  const onSubmit = (event) => {
-    // if(props.auth.errors.length === 0) signUpFormRef.current.scrollTop = 0
-    props.onSubmit(event)
-  }
+  const onSubmit = (event) => { props.onSubmit(event) }
 
   return(
     <>
@@ -61,7 +56,6 @@ const SignUpForm = (props) => {
         id='sign_up_form'
         name='sign_up_form'
         className='sign_up_form'
-        // ref={ signUpFormRef }
       >
         <div className='sign_up_div'>
           <SignUpFormInput
