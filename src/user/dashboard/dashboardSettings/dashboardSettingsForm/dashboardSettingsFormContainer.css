@@ -1,3 +1,23 @@
 .dashboard_settings_form_container {
 
 }
+
+.dashboard_settings_privacy_container {
+  padding: 5px 0px;
+
+}
+
+.dashboard_settings_privacy_container h3 {
+  font: 600 20pt 'LatoThin', sans-serif;
+  padding: 0px 0px;
+}
+
+.dashboard_settings_privacy_container h4 {
+  font: 300 15pt 'Lato', sans-serif;
+  padding: 0px 10px;
+}
+
+.dashboard_settings_privacy_container h5 {
+  font: 300 12pt 'Lato', sans-serif;
+  padding: 0px 20px;
+}

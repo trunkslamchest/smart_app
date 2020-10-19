@@ -17,6 +17,7 @@ class DashboardSettingsContainer extends React.Component {
       privacy:{
         profile: {
           private: false,
+          showAchievements: false,
           showEmail: false,
           showRealName: false,
           showAge: false,
@@ -43,6 +44,7 @@ class DashboardSettingsContainer extends React.Component {
           ...this.state.settings.privacy,
           profile: {
             private: this.props.user.settings.privacy.profile.private,
+            showAchievements: this.props.user.settings.privacy.profile.showAchievements,
             showEmail: this.props.user.settings.privacy.profile.showEmail,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
             showAge: this.props.user.settings.privacy.profile.showAge,
@@ -88,6 +90,7 @@ class DashboardSettingsContainer extends React.Component {
           ...this.state.settings.privacy,
           profile: {
             private: this.props.user.settings.privacy.profile.private,
+            showAchievements: this.props.user.settings.privacy.profile.showAchievements,
             showEmail: this.props.user.settings.privacy.profile.showEmail,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
             showAge: this.props.user.settings.privacy.profile.showAge,
@@ -101,6 +104,9 @@ class DashboardSettingsContainer extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
+
+    console.log(this.state)
+
     return(
       <div className="dashboard_settings_container">
         <DashboardSettingsFormContainer
@@ -110,6 +116,7 @@ class DashboardSettingsContainer extends React.Component {
           onCancel={ this.onCancel }
           onReset={ this.onReset }
           private={ this.state.settings.privacy.profile.private }
+          showAchievements={ this.state.settings.privacy.profile.showAchievements }
           showEmail={ this.state.settings.privacy.profile.showEmail }
           showRealName={ this.state.settings.privacy.profile.showRealName }
           showAge={ this.state.settings.privacy.profile.showAge }

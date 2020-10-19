@@ -13,19 +13,16 @@ class DashboardSettingsFormContainer extends React.Component {
   }
 
   render(){
-
-    // console.log(this.props)
-
     const privacyProfileSettings = [
       { name: 'private', text: 'Set your public profile to private' },
-      { name: 'showEmail', text: 'Show your email on your public profile' },
-      { name: 'showRealName', text: 'Show your real name on your public profile' },
-      { name: 'showAge', text: 'Show your age on your public profile' },
-      { name: 'showGender', text: 'Show your gender on your public profile' },
+      { name: 'showAchievements', text: 'Display your achievements on your public profile' },
+      { name: 'showEmail', text: 'Display your email on your public profile' },
+      { name: 'showRealName', text: 'Display your real name on your public profile' },
+      { name: 'showAge', text: 'Display your age on your public profile' },
+      { name: 'showGender', text: 'Display your gender on your public profile' },
     ]
 
     const distribPrivacyProfileSettings = privacyProfileSettings.map(setting => {
-      // console.log(setting.name)
       return (
         <DashboardSettingsPrivacyProfileCard
           key={ privacyProfileSettings.indexOf(setting) }

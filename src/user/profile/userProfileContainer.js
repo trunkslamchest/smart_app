@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { getUserProfile, clearUserProfile, updateUserProfileStatus } from '../../store/actions/actionIndex'
 
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
+import UserProfileAchievementsContainer from './userProfileAchievements/userProfileAchievementsContainer'
+
 
 import './userProfileContainer.css'
 
@@ -40,6 +42,7 @@ class UserProfileContainer extends React.Component {
               info={ this.props.profile.userData.info }
               history={ this.props.history }
             />
+            <UserProfileAchievementsContainer history={ this.props.history } />
           </>
       }
     }
