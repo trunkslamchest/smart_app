@@ -14,6 +14,7 @@ const DashboardStatsContainer = (props) => {
   return(
     <div className={ "stats_wrapper"}>
       <DashboardStatsTotal />
+      <h6>Click on a Difficulty or Category to view your stats</h6>
       <DashboardStatsDifficultyContainer />
       <DashboardStatsCategoryContainer />
       <StatsLegend />

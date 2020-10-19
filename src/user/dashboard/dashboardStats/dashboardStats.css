@@ -2,6 +2,11 @@
   padding: 20px 0px;
 }
 
+.stats_wrapper h6 {
+  font: 600 10pt "LatoThinItalic";
+  text-align: center;
+}
+
 .stats_header {
   width: 100%;
   padding: 5px 0px 5px 0px;

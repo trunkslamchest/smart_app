@@ -266,11 +266,12 @@ const signUpObjTemplate = (email, user_name) => {
         "profile": {
           "private": false,
           "showAchievements": true,
-          "showExperience": true,
-          "showEmail": true,
-          "showRealName": true,
           "showAge": true,
-          "showGender": true
+          "showEmail": true,
+          "showExperience": true,
+          "showGender": true,
+          "showRealName": true,
+          "showStats": true
         }
       }
     }
