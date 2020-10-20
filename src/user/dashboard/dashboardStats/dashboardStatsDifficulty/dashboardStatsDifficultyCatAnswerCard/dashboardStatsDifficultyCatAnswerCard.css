@@ -1,3 +1,158 @@
 .dashboard_stats_difficulty_cat_answer_card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 5px 0px;
+  width: 100%;
+}
 
+.dashboard_stats_difficulty_cat_answer_card_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 2.5px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_header h5 {
+  font: 300 10pt "Lato";
+  padding-left: 15px;
+  text-align: left;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_header img {
+  padding-right: 7.5px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  /* padding-left: 15px; */
+  width: 100%;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_left {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  align-content: center;
+  width: 100%;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_right {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  align-content: center;
+  width: 100%;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 2.5px 0px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_rank_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0px 5px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_rank_container h4 {
+  font: 600 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_rank_container span {
+  font: 400 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_rating_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0px 5px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_rating_container h4 {
+  font: 600 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_perf_rating_container span {
+  font: 400 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_answer_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  align-content: center;
+  padding: 2.5px 0px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_answer_container span {
+  font: 400 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_time_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  align-content: center;
+  padding: 2.5px 0px;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_time_container span {
+  font: 400 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_vote_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  align-content: center;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_vote_container span {
+  font: 400 9pt "Poppins", "sans-serif";
+}
+
+.dashboard_stats_difficulty_cat_answer_card_comment_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  align-content: center;
+}
+
+.dashboard_stats_difficulty_cat_answer_card_comment_container span {
+  font: 400 9pt "Poppins", "sans-serif";
 }

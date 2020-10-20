@@ -1,77 +1,204 @@
-.stats_difficulty_header_button {
-  border: 0px;
-  outline: -webkit-focus-ring-color auto 0px;
-  padding: 5px;
+.menu_arrow {
+  z-index: 12;
+}
+
+.stats_difficulty_header_button_overlay {
   width: 100%;
+  z-index: 25;
+}
+
+.stats_difficulty_header_button {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: center;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 5px 10px;
+  width: 100%;
+  z-index: 5;
+
+}
+
+.stats_difficulty_header_button_right, .stats_difficulty_header_button_right_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  z-index: 10;
+
+}
+
+.stats_difficulty_header_button_right span, .stats_difficulty_header_button_right_active span {
+  font: 300 9pt "LatoItalic";
+  padding-right: 10px;
+  z-index: 11;
 }
 
 .stats_difficulty_header_button h3 {
-  font: 300 12pt "Lato";
+  font: 300 15pt "LatoThin";
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+.stats_difficulty_header_button img {
+  align-items: center;
+  align-content: center;
 }
 
 .stats_difficulty_header_button:hover {
-  background: rgba(51, 51, 51, 1);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(245, 167, 66, 1);
+  color: rgba(40, 44, 52, 1);
   cursor: pointer;
+}
+
+.stats_difficulty_header_button:hover img {
+  /* transform: rotate(-90deg);
+  transition: transform .2s ease-in-out; */
+}
+
+.stats_difficulty_header_button:hover h3 {
+  font: 300 15pt "Lato";
+  padding-left: 5px;
+  transition: padding-left .15s ease-in-out;
 }
 
 .stats_difficulty_header_button_active {
   animation: none;
-  background-color: rgba(245, 167, 66, 1);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245, 167, 66, 1);
   border: 0px;
   color: rgba(40, 44, 52, 1);
   cursor: default;
   outline: -webkit-focus-ring-color auto 0px;
-  padding: 5px;
+  padding: 5px 10px;
+  text-align: left;
   width: 100%;
 }
 
 .stats_difficulty_header_button_active h3 {
-  font: 300 12pt "Lato";
+  font: 300 15pt "Lato";
+  padding-left: 5px;
+  transition: padding .15s ease-in-out;
 }
 
 .stats_difficulty_header_button_active:hover {
-  background: rgba(51, 51, 51, 1);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(245, 167, 66, 1);
+  color: rgba(40, 44, 52, 1);
   cursor: pointer;
 }
 
 .stats_difficulty_answers_button {
-  border: 0px;
-  outline: -webkit-focus-ring-color auto 0px;
-  padding: 5px;
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: center;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 5px 10px;
+  width: 100%;
 }
 
-.stats_difficulty_answers_button h3 {
-  font: 300 12pt "Lato";
+.stats_difficulty_answers_button_right, .stats_difficulty_answers_button_right_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.stats_difficulty_answers_button_right_text, .stats_difficulty_answers_button_right_text_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0px;
+}
+
+.stats_difficulty_answers_button_right_text span, .stats_difficulty_answers_button_right_text:hover span, .stats_difficulty_answers_button_right_text_active span {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font: 300 9pt "LatoItalic" !important;
+  padding: 0px !important;
+
+}
+
+.stats_difficulty_answers_button span {
+  font: 300 10pt "LatoThin";
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+.stats_difficulty_answers_button_right img {
+  align-items: center;
+  align-content: center;
 }
 
 .stats_difficulty_answers_button:hover {
-  background: rgba(51, 51, 51, 1);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(245, 167, 66, 1);
+  color: rgba(40, 44, 52, 1);
   cursor: pointer;
+}
+
+.stats_difficulty_answers_button:hover img {
+  /* transform: rotate(-90deg);
+  transition: transform .2s ease-in-out; */
+}
+
+.stats_difficulty_answers_button:hover span {
+  font: 300 10pt "Lato";
+  padding-left: 5px;
+  transition: padding-left .15s ease-in-out;
 }
 
 .stats_difficulty_answers_button_active {
   animation: none;
-  background-color: rgba(245, 167, 66, 1);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245, 167, 66, 1);
   border: 0px;
   color: rgba(40, 44, 52, 1);
   cursor: default;
   outline: -webkit-focus-ring-color auto 0px;
-  padding: 5px;
+  padding: 5px 10px;
+  text-align: left;
   width: 100%;
 }
 
-.stats_difficulty_answers_button_active h3 {
-  font: 300 12pt "Lato";
+.stats_difficulty_answers_button_active span {
+  font: 300 10pt "Lato";
+  padding-left: 5px;
+  transition: padding .15s ease-in-out;
 }
 
 .stats_difficulty_answers_button_active:hover {
-  background: rgba(51, 51, 51, 1);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(245, 167, 66, 1);
+  color: rgba(40, 44, 52, 1);
   cursor: pointer;
 }

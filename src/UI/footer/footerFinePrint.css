@@ -1,7 +1,7 @@
-.fine_print {
+.footer_fine_print {
   margin: 15px 10px 15px 15px;
 }
 
-.fine_print p {
+.footer_fine_print_text {
   font-size: 7pt;
 }

@@ -19,16 +19,20 @@
   padding-inline-start: 0px;
 }
 
-.stats_category_sub_container h3 {
-  padding-bottom: 2.5px;
+.stats_category_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 5px 0px;
 }
 
-.stats_category_wrapper {
+.stats_category_sub_wrapper {
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 5px;
+  padding-bottom: 5px;
 }
 
 .stats_category_stats_container {

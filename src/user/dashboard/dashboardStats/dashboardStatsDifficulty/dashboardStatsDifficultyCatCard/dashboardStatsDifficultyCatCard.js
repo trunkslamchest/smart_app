@@ -6,8 +6,6 @@ import './dashboardStatsDifficultyCatCard.css'
 
 const DashboardStatsDifficultyCatCard = (props) => {
 
-  // console.log(props)
-
   let questions = Object.entries(props.questions)
 
   let distribAnswers = questions.map(answer => {
@@ -18,11 +16,12 @@ const DashboardStatsDifficultyCatCard = (props) => {
       />
     )
   })
-  // console.log(answers[1])
 
   return(
     <div className="dashboard_stats_difficulty_cat_card">
-      <h3>{ props.cat }</h3>
+      <div className="dashboard_stats_difficulty_cat_card_header">
+        <h3>{ props.cat }</h3>
+      </div>
       { distribAnswers }
     </div>
   )

@@ -34,7 +34,7 @@ const App = (props) => {
   return (
     <StoreController history={ props.history }>
       <Header />
-      <div className='main_container'>
+      <div className='main_container' name="main_container">
         {
           props.auth.loading &&
           (props.auth.authType === 'refresh' || props.auth.authType === 'editProfile') &&
