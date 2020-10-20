@@ -43,17 +43,22 @@ class DashboardAchievementsContainer extends React.Component {
     return(
       <div className='dashboard_achievements_container'>
         <div className='dashboard_achievements_header'>
-          <span>Achievements: { this.props.user.achievements.total }/{ this.props.achievements.totals.all }</span>
         </div>
-        <div className='dashboard_achievements_unlocked_container'>
-          <h3>Unlocked</h3>
-          <div className='dashboard_achievements_unlocked_sub_container'>
+        <div className='dashboard_achievements_wrapper'>
+          <div className='dashboard_achievements_header'>
+            <h3>Unlocked</h3>
+            <span>{ this.props.user.achievements.total }/{ this.props.achievements.totals.all } Unlocked</span>
+          </div>
+          <div className='dashboard_achievements_sub_container'>
             { distribUnlockedAchievements }
           </div>
         </div>
-        <div className='dashboard_achievements_locked_container'>
-          <h3>Locked</h3>
-          <div className='dashboard_achievements_locked_sub_container'>
+        <div className='dashboard_achievements_wrapper'>
+          <div className='dashboard_achievements_header'>
+            <h3>Locked</h3>
+            <span>{ this.props.achievements.totals.all - this.props.user.achievements.total }/{ this.props.achievements.totals.all } Locked</span>
+          </div>
+          <div className='dashboard_achievements_sub_container'>
             { distribLockedAchievements }
           </div>
         </div>

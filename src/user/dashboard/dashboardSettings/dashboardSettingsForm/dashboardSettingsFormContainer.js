@@ -43,7 +43,9 @@ class DashboardSettingsFormContainer extends React.Component {
           className='dashboard_settings_form'
         >
           <div className="dashboard_settings_privacy_container">
-            <h3>Privacy</h3>
+            <div className="dashboard_settings_header">
+              <h3>Privacy</h3>
+            </div>
             <div className="dashboard_settings_privacy_profile_container">
               <h4>Public Profile</h4>
               { distribPrivacyProfileSettings }
