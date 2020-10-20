@@ -88,7 +88,7 @@ class DashboardStatsDifficultyCard extends React.Component {
     if(stats.answered > 0) questionsCorrect = this.numZero(((stats.correct / stats.answered) * 100).toFixed(2))
 
     return(
-      <div className="stats_difficulty_sub_container">
+      <>
           <button
             className={ this.state.showStats ? "stats_difficulty_header_button_active" : "stats_difficulty_header_button" }
             hover_trigger="headerButtonHover"
@@ -151,7 +151,7 @@ class DashboardStatsDifficultyCard extends React.Component {
             { this.state.showAnswers && <DashboardStatsDifficultyAnswersContainer diff={ diff } cats={ this.props.user.questions[diff].categories } /> }
           </div>
         }
-      </div>
+      </>
     )
   }
 }

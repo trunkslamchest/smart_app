@@ -6,6 +6,7 @@
   color: rgba(51, 51, 51, 1);
   font: 600 10pt "LatoItalic";
   text-align: center;
+  padding: 5px 0px;
 }
 
 .stats_header {
@@ -23,4 +24,34 @@
 
 .stats_header h3 {
   font: 300 15pt 'Lato', sans-serif;
+}
+
+.stats_sub_container {
+  background: rgba(51, 51, 51, 1);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  padding: 5px 0px;
+}
+
+.stats_sub_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.stats_sub_header h3 {
+  font: 600 15pt "LatoThin";
+  padding: 5px 0px 5px 10px;
+  text-align: center;
 }

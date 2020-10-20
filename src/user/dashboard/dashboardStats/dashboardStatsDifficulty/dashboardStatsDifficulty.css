@@ -1,9 +1,0 @@
-.stats_difficulty_container {
-  padding: 10px 0px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-  align-content: center;
-}
