@@ -1,13 +1,10 @@
 import React from 'react'
 
-// import DashboardStatsDifficultyCatAnswerCard from '../dashboardStatsDifficultyCatAnswerCard/dashboardStatsDifficultyCatAnswerCard'
 import DashboardStatsAnswerCard from '../dashboardStatsAnswerCard/dashboardStatsAnswerCard'
 
 import './dashboardStatsAnswersWrapper.css'
 
 const DashboardStatsAnswersWrapper = (props) => {
-
-  // console.log(props)
 
   let questions = Object.entries(props.questions)
 

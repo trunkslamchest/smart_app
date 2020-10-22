@@ -1,6 +1,5 @@
 import React from 'react'
 
-// import DashboardStatsDifficultyCatCard from '../dashboardStatsDifficultyCatCard/dashboardStatsDifficultyCatCard'
 import DashboardStatsAnswersWrapper from '../dashboardStatsAnswersWrapper/dashboardStatsAnswersWrapper'
 
 import './dashboardStatsAnswersContainer.css'

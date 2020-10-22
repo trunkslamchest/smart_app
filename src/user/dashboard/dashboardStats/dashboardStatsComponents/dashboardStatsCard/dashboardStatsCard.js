@@ -3,9 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
-// import DashboardStatsDifficultyAnswersContainer from '../dashboardStatsDifficultyAnswers/dashboardStatsDifficultyAnswersContainer'
 import DashboardStatsAnswersContainer from '../dashboardStatsAnswersContainer/dashboardStatsAnswersContainer'
-
 
 import trend_arrow_up from '../../../../../assets/trends/trend_arrow_up.png'
 import trend_arrow_down from '../../../../../assets/trends/trend_arrow_down.png'
@@ -62,8 +60,6 @@ class DashboardStatsCard extends React.Component {
   }
 
   render(){
-
-    // console.log(this.props.answers)
 
     // const arrow_white_down = <img alt='open' className='menu_arrow' src={ menu_arrow_white_down } />
     const arrow_grey_down = <img alt='open' className='menu_arrow' hover_trigger={ this.state.headerButtonHover ? "headerButtonHover" : "answersButtonHover" } src={ menu_arrow_grey_down } />
@@ -152,9 +148,7 @@ class DashboardStatsCard extends React.Component {
                   { answers_menu_arrow }
                 </div>
               </button>
-            {/* { this.state.showAnswers && <DashboardStatsDifficultyAnswersContainer diff={ diff } cats={ this.props.user.questions[diff].categories } /> } */}
             { this.state.showAnswers && <DashboardStatsAnswersContainer qSet={ qSet } answers={ this.props.answers } /> }
-
           </div>
         }
       </>
