@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
-import DashboardStatsCategoryCard from './dashboardStatsCategoryCard/dashboardStatsCategoryCard'
+import DashboardStatsCard from '../dashboardStatsComponents/dashboardStatsCard/dashboardStatsCard'
 
 import './dashboardStatsCategory.css'
 
@@ -17,9 +17,10 @@ class DashboardStatsCategoryContainer extends React.Component {
       distribCats = cats.map(cat => {
         let statCard
         if(this.props.questions.totals.category[`${ cat[0] }`]) {
-          statCard = <DashboardStatsCategoryCard
+          statCard = <DashboardStatsCard
                       key={ cats.indexOf(cat) + 1 }
-                      category={ cat }
+                      qSet={ cat }
+                      totals={ this.props.questions.totals.category }
                     />
         }
         return statCard

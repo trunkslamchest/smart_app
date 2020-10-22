@@ -2,7 +2,7 @@
 
 }
 
-.stats_difficulty_header_button {
+.stats_card_header_button {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -16,7 +16,7 @@
   width: 100%;
 }
 
-.stats_difficulty_header_button_right, .stats_difficulty_header_button_right_active {
+.stats_card_header_button_right, .stats_card_header_button_right_active {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -25,12 +25,12 @@
   align-content: center;
 }
 
-.stats_difficulty_header_button_right span, .stats_difficulty_header_button_right_active span {
+.stats_card_header_button_right span, .stats_card_header_button_right_active span {
   font: 300 9pt "LatoItalic";
   padding-right: 10px;
 }
 
-.stats_difficulty_header_button h3 {
+.stats_card_header_button h3 {
   font: 600 12pt "LatoThin";
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -38,29 +38,29 @@
   text-align: left;
 }
 
-.stats_difficulty_header_button img {
+.stats_card_header_button img {
   align-items: center;
   align-content: center;
 }
 
-.stats_difficulty_header_button:hover {
+.stats_card_header_button:hover {
   background: rgba(245, 167, 66, 1);
   color: rgba(40, 44, 52, 1);
   cursor: pointer;
 }
 
-.stats_difficulty_header_button:hover img {
+.stats_card_header_button:hover img {
   /* transform: rotate(-90deg);
   transition: transform .2s ease-in-out; */
 }
 
-.stats_difficulty_header_button:hover h3 {
+.stats_card_header_button:hover h3 {
   font: 600 12pt "Lato";
   padding-left: 5px;
   transition: padding-left .15s ease-in-out;
 }
 
-.stats_difficulty_header_button_active {
+.stats_card_header_button_active {
   animation: none;
   display: flex;
   flex-direction: row;
@@ -77,19 +77,19 @@
   width: 100%;
 }
 
-.stats_difficulty_header_button_active h3 {
+.stats_card_header_button_active h3 {
   font: 600 12pt "Lato";
   padding-left: 5px;
   transition: padding .15s ease-in-out;
 }
 
-.stats_difficulty_header_button_active:hover {
+.stats_card_header_button_active:hover {
   background: rgba(245, 167, 66, 1);
   color: rgba(40, 44, 52, 1);
   cursor: pointer;
 }
 
-.stats_difficulty_answers_button {
+.stats_card_answers_button {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -103,7 +103,7 @@
   width: 100%;
 }
 
-.stats_difficulty_answers_button_right, .stats_difficulty_answers_button_right_active {
+.stats_card_answers_button_right, .stats_card_answers_button_right_active {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -112,7 +112,7 @@
   align-content: center;
 }
 
-.stats_difficulty_answers_button_right_text, .stats_difficulty_answers_button_right_text_active {
+.stats_card_answers_button_right_text, .stats_card_answers_button_right_text_active {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -122,7 +122,7 @@
   padding: 0px;
 }
 
-.stats_difficulty_answers_button_right_text span, .stats_difficulty_answers_button_right_text:hover span, .stats_difficulty_answers_button_right_text_active span {
+.stats_card_answers_button_right_text span, .stats_card_answers_button_right_text:hover span, .stats_card_answers_button_right_text_active span {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -134,7 +134,7 @@
 
 }
 
-.stats_difficulty_answers_button span {
+.stats_card_answers_button span {
   font: 300 10pt "LatoThin";
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -142,29 +142,29 @@
   text-align: left;
 }
 
-.stats_difficulty_answers_button_right img {
+.stats_card_answers_button_right img {
   align-items: center;
   align-content: center;
 }
 
-.stats_difficulty_answers_button:hover {
+.stats_card_answers_button:hover {
   background: rgba(245, 167, 66, 1);
   color: rgba(40, 44, 52, 1);
   cursor: pointer;
 }
 
-.stats_difficulty_answers_button:hover img {
+.stats_card_answers_button:hover img {
   /* transform: rotate(-90deg);
   transition: transform .2s ease-in-out; */
 }
 
-.stats_difficulty_answers_button:hover span {
+.stats_card_answers_button:hover span {
   font: 300 10pt "Lato";
   padding-left: 5px;
   transition: padding-left .15s ease-in-out;
 }
 
-.stats_difficulty_answers_button_active {
+.stats_card_answers_button_active {
   animation: none;
   display: flex;
   flex-direction: row;
@@ -181,13 +181,13 @@
   width: 100%;
 }
 
-.stats_difficulty_answers_button_active span {
+.stats_card_answers_button_active span {
   font: 300 10pt "Lato";
   padding-left: 5px;
   transition: padding .15s ease-in-out;
 }
 
-.stats_difficulty_answers_button_active:hover {
+.stats_card_answers_button_active:hover {
   background: rgba(245, 167, 66, 1);
   color: rgba(40, 44, 52, 1);
   cursor: pointer;
