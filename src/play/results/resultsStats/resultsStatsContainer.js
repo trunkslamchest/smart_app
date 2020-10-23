@@ -24,7 +24,9 @@ class ResultsStatsContainer extends React.Component{
 
   componentDidMount(){
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
-    if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
+    if(this.props.play.results){
+      if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
+    }
     this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1250)
     this.showAchievementsTimeout = setTimeout(() => { this.setState({ showAchievements: true })}, 1500)
   }

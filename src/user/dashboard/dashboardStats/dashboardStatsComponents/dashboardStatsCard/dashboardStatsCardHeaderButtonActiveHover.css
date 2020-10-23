@@ -1,0 +1,19 @@
+.stats_card_header_button_active:hover {
+  background: rgba(245, 167, 66, 1);
+  color: rgba(40, 44, 52, 1);
+  cursor: pointer;
+  padding: 7.5px 10px 7.5px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border: 0px;
+  outline: -webkit-focus-ring-color auto 0px;
+  width: 100%;
+}
+
+.stats_card_header_button_active:hover .header_button_menu_arrow {
+  padding-right: 5px;
+  transition: padding-right .1s ease-in-out;
+}

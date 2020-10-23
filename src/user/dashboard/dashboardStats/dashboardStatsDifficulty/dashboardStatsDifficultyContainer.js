@@ -16,10 +16,12 @@ class DashboardStatsDifficultyContainer extends React.Component {
       let diffTotals = Object.entries(this.props.user.questions.totals.difficulty)
       distribDiffs = diffTotals.map(diff =>
         <DashboardStatsCard
+          answers={ this.props.user.questions[diff[0]].categories }
+          history={ this.props.history }
+          diff={ diff[0] }
           key={ diffTotals.indexOf(diff) + 1 }
           qSet={ diff }
           totals={ this.props.questions.totals.difficulty }
-          answers={ this.props.user.questions[diff[0]].categories }
         />
       )
     }

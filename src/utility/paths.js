@@ -93,6 +93,7 @@ export const routes = {
   dashboard_test: '/testSub/dashboard/test',
 
   user_profile: '/testSub/users',
+  static_results: '/testSub/results',
 
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
@@ -125,6 +126,7 @@ export const routes = {
   // dashboard_settings: '/smartapp/dashboard/settings',
 
   // user_profile: '/smartapp/users',
+  // static_results: '/smartapp/results',
 
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',

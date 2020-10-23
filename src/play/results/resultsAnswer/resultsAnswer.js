@@ -9,11 +9,13 @@ const ResultsAnswer = (props) => {
   const correct_answer_text =
     <>
       <h3>The correct answer was</h3>
-      <h4>{ props.play.results.correct_answer }</h4>
+      <h4>{ props.play.results ? props.play.results.correct_answer : "static_answer_temp" }</h4>
     </>
 
+  // if
+
   const correct_answer = props.showCorrectAnswer && correct_answer_text
-  const answer = props.play.results.result === 'Incorrect' && correct_answer
+  const answer = props.play.results ? props.play.results.result === 'Incorrect' ? correct_answer : <></> : 'static_results_temp'
 
   return(
     <div className={ props.showCorrectAnswer ? "results_correct_answer" : "blank" }>

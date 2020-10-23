@@ -13,8 +13,11 @@ import menu_arrow_grey_down from '../../../../../assets/menu_arrows/menu_arrow_g
 import menu_arrow_grey_left from '../../../../../assets/menu_arrows/menu_arrow_grey_left.png'
 import menu_arrow_white_left from '../../../../../assets/menu_arrows/menu_arrow_white_left.png'
 
+import './dashboardStatsCardHeaderButton.css'
+import './dashboardStatsCardHeaderButtonActive.css'
+import './dashboardStatsCardHeaderButtonHover.css'
+import './dashboardStatsCardHeaderButtonActiveHover.css'
 import './dashboardStatsCard.css'
-import './dashboardStatsCardButton.css'
 
 class DashboardStatsCard extends React.Component {
 
@@ -35,7 +38,7 @@ class DashboardStatsCard extends React.Component {
   onClickListen = (event) => {
     if((!!this.statsRef && !this.statsRef.contains(event.target)) &&
       (!!this.buttonRef && !this.buttonRef.contains(event.target)) &&
-      (event.target.nodeName === "BUTTON" || event.target.nodeName === "IMG" || event.target.nodeName === "SPAN" || event.target.nodeName === "H3") &&
+      (event.target.nodeName === "BUTTON" || event.target.nodeName === "IMG" || event.target.nodeName === "SPAN" || event.target.nodeName === "H3" || event.target.nodeName === "DIV") &&
       event.target.className !== "main_container" &&
       event.target.parentNode.className.split("_")[0] === 'stats'
     ) this.setState({ showStats: false, showAnswers: false })
@@ -62,9 +65,9 @@ class DashboardStatsCard extends React.Component {
   render(){
 
     // const arrow_white_down = <img alt='open' className='menu_arrow' src={ menu_arrow_white_down } />
-    const arrow_grey_down = <img alt='open' className='menu_arrow' hover_trigger={ this.state.headerButtonHover ? "headerButtonHover" : "answersButtonHover" } src={ menu_arrow_grey_down } />
-    const arrow_grey_left = <img alt='closed' className='menu_arrow' hover_trigger={ this.state.answersButtonHover ? "answersButtonHover" : "headerButtonHover" } src={ menu_arrow_grey_left } />
-    const arrow_white_left = <img alt='closed' className='menu_arrow' hover_trigger={ this.state.answersButtonHover ? "answersButtonHover" : "headerButtonHover" } src={ menu_arrow_white_left } />
+    const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="answersButtonHover" src={ menu_arrow_grey_down } />
+    const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_grey_left } />
+    const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_white_left } />
 
     let qSet = this.props.qSet[0],
         stats = this.props.qSet[1],
@@ -72,17 +75,14 @@ class DashboardStatsCard extends React.Component {
         questionsCorrect = "0",
         arrow_up,
         arrow_down,
-        header_menu_arrow = arrow_white_left,
-        answers_menu_arrow = arrow_white_left
+        header_menu_arrow = arrow_white_left
 
     if(this.state.headerButtonHover) header_menu_arrow = arrow_grey_left
     if(this.state.showStats) header_menu_arrow = arrow_grey_down
-    if(this.state.answersButtonHover) answers_menu_arrow = arrow_grey_left
-    if(this.state.showAnswers) answers_menu_arrow = arrow_grey_down
 
     if(stats.rating !== 0) {
-      arrow_up = <img alt='Higher than global average' className='trend_arrow' src={ trend_arrow_up } />
-      arrow_down = <img alt='Lower than global average' className='trend_arrow' src={ trend_arrow_down } />
+      arrow_up = <img alt='Higher than global average' className='header_button_trend_arrow' src={ trend_arrow_up } />
+      arrow_down = <img alt='Lower than global average' className='header_button_trend_arrow' src={ trend_arrow_down } />
     }
 
     if(stats.answered > 0) questionsCorrect = this.numZero(((stats.correct / stats.answered) * 100).toFixed(2))
@@ -98,57 +98,52 @@ class DashboardStatsCard extends React.Component {
             onMouseLeave={ this.offStatHover }
           >
             <h3>{ qSet }</h3>
-            <div className={ this.state.showStats ? "stats_card_header_button_right_active" : "stats_card_header_button_right" } >
-              <span>{ stats.answered }/{ this.props.totals[qSet].totals.questions } answered ({ questionsAnswered }%)</span>
-              { header_menu_arrow }
+            <div className={ this.state.showStats ? "stats_card_header_button_right_container_active" : "stats_card_header_button_right_container" }>
+              <div className={ this.state.showStats ? "stats_card_header_button_rank_rating_container_active" : "stats_card_header_button_rank_rating_container" }>
+                <div className="stats_card_header_button_rank_sub_container">
+                  <h4>Rank</h4>
+                  <span>{ stats.rank }</span>
+                </div>
+                <div className="stats_card_header_button_rating_sub_container">
+                  <h4>Rating</h4>
+                  <span>
+                    { (stats.rating).toFixed(2) }
+                    { stats.rating >= this.props.totals[qSet].averages.questions.performance ? arrow_up : arrow_down }
+                  </span>
+                </div>
+              </div>
+              <div className={ this.state.showStats ? "stats_card_time_container_active" : "stats_card_time_container"}>
+                <div className="stats_card_header_button_avg_time_container">
+                  <h4>Average Time</h4>
+                  <span>
+                    { (stats.avg_time).toFixed(2) } seconds
+                    { stats.avg_time <= this.props.totals[qSet].averages.questions.avgTime ? arrow_up : arrow_down }
+                  </span>
+                </div>
+                <div className="stats_card_header_button_outta_times_container">
+                  <h4>Outta Times</h4>
+                  <span>{ stats.outta_times }</span>
+                </div>
+              </div>
+              <div className={ this.state.showStats ? "stats_card_header_button_right_active" : "stats_card_header_button_right" } >
+                  <div className={ this.state.showStats ? "stats_card_header_button_right_text_sub_container_active" : "stats_card_header_button_right_text_sub_container" } >
+                    <span>{ stats.answered }/{ this.props.totals[qSet].totals.questions } answered ({ questionsAnswered }%)</span>
+                    <span>{ stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)</span>
+                  </div>
+                  { questionsCorrect >= this.props.totals[qSet].averages.questions.correct ? arrow_up : arrow_down }
+              </div>
             </div>
+            { header_menu_arrow }
           </button>
         { this.state.showStats &&
           <div className="stats_card_wrapper" ref={ this.setStatsRef }>
-            <div className="stats_card_sub_wrapper">
-              <div className="stats_card_stats_container">
-                <div className="stats_card_rank_rating_container">
-                  <div className="stats_card_rank_rating_sub_container">
-                    <h4>Rank</h4>
-                    <span>{ stats.rank }</span>
-                  </div>
-                  <div className="stats_card_rank_rating_sub_container">
-                    <h4>Rating</h4>
-                    <div className="stats_card_rank_rating_sub_wrapper">
-                      <span>{ stats.rating }</span>
-                      { stats.rating >= this.props.totals[qSet].averages.questions.performance ? arrow_up : arrow_down }
-                    </div>
-                  </div>
-                </div>
-                <div className="stats_card_time_container">
-                  <span>
-                    Average Time: { stats.avg_time } seconds
-                    { stats.avg_time <= this.props.totals[qSet].averages.questions.avgTime ? arrow_up : arrow_down }
-                  </span>
-                  <span>Outta Times: { stats.outta_times }</span>
-                </div>
-              </div>
-              <div className="stats_card_graph_container">
-                <span>temp graph</span>
-              </div>
-            </div>
-            <button
-                className={ this.state.showAnswers ? "stats_card_answers_button_active" : "stats_card_answers_button" }
-                hover_trigger="answersButtonHover"
-                onClick={ this.onShowAnswers }
-                onMouseEnter={ this.onStatHover }
-                onMouseLeave={ this.offStatHover }
-              >
-                <span>{ this.state.showAnswers ? 'Hide Answers'  : "View Answers" }</span>
-                <div className={ this.state.showAnswers ? "stats_card_answers_button_right_active" : "stats_card_answers_button_right" }>
-                  <div className={ this.state.showAnswers ? "stats_card_answers_button_right_text_active" : "stats_card_answers_button_right_text" } >
-                    <span>{ stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)</span>
-                    { questionsCorrect >= this.props.totals[qSet].averages.questions.correct ? arrow_up : arrow_down }
-                  </div>
-                  { answers_menu_arrow }
-                </div>
-              </button>
-            { this.state.showAnswers && <DashboardStatsAnswersContainer qSet={ qSet } answers={ this.props.answers } /> }
+            <DashboardStatsAnswersContainer
+              answers={ this.props.answers }
+              history={ this.props.history }
+              diff={ this.props.diff ? this.props.diff : null }
+              cat={ this.props.cat ? this.props.cat : null }
+              qSet={ qSet }
+            />
           </div>
         }
       </>

@@ -11,6 +11,9 @@ const DashboardStatsAnswersContainer = (props) => {
   let distribAnswers = answers.map(questions => {
     return(
       <DashboardStatsAnswersWrapper
+        diff={ !!props.cat ? questions[0] : props.diff }
+        cat={ !!props.diff ? questions[0] : props.cat }
+        history={ props.history }
         key={ answers.indexOf(questions) }
         qSet={ questions[0] }
         questions={ questions[1] }

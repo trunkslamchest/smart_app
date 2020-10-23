@@ -9,9 +9,13 @@ import './resultsNavBarContainer.css'
 
 const ResultsNavBarContainer = (props) => {
 
+  let staticRoute
+
+  if(props.staticResults) staticRoute = routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid
+
   const buttons = [
-    { name: 'results', text: 'Results', route: routes[props.play.gameMode] + '/results/stats' },
-    { name: 'discuss', text: 'Discuss', route: routes[props.play.gameMode] + '/results/discuss' }
+    { name: 'results', text: 'Results', route: props.staticResults ? staticRoute + '/stats' : routes[props.play.gameMode] + '/results/stats' },
+    { name: 'discuss', text: 'Discuss', route: props.staticResults ? staticRoute + '/discuss' : routes[props.play.gameMode] + '/results/discuss' }
   ]
 
   const distribButtons = buttons.map(button =>

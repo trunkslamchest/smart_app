@@ -8,7 +8,7 @@ const ResultsHeader = (props) => {
   return(
     <div className={ props.showHeader ? "results_answer_header" : "blank" }>
       <h3>
-        { props.showHeader && `${ props.play.results.result }!` }
+        { props.showHeader && props.play.results && `${ props.play.results.result }!` }
       </h3>
     </div>
   )

@@ -24,7 +24,7 @@ const ResultsStats = (props) => {
     boxSizing: "border-box",
     background: "green",
     height: "10px",
-    width: `${ xpBar() }%`
+    width: `${ props.user.experience && xpBar() }%`
   }
 
   const arrow_up =
@@ -52,13 +52,13 @@ const ResultsStats = (props) => {
                 <div className='results_perf_rank_sub_container'>
                   <div className='results_perf_rank'>
                     <h4>Rank</h4>
-                    <h5>{ props.play.results.performance.qPerf.rank }</h5>
+                    <h5>{ props.play.results && props.play.results.performance.qPerf.rank }</h5>
                   </div>
                   <div className='results_perf_rating'>
                     <h4>Rating</h4>
                     <div className='results_perf_rating_sub_wrapper'>
-                      <h5>{ props.play.results.performance.qPerf.rating }</h5>
-                      { props.play.results.performance.qPerf.rating > props.play.question.perfRating ? arrow_up : arrow_down }
+                      <h5>{ props.play.results && props.play.results.performance.qPerf.rating }</h5>
+                      { props.play.results && props.play.results.performance.qPerf.rating > props.play.question.perfRating ? arrow_up : arrow_down }
                     </div>
                   </div>
                 </div>
@@ -66,17 +66,17 @@ const ResultsStats = (props) => {
               <div className='results_time_container'>
                 <h4>Time</h4>
                 <div className='results_time_sub_container'>
-                  <h5>{ props.play.answer.time } seconds</h5>
-                  { props.play.answer.time < props.play.question.answers.avg_time ? arrow_up : arrow_down }
+                  <h5>{ props.play.results && props.play.answer.time } seconds</h5>
+                  { props.play.answer && props.play.answer.time < props.play.question.answers.avg_time ? arrow_up : arrow_down }
                 </div>
               </div>
             </div>
             <div className='results_xp_container'>
               <div className='results_xp_count'>
-                <h4>+{ props.play.results.experience.gain }</h4><h5>XP</h5>
+                <h4>+{ props.play.results && props.play.results.experience.gain }</h4><h5>XP</h5>
               </div>
               <div className="results_xp_bar_container">
-                <h4>Level { props.user.experience.level }</h4>
+                <h4>Level { props.user.experience && props.user.experience.level }</h4>
                 <div className="results_xp_bar_sub_container">
                   <div className="results_xp_bar">
                     <div style={ xpBarClass }></div>
@@ -84,7 +84,7 @@ const ResultsStats = (props) => {
                 </div>
               </div>
               <div className='results_xp_total'>
-              <h4>{ props.user.experience.total }</h4><h5>/{ levels[props.user.experience.level] }</h5>
+              <h4>{ props.user.experience && props.user.experience.total }</h4><h5>/{ levels[props.user.experience.level] }</h5>
               </div>
             </div>
           </div>
@@ -96,28 +96,28 @@ const ResultsStats = (props) => {
                 <div className='results_diff_sub_container'>
                   <div className='results_diff'>
                     <h5>Level</h5>
-                    <h6>{ props.play.question.difficulty }</h6>
+                    <h6>{ props.play.question && props.play.question.difficulty }</h6>
                   </div>
                   <div className='results_diff_rating'>
                     <h5>Rating</h5>
-                    <h6>{ props.play.question.diffRating }</h6>
+                    <h6>{ props.play.question && props.play.question.diffRating }</h6>
                   </div>
                 </div>
               </div>
               <div className='results_totals_container'>
-                <h4>Total: { props.play.question.answers.total } Answers</h4>
+                <h4>Total: { props.play.question && props.play.question.answers.total } Answers</h4>
                 <div className='results_totals_sub_container'>
                   <div className='results_totals_correct'>
                     <h4>Correct</h4>
-                    <h5>{ props.play.question.answers.correct }</h5>
+                    <h5>{ props.play.question && props.play.question.answers.correct }</h5>
                   </div>
                   <div className='results_totals_incorrect'>
                     <h4>Incorrect</h4>
-                    <h5>{ props.play.question.answers.incorrect }</h5>
+                    <h5>{ props.play.question && props.play.question.answers.incorrect }</h5>
                   </div>
                   <div className='results_totals_outta_time'>
                     <h4>Outta Times</h4>
-                    <h5>{ props.play.question.answers.outta_time }</h5>
+                    <h5>{ props.play.question && props.play.question.answers.outta_time }</h5>
                   </div>
                 </div>
               </div>

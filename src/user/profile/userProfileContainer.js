@@ -20,7 +20,7 @@ class UserProfileContainer extends React.Component {
     let parseLocation = this.props.history.location.pathname.split("/")
     let user_name = parseLocation[parseLocation.length - 1]
 
-    document.title = `SmartApp™ | ${ user_name}'s Profile`
+    document.title = `SmartApp™ | ${ user_name }'s Profile`
 
     this.props.onGetUserProfile(user_name)
   }

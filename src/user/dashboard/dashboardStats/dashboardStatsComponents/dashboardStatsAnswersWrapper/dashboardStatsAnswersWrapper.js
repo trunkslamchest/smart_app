@@ -11,8 +11,12 @@ const DashboardStatsAnswersWrapper = (props) => {
   let distribAnswers = questions.map(answer => {
     return(
       <DashboardStatsAnswerCard
-        key={ answer[0] }
         answer={ answer[1] }
+        diff={ props.diff }
+        cat={ props.cat }
+        history={ props.history }
+        key={ answer[0] }
+        qid={ answer[0] }
       />
     )
   })

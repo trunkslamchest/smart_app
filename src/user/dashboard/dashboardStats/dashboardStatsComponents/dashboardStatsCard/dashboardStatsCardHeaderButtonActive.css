@@ -1,0 +1,92 @@
+.header_button_trend_arrow_active {
+  align-self: center;
+  padding: 0px 0px 0px 5px;
+}
+
+.header_button_menu_arrow_active {
+
+}
+
+.stats_card_header_button_active {
+  background: rgba(245, 167, 66, 1);
+  color: rgba(40, 44, 52, 1);
+  padding: 7.5px 10px 7.5px 20px;
+  cursor: default;
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  border: 0px;
+  outline: -webkit-focus-ring-color auto 0px;
+  width: 100%;
+}
+
+.stats_card_header_button_active h3 {
+  font: 600 12pt "Lato";
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding-left: 5px;
+  text-align: left;
+}
+
+.stats_card_header_button_right_container_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  flex-grow: 1;
+}
+
+.stats_card_header_button_active h4 {
+  font: 600 10pt "Lato";
+}
+
+.stats_card_header_button_rank_rating_container_active,
+.stats_card_time_container_active {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 0px 10px;
+}
+
+.stats_card_header_button_right_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0px 20px 0px 10px;
+}
+
+.stats_card_header_button_right_active img {
+  align-self: flex-end;
+  padding-bottom: 2.5px;
+}
+
+
+.stats_card_header_button_right_text_sub_container_active {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+.stats_card_header_button_right_text_sub_container_active span {
+  font: 300 9pt "LatoItalic";
+}
+
+.stats_card_header_button_active .header_button_menu_arrow {
+  padding-right: 5px;
+  transition: padding-right .1s ease-in-out;
+}

@@ -17,9 +17,9 @@ const DashboardStatsContainer = (props) => {
         <h3>Overall</h3>
       </div>
       <DashboardStatsTotal />
-      <h6>Click on a Difficulty or Category to view your stats</h6>
-      <DashboardStatsDifficultyContainer />
-      <DashboardStatsCategoryContainer />
+      <h6>Click on a Difficulty or Category to view your answers</h6>
+      <DashboardStatsDifficultyContainer history={ props.history } />
+      <DashboardStatsCategoryContainer history={ props.history } />
       <StatsLegend />
     </div>
   )

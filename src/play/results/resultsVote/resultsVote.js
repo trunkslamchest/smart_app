@@ -21,7 +21,7 @@ const ResultsVote = (props) => {
     </div>
 
   const calcVotePercents = () => {
-    if (props.play.question.votes.total === 0) return { good: '0%', neutral: '0%', bad: '0%' }
+    if (props.play.question && props.play.question.votes.total === 0) return { good: '0%', neutral: '0%', bad: '0%' }
     else return {
       good: `${((props.play.question.votes.good / props.play.question.votes.total) * 100).toFixed(2)}%`,
       neutral: `${((props.play.question.votes.neutral / props.play.question.votes.total) * 100).toFixed(2)}%`,
@@ -29,9 +29,9 @@ const ResultsVote = (props) => {
     }
   }
 
-  let voteBlock
+  let voteBlock, votePercents
 
-  const votePercents = calcVotePercents()
+  if(props.play.question) votePercents = calcVotePercents()
 
   const voteButtons = [
     { type: "up_vote", type_disabled: "up_vote_disabled", img: up_vote, vote: "good"},

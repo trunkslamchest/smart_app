@@ -21,21 +21,48 @@ import './resultsContainer.css'
 class ResultsContainer extends React.Component{
 
   state = {
-    showVoteButtons: false,
-    showNextQuestionButton: false,
-    enableVoteButtons: false,
+    cat: null,
+    diff: null,
     enableNextQuestionButton: false,
-    showLegend: false
+    enableVoteButtons: false,
+    initDefaultResults: false,
+    initStaticResults: false,
+    showLegend: false,
+    showNextQuestionButton: false,
+    showVoteButtons: false,
+    qid: null
   }
 
   componentDidMount(){
-    document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
+    if(!this.props.staticResults) document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
+    else {
+      let parseLocation = this.props.history.location.pathname.split("/"),
+          qid = parseLocation[parseLocation.length - 1],
+          cat = parseLocation[parseLocation.length - 2],
+          diff = parseLocation[parseLocation.length - 3]
 
-    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
-    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2250)
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
-    this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 3000)
+      if(parseLocation[parseLocation.length - 1] === 'stats' || parseLocation[parseLocation.length - 1] === 'discuss' ) parseLocation.pop()
+
+      document.title = `SmartApp™ | Results | ${ qid }`
+      this.setState({ cat: cat, diff: diff, qid: qid })
+    }
+
+  }
+
+  componentDidUpdate(){
+    if(!this.props.staticResults && !this.state.initDefaultResults){
+      this.setState({ initDefaultResults: true })
+      this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
+      this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2250)
+      this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
+      this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
+      this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 3000)
+    }
+
+    if(this.props.staticResults && !this.state.initStaticResults){
+      this.setState({ initStaticResults: true })
+
+    }
   }
 
   componentWillUnmount(){
@@ -44,6 +71,7 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableNextQuestionTimeout)
     clearTimeout(this.showLegendTimeout)
+    this.setState({ initDefaultResults: false, initStaticResults: false })
   }
 
   onClickVoteFunctions = (event) => {
@@ -66,9 +94,23 @@ class ResultsContainer extends React.Component{
   onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
 
   render(){
-    return(
-      <div className='results_container'>
-        <ResultsNavBarContainer />
+
+    // console.log(routes.static_results)
+
+    let routeBoard
+
+    if(this.props.staticResults){
+      routeBoard =
+        <Switch>
+          <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/stats' }>
+            <ResultsStatsContainer history={ this.props.history } />
+          </Route>
+          <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/discuss' }>
+            <ResultsDiscussContainer history={ this.props.history } />
+          </Route>
+        </Switch>
+    } else {
+      routeBoard =
         <Switch>
           <Route exact path={ routes[this.props.play.gameMode] + '/results/stats' }>
             <ResultsStatsContainer history={ this.props.history } />
@@ -77,16 +119,24 @@ class ResultsContainer extends React.Component{
             <ResultsDiscussContainer history={ this.props.history } />
           </Route>
         </Switch>
+    }
+
+    return(
+      <div className='results_container'>
+        <ResultsNavBarContainer staticResults={ this.props.staticResults } qid={ this.state.qid } diff={ this.state.diff } cat={ this.state.cat } />
+        { routeBoard }
         <ResultsVote
           enableVoteButtons={ this.state.enableVoteButtons }
           showVoteButtons={ this.state.showVoteButtons }
           onClickVoteFunctions={ this.onClickVoteFunctions }
         />
-        <ResultsNextQuestion
-          showNextQuestionButton={ this.state.showNextQuestionButton }
-          enableNextQuestionButton={ this.state.enableNextQuestionButton }
-          onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
-        />
+        { !this.props.staticResults &&
+          <ResultsNextQuestion
+            showNextQuestionButton={ this.state.showNextQuestionButton }
+            enableNextQuestionButton={ this.state.enableNextQuestionButton }
+            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
+          />
+        }
         { this.state.showLegend && <StatsLegend /> }
       </div>
     )

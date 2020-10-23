@@ -7,20 +7,22 @@ import './resultsAchievementsContainer.css'
 
 const ResultsAchievementContainer = (props) => {
 
-    let distribAchievements = <></>, achievementHeader
+    let distribAchievements = <></>, achievementHeader = 'static_achievementHeaderTemp'
 
-    if(props.play.results.achievements && props.showAchievements){
-      distribAchievements = props.play.results.achievements.unlocked.map(achievement => {
-        return (
-          <ResultsAchievementCard
-            key={ props.play.results.achievements.unlocked.indexOf(achievement) }
-            achievement={ achievement }
-          />
-        )
-      })
-      if(props.play.results.achievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
-      else if(props.play.results.achievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
-      else achievementHeader = <></>
+    if(props.play.results) {
+      if(props.play.results.achievements && props.showAchievements){
+        distribAchievements = props.play.results.achievements.unlocked.map(achievement => {
+          return (
+            <ResultsAchievementCard
+              key={ props.play.results.achievements.unlocked.indexOf(achievement) }
+              achievement={ achievement }
+            />
+          )
+        })
+        if(props.play.results.achievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
+        else if(props.play.results.achievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
+        else achievementHeader = <></>
+      }
     }
 
   return(

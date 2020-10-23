@@ -313,7 +313,7 @@ class PlayController extends React.Component {
                                         <QuestionContainer history={ this.props.history } />
                                       </Route>;
               case 'results': return <Route path={ routes[this.props.play.gameMode] + '/results' }>
-                                       <ResultsContainer history={ this.props.history } />
+                                       <ResultsContainer staticResults={ false } history={ this.props.history } />
                                      </Route>;
               case 'completed': return <Route exact path={ routes[this.props.play.gameMode] + '/completed' }>
                                         <CompletedContainer history={ this.props.history } />
