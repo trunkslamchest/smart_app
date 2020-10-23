@@ -51,5 +51,14 @@
   align-items: center;
   align-content: center;
   width: 100%;
-  padding: 10px 0px 0px 0px;
+  padding: 10px 0px;
+}
+
+.dashboard_achievements_sub_container h3 {
+  font: 600 15pt 'LatoThin', sans-serif;
+  align-self: center;
+  text-align: center;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  width: 100%;
 }

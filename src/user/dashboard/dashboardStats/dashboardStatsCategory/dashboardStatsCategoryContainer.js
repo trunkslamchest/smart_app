@@ -13,7 +13,7 @@ class DashboardStatsCategoryContainer extends React.Component {
     var distribCats
 
     if(this.props.user.questions){
-      let answers = 'null', allAnswers = this.props.user.questions, catTotals = Object.entries(this.props.user.questions.totals.categories)
+      let allAnswers = this.props.user.questions, catTotals = Object.entries(this.props.user.questions.totals.categories)
       distribCats = catTotals.map(cat => {
         let statCard, sortCats = {}
         if(this.props.questions.totals.category[cat[0]]) {
@@ -23,10 +23,9 @@ class DashboardStatsCategoryContainer extends React.Component {
                !!allAnswers[diff].categories[cat[0]]) {
               sortCats[diff] = { ...sortCats[diff], ...allAnswers[diff].categories[cat[0]] }
             }
-          if(!!sortCats[diff]) answers = sortCats
           }
           statCard = <DashboardStatsCard
-                      answers={ answers }
+                      answers={ Object.values(sortCats).length !== 0 ? sortCats : 'null' }
                       history={ this.props.history }
                       key={ catTotals.indexOf(cat) + 1 }
                       cat={ cat[0] }

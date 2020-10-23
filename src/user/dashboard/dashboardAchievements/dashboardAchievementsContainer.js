@@ -14,30 +14,36 @@ class DashboardAchievementsContainer extends React.Component {
 
     if(this.props.achievements.all){
       let allAchievements = Object.entries(this.props.achievements.all)
-      let unlockedAchievements = allAchievements.filter(achievement => this.props.user.achievements.unlocked.includes(achievement[0]))
-      let lockedAchievements = allAchievements.filter(achievement => !this.props.user.achievements.unlocked.includes(achievement[0]))
 
-      distribUnlockedAchievements = unlockedAchievements.map(achievement => {
-        return (
-          <DashboardAchievementCard
-              key={ allAchievements.indexOf(achievement) }
-              name={ achievement[0] }
-              unlocked={ true }
-              achievement={ achievement[1] }
-          />
-        )
-      })
+      if(this.props.user.achievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
+      else {
+        let unlockedAchievements = allAchievements.filter(achievement => this.props.user.achievements.unlocked.includes(achievement[0]))
+        distribUnlockedAchievements = unlockedAchievements.map(achievement => {
+          return (
+            <DashboardAchievementCard
+                key={ allAchievements.indexOf(achievement) }
+                name={ achievement[0] }
+                unlocked={ true }
+                achievement={ achievement[1] }
+            />
+          )
+        })
+      }
 
-      distribLockedAchievements = lockedAchievements.map(achievement => {
-        return (
-          <DashboardAchievementCard
-              key={ allAchievements.indexOf(achievement) }
-              name={ achievement[0] }
-              unlocked={ false }
-              achievement={ achievement[1] }
-          />
-        )
-      })
+      if(this.props.user.achievements.unlocked.length === this.props.achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
+      else {
+        let lockedAchievements = allAchievements.filter(achievement => !this.props.user.achievements.unlocked.includes(achievement[0]))
+        distribLockedAchievements = lockedAchievements.map(achievement => {
+          return (
+            <DashboardAchievementCard
+                key={ allAchievements.indexOf(achievement) }
+                name={ achievement[0] }
+                unlocked={ false }
+                achievement={ achievement[1] }
+            />
+          )
+        })
+      }
     }
 
     return(
