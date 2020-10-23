@@ -226,7 +226,9 @@ class PlayController extends React.Component {
       difficulty: this.props.play.question.difficulty,
       category: this.props.play.question.category,
       answer: this.props.play.answer,
-      results: this.props.play.results
+      results: this.props.play.results,
+      experience: this.props.play.results.experience,
+      achievements: this.props.play.results.achievements
     })
     this.props.onUpdateGameStatus('updateUserQuestionsSuccess', true)
   }

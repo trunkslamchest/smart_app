@@ -24,13 +24,11 @@ const updateUserSettings = (currentState, action) => { return { ...currentState,
 
 const clearUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
 
-
 const storeUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
 
 const updateUserQuestions = (currentState, action) => { return{ ...currentState, questions: action.questions } }
 
 const clearUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
-
 
 const updateUserPerformanceFromPlayController = (currentState, action) => {
 
@@ -104,6 +102,8 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
 const updateUserQuestionsFromPlayController = (currentState, action) => {
   let uQuestions = { ...currentState.questions }
 
+  console.log(action.question.results)
+
   if(!currentState.questions[action.question.difficulty]) {
     uQuestions[action.question.difficulty] = {
       'categories': {
@@ -114,7 +114,9 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
             question: action.question.question,
             result: action.question.results.result,
             time: action.question.answer.time,
-            performance: action.question.results.performance.qPerf
+            performance: action.question.results.performance.qPerf,
+            experience: action.question.results.experience,
+            achievements: action.question.results.achievements
           }
         }
       }
@@ -127,7 +129,9 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
         question: action.question.question,
         result: action.question.results.result,
         time: action.question.answer.time,
-        performance: action.question.results.performance.qPerf
+        performance: action.question.results.performance.qPerf,
+        experience: action.question.results.experience,
+        achievements: action.question.results.achievements
       }
     }
   } else {
@@ -137,7 +141,9 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
       question: action.question.question,
       result: action.question.results.result,
       time: action.question.answer.time,
-      performance: action.question.results.performance.qPerf
+      performance: action.question.results.performance.qPerf,
+      experience: action.question.results.experience,
+      achievements: action.question.results.achievements
     }
   }
 
