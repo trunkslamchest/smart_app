@@ -91,3 +91,71 @@ export const getCatQuestion = (obj) => {
     })
   }
 }
+
+export const getStaticQuestion = (obj) => {
+  return dispatch => {
+    dispatch(updateQuestionStatus('getStaticQuestion'))
+    questionsFunctions('getStaticQuestion', fetch.get.staticQuestion, obj)
+    .then(res => {
+      dispatch(updateQuestionStatus('StaticQuestionSuccss'))
+      dispatch(initSetStaticQuestion(res))
+    })
+  }
+}
+
+const initSetStaticQuestion = (res) => {
+  return {
+    type: actionTypes.GET_STATIC_QUESTION,
+    res: res
+  }
+}
+
+export const clearStaticQuestion = (obj) => {
+  return dispatch => {
+    dispatch(updateQuestionStatus('ClearStaticQuestion'))
+    dispatch(initClearStaticQuestion())
+  }
+}
+
+const initClearStaticQuestion = () => {
+  return {
+    type: actionTypes.CLEAR_STATIC_QUESTION,
+    res: null
+  }
+}
+
+
+export const updateQuestionStatus = (status) => {
+  return {
+    type: actionTypes.UPDATE_QUESTION_STATUS,
+    status: status
+  }
+}
+
+export const clearQuestionStatus = (obj) => {
+  return dispatch => {
+    dispatch(updateQuestionStatus('ClearQuestionStatus'))
+    dispatch(initClearQuestionStatus())
+  }
+}
+
+const initClearQuestionStatus = () => {
+  return {
+    type: actionTypes.CLEAR_QUESTION_STATUS,
+    status: null
+  }
+}
+
+export const setStaticUserQuestion = (res) => {
+  return {
+    type: actionTypes.SET_STATIC_USER_QUESTION,
+    res: res
+  }
+}
+
+export const clearStaticUserQuestion = (res) => {
+  return {
+    type: actionTypes.CLEAR_STATIC_USER_QUESTION,
+    res: null
+  }
+}

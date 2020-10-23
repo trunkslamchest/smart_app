@@ -6,17 +6,23 @@ import './resultsHeader.css'
 
 const ResultsHeader = (props) => {
   return(
-    <div className={ props.showHeader ? "results_answer_header" : "blank" }>
-      <h3>
-        { props.showHeader && props.play.results && `${ props.play.results.result }!` }
-      </h3>
-    </div>
+    <>
+    { props.showHeader &&
+      <div className="results_answer_header">
+        <h3>
+          { props.play.results && `${ props.play.results.result }!` }
+          { props.questions.staticUserResults && `${ props.questions.staticUserResults.result }!` }
+        </h3>
+      </div>
+    }
+    </>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    play: state.play
+    play: state.play,
+    questions: state.questions
   }
 }
 

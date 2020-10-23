@@ -5,6 +5,11 @@ import { connect } from 'react-redux'
 import {
   setVote,
   updateVoteStatus,
+  getStaticQuestion,
+  clearStaticQuestion,
+  clearQuestionStatus,
+  setStaticUserQuestion,
+  clearStaticUserQuestion
 } from '../../store/actions/actionIndex'
 
 import { routes } from '../../utility/paths'
@@ -23,25 +28,31 @@ class ResultsContainer extends React.Component{
   state = {
     cat: null,
     diff: null,
+    displayStaticResults: false,
     enableNextQuestionButton: false,
     enableVoteButtons: false,
     initDefaultResults: false,
     initStaticResults: false,
+    initStaticUserResults: false,
     showLegend: false,
     showNextQuestionButton: false,
     showVoteButtons: false,
+    staticUserQuestion: null,
     qid: null
   }
 
   componentDidMount(){
-    if(!this.props.staticResults) document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
-    else {
-      let parseLocation = this.props.history.location.pathname.split("/"),
-          qid = parseLocation[parseLocation.length - 1],
-          cat = parseLocation[parseLocation.length - 2],
-          diff = parseLocation[parseLocation.length - 3]
+    if(!this.props.staticResults) {
+      document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
+      this.startResultTimers()
+    } else {
+      let parseLocation = this.props.history.location.pathname.split("/")
 
       if(parseLocation[parseLocation.length - 1] === 'stats' || parseLocation[parseLocation.length - 1] === 'discuss' ) parseLocation.pop()
+
+      let qid = parseLocation[parseLocation.length - 1],
+          cat = parseLocation[parseLocation.length - 2],
+          diff = parseLocation[parseLocation.length - 3]
 
       document.title = `SmartApp™ | Results | ${ qid }`
       this.setState({ cat: cat, diff: diff, qid: qid })
@@ -50,19 +61,28 @@ class ResultsContainer extends React.Component{
   }
 
   componentDidUpdate(){
-    if(!this.props.staticResults && !this.state.initDefaultResults){
-      this.setState({ initDefaultResults: true })
-      this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
-      this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2250)
-      this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
-      this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
-      this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 3000)
-    }
-
     if(this.props.staticResults && !this.state.initStaticResults){
+      this.props.onGetStaticQuestion({ qid: this.state.qid, category: this.state.cat, difficulty: this.state.diff })
       this.setState({ initStaticResults: true })
-
     }
+
+    if(this.props.questions.staticQuestion && !this.state.initStaticUserResults && this.props.user.questions) {
+      this.props.onSetStaticUserQuestion(this.props.user.questions[this.state.diff].categories[this.state.cat][this.state.qid])
+      this.setState({ initStaticUserResults: true })
+    }
+
+    if(this.props.questions.staticUserResults && !this.state.displayStaticResults) {
+      this.setState({ displayStaticResults: true })
+      this.startResultTimers()
+    }
+  }
+
+  startResultTimers = () => {
+    this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
+    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 2250)
+    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
+    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
+    this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 3000)
   }
 
   componentWillUnmount(){
@@ -71,7 +91,10 @@ class ResultsContainer extends React.Component{
     clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableNextQuestionTimeout)
     clearTimeout(this.showLegendTimeout)
-    this.setState({ initDefaultResults: false, initStaticResults: false })
+    this.props.onClearStaticQuestion()
+    this.props.onClearStaticUserQuestion()
+    this.props.onClearQuestionStatus()
+    this.setState({ displayStaticResults: false, initDefaultResults: false, initStaticResults: false, initStaticUserResults: false })
   }
 
   onClickVoteFunctions = (event) => {
@@ -94,21 +117,20 @@ class ResultsContainer extends React.Component{
   onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
 
   render(){
-
-    // console.log(routes.static_results)
-
     let routeBoard
 
     if(this.props.staticResults){
-      routeBoard =
-        <Switch>
-          <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/stats' }>
-            <ResultsStatsContainer history={ this.props.history } />
-          </Route>
-          <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/discuss' }>
-            <ResultsDiscussContainer history={ this.props.history } />
-          </Route>
-        </Switch>
+      if(this.state.displayStaticResults) {
+        routeBoard =
+          <Switch>
+            <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/stats' }>
+              <ResultsStatsContainer staticUserQuestion={ this.state.staticUserQuestion } history={ this.props.history } />
+            </Route>
+            <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/discuss' }>
+              <ResultsDiscussContainer history={ this.props.history } />
+            </Route>
+          </Switch>
+      }
     } else {
       routeBoard =
         <Switch>
@@ -155,6 +177,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onSetVote: (obj) => dispatch(setVote(obj)),
+    onGetStaticQuestion: (obj) => dispatch(getStaticQuestion(obj)),
+    onSetStaticUserQuestion: (obj) => dispatch(setStaticUserQuestion(obj)),
+    onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
+    onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
+    onClearQuestionStatus: () => dispatch(clearQuestionStatus()),
   }
 }
 

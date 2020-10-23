@@ -23,10 +23,13 @@ class ResultsStatsContainer extends React.Component{
   }
 
   componentDidMount(){
+    this.setStatsTimers()
+  }
+
+  setStatsTimers = () => {
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
-    if(this.props.play.results){
-      if(this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    }
+    if(this.props.play.results && this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
+    if(this.props.questions.staticUserResults && this.props.questions.staticUserResults.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
     this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1250)
     this.showAchievementsTimeout = setTimeout(() => { this.setState({ showAchievements: true })}, 1500)
   }
@@ -39,13 +42,20 @@ class ResultsStatsContainer extends React.Component{
   }
 
   render(){
-    return(
+
+    const resultsBlock =
       <div className="results_stats_container">
         <ResultsHeader showHeader={ this.state.showHeader } />
         <ResultsAnswer showCorrectAnswer={ this.state.showCorrectAnswer } />
         <ResultsStats showStats={ this.state.showStats } />
         <ResultsAchievementsContainer showAchievements={ this.state.showAchievements } />
       </div>
+
+    return(
+      <>
+        { this.props.questions.staticQuestion && this.props.questions.staticUserResults && resultsBlock }
+        { this.props.play.results && resultsBlock }
+      </>
     )
   }
 }

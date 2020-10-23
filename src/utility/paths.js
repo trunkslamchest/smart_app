@@ -14,6 +14,7 @@ export const fetch = {
     quickQuestion: `${process.env.REACT_APP_LOCAL_GET_QUICK_QUESTION}`,
     diffQuestion: `${process.env.REACT_APP_LOCAL_GET_DIFF_QUESTION}`,
     catQuestion: `${process.env.REACT_APP_LOCAL_GET_CAT_QUESTION}`,
+    staticQuestion: `${process.env.REACT_APP_LOCAL_GET_STATIC_QUESTION}`,
     questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`,
     achievements: `${process.env.REACT_APP_LOCAL_GET_ACHIEVEMENTS}`
   },
@@ -50,6 +51,7 @@ export const check = {
 //     quickQuestion: `${process.env.REACT_APP_DEPLOY_GET_QUICK_QUESTION}`,
 //     diffQuestion: `${process.env.REACT_APP_DEPLOY_GET_DIFF_QUESTION}`,
 //     catQuestion: `${process.env.REACT_APP_DEPLOY_GET_CAT_QUESTION}`,
+//     staticQuestion: `${process.env.REACT_APP_DEPLOY_GET_STATIC_QUESTION}`,
 //     questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`,
 //     achievements: `${process.env.REACT_APP_DEPLOY_GET_ACHIEVEMENTS}`
 //   },

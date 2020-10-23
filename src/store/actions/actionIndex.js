@@ -63,7 +63,13 @@ export {
   updateQuestionTotalsFromPlayController,
   getQuickQuestion,
   getDiffQuestion,
-  getCatQuestion
+  getCatQuestion,
+  getStaticQuestion,
+  clearStaticQuestion,
+  setStaticUserQuestion,
+  clearStaticUserQuestion,
+  updateQuestionStatus,
+  clearQuestionStatus
 } from './questionsActions'
 
 export {

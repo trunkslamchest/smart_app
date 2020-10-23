@@ -10,7 +10,6 @@ import './resultsNavBarContainer.css'
 const ResultsNavBarContainer = (props) => {
 
   let staticRoute
-
   if(props.staticResults) staticRoute = routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid
 
   const buttons = [

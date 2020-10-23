@@ -3,6 +3,9 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   questions: null,
   question: {},
+  status: null,
+  staticQuestion: null,
+  staticUserResults: null,
   totals: null
 }
 
@@ -66,6 +69,48 @@ const getDiffQuestion = (currentState, action) => { return { ...currentState, qu
 
 const getCatQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
 
+const getStaticQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticQuestion: action.res
+  }
+}
+
+const clearStaticQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticQuestion: action.res
+  }
+}
+
+const updateQuestionStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status
+  }
+}
+
+const clearQuestionStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status
+  }
+}
+
+const setStaticUserQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticUserResults: action.res
+  }
+}
+
+const clearStaticUserQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticUserResults: action.res
+  }
+}
+
 export const questionsReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.GET_QUESTION_TOTALS: return getQuestionTotals(currentState, action)
@@ -75,6 +120,12 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.GET_QUICK_QUESTION: return getQuickQuestion(currentState, action)
     case actionTypes.GET_DIFF_QUESTION: return getDiffQuestion(currentState, action)
     case actionTypes.GET_CAT_QUESTION: return getCatQuestion(currentState, action)
+    case actionTypes.GET_STATIC_QUESTION: return getStaticQuestion(currentState, action)
+    case actionTypes.CLEAR_STATIC_QUESTION: return clearStaticQuestion(currentState, action)
+    case actionTypes.SET_STATIC_USER_QUESTION: return setStaticUserQuestion(currentState, action)
+    case actionTypes.CLEAR_STATIC_USER_QUESTION: return clearStaticUserQuestion(currentState, action)
+    case actionTypes.UPDATE_QUESTION_STATUS: return updateQuestionStatus(currentState, action)
+    case actionTypes.CLEAR_QUESTION_STATUS: return clearQuestionStatus(currentState, action)
     default: return currentState
   }
 }
