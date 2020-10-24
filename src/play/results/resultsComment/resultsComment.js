@@ -29,11 +29,11 @@ const ResultsComment = (props) => {
   if(allComments && (props.play.status === 'displayResults' || props.questions.status === 'StaticQuestionSuccess')){
     distribComments = allComments.map(comment =>
       <CommentCard
-        key={ comment[0] }
         comment={ comment[1] }
-        userComment= { props.comment }
+        key={ comment[0] }
         onAddComment={ props.onAddComment }
         onChangeComment={ props.onChangeComment }
+        userComment= { props.comment }
       />
     )
   }

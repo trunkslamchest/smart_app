@@ -188,6 +188,47 @@ exports.getUser = functions
     });
 });
 
+exports.getUserProfile = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res);
+    let userObj = {}
+    firebase.database().ref('/').once('value', function(snap){
+      if(!!req.body.user_name){
+        let users = snap.val()
+        for(let user in users){
+          if(users[user].info.user_name === req.body.user_name) {
+            userObj = {
+              achievements: users[user].achievements,
+              experience: users[user].experience,
+              info: users[user].info,
+              questions: users[user].questions.totals,
+              settings: users[user].settings
+            }
+            break
+          }
+        }
+
+        if(!!userObj.settings.privacy.profile.private) userObj = `${req.body.user_name} has set their public profile to private`
+        else {
+          if(!userObj.settings.privacy.profile.showAchievements) delete userObj.achievements
+          if(!userObj.settings.privacy.profile.showExperience) delete userObj.experience
+          if(!userObj.settings.privacy.profile.showStats) delete userObj.questions
+          if(!userObj.settings.privacy.profile.showEmail) delete userObj.info.email
+          if(!userObj.settings.privacy.profile.showAge) delete userObj.info.dob
+          if(!userObj.settings.privacy.profile.showGender) delete userObj.info.gender
+          if(!userObj.settings.privacy.profile.showRealName) {
+            delete userObj.info.first_name
+            delete userObj.info.last_name
+          }
+        }
+      }
+
+      res.json(userObj).status(200)
+      // res.send('done')
+    });
+});
+
 exports.updateUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -198,6 +239,20 @@ exports.updateUser = functions
       firebase.database().ref().update(updatedInfo);
     }
     res.json(updatedInfo).status(200);
+    // res.send('done')
+});
+
+exports.updateUserSettings = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res);
+    var updatedInfo = {};
+    if(!!req.body.uid) {
+      updatedInfo['/' + req.body.uid + '/' + 'settings'] = req.body.settings;
+      firebase.database().ref().update(updatedInfo);
+    }
+    res.json(req.body.settings).status(200);
+    // res.send('done')
 });
 
 exports.deleteUser = functions
@@ -210,6 +265,7 @@ exports.deleteUser = functions
       firebase.database().ref(user).remove()
     }
     res.json({msg: 'Your Profile has been removed.'}).status(200)
+    // res.send('done')
 });
 
 exports.checkUserName = functions
@@ -252,6 +308,7 @@ exports.checkEmail = functions
         }
       }
       res.json(resObj).status(200)
+      // res.send('done')
     });
 });
 
@@ -287,7 +344,9 @@ exports.crossUpdateUserQuestion = functions
         answer: req.body.answer,
         correct_answer: req.body.correct_answer,
         question: req.body.question,
-        performance: req.body.performance.qPerf
+        performance: req.body.performance.qPerf,
+        experience: req.body.experience,
+        achievements: req.body.achievements
       }
 
       xpObj[xpPath] = { level: parseInt(req.body.experience.level), total: req.body.experience.newTotal }
@@ -304,6 +363,7 @@ exports.crossUpdateUserQuestion = functions
     })
 
     res.end()
+    // res.send('done')
 });
 
 exports.crossUpdateUserVote = functions
@@ -333,6 +393,7 @@ exports.crossUpdateUserVote = functions
     })
 
     res.end()
+    // res.send('done')
 });
 
 exports.crossUpdateUserComment = functions
@@ -356,6 +417,7 @@ exports.crossUpdateUserComment = functions
     })
 
     res.end()
+    // res.send('done')
 });
 
 exports.deleteUserComment = functions
@@ -597,6 +659,21 @@ var pushCats = function(diff, questions) {
   } else return []
 }
 
+exports.createKeys = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+    var keys = []
+
+    for(i = 0; i < 500; i++){
+      var createKey = firebase.database().ref().push().key
+      keys.push(createKey)
+    }
+
+    console.log(keys)
+    res.json(keys)
+});
+
 exports.questions = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -796,6 +873,31 @@ exports.catQuestion = functions
     })
 })
 
+exports.staticQuestion = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res)
+    var resObj = {}
+    firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
+      if(!!req.body.qid) {
+        resObj = {
+          qid: req.body.qid,
+          difficulty: req.body.difficulty,
+          category: req.body.category,
+          answers: snap.val().answers,
+          question: snap.val().question,
+          rating: snap.val().rating,
+          diffRating: snap.val().rating.difficulty,
+          correct: snap.val().correct,
+          comments: snap.val().comments ? snap.val().comments : null,
+          votes: snap.val().votes
+        }
+      }
+    res.json(resObj).status(200)
+    });
+    // res.send('done')
+});
+
 var calcAchievements = function(allAchievements, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
   let unlockedAchievements = [], resAchievementsObj = {}, crossAchievementsObj = {}
 
@@ -808,12 +910,12 @@ var calcAchievements = function(allAchievements, userAchievements, questionResul
   }
 
   if(questionResults.result === "Correct") {
-    if(userTotals.correct === 1) unlockedAchievements.push("OneCorrect")
-    if(!userAchievements.unlocked.includes("OneCorrectOneSec") && questionResults.time < 1) unlockedAchievements.push("OneCorrectOneSec")
+    if(userTotals.correct === 1 && !userAchievements.unlocked.includes("OneCorrect")) unlockedAchievements.push("OneCorrect")
+    if(userTotals.correct === 5 && !userAchievements.unlocked.includes("FiveCorrect")) unlockedAchievements.push("FiveCorrect")
+    if(questionResults.time < 1 && !userAchievements.unlocked.includes("OneCorrectOneSec")) unlockedAchievements.push("OneCorrectOneSec")
   }
 
   if(userTotals.answered === 5) unlockedAchievements.push("FiveAnswer")
-  if(userTotals.correct === 5) unlockedAchievements.push("FiveCorrect")
 
   if(unlockedAchievements.length === 0 && userAchievements[0] === "null") {
     resAchievementsObj = { total: 0, unlocked: [] }

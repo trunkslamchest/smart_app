@@ -72,9 +72,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateUserVotesFromPlayController: (obj) => dispatch(actions.updateUserVotesFromPlayController(obj)),
-    onUpdateStaticQuestionVoteStatus: (status) => dispatch(actions.updateStaticQuestionVoteStatus(status)),
     onUpdateUserCommentsFromPlayController: (obj) => dispatch(actions.updateUserCommentsFromPlayController(obj)),
-    onUpdateStaticQuestionCommentStatus: (status) => dispatch(actions.updateStaticQuestionCommentStatus(status)),
     onVoteLoading: (bool) => dispatch(actions.voteLoading(bool)),
     onCommentLoading: (bool) => dispatch(actions.commentLoading(bool)),
     onClearStaticQuestionVoteStatus: () => dispatch(actions.clearStaticQuestionVoteStatus()),

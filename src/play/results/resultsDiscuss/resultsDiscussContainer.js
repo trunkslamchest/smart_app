@@ -131,21 +131,21 @@ class ResultsDiscussContainer extends React.Component {
     return(
       <div className='results_discuss_container'>
           <ResultsVote
-            staticResults={ this.props.staticResults }
             enableVoteButtons={ this.state.enableVoteButtons }
-            showVoteButtons={ this.state.showVoteButtons }
             onClickVoteFunctions={ this.onClickVoteFunctions }
+            showVoteButtons={ this.state.showVoteButtons }
+            staticResults={ this.props.staticResults }
           />
           <ResultsComment
             comment={ this.state.comment }
             commentForm={ this.state.commentForm }
-            showComments={ this.state.showComments }
-            staticResults={ this.props.staticResults }
             enableCommentButton={ this.state.enableCommentButton }
             enableAddCommentButton={ this.state.enableAddCommentButton }
             onAddComment={ this.onAddComment }
             onChangeComment={ this.onChangeComment }
             onClickCommentFunctions={ this.onClickCommentFunctions }
+            showComments={ this.state.showComments }
+            staticResults={ this.props.staticResults }
           />
       </div>
     )
