@@ -69,7 +69,9 @@ export {
   setStaticUserQuestion,
   clearStaticUserQuestion,
   updateQuestionStatus,
-  clearQuestionStatus
+  clearQuestionStatus,
+  updateStaticQuestionVotes,
+  // clearStaticQuestionVotes
 } from './questionsActions'
 
 export {

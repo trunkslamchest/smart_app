@@ -4,6 +4,10 @@ import {
   updateAchievements
 } from './achievementActions'
 
+import {
+  updateStaticQuestionVotes
+} from './questionsActions'
+
 import { fetch } from '../../utility/paths'
 
 import questionsFunctions from '../../utility/questionsFunctions'
@@ -58,17 +62,29 @@ export const setVote = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionVote', fetch.patch.questionVote, obj)
     .then(res => {
-      dispatch(updateVotes(
-        { good: res.good, neutral: res.neutral, bad: res.bad, total: res.total, rating: res.rating },
-        { vid: res.vid, vote: res.vote, value: res.value }
-      ))
+      let voteTotals = { good: res.good, neutral: res.neutral, bad: res.bad, total: res.total, rating: res.rating },
+          userVote = { vid: res.vid, vote: res.vote, value: res.value }
+      if(obj.type === 'play') dispatch(updateVotes(voteTotals, userVote))
+      if(obj.type === 'static') dispatch(updateStaticQuestionVotes(voteTotals))
     })
   }
 }
 
-export const updateVoteStatus = (status, loading) => { return { type: actionTypes.UPDATE_VOTE_STATUS, voteStatus: status, voteLoading: loading } }
+export const updateVoteStatus = (status, loading) => {
+  return {
+    type: actionTypes.UPDATE_VOTE_STATUS,
+    voteStatus: status,
+    voteLoading: loading
+  }
+}
 
-const updateVotes = (votes, vote) => { return { type: actionTypes.SET_VOTE, votes: votes, vote: vote } }
+const updateVotes = (votes, vote) => {
+  return {
+    type: actionTypes.SET_VOTE,
+    votes: votes,
+    vote: vote
+  }
+}
 
 export const resetVote = () => { return { type: actionTypes.RESET_VOTE, voteStatus: null, voteLoading: false } }
 

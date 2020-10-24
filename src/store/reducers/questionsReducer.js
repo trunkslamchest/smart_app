@@ -97,6 +97,16 @@ const clearQuestionStatus = (currentState, action) => {
   }
 }
 
+const updateStaticQuestionVotes = (currentState, action) => {
+  return {
+    ...currentState,
+    staticQuestion: {
+      ...currentState.staticQuestion,
+      votes: action.votes
+    }
+  }
+}
+
 const setStaticUserQuestion = (currentState, action) => {
   return {
     ...currentState,
@@ -122,6 +132,8 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.GET_CAT_QUESTION: return getCatQuestion(currentState, action)
     case actionTypes.GET_STATIC_QUESTION: return getStaticQuestion(currentState, action)
     case actionTypes.CLEAR_STATIC_QUESTION: return clearStaticQuestion(currentState, action)
+    case actionTypes.UPDATE_STATIC_QUESTION_VOTES: return updateStaticQuestionVotes(currentState, action)
+
     case actionTypes.SET_STATIC_USER_QUESTION: return setStaticUserQuestion(currentState, action)
     case actionTypes.CLEAR_STATIC_USER_QUESTION: return clearStaticUserQuestion(currentState, action)
     case actionTypes.UPDATE_QUESTION_STATUS: return updateQuestionStatus(currentState, action)

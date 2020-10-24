@@ -159,3 +159,10 @@ export const clearStaticUserQuestion = (res) => {
     res: null
   }
 }
+
+export const updateStaticQuestionVotes = (votes) => {
+  return {
+    type: actionTypes.UPDATE_STATIC_QUESTION_VOTES,
+    votes: votes
+  }
+}

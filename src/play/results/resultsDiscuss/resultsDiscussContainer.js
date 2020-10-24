@@ -80,8 +80,6 @@ class ResultsDiscussContainer extends React.Component {
     voteObj['uid'] = localStorage.id
     voteObj['vote'] = event.target.attributes.vote.value
 
-    console.log(voteObj)
-
     this.props.onSetVote(voteObj)
     this.props.onUpdateVoteStatus('initVote', true)
     this.setState({ showVoteButtons: false, enableVoteButtons: false })
