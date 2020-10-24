@@ -65,7 +65,10 @@ export const setVote = (obj) => {
       let voteTotals = { good: res.good, neutral: res.neutral, bad: res.bad, total: res.total, rating: res.rating },
           userVote = { vid: res.vid, vote: res.vote, value: res.value }
       if(obj.type === 'play') dispatch(updateVotes(voteTotals, userVote))
-      if(obj.type === 'static') dispatch(updateStaticQuestionVotes(voteTotals))
+      if(obj.type === 'static') {
+        delete voteTotals.rating
+        dispatch(updateStaticQuestionVotes(voteTotals, userVote, res.rating))
+      }
     })
   }
 }

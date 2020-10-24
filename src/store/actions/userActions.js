@@ -213,3 +213,10 @@ export const editUserComment = (obj) => {
 }
 
 const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, res: res } }
+
+export const updateStaticUserVoteFromPlayController = (res) => {
+  return {
+    type: actionTypes.UPDATE_STATIC_USER_VOTE_FROM_PLAY_CONTROLLER,
+    res: res
+  }
+}

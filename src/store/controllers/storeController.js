@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions/actionIndex'
 
 import AuthController from './authController'
+import QuestionsController from './questionsController'
 
 class StoreController extends React.Component {
 
@@ -28,7 +29,9 @@ class StoreController extends React.Component {
   render(){
     return(
       <AuthController history={ this.props.history }>
-        { this.props.children }
+        <QuestionsController history={ this.props.history }>
+          { this.props.children }
+        </QuestionsController>
       </AuthController>
     )
   }

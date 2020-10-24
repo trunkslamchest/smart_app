@@ -97,7 +97,7 @@ export const getStaticQuestion = (obj) => {
     dispatch(updateQuestionStatus('getStaticQuestion'))
     questionsFunctions('getStaticQuestion', fetch.get.staticQuestion, obj)
     .then(res => {
-      dispatch(updateQuestionStatus('StaticQuestionSuccss'))
+      dispatch(updateQuestionStatus('StaticQuestionSuccess'))
       dispatch(initSetStaticQuestion(res))
     })
   }
@@ -160,9 +160,53 @@ export const clearStaticUserQuestion = (res) => {
   }
 }
 
-export const updateStaticQuestionVotes = (votes) => {
+export const updateStaticQuestionVotes = (votes, vote, rating) => {
+  return dispatch => {
+    dispatch(updateStaticQuestionVotesStatus('updateStaticQuestionVote'))
+    dispatch(initUpdateStaticQuestionVotes(votes, rating))
+    dispatch(updateStaticUserVote(vote))
+  }
+}
+
+const initUpdateStaticQuestionVotes = (votes, rating) => {
   return {
     type: actionTypes.UPDATE_STATIC_QUESTION_VOTES,
-    votes: votes
+    votes: votes,
+    rating: rating
+  }
+}
+
+export const updateStaticQuestionVotesStatus = (status) => {
+  return {
+    type: actionTypes.UPDATE_STATIC_QUESTION_VOTES_STATUS,
+    voteStatus: status
+  }
+}
+
+export const clearStaticQuestionVotesStatus = () => {
+  return {
+    type: actionTypes.CLEAR_STATIC_QUESTION_VOTES_STATUS,
+    voteStatus: null
+  }
+}
+
+export const updateStaticUserVote = (vote) => {
+  return dispatch => {
+    dispatch(updateStaticQuestionVotesStatus('updateStaticUserVote'))
+    dispatch(initUpdateStaticUserVote(vote))
+  }
+}
+
+const initUpdateStaticUserVote = (vote) => {
+  return {
+    type: actionTypes.UPDATE_STATIC_USER_VOTE,
+    vote: vote
+  }
+}
+
+export const clearStaticUserVote = () => {
+  return {
+    type: actionTypes.CLEAR_STATIC_USER_VOTE,
+    vote: null
   }
 }

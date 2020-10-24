@@ -1,12 +1,15 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  questions: null,
   question: {},
-  status: null,
   staticQuestion: null,
   staticUserResults: null,
-  totals: null
+  status: null,
+  totals: null,
+  vote: null,
+  voteStatus: null,
+  comment: null,
+  commentStatus: null
 }
 
 const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
@@ -102,8 +105,26 @@ const updateStaticQuestionVotes = (currentState, action) => {
     ...currentState,
     staticQuestion: {
       ...currentState.staticQuestion,
+      rating: {
+        ...currentState.staticQuestion.rating,
+        approval: action.rating
+      },
       votes: action.votes
     }
+  }
+}
+
+const updateStaticQuestionVotesStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus
+  }
+}
+
+const clearStaticQuestionVotesStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus
   }
 }
 
@@ -121,6 +142,22 @@ const clearStaticUserQuestion = (currentState, action) => {
   }
 }
 
+const updateStaticUserVote = (currentState, action) => {
+  return {
+    ...currentState,
+    vote: action.vote
+  }
+}
+
+const clearStaticUserVote = (currentState, action) => {
+
+  console.log(action)
+
+  return {
+    ...currentState,
+  }
+}
+
 export const questionsReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.GET_QUESTION_TOTALS: return getQuestionTotals(currentState, action)
@@ -133,6 +170,11 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.GET_STATIC_QUESTION: return getStaticQuestion(currentState, action)
     case actionTypes.CLEAR_STATIC_QUESTION: return clearStaticQuestion(currentState, action)
     case actionTypes.UPDATE_STATIC_QUESTION_VOTES: return updateStaticQuestionVotes(currentState, action)
+    case actionTypes.UPDATE_STATIC_QUESTION_VOTES_STATUS: return updateStaticQuestionVotesStatus(currentState, action)
+    case actionTypes.CLEAR_STATIC_QUESTION_VOTES_STATUS: return clearStaticQuestionVotesStatus(currentState, action)
+    case actionTypes.UPDATE_STATIC_USER_VOTE: return updateStaticUserVote(currentState, action)
+    case actionTypes.CLEAR_STATIC_USER_VOTE: return clearStaticUserVote(currentState, action)
+
 
     case actionTypes.SET_STATIC_USER_QUESTION: return setStaticUserQuestion(currentState, action)
     case actionTypes.CLEAR_STATIC_USER_QUESTION: return clearStaticUserQuestion(currentState, action)

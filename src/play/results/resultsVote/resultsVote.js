@@ -82,7 +82,7 @@ const ResultsVote = (props) => {
         { !props.staticResults && <h5>Approval Rating ({ props.play.question.votes.total } { props.play.question.votes.total === 1 ? 'vote' : 'votes'})</h5> }
         { !props.staticResults && <h4>{ props.play.question.votes.rating }</h4> }
         { props.staticResults && <h5>Approval Rating ({ props.questions.staticQuestion.votes.total } { props.questions.staticQuestion.votes.total === 1 ? 'vote' : 'votes'})</h5> }
-        { props.staticResults && <h4>{ props.questions.staticQuestion.votes.rating }</h4> }
+        { props.staticResults && <h4>{ props.questions.staticQuestion.rating.approval }</h4> }
       </div>
       <div className="results_vote_totals">
           { !props.staticResults && <ul>
