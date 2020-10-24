@@ -7,7 +7,9 @@ import {
   clearStaticQuestion,
   clearQuestionStatus,
   setStaticUserQuestion,
-  clearStaticUserQuestion
+  clearStaticUserQuestion,
+  clearStaticQuestionVoteStatus,
+  clearStaticUserVote
 } from '../../store/actions/actionIndex'
 
 import { routes } from '../../utility/paths'
@@ -88,6 +90,8 @@ class ResultsContainer extends React.Component{
     this.props.onClearStaticQuestion()
     this.props.onClearStaticUserQuestion()
     this.props.onClearQuestionStatus()
+    this.props.onClearStaticQuestionVoteStatus()
+    this.props.onClearStaticUserVote()
     this.setState({ displayStaticResults: false, initDefaultResults: false, initStaticResults: false, initStaticUserResults: false })
   }
 
@@ -168,6 +172,8 @@ const mapDispatchToProps = (dispatch) => {
     onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
     onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
     onClearQuestionStatus: () => dispatch(clearQuestionStatus()),
+    onClearStaticQuestionVoteStatus: () => dispatch(clearStaticQuestionVoteStatus()),
+    onClearStaticUserVote: () => dispatch(clearStaticUserVote())
   }
 }
 

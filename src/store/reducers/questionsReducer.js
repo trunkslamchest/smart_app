@@ -8,15 +8,23 @@ const initialState = {
   totals: null,
   vote: null,
   voteStatus: null,
+  voteLoading: null,
   comment: null,
-  commentStatus: null
+  commentStatus: null,
+  commentLoading: null
 }
 
 const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
 
 const getQuestionTotals = (currentState, action) => { return { ...currentState, totals: null, } }
 
-const clearQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
+const getQuickQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+
+const getDiffQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+
+const getCatQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+
+const getStaticQuestion = (currentState, action) => { return { ...currentState, staticQuestion: action.res } }
 
 const updateQuestionTotalsFromPlayController = (currentState, action) => {
   let uTotals = { ...currentState.totals }
@@ -66,39 +74,7 @@ const updateQuestionTotalsFromPlayController = (currentState, action) => {
   return { ...currentState, totals: uTotals }
 }
 
-const getQuickQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
-
-const getDiffQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
-
-const getCatQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
-
-const getStaticQuestion = (currentState, action) => {
-  return {
-    ...currentState,
-    staticQuestion: action.res
-  }
-}
-
-const clearStaticQuestion = (currentState, action) => {
-  return {
-    ...currentState,
-    staticQuestion: action.res
-  }
-}
-
-const updateQuestionStatus = (currentState, action) => {
-  return {
-    ...currentState,
-    status: action.status
-  }
-}
-
-const clearQuestionStatus = (currentState, action) => {
-  return {
-    ...currentState,
-    status: action.status
-  }
-}
+const updateQuestionStatus = (currentState, action) => { return { ...currentState, status: action.status } }
 
 const updateStaticQuestionVotes = (currentState, action) => {
   return {
@@ -114,72 +90,64 @@ const updateStaticQuestionVotes = (currentState, action) => {
   }
 }
 
-const updateStaticQuestionVotesStatus = (currentState, action) => {
+const updateStaticQuestionComments = (currentState, action) => {
   return {
     ...currentState,
-    voteStatus: action.voteStatus
+    staticQuestion: {
+      ...currentState.staticQuestion,
+      comments: action.comments
+    },
+    comment: action.comment
   }
 }
 
-const clearStaticQuestionVotesStatus = (currentState, action) => {
-  return {
-    ...currentState,
-    voteStatus: action.voteStatus
-  }
-}
+const updateStaticQuestionVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus } }
+const updateStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }
 
-const setStaticUserQuestion = (currentState, action) => {
-  return {
-    ...currentState,
-    staticUserResults: action.res
-  }
-}
+const setStaticUserQuestion = (currentState, action) => { return { ...currentState, staticUserResults: action.res } }
+const updateStaticUserVote = (currentState, action) => { return { ...currentState, vote: action.vote } }
 
-const clearStaticUserQuestion = (currentState, action) => {
-  return {
-    ...currentState,
-    staticUserResults: action.res
-  }
-}
+const voteLoading = (currentState, action) => { return { ...currentState, voteLoading: action.status } }
+const commentLoading = (currentState, action) => { return { ...currentState, commentLoading: action.status } }
 
-const updateStaticUserVote = (currentState, action) => {
-  return {
-    ...currentState,
-    vote: action.vote
-  }
-}
+const clearQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
+const clearQuestionStatus = (currentState, action) => { return { ...currentState, status: action.status } }
+const clearStaticQuestion = (currentState, action) => { return {...currentState, staticQuestion: action.res } }
+const clearStaticUserComment = (currentState, action) => { return {...currentState, comment: action.comment } }
 
-const clearStaticUserVote = (currentState, action) => {
+const clearStaticQuestionVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus } }
+const clearStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }
 
-  console.log(action)
-
-  return {
-    ...currentState,
-  }
-}
+const clearStaticUserQuestion = (currentState, action) => { return { ...currentState, staticUserResults: action.res } }
+const clearStaticUserVote = (currentState, action) => { return { ...currentState, vote: action.vote } }
 
 export const questionsReducer = (currentState = initialState, action) => {
   switch(action.type) {
-    case actionTypes.GET_QUESTION_TOTALS: return getQuestionTotals(currentState, action)
     case actionTypes.STORE_QUESTION_TOTALS: return storeQuestionTotals(currentState, action)
-    case actionTypes.CLEAR_QUESTION_TOTALS: return clearQuestionTotals(currentState, action)
-    case actionTypes.UPDATE_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateQuestionTotalsFromPlayController(currentState, action)
+    case actionTypes.GET_QUESTION_TOTALS: return getQuestionTotals(currentState, action)
     case actionTypes.GET_QUICK_QUESTION: return getQuickQuestion(currentState, action)
     case actionTypes.GET_DIFF_QUESTION: return getDiffQuestion(currentState, action)
     case actionTypes.GET_CAT_QUESTION: return getCatQuestion(currentState, action)
     case actionTypes.GET_STATIC_QUESTION: return getStaticQuestion(currentState, action)
-    case actionTypes.CLEAR_STATIC_QUESTION: return clearStaticQuestion(currentState, action)
-    case actionTypes.UPDATE_STATIC_QUESTION_VOTES: return updateStaticQuestionVotes(currentState, action)
-    case actionTypes.UPDATE_STATIC_QUESTION_VOTES_STATUS: return updateStaticQuestionVotesStatus(currentState, action)
-    case actionTypes.CLEAR_STATIC_QUESTION_VOTES_STATUS: return clearStaticQuestionVotesStatus(currentState, action)
-    case actionTypes.UPDATE_STATIC_USER_VOTE: return updateStaticUserVote(currentState, action)
-    case actionTypes.CLEAR_STATIC_USER_VOTE: return clearStaticUserVote(currentState, action)
-
-
     case actionTypes.SET_STATIC_USER_QUESTION: return setStaticUserQuestion(currentState, action)
-    case actionTypes.CLEAR_STATIC_USER_QUESTION: return clearStaticUserQuestion(currentState, action)
+    case actionTypes.UPDATE_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateQuestionTotalsFromPlayController(currentState, action)
     case actionTypes.UPDATE_QUESTION_STATUS: return updateQuestionStatus(currentState, action)
+    case actionTypes.UPDATE_STATIC_QUESTION_VOTES: return updateStaticQuestionVotes(currentState, action)
+    case actionTypes.UPDATE_STATIC_QUESTION_COMMENTS: return updateStaticQuestionComments(currentState, action)
+    case actionTypes.UPDATE_STATIC_QUESTION_VOTE_STATUS: return updateStaticQuestionVoteStatus(currentState, action)
+    case actionTypes.UPDATE_STATIC_QUESTION_COMMENT_STATUS: return updateStaticQuestionCommentStatus(currentState, action)
+    case actionTypes.UPDATE_STATIC_USER_VOTE: return updateStaticUserVote(currentState, action)
+    case actionTypes.VOTE_LOADING: return voteLoading(currentState, action)
+    case actionTypes.COMMENT_LOADING: return commentLoading(currentState, action)
+    case actionTypes.CLEAR_QUESTION_TOTALS: return clearQuestionTotals(currentState, action)
     case actionTypes.CLEAR_QUESTION_STATUS: return clearQuestionStatus(currentState, action)
+    case actionTypes.CLEAR_STATIC_QUESTION: return clearStaticQuestion(currentState, action)
+    case actionTypes.CLEAR_STATIC_USER_COMMENT: return clearStaticUserComment(currentState, action)
+
+    case actionTypes.CLEAR_STATIC_QUESTION_VOTE_STATUS: return clearStaticQuestionVoteStatus(currentState, action)
+    case actionTypes.CLEAR_STATIC_QUESTION_COMMENT_STATUS: return clearStaticQuestionCommentStatus(currentState, action)
+    case actionTypes.CLEAR_STATIC_USER_QUESTION: return clearStaticUserQuestion(currentState, action)
+    case actionTypes.CLEAR_STATIC_USER_VOTE: return clearStaticUserVote(currentState, action)
     default: return currentState
   }
 }

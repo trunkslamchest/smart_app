@@ -5,7 +5,8 @@ import {
 } from './achievementActions'
 
 import {
-  updateStaticQuestionVotes
+  updateStaticQuestionVotes,
+  updateStaticQuestionComments
 } from './questionsActions'
 
 import { fetch } from '../../utility/paths'
@@ -95,7 +96,8 @@ export const setComment = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionComment', fetch.patch.questionComment, obj)
     .then(res => {
-      dispatch(updateComments(res))
+      if(obj.type === 'play') dispatch(updateComments(res))
+      if(obj.type === 'static') dispatch(updateStaticQuestionComments(res))
     })
   }
 }

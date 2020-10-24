@@ -10,6 +10,11 @@ import {
   updateCommentStatus
 } from './playActions'
 
+import {
+  updateStaticQuestionVoteStatus,
+  updateStaticQuestionCommentStatus
+} from './questionsActions'
+
 import userFunctions from '../../utility/userFunctions'
 import questionsFunctions from '../../utility/questionsFunctions'
 
@@ -159,10 +164,11 @@ export const updateUserQuestionsFromPlayController = (question) => {
 
 export const updateUserQuestionTotalsFromPlayController = (result) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, result: result } }
 
-export const updateUserVotesFromPlayController = (res) => {
+export const updateUserVotesFromPlayController = (vote) => {
   return dispatch => {
-    dispatch(updateVoteStatus('voteSuccess', true))
-    dispatch(initUpdateUserVotesFromPlayController(res))
+    if(vote.type === 'play') dispatch(updateVoteStatus('voteSuccess', true))
+    if(vote.type === 'static') dispatch(updateStaticQuestionVoteStatus('voteSuccess'))
+    dispatch(initUpdateUserVotesFromPlayController(vote))
   }
 }
 
@@ -173,10 +179,11 @@ const initUpdateUserVotesFromPlayController = (res) => {
   }
 }
 
-export const updateUserCommentsFromPlayController = (id, comment) => {
+export const updateUserCommentsFromPlayController = (comment) => {
   return dispatch => {
-    dispatch(updateCommentStatus('commentSuccess', true))
-    dispatch(initUpdateUserCommentsFromPlayController(id, comment))
+    if(comment.type === 'play') dispatch(updateCommentStatus('commentSuccess', true))
+    if(comment.type === 'static') dispatch(updateStaticQuestionCommentStatus('commentSuccess'))
+    dispatch(initUpdateUserCommentsFromPlayController(comment))
   }
 }
 
@@ -213,10 +220,3 @@ export const editUserComment = (obj) => {
 }
 
 const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, res: res } }
-
-export const updateStaticUserVoteFromPlayController = (res) => {
-  return {
-    type: actionTypes.UPDATE_STATIC_USER_VOTE_FROM_PLAY_CONTROLLER,
-    res: res
-  }
-}

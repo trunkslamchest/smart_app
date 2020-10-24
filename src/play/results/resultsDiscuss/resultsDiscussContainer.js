@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 
 import {
   setVote,
-  updateVoteStatus,
   setComment,
-  updateCommentStatus
+  updateVoteStatus,
+  updateCommentStatus,
+  updateStaticQuestionVoteStatus,
+  updateStaticQuestionCommentStatus
 } from '../../../store/actions/actionIndex'
 
 import validateComment from '../../../utility/validation/validateComment'
@@ -30,15 +32,12 @@ class ResultsDiscussContainer extends React.Component {
   }
 
   componentDidMount() {
-    // this.voteButtonsTimeout = setTimeout(() => { this.setState({ showVoteButtons: true })}, 2000)
     this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 500)
   }
 
   componentDidUpdate(){
     if(this.props.play.commentLoading && this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: false })
     if(!this.props.play.commentLoading && !this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: true })
-    // if(this.props.play.voteLoading && this.state.enableVoteButtons) this.setState({ enableVoteButtons: false })
-    // if(!this.props.play.voteLoading && !this.state.enableVoteButtons) this.setState({ enableVoteButtons: true })
   }
 
   componentWillUnmount(){
@@ -64,24 +63,21 @@ class ResultsDiscussContainer extends React.Component {
         correct_answer: this.props.play.results.correct_answer,
         result: this.props.play.results.result
       }
+      this.props.onUpdateVoteStatus('initVote', true)
     } else {
       voteObj = {
         type: 'static',
         qid: this.props.qid,
-        question: this.props.questions.staticQuestion.question,
         difficulty: this.props.diff,
-        category: this.props.cat,
-        answer: this.props.questions.staticUserResults.answer,
-        correct_answer: this.props.questions.staticQuestion.correct,
-        result: this.props.questions.staticUserResults.result
+        category: this.props.cat
       }
+      this.props.onUpdateStaticQuestionVoteStatus('initVote')
     }
 
     voteObj['uid'] = localStorage.id
     voteObj['vote'] = event.target.attributes.vote.value
 
     this.props.onSetVote(voteObj)
-    this.props.onUpdateVoteStatus('initVote', true)
     this.setState({ showVoteButtons: false, enableVoteButtons: false })
   }
 
@@ -93,29 +89,43 @@ class ResultsDiscussContainer extends React.Component {
     event.persist()
     event.preventDefault()
 
-    let authCheck = validateComment(this.state.comment)
+    let authCheck = validateComment(this.state.comment), commentObj = {}
     this.setState({ commentForm: authCheck })
 
     if (authCheck.valid) {
       this.setState({ enableAddCommentButton: false })
-      this.props.onSetComment({
-        uid: localStorage.id,
-        qid: this.props.play.question.id,
-        user_name: this.props.user.info.user_name,
-        question: this.props.play.question.question,
-        difficulty: this.props.play.question.difficulty,
-        category: this.props.play.question.category,
-        answer: this.props.play.answer.choice,
-        correct_answer: this.props.play.results.correct_answer,
-        result: this.props.play.results.result,
-        comment: this.state.comment,
-        timestamp: getTime('fullDate')
-      })
-      this.props.onUpdateCommentStatus('initComment', true)
+      if(!this.props.staticResults){
+        commentObj = {
+          type: 'play',
+          qid: this.props.play.question.id,
+          user_name: this.props.user.info.user_name,
+          question: this.props.play.question.question,
+          difficulty: this.props.play.question.difficulty,
+          category: this.props.play.question.category,
+          answer: this.props.play.answer.choice,
+          correct_answer: this.props.play.results.correct_answer,
+          result: this.props.play.results.result,
+        }
+        this.props.onUpdateCommentStatus('initComment', true)
+      } else {
+        commentObj = {
+          type: 'static',
+          qid: this.props.questions.staticQuestion.qid,
+          user_name: this.props.user.info.user_name,
+          difficulty: this.props.questions.staticQuestion.difficulty,
+          category: this.props.questions.staticQuestion.category,
+        }
+        this.props.onUpdateStaticQuestionCommentStatus('initComment')
+      }
+
+      commentObj['uid'] = localStorage.id
+      commentObj['comment'] = this.state.comment
+      commentObj['timestamp'] = getTime('fullDate')
+
+      this.props.onSetComment(commentObj)
       this.setState({ comment: '' })
     }
   }
-
 
   render(){
     return(
@@ -130,6 +140,7 @@ class ResultsDiscussContainer extends React.Component {
             comment={ this.state.comment }
             commentForm={ this.state.commentForm }
             showComments={ this.state.showComments }
+            staticResults={ this.props.staticResults }
             enableCommentButton={ this.state.enableCommentButton }
             enableAddCommentButton={ this.state.enableAddCommentButton }
             onAddComment={ this.onAddComment }
@@ -151,10 +162,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onSetVote: (obj) => dispatch(setVote(obj)),
+    onSetComment: (obj) => dispatch(setComment(obj)),
+    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onUpdateCommentStatus: (status, loading) => dispatch(updateCommentStatus(status, loading)),
-    onSetComment: (obj) => dispatch(setComment(obj))
+    onUpdateStaticQuestionVoteStatus: (status) => dispatch(updateStaticQuestionVoteStatus(status)),
+    onUpdateStaticQuestionCommentStatus: (status) => dispatch(updateStaticQuestionCommentStatus(status))
   }
 }
 

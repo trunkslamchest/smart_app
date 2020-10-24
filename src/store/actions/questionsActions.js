@@ -162,7 +162,8 @@ export const clearStaticUserQuestion = (res) => {
 
 export const updateStaticQuestionVotes = (votes, vote, rating) => {
   return dispatch => {
-    dispatch(updateStaticQuestionVotesStatus('updateStaticQuestionVote'))
+    dispatch(voteLoading(true))
+    dispatch(updateStaticQuestionVoteStatus('updateStaticQuestionVote'))
     dispatch(initUpdateStaticQuestionVotes(votes, rating))
     dispatch(updateStaticUserVote(vote))
   }
@@ -176,23 +177,23 @@ const initUpdateStaticQuestionVotes = (votes, rating) => {
   }
 }
 
-export const updateStaticQuestionVotesStatus = (status) => {
+export const updateStaticQuestionVoteStatus = (status) => {
   return {
-    type: actionTypes.UPDATE_STATIC_QUESTION_VOTES_STATUS,
+    type: actionTypes.UPDATE_STATIC_QUESTION_VOTE_STATUS,
     voteStatus: status
   }
 }
 
-export const clearStaticQuestionVotesStatus = () => {
+export const clearStaticQuestionVoteStatus = () => {
   return {
-    type: actionTypes.CLEAR_STATIC_QUESTION_VOTES_STATUS,
+    type: actionTypes.CLEAR_STATIC_QUESTION_VOTE_STATUS,
     voteStatus: null
   }
 }
 
 export const updateStaticUserVote = (vote) => {
   return dispatch => {
-    dispatch(updateStaticQuestionVotesStatus('updateStaticUserVote'))
+    dispatch(updateStaticQuestionVoteStatus('updateStaticUserVote'))
     dispatch(initUpdateStaticUserVote(vote))
   }
 }
@@ -208,5 +209,56 @@ export const clearStaticUserVote = () => {
   return {
     type: actionTypes.CLEAR_STATIC_USER_VOTE,
     vote: null
+  }
+}
+
+export const updateStaticQuestionComments = (obj) => {
+  return dispatch => {
+    dispatch(commentLoading(true))
+    dispatch(updateStaticQuestionCommentStatus('updateStaticQuestionComment'))
+    dispatch(initUpdateStaticQuestionComments(obj))
+  }
+}
+
+const initUpdateStaticQuestionComments = (obj) => {
+  return {
+    type: actionTypes.UPDATE_STATIC_QUESTION_COMMENTS,
+    comments: obj.commentsObj,
+    comment: obj.commentObj
+  }
+}
+
+export const clearStaticUserComment = () => {
+  return {
+    type: actionTypes.CLEAR_STATIC_USER_COMMENT,
+    comment: null
+  }
+}
+
+export const updateStaticQuestionCommentStatus = (status) => {
+  return {
+    type: actionTypes.UPDATE_STATIC_QUESTION_COMMENT_STATUS,
+    commentStatus: status
+  }
+}
+
+export const clearStaticQuestionCommentStatus = () => {
+  return {
+    type: actionTypes.CLEAR_STATIC_QUESTION_COMMENT_STATUS,
+    commentStatus: null
+  }
+}
+
+export const voteLoading = (status) => {
+  return {
+    type: actionTypes.VOTE_LOADING,
+    status: status
+  }
+}
+
+export const commentLoading = (status) => {
+  return {
+    type: actionTypes.COMMENT_LOADING,
+    status: status
   }
 }

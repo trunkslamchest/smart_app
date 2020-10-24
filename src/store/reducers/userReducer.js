@@ -315,27 +315,6 @@ const deleteUserComment = (currentState, action) => {
   }
 }
 
-const updateStaticUserVoteFromPlayController = (currentState, action) => {
-  return {
-    ...currentState,
-    questions: {
-      ...currentState.questions,
-      [action.res.difficulty]: {
-        ...currentState.questions[action.res.difficulty],
-        categories: {
-          ...currentState.questions[action.res.difficulty].categories,
-          [action.res.category]: {
-            ...currentState.questions[action.res.difficulty].categories[action.res.category],
-            [action.res.qid]: {
-              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
-              vote: { [action.res.vid]: { vote: action.res.vote } }
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 const deleteUser = (currentState, action) => { return { ...currentState, info: action.info, questions: action.questions } }
 
@@ -358,7 +337,6 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateUserQuestionTotalsFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_VOTES_FROM_PLAY_CONTROLLER: return updateUserVotesFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_COMMENTS_FROM_PLAY_CONTROLLER: return updateUserCommentsFromPlayController(currentState, action)
-    case actionTypes.UPDATE_STATIC_USER_VOTE_FROM_PLAY_CONTROLLER: return updateStaticUserVoteFromPlayController(currentState, action)
     case actionTypes.EDIT_USER_COMMENT: return editUserComment(currentState, action)
     case actionTypes.DELETE_USER: return deleteUser(currentState, action)
     case actionTypes.DELETE_USER_COMMENT: return deleteUserComment(currentState, action)

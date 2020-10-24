@@ -12,16 +12,22 @@ import './resultsComment.css'
 
 const ResultsComment = (props) => {
 
-  let allComments = <h3>No one has commented on this question yet</h3>
+  let commentForm, allComments, distribComments = <h3>No one has commented on this question yet</h3>
 
-  let commentForm =
+  const loading =
     <div className='loading_wrapper_comments'>
       <SmallLoadingSpinner />
       <BaseDynamicBar modalType={ 'questionComment' } barType={ 'questionComment' } />
     </div>
 
-  if(props.play.status === 'displayResults' && props.play.question.comments){
-    allComments = Object.entries(props.play.question.comments).map(comment =>
+  if(!props.staticResults) {
+    if(props.play.results && props.play.question.comments) allComments = Object.entries(props.play.question.comments)
+  } else {
+    if (props.questions.staticQuestion && props.questions.staticQuestion.comments) allComments = Object.entries(props.questions.staticQuestion.comments)
+  }
+
+  if(allComments && (props.play.status === 'displayResults' || props.questions.status === 'StaticQuestionSuccess')){
+    distribComments = allComments.map(comment =>
       <CommentCard
         key={ comment[0] }
         comment={ comment[1] }
@@ -32,12 +38,8 @@ const ResultsComment = (props) => {
     )
   }
 
-  let commentBlock =
-    <div className="results_all_comments">
-      { allComments }
-    </div>
-
-  if(!props.play.commentLoading)
+  if(props.play.commentLoading || props.questions.commentLoading ) commentForm = loading
+  else {
     commentForm =
       <CommentForm
         comment={ props.comment }
@@ -46,13 +48,16 @@ const ResultsComment = (props) => {
         onAddComment={ props.onAddComment }
         onChangeComment={ props.onChangeComment }
       />
+  }
 
   return(
     <>
       { props.showComments &&
         <>
           { commentForm }
-          { commentBlock }
+          <div className="results_all_comments">
+            { distribComments }
+          </div>
         </>
       }
     </>
@@ -61,7 +66,8 @@ const ResultsComment = (props) => {
 
 const mapStateToProps = state => {
   return {
-    play: state.play
+    play: state.play,
+    questions: state.questions
   }
 }
 

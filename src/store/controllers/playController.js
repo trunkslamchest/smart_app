@@ -53,13 +53,10 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && this.props.play.results.vote) this.updateUserVotesModule()
 
-      if(this.props.questions.status === 'StaticQuestionSuccess' && this.props.questions.voteStatus === 'updateStaticUserVote' && this.props.questions.vote) this.updateStaticUserVoteModule()
-
-
       if(this.props.play.gameState === 'results'
          && this.props.play.voteStatus === 'voteSuccess'
          && this.props.user.questions[this.props.play.question.difficulty].categories[this.props.play.question.category][this.props.play.question.id].vote)
-         this.props.onUpdateVoteStatus('displayVotes', false)
+         this.displayVotesModule()
 
       if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.results.comment) this.updateUserCommentsModule()
 
@@ -250,6 +247,7 @@ class PlayController extends React.Component {
   updateUserVotesModule = () => {
     this.props.onUpdateVoteStatus('sentVote', true)
     this.props.onUpdateUserVotesFromPlayController({
+      type: 'play',
       vid: this.props.play.results.vote.vid,
       qid: this.props.play.question.id,
       answer: this.props.play.answer.choice,
@@ -263,21 +261,10 @@ class PlayController extends React.Component {
     })
   }
 
-  updateStaticUserVoteModule = () => {
-    console.log('test')
-    this.props.onUpdateStaticQuestionVotesStatus('updateUserVote')
-    this.props.onUpdateStaticUserVoteFromPlayController({
-      vid: this.props.questions.vote.vid,
-      qid: this.props.questions.staticQuestion.qid,
-      difficulty: this.props.questions.staticQuestion.difficulty,
-      category: this.props.questions.staticQuestion.category,
-      vote: this.props.questions.vote.vote
-    })
-  }
-
   updateUserCommentsModule = () => {
     this.props.onUpdateCommentStatus('sentComment', true)
     this.props.onUpdateUserCommentsFromPlayController({
+      type: 'play',
       cid: this.props.play.results.comment.cid,
       qid: this.props.play.question.id,
       answer: this.props.play.answer.choice,
@@ -289,6 +276,11 @@ class PlayController extends React.Component {
       result: this.props.play.results.result,
       timestamp: this.props.play.results.comment.timestamp
     })
+  }
+
+  displayVotesModule = () => {
+    this.props.onUpdateVoteStatus('displayVotes', false)
+    this.props.onResetVote()
   }
 
   displayCommentsModule = () => {
@@ -372,8 +364,8 @@ const mapDispatchToProps = (dispatch) => {
     onResetAnswer: () => dispatch(actions.resetAnswer()),
     onGetResults: (obj) => dispatch(actions.getResults(obj)),
     onResetResults: () => dispatch(actions.resetResults()),
-    onResetVote: (obj) => dispatch(actions.resetVote(obj)),
-    onResetComment: (obj) => dispatch(actions.resetComment(obj)),
+    onResetVote: () => dispatch(actions.resetVote()),
+    onResetComment: () => dispatch(actions.resetComment()),
     onUpdateUserPerformanceFromPlayController: (obj) => dispatch(actions.updateUserPerformanceFromPlayController(obj)),
     onUpdateUserExperienceFromPlayController: (obj) => dispatch(actions.updateUserExperienceFromPlayController(obj)),
     onUpdateUserAchievementsFromPlayController: (obj) => dispatch(actions.updateUserAchievementsFromPlayController(obj)),
@@ -383,8 +375,7 @@ const mapDispatchToProps = (dispatch) => {
     onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
     onUpdateUserVotesFromPlayController: (id, obj) => dispatch(actions.updateUserVotesFromPlayController(id, obj)),
     onUpdateUserCommentsFromPlayController: (id, obj) => dispatch(actions.updateUserCommentsFromPlayController(id, obj)),
-    onUpdateStaticQuestionVotesStatus: (status) => dispatch(actions.updateStaticQuestionVotesStatus(status)),
-    onUpdateStaticUserVoteFromPlayController: (obj) => dispatch(actions.updateStaticUserVoteFromPlayController(obj))
+    onUpdateStaticQuestionVoteStatus: (status) => dispatch(actions.updateStaticQuestionVoteStatus(status))
   }
 }
 

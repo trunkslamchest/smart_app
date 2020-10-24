@@ -157,8 +157,6 @@ class commentCard extends React.Component {
           <div className='results_all_comments_comment_header'>
             <h5>{ this.props.comment.user }</h5>
             <span>{ this.props.comment.timestamp }</span>
-            {/* <div className='results_all_comments_comment_header_left'>
-            </div> */}
           </div>
           <li>
             <p>{ this.props.comment.comment }</p>
