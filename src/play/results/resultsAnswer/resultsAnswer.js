@@ -11,7 +11,7 @@ const ResultsAnswer = (props) => {
         <div className="results_correct_answer">
           <h3>The correct answer was</h3>
           <h4>
-            { props.play.results && `${ props.play.results.correct_answer }` }
+            { !props.staticResults && `${ props.play.results.correct_answer }` }
             { props.questions.staticUserResults && `${ props.questions.staticUserResults.correct_answer }` }
           </h4>
         </div>

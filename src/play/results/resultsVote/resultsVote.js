@@ -20,18 +20,19 @@ const ResultsVote = (props) => {
       <BaseDynamicBar modalType={ 'questionVote' } barType={ 'questionVote' } />
     </div>
 
-  const calcVotePercents = () => {
-    if (props.play.question && props.play.question.votes.total === 0) return { good: '0%', neutral: '0%', bad: '0%' }
+  const calcVotePercents = (voteObj) => {
+    if (voteObj.total === 0) return { good: '0%', neutral: '0%', bad: '0%' }
     else return {
-      good: `${((props.play.question.votes.good / props.play.question.votes.total) * 100).toFixed(2)}%`,
-      neutral: `${((props.play.question.votes.neutral / props.play.question.votes.total) * 100).toFixed(2)}%`,
-      bad: `${((props.play.question.votes.bad / props.play.question.votes.total) * 100).toFixed(2)}%`,
+      good: `${((voteObj.good / voteObj.total) * 100).toFixed(2)}%`,
+      neutral: `${((voteObj.neutral / voteObj.total) * 100).toFixed(2)}%`,
+      bad: `${((voteObj.bad / voteObj.total) * 100).toFixed(2)}%`,
     }
   }
 
   let voteBlock, votePercents
 
-  if(props.play.question) votePercents = calcVotePercents()
+  if(!props.staticResults) votePercents = calcVotePercents(props.play.question.votes)
+  else votePercents = calcVotePercents(props.questions.staticQuestion.votes)
 
   const voteButtons = [
     { type: "up_vote", type_disabled: "up_vote_disabled", img: up_vote, vote: "good"},
@@ -61,7 +62,10 @@ const ResultsVote = (props) => {
 
   if(props.play.voteLoading) voteBlock = loading
 
-  if(props.showVoteButtons){
+  if(props.showVoteButtons &&
+    ((props.play.results && !props.play.results.vote) ||
+     (props.questions.staticUserResults && !props.questions.staticUserResults.vote)
+    )){
     voteBlock =
     <div className="results_vote_container">
       <div className="results_vote_header">
@@ -71,21 +75,26 @@ const ResultsVote = (props) => {
         { distribVotesButtons }
       </div>
     </div>
-  }
-
-  if(props.play.voteStatus === 'displayVotes' && !props.play.voteLoading){
+  } else {
     voteBlock =
     <div className="results_vote_container">
       <div className="results_vote_header">
-        <h5>Approval Rating ({ props.play.question.votes.total } { props.play.question.votes.total === 1 ? 'vote' : 'votes'})</h5>
-        <h4>{ props.play.question.votes.rating }</h4>
+        { !props.staticResults && <h5>Approval Rating ({ props.play.question.votes.total } { props.play.question.votes.total === 1 ? 'vote' : 'votes'})</h5> }
+        { !props.staticResults && <h4>{ props.play.question.votes.rating }</h4> }
+        { props.staticResults && <h5>Approval Rating ({ props.questions.staticQuestion.votes.total } { props.questions.staticQuestion.votes.total === 1 ? 'vote' : 'votes'})</h5> }
+        { props.staticResults && <h4>{ props.questions.staticQuestion.votes.rating }</h4> }
       </div>
       <div className="results_vote_totals">
-          <ul>
+          { !props.staticResults && <ul>
             <li><h5>Up Votes ({ props.play.question.votes.good })</h5> { votePercents.good }</li>
             <li><h5>No Votes ({ props.play.question.votes.neutral })</h5> { votePercents.neutral }</li>
             <li><h5>Down Votes ({ props.play.question.votes.bad })</h5> { votePercents.bad }</li>
-          </ul>
+          </ul> }
+          { props.staticResults && <ul>
+            <li><h5>Up Votes ({ props.questions.staticQuestion.votes.good })</h5> { votePercents.good }</li>
+            <li><h5>No Votes ({ props.questions.staticQuestion.votes.neutral })</h5> { votePercents.neutral }</li>
+            <li><h5>Down Votes ({ props.questions.staticQuestion.votes.bad })</h5> { votePercents.bad }</li>
+          </ul> }
       </div>
     </div>
   }
@@ -97,7 +106,8 @@ const ResultsVote = (props) => {
 
 const mapStateToProps = state => {
   return {
-    play: state.play
+    play: state.play,
+    questions: state.questions
   }
 }
 

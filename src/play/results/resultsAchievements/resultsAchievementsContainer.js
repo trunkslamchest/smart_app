@@ -7,10 +7,10 @@ import './resultsAchievementsContainer.css'
 
 const ResultsAchievementContainer = (props) => {
 
-    let distribAchievements = <></>, achievementHeader = 'static_achievementHeaderTemp'
+    let distribAchievements, achievementHeader
 
-    if(props.play.results) {
-      if(props.play.results.achievements && props.showAchievements){
+    if(!props.staticResults) {
+      if(props.play.results.achievements.unlocked && props.showAchievements){
         distribAchievements = props.play.results.achievements.unlocked.map(achievement => {
           return (
             <ResultsAchievementCard
@@ -25,20 +25,41 @@ const ResultsAchievementContainer = (props) => {
       }
     }
 
+    if(props.questions.staticUserResults) {
+      if(props.questions.staticUserResults.achievements.unlocked && props.showAchievements){
+        distribAchievements = props.questions.staticUserResults.achievements.unlocked.map(achievement => {
+          return (
+            <ResultsAchievementCard
+              key={ props.questions.staticUserResults.achievements.unlocked.indexOf(achievement) }
+              achievement={ achievement }
+            />
+          )
+        })
+        if(props.questions.staticUserResults.achievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
+        else if(props.questions.staticUserResults.achievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
+        else achievementHeader = <></>
+      }
+    }
+
   return(
-    <div className='results_achievement_container'>
-      { achievementHeader }
-      <div className='results_achievement_sub_container'>
-        { distribAchievements }
-      </div>
-    </div>
+    <>
+      { !!distribAchievements &&
+        <div className='results_achievement_container'>
+          { achievementHeader }
+          <div className='results_achievement_sub_container'>
+            { distribAchievements }
+          </div>
+        </div>
+      }
+    </>
   )
 }
 
 const mapStateToProps = state => {
   return{
+    achievements: state.achievements,
     play: state.play,
-    achievements: state.achievements
+    questions: state.questions
   }
 }
 

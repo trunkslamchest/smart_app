@@ -10,7 +10,7 @@ const ResultsHeader = (props) => {
       { props.showHeader &&
         <div className="results_answer_header">
           <h3>
-            { props.play.results && `${ props.play.results.result }!` }
+            { !props.staticResults && `${ props.play.results.result }!` }
             { props.questions.staticUserResults && `${ props.questions.staticUserResults.result }!` }
           </h3>
         </div>

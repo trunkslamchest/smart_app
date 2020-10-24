@@ -23,7 +23,7 @@ const clearAchievements = (currentState, action) => {
 
 const updateAchievements = (currentState, action) => {
   let achievementsObj = {}
-
+  // console.log(action.res)
   for(let achievement in action.res){
     if(achievement !== 'totals'){
       achievementsObj[achievement] = {

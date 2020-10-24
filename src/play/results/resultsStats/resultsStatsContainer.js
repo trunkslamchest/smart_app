@@ -23,38 +23,56 @@ class ResultsStatsContainer extends React.Component{
   }
 
   componentDidMount(){
-    this.startStatsTimers()
-  }
-
-  startStatsTimers = () => {
-    this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
-    if(this.props.play.results && this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    if(this.props.questions.staticUserResults && this.props.questions.staticUserResults.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-    this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1250)
-    this.showAchievementsTimeout = setTimeout(() => { this.setState({ showAchievements: true })}, 1500)
+    if(!this.props.staticResults) {
+      this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
+      if(this.props.play.results && this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
+      this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1250)
+      this.showAchievementsTimeout = setTimeout(() => { this.setState({ showAchievements: true })}, 1500)
+    } else {
+      this.setState({
+        showHeader: true,
+        showCorrectAnswer: this.props.questions.staticUserResults && this.props.questions.staticUserResults.result === "Incorrect",
+        showStats: true,
+        showAchievements: true
+      })
+    }
   }
 
   componentWillUnmount(){
-    clearTimeout(this.showAchievementsTimeout)
-    clearTimeout(this.headerTimeout)
-    clearTimeout(this.correctAnswerTimeout)
-    clearTimeout(this.statsTimeout)
+    if(!this.props.staticResults) {
+      clearTimeout(this.headerTimeout)
+      clearTimeout(this.correctAnswerTimeout)
+      clearTimeout(this.statsTimeout)
+      clearTimeout(this.showAchievementsTimeout)
+    }
   }
 
   render(){
 
     const resultsBlock =
       <div className="results_stats_container">
-        <ResultsHeader showHeader={ this.state.showHeader } />
-        <ResultsAnswer showCorrectAnswer={ this.state.showCorrectAnswer } />
-        <ResultsStats showStats={ this.state.showStats } />
-        <ResultsAchievementsContainer showAchievements={ this.state.showAchievements } />
+        <ResultsHeader
+          staticResults={ this.props.staticResults }
+          showHeader={ this.state.showHeader }
+        />
+        <ResultsAnswer
+          staticResults={ this.props.staticResults }
+          showCorrectAnswer={ this.state.showCorrectAnswer }
+        />
+        <ResultsStats
+          staticResults={ this.props.staticResults }
+          showStats={ this.state.showStats }
+        />
+        <ResultsAchievementsContainer
+          staticResults={ this.props.staticResults }
+          showAchievements={ this.state.showAchievements }
+        />
       </div>
 
     return(
       <>
+        { !this.props.staticResults && resultsBlock }
         { this.props.questions.staticQuestion && this.props.questions.staticUserResults && resultsBlock }
-        { this.props.play.results && resultsBlock }
       </>
     )
   }

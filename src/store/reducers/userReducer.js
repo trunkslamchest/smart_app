@@ -102,7 +102,7 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
 const updateUserQuestionsFromPlayController = (currentState, action) => {
   let uQuestions = { ...currentState.questions }
 
-  console.log(action.question.results)
+  // console.log(action.question.results)
 
   if(!currentState.questions[action.question.difficulty]) {
     uQuestions[action.question.difficulty] = {
