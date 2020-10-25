@@ -306,8 +306,11 @@ const deleteUserComment = (currentState, action) => {
         }
       },
       totals: {
-        ...currentState.questions.totals.all,
-        comments: commentTotals
+        ...currentState.questions.totals,
+        all: {
+          ...currentState.questions.totals.all,
+          comments: commentTotals
+        }
       }
     }
   }
