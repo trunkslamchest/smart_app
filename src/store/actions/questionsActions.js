@@ -236,11 +236,19 @@ export const clearStaticUserComment = () => {
 }
 
 export const editStaticQuestionComment = (obj) => {
+  return dispatch => {
+    dispatch(commentLoading(true))
+    dispatch(updateStaticQuestionCommentStatus('updateStaticQuestionComment'))
+    dispatch(initEditStaticQuestionComment(obj))
+  }
+}
+
+const initEditStaticQuestionComment = (obj) => {
   return {
     type: actionTypes.EDIT_STATIC_QUESTION_COMMENT,
-    cid: obj.cid,
-    comment: obj.comment,
-    timestamp: obj.timestamp
+    cid: obj.comment.cid,
+    comment: obj.comment.comment,
+    timestamp: obj.comment.timestamp
   }
 }
 

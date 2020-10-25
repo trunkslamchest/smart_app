@@ -110,6 +110,15 @@ const updateComments = (res) => { return { type: actionTypes.SET_COMMENT, commen
 
 export const resetComment = () => { return { type: actionTypes.RESET_COMMENT, comment: null, commentStatus: null, commentLoading: false } }
 
+export const editQuestionComment = (obj) => {
+  return dispatch => {
+    if(obj.question.type === 'play') dispatch(initEditQuestionComment(obj))
+    if(obj.question.type === 'static') dispatch(editStaticQuestionComment(obj))
+  }
+}
+
+const initEditQuestionComment = (obj) => { return { type: actionTypes.EDIT_QUESTION_COMMENT, cid: obj.comment.cid, comment: obj.comment.comment, timestamp: obj.comment.timestamp } }
+
 export const deleteQuestionComment = (obj) => {
   return dispatch => {
     if(obj.type === 'play') dispatch(initDeleteQuestionComment(obj.cid))
@@ -118,12 +127,3 @@ export const deleteQuestionComment = (obj) => {
 }
 
 const initDeleteQuestionComment = (cid) => { return { type: actionTypes.DELETE_QUESTION_COMMENT, comment: null, cid: cid } }
-
-export const editQuestionComment = (obj) => {
-  return dispatch => {
-    if(obj.type === 'play') dispatch(initEditQuestionComment(obj))
-    if(obj.type === 'static') dispatch(editStaticQuestionComment(obj))
-  }
-}
-
-const initEditQuestionComment = (obj) => { return { type: actionTypes.EDIT_QUESTION_COMMENT, cid: obj.cid, comment: obj.comment, timestamp: obj.timestamp } }

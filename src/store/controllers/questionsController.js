@@ -42,7 +42,7 @@ class QuestionsController extends React.Component {
     this.props.onUpdateUserCommentsFromPlayController({
       type: 'static',
       cid: this.props.questions.comment.cid,
-      qid: this.props.questions.comment.qid,
+      qid: this.props.questions.staticQuestion.qid,
       category: this.props.questions.staticQuestion.category,
       comment: this.props.questions.comment.comment,
       difficulty: this.props.questions.staticQuestion.difficulty,

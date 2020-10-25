@@ -258,23 +258,29 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
 }
 
 const editUserComment = (currentState, action) => {
+  let questions = currentState.questions,
+      difficulty = action.question.difficulty,
+      category = action.question.category,
+      qid = action.question.qid,
+      cid = action.comment.cid
+
   return {
     ...currentState,
-    questions: { ...currentState.questions,
-      [action.res.difficulty]: {
-        ...currentState.questions[action.res.difficulty],
+    questions: { ...questions,
+      [difficulty]: {
+        ...questions[difficulty],
         categories: {
-          ...currentState.questions[action.res.difficulty].categories,
-          [action.res.category]: {
-            ...currentState.questions[action.res.difficulty].categories[action.res.category],
-            [action.res.qid]: {
-              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
+          ...questions[difficulty].categories,
+          [category]: {
+            ...questions[difficulty].categories[category],
+            [qid]: {
+              ...questions[difficulty].categories[category][qid],
               comments: {
-                ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
-                [action.res.cid]: {
-                  ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments[action.res.cid],
-                  comment: action.res.comment,
-                  timestamp: action.res.timestamp
+                ...questions[difficulty].categories[category][qid].comments,
+                [cid]: {
+                  ...questions[difficulty].categories[category][qid].comments[cid],
+                  comment: action.comment.comment,
+                  timestamp: action.comment.timestamp
                 }
               }
             }

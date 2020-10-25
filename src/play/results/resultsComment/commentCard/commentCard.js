@@ -4,17 +4,13 @@ import {
   deleteUserComment,
   deleteQuestionComment,
   editUserComment,
-  editQuestionComment,
-  updateCommentStatus
+  editQuestionComment
 } from '../../../../store/actions/actionIndex'
 
 import getTime from '../../../../utility/getTime'
-
-
 import validateComment from '../../../../utility/validation/validateComment'
 
 import CommentFormErrorItem from '../commentFormErrorItem/commentFormErrorItem'
-
 
 import './commentCard.css'
 import './editComment.css'
@@ -35,6 +31,36 @@ class commentCard extends React.Component {
     if(!this.props.play.commentLoading && !this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: true })
   }
 
+  makeCommentObj = () => {
+    let obj = {}
+
+    if(!this.props.staticResults) {
+      obj.question = {
+        type: 'play',
+        qid: this.props.play.question.id,
+        difficulty: this.props.play.question.difficulty,
+        category: this.props.play.question.category
+      }
+    } else {
+      obj.question = {
+        type: 'static',
+        qid: this.props.questions.staticQuestion.qid,
+        difficulty: this.props.questions.staticQuestion.difficulty,
+        category: this.props.questions.staticQuestion.category
+      }
+    }
+
+    obj.comment = {
+      uid: localStorage.id,
+      cid: this.props.comment.cid,
+      comment: this.state.editedComment,
+      user: this.props.user.info.user_name,
+      timestamp: getTime('fullDate')
+    }
+
+    return obj
+  }
+
   onEditComment = (event) => { this.setState({ editedComment: event.target.value }) }
 
   onAddEditedComment = (event) => {
@@ -45,44 +71,52 @@ class commentCard extends React.Component {
     this.setState({ editCommentForm: authCheck })
 
     if (authCheck.valid) {
-      let uCommentObj = {}
-      if(!this.props.staticResults) {
-        uCommentObj = {
-          type: 'play',
-          uData: {
-            qid: this.props.play.question.id,
-            difficulty: this.props.play.question.difficulty,
-            category: this.props.play.question.category,
-          }
-        }
-      } else {
-        uCommentObj = {
-          type: 'static',
-          uData: {
-            qid: this.props.questions.staticQuestion.qid,
-            difficulty: this.props.questions.staticQuestion.difficulty,
-            category: this.props.questions.staticQuestion.category
-          }
-        }
-      }
+      // let uCommentObj = {}
+      // if(!this.props.staticResults) {
+      //   uCommentObj = {
+      //     type: 'play',
+      //     uData: {
+      //       qid: this.props.play.question.id,
+      //       difficulty: this.props.play.question.difficulty,
+      //       category: this.props.play.question.category,
+      //     }
+      //   }
+      // } else {
+      //   uCommentObj = {
+      //     type: 'static',
+      //     uData: {
+      //       qid: this.props.questions.staticQuestion.qid,
+      //       difficulty: this.props.questions.staticQuestion.difficulty,
+      //       category: this.props.questions.staticQuestion.category
+      //     }
+      //   }
+      // }
 
-      uCommentObj.uData['uid'] = localStorage.id
-      uCommentObj.uData['cid'] = this.props.comment.cid
-      uCommentObj.cData = { comment: this.state.editedComment, user: this.props.user.info.user_name, timestamp: getTime('fullDate') }
+      // uCommentObj.uData['uid'] = localStorage.id
+      // uCommentObj.uData['cid'] = this.props.comment.cid
+      // uCommentObj.cData = { comment: this.state.editedComment, user: this.props.user.info.user_name, timestamp: getTime('fullDate') }
 
-      this.props.onEditUserComment(uCommentObj)
-      this.props.onEditQuestionComment({ type: uCommentObj.type, comment: this.state.editedComment, cid: this.props.comment.cid, timestamp: getTime('fullDate') })
+      let commentObj = this.makeCommentObj()
+
+      console.log(commentObj)
+      // console.log(uCommentObj)
+
+      // this.props.onEditUserComment(uCommentObj)
+      // this.props.onEditQuestionComment({ type: uCommentObj.type, comment: this.state.editedComment, cid: this.props.comment.cid, timestamp: getTime('fullDate') })
+
+      this.props.onEditUserComment(commentObj)
+      this.props.onEditQuestionComment(commentObj)
+
       this.setState({ enableEditCommentButton: false, showEditCommentForm: false })
     }
   }
 
-  onCancelEditCommentFunctions = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: true }) }
-
   render() {
 
-    let deleteButton, editButton, distribEditCommentErrors
+    let deleteButton, editButton, editCommentCancelButton, distribEditCommentErrors, distribButtons, commentCard
 
     if(this.props.comment.user === this.props.user.info.user_name){
+
       const onDeleteCommentFunctions = () => {
         let commentObj = {}
         if(!this.props.staticResults){
@@ -110,28 +144,36 @@ class commentCard extends React.Component {
 
       const onEditCommentFunctions = () => { this.setState({ showEditCommentForm: true }) }
 
-      editButton =
-        <button
-          id='results_edit_comment_button'
-          name='results_edit_comment_button'
-          className='results_edit_comment_button'
-          onClick={ onEditCommentFunctions }
-        >
-          Edit
-        </button>
+      const onCancelEditCommentFunctions = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: true }) }
 
-      deleteButton =
-        <button
-          id='results_delete_comment_button'
-          name='results_delete_comment_button'
-          className='results_delete_comment_button'
-          onClick={ onDeleteCommentFunctions }
-        >
-          Delete
-        </button>
+
+      const commentButtons = [
+        { kind: 'button', name: 'edit_comment', className: 'results_edit_comment_button', onClickFunctions: onEditCommentFunctions, text: 'Edit' },
+        { kind: 'button', name: 'delete_comment', className: 'results_edit_comment_button', onClickFunctions: onDeleteCommentFunctions, text: 'Delete' },
+        { kind: 'button', name: 'edit_comment_cancel', className: 'results_edit_comment_button', onClickFunctions: onCancelEditCommentFunctions, text: 'Cancel' },
+      ]
+
+      distribButtons = commentButtons.map( commentButton => {
+        return (
+          <commentButton.kind
+            disabled={ commentButton.disabled && commentButton.disabled }
+            className='results_edit_comment_button'
+            id={`results_${ commentButton.name }_button`}
+            key={ commentButtons.indexOf(commentButton) + commentButton.name }
+            name={`results_${ commentButton.name }_button`}
+            onClick={ commentButton.onClickFunctions && commentButton.onClickFunctions }
+            type={ commentButton.type && commentButton.type }
+            value={ commentButton.value && commentButton.value }
+          >
+            { commentButton.text }
+          </commentButton.kind>
+        )
+      })
+
+      editButton = distribButtons[0]
+      deleteButton = distribButtons[1]
+      editCommentCancelButton = distribButtons[2]
     }
-
-    let commentCard = <></>
 
     if(!this.state.editCommentForm.valid) {
       if(this.state.editCommentForm.errors){
@@ -162,18 +204,13 @@ class commentCard extends React.Component {
         <div className="results_edit_comment_buttons_container">
           <input
             disabled={ !this.state.enableEditCommentButton }
-            className={ this.state.enableEditCommentButton ? "results_edit_comment_confirm_button" : "results_edit_comment_confirm_button_disabled" }
+            id='results_edit_comment_confirm_button'
+            name='results_edit_comment_confirm_button'
+            className={ this.state.enableEditCommentButton ? "results_edit_comment_button" : "results_edit_comment_button_disabled" }
             type="submit"
-            value="Edit Comment"
+            value="Confirm"
           />
-        <button
-          id='results_edit_comment_cancel_button'
-          name='results_edit_comment_cancel_button'
-          className='results_edit_comment_cancel_button'
-          onClick={ this.onCancelEditCommentFunctions }
-        >
-          Cancel
-        </button>
+          { editCommentCancelButton }
         </div>
         { !this.state.editCommentForm.valid && this.state.editCommentForm.errors.length && <div className='results_edit_comment_error_container'>{ distribEditCommentErrors }</div> }
       </form>
@@ -214,7 +251,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onEditUserComment: (obj) => dispatch(editUserComment(obj)),
     onEditQuestionComment: (obj) => dispatch(editQuestionComment(obj)),
-    onUpdateCommentStatus: (status, loading) => dispatch(updateCommentStatus(status, loading)),
     onDeleteUserComment: (obj) => dispatch(deleteUserComment(obj)),
     onDeleteQuestionComment: (obj) => dispatch(deleteQuestionComment(obj))
   }

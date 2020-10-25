@@ -198,15 +198,15 @@ export const editUserComment = (obj) => {
   return dispatch => {
     questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
     .then((qRes) => {
-      userFunctions('editUserComment', fetch.patch.editUserComment, { uid: qRes.uid, cid: qRes.cid, qid: qRes.qid, difficulty: qRes.difficulty, category: qRes.category, comment: qRes.comment, timestamp: obj.timestamp })
-      .then(cRes => {
-        dispatch(initEditUserComment(cRes))
+      userFunctions('editUserComment', fetch.patch.editUserComment, qRes)
+      .then(uRes => {
+        dispatch(initEditUserComment(uRes))
       })
     })
   }
 }
 
-const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, res: res } }
+const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, question: res.question, comment: res.comment } }
 
 export const deleteUserComment = (obj) => {
   return dispatch => {
