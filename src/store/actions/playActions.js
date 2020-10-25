@@ -121,9 +121,9 @@ const initEditQuestionComment = (obj) => { return { type: actionTypes.EDIT_QUEST
 
 export const deleteQuestionComment = (obj) => {
   return dispatch => {
-    if(obj.type === 'play') dispatch(initDeleteQuestionComment(obj.cid))
-    if(obj.type === 'static') dispatch(deleteStaticQuestionComment(obj.cid))
+    if(obj.question.type === 'play') dispatch(initDeleteQuestionComment(obj))
+    if(obj.question.type === 'static') dispatch(deleteStaticQuestionComment(obj))
   }
 }
 
-const initDeleteQuestionComment = (cid) => { return { type: actionTypes.DELETE_QUESTION_COMMENT, comment: null, cid: cid } }
+const initDeleteQuestionComment = (obj) => { return { type: actionTypes.DELETE_QUESTION_COMMENT, comment: null, cid: obj.comment.cid } }

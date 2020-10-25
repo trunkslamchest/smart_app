@@ -292,23 +292,23 @@ const editUserComment = (currentState, action) => {
 }
 
 const deleteUserComment = (currentState, action) => {
-  let question = { ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid] },
+  let question = { ...currentState.questions[action.question.difficulty].categories[action.question.category][action.question.qid] },
       commentTotals = { ...currentState.questions.totals.all.comments }
 
   commentTotals.total -= 1
-  delete question.comments[action.res.cid]
+  delete question.comments[action.comment.cid]
   if(Object.values(question.comments).length === 0) delete question.comments
 
   return {
     ...currentState,
     questions: { ...currentState.questions,
-      [action.res.difficulty]: {
-        ...currentState.questions[action.res.difficulty],
+      [action.question.difficulty]: {
+        ...currentState.questions[action.question.difficulty],
         categories: {
-          ...currentState.questions[action.res.difficulty].categories,
-          [action.res.category]: {
-            ...currentState.questions[action.res.difficulty].categories[action.res.category],
-            [action.res.qid]: question
+          ...currentState.questions[action.question.difficulty].categories,
+          [action.question.category]: {
+            ...currentState.questions[action.question.difficulty].categories[action.question.category],
+            [action.question.qid]: question
           }
         }
       },

@@ -252,10 +252,10 @@ const initEditStaticQuestionComment = (obj) => {
   }
 }
 
-export const deleteStaticQuestionComment = (cid) => {
+export const deleteStaticQuestionComment = (obj) => {
   return {
     type: actionTypes.DELETE_STATIC_QUESTION_COMMENT,
-    cid: cid
+    cid: obj.comment.cid
   }
 }
 
