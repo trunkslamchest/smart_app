@@ -144,11 +144,7 @@ class commentCard extends React.Component {
         </ul>
     }
 
-    return(
-      <>
-        { commentCard }
-      </>
-    )
+    return <>{ commentCard }</>
   }
 }
 
