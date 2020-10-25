@@ -220,8 +220,9 @@ class AuthController extends React.Component {
   }
 
   authFinalizeLogOut = (status) => {
-    this.setState({ authLogInValid: false, initClearAuthCreds: false, authLogOutValid: true })
     this.props.onAuthUpdateStatus(status, true)
+    this.setState({ authLogInValid: false, initClearAuthCreds: false, authLogOutValid: true })
+    this.props.onClearAchievements()
 
     // this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
     // this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateStatus(null, false) }, 250)
@@ -250,8 +251,9 @@ class AuthController extends React.Component {
   }
 
   authFinalizeDeleteUser = (status) => {
-    this.setState({ authLogInValid: false, initClearAuthCreds: false, initLocalDeleteUser: false, authDeleteUserValid: true })
     this.props.onAuthUpdateStatus(status, true)
+    this.setState({ authLogInValid: false, initClearAuthCreds: false, initLocalDeleteUser: false, authDeleteUserValid: true })
+    this.props.onClearAchievements()
 
     // this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateLoadingStatus(false) }, 250)
     // this.authWaitTimeoutQuarterSec = setTimeout(() => { this.props.onAuthUpdateStatus(null, false) }, 250)
@@ -332,7 +334,8 @@ const mapDispatchToProps = dispatch => {
     // onUpdateUserQuestionIdsFromPlayController: (ids) => dispatch(actions.updateUserQuestionIdsFromPlayController(ids)),
     onDeleteUser: (id) => dispatch(actions.deleteUser(id)),
     // ACHIEVEMENTS
-    onStoreAchievements: () => dispatch(actions.storeAchievements())
+    onStoreAchievements: () => dispatch(actions.storeAchievements()),
+    onClearAchievements: () => dispatch(actions.clearAchievements())
   }
 }
 
