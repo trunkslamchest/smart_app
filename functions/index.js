@@ -424,19 +424,19 @@ exports.deleteUserComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSdelete(req, res);
-    var commentTotalsObj = {}
-    var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid
-    var commentTotalsPath = '/' + req.body.uid + '/questions/totals/all/comments/'
+      if(!!req.body.question && !!req.body.comment.cid) {
+        var commentTotalsObj = {}
+        var commentPath = '/' + req.body.comment.uid + '/questions/' + req.body.question.difficulty + '/categories/' + req.body.question.category + '/' + req.body.question.qid + '/comments/' + req.body.comment.cid
+        var commentTotalsPath = '/' + req.body.comment.uid + '/questions/totals/all/comments/'
 
-    firebase.database().ref(commentPath).remove()
-    firebase.database().ref(commentTotalsPath).once('value', function(snap){
-      if(!!req.body.cid) {
-        commentTotalsObj[commentTotalsPath] = { ...snap.val() }
-        commentTotalsObj[commentTotalsPath].total = commentTotalsObj[commentTotalsPath].total - 1
-        firebase.database().ref().update(commentTotalsObj);
+        firebase.database().ref(commentPath).remove()
+        firebase.database().ref(commentTotalsPath).once('value', function(snap){
+            commentTotalsObj[commentTotalsPath] = { ...snap.val() }
+            commentTotalsObj[commentTotalsPath].total = commentTotalsObj[commentTotalsPath].total - 1
+            firebase.database().ref().update(commentTotalsObj);
+        })
       }
-      res.json({ difficulty: req.body.difficulty, category: req.body.category, qid: req.body.qid, cid: req.body.cid }).status(200)
-    })
+      res.json(req.body).status(200)
     // res.send('done')
 });
 
@@ -444,14 +444,12 @@ exports.editUserComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSdelete(req, res);
-    let resObj = {}
-    if(!!req.body.uid && !!req.body.cid){
-      var commentPath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid
-      firebase.database().ref(commentPath).update({comment: req.body.comment})
-      resObj = req.body
+    if(!!req.body.question && !!req.body.comment){
+      var commentPath = '/' + req.body.comment.uid + '/questions/' + req.body.question.difficulty + '/categories/' + req.body.question.category + '/' + req.body.question.qid + '/comments/' + req.body.comment.cid
+      var updateObj = { comment: req.body.comment.comment, timestamp: req.body.comment.timestamp }
+      firebase.database().ref(commentPath).update(updateObj)
     }
-
-    res.json(resObj).status(200)
+    res.json(req.body).status(200)
     // res.send('done')
 });
 
@@ -1208,9 +1206,10 @@ exports.deleteQuestionComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSdelete(req, res);
-    firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/comments/' + req.body.cid).remove()
-
-    res.json({ difficulty: req.body.difficulty, category: req.body.category, qid: req.body.qid, cid: req.body.cid }).status(200)
+    if(!!req.body.question && !!req.body.comment){
+      firebase.database().ref('/' + req.body.question.difficulty + '/categories/' + req.body.question.category + '/' + req.body.question.qid + '/comments/' + req.body.comment.cid).remove()
+    }
+    res.json(req.body).status(200)
     // res.send('done')
 });
 
@@ -1218,24 +1217,12 @@ exports.editQuestionComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSdelete(req, res);
-    let resObj = {}
-    if(!!req.body.uData && !!req.body.cData){
-      resObj = {
-        qid: req.body.uData.qid,
-        uid: req.body.uData.uid,
-        cid: req.body.uData.cid,
-        answer: req.body.uData.answer,
-        difficulty: req.body.uData.difficulty,
-        category: req.body.uData.category,
-        correct_answer: req.body.uData.correct_answer,
-        result: req.body.uData.result,
-        question: req.body.uData.question,
-        comment: req.body.cData.comment,
-        user_name: req.body.cData.user
-      }
-      firebase.database().ref('/' + req.body.uData.difficulty + '/categories/' + req.body.uData.category + '/' + req.body.uData.qid + '/comments/' + req.body.uData.cid).update(req.body.cData)
+    if(!!req.body.question && !!req.body.comment){
+      var commentPath = '/' + req.body.question.difficulty + '/categories/' + req.body.question.category + '/' + req.body.question.qid + '/comments/' + req.body.comment.cid
+      var updateObj = { comment: req.body.comment.comment, timestamp: req.body.comment.timestamp }
+      firebase.database().ref(commentPath).update(updateObj)
     }
 
-    res.json(resObj).status(200)
+    res.json(req.body).status(200)
     // res.send('done')
 });
