@@ -12,7 +12,7 @@ import './resultsComment.css'
 
 const ResultsComment = (props) => {
 
-  let commentForm, allComments, distribComments = <h3>No one has commented on this question yet</h3>
+  let commentForm, allComments, distribComments = <h3>There are currently no comments for this question</h3>
 
   const loading =
     <div className='loading_wrapper_comments'>

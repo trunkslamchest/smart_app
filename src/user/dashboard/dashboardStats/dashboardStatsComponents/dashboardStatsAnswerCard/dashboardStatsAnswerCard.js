@@ -41,7 +41,7 @@ const DashboardStatsAnswerCard = (props) => {
             </div>
         )}
       </div>
-  } else distribComments = <h3>You haven't commented on this question yet</h3>
+  } else distribComments = <h3>You have no comments on this question</h3>
 
   return(
     <div className="dashboard_stats_answer_card_container">

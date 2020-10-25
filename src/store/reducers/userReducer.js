@@ -291,7 +291,7 @@ const deleteUserComment = (currentState, action) => {
 
   commentTotals.total -= 1
   delete question.comments[action.res.cid]
-  if(commentTotals.total === 0) delete question.comments
+  if(Object.values(question.comments).length === 0) delete question.comments
 
   return {
     ...currentState,
