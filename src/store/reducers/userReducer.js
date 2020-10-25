@@ -272,8 +272,9 @@ const editUserComment = (currentState, action) => {
               comments: {
                 ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
                 [action.res.cid]: {
-                ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments[action.res.cid],
-                comment: action.res.comment
+                  ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments[action.res.cid],
+                  comment: action.res.comment,
+                  timestamp: action.res.timestamp
                 }
               }
             }

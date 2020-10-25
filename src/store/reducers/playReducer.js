@@ -119,11 +119,12 @@ const editQuestionComment = (currentState, action) => {
         ...currentState.question.comments,
         [action.cid]: {
           ...currentState.question.comments[action.cid],
-          comment: action.comment
+          comment: action.comment,
+          timestamp: action.timestamp
         }
       }
     },
-    comment: { ...currentState.comment, comment: action.comment }
+    comment: { ...currentState.comment, comment: action.comment, timestamp: action.timestamp }
   }
 }
 

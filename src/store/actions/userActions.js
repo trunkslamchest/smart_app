@@ -194,6 +194,20 @@ export const initUpdateUserCommentsFromPlayController = (res) => {
   }
 }
 
+export const editUserComment = (obj) => {
+  return dispatch => {
+    questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
+    .then((qRes) => {
+      userFunctions('editUserComment', fetch.patch.editUserComment, { uid: qRes.uid, cid: qRes.cid, qid: qRes.qid, difficulty: qRes.difficulty, category: qRes.category, comment: qRes.comment, timestamp: obj.timestamp })
+      .then(cRes => {
+        dispatch(initEditUserComment(cRes))
+      })
+    })
+  }
+}
+
+const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, res: res } }
+
 export const deleteUserComment = (obj) => {
   return dispatch => {
     questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, { cid: obj.cid, qid: obj.qid, difficulty: obj.difficulty, category: obj.category })
@@ -206,17 +220,3 @@ export const deleteUserComment = (obj) => {
 }
 
 const initDeleteUserComment = (res) => { return { type: actionTypes.DELETE_USER_COMMENT, res: res } }
-
-export const editUserComment = (obj) => {
-  return dispatch => {
-    questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
-    .then((qRes) => {
-      userFunctions('editUserComment', fetch.patch.editUserComment, { uid: qRes.uid, cid: qRes.cid, qid: qRes.qid, difficulty: qRes.difficulty, category: qRes.category, comment: qRes.comment })
-      .then(cRes => {
-        dispatch(initEditUserComment(cRes))
-      })
-    })
-  }
-}
-
-const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, res: res } }

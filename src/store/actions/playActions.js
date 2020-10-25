@@ -7,7 +7,8 @@ import {
 import {
   updateStaticQuestionVotes,
   updateStaticQuestionComments,
-  deleteStaticQuestionComment
+  deleteStaticQuestionComment,
+  editStaticQuestionComment
 } from './questionsActions'
 
 import { fetch } from '../../utility/paths'
@@ -120,8 +121,9 @@ const initDeleteQuestionComment = (cid) => { return { type: actionTypes.DELETE_Q
 
 export const editQuestionComment = (obj) => {
   return dispatch => {
-    dispatch(initEditQuestionComment(obj))
+    if(obj.type === 'play') dispatch(initEditQuestionComment(obj))
+    if(obj.type === 'static') dispatch(editStaticQuestionComment(obj))
   }
 }
 
-const initEditQuestionComment = (obj) => { return { type: actionTypes.EDIT_QUESTION_COMMENT, comment: obj.comment, cid: obj.cid } }
+const initEditQuestionComment = (obj) => { return { type: actionTypes.EDIT_QUESTION_COMMENT, cid: obj.cid, comment: obj.comment, timestamp: obj.timestamp } }

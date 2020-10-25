@@ -235,6 +235,15 @@ export const clearStaticUserComment = () => {
   }
 }
 
+export const editStaticQuestionComment = (obj) => {
+  return {
+    type: actionTypes.EDIT_STATIC_QUESTION_COMMENT,
+    cid: obj.cid,
+    comment: obj.comment,
+    timestamp: obj.timestamp
+  }
+}
+
 export const deleteStaticQuestionComment = (cid) => {
   return {
     type: actionTypes.DELETE_STATIC_QUESTION_COMMENT,

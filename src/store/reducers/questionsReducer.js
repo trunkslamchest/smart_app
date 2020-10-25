@@ -115,6 +115,24 @@ const clearQuestionStatus = (currentState, action) => { return { ...currentState
 const clearStaticQuestion = (currentState, action) => { return {...currentState, staticQuestion: action.res } }
 const clearStaticUserComment = (currentState, action) => { return {...currentState, comment: action.comment } }
 
+const editStaticQuestionComment = (currentState, action) => {
+  return {
+    ...currentState,
+    staticQuestion: {
+      ...currentState.staticQuestion,
+      comments: {
+        ...currentState.staticQuestion.comments,
+        [action.cid]: {
+          ...currentState.staticQuestion.comments[action.cid],
+          comment: action.comment,
+          timestamp: action.timestamp
+        }
+      }
+    },
+    comment: { ...currentState.comment, comment: action.comment, timestamp: action.timestamp }
+  }
+}
+
 const deleteStaticQuestionComment = (currentState, action) => {
   let uComments = { ...currentState.staticQuestion.comments }
   delete uComments[action.cid]
@@ -148,6 +166,7 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_STATIC_QUESTION_VOTE_STATUS: return updateStaticQuestionVoteStatus(currentState, action)
     case actionTypes.UPDATE_STATIC_QUESTION_COMMENT_STATUS: return updateStaticQuestionCommentStatus(currentState, action)
     case actionTypes.UPDATE_STATIC_USER_VOTE: return updateStaticUserVote(currentState, action)
+    case actionTypes.EDIT_STATIC_QUESTION_COMMENT: return editStaticQuestionComment(currentState, action)
     case actionTypes.DELETE_STATIC_QUESTION_COMMENT: return deleteStaticQuestionComment(currentState, action)
     case actionTypes.VOTE_LOADING: return voteLoading(currentState, action)
     case actionTypes.COMMENT_LOADING: return commentLoading(currentState, action)
@@ -155,7 +174,6 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_QUESTION_STATUS: return clearQuestionStatus(currentState, action)
     case actionTypes.CLEAR_STATIC_QUESTION: return clearStaticQuestion(currentState, action)
     case actionTypes.CLEAR_STATIC_USER_COMMENT: return clearStaticUserComment(currentState, action)
-
     case actionTypes.CLEAR_STATIC_QUESTION_VOTE_STATUS: return clearStaticQuestionVoteStatus(currentState, action)
     case actionTypes.CLEAR_STATIC_QUESTION_COMMENT_STATUS: return clearStaticQuestionCommentStatus(currentState, action)
     case actionTypes.CLEAR_STATIC_USER_QUESTION: return clearStaticUserQuestion(currentState, action)

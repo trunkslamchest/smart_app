@@ -72,6 +72,7 @@ export {
   updateStaticUserVote,
   updateStaticQuestionComments,
   updateStaticQuestionCommentStatus,
+  editStaticQuestionComment,
   deleteStaticQuestionComment,
   clearStaticQuestion,
   clearStaticUserQuestion,

@@ -8,9 +8,13 @@ import {
   updateCommentStatus
 } from '../../../../store/actions/actionIndex'
 
-import CommentFormErrorItem from '../commentFormErrorItem/commentFormErrorItem'
+import getTime from '../../../../utility/getTime'
+
 
 import validateComment from '../../../../utility/validation/validateComment'
+
+import CommentFormErrorItem from '../commentFormErrorItem/commentFormErrorItem'
+
 
 import './commentCard.css'
 import './editComment.css'
@@ -55,19 +59,19 @@ class commentCard extends React.Component {
         uCommentObj = {
           type: 'static',
           uData: {
-            qid: this.props.question.staticQuestion.qid,
-            difficulty: this.props.question.staticQuestion.difficulty,
-            category: this.props.question.staticQuestion.category
+            qid: this.props.questions.staticQuestion.qid,
+            difficulty: this.props.questions.staticQuestion.difficulty,
+            category: this.props.questions.staticQuestion.category
           }
         }
       }
 
       uCommentObj.uData['uid'] = localStorage.id
       uCommentObj.uData['cid'] = this.props.comment.cid
-      uCommentObj.cData = { comment: this.state.editedComment, user: this.props.user.info.user_name }
+      uCommentObj.cData = { comment: this.state.editedComment, user: this.props.user.info.user_name, timestamp: getTime('fullDate') }
 
       this.props.onEditUserComment(uCommentObj)
-      this.props.onEditQuestionComment({ comment: this.state.editedComment, cid: this.props.comment.cid })
+      this.props.onEditQuestionComment({ type: uCommentObj.type, comment: this.state.editedComment, cid: this.props.comment.cid, timestamp: getTime('fullDate') })
       this.setState({ enableEditCommentButton: false, showEditCommentForm: false })
     }
   }
