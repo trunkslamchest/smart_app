@@ -11,9 +11,6 @@ import StoreController from './store/controllers/storeController'
 import PlayController from './store/controllers/playController'
 
 import Header from './UI/header/header'
-import HomeContainer from './home/HomeContainer'
-import UserProfileContainer from './user/profile/userProfileContainer'
-import ResultsContainer from './play/results/resultsContainer'
 import Footer from './UI/footer/footer'
 
 import LogIn from './user/logIn/logIn'
@@ -21,7 +18,10 @@ import SignUp from './user/signUp/signUp'
 import LogOut from './user/logOut/logOut'
 import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
+import HomeContainer from './home/HomeContainer'
 import DashboardContainer from './user/dashboard/dashboardContainer'
+import UserProfileContainer from './user/profile/userProfileContainer'
+import ResultsContainer from './play/results/resultsContainer'
 
 import TermsOfService from './docs/termsOfService'
 import Privacy from './docs/privacy'

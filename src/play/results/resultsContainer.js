@@ -34,7 +34,6 @@ class ResultsContainer extends React.Component{
     initStaticUserResults: false,
     showLegend: false,
     showNextQuestionButton: false,
-    staticUserQuestion: null,
     qid: null
   }
 
@@ -108,15 +107,14 @@ class ResultsContainer extends React.Component{
               <ResultsStatsContainer
                 history={ this.props.history }
                 staticResults={ this.props.staticResults }
-                staticUserQuestion={ this.state.staticUserQuestion }
               />
             </Route>
             <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/discuss' }>
               <ResultsDiscussContainer
-              cat={ this.state.cat }
-              diff={ this.state.diff }
-              history={ this.props.history }
-              qid={ this.state.qid }
+                cat={ this.state.cat }
+                diff={ this.state.diff }
+                history={ this.props.history }
+                qid={ this.state.qid }
                 staticResults={ this.props.staticResults }
               />
             </Route>
