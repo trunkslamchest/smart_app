@@ -16,7 +16,7 @@ const storeUserInfo = (currentState, action) => { return { ...currentState, info
 
 const updateUserInfo = (currentState, action) => { return{ ...currentState, info: action.info } }
 
-const clearUserInfo = (currentState, action) => { return { ...currentState, info: action.info } }
+const clearUserInfo = (currentState, action) => { return { ...currentState, info: action.info, experience: action.experience, achievements: action.achievements } }
 
 const storeUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
 

@@ -57,7 +57,7 @@ export const clearUserInfo = () => {
   }
 }
 
-const initClearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, info: null } }
+const initClearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, info: null, experience: null, achievements: null } }
 
 export const storeUserQuestions = (questions) => {
   return dispatch => {
