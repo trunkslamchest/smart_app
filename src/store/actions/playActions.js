@@ -6,7 +6,8 @@ import {
 
 import {
   updateStaticQuestionVotes,
-  updateStaticQuestionComments
+  updateStaticQuestionComments,
+  deleteStaticQuestionComment
 } from './questionsActions'
 
 import { fetch } from '../../utility/paths'
@@ -108,9 +109,10 @@ const updateComments = (res) => { return { type: actionTypes.SET_COMMENT, commen
 
 export const resetComment = () => { return { type: actionTypes.RESET_COMMENT, comment: null, commentStatus: null, commentLoading: false } }
 
-export const deleteQuestionComment = (cid) => {
+export const deleteQuestionComment = (obj) => {
   return dispatch => {
-    dispatch(initDeleteQuestionComment(cid))
+    if(obj.type === 'play') dispatch(initDeleteQuestionComment(obj.cid))
+    if(obj.type === 'static') dispatch(deleteStaticQuestionComment(obj.cid))
   }
 }
 

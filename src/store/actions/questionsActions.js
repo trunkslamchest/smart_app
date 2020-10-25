@@ -235,6 +235,13 @@ export const clearStaticUserComment = () => {
   }
 }
 
+export const deleteStaticQuestionComment = (cid) => {
+  return {
+    type: actionTypes.DELETE_STATIC_QUESTION_COMMENT,
+    cid: cid
+  }
+}
+
 export const updateStaticQuestionCommentStatus = (status) => {
   return {
     type: actionTypes.UPDATE_STATIC_QUESTION_COMMENT_STATUS,

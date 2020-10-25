@@ -115,6 +115,17 @@ const clearQuestionStatus = (currentState, action) => { return { ...currentState
 const clearStaticQuestion = (currentState, action) => { return {...currentState, staticQuestion: action.res } }
 const clearStaticUserComment = (currentState, action) => { return {...currentState, comment: action.comment } }
 
+const deleteStaticQuestionComment = (currentState, action) => {
+  let uComments = { ...currentState.staticQuestion.comments }
+  delete uComments[action.cid]
+  if(Object.keys(uComments).length === 0) uComments = null
+  return {
+    ...currentState,
+    staticQuestion: { ...currentState.staticQuestion, comments: uComments }
+  }
+}
+
+
 const clearStaticQuestionVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus } }
 const clearStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }
 
@@ -137,6 +148,7 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.UPDATE_STATIC_QUESTION_VOTE_STATUS: return updateStaticQuestionVoteStatus(currentState, action)
     case actionTypes.UPDATE_STATIC_QUESTION_COMMENT_STATUS: return updateStaticQuestionCommentStatus(currentState, action)
     case actionTypes.UPDATE_STATIC_USER_VOTE: return updateStaticUserVote(currentState, action)
+    case actionTypes.DELETE_STATIC_QUESTION_COMMENT: return deleteStaticQuestionComment(currentState, action)
     case actionTypes.VOTE_LOADING: return voteLoading(currentState, action)
     case actionTypes.COMMENT_LOADING: return commentLoading(currentState, action)
     case actionTypes.CLEAR_QUESTION_TOTALS: return clearQuestionTotals(currentState, action)

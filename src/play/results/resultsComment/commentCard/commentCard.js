@@ -41,26 +41,34 @@ class commentCard extends React.Component {
     this.setState({ editCommentForm: authCheck })
 
     if (authCheck.valid) {
-      this.setState({ enableEditCommentButton: false })
-      this.props.onEditUserComment({
-        uData: {
-          qid: this.props.play.question.id,
-          uid: localStorage.id,
-          cid: this.props.comment.cid,
-          answer: this.props.play.answer.choice,
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-          correct_answer: this.props.play.results.correct_answer,
-          result: this.props.play.results.result,
-          question: this.props.play.question.question
-        },
-        cData: {
-          comment: this.state.editedComment,
-          user: this.props.user.info.user_name
+      let uCommentObj = {}
+      if(!this.props.staticResults) {
+        uCommentObj = {
+          type: 'play',
+          uData: {
+            qid: this.props.play.question.id,
+            difficulty: this.props.play.question.difficulty,
+            category: this.props.play.question.category,
+          }
         }
-      })
+      } else {
+        uCommentObj = {
+          type: 'static',
+          uData: {
+            qid: this.props.question.staticQuestion.qid,
+            difficulty: this.props.question.staticQuestion.difficulty,
+            category: this.props.question.staticQuestion.category
+          }
+        }
+      }
+
+      uCommentObj.uData['uid'] = localStorage.id
+      uCommentObj.uData['cid'] = this.props.comment.cid
+      uCommentObj.cData = { comment: this.state.editedComment, user: this.props.user.info.user_name }
+
+      this.props.onEditUserComment(uCommentObj)
       this.props.onEditQuestionComment({ comment: this.state.editedComment, cid: this.props.comment.cid })
-      this.setState({ showEditCommentForm: false })
+      this.setState({ enableEditCommentButton: false, showEditCommentForm: false })
     }
   }
 
@@ -68,18 +76,32 @@ class commentCard extends React.Component {
 
   render() {
 
-    let deleteButton = <></>, editButton = <></>, distribEditCommentErrors
+    let deleteButton, editButton, distribEditCommentErrors
 
     if(this.props.comment.user === this.props.user.info.user_name){
       const onDeleteCommentFunctions = () => {
-        this.props.onDeleteUserComment({
-          cid: this.props.comment.cid,
-          qid: this.props.play.question.id,
-          uid: localStorage.id,
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category
-        })
-        this.props.onDeleteQuestionComment(this.props.comment.cid)
+        let commentObj = {}
+        if(!this.props.staticResults){
+          commentObj = {
+            type: 'play',
+            qid: this.props.play.question.id,
+            difficulty: this.props.play.question.difficulty,
+            category: this.props.play.question.category
+          }
+        } else {
+          commentObj = {
+            type: 'static',
+            qid: this.props.questions.staticQuestion.qid,
+            difficulty: this.props.questions.staticQuestion.difficulty,
+            category: this.props.questions.staticQuestion.category
+          }
+        }
+
+        commentObj['cid'] = this.props.comment.cid
+        commentObj['uid'] = localStorage.id
+
+        this.props.onDeleteQuestionComment({ type: commentObj.type, cid: this.props.comment.cid })
+        this.props.onDeleteUserComment(commentObj)
       }
 
       const onEditCommentFunctions = () => { this.setState({ showEditCommentForm: true }) }
@@ -179,6 +201,7 @@ class commentCard extends React.Component {
 const mapStateToProps = state => {
   return {
     play: state.play,
+    questions: state.questions,
     user: state.user
   }
 }

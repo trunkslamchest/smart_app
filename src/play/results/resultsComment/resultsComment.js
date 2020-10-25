@@ -33,6 +33,7 @@ const ResultsComment = (props) => {
         key={ comment[0] }
         onAddComment={ props.onAddComment }
         onChangeComment={ props.onChangeComment }
+        staticResults={ props.staticResults }
         userComment= { props.comment }
       />
     )
@@ -47,6 +48,7 @@ const ResultsComment = (props) => {
         enableAddCommentButton = { props.enableAddCommentButton }
         onAddComment={ props.onAddComment }
         onChangeComment={ props.onChangeComment }
+        staticResults={ props.staticResults }
       />
   }
 
