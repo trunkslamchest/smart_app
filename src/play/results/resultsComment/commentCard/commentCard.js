@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { routes } from '../../../../utility/paths'
 import {
   deleteUserComment,
   deleteQuestionComment,
@@ -50,7 +52,7 @@ class commentCard extends React.Component {
 
   render() {
 
-    let deleteButton, editButton, editCommentCancelButton, distribEditCommentErrors, distribButtons, commentCard
+    let deleteButton, editButton, editCommentCancelButton, distribEditCommentErrors, distribButtons, commentCard, commentUser = this.props.comment.user
 
     if(this.props.comment.user === this.props.user.info.user_name){
 
@@ -86,7 +88,7 @@ class commentCard extends React.Component {
       editButton = distribButtons[0]
       deleteButton = distribButtons[1]
       editCommentCancelButton = distribButtons[2]
-    }
+    } else commentUser = <Link to={ routes.user_profile + '/' + this.props.comment.user } target='_blank'>{ this.props.comment.user }</Link>
 
     if(!this.state.editCommentForm.valid) {
       if(this.state.editCommentForm.errors){
@@ -131,7 +133,7 @@ class commentCard extends React.Component {
       commentCard =
         <ul>
           <div className='results_all_comments_comment_header'>
-            <h5>{ this.props.comment.user }</h5>
+            <h5>{ commentUser }</h5>
             <span>{ this.props.comment.timestamp }</span>
           </div>
           <li>

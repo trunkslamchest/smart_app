@@ -257,6 +257,40 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
   }
 }
 
+const editUserComment = (currentState, action) => {
+  let questions = { ...currentState.questions },
+      difficulty = action.question.difficulty,
+      category = action.question.category,
+      qid = action.question.qid,
+      cid = action.comment.cid
+
+  return {
+    ...currentState,
+    questions: { ...questions,
+      [difficulty]: {
+        ...questions[difficulty],
+        categories: {
+          ...questions[difficulty].categories,
+          [category]: {
+            ...questions[difficulty].categories[category],
+            [qid]: {
+              ...questions[difficulty].categories[category][qid],
+              comments: {
+                ...questions[difficulty].categories[category][qid].comments,
+                [cid]: {
+                  ...questions[difficulty].categories[category][qid].comments[cid],
+                  comment: action.comment.comment,
+                  timestamp: action.comment.timestamp
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 // const editUserComment = (currentState, action) => {
 //   let updateQuestions = { ...currentState.questions },
 //       difficulty = action.question.difficulty,
@@ -264,88 +298,14 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
 //       qid = action.question.qid,
 //       cid = action.comment.cid
 
-  // return {
-    // ...currentState,
-    // questions: { ...questions,
-    //   [difficulty]: {
-    //     ...questions[difficulty],
-    //     categories: {
-    //       ...questions[difficulty].categories,
-    //       [category]: {
-    //         ...questions[difficulty].categories[category],
-    //         [qid]: {
-    //           ...questions[difficulty].categories[category][qid],
-    //           comments: {
-    //             ...questions[difficulty].categories[category][qid].comments,
-    //             [cid]: {
-    //               ...questions[difficulty].categories[category][qid].comments[cid],
-    //               comment: action.comment.comment,
-    //               timestamp: action.comment.timestamp
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+//   updateQuestions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
+//   updateQuestions[difficulty].categories[category][qid].comments[cid].timestamp = action.comment.timestamp
+
+//   return {
+//     ...currentState,
+//     questions: updateQuestions
 //   }
 // }
-
-const editUserComment = (currentState, action) => {
-  let updateQuestions = { ...currentState.questions },
-      difficulty = action.question.difficulty,
-      category = action.question.category,
-      qid = action.question.qid,
-      cid = action.comment.cid
-
-
-  // let temp1 = {
-  //   ...questions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
-  // }
-
-  // updateQuestions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
-  // updateQuestions[difficulty].categories[category][qid].comments[cid].timestamp = action.comment.timestamp
-
-  currentState.questions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
-  currentState.questions[difficulty].categories[category][qid].comments[cid].timestamp = action.comment.timestamp
-
-  // console.log(questions)
-  // console.log(questions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment)
-
-  // console.log(temp1)
-
-
-
-  return currentState
-
-    // ...currentState,
-    // questions: updateQuestions
-
-    // ...currentState,
-    // questions: { ...questions,
-    //   [difficulty]: {
-    //     ...questions[difficulty],
-    //     categories: {
-    //       ...questions[difficulty].categories,
-    //       [category]: {
-    //         ...questions[difficulty].categories[category],
-    //         [qid]: {
-    //           ...questions[difficulty].categories[category][qid],
-    //           comments: {
-    //             ...questions[difficulty].categories[category][qid].comments,
-    //             [cid]: {
-    //               ...questions[difficulty].categories[category][qid].comments[cid],
-    //               comment: action.comment.comment,
-    //               timestamp: action.comment.timestamp
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-  // }
-}
 
 const deleteUserComment = (currentState, action) => {
   let question = { ...currentState.questions[action.question.difficulty].categories[action.question.category][action.question.qid] },
