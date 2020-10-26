@@ -23,21 +23,24 @@ const DashboardProfileContainer = (props) => {
   let firstName = checkBlank(props.user.info.first_name, 'Update your profile to add your First Name')
   let lastName = checkBlank(props.user.info.last_name, 'Update your profile to add your Last Name')
   let gender = checkBlank(props.user.info.gender, 'Update your profile to add your Gender')
+  let genderPronouns = checkBlank(props.user.info.gender_pronouns, 'Update your profile to add your Gender Pronouns')
+
   let dobDay = checkBlank(props.user.info.dob.day, 'Update your profile to add your Birth Day')
   let dobMonth = checkBlank(props.user.info.dob.month, 'Update your profile to add your Birth Month')
   let dobYear = checkBlank(props.user.info.dob.year, 'Update your profile to add your Birth Year')
   let fullDOB = dobYear.field.length === 0 ? `${ dobMonth.field } ${ formatDay(dobDay.field) }` : `${ dobMonth.field } ${ formatDay(dobDay.field) }, ${ dobYear.field }`
   let joinDate = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
 
+  console.log(genderPronouns)
+
   const profileFields = [
     { name: 'Name', data: `${firstName.field} ${lastName.field}`, error: [ firstName.error, lastName.error ] },
     { name: 'Bio', data: bio.field, error: bio.error },
+    { name: 'Gender Pronouns', data: genderPronouns.field, error: genderPronouns.error },
     { name: 'Gender', data: gender.field, error: gender.error },
     { name: 'Date Of Birth', data: fullDOB, error: [ dobDay.error, dobMonth.error, dobYear.error ] },
     { name: 'Join Date', data: joinDate }
   ]
-
-  console.log(profileFields)
 
   let distribProfileFields = profileFields.map(field => {
     return (

@@ -11,7 +11,6 @@ const DashboardSettingsPrivacyProfileCard = (props) => {
         id={ props.setting.name }
         name={ props.setting.name }
         className='dashboard_settings_privacy_profile_card_check'
-        // disabled={ !props.enableInput }
         checked={ props.status }
         onChange={ props.onChecked }
         value={ props.status }

@@ -21,6 +21,7 @@ class DashboardEditProfile extends React.Component {
     email: '',
     first_name: '',
     gender: '',
+    gender_pronouns: '',
     last_name: '',
     user_name: '',
     errors: [],
@@ -40,6 +41,7 @@ class DashboardEditProfile extends React.Component {
       email: this.props.user.info.email,
       first_name: this.props.user.info.first_name,
       gender: this.props.user.info.gender,
+      gender_pronouns: this.props.user.info.gender_pronouns,
       last_name: this.props.user.info.last_name,
       user_name: this.props.user.info.user_name,
       pulledStore: true
@@ -80,6 +82,7 @@ class DashboardEditProfile extends React.Component {
         email: this.state.email,
         first_name: this.state.first_name,
         gender: this.state.gender,
+        gender_pronouns: this.state.gender_pronouns,
         last_name: this.state.last_name,
         user_name: this.state.user_name,
         join_date: this.props.user.info.join_date
@@ -94,6 +97,7 @@ class DashboardEditProfile extends React.Component {
       email: this.props.user.info.email,
       first_name: this.props.user.info.first_name,
       gender: this.props.user.info.gender,
+      gender_pronouns: this.props.user.info.gender_pronouns,
       last_name: this.props.user.info.last_name,
       user_name: this.props.user.info.user_name,
     })
@@ -113,6 +117,7 @@ class DashboardEditProfile extends React.Component {
       email: '',
       first_name: '',
       gender: '',
+      gender_pronouns: '',
       last_name: '',
       user_name: '',
       errors: [],
@@ -133,6 +138,7 @@ class DashboardEditProfile extends React.Component {
         errors={ this.state.errors }
         first_name={ this.state.first_name }
         gender={ this.state.gender }
+        gender_pronouns={ this.state.gender_pronouns }
         last_name={ this.state.last_name }
         onChange={ this.onChange }
         onDOBChange={ this.onDOBChange }

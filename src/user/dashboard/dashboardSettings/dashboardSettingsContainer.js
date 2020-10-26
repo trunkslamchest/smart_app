@@ -23,6 +23,7 @@ class DashboardSettingsContainer extends React.Component {
           showEmail: false,
           showExperience: false,
           showGender: false,
+          showGenderPronouns: false,
           showRealName: false,
           showStats: false
         }
@@ -53,6 +54,7 @@ class DashboardSettingsContainer extends React.Component {
             showEmail: this.props.user.settings.privacy.profile.showEmail,
             showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
+            showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
             showStats: this.props.user.settings.privacy.profile.showStats
           }
@@ -102,6 +104,7 @@ class DashboardSettingsContainer extends React.Component {
             showEmail: this.props.user.settings.privacy.profile.showEmail,
             showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
+            showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
             showStats: this.props.user.settings.privacy.profile.showStats
           }
@@ -128,6 +131,7 @@ class DashboardSettingsContainer extends React.Component {
           showEmail={ this.state.settings.privacy.profile.showEmail }
           showExperience={ this.state.settings.privacy.profile.showExperience }
           showGender={ this.state.settings.privacy.profile.showGender }
+          showGenderPronouns={ this.state.settings.privacy.profile.showGenderPronouns }
           showRealName={ this.state.settings.privacy.profile.showRealName }
           showStats={ this.state.settings.privacy.profile.showStats }
         />

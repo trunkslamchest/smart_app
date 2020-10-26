@@ -9,7 +9,11 @@ import './userProfileInfoContainer.css'
 
 const UserProfileInfoContainer = (props) => {
 
-  let nameBlock = <></>, bioBlock = <></>, genderBlock = <></>, ageBlock = <></>
+  let ageBlock = <></>,
+      bioBlock = <></>,
+      genderBlock = <></>,
+      genderPronounsBlock = <></>,
+      nameBlock = <></>
 
   const userNameEmailBlock =
     <div className="user_profile_info_sub_container">
@@ -40,6 +44,13 @@ const UserProfileInfoContainer = (props) => {
       </div>
   }
 
+  if(!!props.info.gender_pronouns && props.info.gender_pronouns !== 'null') {
+    genderPronounsBlock =
+      <div className="user_profile_info_sub_container">
+        <span>{ props.info.gender_pronouns }</span>
+      </div>
+  }
+
   if(!!props.info.dob && props.info.dob.year !== 0) {
     ageBlock =
       <div className="user_profile_info_sub_container">
@@ -59,6 +70,7 @@ const UserProfileInfoContainer = (props) => {
       { nameBlock }
       { bioBlock }
       { genderBlock }
+      { genderPronounsBlock }
       { ageBlock }
       { joinDateBlock }
     </div>
