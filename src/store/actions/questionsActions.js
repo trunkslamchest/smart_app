@@ -238,7 +238,7 @@ export const clearStaticUserComment = () => {
 export const editStaticQuestionComment = (obj) => {
   return dispatch => {
     dispatch(commentLoading(true))
-    dispatch(updateStaticQuestionCommentStatus('updateStaticQuestionComment'))
+    dispatch(updateStaticQuestionCommentStatus('editStaticQuestionComment'))
     dispatch(initEditStaticQuestionComment(obj))
   }
 }

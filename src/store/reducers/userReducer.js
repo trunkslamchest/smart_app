@@ -257,38 +257,94 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
   }
 }
 
+// const editUserComment = (currentState, action) => {
+//   let updateQuestions = { ...currentState.questions },
+//       difficulty = action.question.difficulty,
+//       category = action.question.category,
+//       qid = action.question.qid,
+//       cid = action.comment.cid
+
+  // return {
+    // ...currentState,
+    // questions: { ...questions,
+    //   [difficulty]: {
+    //     ...questions[difficulty],
+    //     categories: {
+    //       ...questions[difficulty].categories,
+    //       [category]: {
+    //         ...questions[difficulty].categories[category],
+    //         [qid]: {
+    //           ...questions[difficulty].categories[category][qid],
+    //           comments: {
+    //             ...questions[difficulty].categories[category][qid].comments,
+    //             [cid]: {
+    //               ...questions[difficulty].categories[category][qid].comments[cid],
+    //               comment: action.comment.comment,
+    //               timestamp: action.comment.timestamp
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+//   }
+// }
+
 const editUserComment = (currentState, action) => {
-  let questions = currentState.questions,
+  let updateQuestions = { ...currentState.questions },
       difficulty = action.question.difficulty,
       category = action.question.category,
       qid = action.question.qid,
       cid = action.comment.cid
 
-  return {
-    ...currentState,
-    questions: { ...questions,
-      [difficulty]: {
-        ...questions[difficulty],
-        categories: {
-          ...questions[difficulty].categories,
-          [category]: {
-            ...questions[difficulty].categories[category],
-            [qid]: {
-              ...questions[difficulty].categories[category][qid],
-              comments: {
-                ...questions[difficulty].categories[category][qid].comments,
-                [cid]: {
-                  ...questions[difficulty].categories[category][qid].comments[cid],
-                  comment: action.comment.comment,
-                  timestamp: action.comment.timestamp
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+
+  // let temp1 = {
+  //   ...questions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
+  // }
+
+  // updateQuestions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
+  // updateQuestions[difficulty].categories[category][qid].comments[cid].timestamp = action.comment.timestamp
+
+  currentState.questions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
+  currentState.questions[difficulty].categories[category][qid].comments[cid].timestamp = action.comment.timestamp
+
+  // console.log(questions)
+  // console.log(questions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment)
+
+  // console.log(temp1)
+
+
+
+  return currentState
+
+    // ...currentState,
+    // questions: updateQuestions
+
+    // ...currentState,
+    // questions: { ...questions,
+    //   [difficulty]: {
+    //     ...questions[difficulty],
+    //     categories: {
+    //       ...questions[difficulty].categories,
+    //       [category]: {
+    //         ...questions[difficulty].categories[category],
+    //         [qid]: {
+    //           ...questions[difficulty].categories[category][qid],
+    //           comments: {
+    //             ...questions[difficulty].categories[category][qid].comments,
+    //             [cid]: {
+    //               ...questions[difficulty].categories[category][qid].comments[cid],
+    //               comment: action.comment.comment,
+    //               timestamp: action.comment.timestamp
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+  // }
 }
 
 const deleteUserComment = (currentState, action) => {

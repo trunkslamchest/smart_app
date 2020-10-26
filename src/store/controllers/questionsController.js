@@ -15,6 +15,7 @@ class QuestionsController extends React.Component {
       if(this.props.questions.status === 'StaticQuestionSuccess')
         if(this.props.questions.voteStatus === 'updateStaticUserVote' && this.props.questions.vote) this.updateStaticUserVoteModule()
         if(this.props.questions.commentStatus === 'updateStaticQuestionComment' && this.props.questions.comment) this.updateStaticUserCommentModule()
+        if(this.props.questions.commentStatus === 'editStaticQuestionComment' && this.props.questions.comment) this.props.onUpdateStaticQuestionCommentStatus('commentSuccess')
 
         if(this.props.questions.voteStatus === 'voteSuccess' && this.props.questions.voteLoading) this.successModule("Vote")
         if(this.props.questions.commentStatus === 'commentSuccess' && this.props.questions.commentLoading) this.successModule("Comment")
@@ -73,6 +74,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateUserVotesFromPlayController: (obj) => dispatch(actions.updateUserVotesFromPlayController(obj)),
     onUpdateUserCommentsFromPlayController: (obj) => dispatch(actions.updateUserCommentsFromPlayController(obj)),
+    onUpdateStaticQuestionCommentStatus: (status) => dispatch(actions.updateStaticQuestionCommentStatus(status)),
     onVoteLoading: (bool) => dispatch(actions.voteLoading(bool)),
     onCommentLoading: (bool) => dispatch(actions.commentLoading(bool)),
     onClearStaticQuestionVoteStatus: () => dispatch(actions.clearStaticQuestionVoteStatus()),
