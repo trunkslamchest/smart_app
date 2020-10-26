@@ -2,6 +2,7 @@ import React from 'react'
 
 import DashboardEditProfileFormInput from './dashboardEditProfileFormInput/dashboardEditProfileFormInput'
 import DashboardEditProfileFormSelect from './dashboardEditProfileFormSelect/dashboardEditProfileFormSelect'
+import DashboardEditProfileFormTextArea from './dashboardEditProfileFormTextArea/dashboardEditProfileFormTextArea'
 import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormButtonContainer/dashboardEditProfileFormButtonContainer'
 
 import genders from '../../../../datasets/genders'
@@ -16,10 +17,11 @@ const dashboardEditProfileForm = (props) => {
     [ 2, { type: 'text', idName: 'email', placeholder: 'Email...', label: 'Email' }],
     [ 3, { type: 'text', idName: 'first_name', placeholder: 'First Name...' }],
     [ 4, { type: 'text', idName: 'last_name', placeholder: 'Last Name...' }],
-    [ 5, { type: 'select', idName: 'gender', label: 'Gender', options: genders, change: props.onChange, val: props.gender }],
-    [ 6, { type: 'number', idName: 'day', placeholder: 'Day...', min: 1, max: 31, change: props.onDOBChange, val: props.dob.day }],
-    [ 7, { type: 'select', idName: 'month', options: months, change: props.onDOBChange, val: props.dob.month }],
-    [ 8, { type: 'number', idName: 'year', placeholder: 'Year...', min: 1900, max: 2020, change: props.onDOBChange, val: props.dob.year }],
+    [ 5, { type: 'textarea', idName: 'bio', placeholder: 'Tell us about yourself...' }],
+    [ 6, { type: 'select', idName: 'gender', label: 'Gender', options: genders, change: props.onChange, val: props.gender }],
+    [ 7, { type: 'number', idName: 'day', placeholder: 'Day...', min: 1, max: 31, change: props.onDOBChange, val: props.dob.day }],
+    [ 8, { type: 'select', idName: 'month', options: months, change: props.onDOBChange, val: props.dob.month }],
+    [ 9, { type: 'number', idName: 'year', placeholder: 'Year...', min: 1900, max: 2020, change: props.onDOBChange, val: props.dob.year }],
   ]
 
   const distribFields = fields.map(field => {
@@ -27,6 +29,20 @@ const dashboardEditProfileForm = (props) => {
     if(field[1].type === 'text'){
       component = <>
         <DashboardEditProfileFormInput
+          enableInputs={ props.enableInputs }
+          id={ field[1].idName }
+          key={ field[0] }
+          name={ field[1].idName }
+          onChange={ props.onChange }
+          placeholder={ field[1].placeholder }
+          type={ field[1].type }
+          value={ props[field[1].idName] === 'null' ? field[1].placeholder : props[field[1].idName] }
+        />
+      </>
+    }
+    if(field[1].type === 'textarea'){
+      component = <>
+        <DashboardEditProfileFormTextArea
           enableInputs={ props.enableInputs }
           id={ field[1].idName }
           key={ field[0] }
@@ -83,8 +99,9 @@ const dashboardEditProfileForm = (props) => {
         <label>User Name</label><div className='edit_div'>{ distribFields[0] }</div>
         <label>Email</label><div className='edit_div'>{ distribFields[1] }</div>
         <label>Name</label><div className='edit_div'>{ distribFields[2] }<br />{ distribFields[3] }</div>
-        <label>Gender</label><div className='edit_div'>{ distribFields[4] }</div>
-        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[5] }<br />{ distribFields[6] }<br />{ distribFields[7] }</div>
+        <label>Bio</label><div className='edit_div'>{ distribFields[4] }</div>
+        <label>Gender</label><div className='edit_div'>{ distribFields[5] }</div>
+        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[6] }<br />{ distribFields[7] }<br />{ distribFields[8] }</div>
         <DashboardEditProfileFormButtonContainer
           enableButtons={ props.enableButtons }
           onSubmit={ props.onSubmit }

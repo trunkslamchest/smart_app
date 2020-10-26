@@ -11,54 +11,24 @@
   margin: 0px auto 0px auto;
 }
 
-.user_profile_user_name_email_container {
+.user_profile_sub_container {
   width: 100%;
   padding: 5px 0px 5px 0px;
-  z-index:8;
+  z-index: 8;
 }
 
-.user_profile_user_name_email_container h3 {
+.user_profile_info_sub_container h3 {
   font: 300 20pt 'Lato', sans-serif;
 }
 
-.user_profile_user_name_email_container h4 {
+.user_profile_info_sub_container h4 {
   font: 300 15pt 'Lato', sans-serif;
 }
 
-.user_profile_user_name_email_container h5 {
+.user_profile_info_sub_container h5 {
   font: 300 10pt 'Lato', sans-serif;
 }
 
-.user_profile_name_container {
-  width: 100%;
-  padding: 0px 0px 5px 0px;
-  margin: 0px;
-}
-
-.user_profile_name_container span {
-  font: 300 12pt 'Poppins', sans-serif;
-}
-
-.user_profile_dob_container {
-  width: 100%;
-  padding: 0px 0px 5px 0px;
-  margin: 0px;
-}
-
-.user_profile_dob_container span {
-  font: 300 12pt 'Poppins', sans-serif;
-}
-
-.user_profile_user_join_date_container {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-
-.user_profile_user_join_date_container h3 {
-  font: 300 12pt 'Poppins', sans-serif;
-}
-
-.user_profile_user_join_date_container span {
+.user_profile_info_sub_container span {
   font: 300 12pt 'Poppins', sans-serif;
 }

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 import { routes } from '../../../utility/paths'
 
-import checkBlank from '../dashboardFunctions/checkBlank'
-import formatMonth from '../dashboardFunctions/formatMonth'
-import formatDay from '../dashboardFunctions/formatDay'
+import checkBlank from '../../../utility/forms/checkBlank'
+import formatMonth from '../../../utility/forms/formatMonth'
+import formatDay from '../../../utility/forms/formatDay'
 
 import DashboardProfileButtonContainer from './dashboardProfileButtonContainer/dashboardProfileButtonContainer'
 import DashboardProfileError from './dashboardProfileError/dashboardProfileError'
@@ -37,13 +37,15 @@ const DashboardProfileContainer = (props) => {
     { name: 'Join Date', data: joinDate }
   ]
 
+  console.log(profileFields)
+
   let distribProfileFields = profileFields.map(field => {
     return (
       <ul key={ profileFields.indexOf(field) + field.name }>
           <li>{ field.name }</li>
-          <li>{ field.data }</li>
-          { typeof field.error === 'string' && <DashboardProfileError error={ field.error } /> }
-          { typeof field.error === 'object' && field.error.map(errorMsg => <DashboardProfileError key={ field.error.indexOf(errorMsg)} error={ errorMsg } /> ) }
+          { !!field.data.length && <li>{ field.data }</li> }
+          { field.error && typeof field.error === 'string' && <DashboardProfileError error={ field.error } /> }
+          { field.error && typeof field.error === 'object' && field.error.map(errorMsg => <DashboardProfileError key={ field.error.indexOf(errorMsg)} error={ errorMsg } /> ) }
       </ul>
     )
   })

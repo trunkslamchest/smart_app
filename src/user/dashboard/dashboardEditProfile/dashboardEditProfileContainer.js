@@ -12,6 +12,7 @@ import './dashboardEditProfile.css'
 class DashboardEditProfile extends React.Component {
 
   state = {
+    bio: '',
     dob: {
       day: 0,
       month: 'null',
@@ -34,6 +35,7 @@ class DashboardEditProfile extends React.Component {
 
   pulledStore = () => {
     this.setState({
+      bio: this.props.user.info.bio,
       dob: this.props.user.info.dob,
       email: this.props.user.info.email,
       first_name: this.props.user.info.first_name,
@@ -73,6 +75,7 @@ class DashboardEditProfile extends React.Component {
     this.props.onAuthStart('editProfile', {
       uid: id,
       info: {
+        bio: this.state.bio,
         dob: this.state.dob,
         email: this.state.email,
         first_name: this.state.first_name,
@@ -86,6 +89,7 @@ class DashboardEditProfile extends React.Component {
 
   onReset = () => {
     this.setState({
+      bio: this.props.user.info.bio,
       dob: this.props.user.info.dob,
       email: this.props.user.info.email,
       first_name: this.props.user.info.first_name,
@@ -100,6 +104,7 @@ class DashboardEditProfile extends React.Component {
 
   componentWillUnmount(){
     this.setState({
+      bio: '',
       dob: {
         day: 0,
         month: 'null',
@@ -120,6 +125,7 @@ class DashboardEditProfile extends React.Component {
   render(){
     return(
       <DashboardEditProfileForm
+        bio={ this.state.bio }
         dob={ this.state.dob }
         email={ this.state.email }
         enableButtons={ this.state.enableButtons }

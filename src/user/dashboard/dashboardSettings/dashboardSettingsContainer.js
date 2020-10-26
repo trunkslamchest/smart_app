@@ -18,12 +18,13 @@ class DashboardSettingsContainer extends React.Component {
         profile: {
           private: false,
           showAchievements: false,
-          showExperience: false,
-          showStats: false,
-          showEmail: false,
-          showRealName: false,
           showAge: false,
-          showGender: false
+          showBio: false,
+          showEmail: false,
+          showExperience: false,
+          showGender: false,
+          showRealName: false,
+          showStats: false
         }
       }
     }
@@ -34,7 +35,7 @@ class DashboardSettingsContainer extends React.Component {
     if(this.props.user.settings) this.pulledStore()
   }
 
-  componentDidUpdate(){ if(this.props.user.settings && !this.state.pulledStore)this.pulledStore() }
+  componentDidUpdate(){ if(this.props.user.settings && !this.state.pulledStore) this.pulledStore() }
 
   pulledStore = () => {
     this.setState({
@@ -47,12 +48,13 @@ class DashboardSettingsContainer extends React.Component {
           profile: {
             private: this.props.user.settings.privacy.profile.private,
             showAchievements: this.props.user.settings.privacy.profile.showAchievements,
-            showExperience: this.props.user.settings.privacy.profile.showExperience,
-            showStats: this.props.user.settings.privacy.profile.showStats,
-            showEmail: this.props.user.settings.privacy.profile.showEmail,
-            showRealName: this.props.user.settings.privacy.profile.showRealName,
             showAge: this.props.user.settings.privacy.profile.showAge,
+            showBio: this.props.user.settings.privacy.profile.showBio,
+            showEmail: this.props.user.settings.privacy.profile.showEmail,
+            showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
+            showRealName: this.props.user.settings.privacy.profile.showRealName,
+            showStats: this.props.user.settings.privacy.profile.showStats
           }
         }
       }
@@ -95,12 +97,13 @@ class DashboardSettingsContainer extends React.Component {
           profile: {
             private: this.props.user.settings.privacy.profile.private,
             showAchievements: this.props.user.settings.privacy.profile.showAchievements,
-            showExperience: this.props.user.settings.privacy.profile.showExperience,
-            showStats: this.props.user.settings.privacy.profile.showStats,
-            showEmail: this.props.user.settings.privacy.profile.showEmail,
-            showRealName: this.props.user.settings.privacy.profile.showRealName,
             showAge: this.props.user.settings.privacy.profile.showAge,
+            showBio: this.props.user.settings.privacy.profile.showBio,
+            showEmail: this.props.user.settings.privacy.profile.showEmail,
+            showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
+            showRealName: this.props.user.settings.privacy.profile.showRealName,
+            showStats: this.props.user.settings.privacy.profile.showStats
           }
         }
       }
@@ -120,12 +123,13 @@ class DashboardSettingsContainer extends React.Component {
           onReset={ this.onReset }
           private={ this.state.settings.privacy.profile.private }
           showAchievements={ this.state.settings.privacy.profile.showAchievements }
-          showExperience={ this.state.settings.privacy.profile.showExperience }
-          showStats={ this.state.settings.privacy.profile.showStats }
-          showEmail={ this.state.settings.privacy.profile.showEmail }
-          showRealName={ this.state.settings.privacy.profile.showRealName }
           showAge={ this.state.settings.privacy.profile.showAge }
+          showBio={ this.state.settings.privacy.profile.showBio }
+          showEmail={ this.state.settings.privacy.profile.showEmail }
+          showExperience={ this.state.settings.privacy.profile.showExperience }
           showGender={ this.state.settings.privacy.profile.showGender }
+          showRealName={ this.state.settings.privacy.profile.showRealName }
+          showStats={ this.state.settings.privacy.profile.showStats }
         />
       </div>
     )

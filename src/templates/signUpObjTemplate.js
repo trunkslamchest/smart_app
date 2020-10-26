@@ -7,7 +7,7 @@ const signUpObjTemplate = (email, user_name) => {
       "email": `${ email }`,
       "first_name": "null",
       "gender": "null",
-      "gender_pronouns": 'null',
+      "gender_pronouns": "null",
       "dob": {
         "day": 0,
         "month": "null",

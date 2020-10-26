@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import './dashboardSettingsPrivacyProfileCard.css'
 
 const DashboardSettingsPrivacyProfileCard = (props) => {

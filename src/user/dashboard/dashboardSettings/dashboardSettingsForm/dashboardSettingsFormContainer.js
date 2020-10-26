@@ -15,13 +15,14 @@ class DashboardSettingsFormContainer extends React.Component {
   render(){
     const privacyProfileSettings = [
       { name: 'private', text: 'Set your public profile to private' },
-      { name: 'showAchievements', text: 'Display your achievements on your public profile' },
-      { name: 'showExperience', text: 'Display your experience levels on your public profile' },
-      { name: 'showStats', text: 'Display your statistics on your public profile' },
-      { name: 'showEmail', text: 'Display your email on your public profile' },
-      { name: 'showRealName', text: 'Display your real name on your public profile' },
-      { name: 'showAge', text: 'Display your age on your public profile' },
-      { name: 'showGender', text: 'Display your gender on your public profile' },
+      { name: 'showAchievements', text: 'Display your Achievements on your public profile' },
+      { name: 'showAge', text: 'Display your Age on your public profile' },
+      { name: 'showBio', text: 'Display your Biography on your public profile' },
+      { name: 'showEmail', text: 'Display your Email on your public profile' },
+      { name: 'showExperience', text: 'Display your Experience levels on your public profile' },
+      { name: 'showGender', text: 'Display your Gender on your public profile' },
+      { name: 'showRealName', text: 'Display your Real Name on your public profile' },
+      { name: 'showStats', text: 'Display your Statistics on your public profile' }
     ]
 
     const distribPrivacyProfileSettings = privacyProfileSettings.map(setting => {
