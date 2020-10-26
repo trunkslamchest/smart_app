@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions/actionIndex'
 
 import { routes } from '../../utility/paths'
+import getTime from '../../utility/getTime'
 
 class AuthController extends React.Component {
 
@@ -46,7 +47,6 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'authUserGoogleSuccess' && !this.state.initAuthLocalUser) this.authUserLocalModule('authUserLocal')
       if(this.props.auth.status === 'storeUserInfo' && this.props.user.info && !this.state.authUserInfoLocal) this.authUserInfoLocalModule('storeUserInfoSuccess')
       if(this.props.auth.status === 'storeUserQuestions' && this.props.user.questions && !this.state.authUserQuestionsLocal) this.authUserQuestionsLocalModule('storeUserQuestionsSuccess')
-      // if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.authAchievements) this.authAchievementsModule('getAchievements')
       if(this.props.auth.status === 'storeAchievementsSuccess' && this.props.user.info && this.props.user.questions && this.props.achievements.all && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
@@ -58,7 +58,6 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'createUserLocalSuccess' && !this.state.initAuthLocalUser) this.authUserLocalModule('authUserLocal')
       if(this.props.auth.status === 'storeUserInfo' && this.props.user.info && !this.state.authUserInfoLocal) this.authUserInfoLocalModule('storeUserInfoSuccess')
       if(this.props.auth.status === 'storeUserQuestions' && this.props.user.questions && !this.state.authUserQuestionsLocal) this.authUserQuestionsLocalModule('storeUserQuestionsSuccess')
-      // if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.authAchievements) this.authAchievementsModule('getAchievements')
       if(this.props.auth.status === 'storeAchievementsSuccess' && this.props.user.info && this.props.user.questions && this.props.achievements.all && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
       if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
@@ -120,6 +119,7 @@ class AuthController extends React.Component {
 
     if(this.props.auth.status === 'authValid' && this.state.authLogInValid && this.props.modal.login) {
       this.setState({ authLogInValid: false })
+      // this.props.onUpdateUserLoginTime({ time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
       this.props.onLogInModal(false)
       this.props.history.push( routes.dashboard )
     }
@@ -182,6 +182,9 @@ class AuthController extends React.Component {
   }
 
   authLogInValidModule = (status) => {
+    if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn') {
+      this.props.onUpdateUserLoginTime({ uid: localStorage.id, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
+    }
     this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, authAchievements: false, initAuthQuestions: false, authLogInValid: true })
     this.props.onAuthUpdateStatus(status, true)
     this.props.onAuthUpdateLoadingStatus(false)
@@ -322,6 +325,7 @@ const mapDispatchToProps = dispatch => {
     // onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
     onClearQuestionTotals: () => dispatch(actions.clearQuestionTotals()),
     // USER
+    onUpdateUserLoginTime: (time) => dispatch(actions.updateUserLoginTime(time)),
     // onStoreUserInfo: (info) => dispatch(actions.storeUserInfo(info)),
     // onUpdateUserInfo: (obj, props) => dispatch(actions.updateUserInfo(obj, props)),
     onClearUserInfo: () => dispatch(actions.clearUserInfo()),

@@ -29,9 +29,8 @@ const DashboardProfileContainer = (props) => {
   let dobMonth = checkBlank(props.user.info.dob.month, 'Update your profile to add your Birth Month')
   let dobYear = checkBlank(props.user.info.dob.year, 'Update your profile to add your Birth Year')
   let fullDOB = dobYear.field.length === 0 ? `${ dobMonth.field } ${ formatDay(dobDay.field) }` : `${ dobMonth.field } ${ formatDay(dobDay.field) }, ${ dobYear.field }`
+  let lastLogin = `${ props.user.info.last_login.time } ${ formatMonth(props.user.info.last_login.month) } ${ formatDay(props.user.info.last_login.day) }, ${ props.user.info.last_login.year }`
   let joinDate = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
-
-  console.log(genderPronouns)
 
   const profileFields = [
     { name: 'Name', data: `${firstName.field} ${lastName.field}`, error: [ firstName.error, lastName.error ] },
@@ -39,6 +38,7 @@ const DashboardProfileContainer = (props) => {
     { name: 'Gender Pronouns', data: genderPronouns.field, error: genderPronouns.error },
     { name: 'Gender', data: gender.field, error: gender.error },
     { name: 'Date Of Birth', data: fullDOB, error: [ dobDay.error, dobMonth.error, dobYear.error ] },
+    { name: 'Last Login', data: lastLogin },
     { name: 'Join Date', data: joinDate }
   ]
 

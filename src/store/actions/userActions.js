@@ -18,7 +18,6 @@ import {
 import userFunctions from '../../utility/userFunctions'
 import questionsFunctions from '../../utility/questionsFunctions'
 
-
 export const storeUserInfo = (info, experience, achievements, settings) => {
   return dispatch => {
     dispatch(authUpdateStatus('storeUserInfo', true))
@@ -129,6 +128,22 @@ export const deleteUser = (id) => {
       console.log(res)
       dispatch(authUpdateStatus('deleteLocalUserSuccess', true))
     })
+  }
+}
+
+export const updateUserLoginTime = (obj) => {
+  return dispatch => {
+    userFunctions('patchUserLoginTime', fetch.patch.userLoginTime, obj)
+    .then(res => {
+      dispatch(initUpdateUserLoginTime({ time: res.time, day: res.day, month: res.month, year: res.year }))
+    })
+  }
+}
+
+const initUpdateUserLoginTime = (time) => {
+  return {
+    type: actionTypes.UPDATE_USER_LOGIN_TIME,
+    login_time: time
   }
 }
 

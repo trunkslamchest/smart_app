@@ -43,6 +43,7 @@ export {
   storeUserQuestions,
   updateUserQuestions,
   clearUserQuestions,
+  updateUserLoginTime,
   updateUserPerformanceFromPlayController,
   updateUserExperienceFromPlayController,
   updateUserAchievementsFromPlayController,

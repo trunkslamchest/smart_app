@@ -58,6 +58,12 @@ const UserProfileInfoContainer = (props) => {
       </div>
   }
 
+  const lastLoginBlock =
+    <div className="user_profile_info_sub_container">
+      <h4>Last Login</h4>
+      <h5>{ props.info.last_login.time } { formatMonth(props.info.last_login.month) } { formatDay(props.info.last_login.day) }, { props.info.last_login.year }</h5>
+    </div>
+
   const joinDateBlock =
     <div className="user_profile_info_sub_container">
       <h4>Join Date</h4>
@@ -72,6 +78,7 @@ const UserProfileInfoContainer = (props) => {
       { genderBlock }
       { genderPronounsBlock }
       { ageBlock }
+      { lastLoginBlock }
       { joinDateBlock }
     </div>
   )

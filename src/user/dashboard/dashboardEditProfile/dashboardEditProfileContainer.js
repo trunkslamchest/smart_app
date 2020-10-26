@@ -85,7 +85,8 @@ class DashboardEditProfile extends React.Component {
         gender_pronouns: this.state.gender_pronouns,
         last_name: this.state.last_name,
         user_name: this.state.user_name,
-        join_date: this.props.user.info.join_date
+        join_date: this.props.user.info.join_date,
+        last_login: this.props.user.info.last_login
       }
     })
   }

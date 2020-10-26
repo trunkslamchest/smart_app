@@ -21,10 +21,12 @@ export const fetch = {
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`,
     userProfile: `${process.env.REACT_APP_LOCAL_GET_USER_PROFILE}`,
+
   },
   patch: {
     user: `${process.env.REACT_APP_LOCAL_UPDATE_USER}`,
     userSettings: `${process.env.REACT_APP_LOCAL_UPDATE_USER_SETTINGS}`,
+    userLoginTime: `${process.env.REACT_APP_LOCAL_UPDATE_USER_LOGIN_TIME}`,
     editUserComment: `${process.env.REACT_APP_LOCAL_EDIT_USER_COMMENT}`,
     editQuestionComment: `${process.env.REACT_APP_LOCAL_EDIT_QUESTION_COMMENT}`,
     questionVote: `${process.env.REACT_APP_LOCAL_PATCH_QUESTION_VOTE}`,
@@ -62,6 +64,8 @@ export const check = {
 //   patch: {
 //     user: `${process.env.REACT_APP_DEPLOY_UPDATE_USER}`,
 //     userSettings: `${process.env.REACT_APP_DEPLOY_UPDATE_USER_SETTINGS}`,
+//     userLoginTime: `${process.env.REACT_APP_DEPLOY_UPDATE_USER_LOGIN_TIME}`,
+
 //     editUserComment: `${process.env.REACT_APP_DEPLOY_EDIT_USER_COMMENT}`,
 //     editQuestionComment: `${process.env.REACT_APP_DEPLOY_EDIT_QUESTION_COMMENT}`,
 //     questionVote: `${process.env.REACT_APP_DEPLOY_PATCH_QUESTION_VOTE}`,

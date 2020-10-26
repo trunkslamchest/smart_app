@@ -36,6 +36,19 @@
       .then(res => res.json())
     },
 
+    patchUserLoginTime: function(url, obj){
+      return fetch(url, {
+        method: "PATCH",
+        mode: 'cors',
+        headers: {
+          "Accept": ['application/json', 'application/x-www-form-urlencoded'],
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(obj)
+      })
+      .then(res => res.json())
+    },
+
     patch: function(url, obj){
       return fetch(url, {
         method: "PATCH",

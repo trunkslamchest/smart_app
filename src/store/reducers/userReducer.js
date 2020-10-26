@@ -30,6 +30,16 @@ const updateUserQuestions = (currentState, action) => { return{ ...currentState,
 
 const clearUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
 
+const updateUserLoginTime = (currentState, action) => {
+  return {
+    ...currentState,
+    info: {
+      ...currentState.info,
+      last_login: action.login_time
+    }
+  }
+}
+
 const updateUserPerformanceFromPlayController = (currentState, action) => {
 
   let newDrating = userQuestionRating(action.res.dRating, action.res.qPerf.rating),
@@ -353,6 +363,7 @@ const userReducer = (currentState = initialState, action) => {
     case actionTypes.STORE_USER_QUESTIONS: return storeUserQuestions(currentState, action)
     case actionTypes.UPDATE_USER_QUESTIONS: return updateUserQuestions(currentState, action)
     case actionTypes.CLEAR_USER_QUESTIONS: return clearUserQuestions(currentState, action)
+    case actionTypes.UPDATE_USER_LOGIN_TIME: return updateUserLoginTime(currentState, action)
     case actionTypes.UPDATE_USER_PERFORMANCE_FROM_PLAY_CONTROLLER: return updateUserPerformanceFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_EXPERIENCE_FROM_PLAY_CONTROLLER: return updateUserExperienceFromPlayController(currentState, action)
     case actionTypes.UPDATE_USER_ACHIEVEMENTS_FROM_PLAY_CONTROLLER: return updateUserAchievementsFromPlayController(currentState, action)
