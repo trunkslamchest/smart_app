@@ -52,10 +52,20 @@
 }
 
 .dashboard_profile_body li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   text-align: center;
   margin-top: -5px;
   padding-bottom: 2.5px;
   font: 300 12pt 'Poppins', sans-serif;
+}
+
+.dashboard_profile_body img {
+  padding-right: 5px;
 }
 
 .dashboard_profile_body span {

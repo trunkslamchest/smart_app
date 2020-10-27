@@ -38,19 +38,38 @@
 }
 
 .edit_div {
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.edit_div img {
+
 }
 
 .edit_div > * {
-  font: 400 12px "Helvetica", sans-serif;
-  padding: 10px;
-  width: 50%;
-  max-width: 350px;
-  line-height: 1.25;
   animation: fade_in .4s ease-in-out 1;
 }
 
 .edit_div label {
   font: 300 10pt 'Poppins', sans-serif;
   border: 0px;
+}
+
+.edit_div select,
+.edit_div input,
+.edit_div textarea {
+  font: 400 12px "Helvetica", sans-serif;
+  padding: 10px;
+  width: 50%;
+  max-width: 350px;
+  line-height: 1.25;
+  border-width: 1px solid grey;
+}
+
+.edit_div img {
+  padding-right: 2.5px;
 }

@@ -1,11 +1,21 @@
-const checkBlank = (field, errorMsg) => {
-  let checkedError = null, checkedField = ''
+export const checkBlankString = (field, errorMsg) => {
+  let checkedObj = {}
 
-  // if(field === 'null' || field.length === 0 || field === 0) checkedError = errorMsg
-  if(field === 'null' || field === 0) checkedError = errorMsg
-  else checkedField = field
+  if(field === 'null' || field.length === 0) {
+    checkedObj.error = errorMsg
+    checkedObj.field = ''
+  } else checkedObj.field = field
 
-  return { error: checkedError, field: checkedField }
+  return checkedObj
 }
 
-export default checkBlank
+export const checkBlankInt = (field, errorMsg) => {
+  let checkedObj = {}
+
+  if(field === 0) {
+    checkedObj.error = errorMsg
+    checkedObj.field = 0
+  } else checkedObj.field = field
+
+  return checkedObj
+}

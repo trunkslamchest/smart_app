@@ -4,6 +4,7 @@ const signUpObjTemplate = (email, user_name) => {
   return {
     "info": {
       "bio": "null",
+      "country": "null",
       "email": `${ email }`,
       "first_name": "null",
       "gender": "null",
@@ -276,6 +277,7 @@ const signUpObjTemplate = (email, user_name) => {
           "showAchievements": true,
           "showAge": true,
           "showBio": true,
+          "showCountry": true,
           "showEmail": true,
           "showExperience": true,
           "showGender": true,

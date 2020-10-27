@@ -5,12 +5,15 @@ import { connect } from 'react-redux'
 import formatMonth from '../../../utility/forms/formatMonth'
 import formatDay from '../../../utility/forms/formatDay'
 
+import flagIconIndex from '../../../assets/flag_icons/flagIconIndex'
+
 import './userProfileInfoContainer.css'
 
 const UserProfileInfoContainer = (props) => {
 
   let ageBlock = <></>,
       bioBlock = <></>,
+      countryBlock = <></>,
       genderBlock = <></>,
       genderPronounsBlock = <></>,
       nameBlock = <></>
@@ -21,9 +24,10 @@ const UserProfileInfoContainer = (props) => {
       { !!props.info.email && <h5>{ props.info.email }</h5>}
     </div>
 
+  let firstName = props.info.first_name !== 'null' && props.info.first_name,
+      lastName = props.info.last_name !== 'null' && props.info.last_name
 
-  if((!!props.info.first_name && props.info.first_name !== 'null') && !(!!props.info.last_name && props.info.last_name !== 'null')) {
-    let firstName = props.info.first_name, lastName = props.info.last_name
+  if(!!props.info.first_name || !!props.info.last_name) {
     nameBlock =
       <div className="user_profile_info_sub_container">
         <span>{ firstName } { lastName }</span>
@@ -34,6 +38,14 @@ const UserProfileInfoContainer = (props) => {
     bioBlock =
       <div className="user_profile_info_sub_container">
         <span>{ props.info.bio }</span>
+      </div>
+  }
+
+  if(!!props.info.country && props.info.country !== 'null') {
+    countryBlock =
+      <div className="user_profile_info_sub_container">
+        <img alt={ props.info.country } src={ flagIconIndex[props.info.country].image } />
+        <span>{ props.info.country }</span>
       </div>
   }
 
@@ -75,6 +87,7 @@ const UserProfileInfoContainer = (props) => {
       { userNameEmailBlock }
       { nameBlock }
       { bioBlock }
+      { countryBlock }
       { genderBlock }
       { genderPronounsBlock }
       { ageBlock }

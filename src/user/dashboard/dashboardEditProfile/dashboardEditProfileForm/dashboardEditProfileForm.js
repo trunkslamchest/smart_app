@@ -8,6 +8,7 @@ import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormB
 import genders from '../../../../datasets/genders'
 import gender_pronouns from '../../../../datasets/genderPronouns'
 import months from '../../../../datasets/months'
+import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
 
 import './dashboardEditProfileForm.css'
 
@@ -19,11 +20,12 @@ const dashboardEditProfileForm = (props) => {
     [ 3, { type: 'text', idName: 'first_name', placeholder: 'First Name...' }],
     [ 4, { type: 'text', idName: 'last_name', placeholder: 'Last Name...' }],
     [ 5, { type: 'textarea', idName: 'bio', placeholder: 'Tell us about yourself...', min: 1, max: 160 }],
-    [ 6, { type: 'select', idName: 'gender', label: 'Gender', options: genders, change: props.onChange, val: props.gender }],
-    [ 7, { type: 'select', idName: 'gender_pronouns', label: 'Pronouns', options: gender_pronouns, change: props.onChange, val: props.gender_pronouns }],
-    [ 8, { type: 'number', idName: 'day', placeholder: 'Day...', min: 1, max: 31, change: props.onDOBChange, val: props.dob.day }],
-    [ 9, { type: 'select', idName: 'month', options: months, change: props.onDOBChange, val: props.dob.month }],
-    [ 10, { type: 'number', idName: 'year', placeholder: 'Year...', min: 1900, max: 2020, change: props.onDOBChange, val: props.dob.year }],
+    [ 6, { type: 'select', idName: 'country', label: 'Country', options: flagIconIndex, change: props.onChange, val: props.country }],
+    [ 7, { type: 'select', idName: 'gender', label: 'Gender', options: genders, change: props.onChange, val: props.gender }],
+    [ 8, { type: 'select', idName: 'gender_pronouns', label: 'Pronouns', options: gender_pronouns, change: props.onChange, val: props.gender_pronouns }],
+    [ 9, { type: 'number', idName: 'day', placeholder: 'Day...', min: 1, max: 31, change: props.onDOBChange, val: props.dob.day }],
+    [ 10, { type: 'select', idName: 'month', options: months, change: props.onDOBChange, val: props.dob.month }],
+    [ 11, { type: 'number', idName: 'year', placeholder: 'Year...', min: 1900, max: 2020, change: props.onDOBChange, val: props.dob.year }],
   ]
 
   const distribFields = fields.map(field => {
@@ -104,9 +106,14 @@ const dashboardEditProfileForm = (props) => {
         <label>Email</label><div className='edit_div'>{ distribFields[1] }</div>
         <label>Name</label><div className='edit_div'>{ distribFields[2] }<br />{ distribFields[3] }</div>
         <label>Bio</label><div className='edit_div'>{ distribFields[4] }</div>
-        <label>Gender</label><div className='edit_div'>{ distribFields[5] }</div>
-        <label>Pronouns</label><div className='edit_div'>{ distribFields[6] }</div>
-        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[7] }<br />{ distribFields[8] }<br />{ distribFields[9] }</div>
+        <label>Country</label>
+        <div className='edit_div'>
+          { !!props.country && props.country !== 'null' && <img alt={ props.country } src={ flagIconIndex[props.country].image } /> }
+          { distribFields[5] }
+        </div>
+        <label>Gender</label><div className='edit_div'>{ distribFields[6] }</div>
+        <label>Pronouns</label><div className='edit_div'>{ distribFields[7] }</div>
+        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[8] }<br />{ distribFields[9] }<br />{ distribFields[10] }</div>
         <DashboardEditProfileFormButtonContainer
           enableButtons={ props.enableButtons }
           onSubmit={ props.onSubmit }

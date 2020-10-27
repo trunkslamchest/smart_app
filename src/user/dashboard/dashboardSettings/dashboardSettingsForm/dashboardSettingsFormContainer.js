@@ -18,6 +18,7 @@ class DashboardSettingsFormContainer extends React.Component {
       { name: 'showAchievements', text: 'Display your Achievements on your public profile' },
       { name: 'showAge', text: 'Display your Age on your public profile' },
       { name: 'showBio', text: 'Display your Biography on your public profile' },
+      { name: 'showCountry', text: 'Display your Nationality on your public profile' },
       { name: 'showEmail', text: 'Display your Email on your public profile' },
       { name: 'showExperience', text: 'Display your Experience levels on your public profile' },
       { name: 'showGender', text: 'Display your Gender on your public profile' },

@@ -13,6 +13,7 @@ class DashboardEditProfile extends React.Component {
 
   state = {
     bio: '',
+    country: '',
     dob: {
       day: 0,
       month: 'null',
@@ -37,6 +38,7 @@ class DashboardEditProfile extends React.Component {
   pulledStore = () => {
     this.setState({
       bio: this.props.user.info.bio,
+      country: this.props.user.info.country,
       dob: this.props.user.info.dob,
       email: this.props.user.info.email,
       first_name: this.props.user.info.first_name,
@@ -49,14 +51,12 @@ class DashboardEditProfile extends React.Component {
   }
 
   onChange = (event) => {
-    let val = event.target.value
-    if(event.target.value === "Select") val = 'null'
+    let val = event.target.value === "Select" || event.target.value.length === 0 ? "null" : event.target.value
     this.setState({ [event.target.name]: val })
   }
 
   onDOBChange = (event) => {
-    let val = event.target.value
-    if(event.target.value === "Select") val = 'null'
+    let val = event.target.value === "Select" ? "null" : typeof event.target.value === 'string' ? event.target.value : parseInt(event.target.value)
     this.setState({
       dob: {
         ...this.state.dob,
@@ -78,6 +78,7 @@ class DashboardEditProfile extends React.Component {
       uid: id,
       info: {
         bio: this.state.bio,
+        country: this.state.country,
         dob: this.state.dob,
         email: this.state.email,
         first_name: this.state.first_name,
@@ -94,6 +95,7 @@ class DashboardEditProfile extends React.Component {
   onReset = () => {
     this.setState({
       bio: this.props.user.info.bio,
+      country: this.props.user.info.country,
       dob: this.props.user.info.dob,
       email: this.props.user.info.email,
       first_name: this.props.user.info.first_name,
@@ -110,6 +112,7 @@ class DashboardEditProfile extends React.Component {
   componentWillUnmount(){
     this.setState({
       bio: '',
+      country: '',
       dob: {
         day: 0,
         month: 'null',
@@ -132,6 +135,7 @@ class DashboardEditProfile extends React.Component {
     return(
       <DashboardEditProfileForm
         bio={ this.state.bio }
+        country={ this.state.country }
         dob={ this.state.dob }
         email={ this.state.email }
         enableButtons={ this.state.enableButtons }

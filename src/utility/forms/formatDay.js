@@ -1,5 +1,5 @@
-const formatDay = (day) => { 
-  if(day === '') return ''
+const formatDay = (day) => {
+  if(day === 0) return ''
   const number_ends = [ 'st', 'nd', 'rd', 'th' ], number_split = day.toString().split('').pop()
   if (day > 10 && day < 19) return day + number_ends[3]
   else {
