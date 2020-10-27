@@ -4,6 +4,7 @@ import DashboardEditProfileFormInput from './dashboardEditProfileFormInput/dashb
 import DashboardEditProfileFormSelect from './dashboardEditProfileFormSelect/dashboardEditProfileFormSelect'
 import DashboardEditProfileFormTextArea from './dashboardEditProfileFormTextArea/dashboardEditProfileFormTextArea'
 import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormButtonContainer/dashboardEditProfileFormButtonContainer'
+import DashboardEditProfileFormErrorItem from './dashboardEditProfileFormErrorItem/dashboardEditProfileFormErrorItem'
 
 import genders from '../../../../datasets/genders'
 import gender_pronouns from '../../../../datasets/genderPronouns'
@@ -15,6 +16,7 @@ import './dashboardEditProfileForm.css'
 const dashboardEditProfileForm = (props) => {
 
   const fields = [
+    // [ 1, { type: 'text', idName: 'avatar', placeholder: 'User Name...', label: 'Profile Picture' }],
     [ 1, { type: 'text', idName: 'user_name', placeholder: 'User Name...', label: 'User Name' }],
     [ 2, { type: 'text', idName: 'email', placeholder: 'Email...', label: 'Email' }],
     [ 3, { type: 'text', idName: 'first_name', placeholder: 'First Name...' }],
@@ -102,13 +104,35 @@ const dashboardEditProfileForm = (props) => {
         name='edit_profile_form'
         className='edit_profile_form'
       >
+        <label>Avatar</label>
+        <div className='edit_div'>
+          <img alt='Your Avatar' className='edit_div_avatar_img' src={ props.avatar } />
+          <label className='edit_div_avatar_input_label'>
+            <input
+              accept="image/*"
+              id='avatar_upload'
+              multiple={ false }
+              onChange={ props.onAvatarChange }
+              type='file'
+            />
+            <span>Choose A New Profile Picture</span>
+          </label>
+          { props.errors.avatar && props.errors.avatar.map(error => <DashboardEditProfileFormErrorItem key={ props.errors.avatar.indexOf(error) } error={ error } />) }
+        </div>
+
         <label>User Name</label><div className='edit_div'>{ distribFields[0] }</div>
         <label>Email</label><div className='edit_div'>{ distribFields[1] }</div>
         <label>Name</label><div className='edit_div'>{ distribFields[2] }<br />{ distribFields[3] }</div>
         <label>Bio</label><div className='edit_div'>{ distribFields[4] }</div>
         <label>Country</label>
         <div className='edit_div'>
-          { !!props.country && props.country !== 'null' && <img alt={ props.country } src={ flagIconIndex[props.country].image } /> }
+          { !!props.country && props.country !== 'null' &&
+            <img
+              alt={ props.country }
+              className='edit_div_flag_img'
+              src={ flagIconIndex[props.country].image }
+            />
+          }
           { distribFields[5] }
         </div>
         <label>Gender</label><div className='edit_div'>{ distribFields[6] }</div>
@@ -126,3 +150,10 @@ const dashboardEditProfileForm = (props) => {
 }
 
 export default dashboardEditProfileForm
+
+          // <button
+          //   className='edit_div_avatar_button'
+          //   onClick={ props.onAvatarTempSubmit }
+          // >
+          //   Upload
+          // </button>

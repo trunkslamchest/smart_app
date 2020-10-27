@@ -19,6 +19,7 @@ class DashboardSettingsContainer extends React.Component {
           private: false,
           showAchievements: false,
           showAge: false,
+          showAvatar: false,
           showBio: false,
           showCountry: false,
           showEmail: false,
@@ -51,6 +52,7 @@ class DashboardSettingsContainer extends React.Component {
             private: this.props.user.settings.privacy.profile.private,
             showAchievements: this.props.user.settings.privacy.profile.showAchievements,
             showAge: this.props.user.settings.privacy.profile.showAge,
+            showAvatar: this.props.user.settings.privacy.profile.showAvatar,
             showBio: this.props.user.settings.privacy.profile.showBio,
             showCountry: this.props.user.settings.privacy.profile.showCountry,
             showEmail: this.props.user.settings.privacy.profile.showEmail,
@@ -102,6 +104,7 @@ class DashboardSettingsContainer extends React.Component {
             private: this.props.user.settings.privacy.profile.private,
             showAchievements: this.props.user.settings.privacy.profile.showAchievements,
             showAge: this.props.user.settings.privacy.profile.showAge,
+            showAvatar: this.props.user.settings.privacy.profile.showAvatar,
             showBio: this.props.user.settings.privacy.profile.showBio,
             showCountry: this.props.user.settings.privacy.profile.showCountry,
             showEmail: this.props.user.settings.privacy.profile.showEmail,
@@ -130,6 +133,7 @@ class DashboardSettingsContainer extends React.Component {
           private={ this.state.settings.privacy.profile.private }
           showAchievements={ this.state.settings.privacy.profile.showAchievements }
           showAge={ this.state.settings.privacy.profile.showAge }
+          showAvatar={ this.state.settings.privacy.profile.showAvatar }
           showBio={ this.state.settings.privacy.profile.showBio }
           showCountry={ this.state.settings.privacy.profile.showCountry }
           showEmail={ this.state.settings.privacy.profile.showEmail }

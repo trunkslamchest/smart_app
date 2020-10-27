@@ -3,6 +3,7 @@ import getTime from '../utility/getTime'
 const signUpObjTemplate = (email, user_name) => {
   return {
     "info": {
+      "avatar": 'https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/avatars%2Fdefault_avatar.png?alt=media&token=49efd887-faca-4f07-89fc-0d92df9f2f87',
       "bio": "null",
       "country": "null",
       "email": `${ email }`,
@@ -275,6 +276,7 @@ const signUpObjTemplate = (email, user_name) => {
         "profile": {
           "private": false,
           "showAchievements": true,
+          "showAvatar": true,
           "showAge": true,
           "showBio": true,
           "showCountry": true,

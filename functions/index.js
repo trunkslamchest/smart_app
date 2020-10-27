@@ -104,7 +104,7 @@ exports.getAchievements = functions
   .https.onRequest((req, res) => {
     setCORSget(req, res)
     firebase.database().ref('/').once('value', function(achievements){ res.json(achievements).status(200) });
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.getAchievementsFromResults = functions
@@ -126,7 +126,7 @@ exports.getAchievementsFromResults = functions
 
       res.json(resObj).status(200)
     });
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.crossUpdateAchievements = functions
@@ -157,7 +157,7 @@ exports.crossUpdateAchievements = functions
     });
 
     res.end()
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 // ~~~~~~~~~~~~~~~~~~~~ USERS ~~~~~~~~~~~~~~~~~~~~
@@ -225,7 +225,7 @@ exports.getUserProfile = functions
       }
 
       res.json(userObj).status(200)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -239,7 +239,7 @@ exports.updateUser = functions
       firebase.database().ref().update(updatedInfo);
     }
     res.json(updatedInfo).status(200);
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.updateUserSettings = functions
@@ -252,7 +252,7 @@ exports.updateUserSettings = functions
       firebase.database().ref().update(updatedInfo);
     }
     res.json(req.body.settings).status(200);
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.deleteUser = functions
@@ -265,7 +265,7 @@ exports.deleteUser = functions
       firebase.database().ref(user).remove()
     }
     res.json({msg: 'Your Profile has been removed.'}).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.checkUserName = functions
@@ -287,7 +287,7 @@ exports.checkUserName = functions
         }
       }
       res.json(resObj).status(200)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -308,7 +308,7 @@ exports.checkEmail = functions
         }
       }
       res.json(resObj).status(200)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -363,7 +363,7 @@ exports.crossUpdateUserQuestion = functions
     })
 
     res.end()
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.crossUpdateUserVote = functions
@@ -393,7 +393,7 @@ exports.crossUpdateUserVote = functions
     })
 
     res.end()
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.crossUpdateUserComment = functions
@@ -417,7 +417,7 @@ exports.crossUpdateUserComment = functions
     })
 
     res.end()
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.deleteUserComment = functions
@@ -437,7 +437,7 @@ exports.deleteUserComment = functions
         })
       }
       res.json(req.body).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.editUserComment = functions
@@ -450,7 +450,7 @@ exports.editUserComment = functions
       firebase.database().ref(commentPath).update(updateObj)
     }
     res.json(req.body).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 // ~~~~~~~~~~~~~~~~~~~~ QUESTIONS ~~~~~~~~~~~~~~~~~~~~
@@ -677,7 +677,7 @@ exports.questions = functions
   .https.onRequest((req, res) => {
     setCORSget(req, res)
     firebase.database().ref('/').once('value', function(questions){ res.json(questions).status(200) });
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.questionsTotals = functions
@@ -758,7 +758,7 @@ exports.questionsTotals = functions
         },
         category: catStats
       }).status(200)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -794,7 +794,7 @@ exports.quickQuestion = functions
         }
       }
       res.json(question)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -828,7 +828,7 @@ exports.diffQuestion = functions
         }
       }
       res.json(question)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -867,7 +867,7 @@ exports.catQuestion = functions
         }
       }
       res.json(question)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -893,7 +893,7 @@ exports.staticQuestion = functions
       }
     res.json(resObj).status(200)
     });
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 var calcAchievements = function(allAchievements, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
@@ -1078,7 +1078,7 @@ exports.questionResults = functions
         }
 
         res.json(resObj).status(200)
-      // res.send('done')
+      // res.json({ message: 'done' }).status(200);
       })
     })
 })
@@ -1139,7 +1139,7 @@ exports.questionVote = functions
       }
 
       res.json(voteObj).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -1198,7 +1198,7 @@ exports.questionComment = functions
       }
 
       res.json(resObj).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -1210,7 +1210,7 @@ exports.deleteQuestionComment = functions
       firebase.database().ref('/' + req.body.question.difficulty + '/categories/' + req.body.question.category + '/' + req.body.question.qid + '/comments/' + req.body.comment.cid).remove()
     }
     res.json(req.body).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });
 
 exports.editQuestionComment = functions
@@ -1224,5 +1224,5 @@ exports.editQuestionComment = functions
     }
 
     res.json(req.body).status(200)
-    // res.send('done')
+    // res.json({ message: 'done' }).status(200);
 });

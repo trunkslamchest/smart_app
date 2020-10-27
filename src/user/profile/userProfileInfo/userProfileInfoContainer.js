@@ -12,6 +12,7 @@ import './userProfileInfoContainer.css'
 const UserProfileInfoContainer = (props) => {
 
   let ageBlock = <></>,
+      avatarBlock = <></>,
       bioBlock = <></>,
       countryBlock = <></>,
       genderBlock = <></>,
@@ -23,6 +24,17 @@ const UserProfileInfoContainer = (props) => {
       <h3>{ props.info.user_name }</h3>
       { !!props.info.email && <h5>{ props.info.email }</h5>}
     </div>
+
+  if(!!props.info.avatar) {
+    avatarBlock =
+      <div className="user_profile_info_sub_container">
+        <img
+          alt='Avatar'
+          className='user_profile_info_avatar_img'
+          src={ props.info.avatar }
+        />
+      </div>
+  }
 
   let firstName = props.info.first_name !== 'null' && props.info.first_name,
       lastName = props.info.last_name !== 'null' && props.info.last_name
@@ -44,7 +56,11 @@ const UserProfileInfoContainer = (props) => {
   if(!!props.info.country && props.info.country !== 'null') {
     countryBlock =
       <div className="user_profile_info_sub_container">
-        <img alt={ props.info.country } src={ flagIconIndex[props.info.country].image } />
+        <img 
+          alt={ props.info.country }
+          className='user_profile_info_flag_img'
+          src={ flagIconIndex[props.info.country].image }
+        />
         <span>{ props.info.country }</span>
       </div>
   }
@@ -85,6 +101,7 @@ const UserProfileInfoContainer = (props) => {
   return(
     <div className="user_profile_info_container">
       { userNameEmailBlock }
+      { avatarBlock }
       { nameBlock }
       { bioBlock }
       { countryBlock }

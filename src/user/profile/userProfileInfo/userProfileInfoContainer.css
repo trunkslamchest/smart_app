@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .user_profile_info_container > * {
@@ -33,6 +36,12 @@
   font: 300 12pt 'Poppins', sans-serif;
 }
 
-.user_profile_info_sub_container img {
+.user_profile_info_flag_img {
   padding-right: 5px;
+}
+
+.user_profile_info_avatar_img {
+  width: 100px;
+  height: auto;
+  padding: 0px;
 }

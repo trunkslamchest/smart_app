@@ -19,6 +19,7 @@ const DashboardProfileContainer = (props) => {
 
   useEffect(() => { document.title = "SmartApp™ | Dashboard | Profile" }, [])
 
+  let avatar = props.user.info.avatar
   let userName = props.user.info.user_name
   let email = props.user.info.email
   let bio = checkBlankString(props.user.info.bio, 'Update your profile to add a Bio')
@@ -64,6 +65,10 @@ const DashboardProfileContainer = (props) => {
   return(
     <div className='dashboard_profile_wrapper'>
       <div className='dashboard_profile_header'>
+        <img
+          alt={ `${userName}'s Avatar` }
+          src={ avatar }
+        />
         <h3>{ userName }</h3>
         <h5>{ email }</h5>
       </div>
