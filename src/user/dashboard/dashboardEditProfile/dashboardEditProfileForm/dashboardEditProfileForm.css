@@ -38,7 +38,7 @@
 }
 
 .edit_div {
-  margin: 10px 0px;
+  margin: 5px 0px 10px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,7 +71,7 @@
 }
 
 .edit_div_flag_img {
-  padding-right: 2.5px;
+  padding-bottom: 5px;
 }
 
 .edit_div_avatar_img {
@@ -83,17 +83,8 @@
 }
 
 .edit_div_avatar_input_label {
-  /* -webkit-appearance: none; */
-  /* text-rendering: auto; */
   color: rgb(235, 235, 235, 1);
   background: rgba(51, 51, 51, 1);
-  /* letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  text-decoration: none;
-  display: inline-block; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -145,4 +136,14 @@
   border: 0px;
   box-sizing: border-box;
   outline: -webkit-focus-ring-color auto 0px;
+}
+
+.edit_profile_form_error_container {
+  padding: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }

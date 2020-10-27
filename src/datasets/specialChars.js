@@ -1,6 +1,32 @@
+const specialCharsBio = [
+  '@', '^', '[', ']', '{',
+  '}', '<', '>', '`', '~'
+]
+
+const specialCharsComment = [
+  '^', '[', ']', '{', '}',
+  '|', '`', '~'
+]
+
+const specialCharsCountry = [
+  '!', '@', '#', '$', '%',
+  '&', '*', '(', ')', '[',
+  ']', '{', '}', ';', ':',
+  '<', '>', '\\', '?', '|',
+  '_', '=', '+', '~'
+]
+
 const specialCharsEmail = [
   '(', ')', '[', ']', ';',
   ':', '<', '>', '\\', ','
+]
+
+const specialCharsRealName = [
+  '!', '@', '#', '$', '%',
+  '&', '*', '(', ')', '[',
+  ']', '{', '}', ';', ':',
+  '<', '>', '\\', '/', '?',
+  '|', '_', '=', '+', '~'
 ]
 
 const specialCharsUserName = [
@@ -10,11 +36,6 @@ const specialCharsUserName = [
   '>', '\\', '/', '?', '|',
   '=', '+', ',', '.', '`',
   '~'
-]
-
-const specialCharsComment = [
-  '^', '[', ']', '{', '}',
-  '|', '`', '~'
 ]
 
 const specialCharsDef = [
@@ -27,9 +48,12 @@ const specialCharsDef = [
 ]
 
 const specialChars = {
-  email: specialCharsEmail,
-  user_name: specialCharsUserName,
+  bio: specialCharsBio,
   comment: specialCharsComment,
+  country: specialCharsCountry,
+  email: specialCharsEmail,
+  real_name: specialCharsRealName,
+  user_name: specialCharsUserName,
   def: specialCharsDef
 }
 

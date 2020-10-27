@@ -1,9 +1,11 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 import { loading, authStart, updateUserInfo } from '../../../store/actions/actionIndex'
 
 import { routes } from '../../../utility/paths.js'
+import { check } from '../../../utility/paths'
+import checkFunctions from '../../../utility/checkFunctions'
+import validateEditProfile from '../../../utility/validation/validateEditProfile'
 
 import DashboardEditProfileForm from './dashboardEditProfileForm/dashboardEditProfileForm'
 
@@ -27,6 +29,7 @@ class DashboardEditProfile extends React.Component {
     last_name: '',
     user_name: '',
     errors: {},
+    form: { valid: false, pending: false },
     pulledStore: false,
     enableButtons: true,
     enableInputs: true
@@ -34,7 +37,11 @@ class DashboardEditProfile extends React.Component {
 
   componentDidMount(){ if(this.props.user.info) this.pulledStore() }
 
-  componentDidUpdate(){ if(this.props.user.info && !this.state.pulledStore)this.pulledStore() }
+  componentDidUpdate() {
+    if(this.props.user.info && !this.state.pulledStore)this.pulledStore()
+    if(this.props.modal.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
+    if(!this.props.modal.loading && !this.state.enableButton) this.setState({ enableButton: true, enableInput: true })
+  }
 
   pulledStore = () => {
     this.setState({
@@ -84,27 +91,56 @@ class DashboardEditProfile extends React.Component {
   onSubmit = (event) => {
     event.persist()
     event.preventDefault()
-
-    this.setState({ enableButtons: false, enableInputs: false })
-
     this.props.onLoadingModal(true)
-    this.props.onAuthStart('editProfile', {
-      uid: localStorage.id,
-      info: {
-        avatar: this.state.avatar,
-        bio: this.state.bio,
-        country: this.state.country,
-        dob: this.state.dob,
-        email: this.state.email,
-        first_name: this.state.first_name,
-        gender: this.state.gender,
-        gender_pronouns: this.state.gender_pronouns,
-        last_name: this.state.last_name,
-        user_name: this.state.user_name,
-        join_date: this.props.user.info.join_date,
-        last_login: this.props.user.info.last_login
+    this.setState({ form: { valid: false, pending: true } })
+
+    let formCheck = validateEditProfile(
+      this.state.bio,
+      this.state.country,
+      this.state.dob,
+      this.state.email,
+      this.state.first_name,
+      this.state.gender,
+      this.state.gender_pronouns,
+      this.state.last_name,
+      this.state.user_name
+    )
+
+    this.setState({ form: formCheck })
+    if(formCheck.valid) this.checkUserExists()
+  }
+
+  checkUserExists = () => {
+    checkFunctions('checkUserName', check.user_name, { old_user_name: this.props.user.info.user_name, new_user_name: this.state.user_name, type: 'editProfile' })
+    .then(userNameRes => {
+      if(!userNameRes.valid) {
+        this.props.onLoadingModal(false)
+        this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
       }
+      else this.onValidEditProfile()
     })
+  }
+
+  onValidEditProfile = () => {
+    if(!this.state.form.pending && this.state.enableButtons){
+      this.props.onAuthStart('editProfile', {
+        uid: localStorage.id,
+        info: {
+          avatar: this.state.avatar,
+          bio: this.state.bio,
+          country: this.state.country,
+          dob: this.state.dob,
+          email: this.state.email,
+          first_name: this.state.first_name,
+          gender: this.state.gender,
+          gender_pronouns: this.state.gender_pronouns,
+          last_name: this.state.last_name,
+          user_name: this.state.user_name,
+          join_date: this.props.user.info.join_date,
+          last_login: this.props.user.info.last_login
+        }
+      })
+    }
   }
 
   onReset = () => {
@@ -156,20 +192,20 @@ class DashboardEditProfile extends React.Component {
         country={ this.state.country }
         dob={ this.state.dob }
         email={ this.state.email }
-        enableButtons={ this.state.enableButtons }
-        enableInputs={ this.state.enableInputs }
-        errors={ this.state.errors }
         first_name={ this.state.first_name }
         gender={ this.state.gender }
         gender_pronouns={ this.state.gender_pronouns }
         last_name={ this.state.last_name }
+        user_name={ this.state.user_name }
+        enableButtons={ this.state.enableButtons }
+        enableInputs={ this.state.enableInputs }
+        errors={ this.state.errors }
         onChange={ this.onChange }
         onAvatarChange={ this.onAvatarChange }
         onDOBChange={ this.onDOBChange }
         onCancel={ this.onCancel }
         onReset={ this.onReset }
         onSubmit={ this.onSubmit }
-        user_name={ this.state.user_name }
       />
     )
   }
@@ -177,6 +213,7 @@ class DashboardEditProfile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    modal: state.modal,
     user: state.user
   }
 }

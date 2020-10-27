@@ -48,7 +48,7 @@ class SignUp extends React.Component {
   }
 
   checkUserExists = () => {
-    checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name })
+    checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name, type: 'signUp' })
     .then(userNameRes => {
       if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
       else this.onValidateSignUp()

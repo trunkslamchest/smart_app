@@ -16,7 +16,6 @@ import './dashboardEditProfileForm.css'
 const dashboardEditProfileForm = (props) => {
 
   const fields = [
-    // [ 1, { type: 'text', idName: 'avatar', placeholder: 'User Name...', label: 'Profile Picture' }],
     [ 1, { type: 'text', idName: 'user_name', placeholder: 'User Name...', label: 'User Name' }],
     [ 2, { type: 'text', idName: 'email', placeholder: 'Email...', label: 'Email' }],
     [ 3, { type: 'text', idName: 'first_name', placeholder: 'First Name...' }],
@@ -117,12 +116,16 @@ const dashboardEditProfileForm = (props) => {
             />
             <span>Choose A New Profile Picture</span>
           </label>
-          { props.errors.avatar && props.errors.avatar.map(error => <DashboardEditProfileFormErrorItem key={ props.errors.avatar.indexOf(error) } error={ error } />) }
+          { props.errors.avatar &&
+            <div className="edit_profile_form_error_container">
+              { props.errors.avatar.map(error => <DashboardEditProfileFormErrorItem key={ props.errors.avatar.indexOf(error) } error={ error } />) }
+            </div>
+          }
         </div>
 
         <label>User Name</label><div className='edit_div'>{ distribFields[0] }</div>
         <label>Email</label><div className='edit_div'>{ distribFields[1] }</div>
-        <label>Name</label><div className='edit_div'>{ distribFields[2] }<br />{ distribFields[3] }</div>
+        <label>Name</label><div className='edit_div'>{ distribFields[2] }{ distribFields[3] }</div>
         <label>Bio</label><div className='edit_div'>{ distribFields[4] }</div>
         <label>Country</label>
         <div className='edit_div'>
@@ -137,7 +140,7 @@ const dashboardEditProfileForm = (props) => {
         </div>
         <label>Gender</label><div className='edit_div'>{ distribFields[6] }</div>
         <label>Pronouns</label><div className='edit_div'>{ distribFields[7] }</div>
-        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[8] }<br />{ distribFields[9] }<br />{ distribFields[10] }</div>
+        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[8] }{ distribFields[9] }{ distribFields[10] }</div>
         <DashboardEditProfileFormButtonContainer
           enableButtons={ props.enableButtons }
           onSubmit={ props.onSubmit }
@@ -150,10 +153,3 @@ const dashboardEditProfileForm = (props) => {
 }
 
 export default dashboardEditProfileForm
-
-          // <button
-          //   className='edit_div_avatar_button'
-          //   onClick={ props.onAvatarTempSubmit }
-          // >
-          //   Upload
-          // </button>
