@@ -155,6 +155,10 @@ class DashboardEditProfile extends React.Component {
       gender_pronouns: this.props.user.info.gender_pronouns,
       last_name: this.props.user.info.last_name,
       user_name: this.props.user.info.user_name,
+      errors: {},
+      form: { valid: false, pending: false },
+      enableButtons: true,
+      enableInputs: true
     })
 
   }
@@ -200,6 +204,7 @@ class DashboardEditProfile extends React.Component {
         enableButtons={ this.state.enableButtons }
         enableInputs={ this.state.enableInputs }
         errors={ this.state.errors }
+        form={ this.state.form }
         onChange={ this.onChange }
         onAvatarChange={ this.onAvatarChange }
         onDOBChange={ this.onDOBChange }

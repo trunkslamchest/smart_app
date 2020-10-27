@@ -123,10 +123,48 @@ const dashboardEditProfileForm = (props) => {
           }
         </div>
 
-        <label>User Name</label><div className='edit_div'>{ distribFields[0] }</div>
-        <label>Email</label><div className='edit_div'>{ distribFields[1] }</div>
-        <label>Name</label><div className='edit_div'>{ distribFields[2] }{ distribFields[3] }</div>
-        <label>Bio</label><div className='edit_div'>{ distribFields[4] }</div>
+        <label>User Name</label>
+        <div className='edit_div'>
+          { distribFields[0] }
+          { props.form.user_name && !!props.form.user_name.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.user_name.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.user_name.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
+        </div>
+        <label>Email</label>
+          <div className='edit_div'>
+            { distribFields[1] }
+            { props.form.email && !!props.form.email.errors.length &&
+              <div className="edit_profile_form_error_container">
+                { props.form.email.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.email.errors.indexOf(error) } error={ error } />) }
+              </div>
+            }
+          </div>
+        <label>Name</label>
+        <div className='edit_div'>
+          { distribFields[2] }
+          { props.form.first_name && !!props.form.first_name.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.first_name.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.first_name.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
+          { distribFields[3] }
+          { props.form.last_name && !!props.form.last_name.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.last_name.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.last_name.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
+        </div>
+        <label>Bio</label>
+        <div className='edit_div'>
+          { distribFields[4] }
+        </div>
+          { props.form.bio && !!props.form.bio.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.bio.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.bio.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
         <label>Country</label>
         <div className='edit_div'>
           { !!props.country && props.country !== 'null' &&
@@ -137,10 +175,41 @@ const dashboardEditProfileForm = (props) => {
             />
           }
           { distribFields[5] }
+          { props.form.country && !!props.form.country.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.country.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.country.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
         </div>
-        <label>Gender</label><div className='edit_div'>{ distribFields[6] }</div>
-        <label>Pronouns</label><div className='edit_div'>{ distribFields[7] }</div>
-        <label>Date Of Birth</label><div className='edit_div'>{ distribFields[8] }{ distribFields[9] }{ distribFields[10] }</div>
+        <label>Gender</label>
+        <div className='edit_div'>
+          { distribFields[6] }
+          { props.form.gender && !!props.form.gender.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.gender.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.gender.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
+        </div>
+        <label>Pronouns</label>
+        <div className='edit_div'>
+          { distribFields[7] }
+          { props.form.gender_pronouns && !!props.form.gender_pronouns.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.gender_pronouns.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.gender_pronouns.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
+        </div>
+        <label>Date Of Birth</label>
+        <div className='edit_div'>
+          { distribFields[8] }
+          { distribFields[9] }
+          { distribFields[10] }
+          { props.form.dob && !!props.form.dob.errors.length &&
+            <div className="edit_profile_form_error_container">
+              { props.form.dob.errors.map(error => <DashboardEditProfileFormErrorItem key={ props.form.dob.errors.indexOf(error) } error={ error } />) }
+            </div>
+          }
+        </div>
         <DashboardEditProfileFormButtonContainer
           enableButtons={ props.enableButtons }
           onSubmit={ props.onSubmit }

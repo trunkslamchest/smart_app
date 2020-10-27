@@ -5,7 +5,7 @@ const validateEmail = (email) => {
 
   if(typeof email !== 'string') emailValidation.errors = [ ...emailValidation.errors, { code: 150, message: 'Email must be in the form of a string' } ]
   else {
-    if(email === "" || email === " " || email.length === 0) emailValidation.errors = [ ...emailValidation.errors, { code: 151, message: "Email cannot be blank" } ]
+    if(email === "" || email === " " || email === "null" || email.length === 0) emailValidation.errors = [ ...emailValidation.errors, { code: 151, message: "Email cannot be blank" } ]
     else {
       if(email.length < 10) emailValidation.errors = [ ...emailValidation.errors, { code: 152, message: "Email cannot be less than 10 characters" } ]
       if(email.length > 100) emailValidation.errors = [ ...emailValidation.errors, { code: 153, message: "Email cannot be more than 100 characters" } ]

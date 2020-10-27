@@ -35,7 +35,6 @@ export const updateUserInfo = (authType, obj) => {
     userFunctions('patch', fetch.patch.user, obj)
     .then((userRes) => {
       // if(userRes){
-        console.log(userRes)
         dispatch(authUpdateStatus('updateUserInfoSuccess', true))
         dispatch(initUpdateUserInfo(obj.info))
       // }
