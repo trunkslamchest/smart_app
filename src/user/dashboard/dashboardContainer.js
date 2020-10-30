@@ -1,13 +1,12 @@
 import React from 'react'
-
 import { Route, Switch } from 'react-router-dom'
-
-import { connect } from 'react-redux'
-import { getQuestionTotals, updateUserQuestions } from '../../store/actions/actionIndex'
-
 import { routes } from '../../utility/paths.js'
+import { connect } from 'react-redux'
+import {
+  getQuestionTotals,
+  updateUserQuestions
+} from '../../store/actions/actionIndex'
 
-import DashboardNavBarContainer from './dashboardNavBar/dashboardNavBarContainer'
 import DashboardIndex from './dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
@@ -17,6 +16,8 @@ import DashboardSettingsContainer from './dashboardSettings/dashboardSettingsCon
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
+import NavBarContainer from '../../UI/navBar/navBarContainer'
+
 import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
@@ -25,7 +26,14 @@ class Dashboard extends React.Component{
 
   render(){
 
-    let routeBoard = <></>
+    let routeBoard
+
+    const navButtons = [
+      { name: 'profile', text: 'Profile', route: routes['dashboard_profile'] },
+      { name: 'stats', text: 'Stats', route: routes['dashboard_stats'] },
+      { name: 'achievements', text: 'Achievements', route: routes['dashboard_achievements'] },
+      { name: 'settings', text: 'Settings', route: routes['dashboard_settings'] },
+    ]
 
     if(!this.props.auth.loading) {
       if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
@@ -57,7 +65,7 @@ class Dashboard extends React.Component{
       <>
         <DashboardDeleteProfile history={ this.props.history } />
         <div className='dashboard_wrapper'>
-          <DashboardNavBarContainer />
+          <NavBarContainer buttons={ navButtons } />
           { routeBoard }
         </div>
       </>
