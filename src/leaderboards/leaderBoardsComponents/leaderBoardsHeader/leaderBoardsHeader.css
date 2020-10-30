@@ -1,0 +1,27 @@
+.leader_boards_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  padding-right: 10px;
+
+}
+
+.leader_boards_header h3 {
+  color: rgba(255, 255, 255, 1);
+  font: 600 15pt "LatoThin";
+  padding: 5px 0px 5px 10px;
+  text-align: center;
+}
+
+.leader_boards_header h4 {
+  color: rgba(255, 255, 255, 1);
+  font: 300 9pt "LatoItalic";
+  padding-right: 3.5em;
+  text-align: center;
+}

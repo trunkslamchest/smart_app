@@ -11,7 +11,6 @@ import {
 
 import LeaderBoardsOverallContainer from './leaderBoardsOverall/leaderBoardsOverallContainer'
 import LeaderBoardsCatContainer from './leaderBoardsCat/leaderBoardsCatContainer'
-
 import NavBarContainer from '../UI/navBar/navBarContainer'
 
 import './leaderBoardsContainer.css'
@@ -28,14 +27,10 @@ class LeaderBoardsContainer extends React.Component {
     const routeBoard =
       <Switch>
         <Route exact path={ this.props.overallRoute }>
-          <LeaderBoardsOverallContainer
-            history={ this.props.history }
-          />
+          <LeaderBoardsOverallContainer history={ this.props.history } />
         </Route>
         <Route exact path={ this.props.catRoute }>
-          <LeaderBoardsCatContainer
-            history={ this.props.history }
-          />
+          <LeaderBoardsCatContainer history={ this.props.history } />
         </Route>
       </Switch>
 

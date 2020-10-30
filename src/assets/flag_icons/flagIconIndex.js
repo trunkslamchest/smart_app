@@ -1,3 +1,4 @@
+import null_flag from './null.png'
 import Afghanistan_flag from './Afghanistan.png'
 import AlandIslands_flag from "./AlandIslands.png"
 import Albania_flag from "./Albania.png"
@@ -246,6 +247,7 @@ import Zimbabwe_flag from './Zimbabwe.png'
 
 const flagIconIndex = {
   'Select': { image: "none" },
+  'null': { image: null_flag },
   'Afghanistan': { image: Afghanistan_flag },
   'Aland Islands': { image: AlandIslands_flag },
   'Albania': { image: Albania_flag },

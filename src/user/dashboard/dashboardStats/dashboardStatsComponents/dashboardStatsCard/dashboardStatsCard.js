@@ -60,7 +60,7 @@ class DashboardStatsCard extends React.Component {
   render(){
 
     // const arrow_white_down = <img alt='open' className='menu_arrow' src={ menu_arrow_white_down } />
-    const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="answersButtonHover" src={ menu_arrow_grey_down } />
+    const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_grey_down } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_grey_left } />
     const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_white_left } />
 
