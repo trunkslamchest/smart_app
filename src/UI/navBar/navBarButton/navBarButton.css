@@ -1,4 +1,4 @@
-.results_navbar_button {
+.navbar_button {
   border: 0px;
   box-sizing: border-box;
   color: rgb(40, 44, 52, 1);
@@ -11,23 +11,23 @@
   text-decoration: none;
 }
 
-.results_navbar_button:hover {
+.navbar_button:hover {
   background: rgba(51, 51, 51, 1);
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
 }
 
-.results_navbar_button:active {
+.navbar_button:active {
   animation: scale_out .1s ease-in-out 1;
 }
 
-.results_navbar_button_active {
+.navbar_button_active {
   background-color: rgba(245, 167, 66, 1);
   color: rgba(40, 44, 52, 1);
   cursor: default;
 }
 
-.results_navbar_button_active:hover, .results_navbar_button_active:active {
+.navbar_button_active:hover, .navbar_button_active:active {
   animation: none;
   background-color: rgba(245, 167, 66, 1);
   color: rgba(40, 44, 52, 1);

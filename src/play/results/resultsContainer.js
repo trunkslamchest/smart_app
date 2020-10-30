@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
-
 import {
   getStaticQuestion,
   clearStaticQuestion,
@@ -12,13 +12,12 @@ import {
   clearStaticUserVote
 } from '../../store/actions/actionIndex'
 
-import { routes } from '../../utility/paths'
-
-import ResultsNavBarContainer from './resultsNavBar/resultsNavBarContainer'
 import ResultsStatsContainer from './resultsStats/resultsStatsContainer'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
 import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
+
 import StatsLegend from '../../UI/statsLegend/statsLegend'
+import NavBarContainer from '../../UI/navBar/navBarContainer'
 
 import './resultsContainer.css'
 
@@ -99,17 +98,24 @@ class ResultsContainer extends React.Component{
   render(){
     let routeBoard
 
+    const baseStaticRoute = routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid
+
+    const navButtons = [
+      { name: 'results', text: 'Results', route: this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats' },
+      { name: 'discuss', text: 'Discuss', route: this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss' }
+    ]
+
     if(this.props.staticResults){
       if(this.state.displayStaticResults) {
         routeBoard =
           <Switch>
-            <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/stats' }>
+            <Route exact path={ baseStaticRoute + '/stats' }>
               <ResultsStatsContainer
                 history={ this.props.history }
                 staticResults={ this.props.staticResults }
               />
             </Route>
-            <Route exact path={ routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid + '/discuss' }>
+            <Route exact path={ baseStaticRoute + '/discuss' }>
               <ResultsDiscussContainer
                 cat={ this.state.cat }
                 diff={ this.state.diff }
@@ -140,7 +146,7 @@ class ResultsContainer extends React.Component{
 
     return(
       <div className='results_container'>
-        <ResultsNavBarContainer staticResults={ this.props.staticResults } qid={ this.state.qid } diff={ this.state.diff } cat={ this.state.cat } />
+        <NavBarContainer buttons={ navButtons } />
         { routeBoard }
         { !this.props.staticResults &&
           <ResultsNextQuestion

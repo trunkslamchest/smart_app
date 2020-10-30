@@ -30,7 +30,7 @@ class NormalHeader extends React.Component {
   // }
 
   onClickLeaderBoardsFunctions = () => {
-    this.props.history.push( routes.leader_boards )
+    this.props.history.push( routes.leader_boards + '/overall' )
   }
 
 
@@ -70,7 +70,7 @@ class NormalHeader extends React.Component {
             >
               Leader Boards
             </HeaderButton2>
-            {/* {this.state.showPlayMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null} */}
+            {/* {this.state.showLeaderBoardsMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null} */}
           </div>
 
           <div className='header_nav_links_menu_container'>
@@ -81,7 +81,7 @@ class NormalHeader extends React.Component {
             >
               Play
             </HeaderButton2>
-            {this.state.showLeaderBoardsMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null}
+            {this.state.showPlayMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null}
           </div>
 
           <div

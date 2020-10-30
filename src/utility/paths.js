@@ -105,7 +105,7 @@ export const routes = {
 
   user_profile: '/testSub/users',
   static_results: '/testSub/results',
-  leader_boards: '/testSub/leader_boards',
+  leader_boards: '/testSub/leaderBoards',
 
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
@@ -139,7 +139,7 @@ export const routes = {
 
   // user_profile: '/smartapp/users',
   // static_results: '/smartapp/results',
-  // leader_boards: '/smartapp/leader_boards',
+  // leader_boards: '/smartapp/leaderBoards',
 
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',

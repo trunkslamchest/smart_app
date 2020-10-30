@@ -1,0 +1,18 @@
+.navbar_container {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  z-index: 9;
+}
+
+.navbar_container ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}

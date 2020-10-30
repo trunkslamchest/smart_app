@@ -129,5 +129,6 @@ export {
   getOverallLeaderBoards,
   getCatLeaderBoards,
   clearLeaderBoards,
-  updateLeaderBoardsStatus
+  updateLeaderBoardsStatus,
+  updateLeaderBoardsLoadingStatus
 } from './leaderBoardsActions'

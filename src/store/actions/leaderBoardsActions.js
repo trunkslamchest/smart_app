@@ -5,12 +5,8 @@ import { fetch } from '../../utility/paths'
 
 export const getOverallLeaderBoards = () => {
   return dispatch => {
-    console.log('test')
     leaderBoardsFunctions('getOverallLeaderBoards', fetch.get.overallLeaderBoards)
-    .then(res => {
-      // dispatch(updateLeaderBoardsStatus("fetchOverallLeaderBoardsSuccess"))
-      dispatch(setOverallLeaderBoards(res))
-    })
+    .then(res => { dispatch(setOverallLeaderBoards(res)) })
   }
 }
 
@@ -24,10 +20,7 @@ const setOverallLeaderBoards = (res) => {
 export const getCatLeaderBoards = () => {
   return dispatch => {
     leaderBoardsFunctions('getCatLeaderBoards', fetch.get.catLeaderBoards)
-    .then(res => {
-      // dispatch(updateLeaderBoardsStatus("fetchCatLeaderBoardsSuccess"))
-      dispatch(setCatLeaderBoards(res))
-    })
+    .then(res => { dispatch(setCatLeaderBoards(res)) })
   }
 }
 
@@ -50,5 +43,12 @@ export const updateLeaderBoardsStatus = (status) => {
   return {
     type: actionTypes.UPDATE_LEADERBOARDS_STATUS,
     status: status
+  }
+}
+
+export const updateLeaderBoardsLoadingStatus = (bool) => {
+  return {
+    type: actionTypes.UPDATE_LEADERBOARDS_LOADING_STATUS,
+    loading: bool
   }
 }

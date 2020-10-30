@@ -1,13 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import { routes } from '../../utility/paths'
+import {
+  getOverallLeaderBoards,
+  getCatLeaderBoards,
+  clearLeaderBoards,
+  updateLeaderBoardsStatus,
+  updateLeaderBoardsLoadingStatus
+} from '../../store/actions/actionIndex'
 
 import LeaderBoardsContainer from '../../leaderboards/leaderBoardsContainer'
 
 class LeaderBoardsController extends React.Component {
 
   componentDidMount(){
-
+    if(!this.props.leaderBoards.status && !this.props.leaderBoards.overall) this.initLeaderBoardModule()
   }
 
   componentDidUpdate(){
@@ -15,22 +22,20 @@ class LeaderBoardsController extends React.Component {
       if(!this.props.leaderBoards.status && !this.props.leaderBoards.overall) this.initLeaderBoardModule()
       if(this.props.leaderBoards.status === 'initLeaderBoards' && !this.props.leaderBoards.overall) this.getOverallLeaderBoardsModule()
       if(this.props.leaderBoards.status === 'fetchOverallLeaderBoards' && this.props.leaderBoards.overall) this.props.onUpdateLeaderBoardsStatus('fetchOverallLeaderBoardsSuccess')
-
       if(this.props.leaderBoards.status === 'fetchOverallLeaderBoardsSuccess' && !this.props.leaderBoards.cat) this.getCatLeaderBoardsModule()
       if(this.props.leaderBoards.status === 'fetchCatLeaderBoards' && this.props.leaderBoards.cat) this.props.onUpdateLeaderBoardsStatus('fetchCatLeaderBoardsSuccess')
-
       if(this.props.leaderBoards.status === 'fetchCatLeaderBoardsSuccess' && this.props.leaderBoards.overall && this.props.leaderBoards.cat) this.displayLeaderBoardsModule()
-
     }
-
-
   }
 
   componentWillUnmount(){
     if(this.props.leaderBoards.overall && this.props.leaderBoards.cat) this.props.onClearLeaderBoards()
+    if(this.props.leaderBoards.status)this.props.onUpdateLeaderBoardsStatus(null)
+    if(this.props.leaderBoards.loading)this.props.onUpdateLeaderBoardsLoadingStatus(false)
   }
 
   initLeaderBoardModule = () => {
+    this.props.onUpdateLeaderBoardsLoadingStatus(true)
     this.props.onUpdateLeaderBoardsStatus('initLeaderBoards')
   }
 
@@ -46,12 +51,15 @@ class LeaderBoardsController extends React.Component {
 
   displayLeaderBoardsModule = () => {
     this.props.onUpdateLeaderBoardsStatus('displayLeaderBoards')
+    this.props.onUpdateLeaderBoardsLoadingStatus(false)
   }
 
   render(){
     return(
       <LeaderBoardsContainer
         history={ this.props.history }
+        overallRoute={ routes.leader_boards + '/overall' }
+        catRoute={ routes.leader_boards + '/categories' }
       />
     )
   }
@@ -68,10 +76,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetOverallLeaderBoards: () => dispatch(actions.getOverallLeaderBoards()),
-    onGetCatLeaderBoards: () => dispatch(actions.getCatLeaderBoards()),
-    onClearLeaderBoards: () => dispatch(actions.clearLeaderBoards()),
-    onUpdateLeaderBoardsStatus: (status) => dispatch(actions.updateLeaderBoardsStatus(status))
+    onGetOverallLeaderBoards: () => dispatch(getOverallLeaderBoards()),
+    onGetCatLeaderBoards: () => dispatch(getCatLeaderBoards()),
+    onClearLeaderBoards: () => dispatch(clearLeaderBoards()),
+    onUpdateLeaderBoardsStatus: (status) => dispatch(updateLeaderBoardsStatus(status)),
+    onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status))
   }
 }
 
