@@ -2,6 +2,8 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
+import { routes } from '../../../utility/paths'
+
 import MyProfileMenu from '../../menus/myProfileMenu/myProfileMenu'
 import PlayMenu from '../../menus/playMenu/playMenu'
 
@@ -12,13 +14,30 @@ import '../header.css'
 class NormalHeader extends React.Component {
 
   state = {
+    showLeaderBoardsMenu: false,
     showPlayMenu: false,
     showProfileMenu: false,
   }
 
+  // switchLeaderBoardsMenu = () => {
+  //   let switchMenu = !this.state.showLeaderBoardsMenu
+  //   this.setState({
+  //     showLeaderBoardsMenu: switchMenu,
+  //     showPlayMenu: false,
+  //     showProfileMenu: false
+
+  //   })
+  // }
+
+  onClickLeaderBoardsFunctions = () => {
+    this.props.history.push( routes.leader_boards )
+  }
+
+
   switchPlayMenu = () => {
     let switchMenu = !this.state.showPlayMenu
     this.setState({
+      showLeaderBoardsMenu: false,
       showPlayMenu: switchMenu,
       showProfileMenu: false
     })
@@ -27,8 +46,9 @@ class NormalHeader extends React.Component {
   switchProfileMenu = () => {
     let switchMenu = !this.state.showProfileMenu
     this.setState({
-      showProfileMenu: switchMenu,
-      showPlayMenu: false
+      showLeaderBoardsMenu: false,
+      showPlayMenu: false,
+      showProfileMenu: switchMenu
     })
   }
 
@@ -42,13 +62,26 @@ class NormalHeader extends React.Component {
 
           <div className='header_nav_links_menu_container'>
             <HeaderButton2
+              menu='leaderBoardsMenu'
+              name='header_leader_boards_button'
+              // onClick={ this.switchLeaderBoardsMenu }
+              onClick={ this.onClickLeaderBoardsFunctions }
+
+            >
+              Leader Boards
+            </HeaderButton2>
+            {/* {this.state.showPlayMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null} */}
+          </div>
+
+          <div className='header_nav_links_menu_container'>
+            <HeaderButton2
               menu='playMenu'
               name='header_play_button'
               onClick={ this.switchPlayMenu }
             >
               Play
             </HeaderButton2>
-            {this.state.showPlayMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null}
+            {this.state.showLeaderBoardsMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null}
           </div>
 
           <div

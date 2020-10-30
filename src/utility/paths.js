@@ -16,7 +16,9 @@ export const fetch = {
     catQuestion: `${process.env.REACT_APP_LOCAL_GET_CAT_QUESTION}`,
     staticQuestion: `${process.env.REACT_APP_LOCAL_GET_STATIC_QUESTION}`,
     questionResults: `${process.env.REACT_APP_LOCAL_GET_QUESTION_RESULTS}`,
-    achievements: `${process.env.REACT_APP_LOCAL_GET_ACHIEVEMENTS}`
+    achievements: `${process.env.REACT_APP_LOCAL_GET_ACHIEVEMENTS}`,
+    overallLeaderBoards: `${process.env.REACT_APP_LOCAL_GET_OVERALL_LEADERBOARDS}`,
+    catLeaderBoards: `${process.env.REACT_APP_LOCAL_GET_CAT_LEADERBOARDS}`
   },
   post: {
     user: `${process.env.REACT_APP_LOCAL_ADD_USER}`,
@@ -55,7 +57,10 @@ export const check = {
 //     catQuestion: `${process.env.REACT_APP_DEPLOY_GET_CAT_QUESTION}`,
 //     staticQuestion: `${process.env.REACT_APP_DEPLOY_GET_STATIC_QUESTION}`,
 //     questionResults: `${process.env.REACT_APP_DEPLOY_GET_QUESTION_RESULTS}`,
-//     achievements: `${process.env.REACT_APP_DEPLOY_GET_ACHIEVEMENTS}`
+//     achievements: `${process.env.REACT_APP_DEPLOY_GET_ACHIEVEMENTS}`,
+//     overallLeaderBoards: `${process.env.REACT_APP_DEPLOY_GET_OVERALL_LEADERBOARDS}`,
+//     catLeaderBoards: `${process.env.REACT_APP_DEPLOY_GET_CAT_LEADERBOARDS}`
+
 //   },
 //   post: {
 //     user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`
@@ -100,6 +105,7 @@ export const routes = {
 
   user_profile: '/testSub/users',
   static_results: '/testSub/results',
+  leader_boards: '/testSub/leader_boards',
 
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
@@ -133,6 +139,7 @@ export const routes = {
 
   // user_profile: '/smartapp/users',
   // static_results: '/smartapp/results',
+  // leader_boards: '/smartapp/leader_boards',
 
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',

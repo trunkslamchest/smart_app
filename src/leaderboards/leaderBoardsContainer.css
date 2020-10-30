@@ -1,0 +1,10 @@
+.leader_boards_wrapper {
+  z-index: 1;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0px auto 0px auto;
+  padding: 0px 0px 0px 0px;
+  min-height: 85.75vh;
+}

@@ -155,6 +155,9 @@ class AuthController extends React.Component {
 
   authUserLocalModule = (status) => {
     this.props.onAuthUpdateStatus(status, true)
+    if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn') {
+      this.props.onUpdateUserLoginTime({ uid: localStorage.id, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
+    }
     this.props.onAuthUser()
     this.setState({ initAuthStart: false, initAuthLocalUser: true })
   }
@@ -182,9 +185,6 @@ class AuthController extends React.Component {
   }
 
   authLogInValidModule = (status) => {
-    if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn') {
-      this.props.onUpdateUserLoginTime({ uid: localStorage.id, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
-    }
     this.setState({ authUserInfoLocal: false, authUserQuestionsLocal: false, authAchievements: false, initAuthQuestions: false, authLogInValid: true })
     this.props.onAuthUpdateStatus(status, true)
     this.props.onAuthUpdateLoadingStatus(false)

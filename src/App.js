@@ -9,6 +9,8 @@ import { routes } from './utility/paths'
 
 import StoreController from './store/controllers/storeController'
 import PlayController from './store/controllers/playController'
+import LeaderBoardsController from './store/controllers/leaderBoardsController'
+
 
 import Header from './UI/header/header'
 import Footer from './UI/footer/footer'
@@ -34,7 +36,7 @@ import './App.css'
 const App = (props) => {
   return (
     <StoreController history={ props.history }>
-      <Header />
+      <Header history={ props.history } />
       <div className='main_container' name="main_container">
         {
           props.auth.loading &&
@@ -64,6 +66,9 @@ const App = (props) => {
           </Route>
           <Route path={ routes.play }>
             <PlayController history={ props.history } />
+          </Route>
+          <Route path={ routes.leader_boards }>
+            <LeaderBoardsController history={ props.history } />
           </Route>
           <Route exact path={ routes.tos }><TermsOfService /></Route>
           <Route exact path={ routes.privacy }><Privacy /></Route>

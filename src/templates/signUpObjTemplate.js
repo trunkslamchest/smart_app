@@ -3,7 +3,7 @@ import getTime from '../utility/getTime'
 const signUpObjTemplate = (email, user_name) => {
   return {
     "info": {
-      "avatar": 'https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/avatars%2Fdefault_avatar.png?alt=media&token=49efd887-faca-4f07-89fc-0d92df9f2f87',
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/avatars%2Fdefault_avatar.png?alt=media&token=49efd887-faca-4f07-89fc-0d92df9f2f87",
       "bio": "null",
       "country": "null",
       "email": `${ email }`,
@@ -16,15 +16,15 @@ const signUpObjTemplate = (email, user_name) => {
         "year": 0
       },
       "join_date": {
-        day: getTime('day'),
-        month: getTime('month'),
-        year: getTime('year')
+        "day": getTime('day'),
+        "month": getTime('month'),
+        "year": getTime('year')
       },
       "last_login": {
-        time: getTime('now'),
-        day: getTime('day'),
-        month: getTime('month'),
-        year: getTime('year')
+        "time": getTime('now'),
+        "day": getTime('day'),
+        "month": getTime('month'),
+        "year": getTime('year')
       },
       "last_name": "null",
       "user_name": `${ user_name }`

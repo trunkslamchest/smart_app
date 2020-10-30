@@ -30,8 +30,9 @@ const Header = (props) => {
 
     header =
       <NormalHeader
-        user_name={props.user_name}
-        showProfileMenu={props.showProfileMenu}
+        history={ props.history }
+        user_name={ props.user_name }
+        showProfileMenu={ props.showProfileMenu }
       />
   }
 

@@ -124,3 +124,10 @@ export {
   updateUserProfileStatus,
   updateUserProfileLoadingStatus
 } from './profileActions'
+
+export {
+  getOverallLeaderBoards,
+  getCatLeaderBoards,
+  clearLeaderBoards,
+  updateLeaderBoardsStatus
+} from './leaderBoardsActions'
