@@ -10,6 +10,7 @@ import {
 } from '../store/actions/actionIndex'
 
 import LeaderBoardsOverallContainer from './leaderBoardsOverall/leaderBoardsOverallContainer'
+import LeaderBoardsCountriesContainer from './leaderBoardsCountries/leaderBoardsCountriesContainer'
 import LeaderBoardsCatContainer from './leaderBoardsCat/leaderBoardsCatContainer'
 import NavBarContainer from '../UI/navBar/navBarContainer'
 
@@ -21,13 +22,18 @@ class LeaderBoardsContainer extends React.Component {
 
     const navButtons = [
       { name: 'overall', text: 'Overall', route: this.props.overallRoute },
+      { name: 'countries', text: 'Countries', route: this.props.countriesRoute },
       { name: 'cat', text: 'Categories', route: this.props.catRoute },
+
     ]
 
     const routeBoard =
       <Switch>
         <Route exact path={ this.props.overallRoute }>
           <LeaderBoardsOverallContainer history={ this.props.history } />
+        </Route>
+        <Route exact path={ this.props.countriesRoute }>
+          <LeaderBoardsCountriesContainer history={ this.props.history } />
         </Route>
         <Route exact path={ this.props.catRoute }>
           <LeaderBoardsCatContainer history={ this.props.history } />

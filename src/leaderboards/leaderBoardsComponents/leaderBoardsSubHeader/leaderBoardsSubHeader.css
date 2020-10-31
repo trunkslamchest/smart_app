@@ -1,4 +1,4 @@
-.leader_boards_countries_header {
+.leader_boards_sub_header {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -12,7 +12,7 @@
   font: 600 10pt "LatoThin";
 }
 
-.leader_boards_countries_header:hover {
+.leader_boards_sub_header:hover {
   color: rgba(51, 51, 51, 1);
   font: 600 10pt "Lato";
   padding-left: .5em;
@@ -22,12 +22,12 @@
   cursor: pointer;
 }
 
-.leader_boards_countries_header h3 {
+.leader_boards_sub_header h3 {
   text-align: center;
   padding: 0px 20px;
 }
 
-.leader_boards_countries_header_right {
+.leader_boards_sub_header_right {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -36,7 +36,7 @@
   align-content: center;
 }
 
-.leader_boards_countries_header_right h4 {
+.leader_boards_sub_header_right h4 {
   font: 300 9pt "LatoItalic";
   padding-right: 2.5em;
   text-align: center;
@@ -46,7 +46,7 @@
 
 }
 
-.leader_boards_countries_header_active {
+.leader_boards_sub_header_active {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -63,12 +63,12 @@
   padding-right: 1.5em;
 }
 
-.leader_boards_countries_header_active h3 {
+.leader_boards_sub_header_active h3 {
   text-align: center;
   padding: 0px 20px;
 }
 
-.leader_boards_countries_header_right_active {
+.leader_boards_sub_header_right_active {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -77,13 +77,13 @@
   align-content: center;
 }
 
-.leader_boards_countries_header_right_active h4 {
+.leader_boards_sub_header_right_active h4 {
   font: 300 9pt "LatoItalic";
   padding-right: 2.5em;
   text-align: center;
 }
 
-.leader_boards_countries_header_active:hover {
+.leader_boards_sub_header_active:hover {
   color: rgba(51, 51, 51, 1);
   font: 600 10pt "Lato";
   padding-left: .5em;

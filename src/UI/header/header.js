@@ -17,7 +17,7 @@ const Header = (props) => {
 
   // if(props.auth.loading)
 
-  if(localStorage.access === 'guest') header = <GuestHeader />
+  if(localStorage.access === 'guest') header = <GuestHeader history={ props.history } />
 
   if(props.auth.status === 'authValid') {
     home_link =
@@ -32,7 +32,7 @@ const Header = (props) => {
       <NormalHeader
         history={ props.history }
         user_name={ props.user_name }
-        showProfileMenu={ props.showProfileMenu }
+        // showProfileMenu={ props.showProfileMenu }
       />
   }
 

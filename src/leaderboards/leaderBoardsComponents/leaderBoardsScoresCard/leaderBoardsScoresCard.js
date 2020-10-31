@@ -1,14 +1,14 @@
 import React from 'react'
 
-import LeaderBoardsCountriesHeader from '../leaderBoardsCountriesHeader/leaderBoardsCountriesHeader'
+import LeaderBoardsSubHeader from '../leaderBoardsSubHeader/leaderBoardsSubHeader'
 import LeaderBoardsScoresRow from '../leaderBoardsScoresRow/leaderBoardsScoresRow'
 import LeaderBoardsButtonsRow from '../leaderBoardsButtonsRow/leaderBoardsButtonsRow'
 
 import flagIconIndex from '../../../assets/flag_icons/flagIconIndex'
 
-import './leaderBoardsCountriesCard.css'
+import './leaderBoardsScoresCard.css'
 
-class LeaderBoardsCountriesCard extends React.Component {
+class LeaderBoardsScoresCard extends React.Component {
 
   state = { showScores: false, headerButtonHover: false }
 
@@ -56,7 +56,7 @@ class LeaderBoardsCountriesCard extends React.Component {
         return(
           <LeaderBoardsScoresRow
             countryFlag={ flagIconIndex[score.country] }
-            fromCountry={ true }
+            fromScoresCard={ true }
             history={ this.props.history }
             key={ score.uid }
             rank={ this.props.scores.indexOf(score) + 1 }
@@ -75,10 +75,10 @@ class LeaderBoardsCountriesCard extends React.Component {
         onMouseLeave={ this.offScoresHover }
         ref={ this.setButtonRef }
       >
-        <LeaderBoardsCountriesHeader
-          countryName={ this.props.countryName }
+        <LeaderBoardsSubHeader
+          scoresSetName={ this.props.scoresSetName }
           headerButtonHover={ this.state.headerButtonHover }
-          key={ `${this.props.countryName}_header` }
+          key={ `${this.props.scoresSetName}_header` }
           showScores={ this.state.showScores }
           sub_text={ 'Rating' }
         />
@@ -89,4 +89,4 @@ class LeaderBoardsCountriesCard extends React.Component {
   }
 }
 
-export default LeaderBoardsCountriesCard
+export default LeaderBoardsScoresCard

@@ -16,10 +16,10 @@ const LeaderBoardsScoresRow = (props) => {
       <span>{ props.rank }</span>
       <span>
         <img
-          alt={ props.score.country === 'null' ? 'No Country': props.score.country }
+          alt={ props.score.fromScoresCard === 'null' ? 'No Country': props.score.country }
           className='leader_boards_scores_row_img_flag'
           src={ props.countryFlag.image }
-          title={ props.score.country === 'null' ? 'No Country': props.score.country }
+          title={ props.score.fromScoresCard === 'null' ? 'No Country': props.score.country }
         />
         <img
           alt={ `${props.score.user_name}'s Avatar` }

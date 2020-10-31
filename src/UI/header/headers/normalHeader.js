@@ -25,7 +25,6 @@ class NormalHeader extends React.Component {
   //     showLeaderBoardsMenu: switchMenu,
   //     showPlayMenu: false,
   //     showProfileMenu: false
-
   //   })
   // }
 
@@ -64,15 +63,11 @@ class NormalHeader extends React.Component {
             <HeaderButton2
               menu='leaderBoardsMenu'
               name='header_leader_boards_button'
-              // onClick={ this.switchLeaderBoardsMenu }
               onClick={ this.onClickLeaderBoardsFunctions }
-
             >
               Leader Boards
             </HeaderButton2>
-            {/* {this.state.showLeaderBoardsMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null} */}
           </div>
-
           <div className='header_nav_links_menu_container'>
             <HeaderButton2
               menu='playMenu'
@@ -83,7 +78,6 @@ class NormalHeader extends React.Component {
             </HeaderButton2>
             {this.state.showPlayMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null}
           </div>
-
           <div
             className='header_nav_links_menu_container'
           >

@@ -18,7 +18,7 @@ class LeaderBoardsController extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.auth.status === 'authValid' && !this.props.auth.loading) {
+    if(localStorage.access === 'guest' || (this.props.auth.status === 'authValid' && !this.props.auth.loading)) {
       if(!this.props.leaderBoards.status && !this.props.leaderBoards.overall) this.initLeaderBoardModule()
       if(this.props.leaderBoards.status === 'initLeaderBoards' && !this.props.leaderBoards.overall) this.getOverallLeaderBoardsModule()
       if(this.props.leaderBoards.status === 'fetchOverallLeaderBoards' && this.props.leaderBoards.overall) this.props.onUpdateLeaderBoardsStatus('fetchOverallLeaderBoardsSuccess')
@@ -59,6 +59,7 @@ class LeaderBoardsController extends React.Component {
       <LeaderBoardsContainer
         history={ this.props.history }
         overallRoute={ routes.leader_boards + '/overall' }
+        countriesRoute={ routes.leader_boards + '/countries' }
         catRoute={ routes.leader_boards + '/categories' }
       />
     )
