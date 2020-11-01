@@ -9,44 +9,39 @@ import {
   updateLeaderBoardsLoadingStatus
 } from '../store/actions/actionIndex'
 
-import LeaderBoardsOverallContainer from './leaderBoardsOverall/leaderBoardsOverallContainer'
-import LeaderBoardsCountriesContainer from './leaderBoardsCountries/leaderBoardsCountriesContainer'
-import LeaderBoardsCatContainer from './leaderBoardsCat/leaderBoardsCatContainer'
+import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverall/leaderBoardsOverallContainer'
+import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoardsCountries/leaderBoardsCountriesContainer'
+import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCat/leaderBoardsCatContainer'
 import NavBarContainer from '../UI/navBar/navBarContainer'
 
 import './leaderBoardsContainer.css'
 
-class LeaderBoardsContainer extends React.Component {
+const LeaderBoardsContainer = (props) => {
+  const navButtons = [
+    { name: 'overall', text: 'Overall', route: props.overallRoute },
+    { name: 'countries', text: 'Countries', route: props.countriesRoute },
+    { name: 'cat', text: 'Categories', route: props.catRoute },
+  ]
 
-  render() {
+  const routeBoard =
+    <Switch>
+      <Route exact path={ props.overallRoute }>
+        <LeaderBoardsOverallContainer history={ props.history } />
+      </Route>
+      <Route exact path={ props.countriesRoute }>
+        <LeaderBoardsCountriesContainer history={ props.history } />
+      </Route>
+      <Route exact path={ props.catRoute }>
+        <LeaderBoardsCatContainer history={ props.history } />
+      </Route>
+    </Switch>
 
-    const navButtons = [
-      { name: 'overall', text: 'Overall', route: this.props.overallRoute },
-      { name: 'countries', text: 'Countries', route: this.props.countriesRoute },
-      { name: 'cat', text: 'Categories', route: this.props.catRoute },
-
-    ]
-
-    const routeBoard =
-      <Switch>
-        <Route exact path={ this.props.overallRoute }>
-          <LeaderBoardsOverallContainer history={ this.props.history } />
-        </Route>
-        <Route exact path={ this.props.countriesRoute }>
-          <LeaderBoardsCountriesContainer history={ this.props.history } />
-        </Route>
-        <Route exact path={ this.props.catRoute }>
-          <LeaderBoardsCatContainer history={ this.props.history } />
-        </Route>
-      </Switch>
-
-    return(
-      <div className='leader_boards_wrapper'>
-        <NavBarContainer buttons={ navButtons } />
-        { routeBoard }
-      </div>
-    )
-  }
+  return(
+    <div className='leader_boards_wrapper'>
+      <NavBarContainer buttons={ navButtons } />
+      { routeBoard }
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => {

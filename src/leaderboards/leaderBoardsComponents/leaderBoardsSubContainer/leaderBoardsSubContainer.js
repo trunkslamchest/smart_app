@@ -17,6 +17,7 @@ class LeaderBoardsSubContainer extends React.Component {
         >
           <LeaderBoardsScoresCard
             history={ this.props.history }
+            pageLimit={ this.props.pageLimit }
             scoresSetName={ scores[0] }
             sub_text={ 'Rating' }
             scores={ scores[1] }
