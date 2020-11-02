@@ -5,7 +5,7 @@ import * as actions from '../../../../store/actions/actionIndex'
 
 import { routes } from '../../../../utility/paths.js'
 
-import DashboardProfileButton from '../dashboardProfileButton/dashboardProfileButton'
+import DashboardButton from '../../dashboardComponents/dashboardButton/dashboardButton'
 
 import './dashboardProfileButtonContainer.css'
 
@@ -21,22 +21,22 @@ const DashboardProfileButtonContainer = (props) => {
 
   return(
     <div className='dashboard_profile_buttons_container'>
-      <DashboardProfileButton
+      <DashboardButton
         type='button'
         id='edit_profile_button'
         name='edit_profile_button'
         onClick={ onClickEdit }
       >
         Edit Profile
-      </DashboardProfileButton>
-      <DashboardProfileButton
+      </DashboardButton>
+      <DashboardButton
         type='button'
         id='delete_profile_button'
         name='delete_profile_button'
         onClick={ onClickDelete }
       >
         Delete Profile
-      </DashboardProfileButton>
+      </DashboardButton>
     </div>
   )
 }

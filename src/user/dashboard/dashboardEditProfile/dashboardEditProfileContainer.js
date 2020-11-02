@@ -1,8 +1,8 @@
 import React from 'react'
+import { routes } from '../../../utility/paths.js'
 import { connect } from 'react-redux'
 import { loading, authStart, updateUserInfo } from '../../../store/actions/actionIndex'
 
-import { routes } from '../../../utility/paths.js'
 import { check } from '../../../utility/paths'
 import checkFunctions from '../../../utility/checkFunctions'
 import validateEditProfile from '../../../utility/validation/validateEditProfile'
@@ -70,8 +70,8 @@ class DashboardEditProfile extends React.Component {
   }
 
   onAvatarChange = (event) => {
-    if(this.state.errors.avatar) this.setState({ errors: { ...this.state.errors, avatar: null } })
-    const reader = new FileReader(), img = new Image(), imgSize = event.target.files[0].size
+    if(this.state.errors.avatar) this.setState({ errors: { ...this.state.errors, avatar: '' } })
+    let reader = new FileReader(), img = new Image(), imgSize = event.target.files[0].size
     reader.readAsDataURL(event.target.files[0])
     reader.onload = () => {
       if(reader.readyState === 2) {
@@ -82,10 +82,16 @@ class DashboardEditProfile extends React.Component {
           // if(imgSize > 2000000) imgErrors.push("Profile Pictures must less than 2mb in size")
           if(imgSize > 5000) imgErrors.push("Profile Pictures must less than 5kb in size")
           if(imgErrors.length > 0) this.setState({ errors:  { ...this.state.errors, avatar: imgErrors } })
-          else this.setState({ avatar: reader.result })
+          else {
+            this.setState({ avatar: reader.result })
+            // reader = null
+            // img = null
+            // imgSize = null
+          }
         }
       }
     }
+    event.target.value = null
   }
 
   onSubmit = (event) => {
@@ -182,6 +188,7 @@ class DashboardEditProfile extends React.Component {
       last_name: '',
       user_name: '',
       errors: {},
+      form: { valid: false, pending: false },
       pulledStore: false,
       enableButtons: true,
       enableInputs: true

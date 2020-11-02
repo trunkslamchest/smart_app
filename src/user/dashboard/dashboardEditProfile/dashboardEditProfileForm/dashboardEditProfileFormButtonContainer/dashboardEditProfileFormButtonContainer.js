@@ -5,6 +5,13 @@ import DashboardEditProfileFormButton from '../dashboardEditProfileFormButton/da
 import './dashboardEditProfileFormButtonContainer.css'
 
 const DashboardEditProfileFormButtonContainer = (props) => {
+
+  const onClickResetFunctions = (event) => {
+    // console.log(event)
+    // event.reset()
+    props.onReset()
+  }
+
   return(
     <div className='edit_buttons_container'>
       <DashboardEditProfileFormButton
@@ -20,7 +27,8 @@ const DashboardEditProfileFormButtonContainer = (props) => {
         id='edit_profile_reset'
         name='edit_profile_reset'
         enableButtons={ props.enableButtons }
-        onClickFunctions={ props.onReset }
+        // onClickFunctions={ props.onReset }
+onClickFunctions={ onClickResetFunctions }
         value='Reset'
       />
       <DashboardEditProfileFormButton

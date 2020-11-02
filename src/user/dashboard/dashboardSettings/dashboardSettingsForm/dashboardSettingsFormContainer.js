@@ -1,15 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { deleteProfile } from '../../../../store/actions/actionIndex'
 
+import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardSettingsPrivacyProfileCard from '../dashboardSettingsPrivacyProfileCard/dashboardSettingsPrivacyProfileCard'
-import DashboardSettingsButtonContainer from './dashboardSettingsFormButtonContainer/dashboardSettingsFormButtonContainer'
+import DashboardButtonsContainer from '../../dashboardContainers/dashboardButtonsContainer/dashboardButtonsContainer'
 
 import './dashboardSettingsFormContainer.css'
 
 class DashboardSettingsFormContainer extends React.Component {
 
-  onSubmit = (event) => {
-    this.props.onSubmit(event)
+  onSubmit = (event) => { this.props.onSubmit(event) }
+
+  onClickDelete = (event) => {
+    event.preventDefault()
+    this.props.onDeleteProfileModal(true)
   }
 
   render(){
@@ -28,10 +33,20 @@ class DashboardSettingsFormContainer extends React.Component {
       { name: 'showStats', text: 'Display your Statistics on your public profile' }
     ]
 
-    const distribPrivacyProfileSettings = privacyProfileSettings.map(setting => {
+    const headerButtons = [
+      { type: 'button', idName: 'delete_profile_button', onClickFunction: this.onClickDelete, value: 'Delete Profile' },
+    ]
+
+    const formButtons = [
+      { idName: 'dashboardSettingsSubmit', type: 'input', form_type: 'submit', onClickFunction: this.onSubmit, value: 'Confirm' },
+      { idName: 'dashboardSettingsReset', type: 'input', form_type: 'reset', onClickFunction: this.props.onReset, value: 'Reset' },
+      { idName: 'dashboardSettingsCancel', type: 'button', onClickFunction: this.props.onCancel, value: 'Cancel' }
+    ]
+
+    const distribPrivacyProfileSettings = privacyProfileSettings.map((setting, index) => {
       return (
         <DashboardSettingsPrivacyProfileCard
-          key={ privacyProfileSettings.indexOf(setting) }
+          key={ index }
           setting={ setting }
           status={ this.props[setting.name] }
           onChecked={ this.props.onChecked }
@@ -47,20 +62,18 @@ class DashboardSettingsFormContainer extends React.Component {
           className='dashboard_settings_form'
         >
           <div className="dashboard_settings_privacy_container">
-            <div className="dashboard_settings_header">
-              <h3>Privacy</h3>
-            </div>
+            <DashboardHeader header_text={ "Privacy" } buttons={ headerButtons } />
             <div className="dashboard_settings_privacy_profile_container">
               <h4>Public Profile</h4>
               { distribPrivacyProfileSettings }
             </div>
           </div>
 
-          <DashboardSettingsButtonContainer
+          <DashboardButtonsContainer
+            buttons={ formButtons }
+            button_class={ 'dashboard_form_button' }
+            container_class={ 'dashboard_buttons_footer_container' }
             enableButtons={ this.props.enableButtons }
-            onSubmit={ this.onSubmit }
-            onReset={ this.props.onReset }
-            onCancel={ this.props.onCancel }
           />
         </form>
       </div>
@@ -70,8 +83,15 @@ class DashboardSettingsFormContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    modal: state.modal,
     user: state.user
   }
 }
 
-export default connect(mapStateToProps)(DashboardSettingsFormContainer)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteProfileModal: (bool) => (dispatch(deleteProfile(bool)))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardSettingsFormContainer)

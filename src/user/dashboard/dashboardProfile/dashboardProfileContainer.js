@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
 import { routes } from '../../../utility/paths'
-
+import { connect } from 'react-redux'
 import { checkBlankString, checkBlankInt } from '../../../utility/forms/checkBlank'
 import formatMonth from '../../../utility/forms/formatMonth'
 import formatDay from '../../../utility/forms/formatDay'
 
-import DashboardProfileButtonContainer from './dashboardProfileButtonContainer/dashboardProfileButtonContainer'
+import DashboardProfileHeader from '../dashboardComponents/dashboardProfileHeader/dashboardProfileHeader'
+
 import DashboardProfileError from './dashboardProfileError/dashboardProfileError'
 
 import flagIconIndex from '../../../assets/flag_icons/flagIconIndex'
@@ -20,7 +19,7 @@ const DashboardProfileContainer = (props) => {
   useEffect(() => { document.title = "SmartApp™ | Dashboard | Profile" }, [])
 
   let avatar = props.user.info.avatar
-  let userName = props.user.info.user_name
+  let user_name = props.user.info.user_name
   let email = props.user.info.email
   let bio = checkBlankString(props.user.info.bio, 'Update your profile to add a Bio')
   let country = checkBlankString(props.user.info.country, 'Update your profile to add your Country')
@@ -32,8 +31,10 @@ const DashboardProfileContainer = (props) => {
   let dobMonth = checkBlankString(props.user.info.dob.month, 'Update your profile to add your Birth Month')
   let dobYear = checkBlankInt(props.user.info.dob.year, 'Update your profile to add your Birth Year')
   let fullDOB = dobYear.field === 0 ? `${ dobMonth.field } ${ formatDay(dobDay.field) }` : `${ dobMonth.field } ${ formatDay(dobDay.field) }, ${ dobYear.field }`
-  let lastLogin = `${ props.user.info.last_login.time } ${ formatMonth(props.user.info.last_login.month) } ${ formatDay(props.user.info.last_login.day) }, ${ props.user.info.last_login.year }`
-  let joinDate = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
+  let last_login = `${ props.user.info.last_login.time } ${ formatMonth(props.user.info.last_login.month) } ${ formatDay(props.user.info.last_login.day) }, ${ props.user.info.last_login.year }`
+  let join_date = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
+
+  const onClickEdit = () => { props.history.push(routes.dashboard_profile_edit) }
 
   const profileFields = [
     { name: 'Name', data: `${firstName.field} ${lastName.field}`, errors: [ {error: firstName.error}, { error: lastName.error } ] },
@@ -42,8 +43,13 @@ const DashboardProfileContainer = (props) => {
     { name: 'Gender Pronouns', data: genderPronouns.field, errors: genderPronouns.error },
     { name: 'Gender', data: gender.field, errors: gender.error },
     { name: 'Date Of Birth', data: fullDOB, errors: [ { error: dobDay.error}, { error: dobMonth.error }, { error: dobYear.error} ] },
-    { name: 'Last Login', data: lastLogin },
-    { name: 'Join Date', data: joinDate }
+    { name: 'Last Login', data: last_login },
+    { name: 'Join Date', data: join_date }
+  ]
+
+  const headerButtons = [
+    { idName: 'edit_profile_button', type: 'button', onClickFunction: onClickEdit, value: 'Edit Profile' },
+    { idName: 'view_public_profile_button', type: Link, route: routes.user_profile + '/' + user_name, target: '_blank', value: 'View Public Profile' }
   ]
 
   let distribProfileFields = profileFields.map(field => {
@@ -64,18 +70,17 @@ const DashboardProfileContainer = (props) => {
 
   return(
     <div className='dashboard_profile_wrapper'>
-      <div className='dashboard_profile_header'>
-        <img
-          alt={ `${userName}'s Avatar` }
-          src={ avatar }
-        />
-        <h3>{ userName }</h3>
-        <h5>{ email }</h5>
-      </div>
+      <DashboardProfileHeader
+        avatar={ avatar }
+        buttons={ headerButtons }
+        email={ email }
+        history={ props.history }
+        join_date={ join_date }
+        last_login={ last_login }
+        user_name={ user_name }
+      />
       <div className='dashboard_profile_body'>
         { distribProfileFields }
-        <span><Link to={ routes.user_profile + '/' + userName } target='_blank'>View My Public Profile</Link></span>
-        <DashboardProfileButtonContainer history={ props.history } />
       </div>
     </div>
   )

@@ -1,0 +1,24 @@
+.dashboard_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+
+}
+
+.dashboard_header_left {
+  align-self: stretch;
+  display: flex;
+
+}
+
+.dashboard_header_left h3 {
+  font: 600 15pt "LatoThin";
+}
