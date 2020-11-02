@@ -2,6 +2,7 @@ import React from 'react'
 import { connect} from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
+import DashboardHeader from '../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardAchievementCard from './dashboardAchievementCard/dashboardAchievementCard'
 
 import './dashboardAchievementsContainer.css'
@@ -48,22 +49,14 @@ class DashboardAchievementsContainer extends React.Component {
 
     return(
       <div className='dashboard_achievements_container'>
-        <div className='dashboard_achievements_header'>
-        </div>
         <div className='dashboard_achievements_wrapper'>
-          <div className='dashboard_achievements_header'>
-            <h3>Unlocked</h3>
-            <span>{ this.props.user.achievements.total }/{ this.props.achievements.totals.all }</span>
-          </div>
+          <DashboardHeader header_text={ 'Unlocked' } sub_text={ `${this.props.user.achievements.total}/${this.props.achievements.totals.all}` } />
           <div className='dashboard_achievements_sub_container'>
             { distribUnlockedAchievements }
           </div>
         </div>
         <div className='dashboard_achievements_wrapper'>
-          <div className='dashboard_achievements_header'>
-            <h3>Locked</h3>
-            <span>{ this.props.achievements.totals.all - this.props.user.achievements.total }/{ this.props.achievements.totals.all }</span>
-          </div>
+          <DashboardHeader header_text={ 'Locked' } sub_text={ `${this.props.achievements.totals.all - this.props.user.achievements.total}/${this.props.achievements.totals.all}` } />
           <div className='dashboard_achievements_sub_container'>
             { distribLockedAchievements }
           </div>

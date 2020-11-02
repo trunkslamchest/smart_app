@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import DashboardHeader from '../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardStatsTotal from './dashboardStatsTotal/dashboardStatsTotal'
 import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'
 import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardStatsCategoryContainer'
@@ -13,9 +14,10 @@ const DashboardStatsContainer = (props) => {
 
   return(
     <div className="stats_wrapper">
-      <div className="stats_sub_header">
+      {/* <div className="stats_sub_header">
         <h3>Overall</h3>
-      </div>
+      </div> */}
+      <DashboardHeader header_text={ 'Overall' } />
       <DashboardStatsTotal />
       <h6>Click on a Difficulty or Category to view your answers</h6>
       <DashboardStatsDifficultyContainer history={ props.history } />

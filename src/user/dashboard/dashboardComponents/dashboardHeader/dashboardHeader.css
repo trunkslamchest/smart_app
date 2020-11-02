@@ -10,15 +10,27 @@
   border: 0px;
   color: rgba(255, 255, 255, 1);
   padding: 5px 10px;
-
+  height: 35px;
 }
 
 .dashboard_header_left {
   align-self: stretch;
   display: flex;
-
 }
 
 .dashboard_header_left h3 {
+  align-self: center;
+  display: flex;
   font: 600 15pt "LatoThin";
+}
+
+.dashboard_header_right {
+  align-self: stretch;
+  display: flex;
+}
+
+.dashboard_header_right span {
+  align-self: center;
+  display: flex;
+  font: 300 9pt 'LatoItalic';
 }

@@ -11,16 +11,17 @@ const DashboardHeader = (props) => {
       <div className='dashboard_header_left'>
         <h3>{ props.header_text }</h3>
       </div>
-      { !!props.buttons &&
         <div className='dashboard_header_right'>
-          <DashboardButtonsContainer
-            buttons={ props.buttons }
-            button_class={ 'dashboard_header_button' }
-            container_class={ 'dashboard_buttons_header_container' }
-            enableButtons={ true }
-          />
+          { !!props.sub_text && <span>{ props.sub_text }</span> }
+          { !!props.buttons &&
+            <DashboardButtonsContainer
+              buttons={ props.buttons }
+              button_class={ 'dashboard_header_button' }
+              container_class={ 'dashboard_buttons_header_container' }
+              enableButtons={ true }
+            />
+          }
         </div>
-      }
     </div>
   )
 }
