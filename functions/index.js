@@ -5,30 +5,46 @@ const admin = require('firebase-admin')
 
 const url = {
   database: env.parsed.DEPLOY_DB_ROOT,
-  databaseUsers: env.parsed.DEPLOY_DB_USERS,
+  databaseAchievements: env.parsed.DEPLOY_DB_ACHIEVEMENTS,
   databaseQuestions: env.parsed.DEPLOY_DB_QUESTIONS,
+  databaseUsers: env.parsed.DEPLOY_DB_USERS,
   rootSecured: env.parsed.LOCAL_SECURED,
   rootUnsecured: env.parsed.LOCAL_UNSECURED,
   // rootSecured: env.parsed.DEPLOY_SECURED,
   // rootUnsecured: env.parsed.DEPLOY_UNSECURED
-  crossRoute: 'https://us-east1-smartapp-b3d27.cloudfunctions.net',
 
-  crossUpdateUserQuestion: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserQuestion',
-  crossUpdateUserVote: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserVote',
-  crossUpdateUserComment: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserComment',
-  crossDeleteUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/deleteUserComment',
-  crossEditUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/editUserComment'
+  // crossRoute: 'https://us-east1-smartapp-b3d27.cloudfunctions.net',
+  crossRoute: env.parsed.FIREBASE_CROSS_ROUTE,
+
+  // crossUpdateUserQuestion: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserQuestion',
+  // crossUpdateUserVote: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserVote',
+  // crossUpdateUserComment: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserComment',
+  // crossDeleteUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/deleteUserComment',
+  // crossEditUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/editUserComment'
+
+  crossUpdateUserQuestion: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_QUESTION,
+  crossUpdateUserVote: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_VOTE,
+  crossUpdateUserComment: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_COMMENT,
+  crossDeleteUserComment: env.parsed.FIREBASE_LOCAL_CROSS_DELETE_USER_COMMENT,
+  crossEditUserComment: env.parsed.FIREBASE_LOCAL_CROSS_EDIT_USER_COMMENT
 
   // crossUpdateUserQuestion: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserQuestion',
   // crossUpdateUserVote: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserVote',
   // crossUpdateUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserComment',
   // crossDeleteUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/deleteUserComment',
   // crossEditUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/editUserComment'
+
+  // crossUpdateUserQuestion: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_QUESTION,
+  // crossUpdateUserVote: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_VOTE,
+  // crossUpdateUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_COMMENT,
+  // crossDeleteUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_DELETE_USER_COMMENT,
+  // crossEditUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_EDIT_USER_COMMENT
 }
 
 var firebaseConfig = {
-  databaseURL: url.databaseUsers,
+  // databaseURL: url.databaseAchievements,
   // databaseURL: url.databaseQuestions,
+  databaseURL: url.databaseUsers,
   apiKey: env.parsed.FIREBASE_API_KEY,
   authDomain: env.parsed.FIREBASE_AUTH_DOMAIN,
   projectId: env.parsed.FIREBASE_PROJECT_ID,
@@ -171,6 +187,587 @@ exports.users = functions
     });
 });
 
+function genRand(min, max, decimalPlaces) {
+    var rand = Math.random() < 0.5 ? ((1-Math.random()) * (max-min) + min) : (Math.random() * (max-min) + min)
+    var power = Math.pow(10, decimalPlaces)
+    return Math.floor(rand*power) / power
+}
+
+function calcRating(stat) {
+  if(stat > 1.00) return 'S'
+  if(stat <= 1.00 && stat >= 0.95) return 'A+'
+  if(stat < 0.95 && stat >= 0.9) return 'A'
+  if(stat < 0.9 && stat >= 0.85) return 'A-'
+  if(stat < 0.85 && stat >= 0.8) return 'B+'
+  if(stat < 0.8 && stat >= 0.75) return 'B'
+  if(stat < 0.75 && stat >= 0.7) return 'B-'
+  if(stat < 0.7 && stat >= 0.65) return 'C+'
+  if(stat < 0.65 && stat >= 0.6) return 'C'
+  if(stat < 0.6 && stat >= 0.55) return 'C-'
+  if(stat < 0.55 && stat >= 0.5) return 'D+'
+  if(stat < 0.5 && stat >= 0.45) return 'D'
+  if(stat < 0.45 && stat >= 0.4) return 'D-'
+  if(stat < 0.4 && stat >= 0.35) return 'F+'
+  if(stat < 0.35 && stat >= 0.3) return 'F'
+  if(stat < 0.3 && stat >= 0.25) return 'F-'
+  if(stat < 0.25) return 'E'
+}
+
+exports.createFakeUsers = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+
+    var users = {}
+
+    const countries = [
+      'Afghanistan',
+      'Aland Islands',
+      'Albania',
+      'Algeria',
+      'American Samoa',
+      'Andorra',
+      'Angola',
+      'Anguilla',
+      'Antiqua And Barbuda',
+      'Argentina',
+      'Armenia',
+      'Aruba',
+      'Australia',
+      'Austria',
+      'Azerbaijan',
+      'Bahamas',
+      'Bahrain',
+      'Bangladesh',
+      'Barbados',
+      'Belarus',
+      'Belgium',
+      'Belize',
+      'Benin',
+      'Bermuda',
+      'Bhutan',
+      'Bolivia',
+      'Bosnia And Herzegovina',
+      'Botswana',
+      'Bouvet Island',
+      'Brazil',
+      'British Indian Ocean Territory',
+      'British Virgin Islands',
+      'Brunei Darussalam',
+      'Bulgaria',
+      'Burkina Faso',
+      'Burundi',
+      'Cabo Verde',
+      'Cambodia',
+      'Cameroon',
+      'Canada',
+      'Catalonia',
+      'Cayman Islands',
+      'Central African Republic',
+      'Chad',
+      'Chile',
+      'China',
+      'Christmas Island',
+      'Cocos Islands',
+      'Colombia',
+      'Comoros',
+      'Congo',
+      'Cook Islands',
+      'Costa Rica',
+      "Côte d'Ivoire",
+      'Croatia',
+      'Cuba',
+      'Cyprus',
+      'Czech Republic',
+      'Democratic Republic Of The Congo',
+      'Denmark',
+      'Djibouti',
+      'Dominica',
+      'Dominican Republic',
+      'Ecuador',
+      'Egypt',
+      'El Salvador',
+      'England',
+      'Equatorial Guinea',
+      'Eritrea',
+      'Estonia',
+      'Eswatini',
+      'Ethiopia',
+      'European Union',
+      'Falkland Islands',
+      'Faroe Islands',
+      'Fiji',
+      'Finland',
+      'France',
+      'French Guiana',
+      'French Polynesia',
+      'French Southern Territories',
+      'Gabon',
+      'Gambia',
+      'Georgia',
+      'Germany',
+      'Ghana',
+      'Gibraltar',
+      'Greece',
+      'Greenland',
+      'Grenada',
+      'Guadeloupe',
+      'Guam',
+      'Guatemala',
+      'Guinea',
+      'Guinea Bissau',
+      'Guyana',
+      'Haiti',
+      'Heard And McDonald Islands',
+      'Holy See',
+      'Honduras',
+      'HongKong',
+      'Hungary',
+      'Iceland',
+      'India',
+      'Indonesia',
+      'Iran',
+      'Iraq',
+      'Ireland',
+      'Israel',
+      'Italy',
+      'Jamaica',
+      'Japan',
+      'Jordan',
+      'Kazakhstan',
+      'Kenya',
+      'Kiribati',
+      'Kuwait',
+      'Kyrgystan',
+      'Laos',
+      'Latvia',
+      'Lebanon',
+      'Lesotho',
+      'Liberia',
+      'Libya',
+      'Liechtenstien',
+      'Lithuania',
+      'Luxembourg',
+      'Macao',
+      'Madagascar',
+      'Malawi',
+      'Malaysia',
+      'Maldives',
+      'Mali',
+      'Malta',
+      'Marshall Islands',
+      'Martinique',
+      'Mauritania',
+      'Mauritius',
+      'Mayotte',
+      'Mexico',
+      'Micronesia',
+      'Moldova',
+      'Monaco',
+      'Mongolia',
+      'Montenegro',
+      'Montserrat',
+      'Morocco',
+      'Mozambique',
+      'Myanmar',
+      'Nambia',
+      'Nauru',
+      'Nepal',
+      'Netherlands',
+      'Netherlands Antilles',
+      'New Caledonia',
+      'New Zealand',
+      'Nicaraqua',
+      'Niger',
+      'Nigeria',
+      'Niue',
+      'Norfolk Islands',
+      'Northern Mariana Islands',
+      'North Korea',
+      'North Macedonia',
+      'Norway',
+      'Oman',
+      'Pakistan',
+      'Palau',
+      'Palestine',
+      'Panama',
+      'Papua New Guinea',
+      'Paraguay',
+      'Peru',
+      'Philippines',
+      'Pitcairn',
+      'Poland',
+      'Portugal',
+      'Puerto Rico',
+      'Qatar',
+      'Reunion',
+      'Romania',
+      'Russia',
+      'Rwanda',
+      'Saint Helena',
+      'Saint Kitts And Nevis',
+      'Saint Lucia',
+      'Saint Pierre And Miquelon',
+      'Saint Vincent And The Grenadines',
+      'Samoa',
+      'San Marino',
+      'Sao Tome And Principe',
+      'Saudi Arabia',
+      'Scotland',
+      'Senegal',
+      'Serbia',
+      'Serbia And Montenegro',
+      'Seychelles',
+      'Sierra Leone',
+      'Singapore',
+      'Slovakia',
+      'Slovenia',
+      'Soloman Islands',
+      'Somalia',
+      'South Africa',
+      'South Georgia',
+      'South Korea',
+      'Spain',
+      'Sri Lanka',
+      'Sudan',
+      'Suriname',
+      'Svalbard And Jan Mayen',
+      'Sweden',
+      'Switzerland',
+      'Syria',
+      'Taiwan',
+      'Tajikistan',
+      'Tanzania',
+      'Thailand',
+      'Timor Leste',
+      'Togo',
+      'Tokelau',
+      'Tonga',
+      'Trinidad And Tobago',
+      'Tunisia',
+      'Turkey',
+      'Turkmenistan',
+      'Turks And Caicos Islands',
+      'Tuvalu',
+      'Uganda',
+      'Ukraine',
+      'United Arab Emirates',
+      'United Kingdom',
+      'United States Of America',
+      'Uruguay',
+      'US Virgin Islands',
+      'Uzbekistan',
+      'Vanuatu',
+      'Venezuela',
+      'Vietnam',
+      'Wales',
+      'Wallis And Futuna',
+      'Western Sahara',
+      'Yemen',
+      'Zambia',
+      'Zimbabwe'
+    ]
+
+    for(i = 0; i < 50; i++){
+      var createKey = firebase.database().ref().push().key
+      var randomUserNumber = Math.floor(Math.random() * Math.floor(10000))
+
+      users[createKey] = {
+        "info": {
+          "avatar": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/avatars%2Fdefault_avatar.png?alt=media&token=49efd887-faca-4f07-89fc-0d92df9f2f87",
+          "bio": "null",
+          "country": countries[Math.floor(Math.random() * countries.length)],
+          "email": `userTemp${randomUserNumber}@gmail.com`,
+          "first_name": "null",
+          "gender": "null",
+          "gender_pronouns": "null",
+          "dob": {
+            "day": 0,
+            "month": "null",
+            "year": 0
+          },
+          "join_date": {
+            "day": 23,
+            "month": "March",
+            "year": 2018
+          },
+          "last_login": {
+            "time": "08:24:32 AM",
+            "day": 23,
+            "month": "January",
+            "year": 2020
+          },
+          "last_name": "null",
+          "user_name": `userTemp${randomUserNumber}`
+        },
+        "questions": {
+          "totals": {
+            "all": {
+              "answered": Math.floor(Math.random() * Math.floor(100)),
+              "avg_time": genRand(1, 10, 2),
+              "comments": {
+                "total": 0
+              },
+              "correct": Math.floor(Math.random() * Math.floor(45)),
+              "incorrect": Math.floor(Math.random() * Math.floor(45)),
+              "outta_times": Math.floor(Math.random() * Math.floor(10)),
+              "rank": calcRating(genRand(0.25, 1, 2)),
+              "rating":  genRand(0.25, 1, 2),
+              "votes": {
+                "total": 0,
+                "good": 0,
+                "neutral": 0,
+                "bad": 0
+              }
+            },
+            "difficulty": {
+              "Easy": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Medium": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Hard": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              }
+            },
+            "categories": {
+              "Anime": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Art": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Books": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Celebrities": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Computers": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Film": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "General": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Geography": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "History": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Mathematics": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Music": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Mythology": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Nature": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Politics": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Science": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Sports": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Television": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Theatre": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Vehicles": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Video Games": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              }
+            }
+          }
+        },
+        "experience": {
+          "avg": 0,
+          "level": genRand(1, 20, 0),
+          "total": genRand(10, 1000, 0)
+        },
+        "achievements": {
+          "total": 0,
+          "unlocked": [ "null" ]
+        },
+        "settings": {
+          "privacy": {
+            "profile": {
+              "private": false,
+              "showAchievements": true,
+              "showAvatar": true,
+              "showAge": true,
+              "showBio": true,
+              "showCountry": true,
+              "showEmail": true,
+              "showExperience": true,
+              "showGender": true,
+              "showGenderPronouns": true,
+              "showRealName": true,
+              "showStats": true
+            }
+          }
+        }
+      }
+
+    }
+
+    // console.log(users)
+    res.json(users)
+});
+
 exports.addUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -212,15 +809,19 @@ exports.getUserProfile = functions
         if(!!userObj.settings.privacy.profile.private) userObj = `${req.body.user_name} has set their public profile to private`
         else {
           if(!userObj.settings.privacy.profile.showAchievements) delete userObj.achievements
-          if(!userObj.settings.privacy.profile.showExperience) delete userObj.experience
-          if(!userObj.settings.privacy.profile.showStats) delete userObj.questions
-          if(!userObj.settings.privacy.profile.showEmail) delete userObj.info.email
           if(!userObj.settings.privacy.profile.showAge) delete userObj.info.dob
+          if(!userObj.settings.privacy.profile.showAvatar) delete userObj.info.avatar
+          if(!userObj.settings.privacy.profile.showBio) delete userObj.info.bio
+          if(!userObj.settings.privacy.profile.showCountry) delete userObj.info.country
+          if(!userObj.settings.privacy.profile.showEmail) delete userObj.info.email
+          if(!userObj.settings.privacy.profile.showExperience) delete userObj.experience
           if(!userObj.settings.privacy.profile.showGender) delete userObj.info.gender
+          if(!userObj.settings.privacy.profile.showGenderPronouns) delete userObj.info.gender_pronouns
           if(!userObj.settings.privacy.profile.showRealName) {
             delete userObj.info.first_name
             delete userObj.info.last_name
           }
+          if(!userObj.settings.privacy.profile.showStats) delete userObj.questions
         }
       }
 
@@ -255,6 +856,38 @@ exports.updateUserSettings = functions
     // res.json({ message: 'done' }).status(200);
 });
 
+exports.uploadUserAvatar = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res);
+    var updatedAvatar = {};
+    if(!!req.body.uid) {
+      console.log(req.body)
+      updatedAvatar['/' + req.body.uid + '/info/avatar'] = req.body.img;
+      firebase.database().ref().update(updatedAvatar);
+    }
+    res.json(req.body).status(200);
+    // res.json({ message: 'done' }).status(200);
+});
+
+exports.updateUserLoginTime = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res);
+    var updatedTime = {};
+    if(!!req.body.uid) {
+      updatedTime['/' + req.body.uid + '/' + 'info/last_login'] = {
+        time: req.body.time,
+        day: req.body.day,
+        month: req.body.month,
+        year: req.body.year
+      };
+      firebase.database().ref().update(updatedTime);
+    }
+    res.json(req.body).status(200);
+    // res.json({ message: 'done' }).status(200);
+});
+
 exports.deleteUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -278,10 +911,21 @@ exports.checkUserName = functions
         if(!!snap.val()){
           let users = Object.values(snap.val())
           for(let user in users) {
-            if(req.body.user_name === users[user].info.user_name) {
-              resObj.valid = false
-              resObj.errors = { code: 41, message: `User Name '${req.body.user_name}' already exists`}
-              break
+            if(req.body.type === "signUp") {
+              if(req.body.user_name === users[user].info.user_name) {
+                resObj.valid = false
+                resObj.errors = { code: 41, message: `User Name '${req.body.user_name}' already exists`}
+                break
+              }
+            }
+            if(req.body.type === "editProfile") {
+              if(req.body.new_user_name !== req.body.old_user_name) {
+                if(req.body.new_user_name === users[user].info.user_name) {
+                  resObj.valid = false
+                  resObj.errors = { code: 41, message: `User Name '${req.body.user_name}' already exists`}
+                  break
+                }
+              }
             }
           }
         }
@@ -451,6 +1095,99 @@ exports.editUserComment = functions
     }
     res.json(req.body).status(200)
     // res.json({ message: 'done' }).status(200);
+});
+
+exports.getOverallLeaderBoards = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSget(req, res);
+    var sortedUsers = [], leaderBoardsObj = { international: [], regional: {} }
+    firebase.database().ref('/').orderByChild('/questions/totals/all/rating').once('value', function(){})
+    .then((resObj) => {
+      resObj.forEach(function(snap) {
+        var uid = snap.key, userData = snap.val()
+        // if(userData.questions.totals.all.answered >= 5 && userData.questions.totals.all.rating > 0.5) {
+        if(userData.questions.totals.all.answered >= 0) {
+          sortedUsers.unshift({
+            uid: uid,
+            avatar: userData.info.avatar,
+            country: userData.info.country,
+            user_name: userData.info.user_name,
+            rating: userData.questions.totals.all.rating
+          })
+        }
+      })
+
+      for(let user in sortedUsers){
+        if(sortedUsers[user].country !== "null") {
+          if(leaderBoardsObj.regional[sortedUsers[user].country]) leaderBoardsObj.regional[sortedUsers[user].country] = [ ...leaderBoardsObj.regional[sortedUsers[user].country], sortedUsers[user] ]
+          else leaderBoardsObj.regional[sortedUsers[user].country] = [ sortedUsers[user] ]
+        }
+      }
+
+      leaderBoardsObj.international = sortedUsers
+
+      res.json(leaderBoardsObj).status(200);
+      // res.json({ message: 'done' }).status(200);
+    })
+});
+
+exports.getCatLeaderBoards = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSget(req, res);
+    var catSortedUsers = {}, leaderBoardsObj = { international: [], regional: { } }
+
+    firebase.database().ref('/').once('value', function(){})
+    .then(resObj => {
+      resObj.forEach(function(snap) {
+        var uid = snap.key, userData = snap.val(), catTotals = userData.questions.totals.categories
+
+        for(let cat in catTotals){
+          // if(catTotals[cat].answered >= 5 && catTotals[cat].rating >= 0.5) {
+          if(catTotals[cat].answered > 0) {
+            if(catSortedUsers[cat]) {
+              catSortedUsers[cat] = [
+                ...catSortedUsers[cat],
+                {
+                  uid: uid,
+                  avatar: userData.info.avatar,
+                  country: userData.info.country,
+                  user_name: userData.info.user_name,
+                  rating: catTotals[cat].rating
+                }
+              ]
+            } else {
+              catSortedUsers[cat] = [ {
+                uid: uid,
+                avatar: userData.info.avatar,
+                country: userData.info.country,
+                user_name: userData.info.user_name,
+                rating: catTotals[cat].rating
+              } ]
+            }
+          }
+        }
+      })
+
+      for(let cat in catSortedUsers) { catSortedUsers[cat].sort(function(a, b) { return b.rating - a.rating }) }
+
+      for(let cat in catSortedUsers){
+        catSortedUsers[cat].forEach(user => {
+          if(user.country !== "null") {
+            if(leaderBoardsObj.regional[cat]) {
+              if(leaderBoardsObj.regional[cat][user.country]) leaderBoardsObj.regional[cat][user.country] = [ ...leaderBoardsObj.regional[cat][user.country], user ]
+              else leaderBoardsObj.regional[cat] = { ...leaderBoardsObj.regional[cat],  [user.country]: [ user ]  }
+            } else leaderBoardsObj.regional[cat] = { [user.country]: [ user ] }
+          }
+        })
+      }
+
+      leaderBoardsObj.international = catSortedUsers
+
+      res.json(leaderBoardsObj).status(200);
+      // res.json({ message: 'done' }).status(200);
+    })
 });
 
 // ~~~~~~~~~~~~~~~~~~~~ QUESTIONS ~~~~~~~~~~~~~~~~~~~~
@@ -657,20 +1394,38 @@ var pushCats = function(diff, questions) {
   } else return []
 }
 
-exports.createKeys = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-    var keys = []
+var calcAchievements = function(allAchievements, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
+  let unlockedAchievements = [], resAchievementsObj = {}, crossAchievementsObj = {}
 
-    for(i = 0; i < 500; i++){
-      var createKey = firebase.database().ref().push().key
-      keys.push(createKey)
+  if(userTotals.answered === 1) {
+    unlockedAchievements.push("OneAnswer")
+    if(questionResults.result === "Correct"){
+      unlockedAchievements.push("OneAnswerOneCorrect")
+      if(questionResults.time < 1) unlockedAchievements.push("OneAnswerOneCorrectOneSec")
     }
+  }
 
-    console.log(keys)
-    res.json(keys)
-});
+  if(questionResults.result === "Correct") {
+    if(userTotals.correct === 1 && !userAchievements.unlocked.includes("OneCorrect")) unlockedAchievements.push("OneCorrect")
+    if(userTotals.correct === 5 && !userAchievements.unlocked.includes("FiveCorrect")) unlockedAchievements.push("FiveCorrect")
+    if(questionResults.time < 1 && !userAchievements.unlocked.includes("OneCorrectOneSec")) unlockedAchievements.push("OneCorrectOneSec")
+  }
+
+  if(userTotals.answered === 5) unlockedAchievements.push("FiveAnswer")
+
+  if(unlockedAchievements.length === 0 && userAchievements[0] === "null") {
+    resAchievementsObj = { total: 0, unlocked: [] }
+    crossAchievementsObj = { total: 0, unlocked: [ "null" ] }
+  } else {
+    unlockedAchievements.forEach(achievement => allAchievements[achievement].total += 1)
+    resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
+    crossAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }
+    allAchievements.totals.all_unlocked += unlockedAchievements.length
+  }
+
+  achievementsObj = { res: resAchievementsObj, cross: crossAchievementsObj, all: allAchievements }
+  return achievementsObj
+}
 
 exports.questions = functions
   .region('us-east1')
@@ -895,39 +1650,6 @@ exports.staticQuestion = functions
     });
     // res.json({ message: 'done' }).status(200);
 });
-
-var calcAchievements = function(allAchievements, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
-  let unlockedAchievements = [], resAchievementsObj = {}, crossAchievementsObj = {}
-
-  if(userTotals.answered === 1) {
-    unlockedAchievements.push("OneAnswer")
-    if(questionResults.result === "Correct"){
-      unlockedAchievements.push("OneAnswerOneCorrect")
-      if(questionResults.time < 1) unlockedAchievements.push("OneAnswerOneCorrectOneSec")
-    }
-  }
-
-  if(questionResults.result === "Correct") {
-    if(userTotals.correct === 1 && !userAchievements.unlocked.includes("OneCorrect")) unlockedAchievements.push("OneCorrect")
-    if(userTotals.correct === 5 && !userAchievements.unlocked.includes("FiveCorrect")) unlockedAchievements.push("FiveCorrect")
-    if(questionResults.time < 1 && !userAchievements.unlocked.includes("OneCorrectOneSec")) unlockedAchievements.push("OneCorrectOneSec")
-  }
-
-  if(userTotals.answered === 5) unlockedAchievements.push("FiveAnswer")
-
-  if(unlockedAchievements.length === 0 && userAchievements[0] === "null") {
-    resAchievementsObj = { total: 0, unlocked: [] }
-    crossAchievementsObj = { total: 0, unlocked: [ "null" ] }
-  } else {
-    unlockedAchievements.forEach(achievement => allAchievements[achievement].total += 1)
-    resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
-    crossAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }
-    allAchievements.totals.all_unlocked += unlockedAchievements.length
-  }
-
-  achievementsObj = { res: resAchievementsObj, cross: crossAchievementsObj, all: allAchievements }
-  return achievementsObj
-}
 
 exports.questionResults = functions
   .region('us-east1')
