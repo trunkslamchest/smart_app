@@ -11,7 +11,6 @@ import StoreController from './store/controllers/storeController'
 import PlayController from './store/controllers/playController'
 import LeaderBoardsController from './store/controllers/leaderBoardsController'
 
-
 import Header from './UI/header/header'
 import Footer from './UI/footer/footer'
 
