@@ -13,7 +13,7 @@ import DashboardStatsContainer from './dashboardContainers/dashboardStats/dashbo
 import DashboardAchievementsContainer from './dashboardContainers/dashboardAchievements/dashboardAchievementsContainer'
 import DashboardSettingsContainer from './dashboardContainers/dashboardSettings/dashboardSettingsContainer'
 
-import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
+import DashboardEditProfileContainer from './dashboardContainers/dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
 import NavBarContainer from '../../UI/navBar/navBarContainer'

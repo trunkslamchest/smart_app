@@ -16,7 +16,6 @@ class UserProfileContainer extends React.Component {
   }
 
   componentDidMount() {
-
     let parseLocation = this.props.history.location.pathname.split("/")
     let user_name = parseLocation[parseLocation.length - 1]
 
@@ -32,7 +31,7 @@ class UserProfileContainer extends React.Component {
 
   render(){
 
-    let userProfileBlock = <></>
+    let userProfileBlock
 
     if(this.props.profile.status === 'display'){
       if(typeof this.props.profile.userData === 'string') userProfileBlock = <h2>{ this.props.profile.userData }</h2>

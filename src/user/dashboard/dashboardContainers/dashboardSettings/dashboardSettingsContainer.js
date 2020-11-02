@@ -22,7 +22,6 @@ class DashboardSettingsContainer extends React.Component {
           showAvatar: false,
           showBio: false,
           showCountry: false,
-          showEmail: false,
           showExperience: false,
           showGender: false,
           showGenderPronouns: false,
@@ -55,7 +54,6 @@ class DashboardSettingsContainer extends React.Component {
             showAvatar: this.props.user.settings.privacy.profile.showAvatar,
             showBio: this.props.user.settings.privacy.profile.showBio,
             showCountry: this.props.user.settings.privacy.profile.showCountry,
-            showEmail: this.props.user.settings.privacy.profile.showEmail,
             showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
             showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
@@ -107,7 +105,6 @@ class DashboardSettingsContainer extends React.Component {
             showAvatar: this.props.user.settings.privacy.profile.showAvatar,
             showBio: this.props.user.settings.privacy.profile.showBio,
             showCountry: this.props.user.settings.privacy.profile.showCountry,
-            showEmail: this.props.user.settings.privacy.profile.showEmail,
             showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
             showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
@@ -136,7 +133,6 @@ class DashboardSettingsContainer extends React.Component {
           showAvatar={ this.state.settings.privacy.profile.showAvatar }
           showBio={ this.state.settings.privacy.profile.showBio }
           showCountry={ this.state.settings.privacy.profile.showCountry }
-          showEmail={ this.state.settings.privacy.profile.showEmail }
           showExperience={ this.state.settings.privacy.profile.showExperience }
           showGender={ this.state.settings.privacy.profile.showGender }
           showGenderPronouns={ this.state.settings.privacy.profile.showGenderPronouns }

@@ -19,10 +19,9 @@ const UserProfileInfoContainer = (props) => {
       genderPronounsBlock = <></>,
       nameBlock = <></>
 
-  const userNameEmailBlock =
+  const userNameBlock =
     <div className="user_profile_info_sub_container">
       <h3>{ props.info.user_name }</h3>
-      { !!props.info.email && <h5>{ props.info.email }</h5>}
     </div>
 
   if(!!props.info.avatar) {
@@ -100,7 +99,7 @@ const UserProfileInfoContainer = (props) => {
 
   return(
     <div className="user_profile_info_container">
-      { userNameEmailBlock }
+      { userNameBlock }
       { avatarBlock }
       { nameBlock }
       { bioBlock }
