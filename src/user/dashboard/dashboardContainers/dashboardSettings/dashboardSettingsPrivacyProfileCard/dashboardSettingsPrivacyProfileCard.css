@@ -1,0 +1,17 @@
+.dashboard_settings_privacy_profile_card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 2.5px 30px;
+}
+
+.dashboard_settings_privacy_profile_card span {
+  font: 300 10pt 'Lato', sans-serif;
+}
+
+.dashboard_settings_privacy_profile_card_check {
+
+}

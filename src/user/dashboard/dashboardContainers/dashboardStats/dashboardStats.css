@@ -1,0 +1,57 @@
+.stats_wrapper {
+  padding: 20px 0px;
+}
+
+.stats_wrapper h6 {
+  color: rgba(51, 51, 51, 1);
+  font: 600 10pt "LatoItalic";
+  text-align: center;
+  padding: 5px 0px;
+}
+
+.stats_header {
+  width: 100%;
+  padding: 5px 0px 5px 0px;
+  background: rgba(255,255,255, 1);
+  z-index:8;
+}
+
+.stats_header > * {
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  margin: 0px auto 0px auto;
+}
+
+.stats_header h3 {
+  font: 300 15pt 'Lato', sans-serif;
+}
+
+.stats_sub_container {
+  background: rgba(51, 51, 51, 1);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  padding: 0px 0px 10px 0px;
+}
+
+.stats_sub_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.stats_sub_header h3 {
+  font: 600 15pt "LatoThin";
+  padding: 5px 0px 5px 10px;
+  text-align: center;
+}

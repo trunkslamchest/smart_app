@@ -7,11 +7,11 @@ import {
   updateUserQuestions
 } from '../../store/actions/actionIndex'
 
-import DashboardIndex from './dashboardIndex/dashboardIndex'
-import DashboardProfileContainer from './dashboardProfile/dashboardProfileContainer'
-import DashboardStatsContainer from './dashboardStats/dashboardStatsContainer'
-import DashboardAchievementsContainer from './dashboardAchievements/dashboardAchievementsContainer'
-import DashboardSettingsContainer from './dashboardSettings/dashboardSettingsContainer'
+import DashboardIndex from './dashboardContainers/dashboardIndex/dashboardIndex'
+import DashboardProfileContainer from './dashboardContainers/dashboardProfile/dashboardProfileContainer'
+import DashboardStatsContainer from './dashboardContainers/dashboardStats/dashboardStatsContainer'
+import DashboardAchievementsContainer from './dashboardContainers/dashboardAchievements/dashboardAchievementsContainer'
+import DashboardSettingsContainer from './dashboardContainers/dashboardSettings/dashboardSettingsContainer'
 
 import DashboardEditProfileContainer from './dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import * as actions from '../../../store/actions/actionIndex'
 
-import DashboardHeader from '../dashboardComponents/dashboardHeader/dashboardHeader'
+import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardAchievementCard from './dashboardAchievementCard/dashboardAchievementCard'
 
 import './dashboardAchievementsContainer.css'
