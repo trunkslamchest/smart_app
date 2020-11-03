@@ -8,10 +8,10 @@ const initialState = {
   totals: null,
   vote: null,
   voteStatus: null,
-  voteLoading: null,
+  voteLoading: false,
   comment: null,
   commentStatus: null,
-  commentLoading: null
+  commentLoading: false
 }
 
 const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
@@ -105,7 +105,17 @@ const updateStaticQuestionVoteStatus = (currentState, action) => { return { ...c
 const updateStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }
 
 const setStaticUserQuestion = (currentState, action) => { return { ...currentState, staticUserResults: action.res } }
-const updateStaticUserVote = (currentState, action) => { return { ...currentState, vote: action.vote } }
+
+const updateStaticUserVote = (currentState, action) => {
+  return {
+    ...currentState,
+    staticUserResults: {
+      ...currentState.statUserResults,
+      vote: action.vote
+    },
+    vote: action.vote
+  }
+}
 
 const voteLoading = (currentState, action) => { return { ...currentState, voteLoading: action.status } }
 const commentLoading = (currentState, action) => { return { ...currentState, commentLoading: action.status } }

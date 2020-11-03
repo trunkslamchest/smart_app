@@ -33,7 +33,17 @@ class ResultsVote extends React.Component {
 
   render() {
 
-    let headerText, headerSubText, voteBlock, votePercents
+    let headerText,
+        headerSubText,
+        voteProps
+        // votePercents,
+        // voteBlock
+
+    // let voteBlock =
+    //   <div className='loading_wrapper_votes'>
+    //     <SmallLoadingSpinner />
+    //     <BaseDynamicBar modalType={ 'questionVote' } barType={ 'questionVote' } />
+    //   </div>
 
     const loading =
       <div className='loading_wrapper_votes'>
@@ -41,8 +51,13 @@ class ResultsVote extends React.Component {
         <BaseDynamicBar modalType={ 'questionVote' } barType={ 'questionVote' } />
       </div>
 
-    if(!this.props.staticResults) votePercents = calcVotePercents(this.props.play.question.votes)
-    else votePercents = calcVotePercents(this.props.questions.staticQuestion.votes)
+    // if(!this.props.staticResults) votePercents = calcVotePercents(this.props.play.question.votes)
+    // else votePercents = calcVotePercents(this.props.questions.staticQuestion.votes)
+
+    if(!this.props.staticResults) voteProps = this.props.play.question.votes
+    else voteProps = this.props.questions.staticQuestion.votes
+
+    let votePercents = calcVotePercents(voteProps)
 
     const voteButtons = [
       { type: "ZeroStars", img: this.state.hover_value === 0 ? vote_star_no_stars_selected : vote_star_no_stars_unselected, vote: "ZeroStars", hover_value: 0 },
@@ -53,13 +68,22 @@ class ResultsVote extends React.Component {
       { type: "FiveStars", img: this.state.hover_value && this.state.hover_value === 5 ? vote_star_selected : vote_star_unselected, vote: "FiveStars", hover_value: 5 }
     ]
 
+    // const voteTotals = [
+    //   { alt: '5_star_rating', img: five_star_rating, name: 'five_star_rating', title: '5 Star Rating', percent: votePercents.FiveStars, totals: this.props.play.question.votes.FiveStars },
+    //   { alt: '4_star_rating', img: four_star_rating, name: 'four_star_rating', title: '4 Star Rating', percent: votePercents.FourStars, totals: this.props.play.question.votes.FourStars },
+    //   { alt: '3_star_rating', img: three_star_rating, name: 'three_star_rating', title: '3 Star Rating', percent: votePercents.ThreeStars, totals: this.props.play.question.votes.ThreeStars },
+    //   { alt: '2_star_rating', img: two_star_rating, name: 'two_star_rating', title: '2 Star Rating', percent: votePercents.TwoStars, totals: this.props.play.question.votes.TwoStars },
+    //   { alt: '1_star_rating', img: one_star_rating, name: 'one_star_rating', title: '1 Star Rating', percent: votePercents.OneStars, totals: this.props.play.question.votes.OneStars },
+    //   { alt: 'no_star_rating', img: zero_star_rating, name: 'zero_star_rating', title: 'No Star Rating', percent: votePercents.ZeroStars, totals: this.props.play.question.votes.ZeroStars }
+    // ]
+
     const voteTotals = [
-      { alt: '5_star_rating', img: five_star_rating, name: 'five_star_rating', title: '5 Star Rating', percent: votePercents.FiveStars, totals: this.props.play.question.votes.FiveStars },
-      { alt: '4_star_rating', img: four_star_rating, name: 'four_star_rating', title: '4 Star Rating', percent: votePercents.FourStars, totals: this.props.play.question.votes.FourStars },
-      { alt: '3_star_rating', img: three_star_rating, name: 'three_star_rating', title: '3 Star Rating', percent: votePercents.ThreeStars, totals: this.props.play.question.votes.ThreeStars },
-      { alt: '2_star_rating', img: two_star_rating, name: 'two_star_rating', title: '2 Star Rating', percent: votePercents.TwoStars, totals: this.props.play.question.votes.TwoStars },
-      { alt: '1_star_rating', img: one_star_rating, name: 'one_star_rating', title: '1 Star Rating', percent: votePercents.OneStars, totals: this.props.play.question.votes.OneStars },
-      { alt: 'no_star_rating', img: zero_star_rating, name: 'zero_star_rating', title: 'No Star Rating', percent: votePercents.ZeroStars, totals: this.props.play.question.votes.ZeroStars }
+      { alt: '5_star_rating', img: five_star_rating, name: 'five_star_rating', title: '5 Star Rating', percent: votePercents.FiveStars, totals: voteProps.FiveStars },
+      { alt: '4_star_rating', img: four_star_rating, name: 'four_star_rating', title: '4 Star Rating', percent: votePercents.FourStars, totals: voteProps.FourStars },
+      { alt: '3_star_rating', img: three_star_rating, name: 'three_star_rating', title: '3 Star Rating', percent: votePercents.ThreeStars, totals: voteProps.ThreeStars },
+      { alt: '2_star_rating', img: two_star_rating, name: 'two_star_rating', title: '2 Star Rating', percent: votePercents.TwoStars, totals: voteProps.TwoStars },
+      { alt: '1_star_rating', img: one_star_rating, name: 'one_star_rating', title: '1 Star Rating', percent: votePercents.OneStars, totals: voteProps.OneStars },
+      { alt: 'no_star_rating', img: zero_star_rating, name: 'zero_star_rating', title: 'No Star Rating', percent: votePercents.ZeroStars, totals: voteProps.ZeroStars }
     ]
 
     const distribVotesButtons = voteButtons.map(button => {
@@ -110,79 +134,109 @@ class ResultsVote extends React.Component {
             </div>
           </div>
           <div className='results_totals_graph_row_container_right'>
-            <span>{ voteTotal.totals } { this.props.play.question.votes.total === 1 ? 'vote' : 'votes'}</span>
+            <span>{ voteTotal.totals } { voteTotal.totals === 1 ? 'vote' : 'votes'}</span>
           </div>
         </div>
       )
     })
 
-    if(this.props.play.voteLoading) voteBlock = loading
+    // if(
+    //     (this.props.play && !!this.props.play.voteLoading && !this.props.showVoteButtons) ||
+    //     (this.props.questions && !!this.props.questions.voteLoading && !this.props.showVoteButtons)
+    //   ) {
+    //     voteBlock = loading
+    // } else if(
+      
+      // if(
+      //   this.props.showVoteButtons &&
+      //   (
+      //     (this.props.play.results && !this.props.play.results.vote && !this.props.play.voteLoading) ||
+      //     (this.props.questions.staticUserResults && !this.props.questions.staticUserResults.vote  && !this.props.questions.voteLoading)
+      //   )
+      // ) {
+      // voteBlock =
+      // <div className="results_vote_container">
+      //   <div className="results_vote_header">
+      //     <h3>Rate this question</h3>
+      //   </div>
+      //   <div className="results_vote_buttons_container">
+      //     { distribVotesButtons }
+      //   </div>
+      // </div>
+      
+    //   if(
+    //     (this.props.play.results && !this.props.play.results.vote) ||
+    //     (this.props.questions.staticUserResults && !this.props.questions.staticUserResults.vote)
+    //   ) {
+    //   voteBlock =
+    //   <div className="results_vote_container">
+    //     <div className="results_vote_header">
+    //       <h3>Rate this question</h3>
+    //     </div>
+    //     <div className="results_vote_buttons_container">
+    //       { distribVotesButtons }
+    //     </div>
+    //   </div>
 
-    if(this.props.showVoteButtons &&
-      ((this.props.play.results && !this.props.play.results.vote) ||
-      (this.props.questions.staticUserResults && !this.props.questions.staticUserResults.vote)
-      )) {
-      voteBlock =
-      <div className="results_vote_container">
-        <div className="results_vote_header">
-          <h3>Rate this question</h3>
+    // } 
+
+
+      let voteBlock =
+        <div className="results_vote_container">
+          <div className="results_vote_header">
+            <h3>Rate this question</h3>
+          </div>
+          <div className="results_vote_buttons_container">
+            { distribVotesButtons }
+          </div>
         </div>
-        <div className="results_vote_buttons_container">
-          { distribVotesButtons }
-        </div>
-      </div>
-    } else {
+
+      if(
+        (this.props.play.results && this.props.play.results.vote) ||
+        (this.props.questions.staticUserResults && this.props.questions.staticUserResults.vote)
+      ) {
       headerText = <div className='results_vote_header_text_sub_container'><h3>Approval Rating</h3></div>
-      headerSubText =<div className='results_vote_header_sub_text_sub_container'><h4>{ this.props.play.question.votes.rating }</h4></div>
-
+      headerSubText =<div className='results_vote_header_sub_text_sub_container'><h4>{ voteProps.rating }</h4></div>
       voteBlock =
       <div className="results_vote_container">
-        { !this.props.staticResults &&
-          <>
-            <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
-            <div className='results_vote_totals_graph_container'>
-              <div className='results_totals_graph_sub_header_container'>
-                <div className='results_totals_graph_sub_header_container_left'>
-                  <div className='results_vote_average_vote_img_container'>
-                    <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
-                      style={{
-                        alignSelf: 'stretch',
-                        backgroundImage: `url(${average_star_rating})`,
-                        backgroundRepeat: 'no-repeat',
-                        width: `${ roundVoteAverageForStarRating(this.props.play.question.votes.average) }%`
-                      }}
-                    />
-                  </div>
-                  <span>{ roundVoteAverage(this.props.play.question.votes.average) } Stars</span>
-                </div>
-                <div className='results_totals_graph_sub_header_container_center'></div>
-                <div className='results_totals_graph_sub_header_container_right'>
-                  <span>{ this.props.play.question.votes.total } total { this.props.play.question.votes.total === 1 ? 'vote' : 'votes'}</span>
-                </div>
+        <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
+        <div className='results_vote_totals_graph_container'>
+          <div className='results_totals_graph_sub_header_container'>
+            <div className='results_totals_graph_sub_header_container_left'>
+              <div className='results_vote_average_vote_img_container'>
+                <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
+                  style={{
+                    alignSelf: 'stretch',
+                    backgroundImage: `url(${average_star_rating})`,
+                    backgroundRepeat: 'no-repeat',
+                    width: `${ roundVoteAverageForStarRating(voteProps.average) }%`
+                  }}
+                />
               </div>
-              { distribVoteTotals }
+              <span>{ roundVoteAverage(voteProps.average) } Stars</span>
             </div>
-          </>
-        }
-
-        {/*{ props.staticResults && <h5>Approval Rating ({ props.questions.staticQuestion.votes.total } { props.questions.staticQuestion.votes.total === 1 ? 'vote' : 'votes'})</h5> }
-        { props.staticResults && <h4>{ props.questions.staticQuestion.rating.approval }</h4> } */}
-
-        {/* <div className="results_vote_totals"> */}
-            {/*{ props.staticResults && <ul>
-              <li><h5>5 Stars ({ props.questions.staticQuestion.votes.FiveStars })</h5> { votePercents.FiveStars }</li>
-              <li><h5>4 Stars ({ props.questions.staticQuestion.votes.FourStars })</h5> { votePercents.FourStars }</li>
-              <li><h5>3 Stars ({ props.questions.staticQuestion.votes.ThreeStars })</h5> { votePercents.ThreeStars }</li>
-              <li><h5>2 Stars ({ props.questions.staticQuestion.votes.TwoStars })</h5> { votePercents.TwoStars }</li>
-              <li><h5>1 Star ({ props.questions.staticQuestion.votes.OneStars })</h5> { votePercents.OneStars }</li>
-              <li><h5>0 Stars ({ props.questions.staticQuestion.votes.ZeroStars })</h5> { votePercents.ZeroStars }</li>
-            </ul> } */}
-        {/* </div> */}
+            <div className='results_totals_graph_sub_header_container_center'></div>
+            <div className='results_totals_graph_sub_header_container_right'>
+              <span>{ voteProps.total } total { voteProps.total === 1 ? 'vote' : 'votes'}</span>
+            </div>
+          </div>
+          { distribVoteTotals }
+        </div>
       </div>
     }
 
     return(
-      <>{ voteBlock }</>
+      <>
+        {
+          // (this.props.play && !!this.props.play.voteLoading) ||
+          (this.props.play.voteLoading) ||
+          (this.props.questions.voteLoading)
+        ?
+          loading
+        :
+          voteBlock
+        }
+      </>
     )
   }
 }

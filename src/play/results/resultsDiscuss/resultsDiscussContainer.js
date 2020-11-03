@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import {
   setVote,
+  voteLoading,
   setComment,
   updateVoteStatus,
   updateCommentStatus,
@@ -68,13 +69,14 @@ class ResultsDiscussContainer extends React.Component {
         category: this.props.cat
       }
       this.props.onUpdateStaticQuestionVoteStatus('initVote')
+      this.props.onVoteLoading(true)
     }
 
     voteObj['uid'] = localStorage.id
     voteObj['vote'] = event.target.attributes.vote.value
 
     this.props.onSetVote(voteObj)
-    // this.setState({ showVoteButtons: false, enableVoteButtons: false })
+    this.setState({ showVoteButtons: false, enableVoteButtons: false })
   }
 
   onClickCommentFunctions = () => { this.setState({ enableCommentButton: false }) }
@@ -159,6 +161,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSetVote: (obj) => dispatch(setVote(obj)),
+    onVoteLoading: (bool) => dispatch(voteLoading(bool)),
+
     onSetComment: (obj) => dispatch(setComment(obj)),
     onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onUpdateCommentStatus: (status, loading) => dispatch(updateCommentStatus(status, loading)),

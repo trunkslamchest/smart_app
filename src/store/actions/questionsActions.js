@@ -162,7 +162,7 @@ export const clearStaticUserQuestion = (res) => {
 
 export const updateStaticQuestionVotes = (votes, vote, rating) => {
   return dispatch => {
-    dispatch(voteLoading(true))
+    // dispatch(voteLoading(true))
     dispatch(updateStaticQuestionVoteStatus('updateStaticQuestionVote'))
     dispatch(initUpdateStaticQuestionVotes(votes, rating))
     dispatch(updateStaticUserVote(vote))
