@@ -250,14 +250,9 @@ class PlayController extends React.Component {
       type: 'play',
       vid: this.props.play.results.vote.vid,
       qid: this.props.play.question.id,
-      answer: this.props.play.answer.choice,
-      correct_answer: this.props.play.results.correct_answer,
-      question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
       category: this.props.play.question.category,
-      result: this.props.play.results.result,
-      vote: this.props.play.results.vote.vote,
-      value: this.props.play.results.vote.value
+      vote: this.props.play.results.vote.vote
     })
   }
 
@@ -267,13 +262,13 @@ class PlayController extends React.Component {
       type: 'play',
       cid: this.props.play.results.comment.cid,
       qid: this.props.play.question.id,
-      answer: this.props.play.answer.choice,
+      // answer: this.props.play.answer.choice,
       category: this.props.play.question.category,
       comment: this.props.play.results.comment.comment,
-      correct_answer: this.props.play.results.correct_answer,
-      question: this.props.play.question.question,
+      // correct_answer: this.props.play.results.correct_answer,
+      // question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
-      result: this.props.play.results.result,
+      // result: this.props.play.results.result,
       timestamp: this.props.play.results.comment.timestamp
     })
   }

@@ -65,8 +65,18 @@ export const setVote = (obj) => {
   return dispatch => {
     questionsFunctions('patchQuestionVote', fetch.patch.questionVote, obj)
     .then(res => {
-      let voteTotals = { good: res.good, neutral: res.neutral, bad: res.bad, total: res.total, rating: res.rating },
-          userVote = { vid: res.vid, vote: res.vote, value: res.value }
+      let voteTotals = {
+            FiveStars: res.FiveStars,
+            FourStars: res.FourStars,
+            ThreeStars: res.ThreeStars,
+            TwoStars: res.TwoStars,
+            OneStars: res.OneStars,
+            ZeroStars: res.ZeroStars,
+            total: res.total,
+            average: res.average,
+            rating: res.rating
+          },
+          userVote = { vid: res.vid, vote: res.vote }
       if(obj.type === 'play') dispatch(updateVotes(voteTotals, userVote))
       if(obj.type === 'static') {
         delete voteTotals.rating

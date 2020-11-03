@@ -3,11 +3,117 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 
 .results_vote button {
 
 }
+
+.vote_star_enabled {
+  /* align-self: stretch; */
+  /* color: rgba(255, 255, 255, 1); */
+  background: rgba(0, 0, 0, 0);
+  border: 0px solid;
+  /* box-sizing: border-box; */
+  /* cursor: pointer; */
+  /* display: inline-block; */
+  /* font: 400 15px Roboto; */
+  /* letter-spacing: normal; */
+  /* width: 50px; */
+  /* height: 50px; */
+  /* margin: 10px 12.5px; */
+  /* padding: 10px 12.5px; */
+  padding: 0px;
+  /* align-self: center; */
+  /* text-align: center; */
+  /* text-decoration: none; */
+  /* text-indent: 0px; */
+  /* text-rendering: auto; */
+  /* text-shadow: none; */
+  /* text-transform: none; */
+  /* word-spacing: normal; */
+  /* -webkit-appearance: none; */
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.vote_star_disabled {
+  /* align-self: stretch; */
+  /* color: rgba(235, 235, 235, 0.5); */
+  /* background: rgba(174,174,174, 1); */
+  background: rgba(0, 0, 0, 0);
+  border: 0px solid;
+  /* box-sizing: border-box; */
+  /* cursor: pointer; */
+  /* display: inline-block; */
+  /* font: 400 15px Roboto; */
+  /* letter-spacing: normal; */
+  /* width: 50px; */
+  /* height: 50px; */
+  /* margin: 10px 12.5px; */
+  /* padding: 10px 12.5px; */
+  padding: 0px;
+  /* align-self: center; */
+  /* text-align: center; */
+  /* text-decoration: none; */
+  /* text-indent: 0px; */
+  /* text-rendering: auto; */
+  /* text-shadow: none; */
+  /* text-transform: none; */
+  /* word-spacing: normal; */
+  /* -webkit-appearance: none; */
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.vote_star_enabled img, .vote_star_disabled img {
+  /* width: 100%; */
+  cursor: pointer;
+  height: auto;
+  outline: -webkit-focus-ring-color auto 0px;
+
+}
+
+.vote_star_disabled img {
+  /* width: 100%; */
+  cursor: not-allowed;
+  filter: grayscale(100%);
+  height: auto;
+  outline: -webkit-focus-ring-color auto 0px;
+
+}
+
+/* .up_vote_button:hover {
+  color: rgb(255, 245, 204, 1);
+  background-color: rgba(0, 77, 26, 1);
+}
+
+.up_vote_button:active {
+  background-color: rgba(0, 77, 26, 1);
+  animation: scale_out .1s ease-in-out 1;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .up_vote_button {

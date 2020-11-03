@@ -44,9 +44,12 @@ const signUpObjTemplate = (email, user_name) => {
           "rating": 0,
           "votes": {
             "total": 0,
-            "good": 0,
-            "neutral": 0,
-            "bad": 0
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
           }
         },
         "difficulty": {

@@ -1,0 +1,41 @@
+.container_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  height: 35px;
+}
+
+.container_header_left {
+  align-self: stretch;
+  display: flex;
+}
+
+.container_header_left h3 {
+  align-self: center;
+  display: flex;
+  font: 600 15pt "LatoThin";
+}
+
+.container_header_right {
+  align-self: stretch;
+  display: flex;
+  text-align: center;
+  justify-content:center;
+}
+
+.container_header_right span {
+  align-self: center;
+  display: flex;
+  text-align: center;
+  /* padding-right: 25px; */
+  min-width: 65px;
+  font: 300 20pt 'Lato';
+}

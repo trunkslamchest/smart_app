@@ -1,0 +1,362 @@
+{
+  "Easy": {
+    "categories": {
+      "Anime": {
+        "-MGPR-PRZ_C-iBKBg9Ai": {
+          "type": "multiple",
+          "question": "The characters of Log Horizon are trapped in what game?",
+          "correct": "Elder Tale",
+          "choices": [
+            "Elder Tale",
+            "Sword Art Online",
+            "Tower Unite",
+            "Yggdrasil"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      },
+      "Computers": {
+        "-MGPR-PSClR2D9ABR8uc": {
+          "type": "multiple",
+          "question": "What is the domain name for the country Tuvalu?",
+          "correct": ".tv",
+          "choices": [
+            ".tu",
+            ".tt",
+            ".tv",
+            ".tl"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      },
+      "Film": {
+        "-MGPR-PSClR2D9ABR8ud": {
+          "type": "multiple",
+          "question": "What breed of dog was Marley in the film Marley & Me?",
+          "correct": "Labrador Retriever",
+          "choices": [
+            "Golden Retriever",
+            "Labrador Retriever",
+            "Dalmatian",
+            "Shiba Inu"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        },
+        "-MGPR-PSClR2D9ABR8uf": {
+          "type": "multiple",
+          "question": "Which of the following movies was not based on a novel by Stephen King? ",
+          "correct": "The Thing",
+          "choices": [
+            "Carrie",
+            "Misery",
+            "The Green Mile",
+            "The Thing"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      }
+    }
+  },
+  "Medium": {
+    "categories": {
+      "Anime": {
+        "-MGPR-PSClR2D9ABR8ug": {
+          "type": "multiple",
+          "question": "Which studio animated Soul Eater?",
+          "correct": "Bones",
+          "choices": [
+            "Kyoto Animation",
+            "xebec",
+            "Bones",
+            "Production I.G"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      },
+      "Art": {
+        "-MGPR-PSClR2D9ABR8uh": {
+          "type": "multiple",
+          "question": "Which artist's style was to use small different colored dots to create a picture?",
+          "correct": "Georges Seurat",
+          "choices": [
+            "Georges Seurat",
+            "Paul Cezanne",
+            "Vincent Van Gogh",
+            "Henri Rousseau"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      },
+      "Film": {
+        "-MGPR-PSClR2D9ABR8ui": {
+          "type": "multiple",
+          "question": "Which actor played the main character in the 1990 film Edward Scissorhands?",
+          "correct": "Johnny Depp",
+          "choices": [
+            "Clint Eastwood",
+            "Leonardo DiCaprio",
+            "Ben Stiller",
+            "Johnny Depp"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      }
+    }
+  },
+  "Hard": {
+    "categories": {
+      "Anime": {
+        "-MGPR-PSClR2D9ABR8uj": {
+          "type": "multiple",
+          "question": "Akatsuki's subclass in Log Horizon is what?",
+          "correct": "Tracker",
+          "choices": [
+            "Assassin",
+            "Tracker",
+            "Scribe",
+            "Apprentice"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      },
+      "Celebrities": {
+        "-MGPR-PSClR2D9ABR8uk": {
+          "type": "multiple",
+          "question": "What was the religion of famous singer Freddie Mercury?",
+          "correct": "Zoroastrianism",
+          "choices": [
+            "Zoroastrianism",
+            "Paganism",
+            "Ashurism",
+            "Judaism"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      },
+      "Film": {
+        "-MGPR-PSClR2D9ABR8ul": {
+          "type": "multiple",
+          "question": "What was the name of the planet in Aliens?",
+          "correct": "LV-426",
+          "choices": [
+            "Weyland Yutani Corporation Base",
+            "LV-426",
+            "FR-838",
+            "DI-621"
+          ],
+          "answers": {
+            "total": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "total_time": 0,
+            "avg_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": 0.00,
+            "approval": 0.00,
+            "performance": 0.00
+          }
+        }
+      }
+    }
+  }
+}

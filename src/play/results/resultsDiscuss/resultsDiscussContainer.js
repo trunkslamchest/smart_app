@@ -56,12 +56,8 @@ class ResultsDiscussContainer extends React.Component {
       voteObj = {
         type: 'play',
         qid: this.props.play.question.id,
-        question: this.props.play.question.question,
         difficulty: this.props.play.question.difficulty,
-        category: this.props.play.question.category,
-        answer: this.props.play.answer.choice,
-        correct_answer: this.props.play.results.correct_answer,
-        result: this.props.play.results.result
+        category: this.props.play.question.category
       }
       this.props.onUpdateVoteStatus('initVote', true)
     } else {
@@ -78,7 +74,7 @@ class ResultsDiscussContainer extends React.Component {
     voteObj['vote'] = event.target.attributes.vote.value
 
     this.props.onSetVote(voteObj)
-    this.setState({ showVoteButtons: false, enableVoteButtons: false })
+    // this.setState({ showVoteButtons: false, enableVoteButtons: false })
   }
 
   onClickCommentFunctions = () => { this.setState({ enableCommentButton: false }) }
@@ -99,12 +95,12 @@ class ResultsDiscussContainer extends React.Component {
           type: 'play',
           qid: this.props.play.question.id,
           user_name: this.props.user.info.user_name,
-          question: this.props.play.question.question,
+          // question: this.props.play.question.question,
           difficulty: this.props.play.question.difficulty,
           category: this.props.play.question.category,
-          answer: this.props.play.answer.choice,
-          correct_answer: this.props.play.results.correct_answer,
-          result: this.props.play.results.result,
+          // answer: this.props.play.answer.choice,
+          // correct_answer: this.props.play.results.correct_answer,
+          // result: this.props.play.results.result,
         }
         this.props.onUpdateCommentStatus('initComment', true)
       } else {
