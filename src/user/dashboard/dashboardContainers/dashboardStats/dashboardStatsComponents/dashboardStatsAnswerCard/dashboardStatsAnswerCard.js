@@ -2,10 +2,8 @@ import React from 'react'
 
 import { routes } from '../../../../../../utility/paths'
 
-
-import green_check_mark from '../../../../../../assets/glyphs/green_check_mark.png'
-import red_x from '../../../../../../assets/glyphs/red_x.png'
-
+import { voteStarsDashboardRatingIndex } from '../../../../../../assets/vote_stars/voteStarsRatingIndex'
+import glyphIndex from '../../../../../../assets/glyphs/glyphIndex'
 
 import './dashboardStatsAnswerCard.css'
 import './dashboardStatsAnswerCardButton.css'
@@ -14,17 +12,23 @@ const DashboardStatsAnswerCard = (props) => {
 
   const onClickFunctions = () => { props.history.push(routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats') }
 
-  let vote, distribComments, resultGlyph, answer = props.answer
+  let answer = props.answer,
+      vote,
+      voteStars,
+      distribComments,
+      resultGlyph
 
-  const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ red_x }/>
-  const correct_glyph = <img alt='Correct' className='result_glyph' src={ green_check_mark } />
+  const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
+  const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
+
+  if(answer.vote) {
+    vote = Object.values(answer.vote)[0].vote
+    voteStars = voteStarsDashboardRatingIndex[vote]
+  }
 
   if(answer.result === "Correct") resultGlyph = correct_glyph
   if(answer.result === "Incorrect") resultGlyph = incorrect_glyph
   if(answer.result === "Outta Time") resultGlyph = incorrect_glyph
-
-  if(answer.vote) vote = <span>{ Object.values(answer.vote)[0].vote }</span>
-  else vote = <span>ooooo</span>
 
   if(answer.comments){
     let comments = Object.entries(answer.comments)
@@ -59,7 +63,14 @@ const DashboardStatsAnswerCard = (props) => {
           <div className="dashboard_stats_answer_card_left_sub_container">
             { resultGlyph }
             <div className="dashboard_stats_answer_card_vote_container">
-              { vote }
+              { answer.vote &&
+                <img
+                  alt={ 'Your Rating' }
+                  name={ vote }
+                  src={ voteStars }
+                  title={ 'Your Rating' }
+                />
+              }
             </div>
           </div>
         </div>

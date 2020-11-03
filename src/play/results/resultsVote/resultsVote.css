@@ -182,6 +182,7 @@
 }
 
 .results_totals_graph_row_container_left img {
+  /* filter: grayscale(100%); */
   align-self: center;
 }
 
