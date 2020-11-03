@@ -13,32 +13,23 @@ const url = {
   // rootSecured: env.parsed.DEPLOY_SECURED,
   // rootUnsecured: env.parsed.DEPLOY_UNSECURED
 
-  // crossRoute: 'https://us-east1-smartapp-b3d27.cloudfunctions.net',
   crossRoute: env.parsed.FIREBASE_CROSS_ROUTE,
 
-  // crossUpdateUserQuestion: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserQuestion',
-  // crossUpdateUserVote: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserVote',
-  // crossUpdateUserComment: 'http://localhost:5001/smartapp-b3d27/us-east1/crossUpdateUserComment',
-  // crossDeleteUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/deleteUserComment',
-  // crossEditUserComment: 'http://localhost:5002/smartapp-b3d27/us-east1/editUserComment'
-
+  getAchievementsFromResults: env.parsed.FIREBASE_LOCAL_GET_ACHIEVEMENTS_FROM_RESULTS,
   crossUpdateUserQuestion: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_QUESTION,
   crossUpdateUserVote: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_VOTE,
   crossUpdateUserComment: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_COMMENT,
   crossDeleteUserComment: env.parsed.FIREBASE_LOCAL_CROSS_DELETE_USER_COMMENT,
-  crossEditUserComment: env.parsed.FIREBASE_LOCAL_CROSS_EDIT_USER_COMMENT
+  crossEditUserComment: env.parsed.FIREBASE_LOCAL_CROSS_EDIT_USER_COMMENT,
+  crossUpdateAchievements: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_ACHIEVEMENTS
 
-  // crossUpdateUserQuestion: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserQuestion',
-  // crossUpdateUserVote: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserVote',
-  // crossUpdateUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/crossUpdateUserComment',
-  // crossDeleteUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/deleteUserComment',
-  // crossEditUserComment: 'https://us-east1-smartapp-b3d27.cloudfunctions.net/editUserComment'
-
+  // getAchievementsFromResults: env.parsed.FIREBASE_DEPLOY_GET_ACHIEVEMENTS_FROM_RESULTS,
   // crossUpdateUserQuestion: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_QUESTION,
   // crossUpdateUserVote: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_VOTE,
   // crossUpdateUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_COMMENT,
   // crossDeleteUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_DELETE_USER_COMMENT,
-  // crossEditUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_EDIT_USER_COMMENT
+  // crossEditUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_EDIT_USER_COMMENT,
+  // crossUpdatAchievements: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_ACHIEVEMENTS
 }
 
 var firebaseConfig = {
@@ -515,9 +506,12 @@ exports.createFakeUsers = functions
               "rating":  genRand(0.25, 1, 2),
               "votes": {
                 "total": 0,
-                "good": 0,
-                "neutral": 0,
-                "bad": 0
+                "FiveStars": 0,
+                "FourStars": 0,
+                "ThreeStars": 0,
+                "TwoStars": 0,
+                "OneStars": 0,
+                "ZeroStars": 0
               }
             },
             "difficulty": {
@@ -751,7 +745,6 @@ exports.createFakeUsers = functions
               "showAge": true,
               "showBio": true,
               "showCountry": true,
-              "showEmail": true,
               "showExperience": true,
               "showGender": true,
               "showGenderPronouns": true,
@@ -808,12 +801,12 @@ exports.getUserProfile = functions
 
         if(!!userObj.settings.privacy.profile.private) userObj = `${req.body.user_name} has set their public profile to private`
         else {
+          delete userObj.info.email
           if(!userObj.settings.privacy.profile.showAchievements) delete userObj.achievements
           if(!userObj.settings.privacy.profile.showAge) delete userObj.info.dob
           if(!userObj.settings.privacy.profile.showAvatar) delete userObj.info.avatar
           if(!userObj.settings.privacy.profile.showBio) delete userObj.info.bio
           if(!userObj.settings.privacy.profile.showCountry) delete userObj.info.country
-          if(!userObj.settings.privacy.profile.showEmail) delete userObj.info.email
           if(!userObj.settings.privacy.profile.showExperience) delete userObj.experience
           if(!userObj.settings.privacy.profile.showGender) delete userObj.info.gender
           if(!userObj.settings.privacy.profile.showGenderPronouns) delete userObj.info.gender_pronouns
@@ -1018,21 +1011,17 @@ exports.crossUpdateUserVote = functions
     firebase.database().ref('/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
       var votePath = '/' + req.body.uid + '/questions/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/vote/'
 
-      voteObj[votePath] = {
-        ...snap.val().votes,
-        [req.body.vid]: {
-          vote: req.body.vote,
-          value: req.body.value
-        }
-      }
+      voteObj[votePath] = { ...snap.val().votes, [req.body.vid]: { vote: req.body.vote } }
 
       firebase.database().ref().update(voteObj);
     })
 
     firebase.database().ref('/' + req.body.uid + '/questions/totals/all/').once('value', function(snap){
       var voteTotalPath = '/' + req.body.uid + '/questions/totals/all/votes'
+
       if(!snap.val().votes) voteTotalsObj[voteTotalPath] = { ...voteTotalsBlankObj, [req.body.vote]: 1, total: 1 }
       else voteTotalsObj[voteTotalPath] = { ...snap.val().votes, [req.body.vote]: snap.val().votes[req.body.vote] + 1, total: snap.val().votes.total + 1 }
+
       firebase.database().ref().update(voteTotalsObj);
     })
 
@@ -1346,28 +1335,36 @@ var calcRating = function(stat) {
   if(stat < 0.25) return 'E'
 }
 
-var calcVoteRating = function(good, bad, neutral) {
-  if (good < 1) return 'C'
-  else {
-    let numRate = parseFloat(((good / (good + bad)) + (neutral * 0.05) ).toFixed(2))
-    if(numRate > 1.00) return 'S'
-    if(numRate <= 1.00 && numRate >= 0.95) return 'A+'
-    if(numRate < 0.95 && numRate >= 0.9) return 'A'
-    if(numRate < 0.9 && numRate >= 0.85) return 'A-'
-    if(numRate < 0.85 && numRate >= 0.8) return 'B+'
-    if(numRate < 0.8 && numRate >= 0.75) return 'B'
-    if(numRate < 0.75 && numRate >= 0.7) return 'B-'
-    if(numRate < 0.7 && numRate >= 0.65) return 'C+'
-    if(numRate < 0.65 && numRate >= 0.6) return 'C'
-    if(numRate < 0.6 && numRate >= 0.55) return 'C-'
-    if(numRate < 0.55 && numRate >= 0.5) return 'D+'
-    if(numRate < 0.5 && numRate >= 0.45) return 'D'
-    if(numRate < 0.45 && numRate >= 0.4) return 'D-'
-    if(numRate < 0.4 && numRate >= 0.35) return 'F+'
-    if(numRate < 0.35 && numRate >= 0.3) return 'F'
-    if(numRate < 0.3 && numRate >= 0.25) return 'F-'
-    if(numRate < 0.25) return 'E'
-  }
+var calcVoteRating = function(voteAvg) {
+  let adjustAvg = (voteAvg.total * 2) / 10.00
+  if(adjustAvg > 1.00) return 'S'
+  if(adjustAvg <= 1.00 && adjustAvg >= 0.95) return 'A+'
+  if(adjustAvg < 0.95 && adjustAvg >= 0.9) return 'A'
+  if(adjustAvg < 0.9 && adjustAvg >= 0.85) return 'A-'
+  if(adjustAvg < 0.85 && adjustAvg >= 0.8) return 'B+'
+  if(adjustAvg < 0.8 && adjustAvg >= 0.75) return 'B'
+  if(adjustAvg < 0.75 && adjustAvg >= 0.7) return 'B-'
+  if(adjustAvg < 0.7 && adjustAvg >= 0.65) return 'C+'
+  if(adjustAvg < 0.65 && adjustAvg >= 0.6) return 'C'
+  if(adjustAvg < 0.6 && adjustAvg >= 0.55) return 'C-'
+  if(adjustAvg < 0.55 && adjustAvg >= 0.5) return 'D+'
+  if(adjustAvg < 0.5 && adjustAvg >= 0.45) return 'D'
+  if(adjustAvg < 0.45 && adjustAvg >= 0.4) return 'D-'
+  if(adjustAvg < 0.4 && adjustAvg >= 0.35) return 'F+'
+  if(adjustAvg < 0.35 && adjustAvg >= 0.3) return 'F'
+  if(adjustAvg < 0.3 && adjustAvg >= 0.25) return 'F-'
+  if(adjustAvg < 0.25) return 'E'
+}
+
+var calcVoteAvg = function(voteObj) {
+  let multiplyObj = { ...voteObj }
+  multiplyObj.FiveStars = voteObj.FiveStars * 5
+  multiplyObj.FourStars = voteObj.FourStars * 4
+  multiplyObj.ThreeStars = voteObj.ThreeStars * 3
+  multiplyObj.TwoStars = voteObj.TwoStars * 2
+  multiplyObj.OneStars = voteObj.OneStars * 1
+  multiplyObj.total = parseFloat(((multiplyObj.FiveStars + multiplyObj.FourStars + multiplyObj.ThreeStars + multiplyObj.TwoStars + multiplyObj.OneStars) / voteObj.total).toFixed(2))
+  return multiplyObj
 }
 
 var calcDiffRate = function(correct, incorrect, outta_time, total) {
@@ -1812,41 +1809,33 @@ exports.questionVote = functions
     let voteObj = {}, ratingObj = {}
     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
       if(!!req.body.uid) {
-
-        var vid = firebase.database().ref().push().key,
-            voteValue
+        var vid = firebase.database().ref().push().key
 
         voteObj = { ...snap.val().votes }
         voteObj[req.body.vote] = voteObj[req.body.vote] + 1
         voteObj.total = voteObj.total + 1
 
-        let voteRating = calcVoteRating(voteObj.good, voteObj.bad, voteObj.neutral)
+        let voteAvg = calcVoteAvg(voteObj)
+
+        let voteRating = calcVoteRating(voteAvg)
         ratingObj = { ...snap.val().rating, approval: voteRating }
 
         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/votes').update(voteObj)
         firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid + '/rating').update(ratingObj)
 
-        if(req.body.vote === 'good') voteValue = 1
-        if(req.body.vote === 'neutral') voteValue = 0
-        if(req.body.vote === 'bad') voteValue = -1
-
         voteObj["vid"] = vid
         voteObj["rating"] = voteRating
+        voteObj["average"] = voteAvg.total
         voteObj["vote"] = req.body.vote
-        voteObj["value"] = voteValue
 
         let crossObj = {
           vid: vid,
           uid: req.body.uid,
           qid: req.body.qid,
-          question: req.body.question,
           difficulty: req.body.difficulty,
           category: req.body.category,
-          answer: req.body.answer,
-          correct_answer: req.body.correct_answer,
-          result: req.body.result,
-          vote: req.body.vote,
-          value: voteValue
+          rating: voteRating,
+          vote: req.body.vote
         }
 
         fetch(url.crossUpdateUserVote, {
