@@ -8,8 +8,9 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  padding: 10px 0px;
+  padding: 20px 0px 0px 0px;
   /* opacity: 0.7; */
+  width: 100%;
 }
 
 .stats_legend_container span {
@@ -19,7 +20,8 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  color: rgba(102, 102, 102, 1);
+  color: rgba(200, 200, 200, 1);
+  /* color: rgba(102, 102, 102, 1); */
   font: 300 8pt "LatoItalic";
   text-align: center;
 }

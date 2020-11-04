@@ -5,11 +5,10 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  margin: 1.25em 0em 0em 0em;
-  padding: 5px 10px;
-  z-index: 8;
-  color: rgb(235, 235, 235, 1);
-  background: rgba(51, 51, 51, 1);
+  /* margin: 1.25em 0em 0em 0em; */
+  padding: 0px 0px 0px 20px;
+  color: rgb(225, 225, 225, 1);
+  background: rgba(50, 50, 50, 1);
 }
 
 .dashboard_profile_header_left {

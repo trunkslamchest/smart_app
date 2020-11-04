@@ -13,10 +13,7 @@ const DashboardStatsContainer = (props) => {
   useEffect(() => { document.title = "SmartApp™ | Dashboard | Stats" }, [])
 
   return(
-    <div className="stats_wrapper">
-      {/* <div className="stats_sub_header">
-        <h3>Overall</h3>
-      </div> */}
+    <div className='dashboard_stats_container'>
       <DashboardHeader header_text={ 'Overall' } />
       <DashboardStatsTotal />
       <h6>Click on a Difficulty or Category to view your answers</h6>

@@ -1,16 +1,11 @@
 .dashboard_settings_form_container {
   background: rgba(51, 51, 51, 1);
-  padding: 5px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
 }
 
 .dashboard_settings_privacy_container {
 
 }
-
-/* .dashboard_settings_privacy_container h3 {
-  font: 600 20pt 'LatoThin', sans-serif;
-  padding: 0px 0px;
-} */
 
 .dashboard_settings_privacy_container h4 {
   font: 300 15pt 'Lato', sans-serif;

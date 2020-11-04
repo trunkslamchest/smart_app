@@ -1,9 +1,10 @@
-.stats_wrapper {
-  padding: 20px 0px;
+.dashboard_stats_container {
+  background: rgba(50, 50, 50, 1);
+  padding: 10px 0px 0px 0px;
 }
 
-.stats_wrapper h6 {
-  background: rgba(51, 51, 51, 1);
+.dashboard_stats_container h6 {
+  background: rgba(50, 50, 50, 1);
   color: rgba(255, 255, 255, 1);
   font: 300 10pt "LatoItalic";
   text-align: center;
