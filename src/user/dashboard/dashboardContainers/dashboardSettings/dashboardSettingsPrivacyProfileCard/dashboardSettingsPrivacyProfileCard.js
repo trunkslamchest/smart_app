@@ -1,19 +1,18 @@
 import React from 'react'
 
+import FormCheckBox from '../../../../../UI/checkboxes/formCheckBox/formCheckBox'
+
 import './dashboardSettingsPrivacyProfileCard.css'
 
 const DashboardSettingsPrivacyProfileCard = (props) => {
   return (
     <div className="dashboard_settings_privacy_profile_card">
       <span>{ props.setting.text }</span>
-      <input
-        type='checkbox'
+      <FormCheckBox
         id={ props.setting.name }
         name={ props.setting.name }
-        className='dashboard_settings_privacy_profile_card_check'
-        checked={ props.status }
-        onChange={ props.onChecked }
-        value={ props.status }
+        onChecked={ props.onChecked }
+        status={ props.status }
       />
     </div>
   )

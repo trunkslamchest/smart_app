@@ -4,14 +4,15 @@
 }
 
 .stats_total {
-  background: rgba(255,255,255, 1);
+  background: rgba(51, 51, 51, 1);
+  color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
   align-content: center;
-  font: 300 10pt 'Poppins', sans-serif;
+  font: 600 10pt 'LatoThin', sans-serif;
   padding: 0px 0px 10px 0px;
 }
 
@@ -37,11 +38,10 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  font-size: 10pt;
+  padding: 2.5px 0px;
 }
 
 .stats_xp_perf_container {
-  background: rgba(255,255,255, 1);
   width: 50%;
   display: flex;
   flex-direction: column;

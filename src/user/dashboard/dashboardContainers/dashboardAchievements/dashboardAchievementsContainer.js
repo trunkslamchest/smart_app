@@ -19,10 +19,10 @@ class DashboardAchievementsContainer extends React.Component {
       if(this.props.user.achievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
       else {
         let unlockedAchievements = allAchievements.filter(achievement => this.props.user.achievements.unlocked.includes(achievement[0]))
-        distribUnlockedAchievements = unlockedAchievements.map(achievement => {
+        distribUnlockedAchievements = unlockedAchievements.map((achievement, index) => {
           return (
             <DashboardAchievementCard
-                key={ allAchievements.indexOf(achievement) }
+                key={ index }
                 name={ achievement[0] }
                 unlocked={ true }
                 achievement={ achievement[1] }
@@ -34,10 +34,10 @@ class DashboardAchievementsContainer extends React.Component {
       if(this.props.user.achievements.unlocked.length === this.props.achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
       else {
         let lockedAchievements = allAchievements.filter(achievement => !this.props.user.achievements.unlocked.includes(achievement[0]))
-        distribLockedAchievements = lockedAchievements.map(achievement => {
+        distribLockedAchievements = lockedAchievements.map((achievement, index) => {
           return (
             <DashboardAchievementCard
-                key={ allAchievements.indexOf(achievement) }
+                key={ index }
                 name={ achievement[0] }
                 unlocked={ false }
                 achievement={ achievement[1] }

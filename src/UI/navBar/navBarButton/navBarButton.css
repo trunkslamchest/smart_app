@@ -1,10 +1,10 @@
 .navbar_button {
   border: 0px;
   box-sizing: border-box;
-  color: rgb(40, 44, 52, 1);
+  color: rgb(225, 225, 225, 1);
   cursor: pointer;
   flex-grow: 1;
-  font: 300 15pt 'Lato', sans-serif;
+  font: 300 14pt 'PoppinsLight', sans-serif;
   margin: 0px;
   padding: 15px 30px;
   text-align: center;
@@ -12,8 +12,13 @@
 }
 
 .navbar_button:hover {
-  background: rgba(51, 51, 51, 1);
-  color: rgba(255, 255, 255, 1);
+  /* background: rgba(50, 50, 50, 1); */
+  background: rgba(245, 167, 66, 1);
+
+  /* color: rgba(225, 225, 225, 1); */
+  color: rgba(50, 50, 50, 1);
+
+
   cursor: pointer;
 }
 
@@ -22,14 +27,16 @@
 }
 
 .navbar_button_active {
-  background-color: rgba(245, 167, 66, 1);
-  color: rgba(40, 44, 52, 1);
+  font: 300 14pt 'Poppins', sans-serif;
+
+  background: rgba(245, 167, 66, 1);
+  color: rgba(50, 50, 50, 1);
   cursor: default;
 }
 
 .navbar_button_active:hover, .navbar_button_active:active {
   animation: none;
-  background-color: rgba(245, 167, 66, 1);
-  color: rgba(40, 44, 52, 1);
+  background: rgba(245, 167, 66, 1);
+  color: rgba(50, 50, 50, 1);
   cursor: default;
 }

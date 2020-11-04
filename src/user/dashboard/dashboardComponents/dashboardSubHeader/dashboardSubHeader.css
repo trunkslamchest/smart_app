@@ -1,4 +1,4 @@
-.dashboard_header {
+.dashboard_sub_header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -9,11 +9,11 @@
   background: rgba(51, 51, 51, 1);
   border: 0px;
   color: rgba(255, 255, 255, 1);
-  padding: 0px 20px 0px 10px;
-  height: 35px;
+  padding: 0px 30px 0px 20px;
+  height: 25px;
 }
 
-.dashboard_header_left {
+.dashboard_sub_header_left {
   /* align-self: stretch; */
   display: flex;
   /* justify-content: center; */
@@ -21,13 +21,13 @@
   /* align-content: stretch; */
 }
 
-.dashboard_header_left h3 {
+.dashboard_sub_header_left h3 {
   align-self: center;
   /* display: flex; */
-  font: 600 15pt "LatoThin";
+  font: 600 12pt "LatoThin";
 }
 
-.dashboard_header_right {
+.dashboard_sub_header_right {
   /* align-self: stretch; */
   display: flex;
   /* justify-content: center; */
@@ -35,7 +35,7 @@
   /* align-content: stretch; */
 }
 
-.dashboard_header_right span {
+.dashboard_sub_header_right span {
   align-self: center;
   /* align-self: center;
   display: flex; */

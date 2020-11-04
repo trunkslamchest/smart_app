@@ -3,8 +3,9 @@
 }
 
 .stats_wrapper h6 {
-  color: rgba(51, 51, 51, 1);
-  font: 600 10pt "LatoItalic";
+  background: rgba(51, 51, 51, 1);
+  color: rgba(255, 255, 255, 1);
+  font: 300 10pt "LatoItalic";
   text-align: center;
   padding: 5px 0px;
 }

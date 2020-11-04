@@ -66,7 +66,9 @@ class DashboardSettingsContainer extends React.Component {
   }
 
   onChecked = (event) => {
-    let flipChecked = !event.target.checked
+    event.preventDefault()
+    let flipSetting = !this.state.settings.privacy.profile[event.target.name]
+
     this.setState({
       ...this.state,
       settings:{
@@ -75,7 +77,7 @@ class DashboardSettingsContainer extends React.Component {
           ...this.state.settings.privacy,
           profile: {
             ...this.state.settings.privacy.profile,
-            [event.target.name]: !flipChecked
+            [event.target.name]: flipSetting
           }
         }
       }
@@ -119,6 +121,7 @@ class DashboardSettingsContainer extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
+
     return(
       <div className="dashboard_settings_container">
         <DashboardSettingsFormContainer

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { deleteProfile } from '../../../../../store/actions/actionIndex'
 
 import DashboardHeader from '../../../dashboardComponents/dashboardHeader/dashboardHeader'
+import DashboardSubHeader from '../../../dashboardComponents/dashboardSubHeader/dashboardSubHeader'
+
 import DashboardSettingsPrivacyProfileCard from '../dashboardSettingsPrivacyProfileCard/dashboardSettingsPrivacyProfileCard'
 import DashboardButtonsContainer from '../../../dashboardContainers/dashboardButtonsContainer/dashboardButtonsContainer'
 
@@ -20,16 +22,16 @@ class DashboardSettingsFormContainer extends React.Component {
   render(){
     const privacyProfileSettings = [
       { name: 'private', text: 'Set your public profile to private' },
-      { name: 'showAchievements', text: 'Display your Achievements on your public profile' },
-      { name: 'showAge', text: 'Display your Age on your public profile' },
-      { name: 'showAvatar', text: 'Display your Avatar on your public profile' },
-      { name: 'showBio', text: 'Display your Biography on your public profile' },
-      { name: 'showCountry', text: 'Display your Nationality on your public profile' },
-      { name: 'showExperience', text: 'Display your Experience levels on your public profile' },
-      { name: 'showGender', text: 'Display your Gender on your public profile' },
-      { name: 'showGenderPronouns', text: 'Display your Gender Pronouns on your public profile' },
-      { name: 'showRealName', text: 'Display your Real Name on your public profile' },
-      { name: 'showStats', text: 'Display your Statistics on your public profile' }
+      { name: 'showAchievements', text: 'Display your Achievements' },
+      { name: 'showAge', text: 'Display your Age' },
+      { name: 'showAvatar', text: 'Display your Avatar' },
+      { name: 'showBio', text: 'Display your Biography' },
+      { name: 'showCountry', text: 'Display your Nationality' },
+      { name: 'showExperience', text: 'Display your Experience levels' },
+      { name: 'showGender', text: 'Display your Gender' },
+      { name: 'showGenderPronouns', text: 'Display your Gender Pronouns' },
+      { name: 'showRealName', text: 'Display your Real Name' },
+      { name: 'showStats', text: 'Display your Statistics' }
     ]
 
     const headerButtons = [
@@ -63,11 +65,10 @@ class DashboardSettingsFormContainer extends React.Component {
           <div className="dashboard_settings_privacy_container">
             <DashboardHeader header_text={ "Privacy" } buttons={ headerButtons } />
             <div className="dashboard_settings_privacy_profile_container">
-              <h4>Public Profile</h4>
+              <DashboardSubHeader header_text={ 'Pubilc Profile' } />
               { distribPrivacyProfileSettings }
             </div>
           </div>
-
           <DashboardButtonsContainer
             buttons={ formButtons }
             button_class={ 'dashboard_form_button' }

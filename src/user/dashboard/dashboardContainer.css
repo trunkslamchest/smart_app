@@ -4,7 +4,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: 10px auto;
+  margin: 0px auto;
   padding: 0px 0px 0px 0px;
   min-height: 85.75vh;
   animation: fade_in .3s ease-in-out 1;

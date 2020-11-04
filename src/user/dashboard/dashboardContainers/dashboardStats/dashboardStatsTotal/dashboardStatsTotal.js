@@ -26,7 +26,7 @@ class DashboardStatsTotal extends React.Component {
   render(){
 
     const xpBarClass = {
-      border: "1px solid rgba(200, 200, 200, 1)",
+      border: "0px solid rgba(200, 200, 200, 1)",
       boxSizing: "border-box",
       background: "green",
       height: "10px",
