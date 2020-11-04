@@ -4,7 +4,7 @@
 }
 
 .stats_total {
-  background: rgba(51, 51, 51, 1);
+  background: rgba(50, 50, 50, 1);
   color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: row;

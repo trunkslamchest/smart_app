@@ -32,8 +32,8 @@
 }
 
 .dashboard_form_button_disabled {
-  background: rgba(174,174,174, 1);
-  color: rgb(235, 235, 235, 0.5);
+  background: rgba(175, 175, 175, 1);
+  color: rgb(225, 225, 225, 0.5);
   cursor: not-allowed;
   -webkit-appearance: none;
   text-rendering: auto;
