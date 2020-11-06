@@ -13,92 +13,90 @@ import {
   resetComment
 } from '../../../store/actions/actionIndex'
 
-import HeaderIconButton from '../headerIconButton/headerIconButton'
+import HeaderIconButtonContainer from '../headerIconButton/headerIconButtonContainer'
 import iconsIndex from '../../../assets/icons/iconsIndex'
 
 import '../header.css'
 
-class NormalHeader extends React.Component {
+const NormalHeader = (props) => {
 
-  onClearGame = (event) => {
-    if(!!this.props.play.status){
-      if(!!this.props.play.gameMode) this.props.onResetGameMode()
-      if(!!this.props.play.gameState) this.props.onResetGameState()
-      if(!!this.props.play.gameQset) this.props.onResetGameQset()
-      if(!!this.props.play.question) this.props.onResetQuestion()
-      if(!!this.props.play.answer) this.props.onResetAnswer()
-      if(!!this.props.play.results) this.props.onResetResults()
-      if(!!this.props.play.voted) this.props.onResetVote()
-      if(!!this.props.play.commented) this.props.onResetComment()
-    }
+  const onInitGame = (event) => {
+    if(!!props.play.status) this.onClearGame()
     let gameMode = event.target.name
     localStorage.gameMode = gameMode
   }
 
-  onLogOut = (event, args) => {
+  const onClearGame = () => {
+    if(!!props.play.gameMode) props.onResetGameMode()
+    if(!!props.play.gameState) props.onResetGameState()
+    if(!!props.play.gameQset) props.onResetGameQset()
+    if(!!props.play.question) props.onResetQuestion()
+    if(!!props.play.answer) props.onResetAnswer()
+    if(!!props.play.results) props.onResetResults()
+    if(!!props.play.voted) props.onResetVote()
+    if(!!props.play.commented) props.onResetComment()
+  }
+
+  const onLogOut = (event, args) => {
     event.persist()
-    this.props.onLogoutModal(args)
+    props.onLogoutModal(args)
   }
 
-  render(){
+  const playMenuButtons = [
+    { name:'quick_play', menu: 'playMenu', route: routes.quick_play, text: "Quick Play", type: 'link', clickFunction: onInitGame },
+    { name:'by_diff', menu: 'playMenu', route: routes.by_diff, text: "By Difficulty", type: 'link', clickFunction: onInitGame },
+    { name:'by_cat', menu: 'playMenu', route: routes.by_cat, text: "By Category", type: 'link', clickFunction: onInitGame }
+  ]
 
-    const playMenuButtons = [
-      { name:'quick_play', menu: 'playMenu', route: routes.quick_play, text: "Quick Play", type: 'link' },
-      { name:'by_diff', menu: 'playMenu', route: routes.by_diff, text: "By Difficulty", type: 'link' },
-      { name:'by_cat', menu: 'playMenu', route: routes.by_cat, text: "By Category", type: 'link' }
-    ]
+  const profileMenuButtons = [
+    { name:'my_profile', menu: 'myProfileMenu', route: routes.dashboard, text: 'My Profile', type: 'link', clickFunction: onClearGame },
+    { name:'view_profile', menu: 'myProfileMenu', route: routes.dashboard_profile, text: 'View Profile', type: 'link', clickFunction: onClearGame },
+    { name:'edit_profile', menu: 'myProfileMenu', route: routes.dashboard_profile_edit, text: 'Edit Profile', type: 'link', clickFunction: onClearGame },
+    { name:'log_out', menu: 'myProfileMenu', text: 'Log Out', type: 'modal', clickFunction: onLogOut, args: true }
+  ]
 
-    const profileMenuButtons = [
-      { name:'my_profile', menu: 'myProfileMenu', route: routes.dashboard, text: 'My Profile', type: 'link' },
-      { name:'view_profile', menu: 'myProfileMenu', route: routes.dashboard_profile, text: 'View Profile', type: 'link' },
-      { name:'edit_profile', menu: 'myProfileMenu', route: routes.dashboard_profile_edit, text: 'Edit Profile', type: 'link' },
-      { name:'log_out', menu: 'myProfileMenu', click: this.onLogOut, args: true, text: 'Log Out', type: 'modal' }
-    ]
+  const headerButtons = [
+    { buttonType: 'link', icon: iconsIndex.leaderboardWhiteIcon, iconHover: iconsIndex.leaderboardBlackIcon, iconClass: 'header_icon', id: 'header_leader_board_button', name: 'LeaderboardsButton', tooltipText: 'Leaderboards', route: routes.leader_boards + '/overall', clickFunction: onClearGame },
+    { buttonType: 'menu', icon: iconsIndex.playWhiteIcon, iconHover: iconsIndex.playBlackIcon, iconClass: 'header_icon', id: 'header_play_button', name: 'PlayButton', tooltipText: 'Play', menuButtons: playMenuButtons },
+    { buttonType: 'menu', icon: props.user.info.avatar, iconHover: props.user.info.avatar, iconClass: 'header_profile_icon', id: 'header_profile_button', name: 'ProfileButton', tooltipText: 'My Profile', menuButtons: profileMenuButtons },
+  ]
 
-    const headerButtons = [
-      { buttonType: 'link', icon: iconsIndex.leaderboardWhiteIcon, iconHover: iconsIndex.leaderboardBlackIcon, iconClass: 'header_icon', id: 'header_leader_board_button', name: 'LeaderboardsButton', tooltipText: 'Leaderboards', route: routes.leader_boards + '/overall' },
-      { buttonType: 'menu', icon: iconsIndex.playWhiteIcon, iconHover: iconsIndex.playBlackIcon, iconClass: 'header_icon', id: 'header_play_button', name: 'PlayButton', tooltipText: 'Play', menuButtons: playMenuButtons },
-      { buttonType: 'menu', icon: this.props.user.info.avatar, iconHover: this.props.user.info.avatar, iconClass: 'header_profile_icon', id: 'header_profile_button', name: 'ProfileButton', tooltipText: 'My Profile', menuButtons: profileMenuButtons },
-    ]
-
-    const distribHeaderButtons = headerButtons.map((button, index) => {
-      return(
-        <HeaderIconButton
-          key={ index }
-          buttonType={ button.buttonType }
-          classType='header_icon_button'
-          icon={ button.icon }
-          iconHover={ button.iconHover }
-          iconClass={ button.iconClass }
-          history={ this.props.history }
-          id={ button.id }
-          name={ button.name }
-          menuButtons={ button.menuButtons }
-          onClearGame={ this.onClearGame }
-          route={ button.route }
-          tooltipText={ button.tooltipText }
-        />
-      )
-    })
-
+  const distribHeaderButtons = headerButtons.map((button, index) => {
     return(
-      <>
-        {/* <div className='header_greeting'>
-          { this.props.auth.valid && `Hello, ${this.props.user.info.user_name}!` }
-        </div> */}
-
-        <div className='header_nav_links'>
-          { distribHeaderButtons }
-        </div>
-      </>
+      <HeaderIconButtonContainer
+        buttonClass='header_icon_button'
+        buttonType={ button.buttonType }
+        history={ props.history }
+        icon={ button.icon }
+        iconClass={ button.iconClass }
+        iconHover={ button.iconHover }
+        id={ button.id }
+        key={ index }
+        name={ button.name }
+        menuButtons={ button.menuButtons }
+        clickFunction={ button.clickFunction }
+        route={ button.route }
+        tooltipText={ button.tooltipText }
+      />
     )
-  }
+  })
+
+  return(
+    <>
+      {/* <div className='header_greeting'>
+        { this.props.auth.valid && `Hello, ${this.props.user.info.user_name}!` }
+      </div> */}
+
+      <div className='header_nav_links'>
+        { distribHeaderButtons }
+      </div>
+    </>
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    modal: state.modal,
     play: state.play,
     user: state.user
   }

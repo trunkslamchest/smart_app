@@ -26,7 +26,7 @@ class HeaderMenu extends React.Component {
           key={ index }
           link={ button.route }
           name={ button.name }
-          onClick={ button.click ? button.click : this.props.onClearGame }
+          clickFunction={ button.clickFunction }
           onSwitchMenu={ this.props.onSwitchMenu }
         >
           { button.text }

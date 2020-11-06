@@ -5,8 +5,10 @@ const HeaderMenuButton = (props) => {
 
   const onClickFunction = (event) => {
     props.onSwitchMenu()
-    if(props.args) props.onClick(event, props.args)
-    else props.onClick(event)
+    if(props.clickFunction) {
+      if(props.args) props.clickFunction(event, props.args)
+      else props.clickFunction(event)
+    }
   }
 
   let headerButton

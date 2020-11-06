@@ -6,41 +6,52 @@ import {
   signup
 } from '../../../store/actions/actionIndex'
 
-import HeaderButton2 from '../headerButton2/headerButton2'
-import HeaderIconButton from '../headerIconButton/headerIconButton'
-
+import HeaderIconButtonContainer from '../headerIconButton/headerIconButtonContainer'
 import iconsIndex from '../../../assets/icons/iconsIndex'
+
+import '../header.css'
 
 const GuestHeader = (props) => {
 
-  const leaderBoardsFunctions = () => { props.history.push( routes.leader_boards + '/overall' ) }
-  const logInButtonFunctions = () => { props.onLoginModal(true) }
-  const signUpButtonFunctions = () => { props.onSignupModal(true) }
+  const onLogIn = (event, args) => {
+    event.persist()
+    props.onLoginModal(args)
+  }
+
+  const onSignUp = (event, args) => {
+    event.persist()
+    props.onSignupModal(args)
+  }
+
+  const headerButtons = [
+    { buttonType: 'link', icon: iconsIndex.leaderboardWhiteIcon, iconHover: iconsIndex.leaderboardBlackIcon, iconClass: 'header_icon', id: 'header_leader_board_button', name: 'LeaderboardsButton', tooltipText: 'Leaderboards', route: routes.leader_boards + '/overall' },
+    { buttonType: 'modal', icon: iconsIndex.loginWhiteIcon, iconHover: iconsIndex.loginBlackIcon, iconClass: 'header_icon', id: 'header_login_button', name: 'LoginButton', tooltipText: 'Login', clickFunction: onLogIn, args: true },
+    { buttonType: 'modal', icon: iconsIndex.signUpWhiteIcon, iconHover: iconsIndex.signUpBlackIcon, iconClass: 'header_icon', id: 'header_sign_up_button', name: 'SignUpButton', tooltipText: 'Sign Up', clickFunction: onSignUp, args: true }
+  ]
+
+  const distribHeaderButtons = headerButtons.map((button, index) => {
+    return(
+      <HeaderIconButtonContainer
+        args={ button.args }
+        buttonClass='header_icon_button'
+        buttonType={ button.buttonType }
+        clickFunction={ button.clickFunction }
+        history={ props.history }
+        icon={ button.icon }
+        iconClass={ button.iconClass }
+        iconHover={ button.iconHover }
+        id={ button.id }
+        key={ index }
+        name={ button.name }
+        route={ button.route }
+        tooltipText={ button.tooltipText }
+      />
+    )
+  })
 
   return(
     <div className='header_nav_links'>
-      <HeaderIconButton
-        class_type='header_icon_button'
-        class_active_type='header_icon_button_active'
-        icon={ iconsIndex.leaderboardWhiteIcon }
-        icon_hover={ iconsIndex.leaderboardOrangeIcon }
-        id='header_leader_boards_button'
-        name='Leaderboards'
-        onClick={ leaderBoardsFunctions }
-        tooltip_text='Leaderboards'
-      />
-      <HeaderButton2
-        name='header_log_in_button'
-        onClick={ logInButtonFunctions }
-      >
-        Login
-      </HeaderButton2>
-      <HeaderButton2
-        name='header_sign_up_button'
-        onClick={ signUpButtonFunctions }
-      >
-        Sign Up
-      </HeaderButton2>
+      { distribHeaderButtons }
     </div>
   )
 }
