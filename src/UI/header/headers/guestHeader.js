@@ -7,30 +7,28 @@ import {
 } from '../../../store/actions/actionIndex'
 
 import HeaderButton2 from '../headerButton2/headerButton2'
+import HeaderIconButton from '../headerIconButton/headerIconButton'
+
+import iconsIndex from '../../../assets/icons/iconsIndex'
 
 const GuestHeader = (props) => {
 
-  const leaderBoardsFunctions = () => {
-    props.history.push( routes.leader_boards + '/overall' )
-  }
-
-  const logInButtonFunctions = () => {
-    props.onLoginModal(true)
-  }
-
-  const signUpButtonFunctions = () => {
-    props.onSignupModal(true)
-  }
+  const leaderBoardsFunctions = () => { props.history.push( routes.leader_boards + '/overall' ) }
+  const logInButtonFunctions = () => { props.onLoginModal(true) }
+  const signUpButtonFunctions = () => { props.onSignupModal(true) }
 
   return(
     <div className='header_nav_links'>
-
-      <HeaderButton2
-        name='header_leader_boards_button'
+      <HeaderIconButton
+        class_type='header_icon_button'
+        class_active_type='header_icon_button_active'
+        icon={ iconsIndex.leaderboardWhiteIcon }
+        icon_hover={ iconsIndex.leaderboardOrangeIcon }
+        id='header_leader_boards_button'
+        name='Leaderboards'
         onClick={ leaderBoardsFunctions }
-      >
-        Leader Boards
-      </HeaderButton2>
+        tooltip_text='Leaderboards'
+      />
       <HeaderButton2
         name='header_log_in_button'
         onClick={ logInButtonFunctions }

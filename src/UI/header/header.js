@@ -12,10 +12,8 @@ import HeaderButton from './headerButton/headerButton'
 import './header.css'
 
 const Header = (props) => {
-  let home_link = <></>
-  let header = <></>
-
-  // if(props.auth.loading)
+  let home_link
+  let header
 
   if(localStorage.access === 'guest') header = <GuestHeader history={ props.history } />
 
@@ -32,7 +30,6 @@ const Header = (props) => {
       <NormalHeader
         history={ props.history }
         user_name={ props.user_name }
-        // showProfileMenu={ props.showProfileMenu }
       />
   }
 

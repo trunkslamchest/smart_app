@@ -137,7 +137,7 @@ select:not(:-internal-list-box) {
   min-height: 85.75vh;
 }
 
-.default_wrapper h3 {
+/* .default_wrapper h3 {
   text-align: center;
   font: 300 20pt "Lato";
   padding-top: 15px;
@@ -148,9 +148,9 @@ select:not(:-internal-list-box) {
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
-}
+} */
 
-.default_header {
+/* .default_header {
   text-align: center;
 }
 
@@ -176,9 +176,9 @@ select:not(:-internal-list-box) {
   background-image: linear-gradient(rgb(255, 255, 255, 1),  rgb(219, 219, 219, 1) );
   padding: 10px;
   margin: 0px 0px 0px 0px;
-}
+} */
 
-.default_link {
+/* .default_link {
   font-family: Lato;
   color: #000;
   text-decoration: none;
@@ -345,4 +345,4 @@ select:not(:-internal-list-box) {
 
 .alt_header h5 {
   font: 300 10pt 'Lato', sans-serif;
-}
+} */

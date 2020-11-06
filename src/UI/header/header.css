@@ -1,5 +1,5 @@
 .header {
-  background: rgba(100, 100, 100, 1);
+  background: rgba(50, 50, 50, 1);
   position: relative;
   top: 0px;
   display: flex;
@@ -9,33 +9,31 @@
   align-items: center;
   align-content: center;
   color: white;
-  min-height: 57px;
+  height: 50px;
   z-index: 10;
+  padding: 0px 25px;
 }
 
 .header_left {
-  max-width: 50%;
+
 }
 
 .header_right {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  padding-right: 10px;
-  max-height: 57px;
+
+}
+
+.header_right_spacer {
+  width: 75px;
+  height: 75px;
 }
 
 .header_nav_links {
   display: flex;
   flex-direction: row;
-  max-height: 57px;
+
 }
 
 .header_greeting {
   font: 300 10pt 'Lato', sans-serif;
   padding: 0px 5px 0px 0px;
-  min-width: 110px;
-  max-width: 120px;
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const MyProfileMenuButton2 = (props) => {
+const HeaderMenuButton2 = (props) => {
   return(
     <button
       menu={ props.menu }
       name={ props.name }
-      className='myProfileMenuButton'
+      className='header_menu_button2'
       onClick={ props.onClick }
     >
       { props.children }
@@ -13,4 +13,4 @@ const MyProfileMenuButton2 = (props) => {
   )
 }
 
-export default MyProfileMenuButton2
+export default HeaderMenuButton2

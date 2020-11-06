@@ -1,95 +1,94 @@
 import React from 'react'
-
-import { connect } from 'react-redux'
-
 import { routes } from '../../../utility/paths'
+import { connect } from 'react-redux'
+import {
+  logout,
+  resetGameMode,
+  resetGameState,
+  resetGameQset,
+  resetQuestion,
+  resetAnswer,
+  resetResults,
+  resetVote,
+  resetComment
+} from '../../../store/actions/actionIndex'
 
-import MyProfileMenu from '../../menus/myProfileMenu/myProfileMenu'
-import PlayMenu from '../../menus/playMenu/playMenu'
-
-import HeaderButton2 from '../headerButton2/headerButton2'
+import HeaderIconButton from '../headerIconButton/headerIconButton'
+import iconsIndex from '../../../assets/icons/iconsIndex'
 
 import '../header.css'
 
 class NormalHeader extends React.Component {
 
-  state = {
-    showLeaderBoardsMenu: false,
-    showPlayMenu: false,
-    showProfileMenu: false,
+  onClearGame = (event) => {
+    if(!!this.props.play.status){
+      if(!!this.props.play.gameMode) this.props.onResetGameMode()
+      if(!!this.props.play.gameState) this.props.onResetGameState()
+      if(!!this.props.play.gameQset) this.props.onResetGameQset()
+      if(!!this.props.play.question) this.props.onResetQuestion()
+      if(!!this.props.play.answer) this.props.onResetAnswer()
+      if(!!this.props.play.results) this.props.onResetResults()
+      if(!!this.props.play.voted) this.props.onResetVote()
+      if(!!this.props.play.commented) this.props.onResetComment()
+    }
+    let gameMode = event.target.name
+    localStorage.gameMode = gameMode
   }
 
-  // switchLeaderBoardsMenu = () => {
-  //   let switchMenu = !this.state.showLeaderBoardsMenu
-  //   this.setState({
-  //     showLeaderBoardsMenu: switchMenu,
-  //     showPlayMenu: false,
-  //     showProfileMenu: false
-  //   })
-  // }
-
-  onClickLeaderBoardsFunctions = () => {
-    this.props.history.push( routes.leader_boards + '/overall' )
-  }
-
-
-  switchPlayMenu = () => {
-    let switchMenu = !this.state.showPlayMenu
-    this.setState({
-      showLeaderBoardsMenu: false,
-      showPlayMenu: switchMenu,
-      showProfileMenu: false
-    })
-  }
-
-  switchProfileMenu = () => {
-    let switchMenu = !this.state.showProfileMenu
-    this.setState({
-      showLeaderBoardsMenu: false,
-      showPlayMenu: false,
-      showProfileMenu: switchMenu
-    })
+  onLogOut = (event, args) => {
+    event.persist()
+    this.props.onLogoutModal(args)
   }
 
   render(){
+
+    const playMenuButtons = [
+      { name:'quick_play', menu: 'playMenu', route: routes.quick_play, text: "Quick Play", type: 'link' },
+      { name:'by_diff', menu: 'playMenu', route: routes.by_diff, text: "By Difficulty", type: 'link' },
+      { name:'by_cat', menu: 'playMenu', route: routes.by_cat, text: "By Category", type: 'link' }
+    ]
+
+    const profileMenuButtons = [
+      { name:'my_profile', menu: 'myProfileMenu', route: routes.dashboard, text: 'My Profile', type: 'link' },
+      { name:'view_profile', menu: 'myProfileMenu', route: routes.dashboard_profile, text: 'View Profile', type: 'link' },
+      { name:'edit_profile', menu: 'myProfileMenu', route: routes.dashboard_profile_edit, text: 'Edit Profile', type: 'link' },
+      { name:'log_out', menu: 'myProfileMenu', click: this.onLogOut, args: true, text: 'Log Out', type: 'modal' }
+    ]
+
+    const headerButtons = [
+      { buttonType: 'link', icon: iconsIndex.leaderboardWhiteIcon, iconHover: iconsIndex.leaderboardBlackIcon, iconClass: 'header_icon', id: 'header_leader_board_button', name: 'LeaderboardsButton', tooltipText: 'Leaderboards', route: routes.leader_boards + '/overall' },
+      { buttonType: 'menu', icon: iconsIndex.playWhiteIcon, iconHover: iconsIndex.playBlackIcon, iconClass: 'header_icon', id: 'header_play_button', name: 'PlayButton', tooltipText: 'Play', menuButtons: playMenuButtons },
+      { buttonType: 'menu', icon: this.props.user.info.avatar, iconHover: this.props.user.info.avatar, iconClass: 'header_profile_icon', id: 'header_profile_button', name: 'ProfileButton', tooltipText: 'My Profile', menuButtons: profileMenuButtons },
+    ]
+
+    const distribHeaderButtons = headerButtons.map((button, index) => {
+      return(
+        <HeaderIconButton
+          key={ index }
+          buttonType={ button.buttonType }
+          classType='header_icon_button'
+          icon={ button.icon }
+          iconHover={ button.iconHover }
+          iconClass={ button.iconClass }
+          history={ this.props.history }
+          id={ button.id }
+          name={ button.name }
+          menuButtons={ button.menuButtons }
+          onClearGame={ this.onClearGame }
+          route={ button.route }
+          tooltipText={ button.tooltipText }
+        />
+      )
+    })
+
     return(
       <>
-        <div className='header_greeting'>
-          {this.props.auth.valid && `Hello, ${this.props.user.info.user_name}!`}
-        </div>
-        <div className='header_nav_links'>
+        {/* <div className='header_greeting'>
+          { this.props.auth.valid && `Hello, ${this.props.user.info.user_name}!` }
+        </div> */}
 
-          <div className='header_nav_links_menu_container'>
-            <HeaderButton2
-              menu='leaderBoardsMenu'
-              name='header_leader_boards_button'
-              onClick={ this.onClickLeaderBoardsFunctions }
-            >
-              Leader Boards
-            </HeaderButton2>
-          </div>
-          <div className='header_nav_links_menu_container'>
-            <HeaderButton2
-              menu='playMenu'
-              name='header_play_button'
-              onClick={ this.switchPlayMenu }
-            >
-              Play
-            </HeaderButton2>
-            {this.state.showPlayMenu ? <PlayMenu switchPlayMenu={ this.switchPlayMenu } showPlayMenu={ this.state.showPlayMenu } /> : null}
-          </div>
-          <div
-            className='header_nav_links_menu_container'
-          >
-            <HeaderButton2
-              menu='myProfileMenu'
-              name='header_my_profile_button'
-              onClick={ this.switchProfileMenu }
-            >
-              My Profile
-            </HeaderButton2>
-            {this.state.showProfileMenu ? <MyProfileMenu switchProfileMenu={ this.switchProfileMenu } showProfileMenu={ this.state.showProfileMenu } /> : null}
-          </div>
+        <div className='header_nav_links'>
+          { distribHeaderButtons }
         </div>
       </>
     )
@@ -99,8 +98,25 @@ class NormalHeader extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    modal: state.modal,
+    play: state.play,
     user: state.user
   }
 }
 
-export default connect(mapStateToProps)(NormalHeader)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogoutModal: (bool) => dispatch(logout(bool)),
+    onResetGameMode: () => dispatch(resetGameMode()),
+    onResetGameState: () => dispatch(resetGameState()),
+    onResetGameQset: (set) => dispatch(resetGameQset(set)),
+    onResetQuestion: () => dispatch(resetQuestion()),
+    onResetAnswer: () => dispatch(resetAnswer()),
+    onResetResults: () => dispatch(resetResults()),
+    onResetVote: (obj) => dispatch(resetVote(obj)),
+    onResetComment: (obj) => dispatch(resetComment(obj))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NormalHeader)
