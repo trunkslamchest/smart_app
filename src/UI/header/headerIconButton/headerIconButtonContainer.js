@@ -65,7 +65,7 @@ class HeaderIconButtonContainer extends React.Component {
             onSwitchMenu={ this.onSwitchMenu }
           />
         }
-        { this.state.hover && this.state.showTooltip && !this.state.showMenu &&
+        { this.props.tooltipText && this.state.hover && this.state.showTooltip && !this.state.showMenu &&
           <IconButtonTooltip
             hoverClear={ this.offHover }
             showTooltip={ this.state.showTooltip }

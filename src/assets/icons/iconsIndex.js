@@ -1,3 +1,9 @@
+import homeWhiteIcon from './white_header_icon.png'
+import homeBlackIcon from './black_header_icon.png'
+// import homeGreyIcon from './grey_header_icon.png'
+// import homeOrangeIcon from './orange_header_icon.png'
+// import homeColorIcon from './full_color_header_icon.png'
+
 import leaderboardWhiteIcon from './leaderboard_white_icon.png'
 import leaderboardBlackIcon from './leaderboard_black_icon.png'
 import leaderboardOrangeIcon from './leaderboard_orange_icon.png'
@@ -15,6 +21,11 @@ import signUpBlackIcon from './sign_up_black_icon.png'
 import signUpOrangeIcon from './sign_up_orange_icon.png'
 
 const iconsIndex = {
+  'homeWhiteIcon': homeWhiteIcon,
+  'homeBlackIcon': homeBlackIcon,
+  // 'homeGreyIcon': homeGreyIcon,
+  // 'homeOrangeIcon': homeOrangeIcon,
+  // 'homeColorIcon': homeColorIcon,
   'leaderboardWhiteIcon': leaderboardWhiteIcon,
   'leaderboardBlackIcon': leaderboardBlackIcon,
   'leaderboardOrangeIcon': leaderboardOrangeIcon,

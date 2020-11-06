@@ -1,15 +1,14 @@
 import React from 'react'
-// import { useEffect, useCallback } from 'react'
 
 import HomeLoggedInPlayButtonsContainer from './homeLoggedInPlayButtonsContainer/homeLoggedInPlayButtonsContainer'
 
-import index_logo from '../../assets/index_logo_blue3.png'
+import './homeLoggedIn.css'
 
 const HomeLoggedInContainer = (props) => {
   return(
     <>
       <div className="logo_container">
-        <img src={index_logo} alt={"logo"}/>
+        <img src={ props.indexLogo } alt={ "logo" }/>
       </div>
       <HomeLoggedInPlayButtonsContainer />
     </>
