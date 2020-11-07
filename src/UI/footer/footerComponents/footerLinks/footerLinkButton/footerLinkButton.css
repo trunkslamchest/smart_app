@@ -12,7 +12,6 @@
 .footer_link_button:hover {
   cursor: pointer;
   font: 600 9pt 'PoppinsLight', sans-serif;
-
   color: rgb(40, 44, 52, 1);
   background-color: rgba(244, 166, 66, 1);
   outline: -webkit-focus-ring-color auto 0px;
