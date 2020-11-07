@@ -3,9 +3,10 @@
   flex-direction: row;
   align-content: stretch;
   align-items: center;
-  justify-content: space-around;
-  height: 50px;
-  margin: 5px 0px 5px 10px;
+  justify-content: space-between;
+  height: 60px;
+  flex-grow: 2;
+  width: 100%;
 }
 
 .footer_credit_logos a {
@@ -17,7 +18,15 @@
 }
 
 .footer_credit_logo_rectangle {
-  width: 80px;
+  width: 90px;
   height: auto;
-  margin: 0px 30px 0px 0px;
+  /* margin: 0px 20px 0px 0px; */
+  padding: 10px;
+}
+
+.footer_credit_logo_rectangle:hover {
+  cursor: pointer;
+  background-color: rgba(244, 166, 66, 1);
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: background-color .2s ease-in-out 0s;
 }

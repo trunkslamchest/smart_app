@@ -12,6 +12,7 @@
 }
 
 .footer_left {
+  flex-grow: 2;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

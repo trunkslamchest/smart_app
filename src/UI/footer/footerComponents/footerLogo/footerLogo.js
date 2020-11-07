@@ -19,7 +19,7 @@ class FooterLogo extends React.Component {
           onMouseLeave={ this.offHover }
           alt='footer_logo'
           name='footerLogo'
-          src={ this.state.hover ? this.props.logo : this.props.logoHover }
+          src={ !this.state.hover ? this.props.logo : this.props.logoHover }
         />
       </div>
     )

@@ -23,8 +23,8 @@ const Footer = (props) => {
         <FooterLogo
           history={ props.history }
           route={ routes.home }
-          logo={ footerLogosIndex.blackFooterLogo }
-          logoHover={ footerLogosIndex.whiteFooterLogo }
+          logo={ footerLogosIndex.whiteFooterLogo }
+          logoHover={ footerLogosIndex.blackFooterLogo }
         />
       </div>
     </div>
