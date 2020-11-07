@@ -4,7 +4,7 @@ import greyIndexLogo from './indexLogos/grey_index_logo.png'
 import orangeIndexLogo from './indexLogos/orange_index_logo.png'
 import fullColorIndexLogo from './indexLogos/fullColor_index_logo.png'
 
-const logoIndex = {
+const indexLogosIndex = {
   'blackIndexLogo': blackIndexLogo,
   'whiteIndexLogo': whiteIndexLogo,
   'greyIndexLogo': greyIndexLogo,
@@ -12,4 +12,4 @@ const logoIndex = {
   'fullColorIndexLogo': fullColorIndexLogo
 }
 
-export default logoIndex
+export default indexLogosIndex

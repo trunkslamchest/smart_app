@@ -1,15 +1,15 @@
 import React from 'react'
 
-const FooterLogo = (props) => {
+const FooterCreditLogo = (props) => {
   return(
     <a
-      href={props.link}
+      href={ props.link }
       rel='noopener noreferrer'
       target='_blank'
     >
-      {props.children}
+      { props.children }
     </a>
   )
 }
 
-export default FooterLogo
+export default FooterCreditLogo

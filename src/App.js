@@ -75,7 +75,7 @@ const App = (props) => {
           <Route><E404 /></Route>
         </Switch>
       </div>
-      <Footer/>
+      <Footer history={ props.history } />
     </StoreController>
   )
 }

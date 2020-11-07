@@ -1,0 +1,22 @@
+.footer_logo_container {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 5px 0px 5px 0px;
+}
+
+.footer_logo_container img {
+  padding: 10px;
+  width: 150px;
+  height: auto;
+}
+
+.footer_logo_container img:hover {
+  cursor: pointer;
+  background-color: rgba(244, 166, 66, 1);
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: background-color .2s ease-in-out 0s;
+}
