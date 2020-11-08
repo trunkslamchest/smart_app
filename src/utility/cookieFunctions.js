@@ -21,11 +21,29 @@
       return cookieObj
     },
 
-    getCookie: function(cookie) { for(let cookieKey in this.parsedCookies) { if(cookieKey === cookie) return `${cookieKey}=${this.parsedCookies[cookieKey]}` } },
+    getCookie: function(cookie) {
+      let cookieFound = false
+      for(let cookieKey in this.parsedCookies) {
+        if(cookieKey === cookie) {
+          cookieFound = `${cookieKey}=${this.parsedCookies[cookieKey]}`
+          break
+        }
+      }
 
-    getCookieName: function(cookie) { return this.getCookie(cookie).split('=')[0] },
+      return cookieFound
+    },
 
-    getCookieValue: function(cookie) { return this.getCookie(cookie).split('=')[1] },
+    getCookieName: function(cookie) {
+      let cookieFound = false
+      if(!this.getCookie(cookie)) return cookieFound
+      else return this.getCookie(cookie).split('=')[0]
+    },
+
+    getCookieValue: function(cookie) {
+      let cookieFound = false
+      if(!this.getCookie(cookie)) return cookieFound
+      else return this.getCookie(cookie).split('=')[1]
+    },
 
     all: function() { return this.decodeCookies },
 

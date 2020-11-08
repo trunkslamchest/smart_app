@@ -1,3 +1,12 @@
+.leader_boards_buttons_row_button_container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
 .leader_boards_buttons_row_button {
   -webkit-appearance: none;
   text-rendering: auto;
@@ -11,20 +20,23 @@
   text-decoration: none;
   display: inline-block;
   text-align: center;
-  align-items: flex-start;
+  align-items: center;
   cursor: pointer;
   box-sizing: border-box;
   margin: 0px 0px 0px 0px;
   font: 300 10pt 'Poppins', sans-serif;
   padding: 5px 20px 10px 20px;
   border: 0px;
+  height: auto;
   box-sizing: border-box;
   outline: -webkit-focus-ring-color auto 0px;
+  z-index: 11;
 }
 
 .leader_boards_buttons_row_button img {
   width: 20px;
   height: auto;
+  z-index: 12;
 }
 
 .leader_boards_buttons_row_button:hover {
@@ -35,8 +47,26 @@
   transition: background-color .2s ease-in-out 0s;
 }
 
+@keyframes leader_boards_nav_button_tooltip_fade_in {
+  0% {
+    opacity: 0;
+  };
+  100% {
+    opacity: 1;
+  };
+}
+
 .leader_boards_buttons_row_button:active {
   animation: scale_out .1s ease-in-out 1;
+}
+
+.leader_boards_buttons_row_button_container_disabled {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .leader_boards_buttons_row_button_disabled {

@@ -6,71 +6,54 @@ import leaderboardGlyphIndex from '../../../assets/glyphs/leaderboardGlyphIndex'
 
 import './leaderBoardsButtonsRow.css'
 
-class LeaderBoardsButtonsRow extends React.Component {
+const LeaderBoardsButtonsRow = (props) => {
 
-  state={ prevHover: false, nextHover: false }
+  let leaderBoardNavButtons = [
+    {
+      alt: 'PreviousPageButton',
+      id: 'leaderboard_prev_button',
+      image: leaderboardGlyphIndex.leaderboardPrev,
+      imageHover: leaderboardGlyphIndex.leaderboardPrevHover,
+      name: 'leaderboardPrevButton',
+      pageLimit: props.currentPage !== 0,
+      tooltipText: 'Previous Page',
+      value: -1
+    },
+    {
+      alt: 'NextPageButton',
+      id: 'leaderboard_next_button',
+      image: leaderboardGlyphIndex.leaderboardNext,
+      imageHover: leaderboardGlyphIndex.leaderboardNextHover,
+      name: 'leaderboardNextButton',
+      pageLimit: props.currentPage !== props.maxPages - 1,
+      tooltipText: 'Next Page',
+      value: 1
+    }
+  ]
 
-  componentDidUpdate() {
-    if(this.props.currentPage === 0 && this.state.prevHover) this.setState({ prevHover: false })
-    if(this.props.currentPage === this.props.maxPages - 1 && this.state.nextHover) this.setState({ nextHover: false })
-  }
-
-  onHover = (event) => { this.setState({ [event.target.attributes.hover_trigger.value]: true }) }
-  offHover = (event) => { this.setState({ [event.target.attributes.hover_trigger.value]: false }) }
-
-  onClickPageFunctions = (event) => { if(this.props.currentPage >= 0 && this.props.currentPage <= this.props.maxPages) this.props.onChangePage(event.target.value || event.target.attributes.value.value) }
-
-  render() {
-
-    let leaderBoardNavButtons = [
-      {
-        alt: 'PreviousPageButton',
-        hover_trigger: 'prevHover',
-        id: 'leaderboard_prev_button',
-        image: this.state.prevHover ? leaderboardGlyphIndex.leaderboardPrevHover : leaderboardGlyphIndex.leaderboardPrev,
-        name: 'leaderboardPrevButton',
-        onHoverFunction: this.onHover,
-        offHoverFunction: this.offHover,
-        pageLimit: this.props.currentPage !== 0,
-        value: -1
-      },
-      {
-        alt: 'NextPageButton',
-        hover_trigger: 'nextHover',
-        id: 'leaderboard_next_button',
-        image: this.state.nextHover ? leaderboardGlyphIndex.leaderboardNextHover : leaderboardGlyphIndex.leaderboardNext,
-        name: 'leaderboardNextButton',
-        onHoverFunction: this.onHover,
-        offHoverFunction: this.offHover,
-        pageLimit: this.props.currentPage !== this.props.maxPages - 1,
-        value: 1
-      }
-    ]
-
-    const distribLeaderBoardNavButtons = leaderBoardNavButtons.map((button, index) => {
-      return(
-        <LeaderBoardsNavButton
-          alt={ button.alt }
-          buttonClass={ button.pageLimit ? 'leader_boards_buttons_row_button' : 'leader_boards_buttons_row_button_disabled' }
-          hover_trigger={ button.hover_trigger }
-          id={ button.id }
-          image={ button.image }
-          key={ index }
-          name={ button.name }
-          onClickFunction={ button.pageLimit ? this.onClickPageFunctions : null }
-          onHoverFunction={ button.pageLimit ? button.onHoverFunction : null }
-          offHoverFunction={ button.pageLimit ? button.offHoverFunction : null }
-          value={ button.value }
-        />
-      )
-    })
-
+  const distribLeaderBoardNavButtons = leaderBoardNavButtons.map((button, index) => {
     return(
-      <div className="leader_boards_buttons_row_container">
-        { distribLeaderBoardNavButtons }
-      </div>
+      <LeaderBoardsNavButton
+        alt={ button.alt }
+        buttonClass={ button.pageLimit ? 'leader_boards_buttons_row_button' : 'leader_boards_buttons_row_button_disabled' }
+        id={ button.id }
+        image={ button.image }
+        imageHover={ button.imageHover }
+        key={ index + button.id }
+        name={ button.name }
+        onClickFunction={ button.pageLimit ? props.onChangePage : null }
+        pageLimit={ button.pageLimit }
+        tooltipText={ button.tooltipText }
+        value={ button.value }
+      />
     )
-  }
+  })
+
+  return(
+    <div className="leader_boards_buttons_row_container">
+      { distribLeaderBoardNavButtons }
+    </div>
+  )
 }
 
 export default LeaderBoardsButtonsRow
