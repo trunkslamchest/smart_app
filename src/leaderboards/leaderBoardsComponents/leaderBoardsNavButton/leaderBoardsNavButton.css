@@ -1,0 +1,70 @@
+.leader_boards_buttons_row_button {
+  -webkit-appearance: none;
+  text-rendering: auto;
+  color: rgb(225, 225, 225, 1);
+  background: rgba(50, 50, 50, 1);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0px 0px 0px 0px;
+  font: 300 10pt 'Poppins', sans-serif;
+  padding: 5px 20px 10px 20px;
+  border: 0px;
+  box-sizing: border-box;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.leader_boards_buttons_row_button img {
+  width: 20px;
+  height: auto;
+}
+
+.leader_boards_buttons_row_button:hover {
+  color: rgba(50, 50, 50, 1);
+  cursor: pointer;
+  background-color: rgba(244, 166, 66, 1);
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: background-color .2s ease-in-out 0s;
+}
+
+.leader_boards_buttons_row_button:active {
+  animation: scale_out .1s ease-in-out 1;
+}
+
+.leader_boards_buttons_row_button_disabled {
+  -webkit-appearance: none;
+  text-rendering: auto;
+  color: rgb(225, 225, 225, 1);
+  background: rgba(50, 50, 50, 1);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  box-sizing: border-box;
+  margin: 0px 0px 0px 0px;
+  font: 300 10pt 'Poppins', sans-serif;
+  padding: 5px 20px 10px 20px;
+  border: 0px;
+  box-sizing: border-box;
+  opacity: 0;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.leader_boards_buttons_row_button_disabled img {
+  width: 20px;
+  height: auto;
+}
