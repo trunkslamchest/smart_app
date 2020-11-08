@@ -21,37 +21,27 @@ class LeaderBoardsButtonsRow extends React.Component {
 
   onClickPageFunctions = (event) => {
     let val = event.target.value || event.target.attributes.value.value
-    if(this.props.currentPage >= 0 && this.props.currentPage <= this.props.maxPages) this.props.onChangePage(val) 
+    if(this.props.currentPage >= 0 && this.props.currentPage <= this.props.maxPages) this.props.onChangePage(val)
   }
 
   render() {
 
-    console.log(this.state)
-
     let prevButton, nextButton
 
-    if(this.props.currentPage === 0) {
-      prevButton = leaderboardGlyphIndex.leaderboardPrevDisabled
-    } else {
-      if(this.state.prevHover) prevButton = leaderboardGlyphIndex.leaderboardPrevHover
-      else prevButton = leaderboardGlyphIndex.leaderboardPrev
-    }
+    if(this.state.prevHover) prevButton = leaderboardGlyphIndex.leaderboardPrevHover
+    else prevButton = leaderboardGlyphIndex.leaderboardPrev
 
-    if(this.props.currentPage === this.props.maxPages - 1) {
-      nextButton = leaderboardGlyphIndex.leaderboardNextDisabled
-    } else {
-      if(this.state.nextHover) nextButton = leaderboardGlyphIndex.leaderboardNextHover
-      else nextButton = leaderboardGlyphIndex.leaderboardNext
-    }
+    if(this.state.nextHover) nextButton = leaderboardGlyphIndex.leaderboardNextHover
+    else nextButton = leaderboardGlyphIndex.leaderboardNext
 
     return(
       <div className="leader_boards_buttons_row_container">
         <button
-          className="leader_boards_buttons_row_button"
-          disabled={ this.props.currentPage === 0 }
-          onClick={ this.onClickPageFunctions }
-          onMouseEnter={ this.onPrevHover }
-          onMouseLeave={ this.offPrevHover }
+          className={ this.props.currentPage !== 0 ? "leader_boards_buttons_row_button" : "leader_boards_buttons_row_button_disabled" }
+          // disabled={ this.props.currentPage === 0 }
+          onClick={ this.props.currentPage !== 0 ? this.onClickPageFunctions : null }
+          onMouseEnter={ this.props.currentPage !== 0 ? this.onPrevHover : null }
+          onMouseLeave={ this.props.currentPage !== 0 ? this.offPrevHover : null }
           value={ -1 }
         >
           <img
@@ -64,11 +54,11 @@ class LeaderBoardsButtonsRow extends React.Component {
           />
         </button>
         <button
-          className="leader_boards_buttons_row_button"
-          disabled={ this.props.currentPage === this.props.maxPages - 1 }
-          onClick={ this.onClickPageFunctions }
-          onMouseEnter={ this.onNextHover }
-          onMouseLeave={ this.offNextHover }
+          className={ this.props.currentPage !== this.props.maxPages - 1 ? "leader_boards_buttons_row_button" : "leader_boards_buttons_row_button_disabled" }
+          // disabled={ this.props.currentPage === this.props.maxPages - 1 }
+          onClick={ this.props.currentPage !== this.props.maxPages - 1 ? this.onClickPageFunctions : null }
+          onMouseEnter={ this.props.currentPage !== this.props.maxPages - 1 ? this.onNextHover : null }
+          onMouseLeave={ this.props.currentPage !== this.props.maxPages - 1 ? this.offNextHover : null }
           value={ 1 }
         >
           <img
