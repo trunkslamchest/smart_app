@@ -1,28 +1,76 @@
 import React from 'react'
 
+import ModalButtonTooltip from '../../../../UI/tooltips/modalButtonTooltip/modalButtonTooltip'
+
 import './logInFormButton.css'
 
-const LogInFormButton = (props) => {
+class LogInFormButton extends React.Component {
 
-  const onClickFunctions = (event) => {
+  state = { hover: false, tooltip: false }
+
+  componentDidUpdate() {
+    // if(!this.props.pageLimit && this.state.showTooltip) this.setState({ showTooltip: false })
+    // if(!this.props.pageLimit && this.state.hover) this.setState({ hover: false })
+  }
+
+  componentWillUnmount(){
+    this.setState({ hover: false, tooltip: false })
+    // clearTimeout(this.toolTipTimeout)
+  }
+
+  onHover = () => {
+    this.setState({ hover: true })
+    this.toolTipTimeout = setTimeout(() => { this.setState({ tooltip: true })}, 250)
+  }
+
+  offHover = () => {
+    this.setState({ hover: false, tooltip: false })
+    // clearTimeout(this.toolTipTimeout)
+  }
+
+  onClickFunction = (event) => {
     event.preventDefault()
 
-    if(props.enableButton){
+    if(this.props.enableButton){
       event.persist()
-      props.onClickFunctions(event)
+      this.props.onClickFunction(event)
     }
   }
 
-  return(
-    <input
-      type={ props.type }
-      id={ props.id }
-      name={ props.name }
-      className={ props.enableButton ? 'log_in_form_button' : "log_in_form_button_disabled" }
-      onClick={ onClickFunctions }
-      value={ props.value }
-    />
-  )
+  render() {
+    return(
+      <div className='log_in_form_button_container'
+        onMouseEnter={ this.onHover }
+        onMouseLeave={ this.offHover }
+      >
+        <button
+          type={ this.props.type }
+          id={ this.props.id }
+          name={ this.props.name }
+          className={ this.props.enableButton ? 'log_in_form_button' : "log_in_form_button_disabled" }
+          onClick={ this.onClickFunction }
+          // value={ this.props.value }
+          // value={ buttonImage }
+        >
+        <img
+          alt={ this.props.id }
+          id={ `${this.props.id}_image` }
+          name={ `${this.props.name}Image` }
+          src={ this.state.hover ? this.props.imageHover : this.props.image }
+        />
+        </button>
+        {
+          this.props.tooltipText &&
+          this.state.hover &&
+          this.state.tooltip &&
+            <ModalButtonTooltip
+              offHover={ this.offHover }
+              tooltipText={ this.props.tooltipText }
+            />
+        }
+      </div>
+    )
+  }
 }
 
 export default LogInFormButton

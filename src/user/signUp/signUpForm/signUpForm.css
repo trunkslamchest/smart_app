@@ -1,11 +1,6 @@
 .sign_up_form {
-  margin: 5px auto;
   text-align: center;
   width: 100%;
-}
-
-.sign_up_div {
-  margin: 0px;
 }
 
 .sign_up_error_container {
@@ -14,75 +9,4 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0px auto 10px auto !important;
-}
-
-.tos_agree_div {
-  align-items: center;
-  line-height: 1.25;
-  margin: 0px auto;
-  outline: -webkit-focus-ring-color auto 0px;
-}
-
-.tos_agree_statement {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin: 0px auto;
-  padding: 10px;
-  width: 75%;
-}
-
-.tos_agree_div p {
-  font: 400 12px "Lato", sans-serif;
-}
-
-.tos_agree_div input[type="checkbox" i] {
-  cursor: pointer;
-  font: 300 10pt 'Poppins', sans-serif;
-  height: 35px;
-  margin: 0px 5px 0px 0px;
-  padding: 10px;
-  width: 35px;
-}
-
-.tos_agree_div input[type="checkbox" i]:disabled {
-  cursor: not-allowed;
-  font: 300 10pt 'Poppins', sans-serif;
-  height: 35px;
-  margin: 0px 5px 0px 0px;
-  padding: 10px;
-  width: 35px;
-}
-
-.tos_agree_div a {
-  color: rgba(4, 108, 196, 1);
-  margin: 0px;
-  text-decoration: none;
-}
-
-.tos_agree_div a:active {
-  color: rgba(244, 166, 66, 1);
-  margin: 0px;
-  text-decoration: none;
-  transition-property: color;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
-}
-
-.tos_agree_div a:hover {
-  color: rgba(244, 166, 66, 1);
-  margin: 0px;
-  text-decoration: none;
-  transition-property: color;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
-}
-
-.tos_agree_div a:visited {
-  margin: 0px;
-  text-decoration: none;
 }

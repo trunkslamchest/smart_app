@@ -1,38 +1,39 @@
-.form_check_box_button {
+.tos_form_check_box_button {
   background: rgba(255, 255, 255, 0);
   color: rgba(255, 255, 255, 1);
-  border: 0px;
+  border: 0px solid rgba(0, 0, 0, 1);
   font: 100 0px 'Lato';
-  padding: 0px;
+  padding: 1px;
   outline: -webkit-focus-ring-color auto 0px;
-  transform: rotate(360deg);
   transition: transform .25s ease-in-out;
 }
 
-.form_check_box_button img {
+.tos_form_check_box_button img {
+  padding: 2.5px;
+  width: 20px;
+  height: 20px;
+  transform: rotate(360deg);
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-.form_check_box_button img:hover {
+.tos_form_check_box_button img:hover {
   cursor: pointer;
-  outline: -webkit-focus-ring-color auto 0px;
-  padding: 0px 2.5px 0px 0px;
-  transition: padding .1s ease-in-out;
-}
-
-.form_check_box_button img:active {
-  cursor: pointer;
-  padding: 0px 2.5px 0px 0px;
   outline: -webkit-focus-ring-color auto 0px;
   transition: padding .1s ease-in-out;
 }
 
-.form_check_box_button:hover {
+.tos_form_check_box_button img:active {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: padding .1s ease-in-out;
+}
+
+.tos_form_check_box_button:hover {
   cursor: pointer;
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-.form_check_box_button:active {
+.tos_form_check_box_button:active {
   cursor: pointer;
   outline: -webkit-focus-ring-color auto 0px;
   transform: rotate(-180deg);

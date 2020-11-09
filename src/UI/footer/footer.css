@@ -9,6 +9,7 @@
   align-items: flex-start;
   align-content: flex-start;
   z-index: 0;
+  height: 115px;
 }
 
 .footer_left {

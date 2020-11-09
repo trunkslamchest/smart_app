@@ -7,6 +7,8 @@ import checkFunctions from '../../utility/checkFunctions'
 import validateSignUp from '../../utility/validation/validateSignUp'
 
 import SignUpForm from './signUpForm/signUpForm'
+
+import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
 import Modal from '../../UI/modal/modal'
 
 import './signUp.css'
@@ -28,11 +30,15 @@ class SignUp extends React.Component {
     if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true, enableInput: true })
   }
 
-  onChange = (event) => {this.setState({[event.target.name]: event.target.value})}
+  onChange = (event) => {
+    event.preventDefault()
+    this.setState({[event.target.name]: event.target.value})
+  }
 
   onChecked = (event) => {
-    let flipChecked = !event.target.checked
-    this.setState({TOSagreement: !flipChecked})
+    event.preventDefault()
+    let flipChecked = !this.state.TOSagreement
+    this.setState({ TOSagreement: flipChecked })
   }
 
   onSubmit = (event) => {
@@ -56,7 +62,7 @@ class SignUp extends React.Component {
   }
 
   onValidateSignUp = () => {
-    if(!this.state.form.pending && this.state.enableButton){
+    if(!this.state.form.pending && this.state.enableButton) {
       this.props.onAuthStart('signUp', {
         displayName: this.state.user_name,
         email: this.state.email,
@@ -86,11 +92,15 @@ class SignUp extends React.Component {
   }
 
   render(){
+
+    // console.log(this.state.TOSagreement)
+
     return (
       <Modal
         showModal={ this.props.modal.signup }
       >
         <div className='sign_up_wrapper'>
+          <ModalHeader header_text='Create New Account' />
           <SignUpForm
             email={ this.state.email }
             enableButton={ this.state.enableButton }

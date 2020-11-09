@@ -1,0 +1,41 @@
+.modal_header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: rgba(51, 51, 51, 1);
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  margin: 5px 0px;
+  height: 35px;
+}
+
+.modal_header_top {
+  align-self: stretch;
+  display: flex;
+}
+
+.modal_header_top h3 {
+  align-self: center;
+  display: flex;
+  font: 600 15pt "LatoThin";
+}
+
+.modal_header_bottom {
+  align-self: stretch;
+  display: flex;
+  text-align: center;
+  justify-content:center;
+}
+
+.modal_header_bottom span {
+  align-self: center;
+  display: flex;
+  text-align: center;
+  /* padding-right: 25px; */
+  min-width: 65px;
+  font: 300 20pt 'Lato';
+}

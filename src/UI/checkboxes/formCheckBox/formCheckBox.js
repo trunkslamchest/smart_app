@@ -1,8 +1,7 @@
 import React from 'react'
 
-import glyphIndex from '../../../assets/glyphs/glyphIndex'
-
-import './formCheckBox.css'
+import './formCheckBoxSettings.css'
+import './formCheckBoxTOS.css'
 
 class FormCheckBox extends React.Component {
 
@@ -15,7 +14,7 @@ class FormCheckBox extends React.Component {
     return(
         <button
           id={ this.props.id }
-          className='form_check_box_button'
+          className={ this.props.checkBoxClass }
           name={ this.props.name }
           onClick={ this.props.onChecked }
           onMouseEnter={ this.onHover }
@@ -25,14 +24,14 @@ class FormCheckBox extends React.Component {
             <img
               alt={ 'checked' }
               name={ this.props.name }
-              src={ this.state.hover ? glyphIndex.formOrangeCheckMark : glyphIndex.formWhiteCheckMark }
+              src={ this.state.hover ? this.props.checkedImageHover : this.props.checkedImage }
               title={ this.props.name }
             />
           :
             <img
               alt={ 'not checked' }
               name={ this.props.name }
-              src={ this.state.hover ? glyphIndex.formOrangeX : glyphIndex.formWhiteX }
+              src={ this.state.hover ? this.props.uncheckedImageHover : this.props.uncheckedImage }
               title={ this.props.name }
             />
           }

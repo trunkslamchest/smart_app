@@ -38,51 +38,44 @@ const LogInForm = (props) => {
   if(!!passwordErrors.length) distribPasswordErrors = passwordErrors.map(error => <LogInFormErrorItem key={ passwordErrors.indexOf(error) } error={ error } /> )
   if(!!allOtherErrors.length) distribAllOtherErrors = allOtherErrors.map(error => <LogInFormErrorItem key={ allOtherErrors.indexOf(error) } error={ error } /> )
 
+  const formInputs = [
+    { errors: emailErrors, distribErrors: distribEmailErrors, id: 'email_input', label: 'Email Address', name: 'email', placeholder: 'Email', type: 'text', value: props.email },
+    { errors: passwordErrors, distribErrors: distribPasswordErrors, id: 'password_input', label: 'Password', name: 'password', placeholder: 'Password', type: 'password', value: props.password }
+  ]
+
+  const distribFormInputs = formInputs.map((input, index) => {
+    return(
+      <LogInFormInput
+        disabled={ !props.enableInput }
+        distribErrors={ input.distribErrors }
+        errors={ input.errors }
+        id={ input.id }
+        key={ index }
+        label={ input.label }
+        name={ input.name }
+        onChange={ props.onChange }
+        placeholder={ input.placeholder }
+        type={ input.type }
+        value={ input.value }
+      />
+    )
+  })
+
   return(
-    <>
-      <div className='log_in_header'>
-        <h3>Log In</h3>
-      </div>
-      <form
-        id='log_in_form'
-        name='log_in_form'
-        className='log_in_form'
-      >
-        <div className='log_in_div'>
-          <LogInFormInput
-            disabled={ !props.enableInput }
-            id='email'
-            label='Email'
-            name='email'
-            onChange={ props.onChange }
-            placeholder='Email...'
-            type='text'
-            value={ props.email }
-          />
-          { !!emailErrors.length ? <div className='log_in_error_container'>{ distribEmailErrors }</div> : <br /> }
-        </div>
-        <div className='log_in_div'>
-          <LogInFormInput
-            disabled={ !props.enableInput }
-            id='password'
-            label='Password'
-            name='password'
-            onChange={ props.onChange }
-            placeholder='Password...'
-            type='password'
-            value={ props.password }
-          />
-          { !!passwordErrors.length ? <div className='log_in_error_container'>{ distribPasswordErrors }</div> : <br /> }
-        </div>
-        { !!allOtherErrors.length && <div className='log_in_error_container'>{ distribAllOtherErrors }</div> }
-        { props.auth.loading && loading }
-        <LogInFormButtonContainer
-          enableButton={ props.enableButton }
-          onSubmit={ props.onSubmit }
-          onCancel={ props.onCancel }
-        />
-      </form>
-    </>
+    <form
+      id='log_in_form'
+      name='log_in_form'
+      className='log_in_form'
+    >
+      { distribFormInputs }
+      { !!allOtherErrors.length && <div className='log_in_error_container'>{ distribAllOtherErrors }</div> }
+      { props.auth.loading && loading }
+      <LogInFormButtonContainer
+        enableButton={ props.enableButton }
+        onSubmit={ props.onSubmit }
+        onCancel={ props.onCancel }
+      />
+    </form>
   )
 }
 

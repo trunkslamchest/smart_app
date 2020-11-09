@@ -5,6 +5,8 @@ import { login, authStart, clearAuthStatus, clearAuthErrors } from '../../store/
 import validateLogIn from '../../utility/validation/validateLogIn'
 
 import LogInForm from './logInForm/logInForm'
+
+import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
 import Modal from '../../UI/modal/modal'
 
 import './logIn.css'
@@ -60,6 +62,7 @@ class LogIn extends React.Component {
           showModal={ this.props.modal.login }
         >
         <div className='log_in_wrapper'>
+          <ModalHeader header_text='Log In' />
           <LogInForm
             email={ this.state.email }
             enableButton={ this.state.enableButton }

@@ -37,7 +37,8 @@ const LeaderBoardsContainer = (props) => {
     </Switch>
 
   return(
-    <div className='leader_boards_wrapper'>
+    // <div className='leader_boards_wrapper'>
+    <div className='default_wrapper'>
       <NavBarContainer buttons={ navButtons } />
       { routeBoard }
     </div>

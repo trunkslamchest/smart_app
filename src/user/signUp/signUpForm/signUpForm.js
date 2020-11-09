@@ -1,8 +1,8 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-
 import { Link } from 'react-router-dom'
+
+import MakeSignUpInputField from '../signUpFunctions/makeSignUpInputField'
 
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
@@ -47,69 +47,59 @@ const SignUpForm = (props) => {
 
   const onSubmit = (event) => { props.onSubmit(event) }
 
+  const TOStext =
+    <p>
+      I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™
+    </p>
+
+  let formInputs = MakeSignUpInputField({
+    checked: props.TOSagreement,
+    distribUserNameErrors: distribUserNameErrors,
+    distribEmailErrors: distribEmailErrors,
+    distribPasswordErrors: distribPasswordErrors,
+    distribTOSErrors: distribTOSErrors,
+    email: props.email,
+    emailErrors: emailErrors,
+    onChange: props.onChange,
+    onChecked: props.onChecked,
+    password: props.password,
+    passwordErrors: passwordErrors,
+    TOStext: TOStext,
+    tosErrors: tosErrors,
+    user_name: props.user_name,
+    userNameErrors: userNameErrors
+  })
+
+  const distribFormInputs = formInputs.map((input, index) => {
+    return(
+      <SignUpFormInput
+        checked={ input.checked }
+        containerClass={ input.containerClass }
+        disabled={ !props.enableInput }
+        distribErrors={ input.distribErrors }
+        errors={ input.errors }
+        id={ input.id }
+        key={ index }
+        label={ input.label }
+        name={ input.name }
+        onChange={ input.changed }
+        placeholder={ input.placeholder }
+        subContainerClass={ input.subContainerClass }
+        text={ input.text }
+        type={ input.type }
+        value={ input.value }
+      />
+    )
+  })
+
   return(
-    <>
-      <div className='sign_up_header'>
-        <h3>Create New Account</h3>
-      </div>
-      <form
-        id='sign_up_form'
-        name='sign_up_form'
-        className='sign_up_form'
-      >
-        <div className='sign_up_div'>
-          <SignUpFormInput
-            type='text'
-            id='user_name'
-            name='user_name'
-            placeholder='User Name'
-            disabled={ !props.enableInput }
-            onChange={ props.onChange }
-            value={ props.user_name }
-          />
-          { !!userNameErrors.length ? <div className='sign_up_error_container'>{ distribUserNameErrors }</div> : <br /> }
-        </div>
-        <div className='sign_up_div'>
-          <SignUpFormInput
-            type='text'
-            id='email'
-            name='email'
-            placeholder='Email Address'
-            disabled={ !props.enableInput }
-            onChange={props.onChange }
-            value={ props.email }
-          />
-          { !!emailErrors.length ? <div className='sign_up_error_container'>{ distribEmailErrors }</div> : <br /> }
-        </div>
-        <div className='sign_up_div'>
-          <SignUpFormInput
-            type='password'
-            id='password'
-            name='password'
-            placeholder='Password'
-            disabled={ !props.enableInput }
-            onChange={ props.onChange }
-            value={ props.password }
-          />
-          { !!passwordErrors.length ? <div className='sign_up_error_container'>{ distribPasswordErrors }</div> : <br /> }
-        </div>
-        <div className='tos_agree_div'>
-          <div className='tos_agree_statement'>
-            <SignUpFormInput
-              type='checkbox'
-              id='TOS_agreement'
-              name='TOS_agreement'
-              className='TOS_check'
-              disabled={ !props.enableInput }
-              checked={ props.TOSagreement }
-              onChange={ props.onChecked }
-            />
-            <p>I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™.</p>
-          </div>
-          { !!tosErrors.length ? <div className='sign_up_error_container'>{ distribTOSErrors }</div> : <br /> }
-        </div>
-        { !!allOtherErrors.length && <div className='sign_up_error_container'>{ distribAllOtherErrors }</div> }
-      </form>
+    <form
+      id='sign_up_form'
+      name='sign_up_form'
+      className='sign_up_form'
+    >
+      { distribFormInputs }
+      { !!allOtherErrors.length && <div className='sign_up_error_container'>{ distribAllOtherErrors }</div> }
       { props.auth.loading && loading }
       <SignUpFormButtonContainer
         enableButton={ props.enableButton }
@@ -117,7 +107,7 @@ const SignUpForm = (props) => {
         onReset={ props.onReset }
         onCancel={ props.onCancel }
       />
-    </>
+    </form>
   )
 }
 
