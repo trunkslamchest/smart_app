@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './signUpFormErrorItem.scss'
+import './signUpFormErrorItem.css'
 
 const SignUpFormErrorItem = (props) => {
   return(

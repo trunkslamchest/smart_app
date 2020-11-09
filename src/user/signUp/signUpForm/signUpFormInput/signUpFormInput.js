@@ -17,13 +17,13 @@ const SignUpFormInput = (props) => {
         <div className='tos_agree_check_box_container'>
           <FormCheckBox
             checkBoxClass='tos_form_check_box_button'
-            checkedImageHover={ formGlyphIndex.formOrangeCheckMark }
+            checkedImageHover={ formGlyphIndex.formWhiteCheckMark }
             checkedImage={ formGlyphIndex.formGreenCheckMark }
             id={ props.id }
             name={ props.name }
             onChecked={ props.onChange }
             status={ props.checked ? props.checked : false }
-            uncheckedImageHover={ formGlyphIndex.formOrangeX }
+            uncheckedImageHover={ formGlyphIndex.formWhiteX }
             uncheckedImage={ formGlyphIndex.formRedX }
           />
         </div>

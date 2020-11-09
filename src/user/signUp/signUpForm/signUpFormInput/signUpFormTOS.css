@@ -7,8 +7,7 @@
   justify-content: center;
   outline: -webkit-focus-ring-color auto 0px;
   margin: 0px auto;
-  /* padding: 10px; */
-  width: 75%;
+  width: 80%;
 }
 
 .tos_agree_statement {
@@ -20,7 +19,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   padding: 10px;
-  /* width: 75%; */
 }
 
 .tos_agree_check_box_container {
@@ -32,8 +30,10 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  /* border-radius: 50px; */
-  /* width: 75%; */
+}
+
+.tos_agree_check_box_container:hover {
+  background-color: rgba(244, 166, 66, 1);
 }
 
 .tos_agree_div p {

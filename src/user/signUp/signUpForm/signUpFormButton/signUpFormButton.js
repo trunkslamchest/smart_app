@@ -8,14 +8,9 @@ class SignUpFormButton extends React.Component {
 
   state = { hover: false, tooltip: false }
 
-  componentDidUpdate() {
-    // if(!this.props.pageLimit && this.state.showTooltip) this.setState({ showTooltip: false })
-    // if(!this.props.pageLimit && this.state.hover) this.setState({ hover: false })
-  }
-
   componentWillUnmount(){
     this.setState({ hover: false, tooltip: false })
-    // clearTimeout(this.toolTipTimeout)
+    clearTimeout(this.toolTipTimeout)
   }
 
   onHover = () => {
@@ -25,7 +20,7 @@ class SignUpFormButton extends React.Component {
 
   offHover = () => {
     this.setState({ hover: false, tooltip: false })
-    // clearTimeout(this.toolTipTimeout)
+    clearTimeout(this.toolTipTimeout)
   }
 
   onClickFunction = (event) => {
@@ -49,8 +44,6 @@ class SignUpFormButton extends React.Component {
           name={ this.props.name }
           className={ this.props.enableButton ? 'sign_up_form_button' : "sign_up_form_button_disabled" }
           onClick={ this.onClickFunction }
-          // value={ this.props.value }
-          // value={ buttonImage }
         >
           <img
             alt={ this.props.id }

@@ -92,13 +92,8 @@ class SignUp extends React.Component {
   }
 
   render(){
-
-    // console.log(this.state.TOSagreement)
-
     return (
-      <Modal
-        showModal={ this.props.modal.signup }
-      >
+      <Modal showModal={ this.props.modal.signup } >
         <div className='sign_up_wrapper'>
           <ModalHeader header_text='Create New Account' />
           <SignUpForm
@@ -139,16 +134,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
-
-
-
-
-
-
-// checkEmail = () => {
-//   checkFunctions('checkEmail', check.email, { email: this.state.email })
-//   .then(emailRes => {
-//     if(!emailRes.valid) this.setState({ form: { valid: false, email: { valid: emailRes.valid, errors: [emailRes.errors] }, pending: false  } })
-//     else this.onValidateSignUp()
-//   })
-// }
