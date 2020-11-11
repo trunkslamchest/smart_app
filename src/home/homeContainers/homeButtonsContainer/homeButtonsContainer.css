@@ -1,0 +1,42 @@
+.logged_out_buttons_container {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 50%;
+}
+
+.play_buttons_container {
+  width: 75%;
+  min-width: 75%;
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0 auto 0 auto;
+}
+
+.quick_play_container {
+  width: 75%;
+  min-width: 75%;
+  max-width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0 auto 0 auto;
+}
+
+.other_play_container {
+  width: 75%;
+  min-width: 75%;
+  max-width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0 auto 0 auto;
+}

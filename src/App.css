@@ -121,8 +121,11 @@ select:not(:-internal-list-box) {
 }
 
 .main_container {
-  margin: 0px auto;
-  background-color: #FFF;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* margin: 0px auto; */
+  background-color: rgba(255, 255, 255, 1);
   z-index: 0;
 }
 
