@@ -1,207 +1,188 @@
 .dyanmic_bar_container {
-  height: 45px;
-  width: 50%;
+  /* height: 45px; */
+  width: 60%;
 }
 
 .loading_bar_container {
+  background-color: rgba(25, 25, 25, 1);
   padding: 1px;
-  border: 1px solid black;
+  border: 1px solid rgba(200, 200, 200, 1);
 }
 
 .loading_bar_0 {
   height: 15px;
   width: 0%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_1 {
   height: 15px;
   width: 5%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_2 {
   height: 15px;
   width: 10%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_3 {
   height: 15px;
   width: 15%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_4 {
   height: 15px;
   width: 20%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_5 {
   height: 15px;
   width: 25%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_6 {
   height: 15px;
   width: 30%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_7 {
   height: 15px;
   width: 35%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_8 {
   height: 15px;
   width: 40%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_9 {
   height: 15px;
   width: 45%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_10 {
   height: 15px;
   width: 50%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_11 {
   height: 15px;
   width: 55%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_12 {
   height: 15px;
   width: 60%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_13 {
   height: 15px;
   width: 65%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_14 {
   height: 15px;
   width: 70%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_15 {
   height: 15px;
   width: 75%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_16 {
   height: 15px;
   width: 80%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_17 {
   height: 15px;
   width: 85%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_18 {
   height: 15px;
   width: 90%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_19 {
   height: 15px;
   width: 95%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_bar_final {
   height: 15px;
   width: 100%;
-  background: black;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s ease-in-out 0s;
   transition-property: width;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
 }
 
 .loading_text {
+  padding: 2.5px 0px 0px 0px;
   text-align: center;
 }
 
 .loading_text p {
+  color: rgba(255, 255, 255, 1);
   font: 300 10pt 'Poppins', sans-serif;
-  color: black
 }

@@ -54,6 +54,7 @@ const SignUpForm = (props) => {
 
   let formInputs = MakeSignUpInputField({
     checked: props.TOSagreement,
+    disabled: !props.enableInput,
     distribUserNameErrors: distribUserNameErrors,
     distribEmailErrors: distribEmailErrors,
     distribPasswordErrors: distribPasswordErrors,

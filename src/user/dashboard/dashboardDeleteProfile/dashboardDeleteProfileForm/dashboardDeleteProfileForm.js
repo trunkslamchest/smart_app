@@ -6,6 +6,9 @@ import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileF
 import DashboardDeleteProfileFormInput from './dashboardDeleteProfileFormInput/dashboardDeleteProfileFormInput'
 import DashboardDeleteProfileFormErrorItem from './dashboardDeleteProfileFormErrorItem/dashboardDeleteProfileFormErrorItem'
 
+import ModalSubHeader from '../../../../UI/components/subHeaders/modalSubHeader/modalSubHeader'
+
+
 import BaseDynamicBar from '../../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
@@ -43,9 +46,7 @@ const DashboardDeleteProfileForm = (props) => {
 
   return(
     <>
-      <div className='delete_profile_sub_header'>
-        <h5>Please enter your password to confirm the deletion of your profile</h5>
-      </div>
+      <ModalSubHeader sub_header_text='Please enter your password to confirm the deletion of your profile' />
       <form
         id='delete_profile_form'
         name='delete_profile_form'
@@ -61,8 +62,8 @@ const DashboardDeleteProfileForm = (props) => {
             type='password'
             value={ props.password }
           />
-          { !props.form.valid && props.form.password.errors.length ? <div className='delete_profile_error_container'>{ distribPasswordErrors }</div> : <br /> }
-          { props.auth.status === 'fail' && props.auth.errors.length ? <div className='log_in_error_container'>{ distribAuthErrors }</div> : <br /> }
+          { !props.form.valid && props.form.password.errors.length && <div className='delete_profile_error_container'>{ distribPasswordErrors }</div> }
+          { props.auth.status === 'fail' && props.auth.errors.length && <div className='log_in_error_container'>{ distribAuthErrors }</div> }
         </div>
         { props.auth.loading && loading }
         <DashboardDeleteProfileFormButtonContainer

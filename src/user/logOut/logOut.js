@@ -1,11 +1,16 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-import { logout, authStart, clearAuthErrors } from '../../store/actions/actionIndex'
+import {
+  logout,
+  authStart,
+  clearAuthErrors
+} from '../../store/actions/actionIndex'
 
-import Modal from '../../UI/modal/modal'
 import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
+import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
+import Modal from '../../UI/modal/modal'
 
 import LogOutButtonContainer from './logOutButtonContainer/logOutButtonContainer'
 
@@ -30,10 +35,8 @@ class LogOut extends React.Component {
       enableButton: false,
       enableInput: false,
     })
-
     this.props.onLogOutModal(false)
     this.props.onClearAuthErrors()
-
   }
 
   render(){
@@ -49,9 +52,7 @@ class LogOut extends React.Component {
         showModal={ this.props.modal.logout }
       >
         <div className='log_out_wrapper'>
-          <div className='log_out_header'>
-            <h3>Are you sure you want to log out?</h3>
-          </div>
+          <ModalHeader header_text='Are you sure you want to log out?' />
           { this.props.auth.loading && loading }
           <LogOutButtonContainer
             enableButton={ this.state.enableButton }

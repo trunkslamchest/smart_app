@@ -14,11 +14,12 @@ const SignUpFormInput = (props) => {
   if(props.type === 'checkbox')
     inputField =
       <>
-        <div className='tos_agree_check_box_container'>
+        <div className={ props.disabled ? 'tos_agree_check_box_container_disabled' : 'tos_agree_check_box_container' }>
           <FormCheckBox
-            checkBoxClass='tos_form_check_box_button'
+            checkBoxClass={ props.disabled ? 'tos_form_check_box_button_disabled' : 'tos_form_check_box_button'}
             checkedImageHover={ formGlyphIndex.formWhiteCheckMark }
             checkedImage={ formGlyphIndex.formGreenCheckMark }
+            disabled={ props.disabled }
             id={ props.id }
             name={ props.name }
             onChecked={ props.onChange }
@@ -33,7 +34,6 @@ const SignUpFormInput = (props) => {
     inputField =
       <>
         <input
-          checked={ props.checked ? props.checked : false }
           className={ props.className }
           disabled={ props.disabled }
           id={ props.id }

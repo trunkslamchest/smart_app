@@ -1,6 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login, authStart, clearAuthStatus, clearAuthErrors } from '../../store/actions/actionIndex'
+import {
+  login,
+  authStart,
+  clearAuthStatus,
+  clearAuthErrors
+} from '../../store/actions/actionIndex'
 
 import validateLogIn from '../../utility/validation/validateLogIn'
 

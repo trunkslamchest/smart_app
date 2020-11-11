@@ -50,15 +50,16 @@
 .log_in_form_button_disabled {
   -webkit-appearance: none;
   align-items: center;
-  background: rgba(174,174,174, 1);
+  background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0.5);
-  cursor: not-allowed;
+  cursor: default;
   display: inline-block;
   font: 400 15px Roboto;
   letter-spacing: normal;
   margin: 0px;
+  opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px 20px;
   text-align: center;

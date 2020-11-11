@@ -1,5 +1,7 @@
 import React from 'react'
 
+import makeLogInButtons from '../../../userFunctions/makeLogInButtons'
+
 import LogInFormButton from '../logInFormButton/logInFormButton'
 
 import glyphIndex from '../../../../assets/glyphs/glyphIndex'
@@ -8,28 +10,7 @@ import './logInFormButtonContainer.css'
 
 const LogInFormButtonContainer = (props) => {
 
-  const logInButtons = [
-    {
-      name: 'LogInSubmit',
-      id: 'log_in_submit',
-      image: glyphIndex.formWhiteCheckMark,
-      imageHover: glyphIndex.formBlackCheckMark,
-      onClickFunction: props.onSubmit,
-      tooltipText: 'Login',
-      type: 'submit', enableButton: props.enableButton,
-      value: 'Login'
-    },
-    {
-      name: 'LogInCancel',
-      id: 'log_in_cancel',
-      image: glyphIndex.formWhiteX,
-      imageHover: glyphIndex.formBlackX,
-      onClickFunction: props.onCancel,
-      tooltipText: 'Cancel',
-      type: 'reset', enableButton: props.enableButton,
-      value: 'Cancel'
-    }
-  ]
+  let logInButtons = makeLogInButtons(glyphIndex, props.onSubmit, props.onCancel, props.enableButton)
 
   const distribLogInButtons = logInButtons.map((button, index) => {
     return(

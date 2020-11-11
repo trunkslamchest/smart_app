@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './dashboardDeleteProfileFormErrorItem.scss'
+import './dashboardDeleteProfileFormErrorItem.css'
 
 const DashboardDeleteProfileFormErrorItem = (props) => {
   return(

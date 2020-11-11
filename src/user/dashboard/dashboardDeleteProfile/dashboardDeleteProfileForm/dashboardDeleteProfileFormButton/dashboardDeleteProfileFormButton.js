@@ -1,28 +1,71 @@
 import React from 'react'
 
+import ModalButtonTooltip from '../../../../../UI/tooltips/modalButtonTooltip/modalButtonTooltip'
+
+
 import './dashboardDeleteProfileFormButton.css'
 
-const DashboardDeleteProfileFormButton = (props) => {
+class DashboardDeleteProfileFormButton extends React.Component {
 
-  const onClickFunctions = (event) => {
+  state = { hover: false, tooltip: false }
+
+  componentWillUnmount(){
+    this.setState({ hover: false, tooltip: false })
+    clearTimeout(this.toolTipTimeout)
+  }
+
+  onHover = () => {
+    this.setState({ hover: true })
+    this.toolTipTimeout = setTimeout(() => { this.setState({ tooltip: true })}, 250)
+  }
+
+  offHover = () => {
+    this.setState({ hover: false, tooltip: false })
+    clearTimeout(this.toolTipTimeout)
+  }
+
+  onClickFunction = (event) => {
     event.preventDefault()
 
-    if(props.enableSubmitButton){
+    if(this.props.enableButton){
       event.persist()
-      props.onClickFunctions(event)
+      this.props.onClickFunction(event)
     }
   }
 
-  return(
-    <input
-      type={ props.type }
-      id={ props.id }
-      name={ props.name }
-      className={ props.enableSubmitButton ? 'delete_profile_form_button' : 'delete_profile_form_button_disabled' }
-      onClick={ onClickFunctions }
-      value={ props.value }
-    />
-  )
+  render() {
+    return(
+      <div className='delete_profile_form_button_container'
+        onMouseEnter={ this.onHover }
+        onMouseLeave={ this.offHover }
+      >
+        <button
+          type={ this.props.type }
+          id={ this.props.id }
+          name={ this.props.name }
+          className={ this.props.enableButton ? 'delete_profile_form_button' : "delete_profile_form_button_disabled" }
+          onClick={ this.onClickFunction }
+        >
+          <img
+            alt={ this.props.id }
+            id={ `${this.props.id}_image` }
+            name={ `${this.props.name}Image` }
+            src={ this.state.hover ? this.props.imageHover : this.props.image }
+          />
+        </button>
+        {
+          this.props.tooltipText &&
+          this.state.hover &&
+          this.state.tooltip &&
+          this.props.enableButton &&
+            <ModalButtonTooltip
+              offHover={ this.offHover }
+              tooltipText={ this.props.tooltipText }
+            />
+        }
+      </div>
+    )
+  }
 }
 
 export default DashboardDeleteProfileFormButton

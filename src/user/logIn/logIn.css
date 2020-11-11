@@ -2,18 +2,6 @@ select:not(:-internal-list-box) {
   overflow: hidden !important;
 }
 
-.loading_wrapper {
-  align-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 5px 0px 0px 0px;
-  z-index: 500;
-}
-
 .log_in_wrapper {
   border: 0px solid black;
   box-sizing: border-box;

@@ -35,8 +35,8 @@ class LogInFormButton extends React.Component {
   render() {
     return(
       <div className='log_in_form_button_container'
-        onMouseEnter={ this.onHover }
-        onMouseLeave={ this.offHover }
+        onMouseEnter={ this.props.enableButton ? this.onHover : null }
+        onMouseLeave={ this.props.enableButton ? this.offHover : null }
       >
         <button
           type={ this.props.type }
@@ -56,6 +56,7 @@ class LogInFormButton extends React.Component {
           this.props.tooltipText &&
           this.state.hover &&
           this.state.tooltip &&
+          this.props.enableButton &&
             <ModalButtonTooltip
               offHover={ this.offHover }
               tooltipText={ this.props.tooltipText }

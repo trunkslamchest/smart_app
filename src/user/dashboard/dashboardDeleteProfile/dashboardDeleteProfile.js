@@ -1,10 +1,17 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-import { authStart, clearAuthErrors, deleteProfile } from '../../../store/actions/actionIndex'
+import {
+  authStart,
+  clearAuthErrors,
+  deleteProfile
+} from '../../../store/actions/actionIndex'
+
+// import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+// import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import validateDeleteProfile from '../../../utility/validation/validateDeleteProfile'
 
+import ModalHeader from '../../../UI/components/headers/modalHeader/modalHeader'
 import Modal from '../../../UI/modal/modal'
 
 import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer/dashboardDeleteProfileButtonContainer'
@@ -48,30 +55,43 @@ class DashboardDeleteProfile extends React.Component {
   }
 
   render(){
+
+  // console.log(this.state.enableConfirmButton)
+
+  // const loading =
+  //   <div className='loading_wrapper'>
+  //     <SmallLoadingSpinner />
+  //     <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
+  //   </div>
+
     return(
       <Modal
         showModal={ this.props.modal.deleteProfile }
       >
-        <div className='delete_profile_header'>
-          <h4>Are you sure you want to delete your profile?</h4>
+        <div className='delete_profile_wrapper'>
+          <ModalHeader header_text='Are you sure you want to delete your profile?' />
+          {/* { this.props.auth.loading && loading } */}
+
+          { this.state.enableConfirmButton &&
+            <DashboardDeleteProfileButtonContainer
+              enableConfirmButton={ this.state.enableConfirmButton }
+              onConfirm={ this.onConfirm }
+              onCancel={ this.onCancel }
+            />
+          }
+          {
+            this.state.showForm &&
+            <DashboardDeleteProfileForm
+              enableSubmitButton={ this.state.enableSubmitButton }
+              enableInput={ this.state.enableInput }
+              form={ this.state.form }
+              onChange={ this.onChange }
+              onSubmitConfirm={ this.onSubmitConfirm }
+              onSubmitCancel={ this.onSubmitCancel }
+              password={ this.state.password }
+            />
+          }
         </div>
-        <DashboardDeleteProfileButtonContainer
-          enableConfirmButton={ this.state.enableConfirmButton }
-          onConfirm={ this.onConfirm }
-          onCancel={ this.onCancel }
-        />
-        {
-          this.state.showForm &&
-          <DashboardDeleteProfileForm
-            enableSubmitButton={ this.state.enableSubmitButton }
-            enableInput={ this.state.enableInput }
-            form={ this.state.form }
-            onChange={ this.onChange }
-            onSubmitConfirm={ this.onSubmitConfirm }
-            onSubmitCancel={ this.onSubmitCancel }
-            password={ this.state.password }
-          />
-        }
       </Modal>
     )
   }

@@ -39,13 +39,13 @@ const makeSignUpInputField = (fieldProps) => {
     {
       changed: fieldProps.onChecked,
       checked: fieldProps.checked,
-      containerClass: 'tos_agree_div',
+      containerClass: fieldProps.disabled ? 'tos_agree_div_disabled' : 'tos_agree_div',
       distribErrors: fieldProps.distribTOSErrors,
       errors: fieldProps.tosErrors,
       id: 'TOS_agreement',
       label: 'Terms Of Service Agreement',
       name: 'TOSagreement',
-      subContainerClass: 'tos_agree_statement',
+      subContainerClass: fieldProps.disabled ? 'tos_agree_statement_disabled' : 'tos_agree_statement',
       text: fieldProps.TOStext,
       type: 'checkbox'
     }
