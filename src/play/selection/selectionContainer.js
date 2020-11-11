@@ -62,7 +62,7 @@ class SelectionContainer extends React.Component {
     }
 
     return(
-      <div className='selection_container'>
+      <div className='selection_wrapper'>
         <h1> Select A { varHeaderText } </h1>
         <div className="selection_buttons_container">
           { distribButtons }

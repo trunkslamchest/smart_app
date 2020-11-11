@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import HomeLoggedInContainer from './homeLoggedIn/homeLoggedInContainer'
+// import HomeLoggedInContainer from './homeLoggedIn/homeLoggedInContainer'
+
+import HomeLoggedInContainer from './homeContainers/homeLoggedInContainer/homeLoggedInContainer'
 import HomeLoggedOutContainer from './homeContainers/homeLoggedOutContainer/homeLoggedOutContainer'
 
 import HomeLogoContainer from './homeContainers/homeLogoContainer/homeLogoContainer'

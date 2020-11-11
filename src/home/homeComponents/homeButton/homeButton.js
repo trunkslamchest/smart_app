@@ -2,17 +2,11 @@ import React from 'react'
 
 import './homeButton.css'
 import './homeAuthButton.css'
-import './homeCatButton.css'
-import './homeDiffButton.css'
-import './homeQuickPlayButton.css'
 import './homeStartButton.css'
 
 const HomeButton = (props) => {
 
-  const onClickFunction = (event) => {
-    props.clickFunction(event)
-    // props.pushRoute(props.route)
-  }
+  const onClickFunction = (event) => { props.clickFunction(event) }
 
   return(
     <div className={ props.wrapperClass }>
