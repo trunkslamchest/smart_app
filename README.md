@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width=75% src="https://raw.githubusercontent.com/trunkslamchest/smart_app/master/src/assets/index_logo_blue3.png">
+  <img width=75% src="https://raw.githubusercontent.com/trunkslamchest/smart_app/master/src/assets/logos/indexLogos/full_color_index_logo.png">
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/trunkslamchest/smart_app/tree/0.80"><img align="center" src="https://img.shields.io/badge/Latest%20Repository-0.80-000000"></a>
+  <a href="https://github.com/trunkslamchest/smart_app/tree/0.81"><img align="center" src="https://img.shields.io/badge/Latest%20Repository-0.81-000000"></a>
 </p>
 
 # Contents
