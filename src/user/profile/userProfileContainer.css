@@ -4,9 +4,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: 10px auto;
   padding: 0px 0px 0px 0px;
-  min-height: 85.75vh;
+  min-height: calc(100vh - 165px);
 }
 
 .user_profile_container h2 {

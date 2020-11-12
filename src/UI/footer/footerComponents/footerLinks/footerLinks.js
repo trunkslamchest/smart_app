@@ -17,6 +17,7 @@ const FooterLinks = (props) => {
   const distribFooterLinkButtons = footerLinkButtons.map((button, index) => {
     return(
       <FooterLinkButton
+        history={ props.history }
         id={ button.id }
         key={ index }
         name={ button.name }

@@ -15,7 +15,7 @@ const Footer = (props) => {
   return(
     <div className='footer'>
       <div className='footer_left'>
-        <FooterLinks />
+        <FooterLinks history={ props.history } />
         <FooterCreditLogos />
       </div>
       <div className='footer_right'>

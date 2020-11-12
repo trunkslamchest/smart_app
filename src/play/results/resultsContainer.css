@@ -15,7 +15,6 @@
   flex-wrap: nowrap;
   height: auto;
   justify-content: flex-start;
-  /* margin: 10px auto; */
   padding: 0px;
   min-height: calc(100vh - 165px);
   width: 75%;

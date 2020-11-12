@@ -2,7 +2,6 @@
   opacity: 0;
 }
 
-
 .completed_container {
   width: 100wh !important;
   min-height: calc(100vh - 165px);

@@ -4,16 +4,22 @@ import './footerLinkButton.css'
 
 const FooterLinkButton = (props) => {
 
-  const onClickFunction = () => { props.onClickFunction(props.route) }
+  // const onClickFunction = () => { props.history.push(props.route) }
 
   return(
     <button
       id={ props.id }
       className='footer_link_button'
       name={ props.name }
-      onClick={ onClickFunction }
+      // onClick={ onClickFunction }
     >
-      { props.text }
+      <a
+        href={ props.route }
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        { props.text }
+      </a>
     </button>
   )
 }

@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  /* height: auto; */
   justify-content: flex-start;
   min-height: calc(100vh - 165px);
   padding: 0px;
