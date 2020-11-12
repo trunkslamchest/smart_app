@@ -119,7 +119,7 @@ export const routes = {
 
   tos: '/testSub/terms_of_service',
   privacy: '/testSub/privacy',
-  disclaimer: '/testSub/disclamier'
+  disclaimer: '/testSub/disclaimer'
 }
 
 // export const routes = {

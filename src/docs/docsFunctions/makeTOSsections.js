@@ -1,4 +1,4 @@
-const makeTOSsections = (lists) => {
+const makeTOSsections = () => {
 
   return [
     {

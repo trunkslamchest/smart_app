@@ -25,7 +25,7 @@ import UserProfileContainer from './user/profile/userProfileContainer'
 import ResultsContainer from './play/results/resultsContainer'
 
 import TermsOfService from './docs/termsOfService'
-import Privacy from './docs/privacy'
+import PrivacyPolicy from './docs/privacyPolicy'
 import Disclaimer from './docs/disclaimer'
 
 import E404 from './error/E404'
@@ -70,7 +70,7 @@ const App = (props) => {
             <LeaderBoardsController history={ props.history } />
           </Route>
           <Route exact path={ routes.tos }><TermsOfService /></Route>
-          <Route exact path={ routes.privacy }><Privacy /></Route>
+          <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>
           <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
           <Route><E404 /></Route>
         </Switch>
