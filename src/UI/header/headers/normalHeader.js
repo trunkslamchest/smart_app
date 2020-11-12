@@ -21,7 +21,7 @@ import '../header.css'
 const NormalHeader = (props) => {
 
   const onInitGame = (event) => {
-    if(!!props.play.status) this.onClearGame()
+    if(!!props.play.status) onClearGame()
     let gameMode = event.target.name
     localStorage.gameMode = gameMode
   }

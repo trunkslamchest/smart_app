@@ -53,9 +53,9 @@ class CompletedContainer extends React.Component {
     if(this.state.showWrapper) compeletedWrapper = <CompletedButtonsContainer onClickFunctions={ this.onClickFunctions } />
 
     return(
-      <>
+      <div className='completed_container'>
         { compeletedWrapper }
-      </>
+      </div>
     )
   }
 }

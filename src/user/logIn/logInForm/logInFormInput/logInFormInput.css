@@ -16,6 +16,7 @@
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;
   width: 80%;
+  max-width: 500px;
 }
 
 .log_in_div input:disabled {
@@ -29,4 +30,6 @@
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;
   width: 100%;
+  max-width: 500px;
+
 }

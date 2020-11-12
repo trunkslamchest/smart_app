@@ -6,6 +6,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   width: 50%;
+  max-width: 500px;
 }
 
 .logged_in_buttons_container {
@@ -16,4 +17,5 @@
   flex-wrap: nowrap;
   justify-content: center;
   width: 50%;
+  max-width: 500px;
 }
