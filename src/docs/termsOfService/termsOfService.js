@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
-import tosSections from './docsFunctions/tosSections'
-import DocsContainer from './docsContainer'
+import tosSections from './tosSections'
+import DocsContainer from '../docsContainer'
 
 const TermsOfService = () => {
 

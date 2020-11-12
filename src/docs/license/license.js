@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
-import licenseSections from './docsFunctions/licenseSections'
-import DocsContainer from './docsContainer'
+import licenseSections from './licenseSections'
+import DocsContainer from '../docsContainer'
 
 const License = () => {
 

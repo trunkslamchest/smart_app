@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
-import privacySections from './docsFunctions/privacySections'
-import DocsContainer from './docsContainer'
+import privacySections from './privacySections'
+import DocsContainer from '../docsContainer'
 
 const PrivacyPolicy = () => {
 

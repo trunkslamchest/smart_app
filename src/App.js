@@ -24,11 +24,10 @@ import DashboardContainer from './user/dashboard/dashboardContainer'
 import UserProfileContainer from './user/profile/userProfileContainer'
 import ResultsContainer from './play/results/resultsContainer'
 
-import TermsOfService from './docs/termsOfService'
-import PrivacyPolicy from './docs/privacyPolicy'
-import Disclaimer from './docs/disclaimer'
-import License from './docs/license'
-
+import TermsOfService from './docs/termsOfService/termsOfService'
+import PrivacyPolicy from './docs/privacyPolicy/privacyPolicy'
+import Disclaimer from './docs/disclaimer/disclaimer'
+import License from './docs/license/license'
 
 import E404 from './error/E404'
 
@@ -75,7 +74,6 @@ const App = (props) => {
           <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>
           <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
           <Route exact path={ routes.license }><License /></Route>
-
           <Route><E404 /></Route>
         </Switch>
       </div>

@@ -12,29 +12,10 @@ const DocsContainer = (props) => {
 
   const distribDocsSections = props.sections.map((section, s_index) => {
     return(
-      <div
-        className='terms_sub_wrapper'
-        key={ s_index }
-      >
+      <div className='terms_sub_wrapper' key={ s_index } >
         { !!section.sub_header_text && <DocsSubHeader sub_header_text={ section.sub_header_text } /> }
-        { !!section.lists && section.lists.map((list, l_index) => {
-            return(
-              <DocsUL
-                key={ l_index }
-                list_header={ list.list_header }
-                list_items={ list.list_items }
-              />
-            )
-          }) }
-        { !!section.p_texts && section.p_texts.map((p_text, p_index) => {
-            return(
-              <DocsP
-                key={ p_index }
-                header={ p_text.header }
-                texts={ p_text.texts }
-              />
-            )
-          }) }
+        { !!section.lists && section.lists.map((list, l_index) => {  return <DocsUL key={ l_index } list_header={ list.list_header }  list_items={ list.list_items } /> }) }
+        { !!section.p_texts && section.p_texts.map((p_text, p_index) => { return <DocsP key={ p_index }  header={ p_text.header }  texts={ p_text.texts }  /> }) }
       </div>
     )
   })

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
-import disclaimerSections from './docsFunctions/disclaimerSections'
-import DocsContainer from './docsContainer'
+import disclaimerSections from './disclaimerSections'
+import DocsContainer from '../docsContainer'
 
 const Disclaimer = () => {
 
