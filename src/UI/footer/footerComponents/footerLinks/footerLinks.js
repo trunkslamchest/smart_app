@@ -9,9 +9,10 @@ import './footerLinks.css'
 const FooterLinks = (props) => {
 
   const footerLinkButtons = [
-    { name: 'footerTOS', id: 'footer_tos_button', route: routes.tos, text: 'Terms of Service' },
+    { name: 'footerDisclaimer', id: 'footer_disclaimer_button', route: routes.disclaimer, text: 'Disclaimer' },
+    { name: 'footerLicense', id: 'footer_license_button', route: routes.license, text: 'License' },
     { name: 'footerPrivacyPolicy', id: 'footer_privacy_button', route: routes.privacy, text: 'Privacy Policy' },
-    { name: 'footerDisclaimer', id: 'footer_disclaimer_button', route: routes.disclaimer, text: 'Disclaimer' }
+    { name: 'footerTOS', id: 'footer_tos_button', route: routes.tos, text: 'Terms of Service' }
   ]
 
   const distribFooterLinkButtons = footerLinkButtons.map((button, index) => {

@@ -1,22 +1,20 @@
 .terms_wrapper {
+  /* animation: fade_in .3s ease-in-out 1; */
+  align-content: center;
+  align-items: center;
   color: rgba(0, 0, 0, 1);
-  /* background: rgba(51, 51, 51, 1); */
-  /* color: rgba(255, 255, 255, 1); */
-  z-index: 1;
-  width: 80%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-content: center;
-  align-items: center;
   margin: 20px 0px 40px 0px;
-  padding: 5px 10px 0px 10px;
   min-height: calc(100vh - 175px);
-  /* animation: fade_in .3s ease-in-out 1; */
+  padding: 5px 10px 0px 10px;
+  width: 80%;
+  z-index: 1;
 }
 
 .terms_sub_wrapper {
-  width: 100%;
   padding: 0px 0px 15px 0px;
+  width: 100%;
 }

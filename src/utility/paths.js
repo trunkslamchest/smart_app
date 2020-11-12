@@ -119,7 +119,9 @@ export const routes = {
 
   tos: '/testSub/terms_of_service',
   privacy: '/testSub/privacy',
-  disclaimer: '/testSub/disclaimer'
+  disclaimer: '/testSub/disclaimer',
+  license: '/testSub/license'
+
 }
 
 // export const routes = {
@@ -153,5 +155,6 @@ export const routes = {
 
   // tos: '/smartapp/terms_of_service',
   // privacy: '/smartapp/privacy',
-  // disclaimer: '/smartapp/disclamier'
+  // disclaimer: '/smartapp/disclamier',
+  // license: '/smartapp/license'
 // }
