@@ -23,6 +23,7 @@ const DefaultButtonContainer = (props) => {
           params={ button.params }
           text={ button.text }
           tooltipText={ button.tooltipText }
+          tooltipClass={ props.tooltipClass }
           type={ button.type }
         />
       )

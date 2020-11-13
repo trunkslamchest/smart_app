@@ -1,7 +1,7 @@
 .cat_button {
   -webkit-appearance: none;
   align-items: center;
-  background: rgba(51, 51, 51, 1);
+  background: rgba(50, 50, 50, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
@@ -10,7 +10,7 @@
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
@@ -18,11 +18,12 @@
   text-rendering: auto;
   text-shadow: none;
   text-transform: none;
+  width: 150px;
   word-spacing: normal;
 }
 
 .cat_button:hover {
-  color: rgba(51, 51, 51, 1);
+  color: rgba(50, 50, 50, 1);
   background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
@@ -33,10 +34,10 @@
 .cat_button_disabled {
   -webkit-appearance: none;
   align-items: center;
-  background: rgba(174,174,174, 1);
+  background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
-  color: rgb(235, 235, 235, 0.5);
+  color: rgb(235, 235, 235, 0);
   cursor: default;
   display: inline-block;
   font: 100 12pt 'PoppinsLight', sans-serif;
@@ -44,7 +45,7 @@
   margin: 0px;
   opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   text-indent: 0px;

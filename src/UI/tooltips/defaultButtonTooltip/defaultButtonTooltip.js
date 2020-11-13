@@ -1,13 +1,16 @@
 import React from 'react'
 
-import './defaultButtonTooltip.css'
+import '../tooltipStyles/defaultButtonTooltip.css'
+import '../tooltipStyles/gameModesButtonTooltip.css'
+import '../tooltipStyles/diffButtonTooltip.css'
+import '../tooltipStyles/catButtonTooltip.css'
 
 const DefaultButtonTooltip = (props) => {
   return(
-    <div className='default_button_tooltip_container'>
-      <div className='default_button_tooltip_wrapper'>
-        <div className='default_button_tooltop_arrow'></div>
-        <div className='default_button_tooltip_text'>
+    <div className={ `${props.tooltipClass}_container` }>
+      <div className={ `${props.tooltipClass}_wrapper` }>
+        <div className={ `${props.tooltipClass}_arrow` }></div>
+        <div className={ `${props.tooltipClass}_text` }>
           { props.tooltipText.map((tooltip, index) => { return <span key={ index }>{ tooltip }</span> })}
         </div>
       </div>

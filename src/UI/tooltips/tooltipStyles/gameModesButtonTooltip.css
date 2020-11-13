@@ -1,4 +1,4 @@
-.default_button_tooltip_container {
+.game_modes_button_tooltip_container {
   position: absolute;
   height: 0px;
   font: 600 9pt 'Lato', 'sans-serif';
@@ -13,7 +13,7 @@
   };
 }
 
-.default_button_tooltip_wrapper {
+.game_modes_button_tooltip_wrapper {
   position: relative;
   top: 2.7em;
   display: flex;
@@ -26,7 +26,7 @@
   padding: 0px;
 }
 
-.default_button_tooltop_arrow {
+.game_modes_button_tooltip_arrow {
   animation: modal_button_tooltip_fade_in .2s ease-in-out 0s 1;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
@@ -35,7 +35,7 @@
   width: 10px;
 }
 
-.default_button_tooltip_text {
+.game_modes_button_tooltip_text {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -47,7 +47,7 @@
   padding: 10px;
 }
 
-.default_button_tooltip_wrapper span {
+.game_modes_button_tooltip_wrapper span {
   animation: modal_button_tooltip_fade_in .2s ease-in-out 0s 1;
   color: rgba(40, 44, 52, 1);
   width: 250px;

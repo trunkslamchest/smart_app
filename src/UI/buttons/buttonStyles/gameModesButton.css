@@ -1,16 +1,16 @@
 .game_modes_button {
   -webkit-appearance: none;
   align-items: center;
-  background: rgba(51, 51, 51, 1);
+  background: rgba(50, 50, 50, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
   display: inline-block;
-  font: 300 12pt 'PoppinsLight', sans-serif;
+  font: 300 13pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
-  padding: 10px 20px;
+  padding: 15px 30px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
@@ -22,29 +22,29 @@
 }
 
 .game_modes_button:hover {
-  color: rgba(51, 51, 51, 1);
+  color: rgba(50, 50, 50, 1);
   background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
-  font: 600 12pt 'PoppinsLight', sans-serif;
+  font: 600 13pt 'PoppinsLight', sans-serif;
   transition: background-color .2s ease-in-out 0s;
 }
 
 .game_modes_button_disabled {
   -webkit-appearance: none;
   align-items: center;
-  background: rgba(174,174,174, 1);
+  background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
-  color: rgb(235, 235, 235, 0.5);
+  color: rgb(235, 235, 235, 0);
   cursor: default;
   display: inline-block;
-  font: 100 12pt 'PoppinsLight', sans-serif;
+  font: 100 13pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
   opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
-  padding: 10px 20px;
+  padding: 15px 30px;
   text-align: center;
   text-decoration: none;
   text-indent: 0px;
@@ -67,7 +67,7 @@
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
-  font: 600 12pt 'PoppinsLight', sans-serif;
+  font: 600 13pt 'PoppinsLight', sans-serif;
   transform: translate(0px, 15px);
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;

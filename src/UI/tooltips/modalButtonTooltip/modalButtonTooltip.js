@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './modalButtonTooltip.css'
+import '../tooltipStyles/modalButtonTooltip.css'
 
 const ModalButtonTooltip = (props) => {
   return(

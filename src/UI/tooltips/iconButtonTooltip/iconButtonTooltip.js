@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './iconButtonTooltip.css'
+import '../tooltipStyles/iconButtonTooltip.css'
 
 const IconButtonTooltip = (props) => {
   return(

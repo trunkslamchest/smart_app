@@ -19,19 +19,20 @@ class SelectionContainer extends React.Component {
     enableButton: false,
     gameModes: null,
     set: null,
-    subSet: null
+    subSet: null,
+    tooltipClass: null
   }
 
   componentDidMount(){
     if(this.props.play.gameMode === 'by_diff') {
       document.title = "SmartApp™ | Play | Difficulty | Select"
-      this.setState({ set: 'Difficulty', subSet: difficulties, buttonClass: 'diff_button', containerClass: 'diff_buttons_container', enableButton: true })
+      this.setState({ set: 'Difficulty', subSet: difficulties, buttonClass: 'diff_button', containerClass: 'diff_buttons_container', tooltipClass: 'diff_button_tooltip', enableButton: true })
     } else if(this.props.play.gameMode === 'by_cat') {
       document.title = "SmartApp™ | Play | Category | Select"
-      this.setState({ set: 'Category', subSet: categories, buttonClass: 'cat_button', containerClass: 'cat_buttons_container', enableButton: true })
+      this.setState({ set: 'Category', subSet: categories, buttonClass: 'cat_button', containerClass: 'cat_buttons_container', tooltipClass: 'cat_button_tooltip', enableButton: true })
     } else {
       document.title = "SmartApp™ | Play | Select"
-      this.setState({ gameModes: gameModes, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', enableButton: true })
+      this.setState({ gameModes: gameModes, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'game_modes_button_tooltip', enableButton: true })
     }
   }
 
@@ -75,13 +76,14 @@ class SelectionContainer extends React.Component {
       varHeaderText = this.state.set
       selectionButtons = this.state.subSet.map((qSet, index) => {
         return {
-          id: `${qSet}_button`,
+          id: `${qSet.val}_button`,
           key: index,
-          name: qSet,
+          name: qSet.name,
           onClickFunction: this.onClickQsetFunction,
-          params: JSON.stringify({ qSet: qSet }),
+          params: JSON.stringify({ qSet: qSet.name }),
           type: 'button',
-          text: qSet
+          text: qSet.name,
+          tooltipText: qSet.description
         }
       })
     }
@@ -94,6 +96,7 @@ class SelectionContainer extends React.Component {
           buttonClass={ this.state.buttonClass }
           containerClass={ this.state.containerClass }
           enableButton={ this.state.enableButton }
+          tooltipClass={ this.state.tooltipClass }
         />
       </div>
     )
@@ -114,25 +117,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectionContainer)
-
-
-    // if(this.state.gameModes){
-    //   varHeaderText = 'Game Mode'
-    //   distribButtons = this.state.gameModes.map(gameMode =>
-    //     <SelectionButton
-    //       key={ this.state.gameModes.indexOf(gameMode) }
-    //       name={ gameMode.name }
-    //       gameMode={ gameMode.val }
-    //     />
-    //   )
-    // }
-
-    // if(this.state.subSet){
-    //   varHeaderText = this.state.set
-    //   distribButtons = this.state.subSet.map(qSet =>
-    //     <SelectionButton
-    //       key={ this.state.subSet.indexOf(qSet) }
-    //       qSet={ qSet }
-    //     />
-    //   )
-    // }

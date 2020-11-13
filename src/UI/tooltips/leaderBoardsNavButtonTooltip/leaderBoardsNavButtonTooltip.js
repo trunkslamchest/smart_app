@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './leaderBoardsNavButtonTooltip.css'
+import '../tooltipStyles/leaderBoardsNavButtonTooltip.css'
 
 const LeaderBoardsNavButtonTooltip = (props) => {
   return(

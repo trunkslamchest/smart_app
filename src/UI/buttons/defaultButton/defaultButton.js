@@ -66,6 +66,7 @@ class DefaultButton extends React.Component {
             <DefaultButtonTooltip
               offHover={ this.offHover }
               tooltipText={ this.props.tooltipText }
+              tooltipClass={ this.props.tooltipClass }
             />
         }
       </div>
