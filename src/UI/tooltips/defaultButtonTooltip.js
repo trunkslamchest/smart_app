@@ -1,9 +1,9 @@
 import React from 'react'
 
-import '../tooltipStyles/defaultButtonTooltip.css'
-import '../tooltipStyles/gameModesButtonTooltip.css'
-import '../tooltipStyles/diffButtonTooltip.css'
-import '../tooltipStyles/catButtonTooltip.css'
+import './tooltipStyles/defaultButtonTooltip.css'
+import './tooltipStyles/gameModesButtonTooltip.css'
+import './tooltipStyles/diffButtonTooltip.css'
+import './tooltipStyles/catButtonTooltip.css'
 
 const DefaultButtonTooltip = (props) => {
   return(

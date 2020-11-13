@@ -25,10 +25,10 @@ class LeaderBoardScoresContainer extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.scores && !this.state.initPaginate) {
-      let pagniatedLeaderBoard = paginateLeaderBoard(this.props.pageLimit, this.props.scores)
-      this.setState({ initPaginate: true, leaderBoard: pagniatedLeaderBoard })
-    }
+    // if(this.props.scores && !this.state.initPaginate) {
+    //   let pagniatedLeaderBoard = paginateLeaderBoard(this.props.pageLimit, this.props.scores)
+    //   this.setState({ initPaginate: true, leaderBoard: pagniatedLeaderBoard })
+    // }
   }
 
   onChangePage = (value) => {

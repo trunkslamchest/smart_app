@@ -1,11 +1,8 @@
 import React from 'react'
-
 import { Route } from 'react-router-dom'
-
+import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/actionIndex'
-
-import { routes } from '../../utility/paths'
 
 import SelectionContainer from '../../play/selection/selectionContainer'
 import QuestionContainer from '../../play/question/questionContainer'
@@ -262,13 +259,9 @@ class PlayController extends React.Component {
       type: 'play',
       cid: this.props.play.results.comment.cid,
       qid: this.props.play.question.id,
-      // answer: this.props.play.answer.choice,
       category: this.props.play.question.category,
       comment: this.props.play.results.comment.comment,
-      // correct_answer: this.props.play.results.correct_answer,
-      // question: this.props.play.question.question,
       difficulty: this.props.play.question.difficulty,
-      // result: this.props.play.results.result,
       timestamp: this.props.play.results.comment.timestamp
     })
   }

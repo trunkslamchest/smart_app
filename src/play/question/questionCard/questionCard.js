@@ -1,56 +1,86 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 
+import DefaultButton from '../../../UI/buttons/defaultButton'
+
 import './questionCard.css'
-import './questionCardChoiceButton.css'
 
 const QuestionCard = (props) => {
 
-  const onClickFunctions = (event) => {
+  const onClickFunction = (event) => {
     event.persist()
-    props.onClickFunctions(event)
+    props.onClickFunction(event)
   }
 
-  const choices = props.play.question.choices.map(choice => {
-    let i = props.play.question.choices.indexOf(choice)
-    return <button
-        key={`answer_button_${i}`}
-        value={ i }
-        className={ props.enableQuestion ? "question_card_choice_button" : "question_card_choice_button_disabled" }
-        name="answer_button"
-        onClick={ props.enableQuestion ? onClickFunctions : null }
-      >
-        { choice }
-      </button>
+  const choices = props.play.question.choices.map((choice, index) => {
+    return(
+      // <button
+      //   key={ index }
+      //   value={ choice }
+      //   className={ props.enableQuestion ? "question_card_choice_button" : "question_card_choice_button_disabled" }
+      //   name="answer_button"
+      //   onClick={ props.enableQuestion ? onClickFunctions : null }
+      // >
+      //   { choice }
+      // </button>
+        <DefaultButton
+          buttonClass="question_card_choice_button"
+          enableButton={ props.enableQuestion }
+          id="answer_button"
+          key={ index }
+          name="AnswerButton"
+          onClickFunction={ onClickFunction }
+          params={ JSON.stringify({ choice: choice }) }
+          text={ choice }
+          type='button'
+        />
+      )
     })
+
+
+                // id={ button.id }
+                // image={ button.image }
+                // imageHover={ button.imageHover }
+                // key={ index }
+                // name={ button.name }
+                // enableButton={ props.enableButton }
+                // onClickFunction={ button.onClickFunction }
+                // params={ button.params }
+                // text={ button.text }
+                // tooltipText={ button.tooltipText }
+                // tooltipClass={ props.tooltipClass }
+                // type={ button.type }
 
   return(
     <>
-      <div className={ props.showTimer ? "question_card_timer" : "blank" } >
-        <h2>Time Left</h2>
-        <h1>{ props.showTimer && props.time }</h1>
+      { props.showTimer &&
+        <div className="question_card_timer">
+          <h2>Time Left</h2>
+          <h1>{ props.time }</h1>
+        </div>
+      }
+      { props.showHeader &&
+        <div className="question_card_header">
+          <span>In { props.play.question.category }...</span>
+        </div>
+      }
+      { props.showQuestion &&
+      <div className="question_card_text">
+        <span>{ props.play.question.question }</span>
       </div>
-      <div className={ props.showHeader ? "question_card_header" : "blank" }>
-        In { props.showHeader && props.play.question.category }...
-      </div>
-      <div className={ props.showQuestion ? "question_card_text" : "blank" }>
-        { props.showQuestion && props.play.question.question }
-      </div>
-      <div className={ props.showChoices ? "question_card_choices" : "blank" }>
-        { props.showChoices &&
-          <>
-            <div className='div1'>
-              { choices[0] }
-              { choices[1] }
-            </div>
-            <div className='div2'>
-              { choices[2] }
-              { choices[3] }
-            </div>
-          </>
-        }
-      </div>
+      }
+      { props.showChoices &&
+        <div className="question_card_choices_container">
+          <div className='div1'>
+            { choices[0] }
+            { choices[1] }
+          </div>
+          <div className='div2'>
+            { choices[2] }
+            { choices[3] }
+          </div>
+        </div>
+      }
     </>
   )
 }

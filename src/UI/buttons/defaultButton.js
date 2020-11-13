@@ -1,11 +1,12 @@
 import React from 'react'
 
-import DefaultButtonTooltip from '../../tooltips/defaultButtonTooltip/defaultButtonTooltip'
+import DefaultButtonTooltip from '../tooltips/defaultButtonTooltip'
 
-import '../buttonStyles/defaultButton.css'
-import '../buttonStyles/diffButton.css'
-import '../buttonStyles/catButton.css'
-import '../buttonStyles/gameModesButton.css'
+import './buttonStyles/defaultButton.css'
+import './buttonStyles/diffButton.css'
+import './buttonStyles/catButton.css'
+import './buttonStyles/gameModesButton.css'
+import './buttonStyles/questionCardChoiceButton.css'
 
 class DefaultButton extends React.Component {
 
@@ -55,6 +56,7 @@ class DefaultButton extends React.Component {
               alt={ this.props.id }
               id={ `${this.props.id}_image` }
               name={ `${this.props.name}Image` }
+              params={ this.props.params }
               src={ this.state.hover ? this.props.imageHover : this.props.image }
             />
           }

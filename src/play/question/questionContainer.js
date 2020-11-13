@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 import { loading, setAnswer } from '../../store/actions/actionIndex'
 
@@ -49,37 +48,45 @@ class QuestionContainer extends React.Component{
       this.setState({ time: (0.00).toFixed(2)})
       clearInterval(this.timerInterval)
       this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
-    // }
-    } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
+    }
+    // } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
   }
 
-  onClickFunctions = (event) => {
+  // onClickFunction = (event) => {
+  //   clearInterval(this.timerInterval)
+  //   this.props.onLoadingModal(true)
+  //   this.setState({ enableQuestion: false })
+  //   this.props.onSetAnswer({ choice: this.props.play.question.choices[event.target.value], time: parseFloat((10 - this.state.time).toFixed(2)) })
+  // }
+  onClickFunction = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+
+    // console.log(this.props.play.question.choices[buttonParams.choice])
+
     clearInterval(this.timerInterval)
     this.props.onLoadingModal(true)
     this.setState({ enableQuestion: false })
-    this.props.onSetAnswer({ choice: this.props.play.question.choices[event.target.value], time: parseFloat((10 - this.state.time).toFixed(2)) })
+    this.props.onSetAnswer({ choice: buttonParams.choice, time: parseFloat((10 - this.state.time).toFixed(2)) })
   }
 
+
   render(){
-
-    let questionCard = <></>
-
-    if(this.state.showTimer){
-      questionCard = <QuestionCard
-        time={ this.state.time }
-        enableQuestion={ this.state.enableQuestion }
-        onClickFunctions={ this.onClickFunctions }
-        showTimer={ this.state.showTimer }
-        showHeader={ this.state.showHeader }
-        showQuestion={ this.state.showQuestion }
-        showChoices={ this.state.showChoices }
-      />
-    }
-
     return(
-      <div className='question_container'>
-        { questionCard }
-      </div>
+      <>
+        { this.state.showTimer &&
+          <div className='question_wrapper'>
+            <QuestionCard
+              time={ this.state.time }
+              enableQuestion={ this.state.enableQuestion }
+              onClickFunction={ this.onClickFunction }
+              showTimer={ this.state.showTimer }
+              showHeader={ this.state.showHeader }
+              showQuestion={ this.state.showQuestion }
+              showChoices={ this.state.showChoices }
+            />
+          </div>
+        }
+      </>
     )
   }
 }

@@ -49,9 +49,10 @@ const NormalHeader = (props) => {
   ]
 
   const profileMenuButtons = [
-    { name:'my_profile', menu: 'myProfileMenu', route: routes.dashboard, text: 'My Profile', type: 'link', clickFunction: onClearGame },
-    { name:'view_profile', menu: 'myProfileMenu', route: routes.dashboard_profile, text: 'View Profile', type: 'link', clickFunction: onClearGame },
-    { name:'edit_profile', menu: 'myProfileMenu', route: routes.dashboard_profile_edit, text: 'Edit Profile', type: 'link', clickFunction: onClearGame },
+    { name:'profile', menu: 'myProfileMenu', route: routes.dashboard_profile, text: 'Profile', type: 'link', clickFunction: onClearGame },
+    { name:'stats', menu: 'myProfileMenu', route: routes.dashboard_stats, text: 'Statistics', type: 'link', clickFunction: onClearGame },
+    { name:'achievements', menu: 'myProfileMenu', route: routes.dashboard_achievements, text: 'Achievements', type: 'link', clickFunction: onClearGame },
+    { name:'settings', menu: 'myProfileMenu', route: routes.dashboard_settings, text: 'Settings', type: 'link', clickFunction: onClearGame },
     { name:'log_out', menu: 'myProfileMenu', text: 'Log Out', type: 'modal', clickFunction: onLogOut, args: true }
   ]
 

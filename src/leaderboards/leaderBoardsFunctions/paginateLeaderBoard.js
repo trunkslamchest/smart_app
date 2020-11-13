@@ -1,6 +1,6 @@
-const paginateLeaderBoard = (rowsPerPage, leaderBoard) => {
+const paginateLeaderBoard = (pageLimit, leaderBoard) => {
     const rowLimit = leaderBoard.length
-    let page = [], pagedScores = [], currentCount = rowsPerPage
+    let page = [], pagedScores = [], currentCount = pageLimit
 
     // for(let i = 0; i <= currentCount; i++) {
     //   if(i < currentCount && !!leaderBoard[i]) {
@@ -26,7 +26,7 @@ const paginateLeaderBoard = (rowsPerPage, leaderBoard) => {
       if(i === currentCount - 1) {
         pagedScores.push(page)
         page = []
-        currentCount += rowsPerPage
+        currentCount += pageLimit
       }
       if(i < rowLimit) i++
       if(i === rowLimit) j++
