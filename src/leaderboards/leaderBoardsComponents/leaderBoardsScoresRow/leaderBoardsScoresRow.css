@@ -8,7 +8,7 @@
   width: 100%;
   font: 600 10pt "LatoThin";
   color: rgba(255, 255, 255, 1);
-  background: rgba(50, 50, 50, 1);
+  background: rgba(50, 50, 50, 0);
   border: 0px;
 }
 
@@ -22,7 +22,7 @@
   width: 100%;
   font: 600 10pt "LatoThin";
   color: rgba(50, 50, 50, 1);
-  background: rgba(50, 50, 50, 1);
+  background: rgba(50, 50, 50, 0);
   border: 0px;
   padding: 1px 6px;
 }

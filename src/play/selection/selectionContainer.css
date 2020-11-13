@@ -6,7 +6,8 @@
   justify-content: flex-start;
   margin: 0 auto 0 auto;
   /* animation: fade_in .3s ease-in-out 1; */
-  min-height: calc(100vh - 165px);
+  /* min-height: calc(100vh - 165px); */
+  min-height: calc(100vh - 190px);
 }
 
 .selection_wrapper h1 {

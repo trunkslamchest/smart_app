@@ -51,31 +51,33 @@ const App = (props) => {
         { props.modal.login && <LogIn history={ props.history } /> }
         { props.modal.logout && <LogOut history={ props.history } /> }
         { props.modal.signup && <SignUp history={ props.history } /> }
-        <Switch>
-          <Route exact path={ routes.home }>
-            <HomeContainer history={ props.history } />
-          </Route>
-          <Route path={ routes.dashboard }>
-            <DashboardContainer history={ props.history } />
-          </Route>
-          <Route path={ routes.user_profile }>
-            <UserProfileContainer history={ props.history } />
-          </Route>
-          <Route path={ routes.static_results }>
-            <ResultsContainer staticResults={ true } history={ props.history } />
-          </Route>
-          <Route path={ routes.play }>
-            <PlayController history={ props.history } />
-          </Route>
-          <Route path={ routes.leader_boards }>
-            <LeaderBoardsController history={ props.history } />
-          </Route>
-          <Route exact path={ routes.tos }><TermsOfService /></Route>
-          <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>
-          <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
-          <Route exact path={ routes.license }><License /></Route>
-          <Route><E404 /></Route>
-        </Switch>
+        <div className='main_wrapper' name="main_wrapper">
+          <Switch>
+            <Route exact path={ routes.home }>
+              <HomeContainer history={ props.history } />
+            </Route>
+            <Route path={ routes.dashboard }>
+              <DashboardContainer history={ props.history } />
+            </Route>
+            <Route path={ routes.user_profile }>
+              <UserProfileContainer history={ props.history } />
+            </Route>
+            <Route path={ routes.static_results }>
+              <ResultsContainer staticResults={ true } history={ props.history } />
+            </Route>
+            <Route path={ routes.play }>
+              <PlayController history={ props.history } />
+            </Route>
+            <Route path={ routes.leader_boards }>
+              <LeaderBoardsController history={ props.history } />
+            </Route>
+            <Route exact path={ routes.tos }><TermsOfService /></Route>
+            <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>
+            <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
+            <Route exact path={ routes.license }><License /></Route>
+            <Route><E404 /></Route>
+          </Switch>
+        </div>
       </div>
       <Footer history={ props.history } />
     </StoreController>

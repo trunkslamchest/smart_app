@@ -16,7 +16,8 @@
   height: auto;
   justify-content: flex-start;
   padding: 0px;
-  min-height: calc(100vh - 165px);
+  /* min-height: calc(100vh - 165px); */
+  min-height: calc(100vh - 190px);
   width: 75%;
 }
 

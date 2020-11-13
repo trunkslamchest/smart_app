@@ -1,20 +1,10 @@
-.terms_wrapper {
-  /* animation: fade_in .3s ease-in-out 1; */
-  align-content: center;
-  align-items: center;
-  color: rgba(0, 0, 0, 1);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin: 20px 0px 40px 0px;
-  min-height: calc(100vh - 175px);
-  padding: 5px 10px 0px 10px;
-  width: 80%;
-  z-index: 1;
+.docs_wrapper {
+  margin: 0px 0px 20px 0px;
+  width: 100%;
+  padding: 10px 0px 0px 0px;
 }
 
-.terms_sub_wrapper {
+.docs_sub_wrapper {
   padding: 0px 0px 15px 0px;
   width: 100%;
 }

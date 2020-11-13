@@ -9,9 +9,9 @@ import {
   updateLeaderBoardsLoadingStatus
 } from '../store/actions/actionIndex'
 
-import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverall/leaderBoardsOverallContainer'
-import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoardsCountries/leaderBoardsCountriesContainer'
-import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCat/leaderBoardsCatContainer'
+import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverallContainer'
+import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoardsCountriesContainer'
+import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
 import NavBarContainer from '../UI/navBar/navBarContainer'
 
 import './leaderBoardsContainer.css'
@@ -24,23 +24,25 @@ const LeaderBoardsContainer = (props) => {
   ]
 
   const routeBoard =
-    <Switch>
-      <Route exact path={ props.overallRoute }>
-        <LeaderBoardsOverallContainer history={ props.history } />
-      </Route>
-      <Route exact path={ props.countriesRoute }>
-        <LeaderBoardsCountriesContainer history={ props.history } />
-      </Route>
-      <Route exact path={ props.catRoute }>
-        <LeaderBoardsCatContainer history={ props.history } />
-      </Route>
-    </Switch>
+    <div className="leader_boards_wrapper">
+      <Switch>
+        <Route exact path={ props.overallRoute }>
+          <LeaderBoardsOverallContainer history={ props.history } />
+        </Route>
+        <Route exact path={ props.countriesRoute }>
+          <LeaderBoardsCountriesContainer history={ props.history } />
+        </Route>
+        <Route exact path={ props.catRoute }>
+          <LeaderBoardsCatContainer history={ props.history } />
+        </Route>
+      </Switch>
+    </div>
 
   return(
-    <div className='leader_boards_wrapper'>
+    <>
       <NavBarContainer buttons={ navButtons } />
       { routeBoard }
-    </div>
+    </>
   )
 }
 

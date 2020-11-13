@@ -1,7 +1,7 @@
 .dashboard_stats_answer_card_button {
   -webkit-appearance: none;
   align-items: flex-start;
-  background: rgba(50, 50, 50, 1);
+  /* background: rgba(50, 50, 50, 1); */
   border: 0px;
   box-sizing: border-box;
   color: rgba(225, 225, 225, 1);

@@ -5,10 +5,10 @@
   justify-content: flex-start;
   align-content: center;
   align-items: center;
-  padding: 0px 0px 0px 0px;
-  /* height: 100 */
+  padding: 0px;
   /* min-height: 83.30vh; */
-  min-height: calc(100vh - 165px);
+  /* min-height: calc(100vh - 165px); */
+  min-height: calc(100vh - 190px);
   width: 80%;
   z-index: 1;
 }

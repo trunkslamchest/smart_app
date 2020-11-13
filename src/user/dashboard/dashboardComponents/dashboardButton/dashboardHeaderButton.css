@@ -2,7 +2,7 @@
   -webkit-appearance: none;
   text-rendering: auto;
   color: rgb(225, 225, 225, 1);
-  background: rgba(50, 50, 50, 1);
+  background: rgba(50, 50, 50, 0);
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
@@ -30,13 +30,13 @@
 }
 
 .dashboard_header_button:active {
-  animation: scale_out .1s ease-in-out 1;
+  /* animation: scale_out .1s ease-in-out 1; */
 }
 
 .dashboard_header_button_disabled {
   -webkit-appearance: none;
   align-items: flex-start;
-  background: rgba(175, 175, 175, 1);
+  background: rgba(175, 175, 175, 0);
   border: 0px;
   box-sizing: border-box;
   color: rgb(225, 225, 225, 0.5);

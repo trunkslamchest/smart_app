@@ -1,5 +1,5 @@
 .dashboard_form_button {
-  background: rgba(50, 50, 50, 1);
+  background: rgba(50, 50, 50, 0);
   color: rgb(225, 225, 225, 1);
   cursor: pointer;
   -webkit-appearance: none;
@@ -32,7 +32,7 @@
 }
 
 .dashboard_form_button_disabled {
-  background: rgba(175, 175, 175, 1);
+  background: rgba(175, 175, 175, 0);
   color: rgb(225, 225, 225, 0.5);
   cursor: not-allowed;
   -webkit-appearance: none;
@@ -51,6 +51,7 @@
   font: 300 11pt 'Poppins', sans-serif;
   padding: 10px 20px 10px 20px;
   border: 0px;
+  opacity: 0;
   box-sizing: border-box;
   outline: -webkit-focus-ring-color auto 0px;
 }

@@ -1,5 +1,5 @@
 .dashboard_achievements_container {
-  background: rgba(50, 50, 50, 1);
+  /* background: rgba(50, 50, 50, 1); */
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -17,7 +17,7 @@
   align-items: center;
   align-content: center;
   width: 100%;
-  background: rgba(50, 50, 50, 1);
+  /* background: rgba(50, 50, 50, 1); */
   border: 0px;
   color: rgba(255, 255, 255, 1);
 }
@@ -54,14 +54,15 @@
   width: 100%;
   padding: 10px 0px;
   color: rgba(255, 255, 255, 1);
-  background: rgba(50, 50, 50, 1);
-  font: 300 15pt 'LatoThin', sans-serif;
+  /* background: rgba(50, 50, 50, 1); */
 }
 
 .dashboard_achievements_sub_container h3 {
+  font: 300 13pt 'LatoLight', sans-serif;
   align-self: center;
   text-align: center;
   margin-block-start: 0em;
   margin-block-end: 0em;
+  padding: 2.5px 0px;
   width: 100%;
 }

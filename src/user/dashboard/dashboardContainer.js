@@ -64,8 +64,8 @@ class Dashboard extends React.Component{
     return(
       <>
         <DashboardDeleteProfile history={ this.props.history } />
+        <NavBarContainer buttons={ navButtons } />
         <div className='dashboard_wrapper'>
-          <NavBarContainer buttons={ navButtons } />
           { routeBoard }
         </div>
       </>

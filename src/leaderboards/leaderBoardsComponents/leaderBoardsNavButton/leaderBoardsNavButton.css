@@ -11,7 +11,7 @@
   -webkit-appearance: none;
   text-rendering: auto;
   color: rgb(225, 225, 225, 1);
-  background: rgba(50, 50, 50, 1);
+  background: rgba(50, 50, 50, 0);
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;

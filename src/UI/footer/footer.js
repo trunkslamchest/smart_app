@@ -17,9 +17,9 @@ const Footer = (props) => {
       <div className='footer_left'>
         <FooterLinks history={ props.history } />
         <FooterCreditLogos />
+        <FooterFinePrint />
       </div>
       <div className='footer_right'>
-        <FooterFinePrint />
         <FooterLogo
           history={ props.history }
           route={ routes.home }
