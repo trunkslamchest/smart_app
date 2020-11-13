@@ -10,7 +10,3 @@
   padding: 0px;
   width: 100%;
 }
-
-.results_discuss_container > * {
-  z-index: 3;
-}

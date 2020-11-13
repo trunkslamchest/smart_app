@@ -12,14 +12,11 @@
 
 .results_vote_container {
   animation: fade_in .25s ease-in-out 1;
-  background: rgba(255,255,255, 1);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-content: center;
-  /* align-items: center; */
-  /* margin: 0px auto; */
   min-height: 75px;
   padding: 20px 0px 0px 0px;
   width: 85%;
@@ -80,7 +77,6 @@
 .results_vote_totals_graph_container {
   align-items: center;
   align-content: center;
-  background: rgba(51, 51, 51, 1);
   display: flex;
   flex-direction: column;
   font: 300 14pt 'Lato', sans-serif;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './commentFormErrorItem.scss'
+import './commentFormErrorItem.css'
 
 const CommentFormErrorItem = (props) => {
   return(

@@ -12,7 +12,7 @@ const DefaultButtonContainer = (props) => {
           { props.buttons.map((button, index) => {
             return(
               <DefaultButton
-                buttonClass={ props.buttonClass }
+                buttonClass={ props.buttonClass || button.buttonClass }
                 id={ button.id }
                 image={ button.image }
                 imageHover={ button.imageHover }
@@ -23,7 +23,7 @@ const DefaultButtonContainer = (props) => {
                 params={ button.params }
                 text={ button.text }
                 tooltipText={ button.tooltipText }
-                tooltipClass={ props.tooltipClass }
+                tooltipClass={ props.tooltipClass || button.tooltipClass }
                 type={ button.type }
               />
             )

@@ -8,6 +8,36 @@
   margin: 10px 0px 0px 0px;
 }
 
+.add_comment_button_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0px 0px 10px 0px;
+}
+
+.edit_comment_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0px 0px 10px 0px;
+}
+
+.next_question_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}
+
 .game_modes_buttons_container {
   align-items: center;
   align-content: center;

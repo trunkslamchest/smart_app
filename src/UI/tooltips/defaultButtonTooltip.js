@@ -4,6 +4,10 @@ import './tooltipStyles/defaultButtonTooltip.css'
 import './tooltipStyles/gameModesButtonTooltip.css'
 import './tooltipStyles/diffButtonTooltip.css'
 import './tooltipStyles/catButtonTooltip.css'
+import './tooltipStyles/nextQuestionButtonTooltip.css'
+import './tooltipStyles/addCommentButtonTooltip.css'
+import './tooltipStyles/editCommentButtonTooltip.css'
+
 
 const DefaultButtonTooltip = (props) => {
   return(

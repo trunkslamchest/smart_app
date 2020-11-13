@@ -7,20 +7,10 @@
   padding: 0px 2.5px;
 }
 
-.results_container {
-  align-content: flex-start;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  height: auto;
-  justify-content: flex-start;
-  padding: 0px;
-  /* min-height: calc(100vh - 165px); */
-  min-height: calc(100vh - 190px);
-  width: 75%;
-}
-
-.results_container > * {
-  z-index: 3;
+.results_wrapper {
+  background: rgba(50, 50, 50, 1);
+  color: rgba(255, 255, 255, 1);
+  margin: 0px 0px 20px 0px;
+  width: 100%;
+  padding: 10px 0px 20px 0px;
 }

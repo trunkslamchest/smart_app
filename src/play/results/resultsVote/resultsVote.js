@@ -111,16 +111,6 @@ class ResultsVote extends React.Component {
       )
     })
 
-    // let voteBlock =
-    //   <div className="results_vote_container">
-    //     <div className="results_vote_header">
-    //       <h3>Rate this question</h3>
-    //     </div>
-    //     <div className="results_vote_buttons_container">
-    //       { distribVotesButtons }
-    //     </div>
-    //   </div>
-
     let headerText = <div className='results_vote_header_text_sub_container'><h3>Rate this question</h3></div>
     let headerSubText = <div className='results_vote_header_sub_text_sub_container'>{ distribVotesButtons }</div>
 

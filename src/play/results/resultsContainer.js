@@ -9,12 +9,20 @@ import {
   setStaticUserQuestion,
   clearStaticUserQuestion,
   clearStaticQuestionVoteStatus,
-  clearStaticUserVote
+  clearStaticUserVote,
+  loading,
+  updateGameStatus,
+  setGameState,
+  resetQuestion,
+  resetAnswer,
+  resetResults,
+  resetVote,
+  resetComment
 } from '../../store/actions/actionIndex'
 
 import ResultsStatsContainer from './resultsStats/resultsStatsContainer'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
-import ResultsNextQuestion from './resultsNextQuestion/resultsNextQuestion'
+import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import StatsLegend from '../../UI/statsLegend/statsLegend'
 import NavBarContainer from '../../UI/navBar/navBarContainer'
@@ -52,7 +60,6 @@ class ResultsContainer extends React.Component{
       document.title = `SmartApp™ | Results | ${ qid }`
       this.setState({ cat: cat, diff: diff, qid: qid })
     }
-
   }
 
   componentDidUpdate(){
@@ -95,6 +102,19 @@ class ResultsContainer extends React.Component{
 
   onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
 
+  onClickNextQuestionFunction = () => {
+    console.log('test')
+    this.props.onSetGameState('reInit')
+    this.props.onUpdateGameStatus('reInitGame', true)
+    this.props.onLoadingModal(true)
+    this.onDisableNextQuestionButton()
+    if(this.props.play.question) this.props.onResetQuestion()
+    if(this.props.play.answer) this.props.onResetAnswer()
+    if(this.props.play.results) this.props.onResetResults()
+    if(this.props.play.voteStatus) this.props.onResetVote()
+    if(this.props.play.commentStatus) this.props.onResetComment()
+  }
+
   render(){
     let routeBoard
 
@@ -103,6 +123,20 @@ class ResultsContainer extends React.Component{
     const navButtons = [
       { name: 'results', text: 'Results', route: this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats' },
       { name: 'discuss', text: 'Discuss', route: this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss' }
+    ]
+
+    const nextQuestionButton = [
+      {
+        buttonClass: 'next_question_button',
+        id: 'next_question_button',
+        name: 'nextQuestionButton',
+        enableButton: this.state.enableNextQuestionButton,
+        onClickFunction: this.onClickNextQuestionFunction,
+        text: "Next Question",
+        tooltipText: [ 'Answer another question' ],
+        tooltipClass: 'next_question_button_tooltip',
+        type: 'button'
+      }
     ]
 
     if(this.props.staticResults){
@@ -134,6 +168,13 @@ class ResultsContainer extends React.Component{
               history={ this.props.history }
               staticResults={ this.props.staticResults }
             />
+            { this.state.showNextQuestionButton &&
+              <DefaultButtonsContainer
+                buttons={ nextQuestionButton }
+                containerClass={ 'next_question_buttons_container' }
+                enableButton={ this.state.enableNextQuestionButton }
+              />
+            }
           </Route>
           <Route exact path={ routes[this.props.play.gameMode] + '/results/discuss' }>
             <ResultsDiscussContainer
@@ -145,24 +186,20 @@ class ResultsContainer extends React.Component{
     }
 
     return(
-      <div className='results_container'>
+      <>
         <NavBarContainer buttons={ navButtons } />
-        { routeBoard }
-        { !this.props.staticResults &&
-          <ResultsNextQuestion
-            showNextQuestionButton={ this.state.showNextQuestionButton }
-            enableNextQuestionButton={ this.state.enableNextQuestionButton }
-            onDisableNextQuestionButton= { this.onDisableNextQuestionButton }
-          />
-        }
-        { this.state.showLegend && <StatsLegend /> }
-      </div>
+        <div className='results_wrapper'>
+          { routeBoard }
+          { this.state.showLegend && <StatsLegend /> }
+        </div>
+      </>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    modal: state.modal,
     play: state.play,
     user: state.user,
     questions: state.questions
@@ -177,7 +214,15 @@ const mapDispatchToProps = (dispatch) => {
     onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
     onClearQuestionStatus: () => dispatch(clearQuestionStatus()),
     onClearStaticQuestionVoteStatus: () => dispatch(clearStaticQuestionVoteStatus()),
-    onClearStaticUserVote: () => dispatch(clearStaticUserVote())
+    onClearStaticUserVote: () => dispatch(clearStaticUserVote()),
+    onLoadingModal: (bool) => dispatch(loading(bool)),
+    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading)),
+    onSetGameState: (state) => dispatch(setGameState(state)),
+    onResetQuestion: () => dispatch(resetQuestion()),
+    onResetAnswer: () => dispatch(resetAnswer()),
+    onResetResults: () => dispatch(resetResults()),
+    onResetVote: (obj) => dispatch(resetVote(obj)),
+    onResetComment: (obj) => dispatch(resetComment(obj)),
   }
 }
 

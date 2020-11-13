@@ -1,12 +1,11 @@
 .results_answer_header {
   animation: fade_in.25s ease-in-out 1;
   padding: 20px 0px 10px 0px;
-  background: rgba(255,255,255, 1);
   text-align: center;
   width: 100%;
 }
 
 .results_answer_header h3 {
   animation: fade_in .25s ease-in-out 1;
-  font: 300 22pt 'Lato', sans-serif;
+  font: 600 20pt 'LatoLight', sans-serif;
 }

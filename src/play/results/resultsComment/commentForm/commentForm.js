@@ -1,6 +1,8 @@
 import React from 'react'
 
 import CommentFormErrorItem from '../commentFormErrorItem/commentFormErrorItem'
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
 
 import './commentForm.css'
 
@@ -19,10 +21,23 @@ const commentForm = (props) => {
     }
   }
 
+  const addCommentButtons = [
+    {
+      buttonClass: 'add_comment_button',
+      id: 'add_comment_button',
+      name: 'addCommentButton',
+      enableButton: props.enableAddCommentButton,
+      onClickFunction: props.onAddComment,
+      text: "Leave A Comment",
+      tooltipText: [ 'Discuss!' ],
+      tooltipClass: 'add_comment_button_tooltip',
+      type: 'submit'
+    }
+  ]
+
   return(
     <form
       name="results_comment_form"
-      interaction="submit"
       className="results_comment_form"
       onSubmit={ props.onAddComment }
     >
@@ -34,14 +49,11 @@ const commentForm = (props) => {
         onChange={ props.onChangeComment }
         value={ props.comment }
       />
-      <div className="results_comment_button_container">
-        <input
-          disabled={ !props.enableAddCommentButton }
-          className={ props.enableAddCommentButton ? "results_comment_button" : "results_comment_button_disabled" }
-          type="submit"
-          value="Leave A Comment"
-        />
-      </div>
+      <DefaultButtonsContainer
+        buttons={ addCommentButtons }
+        containerClass='add_comment_button_container'
+        enableButton={ props.enableAddCommentButton }
+      />
       { !props.commentForm.valid && props.commentForm.errors.length && <div className='results_comment_error_container'>{ distribCommentErrors }</div> }
     </form>
   )

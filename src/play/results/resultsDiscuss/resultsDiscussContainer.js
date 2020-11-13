@@ -97,12 +97,8 @@ class ResultsDiscussContainer extends React.Component {
           type: 'play',
           qid: this.props.play.question.id,
           user_name: this.props.user.info.user_name,
-          // question: this.props.play.question.question,
           difficulty: this.props.play.question.difficulty,
           category: this.props.play.question.category,
-          // answer: this.props.play.answer.choice,
-          // correct_answer: this.props.play.results.correct_answer,
-          // result: this.props.play.results.result,
         }
         this.props.onUpdateCommentStatus('initComment', true)
       } else {
@@ -162,7 +158,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSetVote: (obj) => dispatch(setVote(obj)),
     onVoteLoading: (bool) => dispatch(voteLoading(bool)),
-
     onSetComment: (obj) => dispatch(setComment(obj)),
     onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onUpdateCommentStatus: (status, loading) => dispatch(updateCommentStatus(status, loading)),

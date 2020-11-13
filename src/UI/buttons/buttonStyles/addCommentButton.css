@@ -1,0 +1,75 @@
+.add_comment_button {
+  -webkit-appearance: none;
+  align-items: center;
+  background: rgba(50, 50, 50, 0);
+  border: 0px solid black;
+  box-sizing: border-box;
+  color: rgba(235, 235, 235, 1);
+  cursor: pointer;
+  display: inline-block;
+  font: 300 10pt 'PoppinsLight', sans-serif;
+  letter-spacing: normal;
+  margin: 0px;
+  padding: 10px 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+}
+
+.add_comment_button:hover {
+  color: rgba(50, 50, 50, 1);
+  background-color: rgba(244, 166, 66, 1);
+  border: 0px solid black;
+  box-sizing: border-box;
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  transition: background-color .2s ease-in-out 0s;
+}
+
+.add_comment_button_disabled {
+  -webkit-appearance: none;
+  align-items: center;
+  background: rgba(174,174,174, 0);
+  border: 0px solid black;
+  box-sizing: border-box;
+  color: rgb(235, 235, 235, 0);
+  cursor: default;
+  display: inline-block;
+  font: 100 10pt 'PoppinsLight', sans-serif;
+  letter-spacing: normal;
+  margin: 0px;
+  opacity: 0;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+}
+
+.add_comment_button img {
+  width: 20px;
+  height: 20px;
+}
+
+.add_comment_button span {
+  align-self: stretch;
+}
+
+.add_comment_button:active span {
+  color: rgba(50, 50, 50, 1);
+  display: block;
+  opacity: 0;
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  transform: translate(0px, 15px);
+  transition: all .15s ease-in-out 0s;
+  transition-property: opacity, transform;
+  outline: -webkit-focus-ring-color auto 0px;
+}

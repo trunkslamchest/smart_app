@@ -23,7 +23,6 @@
 .results_comment_error_container {
   align-content: center;
   align-items: center;
-  border: 1px solid rgba(200, 200, 200, 1);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

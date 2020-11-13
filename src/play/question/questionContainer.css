@@ -1,9 +1,4 @@
-.blank {
-  opacity: 0;
-}
-
 .question_wrapper {
-  /* background: rgba(50, 50, 50, 1); */
   color: rgba(255, 255, 255 , 1);
   margin: 20px 0px;
   padding: 20px 20px;

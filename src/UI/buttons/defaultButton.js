@@ -7,6 +7,10 @@ import './buttonStyles/diffButton.css'
 import './buttonStyles/catButton.css'
 import './buttonStyles/gameModesButton.css'
 import './buttonStyles/questionCardChoiceButton.css'
+import './buttonStyles/nextQuestionButton.css'
+import './buttonStyles/addCommentButton.css'
+import './buttonStyles/editCommentButton.css'
+import './buttonStyles/editCommentFormButton.css'
 
 class DefaultButton extends React.Component {
 
@@ -29,7 +33,6 @@ class DefaultButton extends React.Component {
 
   onClickFunction = (event) => {
     event.preventDefault()
-
     if(this.props.enableButton){
       event.persist()
       this.props.onClickFunction(event)

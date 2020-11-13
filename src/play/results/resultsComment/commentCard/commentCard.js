@@ -12,6 +12,8 @@ import {
 import makeCommentObject from '../../resultsFunctions/makeCommentObject'
 import validateComment from '../../../../utility/validation/validateComment'
 
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
 import CommentFormErrorItem from '../commentFormErrorItem/commentFormErrorItem'
 
 import './commentCard.css'
@@ -52,7 +54,7 @@ class commentCard extends React.Component {
 
   render() {
 
-    let deleteButton, editButton, editCommentCancelButton, distribEditCommentErrors, distribButtons, commentCard, commentUser = this.props.comment.user
+    let distribEditCommentErrors, commentButtons, commentFormButtons, commentCard, commentUser = this.props.comment.user
 
     if(this.props.comment.user === this.props.user.info.user_name){
 
@@ -63,31 +65,51 @@ class commentCard extends React.Component {
       }
 
       const onEditCommentFunctions = () => { this.setState({ showEditCommentForm: true }) }
-      const onCancelEditCommentFunctions = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: true }) }
+      const onCancelEditCommentFunctions = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: false }) }
 
-      const commentButtons = [
-        { kind: 'button', name: 'edit_comment', className: 'results_edit_comment_button', onClickFunctions: onEditCommentFunctions, text: 'Edit' },
-        { kind: 'button', name: 'delete_comment', className: 'results_edit_comment_button', onClickFunctions: onDeleteCommentFunctions, text: 'Delete' },
-        { kind: 'button', name: 'edit_comment_cancel', className: 'results_edit_comment_button', onClickFunctions: onCancelEditCommentFunctions, text: 'Cancel' },
+      commentButtons = [
+        {
+          buttonClass: 'edit_comment_button',
+          id: 'edit_comment_button',
+          name: 'editCommentButton',
+          onClickFunction: onEditCommentFunctions,
+          text: "Edit",
+          tooltipText: [ 'Edit Your Comment' ],
+          tooltipClass: 'edit_comment_button_tooltip',
+          type: 'button'
+        },
+        {
+          buttonClass: 'delete_comment_button',
+          id: 'delete_comment_button',
+          name: 'deleteCommentButton',
+          onClickFunction: onDeleteCommentFunctions,
+          text: "Delete",
+          tooltipText: [ 'Delete Your Comment' ],
+          tooltipClass: 'edit_comment_button_tooltip',
+          type: 'button'
+        }
       ]
 
-      distribButtons = commentButtons.map( commentButton => {
-        return (
-          <commentButton.kind
-            className='results_edit_comment_button'
-            id={`results_${ commentButton.name }_button`}
-            key={ commentButtons.indexOf(commentButton) + commentButton.name }
-            name={`results_${ commentButton.name }_button`}
-            onClick={ commentButton.onClickFunctions }
-          >
-            { commentButton.text }
-          </commentButton.kind>
-        )
-      })
-
-      editButton = distribButtons[0]
-      deleteButton = distribButtons[1]
-      editCommentCancelButton = distribButtons[2]
+      commentFormButtons = [
+        {
+          id: 'edit_comment_form_button',
+          name: 'editCommentConfirmButton',
+          onClickFunction: this.onAddEditedComment,
+          text: "Confirm",
+          tooltipText: [ 'Confirm' ],
+          tooltipClass: 'edit_comment_button_tooltip',
+          type: 'button'
+        },
+        {
+          id: 'edit_comment_form_button',
+          name: 'editCommentCancelButton',
+          onClickFunction: onCancelEditCommentFunctions,
+          text: "Cancel",
+          tooltipText: [ 'Cancel' ],
+          tooltipClass: 'edit_comment_button_tooltip',
+          type: 'button'
+        },
+      ]
     } else commentUser = <Link to={ routes.user_profile + '/' + this.props.comment.user } target='_blank'>{ this.props.comment.user }</Link>
 
     if(!this.state.editCommentForm.valid) {
@@ -103,32 +125,36 @@ class commentCard extends React.Component {
 
     if(this.state.showEditCommentForm) {
       commentCard =
-        <form
-          name="results_edit_comment_form"
-          className="results_edit_comment_form"
-          onSubmit={ this.onAddEditedComment }
-        >
-        <textarea
-          rows="3"
-          id="results_edit_comment"
-          name="edit_comment_text"
-          placeholder="Your comment..."
-          onChange={ this.onEditComment }
-          value={ this.state.editedComment }
-        />
-        <div className="results_edit_comment_buttons_container">
-          <input
-            disabled={ !this.state.enableEditCommentButton }
-            id='results_edit_comment_confirm_button'
-            name='results_edit_comment_confirm_button'
-            className={ this.state.enableEditCommentButton ? "results_edit_comment_button" : "results_edit_comment_button_disabled" }
-            type="submit"
-            value="Confirm"
+        <ul>
+          <div className='results_all_comments_comment_header'>
+            <h5>{ commentUser }</h5>
+            <span>{ this.props.comment.timestamp }</span>
+          </div>
+            <li>
+              <form
+                name="results_edit_comment_form"
+                className="results_edit_comment_form"
+                onSubmit={ this.onAddEditedComment }
+              >
+              <textarea
+                rows="3"
+                id="results_edit_comment"
+                name="edit_comment_text"
+                placeholder="Your comment..."
+                onChange={ this.onEditComment }
+                value={ this.state.editedComment }
+              />
+            </form>
+            { !this.state.editCommentForm.valid && this.state.editCommentForm.errors.length && <div className='results_edit_comment_error_container'>{ distribEditCommentErrors }</div> }
+
+          </li>
+          <DefaultButtonsContainer
+            buttons={ commentFormButtons }
+            buttonClass={ "edit_comment_button" }
+            containerClass={ "edit_comment_buttons_container" }
+            enableButton={ this.state.enableEditCommentButton }
           />
-          { editCommentCancelButton }
-        </div>
-        { !this.state.editCommentForm.valid && this.state.editCommentForm.errors.length && <div className='results_edit_comment_error_container'>{ distribEditCommentErrors }</div> }
-      </form>
+        </ul>
     } else {
       commentCard =
         <ul>
@@ -139,10 +165,12 @@ class commentCard extends React.Component {
           <li>
             <p>{ this.props.comment.comment }</p>
           </li>
-          <div className='results_edit_comment_buttons_container'>
-            { editButton }
-            { deleteButton }
-          </div>
+          <DefaultButtonsContainer
+            buttons={ commentButtons }
+            buttonClass={ "edit_comment_button" }
+            containerClass={ "edit_comment_buttons_container" }
+            enableButton={ this.state.enableEditCommentButton }
+          />
         </ul>
     }
 
