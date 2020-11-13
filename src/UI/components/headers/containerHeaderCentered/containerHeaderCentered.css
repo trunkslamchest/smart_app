@@ -1,0 +1,29 @@
+.container_header_centered {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  /* background: rgba(51, 51, 51, 1); */
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  height: 35px;
+}
+
+.container_header_centered_text {
+  align-self: stretch;
+  display: flex;
+}
+
+.container_header_centered_text h1 {
+  align-self: center;
+  display: flex;
+  font: 600 15pt "LatoThin";
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0em;
+  margin-inline-end: 0em;
+}

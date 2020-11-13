@@ -4,7 +4,7 @@ import './wrapper.css'
 
 const Wrapper = (props) => {
   return(
-    <div className='empty_wrapper'>
+    <div className='main_wrapper'>
       { props.children }
     </div>
   )

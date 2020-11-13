@@ -1,32 +1,6 @@
 .selection_wrapper {
-  z-index: 1;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 0 auto 0 auto;
-  /* animation: fade_in .3s ease-in-out 1; */
-  /* min-height: calc(100vh - 165px); */
-  min-height: calc(100vh - 190px);
-}
-
-.selection_wrapper h1 {
+  background-color: rgba(50, 50, 50, 1);
+  margin: 20px 0px 20px 0px;
   width: 100%;
-  font: 300 20pt "Lato";
-  text-align: center;
-  background: rgba(255, 255, 255, 1);
-  padding: 10px 0px;
-  margin: 0px 0px 0px 0px;
-}
-
-.selection_buttons_container {
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-content: center;
-  padding: 20px 0px;
-  margin: 0 auto 0 auto;
-  /* animation: fade_in .3s ease-in-out 1; */
+  padding: 10px 75px 20px 75px;
 }

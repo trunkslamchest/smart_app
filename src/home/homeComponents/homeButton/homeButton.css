@@ -3,16 +3,6 @@
   width: 100%;
 }
 
-.home_button_text_container {
-  display: block;
-  width: 100%;
-}
-
-.home_button_text_container span {
-  color: rgba(255, 255, 255, 1);
-  font: 300 10pt 'PoppinsLight', sans-serif;
-}
-
 .home_button_wrapper:hover {
   cursor: pointer;
   background-color: rgba(244, 166, 66, 1);
@@ -23,12 +13,6 @@
 .home_button_wrapper:hover .home_button_text_container span {
   color: rgba(50, 50, 50, 1);
   font: 600 10pt 'PoppinsLight', sans-serif;
-}
-
-.home_button_text_container_active span {
-  display: block;
-  font: 600 10pt 'PoppinsLight', sans-serif;
-  opacity: 1;
 }
 
 .home_button_wrapper_active {
@@ -44,6 +28,23 @@
   /* transition: all .1s ease-in-out 0s; */
   /* transition-property: width; */
 }
+
+.home_button_text_container {
+  display: block;
+  width: 100%;
+}
+
+.home_button_text_container span {
+  color: rgba(255, 255, 255, 1);
+  font: 300 10pt 'PoppinsLight', sans-serif;
+}
+
+.home_button_text_container_active span {
+  display: block;
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  opacity: 1;
+}
+
 
 .home_button_text_container_active {
   font: 600 10pt 'PoppinsLight', sans-serif;

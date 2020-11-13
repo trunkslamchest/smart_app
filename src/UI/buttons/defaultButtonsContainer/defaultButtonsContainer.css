@@ -1,0 +1,50 @@
+.default_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}
+
+.game_modes_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}
+
+.cat_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}
+
+.diff_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}
+
+.default_button_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+}
