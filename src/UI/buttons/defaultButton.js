@@ -11,6 +11,8 @@ import './buttonStyles/nextQuestionButton.css'
 import './buttonStyles/addCommentButton.css'
 import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
+import './buttonStyles/completedButton.css'
+
 
 class DefaultButton extends React.Component {
 

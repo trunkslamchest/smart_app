@@ -17,10 +17,10 @@ const CompletedButtonsContainer = (props) => {
 
   return(
     <div className='completed_buttons_container'>
-      <div className='default_header'>
+      {/* <div className='default_header'>
         <h1>{ props.play.question.msg1 }</h1>
         <h2>{ props.play.question.msg2 }</h2>
-      </div>
+      </div> */}
       <PlayButton
         link={ routes.by_diff }
         buttonName="by_diff"

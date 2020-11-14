@@ -2,15 +2,9 @@
   opacity: 0;
 }
 
-.completed_container {
-  width: 100wh !important;
-  /* min-height: calc(100vh - 165px); */
-  min-height: calc(100vh - 190px);
-  margin: 0px auto 0px auto;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
+.completed_wrapper {
+  background-color: rgba(50, 50, 50, 1);
+  margin: 20px 0px 20px 0px;
+  width: 100%;
+  padding: 10px 75px 20px 75px;
 }

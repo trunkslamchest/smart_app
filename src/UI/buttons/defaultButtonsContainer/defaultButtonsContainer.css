@@ -8,6 +8,16 @@
   margin: 10px 0px 0px 0px;
 }
 
+.completed_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}
+
 .add_comment_button_container {
   align-items: center;
   align-content: center;
