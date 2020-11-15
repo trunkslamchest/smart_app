@@ -14,7 +14,7 @@ import {
 import validateComment from '../../../utility/validation/validateComment'
 import getTime from '../../../utility/getTime'
 
-import ResultsVote from '../resultsVote/resultsVote'
+import VoteContainer from '../../../UI/components/containers/voteContainer/voteContainer'
 import ResultsComment from '../resultsComment/resultsComment'
 
 import './resultsDiscussContainer.css'
@@ -37,6 +37,8 @@ class ResultsDiscussContainer extends React.Component {
   }
 
   componentDidUpdate(){
+    if(((this.props.play.results && this.props.play.results.vote) ||
+       (this.props.questions.staticUserResults && this.props.questions.staticUserResults.vote)) && this.state.showVoteButtons) this.setState({ showVoteButtons: false })
     if(this.props.play.commentLoading && this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: false })
     if(!this.props.play.commentLoading && !this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: true })
   }
@@ -122,13 +124,19 @@ class ResultsDiscussContainer extends React.Component {
   }
 
   render(){
+
+    let voteProps
+
+    if(this.props.play.question) voteProps = this.props.play.question.votes
+    if(this.props.questions.staticQuestion) voteProps = this.props.questions.staticQuestion.votes
+
     return(
       <div className='results_discuss_container'>
-          <ResultsVote
+          <VoteContainer
             enableVoteButtons={ this.state.enableVoteButtons }
             onClickVoteFunctions={ this.onClickVoteFunctions }
             showVoteButtons={ this.state.showVoteButtons }
-            staticResults={ this.props.staticResults }
+            voteProps={ voteProps }
           />
           <ResultsComment
             comment={ this.state.comment }

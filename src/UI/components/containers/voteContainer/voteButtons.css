@@ -1,4 +1,4 @@
-.results_vote_buttons_container {
+.vote_buttons_container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -6,7 +6,7 @@
   align-content: center;
 }
 
-.results_vote button {
+.vote button {
 
 }
 

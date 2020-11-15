@@ -8,11 +8,10 @@ import {
 
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
 import UserProfileAchievementsContainer from './userProfileAchievements/userProfileAchievementsContainer'
-
-import UserProfileVotesContainer from './userProfileVotes/userProfileVotesContainer'
 import UserProfileCommentsContainer from './userProfileComments/userProfileCommentsContainer'
 
 import UserStatsContainer from '../../UI/components/containers/userStatsContainer/userStatsContainer'
+import VoteContainer from '../../UI/components/containers/voteContainer/voteContainer'
 
 import './userProfileContainer.css'
 
@@ -60,9 +59,10 @@ class UserProfileContainer extends React.Component {
               />
             }
             { !!this.props.profile.userData.questions &&
-              <UserProfileVotesContainer
-                questions={ this.props.profile.userData.questions }
-                history={ this.props.history }
+              <VoteContainer
+                enableVoteButtons={ false }
+                showVoteButtons={ false }
+                voteProps={ this.props.profile.userData.questions.all.votes }
               />
             }
            { !!this.props.profile.userData.questions &&

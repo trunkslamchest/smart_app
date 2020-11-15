@@ -20,8 +20,11 @@ const ResultsComment = (props) => {
       <BaseDynamicBar modalType={ 'questionComment' } barType={ 'questionComment' } />
     </div>
 
-  if(!props.staticResults) if(props.play.results && props.play.question.comments) allComments = Object.entries(props.play.question.comments)
-  else if (props.questions.staticQuestion && props.questions.staticQuestion.comments) allComments = Object.entries(props.questions.staticQuestion.comments)
+  if(props.staticResults) {
+    if (!!props.questions.staticQuestion && !!props.questions.staticQuestion.comments) allComments = Object.entries(props.questions.staticQuestion.comments)
+  } else {
+    if(props.play.results && props.play.question.comments) allComments = Object.entries(props.play.question.comments)
+  }
 
   if(allComments && (props.play.status === 'displayResults' || props.questions.status === 'StaticQuestionSuccess')){
     distribComments = allComments.map(comment =>
