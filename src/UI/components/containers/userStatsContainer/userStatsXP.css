@@ -1,4 +1,4 @@
-.stats_experience_container {
+.user_stats_experience_container {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -11,17 +11,17 @@
   align-self: center;
 }
 
-.stats_experience_container h4 {
+.user_stats_experience_container h4 {
   font: 300 10pt 'Lato', sans-serif;
   padding-left: 5px;
 }
 
-.stats_experience_container h3 {
+.user_stats_experience_container h3 {
   font: 300 12pt 'Poppins', sans-serif;
   /* padding-bottom: 2.5px; */
 }
 
-.stats_experience_bar_container {
+.user_stats_experience_bar_container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-.stats_experience_bar {
+.user_stats_experience_bar {
   height: 10px;
   width: 100%;
   display: flex;

@@ -49,7 +49,12 @@ class Dashboard extends React.Component{
               <DashboardEditProfileContainer history={ this.props.history } />
             </Route>
             <Route exact path={ routes.dashboard_stats }>
-              <DashboardStatsContainer history={ this.props.history } />
+              <DashboardStatsContainer
+                question_totals={ this.props.questions.totals }
+                user_questions={ this.props.user.questions.totals }
+                user_experience={ this.props.user.experience }
+                history={ this.props.history }
+              />
             </Route>
             <Route exact path={ routes.dashboard_achievements }>
               <DashboardAchievementsContainer history={ this.props.history } />
@@ -75,6 +80,8 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
+    questions: state.questions,
     auth: state.auth
   }
 }

@@ -6,7 +6,6 @@ import formatMonth from '../../../utility/forms/formatMonth'
 import formatDay from '../../../utility/forms/formatDay'
 
 import ContainerProfileHeader from '../../../UI/components/headers/containerProfileHeader/containerProfileHeader'
-import DefaultSubContainer from '../../../UI/components/containers/defaultSubContainer/defaultSubContainer'
 
 import './userProfileInfoContainer.css'
 
@@ -37,20 +36,6 @@ const UserProfileInfoContainer = (props) => {
       { last_login }
     </div>
 
-  let userProfileInfoBlocks = [ { params: bio, blockClass: 'user_profile_info_bio_container' } ]
-
-  const distribUserProfileInfoBlocks = userProfileInfoBlocks.map((block, index) => {
-    return(
-      <div
-        className={ block.blockClass }
-        key={ index }
-      >
-        <span>{ block.params }</span>
-      </div>
-    )
-  })
-
-
   return(
     <div className="user_profile_info_container">
       <ContainerProfileHeader
@@ -62,14 +47,9 @@ const UserProfileInfoContainer = (props) => {
         gender={ gender }
         gender_pronouns={ gender_pronouns }
         age={ age }
+        bio={ bio }
         date_block={ date_block }
       />
-      { !!bio &&
-        <DefaultSubContainer
-          containerClass={ 'user_profile_sub_container' }
-          blocks={ distribUserProfileInfoBlocks }
-        />
-      }
     </div>
   )
 }

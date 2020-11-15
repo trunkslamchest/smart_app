@@ -3,7 +3,7 @@
   margin: 0px 2.5px;
 }
 
-.stats_total {
+.user_stats_total {
   /* background: rgba(50, 50, 50, 1); */
   color: rgba(255, 255, 255, 1);
   display: flex;
@@ -17,11 +17,11 @@
   width: 100%;
 }
 
-.stats_total br {
+.user_stats_total br {
   line-height: 0em;
 }
 
-.stats_total ul {
+.user_stats_total ul {
   text-align:center;
   width: 50% !important;
   list-style: none;
@@ -32,7 +32,7 @@
   margin-inline-end: 0px;
 }
 
-.stats_total li {
+.user_stats_total li {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -42,7 +42,7 @@
   padding: 2.5px 0px;
 }
 
-.stats_xp_perf_container {
+.user_stats_xp_perf_container {
   width: 50%;
   display: flex;
   flex-direction: column;
