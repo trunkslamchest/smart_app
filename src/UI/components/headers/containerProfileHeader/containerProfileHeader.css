@@ -1,0 +1,93 @@
+.container_profile_header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  /* margin: 1.25em 0em 0em 0em; */
+  padding: 0px 0px 0px 20px;
+  color: rgb(225, 225, 225, 1);
+  /* background: rgba(50, 50, 50, 1); */
+}
+
+.container_profile_header_left {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start;
+  align-items: center;
+  align-content: center; */
+}
+
+.container_profile_header_left_img {
+  width: 100px;
+  height: 100px;
+}
+
+.container_profile_header_left_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  padding-left: .5em;
+}
+
+.container_profile_header_left_text_sub_countainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.container_profile_header_left_text_top {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  align-self: flex-start;
+  font: 300 10pt 'LatoLightItalic';
+
+}
+
+.container_profile_header_left_text_bottom {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  align-self: flex-end;
+  font: 300 9pt 'Lato';
+}
+
+.container_profile_header_left_text_sub_countainer span {
+  margin: 0px 5px 0px 0px;
+}
+
+.container_profile_header_left_text_sub_countainer img {
+  padding-right: 5px;
+}
+
+.container_profile_header_left_text h2 {
+	font: 600 20pt 'LatoThin', sans-serif;
+}
+
+.container_profile_header_left_text h3 {
+  font: 600 20pt 'LatoThin', sans-serif;
+}
+
+.container_profile_header_left_text h4 {
+  font: 300 15pt 'LatoThin', sans-serif;
+}
+
+.container_profile_header_left_text h5 {
+  font: 300 10pt 'LatoThin', sans-serif;
+}
+
+.container_profile_header_right {
+
+}

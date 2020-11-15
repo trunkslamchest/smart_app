@@ -1,6 +1,5 @@
 import React from 'react'
 import { routes } from '../../utility/paths'
-
 import { connect } from 'react-redux'
 import {
   setGameMode,
@@ -16,8 +15,6 @@ import ContainerHeaderCentered from '../../UI/components/headers/containerHeader
 import ContainerSubHeaderCentered from '../../UI/components/subHeaders/containerSubHeaderCentered/containerSubHeaderCentered'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-
-// import CompletedButtonsContainer from './completedButtonsContainer/completedButtonsContainer'
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
 
 import './completedContainer.css'
@@ -34,9 +31,7 @@ class CompletedContainer extends React.Component {
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 2000)
   }
 
-  componentDidUpdate(){
-
-  }
+  componentDidUpdate(){ }
 
   componentWillUnmount(){
     clearTimeout(this.completedTimeout)
@@ -93,43 +88,11 @@ class CompletedContainer extends React.Component {
       }
     ]
 
-      //         buttonClass={ props.buttonClass || button.buttonClass }
-      //           id={ button.id }
-      //           image={ button.image }
-      //           imageHover={ button.imageHover }
-      //           key={ index }
-      //           name={ button.name }
-      //           enableButton={ props.enableButton }
-      //           onClickFunction={ button.onClickFunction }
-      //           params={ button.params }
-      //           text={ button.text }
-      //           tooltipText={ button.tooltipText }
-      //           tooltipClass={ props.tooltipClass || button.tooltipClass }
-      //           type={ button.type }
-
-      // <PlayButton
-      //   link={ routes.by_diff }
-      //   buttonName="by_diff"
-      //   classType="play_by_difficulty_button"
-      //   onClick={ onClickFunctions }
-      // >
-      //   Choose a new Difficulty
-      // </PlayButton>
-      // <PlayButton
-      //   link={ routes.by_cat }
-      //   buttonName="by_cat"
-      //   classType="play_by_category_button"
-      //   onClick={ onClickFunctions }
-      // >
-      //   Choose a new Category
-      // </PlayButton>
-
     if(this.state.showWrapper) {
       compeletedWrapper =
       <div className='completed_wrapper'>
         <ContainerHeaderCentered header_text={ this.props.play.question.msg1 } />
         <ContainerSubHeaderCentered header_text={ this.props.play.question.msg2 } />
-        {/* <CompletedButtonsContainer onClickFunctions={ this.onClickFunctions } /> */}
         <DefaultButtonsContainer
           buttons={ completedButtons }
           containerClass={ 'completed_buttons_container' }

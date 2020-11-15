@@ -37,22 +37,20 @@ class UserProfileContainer extends React.Component {
       if(typeof this.props.profile.userData === 'string') userProfileBlock = <h2>{ this.props.profile.userData }</h2>
       else {
         userProfileBlock =
-          <>
+          <div className="user_profile_wrapper">
             <UserProfileInfoContainer
               info={ this.props.profile.userData.info }
               history={ this.props.history }
             />
-            <UserProfileExperience history={ this.props.history } />
-            <UserProfileStatsContainer history={ this.props.history } />
-            <UserProfileAchievementsContainer history={ this.props.history } />
-          </>
+            {/* <UserProfileExperience history={ this.props.history } /> */}
+            {/* <UserProfileStatsContainer history={ this.props.history } /> */}
+            {/* <UserProfileAchievementsContainer history={ this.props.history } /> */}
+          </div>
       }
     }
 
     return(
-      <div className="user_profile_container">
-        { userProfileBlock }
-      </div>
+      <>{ userProfileBlock }</>
     )
   }
 }

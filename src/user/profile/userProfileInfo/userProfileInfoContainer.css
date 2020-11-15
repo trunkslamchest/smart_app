@@ -14,11 +14,11 @@
   margin: 0px auto 0px auto;
 }
 
-.user_profile_sub_container {
+/* .user_profile_sub_container {
   width: 100%;
   padding: 5px 0px 5px 0px;
   z-index: 8;
-}
+} */
 
 .user_profile_info_sub_container h3 {
   font: 300 20pt 'Lato', sans-serif;
@@ -44,4 +44,43 @@
   width: 100px;
   height: auto;
   padding: 0px;
+}
+
+.user_profile_info_date_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.user_profile_info_date_sub_container {
+  margin: 5px 0px;
+}
+
+.user_profile_info_date_sub_container h4 {
+  font: 300 10pt 'Lato';
+}
+
+.user_profile_info_date_sub_container h5 {
+  font: 300 9pt 'LatoLightItalic';
+}
+
+.user_profile_info_bio_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.user_profile_info_bio_container span {
+  color: rgba(255, 255, 255, 1);
+  font: 300 10pt 'Lato';
+  margin: 10px 0px 5px 0px;
+  text-align: left;
 }

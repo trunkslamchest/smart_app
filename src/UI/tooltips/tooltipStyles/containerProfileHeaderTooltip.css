@@ -1,0 +1,55 @@
+.completed_button_tooltip_container {
+  position: absolute;
+  height: 0px;
+  font: 600 9pt 'Lato', 'sans-serif';
+}
+
+@keyframes modal_button_tooltip_fade_in {
+  0% {
+    opacity: 0;
+  };
+  100% {
+    opacity: 1;
+  };
+}
+
+.completed_button_tooltip_wrapper {
+  position: relative;
+  top: 2.7em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1;
+}
+
+.completed_button_tooltip_arrow {
+  animation: modal_button_tooltip_fade_in .2s ease-in-out 0s 1;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgba(244, 166, 66, 1);
+  height: 10px;
+  width: 10px;
+}
+
+.completed_button_tooltip_text {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgba(244, 166, 66, 1);
+  padding: 10px;
+}
+
+.completed_button_tooltip_wrapper span {
+  animation: modal_button_tooltip_fade_in .2s ease-in-out 0s 1;
+  color: rgba(40, 44, 52, 1);
+  text-align: center;
+}

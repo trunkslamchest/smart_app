@@ -8,7 +8,7 @@ import './tooltipStyles/nextQuestionButtonTooltip.css'
 import './tooltipStyles/addCommentButtonTooltip.css'
 import './tooltipStyles/editCommentButtonTooltip.css'
 import './tooltipStyles/completedButtonTooltip.css'
-
+import './tooltipStyles/containerProfileHeaderTooltip.css'
 
 const DefaultButtonTooltip = (props) => {
   return(

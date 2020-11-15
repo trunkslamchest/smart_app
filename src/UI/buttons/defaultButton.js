@@ -12,7 +12,7 @@ import './buttonStyles/addCommentButton.css'
 import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
 import './buttonStyles/completedButton.css'
-
+import './buttonStyles/containerProfileHeaderButton.css'
 
 class DefaultButton extends React.Component {
 
