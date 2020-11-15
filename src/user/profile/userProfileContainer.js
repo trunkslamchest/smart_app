@@ -7,9 +7,8 @@ import {
 } from '../../store/actions/actionIndex'
 
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
-import UserProfileAchievementsContainer from './userProfileAchievements/userProfileAchievementsContainer'
 import UserProfileCommentsContainer from './userProfileComments/userProfileCommentsContainer'
-
+import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
 import UserStatsContainer from '../../UI/components/containers/userStatsContainer/userStatsContainer'
 import VoteContainer from '../../UI/components/containers/voteContainer/voteContainer'
 
@@ -53,9 +52,11 @@ class UserProfileContainer extends React.Component {
               />
             }
            { !!this.props.profile.userData.achievements &&
-              <UserProfileAchievementsContainer
-                achievements={ this.props.profile.userData.achievements }
+              <UserAchievementsContainer
+                all_achievements={ this.props.achievements }
+                from_dashboard={ false }
                 history={ this.props.history }
+                user_achievements={ this.props.profile.userData.achievements }
               />
             }
             { !!this.props.profile.userData.questions &&
@@ -83,6 +84,7 @@ class UserProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    achievements: state.achievements,
     modal: state.modal,
     user: state.user,
     questions: state.questions,

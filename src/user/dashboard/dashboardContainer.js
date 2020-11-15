@@ -10,12 +10,11 @@ import {
 import DashboardIndex from './dashboardContainers/dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardContainers/dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardContainers/dashboardStats/dashboardStatsContainer'
-import DashboardAchievementsContainer from './dashboardContainers/dashboardAchievements/dashboardAchievementsContainer'
 import DashboardSettingsContainer from './dashboardContainers/dashboardSettings/dashboardSettingsContainer'
-
 import DashboardEditProfileContainer from './dashboardContainers/dashboardEditProfile/dashboardEditProfileContainer'
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
+import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
 import NavBarContainer from '../../UI/navBar/navBarContainer'
 
 import './dashboardContainer.css'
@@ -57,7 +56,12 @@ class Dashboard extends React.Component{
               />
             </Route>
             <Route exact path={ routes.dashboard_achievements }>
-              <DashboardAchievementsContainer history={ this.props.history } />
+              <UserAchievementsContainer
+                all_achievements={ this.props.achievements }
+                from_dashboard={ true }
+                history={ this.props.history }
+                user_achievements={ this.props.user.achievements }
+              />
             </Route>
             <Route exact path={ routes.dashboard_settings }>
               <DashboardSettingsContainer history={ this.props.history } />
@@ -80,9 +84,10 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    auth: state.auth,
+    achievements: state.achievements,
     questions: state.questions,
-    auth: state.auth
+    user: state.user
   }
 }
 

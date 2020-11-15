@@ -1,4 +1,4 @@
-.dashboard_achievement_card {
+.user_achievement_card {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -7,7 +7,7 @@
   align-content: center;
   align-self: flex-start;
   padding: 0px 5px;
-  height: 140px;
+  height: 125px;
   flex-grow: 1;
   flex-shrink: 3;
   flex-basis: 175px;
@@ -16,7 +16,7 @@
   /* width: 175px; */
 }
 
-.dashboard_achievement_card_img_container {
+.user_achievement_card_img_container {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -28,12 +28,12 @@
   padding: 5px 0px;
 }
 
-.dashboard_achievement_card_img_unlocked {
+.user_achievement_card_img_unlocked {
   border-radius: .5em;
   border: 1px solid rgba(255, 255, 255, 1);
 }
 
-.dashboard_achievement_card_img_locked {
+.user_achievement_card_img_locked {
   border-radius: .5em;
   border: 1px solid rgba(255, 255, 255, 1);
   filter: grayscale(100%);
@@ -41,14 +41,14 @@
   /* padding: 5px 0px; */
 }
 
-.dashboard_achievement_card_text_container {
+.user_achievement_card_text_container {
   /* width: 100%; */
   /* max-width: 150px; */
   /* width: 175px; */
   /* min-width: 100px; */
 }
 
-.dashboard_achievement_card_text_container h4 {
+.user_achievement_card_text_container h4 {
   font: 300 10pt 'Lato';
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -57,7 +57,7 @@
   text-align: center;
 }
 
-.dashboard_achievement_card_text_container h5 {
+.user_achievement_card_text_container h5 {
   font: 300 9pt 'LatoItalic';
   color: rgba(200, 200, 200, 1);
 
@@ -68,14 +68,14 @@
   text-align: center;
 }
 
-.dashboard_achievement_card_text_container_unlocked {
+.user_achievement_card_text_container_unlocked {
   /* width: 100%; */
   /* max-width: 150px; */
   /* width: 175px; */
   /* min-width: 100px; */
 }
 
-.dashboard_achievement_card_text_container_unlocked h4 {
+.user_achievement_card_text_container_unlocked h4 {
   font: 300 10pt 'Lato';
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -84,7 +84,7 @@
   text-align: center;
 }
 
-.dashboard_achievement_card_text_container_unlocked h5 {
+.user_achievement_card_text_container_unlocked h5 {
   font: 300 9pt 'LatoItalic';
   color: rgba(200, 200, 200, 1);
   margin-block-start: 0px;
@@ -94,14 +94,14 @@
   text-align: center;
 }
 
-.dashboard_achievement_card_text_container_locked {
+.user_achievement_card_text_container_locked {
   /* width: 100%; */
   /* max-width: 150px; */
   /* width: 175px; */
   /* min-width: 100px; */
 }
 
-.dashboard_achievement_card_text_container_locked h4 {
+.user_achievement_card_text_container_locked h4 {
   font: 600 10pt 'Lato';
   color: rgba(125, 125, 125, 1);
   margin-block-start: 0px;
@@ -111,7 +111,7 @@
   text-align: center;
 }
 
-.dashboard_achievement_card_text_container_locked h5 {
+.user_achievement_card_text_container_locked h5 {
   font: 300 9pt 'LatoItalic';
   color: rgba(100, 100, 100, 1);
   margin-block-start: 0px;
