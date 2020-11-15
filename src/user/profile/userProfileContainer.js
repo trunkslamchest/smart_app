@@ -11,16 +11,12 @@ import './userProfileContainer.css'
 
 class UserProfileContainer extends React.Component {
 
-  state = {
-
-  }
+  state = { }
 
   componentDidMount() {
     let parseLocation = this.props.history.location.pathname.split("/")
     let user_name = parseLocation[parseLocation.length - 1]
-
     document.title = `SmartApp™ | ${ user_name }'s Profile`
-
     this.props.onGetUserProfile(user_name)
   }
 
@@ -42,8 +38,19 @@ class UserProfileContainer extends React.Component {
               info={ this.props.profile.userData.info }
               history={ this.props.history }
             />
-            {/* <UserProfileExperience history={ this.props.history } /> */}
-            {/* <UserProfileStatsContainer history={ this.props.history } /> */}
+            { !!this.props.profile.userData.experience &&
+              <UserProfileExperience
+                experience={ this.props.profile.userData.experience }
+                history={ this.props.history }
+              />
+            }
+            { !!this.props.profile.userData.questions &&
+              <UserProfileStatsContainer
+                questions={ this.props.profile.userData.questions }
+                history={ this.props.history }
+              />
+
+            }
             {/* <UserProfileAchievementsContainer history={ this.props.history } /> */}
           </div>
       }
