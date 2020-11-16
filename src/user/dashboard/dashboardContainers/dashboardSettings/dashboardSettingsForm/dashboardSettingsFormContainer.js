@@ -35,9 +35,18 @@ class DashboardSettingsFormContainer extends React.Component {
     ]
 
     const headerButtons = [
-      { type: 'button', idName: 'delete_profile_button', onClickFunction: this.onClickDelete, value: 'Delete Profile' },
+      {
+        buttonClass: 'dashboard_profile_header_button',
+        type: 'button',
+        id: 'delete_profile_button',
+        name: 'deleteProfileButton',
+        onClickFunction: this.onClickDelete,
+        // params: JSON.stringify({ route: routes.dashboard_profile_edit }),
+        target: '_blank',
+        text: 'Delete Profile',
+        // value: 'Delete Profile'
+      },
     ]
-
     const formButtons = [
       { idName: 'dashboardSettingsSubmit', type: 'input', form_type: 'submit', onClickFunction: this.onSubmit, value: 'Confirm' },
       { idName: 'dashboardSettingsReset', type: 'input', form_type: 'reset', onClickFunction: this.props.onReset, value: 'Reset' },

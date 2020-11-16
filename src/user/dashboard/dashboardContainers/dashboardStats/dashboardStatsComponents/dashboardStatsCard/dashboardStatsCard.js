@@ -64,17 +64,18 @@ class DashboardStatsCard extends React.Component {
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_grey_left } />
     const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_white_left } />
 
-    let statsCardBlock,
-        qSet = this.props.qSet[0],
-        header_menu_arrow = arrow_white_left
+    let statsCardBlock
+    let qSet = this.props.qSet[0]
+    let header_menu_arrow = arrow_white_left
+    let header_menu_arrow_disabled = arrow_grey_left
 
     if(typeof this.props.answers === 'string') {
       statsCardBlock =
         <div className="stats_card_no_answers_container">
           <h3>{ qSet }</h3>
           <div className="stats_card_no_answers_left_container">
-            <h4>You have not answered any { qSet } questions</h4>
-            { header_menu_arrow }
+            {/* <h4>You have not answered any { qSet } questions</h4> */}
+            { header_menu_arrow_disabled }
           </div>
         </div>
     } else {

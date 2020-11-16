@@ -1,21 +1,24 @@
-
- .dashboard_stats_answer_card_container {
+.dashboard_stats_answer_card_container {
+  background-color: rgba(20, 20, 20, 1);
+  color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 0px 0px 5px 0px;
+  /* margin: 0px 0px 5px 0px; */
+  padding: 5px 0px 0px 0px;
   width: 100%;
 }
 
 
 .dashboard_stats_answer_card_header {
+  background-color: rgba(30, 30, 30, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   align-content: center;
-  padding: 0px 0px 5px 30px;
+  padding: 0px 0px 0px 30px;
 }
 
 .dashboard_stats_answer_card_header h5 {
@@ -37,14 +40,15 @@
 }
 
 .dashboard_stats_answer_card_sub_container {
+  background-color: rgba(45, 45, 45, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   align-content: center;
   width: 100%;
-  padding: 0px 0px 10px 0px;
+  padding: 5px 0px 5px 0px;
 }
 
 .dashboard_stats_answer_card_left_container {
@@ -52,7 +56,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   align-content: center;
   padding-left: 30px;
 }
@@ -64,7 +68,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
 }
 
 .dashboard_stats_answer_card_vote_container {
@@ -135,7 +139,7 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: nowrap;
-  font: 600 10pt "Lato";
+  font: 600 10pt "LatoThin";
 }
 
 .dashboard_stats_answer_card_rank_sub_container span,
@@ -184,29 +188,33 @@
 .dashboard_stats_answer_card_comment_container {
   align-items: center;
   align-content: center;
+  background-color: rgba(20, 20, 20, 1);
   display: flex;
   justify-content: center;
   flex-direction: column;
   flex-wrap: nowrap;
+  padding: 0px 0px 0px 0px;
 }
 
-.dashboard_stats_answer_card_comment_container h3,
-.dashboard_stats_answer_card_comment_sub_container {
+.dashboard_stats_answer_card_comment_container h3 {
   font: 600 10pt "Lato";
   text-align: center;
   padding-bottom: 10px;
 }
 
 .dashboard_stats_answer_card_comment_container h4 {
-  font: 600 10pt "Lato";
+  background-color: rgba(35, 35, 35, 1);
+  font: 600 10pt "LatoThin";
   text-align: center;
-  padding-bottom: 0px;
+  padding: 5px;
 }
 
 
 .dashboard_stats_answer_card_comment_sub_container {
+  background-color: rgba(30, 30, 30, 1);
+
+  padding: 0px 0px 5px 0px;
   width: 100%;
-  padding: 0px 0px 10px 0px;
 }
 
 .dashboard_stats_answer_card_comment_card {
@@ -232,4 +240,60 @@
   text-align: left;
   padding-left: 30px;
   width: 100%;
+}
+
+.dashboard_stats_answer_card_comment_header {
+  /* padding: 5px 0px; */
+  background-color: rgba(30, 30, 30, 1);
+  /* color: rgba(30, 30, 30, 1); */
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0px 0px 10px 0px;
+  width: 100%;
+}
+
+.dashboard_stats_answer_card_comment_header h4 {
+  /* padding: 5px 0px; */
+  background-color: rgba(45, 45, 45, 1);
+  /* color: rgba(30, 30, 30, 1); */
+  /* align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap; */
+  padding: 5px 10px 5px 10px;
+  /* width: 100%; */
+}
+
+.dashboard_stats_answer_card_no_comment_header {
+  background-color: rgba(30, 30, 30, 1);
+  /* color: rgba(30, 30, 30, 1); */
+  align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0px;
+  width: 100%;
+}
+
+.dashboard_stats_answer_card_no_comment_header h4 {
+  opacity: 0;
+  /* padding: 5px 0px; */
+  background-color: rgba(45, 45, 45, 1);
+  /* color: rgba(30, 30, 30, 1); */
+  /* align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap; */
+  /* padding: 5px; */
+  /* width: 100%; */
 }

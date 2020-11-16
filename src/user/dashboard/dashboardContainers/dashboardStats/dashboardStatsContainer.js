@@ -17,6 +17,7 @@ const DashboardStatsContainer = (props) => {
     <div className='dashboard_stats_container'>
       <DashboardHeader header_text={ 'Overall' } />
       <UserStatsContainer
+        from_dashboard={ true }
         question_totals={ props.question_totals }
         user_questions={ props.user_questions }
         user_experience={ props.user_experience }

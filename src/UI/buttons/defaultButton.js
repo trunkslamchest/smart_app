@@ -13,6 +13,9 @@ import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
 import './buttonStyles/completedButton.css'
 import './buttonStyles/containerProfileHeaderButton.css'
+import './buttonStyles/dashboardProfileHeaderButton.css'
+
+import './buttonStyles/dashboardStatsViewQuestionButton.css'
 
 class DefaultButton extends React.Component {
 

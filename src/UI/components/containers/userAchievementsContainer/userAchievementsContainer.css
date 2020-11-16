@@ -1,12 +1,12 @@
 .user_achievements_container {
-  /* background: rgba(50, 50, 50, 1); */
+  /* background-color: rgba(35, 35, 35, 1); */
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding: 10px 0px;
+  padding: 0px 0px 10px 0px;
 }
 
 .user_achievements_header {
@@ -45,6 +45,7 @@
 }
 
 .user_achievements_sub_container {
+  /* background-color: rgba(35, 35, 35, 1); */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

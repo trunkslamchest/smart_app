@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DashboardButtonsContainer from '../../dashboardContainers/dashboardButtonsContainer/dashboardButtonsContainer'
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './dashboardProfileHeader.css'
 
@@ -21,11 +21,10 @@ const DashboardProfileHeader = (props) => {
         </div>
       </div>
       <div className='dashboard_profile_header_right'>
-        <DashboardButtonsContainer
+        <DefaultButtonsContainer
           buttons={ props.buttons }
-          button_class={ 'dashboard_header_button' }
-          container_class={ 'dashboard_buttons_profile_header_container' }
-          enableButtons={ true }
+          containerClass={ props.containerClass }
+          enableButton={ true }
         />
       </div>
     </div>

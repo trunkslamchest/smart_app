@@ -1,16 +1,16 @@
 import React from 'react'
-
 import { routes } from '../../../../../../utility/paths'
 
 import { voteStarsDashboardRatingIndex } from '../../../../../../assets/vote_stars/voteStarsRatingIndex'
 import glyphIndex from '../../../../../../assets/glyphs/glyphIndex'
 
+import DefaultButtonsContainer from '../../../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
 import './dashboardStatsAnswerCard.css'
-import './dashboardStatsAnswerCardButton.css'
 
 const DashboardStatsAnswerCard = (props) => {
 
-  const onClickFunctions = () => { props.history.push(routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats') }
+  const onClickFunction = () => { props.history.push(routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats') }
 
   let answer = props.answer,
       vote,
@@ -20,6 +20,18 @@ const DashboardStatsAnswerCard = (props) => {
 
   const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
   const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
+
+  const viewQuestionButtons = [
+    {
+      id: 'dashboard_stats_view_question_button',
+      name: 'dashboardStatsViewQuestionButton',
+      onClickFunction: onClickFunction,
+      // params: JSON.stringify({ gameMode: gameMode.val }),
+      type: 'button',
+      text: 'View Question',
+      // tooltipText: [ 'View Results for this question' ]
+    }
+  ]
 
   if(answer.vote) {
     vote = Object.values(answer.vote)[0].vote
@@ -34,7 +46,9 @@ const DashboardStatsAnswerCard = (props) => {
     let comments = Object.entries(answer.comments)
     distribComments =
       <div className="dashboard_stats_answer_card_comment_sub_container">
-        <h4>Your Comments</h4>
+        <div className="dashboard_stats_answer_card_comment_header">
+          <h4>Your Comments</h4>
+        </div>
         { comments.map(comment =>
             <div
               className="dashboard_stats_answer_card_comment_card"
@@ -45,18 +59,24 @@ const DashboardStatsAnswerCard = (props) => {
             </div>
         )}
       </div>
-  } else distribComments = <h3>You have no comments on this question</h3>
+  } else {
+    distribComments =
+      <div className="dashboard_stats_answer_card_no_comment_header">
+        <h4>You have not commented on this question</h4>
+      </div>
+  }
 
   return(
     <div className="dashboard_stats_answer_card_container">
        <div className="dashboard_stats_answer_card_header">
         <h5>{ answer.question }</h5>
-          <button
-            className="dashboard_stats_answer_card_button"
-            onClick={ onClickFunctions }
-          >
-            View Question
-          </button>
+          <DefaultButtonsContainer
+            buttons={ viewQuestionButtons }
+            containerClass={ 'dashboard_stats_view_question_button_container' }
+            buttonClass={ 'dashboard_stats_view_question_button' }
+            enableButton={ true }
+            // tooltipClass={ 'dashboard_stats_view_question_button_tooltip' }
+          />
       </div>
        <div className="dashboard_stats_answer_card_sub_container">
         <div className="dashboard_stats_answer_card_left_container">

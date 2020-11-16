@@ -67,7 +67,7 @@ class SelectionContainer extends React.Component {
           params: JSON.stringify({ gameMode: gameMode.val }),
           type: 'button',
           text: gameMode.name,
-          tooltipText: gameMode.description,
+          tooltipText: gameMode.description
         }
       })
     }

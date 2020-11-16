@@ -21,11 +21,12 @@
 
 .stats_card_wrapper {
   background: rgba(255, 255, 255, 1);
+  background-color: rgba(211, 143, 57, 1);
   width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 .stats_card_sub_wrapper {
@@ -49,7 +50,8 @@
 }
 
 .stats_card_no_answers_container {
-  color: rgba(255, 255, 255, 1);
+  background-color: rgba(40, 40, 40, 1);
+  color: rgba(100, 100, 100, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

@@ -45,6 +45,7 @@ class UserProfileContainer extends React.Component {
             />
             { !!this.props.profile.userData.questions &&
               <UserStatsContainer
+                from_dashboard={ false }
                 question_totals={ this.props.questions.totals }
                 user_questions={ this.props.profile.userData.questions }
                 user_experience={ this.props.profile.userData.experience }

@@ -2,6 +2,8 @@ import React from 'react'
 
 import levels from '../../../../datasets/levels'
 
+import ContainerHeaderCentered from '../../../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
+
 import trend_arrow_up from '../../../../assets/trends/trend_arrow_up.png'
 import trend_arrow_down from '../../../../assets/trends/trend_arrow_down.png'
 
@@ -112,7 +114,12 @@ const UserStatsTotal = (props) => {
       </div>
   }
 
-  return(<>{ totalStats }</>)
+  return(
+    <>
+      { !props.from_dashboard && <ContainerHeaderCentered header_text={ 'Statistics' } /> }
+      { totalStats }
+    </>
+  )
 }
 
 export default UserStatsTotal

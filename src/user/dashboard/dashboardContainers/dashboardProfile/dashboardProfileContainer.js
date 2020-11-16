@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { routes } from '../../../../utility/paths'
 import { connect } from 'react-redux'
 import { checkBlankString, checkBlankInt } from '../../../../utility/forms/checkBlank'
@@ -7,7 +6,6 @@ import formatMonth from '../../../../utility/forms/formatMonth'
 import formatDay from '../../../../utility/forms/formatDay'
 
 import DashboardProfileHeader from '../../dashboardComponents/dashboardProfileHeader/dashboardProfileHeader'
-
 import DashboardProfileError from './dashboardProfileError/dashboardProfileError'
 
 import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
@@ -34,7 +32,10 @@ const DashboardProfileContainer = (props) => {
   let last_login = `${ props.user.info.last_login.time } ${ formatMonth(props.user.info.last_login.month) } ${ formatDay(props.user.info.last_login.day) }, ${ props.user.info.last_login.year }`
   let join_date = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
 
-  const onClickEdit = () => { props.history.push(routes.dashboard_profile_edit) }
+  const onClickHeaderButtonFunction = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    props.history.push(buttonParams.route)
+  }
 
   const profileFields = [
     { name: 'Name', data: `${firstName.field} ${lastName.field}`, errors: [ {error: firstName.error}, { error: lastName.error } ] },
@@ -48,14 +49,31 @@ const DashboardProfileContainer = (props) => {
   ]
 
   const headerButtons = [
-    { idName: 'edit_profile_button', type: 'button', onClickFunction: onClickEdit, value: 'Edit Profile' },
-    { idName: 'view_public_profile_button', type: Link, route: routes.user_profile + '/' + user_name, target: '_blank', value: 'View Public Profile' }
+    {
+      id: 'edit_profile_button',
+      buttonClass: 'dashboard_profile_header_button',
+      name: 'editProfileButton',
+      onClickFunction: onClickHeaderButtonFunction,
+      params: JSON.stringify({ route: routes.dashboard_profile_edit }),
+      target: '_blank',
+      text: 'Edit Profile',
+      type: 'button'
+    },
+    {
+      id: 'view_public_profile_button',
+      buttonClass: 'dashboard_profile_header_button',
+      name: 'viewPublicProfileButton',
+      onClickFunction: onClickHeaderButtonFunction,
+      params: JSON.stringify({ route: routes.user_profile + '/' + user_name }),
+      text: 'View Public Profile',
+      target: '_blank'
+    }
   ]
 
   let distribProfileFields = profileFields.map(field => {
     return (
       <ul key={ profileFields.indexOf(field) + field.name }>
-        <li>{ field.name }</li>
+        <span>{ field.name }</span>
         { field.data && field.data.length &&
           <li>
             { field.name === "Country" && <img alt={ field.data } src={ flagIconIndex[field.data].image } /> }
@@ -72,6 +90,7 @@ const DashboardProfileContainer = (props) => {
     <div className='dashboard_profile_wrapper'>
       <DashboardProfileHeader
         avatar={ avatar }
+        containerClass={ 'dashboard_profile_header_buttons_container' }
         buttons={ headerButtons }
         email={ email }
         history={ props.history }
