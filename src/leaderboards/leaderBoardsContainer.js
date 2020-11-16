@@ -9,19 +9,18 @@ import {
   updateLeaderBoardsLoadingStatus
 } from '../store/actions/actionIndex'
 
+import makeLeaderBoardsNavButtons from './leaderBoardsFunctions/makeLeaderBoardsNavButtons'
+
 import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverallContainer'
 import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoardsCountriesContainer'
 import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
-import NavBarContainer from '../UI/navBar/navBarContainer'
+import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './leaderBoardsContainer.css'
 
 const LeaderBoardsContainer = (props) => {
-  const navButtons = [
-    { name: 'overall', text: 'Overall', route: props.overallRoute },
-    { name: 'countries', text: 'Countries', route: props.countriesRoute },
-    { name: 'cat', text: 'Categories', route: props.catRoute },
-  ]
+
+  const navBarButtons = makeLeaderBoardsNavButtons({ overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
 
   const routeBoard =
     <div className="leader_boards_wrapper">
@@ -40,7 +39,13 @@ const LeaderBoardsContainer = (props) => {
 
   return(
     <>
-      <NavBarContainer buttons={ navButtons } />
+      <DefaultButtonsContainer
+        buttons={ navBarButtons }
+        buttonClass={ 'nav_bar_button' }
+        containerClass={ 'nav_bar_container' }
+        enableButton={ true }
+        tooltipClass={ 'nav_bar_tooltip' }
+      />
       { routeBoard }
     </>
   )

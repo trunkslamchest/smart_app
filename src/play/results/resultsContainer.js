@@ -20,12 +20,12 @@ import {
   resetComment
 } from '../../store/actions/actionIndex'
 
+import makeResultsNavBarButtons from './resultsFunctions/makeResultsNavBarButtons'
+
 import ResultsStatsContainer from './resultsStats/resultsStatsContainer'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
-
 import StatsLegend from '../../UI/statsLegend/statsLegend'
-import NavBarContainer from '../../UI/navBar/navBarContainer'
 
 import './resultsContainer.css'
 
@@ -103,7 +103,6 @@ class ResultsContainer extends React.Component{
   onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
 
   onClickNextQuestionFunction = () => {
-    console.log('test')
     this.props.onSetGameState('reInit')
     this.props.onUpdateGameStatus('reInitGame', true)
     this.props.onLoadingModal(true)
@@ -116,14 +115,12 @@ class ResultsContainer extends React.Component{
   }
 
   render(){
-    let routeBoard
-
     const baseStaticRoute = routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid
 
-    const navButtons = [
-      { name: 'results', text: 'Results', route: this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats' },
-      { name: 'discuss', text: 'Discuss', route: this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss' }
-    ]
+    let routeBoard
+    let statsRoute = this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats'
+    let discussRoute = this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss'
+    let navBarButtons = makeResultsNavBarButtons({ stats: statsRoute, discuss: discussRoute })
 
     const nextQuestionButton = [
       {
@@ -187,7 +184,14 @@ class ResultsContainer extends React.Component{
 
     return(
       <>
-        <NavBarContainer buttons={ navButtons } />
+        {/* <NavBarContainer buttons={ navButtons } /> */}
+        <DefaultButtonsContainer
+          buttons={ navBarButtons }
+          buttonClass={ 'nav_bar_button' }
+          containerClass={ 'nav_bar_container' }
+          enableButton={ true }
+          tooltipClass={ 'nav_bar_tooltip' }
+        />
         <div className='results_wrapper'>
           { routeBoard }
           { this.state.showLegend && <StatsLegend /> }

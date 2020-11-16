@@ -21,6 +21,7 @@ const DefaultButtonContainer = (props) => {
                 enableButton={ props.enableButton }
                 onClickFunction={ button.onClickFunction }
                 params={ button.params }
+                route={ button.route }
                 text={ button.text }
                 tooltipText={ button.tooltipText }
                 tooltipClass={ props.tooltipClass || button.tooltipClass }
@@ -35,3 +36,9 @@ const DefaultButtonContainer = (props) => {
 }
 
 export default DefaultButtonContainer
+
+// props.buttons
+// props.buttonClass
+// props.containerClass
+// props.enableButton
+// props.tooltipClass

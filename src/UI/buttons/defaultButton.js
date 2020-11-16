@@ -1,21 +1,22 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 import DefaultButtonTooltip from '../tooltips/defaultButtonTooltip'
 
+import './buttonStyles/addCommentButton.css'
+import './buttonStyles/catButton.css'
+import './buttonStyles/containerProfileHeaderButton.css'
+import './buttonStyles/completedButton.css'
+import './buttonStyles/dashboardProfileHeaderButton.css'
+import './buttonStyles/dashboardStatsViewQuestionButton.css'
 import './buttonStyles/defaultButton.css'
 import './buttonStyles/diffButton.css'
-import './buttonStyles/catButton.css'
-import './buttonStyles/gameModesButton.css'
-import './buttonStyles/questionCardChoiceButton.css'
-import './buttonStyles/nextQuestionButton.css'
-import './buttonStyles/addCommentButton.css'
 import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
-import './buttonStyles/completedButton.css'
-import './buttonStyles/containerProfileHeaderButton.css'
-import './buttonStyles/dashboardProfileHeaderButton.css'
-
-import './buttonStyles/dashboardStatsViewQuestionButton.css'
+import './buttonStyles/gameModesButton.css'
+import './buttonStyles/navBarButton.css'
+import './buttonStyles/nextQuestionButton.css'
+import './buttonStyles/questionCardChoiceButton.css'
 
 class DefaultButton extends React.Component {
 
@@ -45,11 +46,38 @@ class DefaultButton extends React.Component {
   }
 
   render() {
-    return(
-      <div className='default_button_container'
-        onMouseEnter={ this.onHover }
-        onMouseLeave={ this.offHover }
-      >
+
+    let buttonType
+
+    let buttonContent =
+      <>
+        { !!this.props.text && <span params={ this.props.params }>{ this.props.text }</span> }
+        { !!this.props.imageHover &&
+          <img
+            alt={ this.props.id }
+            id={ `${this.props.id}_image` }
+            name={ `${this.props.name}Image` }
+            params={ this.props.params }
+            src={ this.state.hover ? this.props.imageHover : this.props.image }
+          />
+        }
+      </>
+
+    if(this.props.type === 'NavLink') {
+      buttonType =
+        <NavLink
+          activeClassName={ `${this.props.buttonClass}_active` }
+          className={ this.props.enableButton ? this.props.buttonClass : `${this.props.buttonClass}_disabled` }
+          id={ this.props.id }
+          name={ this.props.name }
+          params={ this.props.params }
+          to={ this.props.route }
+          type={ this.props.type }
+        >
+          { buttonContent }
+        </NavLink>
+    } else {
+      buttonType =
         <button
           className={ this.props.enableButton ? this.props.buttonClass : `${this.props.buttonClass}_disabled` }
           id={ this.props.id }
@@ -58,17 +86,16 @@ class DefaultButton extends React.Component {
           onClick={ this.onClickFunction }
           type={ this.props.type }
         >
-          { !!this.props.text && <span params={ this.props.params }>{ this.props.text }</span> }
-          { !!this.props.imageHover &&
-            <img
-              alt={ this.props.id }
-              id={ `${this.props.id}_image` }
-              name={ `${this.props.name}Image` }
-              params={ this.props.params }
-              src={ this.state.hover ? this.props.imageHover : this.props.image }
-            />
-          }
+          { buttonContent }
         </button>
+    }
+
+    return(
+      <div className='default_button_container'
+        onMouseEnter={ this.onHover }
+        onMouseLeave={ this.offHover }
+      >
+        { buttonType }
         {
           this.props.tooltipText &&
           this.state.hover &&
@@ -85,3 +112,16 @@ class DefaultButton extends React.Component {
 }
 
 export default DefaultButton
+
+// this.props.enableButton
+// this.props.buttonClass
+// this.props.id
+// this.props.name
+// this.props.params
+// this.props.onClickFunction
+// this.props.type
+// this.props.text
+// this.props.image
+// this.props.imageHover
+// this.props.tooltipText
+// this.props.tooltipClass

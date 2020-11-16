@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import {
   getUserProfile,
   clearUserProfile,
-  updateUserProfileStatus,
-  updateUserProfileLoadingStatus
+  updateUserProfileStatus
 } from '../../store/actions/actionIndex'
 
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
@@ -24,7 +23,6 @@ class UserProfileContainer extends React.Component {
     let user_name = parseLocation[parseLocation.length - 1]
     document.title = `SmartApp™ | ${ user_name }'s Profile`
     this.props.onUpdateUserProfileStatus(null)
-    // this.props.onUpdateUserProfileLoadingStatus(true)
     this.props.onGetUserProfile(user_name)
   }
 
@@ -38,8 +36,12 @@ class UserProfileContainer extends React.Component {
     let userProfileBlock
 
     if(this.props.profile.status === 'display'){
-      if(typeof this.props.profile.userData === 'string') userProfileBlock = <h2>{ this.props.profile.userData }</h2>
-      else {
+      if(typeof this.props.profile.userData === 'string') {
+        userProfileBlock =
+          <div className="user_profile_wrapper_private">
+            <h2>{ this.props.profile.userData }</h2>
+          </div>
+      } else {
         userProfileBlock =
           <div className="user_profile_wrapper">
             <UserProfileInfoContainer
@@ -63,11 +65,11 @@ class UserProfileContainer extends React.Component {
                 user_achievements={ this.props.profile.userData.achievements }
               />
             }
-            { !!this.props.profile.userData.questions.all.votes &&
+            { !!this.props.profile.userData.votes &&
               <VoteContainer
                 enableVoteButtons={ false }
                 showVoteButtons={ false }
-                voteProps={ this.props.profile.userData.questions.all.votes }
+                voteProps={ this.props.profile.userData.votes }
               />
             }
            { !!this.props.profile.userData.comments &&
@@ -89,7 +91,6 @@ const mapStateToProps = (state) => {
   return {
     achievements: state.achievements,
     modal: state.modal,
-    // user: state.user,
     questions: state.questions,
     profile: state.profile
   }
@@ -99,8 +100,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onGetUserProfile: (user_name) => dispatch(getUserProfile(user_name)),
     onClearUserProfile: () => dispatch(clearUserProfile()),
-    onUpdateUserProfileStatus: (status) => dispatch(updateUserProfileStatus(status)),
-    onUpdateUserProfileLoadingStatus: (bool) => dispatch(updateUserProfileLoadingStatus(bool))
+    onUpdateUserProfileStatus: (status) => dispatch(updateUserProfileStatus(status))
   }
 }
 

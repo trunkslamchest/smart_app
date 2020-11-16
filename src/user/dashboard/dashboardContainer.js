@@ -7,6 +7,8 @@ import {
   updateUserQuestions
 } from '../../store/actions/actionIndex'
 
+import makeDashboardNavButtons from './dashboardFunctions/makeDashboardNavButtons'
+
 import DashboardIndex from './dashboardContainers/dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardContainers/dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardContainers/dashboardStats/dashboardStatsContainer'
@@ -15,7 +17,7 @@ import DashboardEditProfileContainer from './dashboardContainers/dashboardEditPr
 import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
 import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
-import NavBarContainer from '../../UI/navBar/navBarContainer'
+import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './dashboardContainer.css'
 
@@ -27,12 +29,7 @@ class Dashboard extends React.Component{
 
     let routeBoard
 
-    const navButtons = [
-      { name: 'profile', text: 'Profile', route: routes['dashboard_profile'] },
-      { name: 'stats', text: 'Stats', route: routes['dashboard_stats'] },
-      { name: 'achievements', text: 'Achievements', route: routes['dashboard_achievements'] },
-      { name: 'settings', text: 'Settings', route: routes['dashboard_settings'] },
-    ]
+    const navBarButtons = makeDashboardNavButtons(routes)
 
     if(!this.props.auth.loading) {
       if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
@@ -73,7 +70,13 @@ class Dashboard extends React.Component{
     return(
       <>
         <DashboardDeleteProfile history={ this.props.history } />
-        <NavBarContainer buttons={ navButtons } />
+        <DefaultButtonsContainer
+          buttons={ navBarButtons }
+          buttonClass={ 'nav_bar_button' }
+          containerClass={ 'nav_bar_container' }
+          enableButton={ true }
+          tooltipClass={ 'nav_bar_tooltip' }
+        />
         <div className='dashboard_wrapper'>
           { routeBoard }
         </div>

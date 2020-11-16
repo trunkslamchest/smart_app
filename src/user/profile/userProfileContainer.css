@@ -4,3 +4,14 @@
   width: 100%;
   padding: 20px;
 }
+
+.user_profile_wrapper_private {
+  margin: 20px 0px 20px 0px;
+  width: 100%;
+  padding: 20px;
+}
+
+.user_profile_wrapper_private h2 {
+  font: 600 20pt 'LatoLight';
+  text-align: center;
+}
