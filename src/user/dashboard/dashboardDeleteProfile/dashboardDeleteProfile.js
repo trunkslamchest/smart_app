@@ -14,8 +14,12 @@ import validateDeleteProfile from '../../../utility/validation/validateDeletePro
 import ModalHeader from '../../../UI/components/headers/modalHeader/modalHeader'
 import Modal from '../../../UI/modal/modal'
 
-import DashboardDeleteProfileButtonContainer from './dashboardDeleteProfileButtonContainer/dashboardDeleteProfileButtonContainer'
 import DashboardDeleteProfileForm from './dashboardDeleteProfileForm/dashboardDeleteProfileForm'
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import makeDeleteProfileButtons from '../../userFunctions/makeDeleteProfileButtons'
+
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './dashboardDeleteProfile.css'
 
@@ -56,7 +60,7 @@ class DashboardDeleteProfile extends React.Component {
 
   render(){
 
-  // console.log(this.state.enableConfirmButton)
+  let deleteProfileButtons = makeDeleteProfileButtons(glyphIndex, this.onConfirm, this.onCancel, this.state.enableConfirmButton)
 
   // const loading =
   //   <div className='loading_wrapper'>
@@ -73,16 +77,18 @@ class DashboardDeleteProfile extends React.Component {
           {/* { this.props.auth.loading && loading } */}
 
           { this.state.enableConfirmButton &&
-            <DashboardDeleteProfileButtonContainer
-              enableConfirmButton={ this.state.enableConfirmButton }
-              onConfirm={ this.onConfirm }
-              onCancel={ this.onCancel }
+            <DefaultButtonsContainer
+              buttons={ deleteProfileButtons }
+              buttonClass={ 'modal_button' }
+              containerClass={ 'modal_button_container' }
+              enableButton={ this.state.enableConfirmButton }
+              tooltipClass={ 'modal_button_tooltip' }
             />
           }
           {
             this.state.showForm &&
             <DashboardDeleteProfileForm
-              enableSubmitButton={ this.state.enableSubmitButton }
+              enableButton={ this.state.enableSubmitButton }
               enableInput={ this.state.enableInput }
               form={ this.state.form }
               onChange={ this.onChange }

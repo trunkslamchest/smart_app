@@ -6,7 +6,7 @@ const makeDeleteProfileButtons = (glyphIndex, onConfirm, onCancel, enableButton)
       image: glyphIndex.formWhiteCheckMark,
       imageHover: glyphIndex.formBlackCheckMark,
       onClickFunction: onConfirm,
-      tooltipText: 'Confirm',
+      tooltipText: [ 'Confirm' ],
       type: 'button',
       enableButton: enableButton,
       value: 'Confirm'
@@ -17,7 +17,7 @@ const makeDeleteProfileButtons = (glyphIndex, onConfirm, onCancel, enableButton)
       image: glyphIndex.formWhiteX,
       imageHover: glyphIndex.formBlackX,
       onClickFunction: onCancel,
-      tooltipText: 'Cancel',
+      tooltipText: [ 'Cancel' ],
       type: 'reset',
       enableButton: enableButton,
       value: 'Cancel'

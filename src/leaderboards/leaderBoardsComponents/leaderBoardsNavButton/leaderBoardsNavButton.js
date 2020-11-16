@@ -1,6 +1,8 @@
 import React from 'react'
 
-import LeaderBoardsNavButtonTooltip from '../../../UI/tooltips/leaderBoardsNavButtonTooltip/leaderBoardsNavButtonTooltip'
+// import LeaderBoardsNavButtonTooltip from '../../../UI/tooltips/leaderBoardsNavButtonTooltip/leaderBoardsNavButtonTooltip'
+import DefaultButtonTooltip from '../../../UI/tooltips/defaultButtonTooltip'
+
 
 import cookieFunctions from '../../../utility/cookieFunctions'
 
@@ -66,9 +68,10 @@ class LeaderBoardsNavButton extends React.Component {
           this.state.showTooltip &&
           this.state.hover &&
           checkLeaderBoardNavButtonClicked &&
-            <LeaderBoardsNavButtonTooltip
+            <DefaultButtonTooltip
               offHover={ this.offHover }
               tooltipText={ this.props.tooltipText }
+              tooltipClass={ this.props.tooltipClass }
             />
         }
       </div>

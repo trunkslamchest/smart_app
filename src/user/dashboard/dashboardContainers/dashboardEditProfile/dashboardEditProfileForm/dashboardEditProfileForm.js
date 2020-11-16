@@ -1,17 +1,25 @@
 import React from 'react'
 
+import makeDashboardEditProfileFormButtons from '../../../dashboardFunctions/makeDashboardEditProfileFormButtons'
+
 import DashboardEditProfileFormInput from './dashboardEditProfileFormInput/dashboardEditProfileFormInput'
 import DashboardEditProfileFormSelect from './dashboardEditProfileFormSelect/dashboardEditProfileFormSelect'
 import DashboardEditProfileFormTextArea from './dashboardEditProfileFormTextArea/dashboardEditProfileFormTextArea'
-import DashboardEditProfileFormButtonContainer from './dashboardEditProfileFormButtonContainer/dashboardEditProfileFormButtonContainer'
 import DashboardEditProfileFormErrorItem from './dashboardEditProfileFormErrorItem/dashboardEditProfileFormErrorItem'
+
+import DefaultButtonsContainer from '../../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import genders from '../../../../../datasets/genders'
 import gender_pronouns from '../../../../../datasets/genderPronouns'
 import months from '../../../../../datasets/months'
 import flagIconIndex from '../../../../../assets/flag_icons/flagIconIndex'
 
+import formGlyphIndex from '../../../../../assets/glyphs/formGlyphIndex'
+
+
 import './dashboardEditProfileForm.css'
+import './dashboardEditProfileFormButton/dashboardEditProfileFormAvatarButton.css'
+
 
 const dashboardEditProfileForm = (props) => {
 
@@ -93,6 +101,8 @@ const dashboardEditProfileForm = (props) => {
     return component
   })
 
+
+  const editProfileFormButtons = makeDashboardEditProfileFormButtons(props.onSubmit, props.onReset, props.onCancel, formGlyphIndex)
   // console.log(props.onAvatarChange)
 
   return(
@@ -125,7 +135,7 @@ const dashboardEditProfileForm = (props) => {
           }
         </div>
 
-        <label>User Name</label>
+         <label>User Name</label>
           <div className='edit_div'>
             { distribFields[0] }
             { props.form.user_name && !!props.form.user_name.errors.length &&
@@ -212,12 +222,13 @@ const dashboardEditProfileForm = (props) => {
               </div>
             }
           </div>
-        <DashboardEditProfileFormButtonContainer
-          enableButtons={ props.enableButtons }
-          onSubmit={ props.onSubmit }
-          onReset={ props.onReset }
-          onCancel={ props.onCancel }
-        />
+          <DefaultButtonsContainer
+            buttons={ editProfileFormButtons }
+            buttonClass={ 'dashboard_form_button' }
+            containerClass={ 'dashboard_form_buttons_container' }
+            enableButton={ props.enableButtons }
+            tooltipClass={ 'dashboard_form_button_tooltip' }
+          />
       </form>
     </>
   )

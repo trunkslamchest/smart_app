@@ -73,3 +73,13 @@
   transition-property: opacity, transform;
   outline: -webkit-focus-ring-color auto 0px;
 }
+
+.completed_button:active img {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: translate(0px, 15px);
+  transition: all .15s ease-in-out 0s;
+  transition-property: opacity, transform;
+  outline: -webkit-focus-ring-color auto 0px;
+}

@@ -6,7 +6,7 @@ const makeLogOutButtons = (glyphIndex, onConfirm, onCancel, enableButton) => {
       image: glyphIndex.formWhiteCheckMark,
       imageHover: glyphIndex.formBlackCheckMark,
       onClickFunction: onConfirm,
-      tooltipText: 'Log Out',
+      tooltipText: [ 'Log Out' ],
       type: 'submit',
       enableButton: enableButton,
       value: 'LogOut'
@@ -17,7 +17,7 @@ const makeLogOutButtons = (glyphIndex, onConfirm, onCancel, enableButton) => {
       image: glyphIndex.formWhiteX,
       imageHover: glyphIndex.formBlackX,
       onClickFunction: onCancel,
-      tooltipText: 'Cancel',
+      tooltipText: [ 'Cancel' ],
       type: 'reset',
       enableButton: enableButton,
       value: 'Cancel'

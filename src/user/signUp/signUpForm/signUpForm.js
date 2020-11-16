@@ -2,14 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import MakeSignUpInputField from '../signUpFunctions/makeSignUpInputField'
+import makeSignUpInputField from '../../userFunctions/makeSignUpInputField'
+import makeSignUpButtons from '../../userFunctions/makeSignUpButtons'
 
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
-import SignUpFormButtonContainer from './signUpFormButtonContainer/signUpFormButtonContainer'
 import SignUpFormErrorItem from './signUpFormErrorItem/signUpFormErrorItem'
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
+import formGlyphIndex from '../../../assets/glyphs/formGlyphIndex'
 
 import './signUpForm.css'
 
@@ -45,14 +48,12 @@ const SignUpForm = (props) => {
   if(!!tosErrors.length) distribTOSErrors = tosErrors.map(error => <SignUpFormErrorItem key={ tosErrors.indexOf(error) } error={ error } /> )
   if(!!allOtherErrors.length) distribAllOtherErrors = allOtherErrors.map(error => <SignUpFormErrorItem key={ allOtherErrors.indexOf(error) } error={ error } /> )
 
-  const onSubmit = (event) => { props.onSubmit(event) }
-
   const TOStext =
     <p>
       I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™
     </p>
 
-  let formInputs = MakeSignUpInputField({
+  let formInputs = makeSignUpInputField({
     checked: props.TOSagreement,
     disabled: !props.enableInput,
     distribUserNameErrors: distribUserNameErrors,
@@ -93,6 +94,8 @@ const SignUpForm = (props) => {
     )
   })
 
+  let signUpButtons = makeSignUpButtons(formGlyphIndex, props.onSubmit, props.onReset, props.onCancel, props.enableButton)
+
   return(
     <form
       id='sign_up_form'
@@ -102,11 +105,12 @@ const SignUpForm = (props) => {
       { distribFormInputs }
       { !!allOtherErrors.length && <div className='sign_up_error_container'>{ distribAllOtherErrors }</div> }
       { props.auth.loading && loading }
-      <SignUpFormButtonContainer
+      <DefaultButtonsContainer
+        buttons={ signUpButtons }
+        buttonClass={ 'modal_button' }
+        containerClass={ 'modal_button_container' }
         enableButton={ props.enableButton }
-        onSubmit={ onSubmit }
-        onReset={ props.onReset }
-        onCancel={ props.onCancel }
+        tooltipClass={ 'modal_button_tooltip' }
       />
     </form>
   )

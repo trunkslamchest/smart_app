@@ -1,7 +1,6 @@
 import React from 'react'
 
 import paginateLeaderBoard from '../../leaderBoardsFunctions/paginateLeaderBoard'
-
 import LeaderBoardsScoresRow from '../leaderBoardsScoresRow/leaderBoardsScoresRow'
 import LeaderBoardsButtonsRow from '../leaderBoardsButtonsRow/leaderBoardsButtonsRow'
 
@@ -62,7 +61,12 @@ class LeaderBoardScoresContainer extends React.Component {
         <div className="leader_board_scores_row_container">
           { distribScores }
         </div>
-        <LeaderBoardsButtonsRow onChangePage={ this.onChangePage } currentPage={ this.state.currentPage } maxPages={ this.state.leaderBoard.length } />
+        <LeaderBoardsButtonsRow
+          onChangePage={ this.onChangePage }
+          currentPage={ this.state.currentPage }
+          maxPages={ this.state.leaderBoard.length }
+          tooltipClass={ 'leader_boards_nav_button_tooltip' }
+        />
       </div>
     )
   }

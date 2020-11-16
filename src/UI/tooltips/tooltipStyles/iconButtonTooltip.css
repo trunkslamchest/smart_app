@@ -38,7 +38,7 @@
   align-items: center;
 }
 
-.icon_button_tooltop_arrow {
+.icon_button_tooltip_arrow {
   align-self: flex-end;
   margin-right: 10px;
   border-left: 10px solid transparent;

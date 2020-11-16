@@ -72,12 +72,21 @@
   word-spacing: normal;
 }
 
-
 .dashboard_profile_header_button:active span {
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
   font: 600 10pt 'PoppinsLight', sans-serif;
+  transform: translate(0px, 15px);
+  transition: all .15s ease-in-out 0s;
+  transition-property: opacity, transform;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.dashboard_profile_header_button:active img {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
   transform: translate(0px, 15px);
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;

@@ -1,0 +1,19 @@
+.navbar_container {
+  /* background: rgba(50, 50, 50, 1); */
+  /* width: 100%; */
+  padding: 0px;
+  margin: 0px;
+  /* z-index: 9; */
+}
+
+.navbar_container ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}

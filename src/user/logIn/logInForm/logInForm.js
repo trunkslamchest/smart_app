@@ -1,13 +1,17 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 
+import makeLogInButtons from '../../userFunctions/makeLogInButtons'
+
 import LogInFormInput from './logInFormInput/logInFormInput'
-import LogInFormButtonContainer from './logInFormButtonContainer/logInFormButtonContainer'
 import LogInFormErrorItem from './logInFormErrorItem/logInFormErrorItem'
 
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './logInForm.css'
 
@@ -61,6 +65,8 @@ const LogInForm = (props) => {
     )
   })
 
+  let logInButtons = makeLogInButtons(glyphIndex, props.onSubmit, props.onCancel, props.enableButton)
+
   return(
     <form
       id='log_in_form'
@@ -70,10 +76,12 @@ const LogInForm = (props) => {
       { distribFormInputs }
       { !!allOtherErrors.length && <div className='log_in_error_container'>{ distribAllOtherErrors }</div> }
       { props.auth.loading && loading }
-      <LogInFormButtonContainer
+      <DefaultButtonsContainer
+        buttons={ logInButtons }
+        buttonClass={ 'modal_button' }
+        containerClass={ 'modal_button_container' }
         enableButton={ props.enableButton }
-        onSubmit={ props.onSubmit }
-        onCancel={ props.onCancel }
+        tooltipClass={ 'modal_button_tooltip' }
       />
     </form>
   )

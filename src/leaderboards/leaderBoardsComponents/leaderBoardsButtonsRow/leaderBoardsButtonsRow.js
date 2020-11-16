@@ -16,7 +16,7 @@ const LeaderBoardsButtonsRow = (props) => {
       imageHover: leaderboardGlyphIndex.leaderboardPrevHover,
       name: 'leaderboardPrevButton',
       pageLimit: props.currentPage !== 0,
-      tooltipText: 'Previous Page',
+      tooltipText: [ 'Previous Page' ],
       value: -1
     },
     {
@@ -26,7 +26,7 @@ const LeaderBoardsButtonsRow = (props) => {
       imageHover: leaderboardGlyphIndex.leaderboardNextHover,
       name: 'leaderboardNextButton',
       pageLimit: props.currentPage !== props.maxPages - 1,
-      tooltipText: 'Next Page',
+      tooltipText: [ 'Next Page' ],
       value: 1
     }
   ]
@@ -45,6 +45,7 @@ const LeaderBoardsButtonsRow = (props) => {
         pageLimit={ button.pageLimit }
         tooltipText={ button.tooltipText }
         value={ button.value }
+        tooltipClass={ props.tooltipClass }
       />
     )
   })

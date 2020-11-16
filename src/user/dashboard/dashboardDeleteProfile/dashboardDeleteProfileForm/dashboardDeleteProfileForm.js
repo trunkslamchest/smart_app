@@ -1,16 +1,18 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 
-import DashboardDeleteProfileFormButtonContainer from './dashboardDeleteProfileFormButtonContainer/dashboardDeleteProfileFormButtonContainer'
+import makeDeleteProfileFormButtons from '../../../userFunctions/makeDeleteProfileFormButtons'
+
 import DashboardDeleteProfileFormInput from './dashboardDeleteProfileFormInput/dashboardDeleteProfileFormInput'
 import DashboardDeleteProfileFormErrorItem from './dashboardDeleteProfileFormErrorItem/dashboardDeleteProfileFormErrorItem'
 
 import ModalSubHeader from '../../../../UI/components/subHeaders/modalSubHeader/modalSubHeader'
-
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import BaseDynamicBar from '../../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+
+import glyphIndex from '../../../../assets/glyphs/glyphIndex'
 
 import './dashboardDeleteProfileForm.css'
 
@@ -44,6 +46,8 @@ const DashboardDeleteProfileForm = (props) => {
     })
   }
 
+  let deleteProfileFormButtons = makeDeleteProfileFormButtons(glyphIndex, props.onSubmitConfirm, props.onSubmitCancel, props.enableButton)
+
   return(
     <>
       <ModalSubHeader sub_header_text='Please enter your password to confirm the deletion of your profile' />
@@ -66,11 +70,13 @@ const DashboardDeleteProfileForm = (props) => {
           { props.auth.status === 'fail' && props.auth.errors.length && <div className='log_in_error_container'>{ distribAuthErrors }</div> }
         </div>
         { props.auth.loading && loading }
-        <DashboardDeleteProfileFormButtonContainer
-          enableSubmitButton={ props.enableSubmitButton }
-          onSubmitConfirm={ props.onSubmitConfirm }
-          onSubmitCancel={ props.onSubmitCancel }
-        />
+          <DefaultButtonsContainer
+            buttons={ deleteProfileFormButtons }
+            buttonClass={ 'modal_button' }
+            containerClass={ 'modal_button_container' }
+            enableButton={ props.enableButton }
+            tooltipClass={ 'modal_button_tooltip' }
+          />
       </form>
     </>
   )

@@ -1,0 +1,43 @@
+.navbar_button {
+  background: rgba(50, 50, 50, 1);
+  border: 0px;
+  box-sizing: border-box;
+  color: rgb(225, 225, 225, 1);
+  cursor: pointer;
+  flex-grow: 1;
+  font: 300 14pt 'PoppinsLight', sans-serif;
+  margin: 0px;
+  padding: 20px 30px 15px 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar_button:hover {
+  /* background: rgba(50, 50, 50, 1); */
+  background: rgba(245, 167, 66, 1);
+
+  /* color: rgba(225, 225, 225, 1); */
+  color: rgba(50, 50, 50, 1);
+
+
+  cursor: pointer;
+}
+
+.navbar_button:active {
+  animation: scale_out .1s ease-in-out 1;
+}
+
+.navbar_button_active {
+  font: 300 14pt 'Poppins', sans-serif;
+
+  background: rgba(245, 167, 66, 1);
+  color: rgba(50, 50, 50, 1);
+  cursor: default;
+}
+
+.navbar_button_active:hover, .navbar_button_active:active {
+  animation: none;
+  background: rgba(245, 167, 66, 1);
+  color: rgba(50, 50, 50, 1);
+  cursor: default;
+}

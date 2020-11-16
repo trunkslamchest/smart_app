@@ -6,13 +6,16 @@ import {
   clearAuthErrors
 } from '../../store/actions/actionIndex'
 
+import makeLogOutButtons from '../userFunctions/makeLogOutButtons'
+
 import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
 import Modal from '../../UI/modal/modal'
+import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import LogOutButtonContainer from './logOutButtonContainer/logOutButtonContainer'
+import glyphIndex from '../../assets/glyphs/glyphIndex'
 
 import './logOut.css'
 
@@ -41,11 +44,13 @@ class LogOut extends React.Component {
 
   render(){
 
-  const loading =
-    <div className='loading_wrapper'>
-      <SmallLoadingSpinner />
-      <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
-    </div>
+    const loading =
+      <div className='loading_wrapper'>
+        <SmallLoadingSpinner />
+        <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
+      </div>
+
+    let logOutButtons = makeLogOutButtons(glyphIndex, this.onConfirm, this.onCancel, this.state.enableButton)
 
     return(
       <Modal
@@ -54,10 +59,12 @@ class LogOut extends React.Component {
         <div className='log_out_wrapper'>
           <ModalHeader header_text='Are you sure you want to log out?' />
           { this.props.auth.loading && loading }
-          <LogOutButtonContainer
+          <DefaultButtonsContainer
+            buttons={ logOutButtons }
+            buttonClass={ 'modal_button' }
+            containerClass={ 'modal_button_container' }
             enableButton={ this.state.enableButton }
-            onConfirm={ this.onConfirm }
-            onCancel={ this.onCancel }
+            tooltipClass={ 'modal_button_tooltip' }
           />
         </div>
       </Modal>

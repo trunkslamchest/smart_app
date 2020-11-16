@@ -2,11 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { deleteProfile } from '../../../../../store/actions/actionIndex'
 
+import makeDashboardSettingsButtons from '../../../dashboardFunctions/makeDashboardSettingsButtons'
+
 import DashboardHeader from '../../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardSubHeader from '../../../dashboardComponents/dashboardSubHeader/dashboardSubHeader'
-
 import DashboardSettingsPrivacyProfileCard from '../dashboardSettingsPrivacyProfileCard/dashboardSettingsPrivacyProfileCard'
-import DashboardButtonsContainer from '../../../dashboardContainers/dashboardButtonsContainer/dashboardButtonsContainer'
+import DefaultButtonsContainer from '../../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import formGlyphIndex from '../../../../../assets/glyphs/formGlyphIndex'
 
 import './dashboardSettingsFormContainer.css'
 
@@ -48,11 +51,8 @@ class DashboardSettingsFormContainer extends React.Component {
         // value: 'Delete Profile'
       },
     ]
-    const formButtons = [
-      { idName: 'dashboardSettingsSubmit', type: 'input', form_type: 'submit', onClickFunction: this.onSubmit, value: 'Confirm' },
-      { idName: 'dashboardSettingsReset', type: 'input', form_type: 'reset', onClickFunction: this.props.onReset, value: 'Reset' },
-      { idName: 'dashboardSettingsCancel', type: 'button', onClickFunction: this.props.onCancel, value: 'Cancel' }
-    ]
+
+    let formButtons = makeDashboardSettingsButtons(this.onSubmit, this.props.onReset, this.props.onCancel, formGlyphIndex)
 
     const distribPrivacyProfileSettings = privacyProfileSettings.map((setting, index) => {
       return (
@@ -79,11 +79,12 @@ class DashboardSettingsFormContainer extends React.Component {
               { distribPrivacyProfileSettings }
             </div>
           </div>
-          <DashboardButtonsContainer
+          <DefaultButtonsContainer
             buttons={ formButtons }
-            button_class={ 'dashboard_form_button' }
-            container_class={ 'dashboard_buttons_footer_container' }
-            enableButtons={ this.props.enableButtons }
+            buttonClass={ 'dashboard_form_button' }
+            containerClass={ 'dashboard_form_buttons_container' }
+            enableButton={ this.props.enableButtons }
+            tooltipClass={ 'dashboard_form_button_tooltip' }
           />
         </form>
       </div>

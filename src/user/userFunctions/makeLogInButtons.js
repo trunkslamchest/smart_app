@@ -6,7 +6,7 @@ const makeLogInButtons = (glyphIndex, onSubmit, onCancel, enableButton) => {
       image: glyphIndex.formWhiteCheckMark,
       imageHover: glyphIndex.formBlackCheckMark,
       onClickFunction: onSubmit,
-      tooltipText: 'Login',
+      tooltipText: [ 'Login' ],
       type: 'submit',
       enableButton: enableButton,
       value: 'Login'
@@ -17,7 +17,7 @@ const makeLogInButtons = (glyphIndex, onSubmit, onCancel, enableButton) => {
       image: glyphIndex.formWhiteX,
       imageHover: glyphIndex.formBlackX,
       onClickFunction: onCancel,
-      tooltipText: 'Cancel',
+      tooltipText: [ 'Cancel' ],
       type: 'reset',
       enableButton: enableButton,
       value: 'Cancel'
