@@ -26,12 +26,13 @@ class DashboardSettingsFormContainer extends React.Component {
       { name: 'showAge', text: 'Display your Age' },
       { name: 'showAvatar', text: 'Display your Avatar' },
       { name: 'showBio', text: 'Display your Biography' },
+      { name: 'showComments', text: 'Display your Comments' },
       { name: 'showCountry', text: 'Display your Nationality' },
-      { name: 'showExperience', text: 'Display your Experience levels' },
       { name: 'showGender', text: 'Display your Gender' },
       { name: 'showGenderPronouns', text: 'Display your Gender Pronouns' },
       { name: 'showRealName', text: 'Display your Real Name' },
-      { name: 'showStats', text: 'Display your Statistics' }
+      { name: 'showStats', text: 'Display your Statistics' },
+      { name: 'showVotes', text: 'Display your Votes' }
     ]
 
     const headerButtons = [

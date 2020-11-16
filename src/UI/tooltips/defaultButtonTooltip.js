@@ -11,7 +11,6 @@ import './tooltipStyles/completedButtonTooltip.css'
 import './tooltipStyles/containerProfileHeaderTooltip.css'
 import './tooltipStyles/dashboardStatsViewQuestionButtonTooltip.css'
 
-
 const DefaultButtonTooltip = (props) => {
   return(
     <div className={ `${props.tooltipClass}_container` }>

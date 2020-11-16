@@ -21,12 +21,13 @@ class DashboardSettingsContainer extends React.Component {
           showAge: false,
           showAvatar: false,
           showBio: false,
+          showComments: false,
           showCountry: false,
-          showExperience: false,
           showGender: false,
           showGenderPronouns: false,
           showRealName: false,
-          showStats: false
+          showStats: false,
+          showVotes: false
         }
       }
     }
@@ -53,12 +54,13 @@ class DashboardSettingsContainer extends React.Component {
             showAge: this.props.user.settings.privacy.profile.showAge,
             showAvatar: this.props.user.settings.privacy.profile.showAvatar,
             showBio: this.props.user.settings.privacy.profile.showBio,
+            showComments: this.props.user.settings.privacy.profile.showComments,
             showCountry: this.props.user.settings.privacy.profile.showCountry,
-            showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
             showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
-            showStats: this.props.user.settings.privacy.profile.showStats
+            showStats: this.props.user.settings.privacy.profile.showStats,
+            showVotes: this.props.user.settings.privacy.profile.showVotes
           }
         }
       }
@@ -106,12 +108,13 @@ class DashboardSettingsContainer extends React.Component {
             showAge: this.props.user.settings.privacy.profile.showAge,
             showAvatar: this.props.user.settings.privacy.profile.showAvatar,
             showBio: this.props.user.settings.privacy.profile.showBio,
+            showComments: this.props.user.settings.privacy.profile.showComments,
             showCountry: this.props.user.settings.privacy.profile.showCountry,
-            showExperience: this.props.user.settings.privacy.profile.showExperience,
             showGender: this.props.user.settings.privacy.profile.showGender,
             showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
             showRealName: this.props.user.settings.privacy.profile.showRealName,
-            showStats: this.props.user.settings.privacy.profile.showStats
+            showStats: this.props.user.settings.privacy.profile.showStats,
+            showVotes: this.props.user.settings.privacy.profile.showVotes
           }
         }
       }
@@ -135,12 +138,13 @@ class DashboardSettingsContainer extends React.Component {
           showAge={ this.state.settings.privacy.profile.showAge }
           showAvatar={ this.state.settings.privacy.profile.showAvatar }
           showBio={ this.state.settings.privacy.profile.showBio }
+          showComments={ this.state.settings.privacy.profile.showComments }
           showCountry={ this.state.settings.privacy.profile.showCountry }
-          showExperience={ this.state.settings.privacy.profile.showExperience }
           showGender={ this.state.settings.privacy.profile.showGender }
           showGenderPronouns={ this.state.settings.privacy.profile.showGenderPronouns }
           showRealName={ this.state.settings.privacy.profile.showRealName }
           showStats={ this.state.settings.privacy.profile.showStats }
+          showVotes={ this.state.settings.privacy.profile.showVotes }
         />
       </div>
     )

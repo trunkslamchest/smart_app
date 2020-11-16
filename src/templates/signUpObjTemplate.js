@@ -282,13 +282,13 @@ const signUpObjTemplate = (email, user_name) => {
           "showAvatar": true,
           "showAge": true,
           "showBio": true,
+          "showComments": true,
           "showCountry": true,
-          "showEmail": true,
-          "showExperience": true,
           "showGender": true,
           "showGenderPronouns": true,
           "showRealName": true,
-          "showStats": true
+          "showStats": true,
+          "showVotes": true
         }
       }
     }

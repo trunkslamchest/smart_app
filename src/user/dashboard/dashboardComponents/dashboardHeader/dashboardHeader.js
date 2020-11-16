@@ -1,6 +1,5 @@
 import React from 'react'
 
-// import DashboardButtonsContainer from '../../dashboardContainers/dashboardButtonsContainer/dashboardButtonsContainer'
 import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './dashboardHeader.css'

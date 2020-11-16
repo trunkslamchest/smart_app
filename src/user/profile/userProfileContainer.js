@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {
   getUserProfile,
   clearUserProfile,
-  updateUserProfileStatus
+  updateUserProfileStatus,
+  updateUserProfileLoadingStatus
 } from '../../store/actions/actionIndex'
 
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
@@ -22,6 +23,8 @@ class UserProfileContainer extends React.Component {
     let parseLocation = this.props.history.location.pathname.split("/")
     let user_name = parseLocation[parseLocation.length - 1]
     document.title = `SmartApp™ | ${ user_name }'s Profile`
+    this.props.onUpdateUserProfileStatus(null)
+    // this.props.onUpdateUserProfileLoadingStatus(true)
     this.props.onGetUserProfile(user_name)
   }
 
@@ -60,16 +63,16 @@ class UserProfileContainer extends React.Component {
                 user_achievements={ this.props.profile.userData.achievements }
               />
             }
-            { !!this.props.profile.userData.questions &&
+            { !!this.props.profile.userData.questions.all.votes &&
               <VoteContainer
                 enableVoteButtons={ false }
                 showVoteButtons={ false }
                 voteProps={ this.props.profile.userData.questions.all.votes }
               />
             }
-           { !!this.props.profile.userData.questions &&
+           { !!this.props.profile.userData.comments &&
               <UserProfileCommentsContainer
-                questions={ this.props.profile.userData.questions }
+                questions={ this.props.profile.userData.comments }
                 history={ this.props.history }
               />}
           </div>
@@ -84,10 +87,9 @@ class UserProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
     achievements: state.achievements,
     modal: state.modal,
-    user: state.user,
+    // user: state.user,
     questions: state.questions,
     profile: state.profile
   }
@@ -97,7 +99,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onGetUserProfile: (user_name) => dispatch(getUserProfile(user_name)),
     onClearUserProfile: () => dispatch(clearUserProfile()),
-    onUpdateUserProfileStatus: (status) => dispatch(updateUserProfileStatus(status))
+    onUpdateUserProfileStatus: (status) => dispatch(updateUserProfileStatus(status)),
+    onUpdateUserProfileLoadingStatus: (bool) => dispatch(updateUserProfileLoadingStatus(bool))
   }
 }
 

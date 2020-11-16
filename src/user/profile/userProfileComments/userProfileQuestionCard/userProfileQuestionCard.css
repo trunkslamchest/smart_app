@@ -1,0 +1,15 @@
+.user_profile_question_card_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+}
+
+.user_profile_question_card_container span {
+  color: rgba(255, 255, 255, 1);
+  font: 300 11pt 'LatoLight';
+}
