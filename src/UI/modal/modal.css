@@ -9,3 +9,76 @@
   transform: translateX(-50%);
   z-index: 500;
 }
+
+
+.loading_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.help_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.log_in_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.sign_up_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.log_out_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.delete_profile_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}

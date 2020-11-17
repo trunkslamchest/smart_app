@@ -15,6 +15,7 @@ import './buttonStyles/diffButton.css'
 import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
 import './buttonStyles/gameModesButton.css'
+import './buttonStyles/homeButton.css'
 import './buttonStyles/navBarButton.css'
 import './buttonStyles/nextQuestionButton.css'
 import './buttonStyles/modalButton.css'
@@ -29,7 +30,7 @@ class DefaultButton extends React.Component {
     clearTimeout(this.toolTipTimeout)
   }
 
-  onHover = (event) => {
+  onHover = () => {
     this.setState({ hover: true })
     this.toolTipTimeout = setTimeout(() => { this.setState({ tooltip: true })}, 250)
   }
@@ -114,6 +115,22 @@ class DefaultButton extends React.Component {
 }
 
 export default DefaultButton
+
+// <DefaultButton
+//   enableButton={  }
+//   buttonClass={  }
+//   id={  }
+//   image={  }
+//   imageHover={  }
+//   name={  }
+//   onClickFunction={  }
+//   params={  }
+//   text={  }
+//   tooltipText={  }
+//   tooltipClass={  }
+//   type={  }
+// />
+
 
 // this.props.enableButton
 // this.props.buttonClass

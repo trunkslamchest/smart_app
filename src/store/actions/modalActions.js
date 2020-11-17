@@ -35,6 +35,13 @@ export const deleteProfile = (bool) => {
   }
 }
 
+export const help = (bool) => {
+  return {
+    type: actionTypes.HELPMODAL,
+    help: bool
+  }
+}
+
 export const showModal = (bool) => {
   return{
     type: actionTypes.SHOWMODAL,

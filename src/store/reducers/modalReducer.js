@@ -6,6 +6,7 @@ const initialState = {
   logout: false,
   signup: false,
   deleteProfile: false,
+  help: false,
   showModal: false
 }
 
@@ -44,6 +45,13 @@ const deleteProfileModal = (currentState, action) => {
   }
 }
 
+const helpModal = (currentState, action) => {
+  return {
+    ...currentState,
+    help: action.help
+  }
+}
+
 const showModal = (currentState, action) => {
   return{
     ...currentState,
@@ -58,6 +66,7 @@ const modalReducer = (currentState = initialState, action) => {
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)
     case actionTypes.SIGNUPMODAL: return signupModal(currentState, action)
     case actionTypes.DELETEPROFILEMODAL: return deleteProfileModal(currentState, action)
+    case actionTypes.HELPMODAL: return helpModal(currentState, action)
     case actionTypes.SHOWMODAL: return showModal(currentState, action)
     default: return currentState
   }

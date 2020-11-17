@@ -58,6 +58,8 @@ class DashboardDeleteProfile extends React.Component {
     this.props.onDeleteProfileModal(false)
   }
 
+  // onHideModal = () => { this.props.onDeleteProfileModal(false) }
+
   render(){
 
   let deleteProfileButtons = makeDeleteProfileButtons(glyphIndex, this.onConfirm, this.onCancel, this.state.enableConfirmButton)
@@ -70,6 +72,8 @@ class DashboardDeleteProfile extends React.Component {
 
     return(
       <Modal
+        modalClass={ 'delete_profile_modal' }
+        // onHideModal={ this.onHideModal }
         showModal={ this.props.modal.deleteProfile }
       >
         <div className='delete_profile_wrapper'>

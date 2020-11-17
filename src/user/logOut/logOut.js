@@ -42,6 +42,8 @@ class LogOut extends React.Component {
     this.props.onClearAuthErrors()
   }
 
+  // onHideModal = () => { this.props.onLogOutModal(false) }
+
   render(){
 
     const loading =
@@ -54,6 +56,8 @@ class LogOut extends React.Component {
 
     return(
       <Modal
+        modalClass={ 'log_out_modal' }
+        // onHideModal={ this.onHideModal }
         showModal={ this.props.modal.logout }
       >
         <div className='log_out_wrapper'>

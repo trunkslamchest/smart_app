@@ -29,3 +29,13 @@ const DefaultButtonTooltip = (props) => {
 }
 
 export default DefaultButtonTooltip
+
+  // let containerClass = props.tooltipClass || 'default_button_tooltip'
+  // let wrapperClass = props.tooltipClass || 'default_button_tooltip'
+  // let arrowClass = props.tooltipClass || 'default_button_tooltip'
+  // let textClass = props.tooltipClass || 'default_button_tooltip'
+
+  //   <div className={ `${containerClass}_container` }>
+  //     <div className={ `${wrapperClass}_wrapper` }>
+  //       <div className={ `${arrowClass}_arrow` }></div>
+  //       <div className={ `${textClass}_text` }>

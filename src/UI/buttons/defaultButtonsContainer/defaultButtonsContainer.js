@@ -12,11 +12,11 @@ const DefaultButtonContainer = (props) => {
   return(
     <>
       { !!props.buttons &&
-        <div className={ props.containerClass }>
+        <div className={ props.containerClass || 'default_buttons_container' }>
           { props.buttons.map((button, index) => {
             return(
               <DefaultButton
-                buttonClass={ props.buttonClass || button.buttonClass }
+                buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
                 history={ props.history }
                 id={ button.id }
                 image={ button.image }
@@ -30,7 +30,7 @@ const DefaultButtonContainer = (props) => {
                 route={ button.route }
                 text={ button.text }
                 tooltipText={ button.tooltipText }
-                tooltipClass={ props.tooltipClass || button.tooltipClass }
+                tooltipClass={ props.tooltipClass || button.tooltipClass || 'default_button_tooltip' }
                 type={ button.type }
               />
             )
@@ -42,6 +42,14 @@ const DefaultButtonContainer = (props) => {
 }
 
 export default DefaultButtonContainer
+
+// {/* <DefaultButtonsContainer
+//   buttons={  }
+//   buttonClass={  }
+//   containerClass={  }
+//   enableButton={  }
+//   tooltipClass={  }
+// /> */}
 
 // props.buttons
 // props.buttonClass

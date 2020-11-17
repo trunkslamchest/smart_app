@@ -12,13 +12,14 @@ import './loadingModalSpinner.css'
 
 class LoadingModal extends React.Component {
 
-  componentWillUnmount(){
-    this.props.onLoadingModal(false)
-  }
+  componentWillUnmount(){ this.props.onLoadingModal(false) }
 
   render(){
     return (
-      <Modal showModal={ this.props.show }>
+      <Modal
+        modalClass={ 'loading_modal' }
+        showModal={ this.props.show }
+      >
         <div className='loading_modal_wrapper'>
           <SmallLoadingSpinner />
           <BaseDynamicBar modalType={ this.props.modalType } barType={ this.props.barType } />

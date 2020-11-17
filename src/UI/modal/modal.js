@@ -9,9 +9,10 @@ const Modal = (props) => {
   const modal =
     <>
       <Backdrop
+        onHideModal={ props.onHideModal }
         showModal={ props.showModal }
       />
-      <div className='modal_wrapper'>
+      <div className={ props.modalClass }>
         { props.children }
       </div>
     </>

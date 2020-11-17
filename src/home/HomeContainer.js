@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import HomeLoggedInContainer from './homeContainers/homeLoggedInContainer/homeLoggedInContainer'
 import HomeLoggedOutContainer from './homeContainers/homeLoggedOutContainer/homeLoggedOutContainer'
-import HomeLogoContainer from './homeContainers/homeLogoContainer/homeLogoContainer'
+
+import Help from '../help/help'
 
 // import fullColorIndexLogo from '../assets/logos/indexLogos/full_color_index_logo.png'
 
@@ -24,7 +25,7 @@ const HomeContainer = (props) => {
 
   return(
     <>
-      <HomeLogoContainer />
+      { props.modal.help && <Help helpType={ 'home' } history={ props.history } /> }
       { homePage }
     </>
   )
@@ -32,7 +33,8 @@ const HomeContainer = (props) => {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    modal: state.modal
   }
 }
 

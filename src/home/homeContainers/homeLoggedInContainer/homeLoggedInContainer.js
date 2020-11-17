@@ -14,6 +14,7 @@ import { routes } from '../../../utility/paths'
 
 import makeHomeLoggedInButtons from '../../homeFunctions/makeHomeLoggedInButtons'
 
+import HomeLogoContainer from '../homeLogoContainer/homeLogoContainer'
 import HomeButtonsContainer from '../homeButtonsContainer/homeButtonsContainer'
 
 import './homeLoggedInContainer.css'
@@ -37,6 +38,7 @@ const HomeLoggedInContainer = (props) => {
 
   return(
     <div className='home_logged_in_container'>
+      <HomeLogoContainer />
       <HomeButtonsContainer
         containerClass='logged_in_buttons_container'
         buttons={ homeButtons }

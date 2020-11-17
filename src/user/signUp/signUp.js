@@ -91,9 +91,15 @@ class SignUp extends React.Component {
     this.props.onSignUpModal(false)
   }
 
+  // onHideModal = () => { this.props.onSignUpModal(false) }
+
   render(){
     return (
-      <Modal showModal={ this.props.modal.signup } >
+      <Modal
+        modalClass={ 'sign_up_modal' }
+        // onHideModal={ this.onHideModal }
+        showModal={ this.props.modal.signup }
+      >
         <div className='sign_up_wrapper'>
           <ModalHeader header_text='Create New Account' />
           <SignUpForm

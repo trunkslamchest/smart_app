@@ -61,9 +61,13 @@ class LogIn extends React.Component {
     this.props.onLogInModal(false)
   }
 
+  // onHideModal = () => { this.props.onLogInModal(false) }
+
   render(){
     return (
         <Modal
+          modalClass={ 'log_in_modal' }
+          // onHideModal={ this.onHideModal }
           showModal={ this.props.modal.login }
         >
         <div className='log_in_wrapper'>

@@ -1,22 +1,26 @@
-const makeHomeLoggedOutButtons = (onLogIn, onSignUp, modal) => {
+const makeHomeLoggedOutButtons = (onLogIn, onSignUp, onHelp, modal) => {
   return [
     {
-      classType: modal.login ? 'home_auth_button_active' : 'home_auth_button',
-      clickFunction: onLogIn,
       id: 'log_in_button',
       name: 'logInButton',
-      text: modal.login ? '|' : 'Log In',
-      textContainerClass: modal.login ? 'home_button_text_container_active' : 'home_button_text_container',
-      wrapperClass: modal.login ? 'home_button_wrapper_active' : 'home_button_wrapper'
+      onClickFunction: onLogIn,
+      text: 'Log In',
+      tooltipText: [ 'Log into an existing account' ]
     },
     {
-      classType: modal.signup ? 'home_auth_button_active' : 'home_auth_button',
-      clickFunction: onSignUp,
       id: 'sign_up_button',
       name: 'SignUpButton',
-      text: modal.signup ? '|' : 'Sign Up',
-      textContainerClass: modal.signup ? 'home_button_text_container_active' : 'home_button_text_container',
-      wrapperClass: modal.signup ? 'home_button_wrapper_active' : 'home_button_wrapper'
+      onClickFunction: onSignUp,
+      text: 'Sign Up',
+      tooltipText: [ 'Create a new account' ]
+
+    },
+    {
+      id: 'help_button',
+      name: 'HelpButton',
+      onClickFunction: onHelp,
+      text: 'Help',
+      tooltipText: [ 'Information on how to get started' ]
     }
   ]
 }

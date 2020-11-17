@@ -4,6 +4,7 @@ export {
   logout,
   signup,
   deleteProfile,
+  help,
   showModal
 } from './modalActions'
 

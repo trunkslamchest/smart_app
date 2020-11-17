@@ -2,28 +2,34 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   login,
-  signup
+  signup,
+  help
 } from '../../../store/actions/actionIndex'
 
 import makeHomeLoggedOutButtons from '../../homeFunctions/makeHomeLoggedOutButtons'
 
-import HomeButtonsContainer from '../homeButtonsContainer/homeButtonsContainer'
+import HomeLogoContainer from '../homeLogoContainer/homeLogoContainer'
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './homeLoggedOutContainer.css'
 
 const HomeLoggedOutContainer = (props) => {
 
-  const onLogIn = (event) => { props.onLoginModal(true) }
-  const onSignUp = (event) => { props.onSignupModal(true) }
+  const onLogIn = () => { props.onLoginModal(true) }
+  const onSignUp = () => { props.onSignupModal(true) }
+  const onHelp = () => { props.onHelpModal(true) }
 
-  let homeButtons = makeHomeLoggedOutButtons(onLogIn, onSignUp, props.modal)
+  let homeButtons = makeHomeLoggedOutButtons(onLogIn, onSignUp, onHelp, props.modal)
 
   return(
     <div className='home_logged_out_container'>
-      <HomeButtonsContainer
-        containerClass='logged_out_buttons_container'
+      <HomeLogoContainer />
+      <DefaultButtonsContainer
         buttons={ homeButtons }
-        history={ props.history }
+        buttonClass={ 'home_button' }
+        containerClass={ 'home_buttons_container' }
+        enableButton={ true }
+        // tooltipClass={  }
       />
     </div>
   )
@@ -38,7 +44,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoginModal: (bool) => dispatch(login(bool)),
-    onSignupModal: (bool) => dispatch(signup(bool))
+    onSignupModal: (bool) => dispatch(signup(bool)),
+    onHelpModal: (bool) => dispatch(help(bool))
   }
 }
 
