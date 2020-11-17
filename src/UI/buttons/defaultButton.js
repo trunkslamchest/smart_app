@@ -29,7 +29,7 @@ class DefaultButton extends React.Component {
     clearTimeout(this.toolTipTimeout)
   }
 
-  onHover = () => {
+  onHover = (event) => {
     this.setState({ hover: true })
     this.toolTipTimeout = setTimeout(() => { this.setState({ tooltip: true })}, 250)
   }
@@ -48,8 +48,16 @@ class DefaultButton extends React.Component {
   }
 
   render() {
-
     let buttonType
+    let buttonImage
+
+    if(!!this.props.imageHover) {
+      if(this.state.hover || this.props.location === this.props.route) {
+        buttonImage = this.props.imageHover
+      } else {
+        buttonImage = this.props.image
+      }
+    }
 
     let buttonContent =
       <>
@@ -60,7 +68,7 @@ class DefaultButton extends React.Component {
             id={ `${this.props.id}_image` }
             name={ `${this.props.name}Image` }
             params={ this.props.params }
-            src={ this.state.hover ? this.props.imageHover : this.props.image }
+            src={ buttonImage }
           />
         }
       </>
@@ -93,7 +101,8 @@ class DefaultButton extends React.Component {
     }
 
     return(
-      <div className='default_button_container'
+      <div
+        className='default_button_container'
         onMouseEnter={ this.onHover }
         onMouseLeave={ this.offHover }
       >

@@ -27,6 +27,8 @@ import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 import StatsLegend from '../../UI/statsLegend/statsLegend'
 
+import resultsNavBarIconIndex from '../../assets/nav_bar_icons/resultsNavBarIconIndex'
+
 import './resultsContainer.css'
 
 class ResultsContainer extends React.Component{
@@ -120,7 +122,7 @@ class ResultsContainer extends React.Component{
     let routeBoard
     let statsRoute = this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats'
     let discussRoute = this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss'
-    let navBarButtons = makeResultsNavBarButtons({ stats: statsRoute, discuss: discussRoute })
+    let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, { stats: statsRoute, discuss: discussRoute })
 
     const nextQuestionButton = [
       {

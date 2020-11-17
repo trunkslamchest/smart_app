@@ -1,10 +1,14 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 import DefaultButton from '../defaultButton'
 
 import './defaultButtonsContainer.css'
 
 const DefaultButtonContainer = (props) => {
+
+  const location = useLocation()
+
   return(
     <>
       { !!props.buttons &&
@@ -13,10 +17,12 @@ const DefaultButtonContainer = (props) => {
             return(
               <DefaultButton
                 buttonClass={ props.buttonClass || button.buttonClass }
+                history={ props.history }
                 id={ button.id }
                 image={ button.image }
                 imageHover={ button.imageHover }
                 key={ index }
+                location={ location.pathname }
                 name={ button.name }
                 enableButton={ props.enableButton }
                 onClickFunction={ button.onClickFunction }

@@ -16,11 +16,13 @@ import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoard
 import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
 import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
+import leaderBoardNavBarIconIndex from '../assets/nav_bar_icons/leaderBoardNavBarIconIndex'
+
 import './leaderBoardsContainer.css'
 
 const LeaderBoardsContainer = (props) => {
 
-  const navBarButtons = makeLeaderBoardsNavButtons({ overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
+  const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
 
   const routeBoard =
     <div className="leader_boards_wrapper">
@@ -44,6 +46,7 @@ const LeaderBoardsContainer = (props) => {
         buttonClass={ 'nav_bar_button' }
         containerClass={ 'nav_bar_container' }
         enableButton={ true }
+        history={ props.history }
         tooltipClass={ 'nav_bar_tooltip' }
       />
       { routeBoard }

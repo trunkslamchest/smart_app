@@ -19,6 +19,8 @@ import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProf
 import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
+import dashboardNavBarIconIndex from '../../assets/nav_bar_icons/dashboardNavBarIconIndex'
+
 import './dashboardContainer.css'
 
 class Dashboard extends React.Component{
@@ -29,7 +31,7 @@ class Dashboard extends React.Component{
 
     let routeBoard
 
-    const navBarButtons = makeDashboardNavButtons(routes)
+    const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, routes)
 
     if(!this.props.auth.loading) {
       if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
