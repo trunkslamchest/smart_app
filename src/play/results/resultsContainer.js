@@ -186,7 +186,6 @@ class ResultsContainer extends React.Component{
 
     return(
       <>
-        {/* <NavBarContainer buttons={ navButtons } /> */}
         <DefaultButtonsContainer
           buttons={ navBarButtons }
           buttonClass={ 'nav_bar_button' }
