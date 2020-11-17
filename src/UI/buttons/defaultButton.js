@@ -19,6 +19,7 @@ import './buttonStyles/homeButton.css'
 import './buttonStyles/navBarButton.css'
 import './buttonStyles/nextQuestionButton.css'
 import './buttonStyles/modalButton.css'
+import './buttonStyles/modalHelpButton.css'
 import './buttonStyles/questionCardChoiceButton.css'
 
 class DefaultButton extends React.Component {

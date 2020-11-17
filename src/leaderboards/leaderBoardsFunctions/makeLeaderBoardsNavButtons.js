@@ -1,4 +1,4 @@
-const makeLeaderBoardsNavButtons = (navBarIconIndex, routes) => {
+const makeLeaderBoardsNavButtons = (navBarIconIndex, onHelp, routes) => {
   return [
       {
         id: 'nav_overall',
@@ -32,10 +32,7 @@ const makeLeaderBoardsNavButtons = (navBarIconIndex, routes) => {
         image: navBarIconIndex.helpNavBarIconWhite,
         imageHover: navBarIconIndex.helpNavBarIconGrey,
         name: 'Help',
-        // onClickFunction: null,
-        // params: {},
-        // route: routes.discuss,
-        // text: 'Discuss',
+        onClickFunction: onHelp,
         tooltipText: [ 'Help' ],
         type: 'button'
       }

@@ -1,4 +1,4 @@
-const makeHomeLoggedOutButtons = (onLogIn, onSignUp, onHelp, modal) => {
+const makeHomeLoggedOutButtons = (onLogIn, onSignUp, onHelp) => {
   return [
     {
       id: 'log_in_button',

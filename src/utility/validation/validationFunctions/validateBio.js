@@ -4,7 +4,7 @@ import numbers from '../../../datasets/numbers'
 const validateBio = (bio) => {
   let bioValidation = { errors: [], valid: true }, sCharsCheck = 0, numCheck = 0
 
-  if(typeof bio !== 'string') bioValidation.errors = [ ...bioValidation.errors, { code: 20, message: 'Your Gender must be in the form of a string' } ]
+  if(typeof bio !== 'string') bioValidation.errors = [ ...bioValidation.errors, { code: 20, message: 'Your Biography must be in the form of a string' } ]
   else {
     for(let i = 0; i < bio.length; i++){
       if(specialChars.bio.includes(bio[i])) bioValidation.errors = [ ...bioValidation.errors, { code: 21, message: `Your Biography cannot contain the '${bio[i]}' character` } ]

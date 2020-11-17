@@ -51,8 +51,6 @@ const App = (props) => {
         { props.modal.login && <LogIn history={ props.history } /> }
         { props.modal.logout && <LogOut history={ props.history } /> }
         { props.modal.signup && <SignUp history={ props.history } /> }
-        {/* { props.modal.help && <Help history={ props.history } /> } */}
-
         <div className='main_wrapper' name="main_wrapper">
           <Switch>
             <Route exact path={ routes.home }>

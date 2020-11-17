@@ -4,18 +4,12 @@ import './docsUL.css'
 
 const DocsUL = (props) => {
 
-  const distribListItems = props.list_items.map((item, index) => {
-    return(
-      <li key={ index }>
-        { item }
-      </li>
-    )
-  })
+  const distribListItems = props.list_items.map((item, index) => { return <li key={ index }>{ item }</li> })
 
   return(
     <div className='docs_ul'>
-        <span>{ !!props.list_header && props.list_header }</span>
-        <ul>{ distribListItems }</ul>
+      { !!props.list_header && <span> { props.list_header } </span> }
+      { props.list_items.length > 0 && <ul>{ distribListItems }</ul> }
     </div>
   )
 }

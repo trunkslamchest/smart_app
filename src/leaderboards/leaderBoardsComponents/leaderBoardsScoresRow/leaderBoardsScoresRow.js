@@ -38,7 +38,7 @@ const LeaderBoardsScoresRow = (props) => {
       </div>
       <div className='leader_boards_scores_row_right'>
         <span className={ props.fromCountry ? "leader_boards_scores_row_country_span" : "leader_boards_scores_row_span" }>
-          { props.score.rating }
+          { (props.score.rating * 10).toFixed(2) }
         </span>
       </div>
     </button>

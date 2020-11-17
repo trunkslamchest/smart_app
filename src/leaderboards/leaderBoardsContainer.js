@@ -6,15 +6,19 @@ import {
   getCatLeaderBoards,
   clearLeaderBoards,
   updateLeaderBoardsStatus,
-  updateLeaderBoardsLoadingStatus
+  updateLeaderBoardsLoadingStatus,
+  help
 } from '../store/actions/actionIndex'
 
 import makeLeaderBoardsNavButtons from './leaderBoardsFunctions/makeLeaderBoardsNavButtons'
+import makeLeaderBoardsHelpSections from './leaderBoardsFunctions/makeLeaderBoardsHelpSections'
 
 import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverallContainer'
 import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoardsCountriesContainer'
 import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
 import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import Help from '../help/help'
 
 import leaderBoardNavBarIconIndex from '../assets/nav_bar_icons/leaderBoardNavBarIconIndex'
 
@@ -22,7 +26,11 @@ import './leaderBoardsContainer.css'
 
 const LeaderBoardsContainer = (props) => {
 
-  const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
+  const onHelp = () => { props.onHelpModal(true) }
+
+  const leaderBoardsHelpSections = makeLeaderBoardsHelpSections
+
+  const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, onHelp, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
 
   const routeBoard =
     <div className="leader_boards_wrapper">
@@ -41,6 +49,7 @@ const LeaderBoardsContainer = (props) => {
 
   return(
     <>
+      { props.modal.help && <Help headerText={ 'SmartApp™ Leaderboards'} helpType={ 'leaderBoards' } helpSections = { leaderBoardsHelpSections } history={ props.history } /> }
       <DefaultButtonsContainer
         buttons={ navBarButtons }
         buttonClass={ 'nav_bar_button' }
@@ -56,7 +65,8 @@ const LeaderBoardsContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    leaderBoards: state.leaderBoards
+    leaderBoards: state.leaderBoards,
+    modal: state.modal
   }
 }
 
@@ -66,7 +76,8 @@ const mapDispatchToProps = (dispatch) => {
     onGetCatLeaderBoards: () => dispatch(getCatLeaderBoards()),
     onClearLeaderBoards: () => dispatch(clearLeaderBoards()),
     onUpdateLeaderBoardsStatus: (status) => dispatch(updateLeaderBoardsStatus(status)),
-    onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status))
+    onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status)),
+    onHelpModal: (bool) => dispatch(help(bool))
   }
 }
 

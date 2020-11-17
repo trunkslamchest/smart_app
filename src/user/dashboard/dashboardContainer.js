@@ -4,10 +4,12 @@ import { routes } from '../../utility/paths.js'
 import { connect } from 'react-redux'
 import {
   getQuestionTotals,
-  updateUserQuestions
+  updateUserQuestions,
+  help
 } from '../../store/actions/actionIndex'
 
 import makeDashboardNavButtons from './dashboardFunctions/makeDashboardNavButtons'
+import makeDashboardHelpSections from './dashboardFunctions/makeDashboardHelpSections'
 
 import DashboardIndex from './dashboardContainers/dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardContainers/dashboardProfile/dashboardProfileContainer'
@@ -18,6 +20,8 @@ import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProf
 
 import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import Help from '../../help/help'
 
 import dashboardNavBarIconIndex from '../../assets/nav_bar_icons/dashboardNavBarIconIndex'
 
@@ -31,7 +35,11 @@ class Dashboard extends React.Component{
 
     let routeBoard
 
-    const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, routes)
+    const onHelp = () => { this.props.onHelpModal(true) }
+
+    const dashboardHelpSections = makeDashboardHelpSections
+
+    const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, routes)
 
     if(!this.props.auth.loading) {
       if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
@@ -71,6 +79,8 @@ class Dashboard extends React.Component{
 
     return(
       <>
+        { this.props.modal.help && <Help headerText={ 'SmartApp™ Dashboards'} helpType={ 'dashboard' } helpSections = { dashboardHelpSections } history={ this.props.history } /> }
+
         <DashboardDeleteProfile history={ this.props.history } />
         <DefaultButtonsContainer
           buttons={ navBarButtons }
@@ -91,6 +101,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     achievements: state.achievements,
+    modal: state.modal,
     questions: state.questions,
     user: state.user
   }
@@ -99,7 +110,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onGetQuestionTotals: () => dispatch(getQuestionTotals()),
-    onUpdateUserQuestions: () => dispatch(updateUserQuestions())
+    onUpdateUserQuestions: () => dispatch(updateUserQuestions()),
+    onHelpModal: (bool) => dispatch(help(bool))
   }
 }
 

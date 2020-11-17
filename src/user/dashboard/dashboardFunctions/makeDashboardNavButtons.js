@@ -1,4 +1,4 @@
-const makeDashboardNavButtons = (navBarIconIndex, routes) => {
+const makeDashboardNavButtons = (navBarIconIndex, onHelp, routes) => {
   return [
       {
         id: 'nav_profile',
@@ -41,10 +41,7 @@ const makeDashboardNavButtons = (navBarIconIndex, routes) => {
         image: navBarIconIndex.helpNavBarIconWhite,
         imageHover: navBarIconIndex.helpNavBarIconGrey,
         name: 'Help',
-        // onClickFunction: null,
-        // params: {},
-        // route: routes.discuss,
-        // text: 'Discuss',
+        onClickFunction: onHelp,
         tooltipText: [ 'Help' ],
         type: 'button'
       }
