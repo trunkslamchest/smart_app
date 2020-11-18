@@ -5,7 +5,11 @@ export {
   signup,
   deleteProfile,
   help,
-  showModal
+  showModal,
+  setHelpHeader,
+  setHelpSections,
+  clearHelpHeader,
+  clearHelpSections,
 } from './modalActions'
 
 export {

@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-  help
+  help,
+  clearHelpHeader,
+  clearHelpSections
 } from '../store/actions/actionIndex'
 
 import makeHelpButton from './helpFunctions/makeHelpButton'
@@ -20,14 +22,18 @@ import './help.css'
 
 class Help extends React.Component {
 
-  onHideModal = () => { this.props.onHelpModal(false) }
+  onHideModal = () => {
+    this.props.onHelpModal(false)
+    this.props.onClearHelpHeader()
+    this.props.onClearHelpSections()
+  }
 
   render(){
 
     let distribHelpSections
 
-    if(!!this.props.helpSections) {
-      distribHelpSections = this.props.helpSections.map((section, s_index) => {
+    if(!!this.props.modal.helpHeader && !!this.props.modal.helpSections) {
+      distribHelpSections = this.props.modal.helpSections.map((section, s_index) => {
         return(
           <div className='docs_sub_wrapper' key={ s_index } >
             { !!section.sub_header_text && <DocsSubHeader sub_header_text={ section.sub_header_text } /> }
@@ -71,7 +77,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onHelpModal: (bool) => dispatch(help(bool))
+    onHelpModal: (bool) => dispatch(help(bool)),
+    onClearHelpHeader: () => dispatch(clearHelpHeader()),
+    onClearHelpSections: () => dispatch(clearHelpSections())
   }
 }
 

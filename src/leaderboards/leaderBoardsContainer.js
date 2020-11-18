@@ -7,7 +7,9 @@ import {
   clearLeaderBoards,
   updateLeaderBoardsStatus,
   updateLeaderBoardsLoadingStatus,
-  help
+  help,
+  setHelpHeader,
+  setHelpSections
 } from '../store/actions/actionIndex'
 
 import makeLeaderBoardsNavButtons from './leaderBoardsFunctions/makeLeaderBoardsNavButtons'
@@ -18,17 +20,17 @@ import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoard
 import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
 import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import Help from '../help/help'
-
 import leaderBoardNavBarIconIndex from '../assets/nav_bar_icons/leaderBoardNavBarIconIndex'
 
 import './leaderBoardsContainer.css'
 
 const LeaderBoardsContainer = (props) => {
 
-  const onHelp = () => { props.onHelpModal(true) }
-
-  const leaderBoardsHelpSections = makeLeaderBoardsHelpSections
+  const onHelp = () => {
+    props.onSetHelpHeader('SmartApp™ Leaderboards')
+    props.onSetHelpSections(makeLeaderBoardsHelpSections)
+    props.onHelpModal(true)
+  }
 
   const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, onHelp, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
 
@@ -49,7 +51,6 @@ const LeaderBoardsContainer = (props) => {
 
   return(
     <>
-      { props.modal.help && <Help headerText={ 'SmartApp™ Leaderboards'} helpType={ 'leaderBoards' } helpSections = { leaderBoardsHelpSections } history={ props.history } /> }
       <DefaultButtonsContainer
         buttons={ navBarButtons }
         buttonClass={ 'nav_bar_button' }
@@ -65,8 +66,7 @@ const LeaderBoardsContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    leaderBoards: state.leaderBoards,
-    modal: state.modal
+    leaderBoards: state.leaderBoards
   }
 }
 
@@ -77,7 +77,9 @@ const mapDispatchToProps = (dispatch) => {
     onClearLeaderBoards: () => dispatch(clearLeaderBoards()),
     onUpdateLeaderBoardsStatus: (status) => dispatch(updateLeaderBoardsStatus(status)),
     onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status)),
-    onHelpModal: (bool) => dispatch(help(bool))
+    onHelpModal: (bool) => dispatch(help(bool)),
+    onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
+    onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
   }
 }
 

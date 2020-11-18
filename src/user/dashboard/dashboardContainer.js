@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import {
   getQuestionTotals,
   updateUserQuestions,
-  help
+  help,
+  setHelpHeader,
+  setHelpSections
 } from '../../store/actions/actionIndex'
 
 import makeDashboardNavButtons from './dashboardFunctions/makeDashboardNavButtons'
@@ -16,12 +18,9 @@ import DashboardProfileContainer from './dashboardContainers/dashboardProfile/da
 import DashboardStatsContainer from './dashboardContainers/dashboardStats/dashboardStatsContainer'
 import DashboardSettingsContainer from './dashboardContainers/dashboardSettings/dashboardSettingsContainer'
 import DashboardEditProfileContainer from './dashboardContainers/dashboardEditProfile/dashboardEditProfileContainer'
-import DashboardDeleteProfile from './dashboardDeleteProfile/dashboardDeleteProfile'
 
 import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
-
-import Help from '../../help/help'
 
 import dashboardNavBarIconIndex from '../../assets/nav_bar_icons/dashboardNavBarIconIndex'
 
@@ -35,9 +34,11 @@ class Dashboard extends React.Component{
 
     let routeBoard
 
-    const onHelp = () => { this.props.onHelpModal(true) }
-
-    const dashboardHelpSections = makeDashboardHelpSections
+    const onHelp = () => {
+      this.props.onSetHelpHeader('SmartApp™ Dashboards')
+      this.props.onSetHelpSections(makeDashboardHelpSections)
+      this.props.onHelpModal(true)
+    }
 
     const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, routes)
 
@@ -79,9 +80,6 @@ class Dashboard extends React.Component{
 
     return(
       <>
-        { this.props.modal.help && <Help headerText={ 'SmartApp™ Dashboards'} helpType={ 'dashboard' } helpSections = { dashboardHelpSections } history={ this.props.history } /> }
-
-        <DashboardDeleteProfile history={ this.props.history } />
         <DefaultButtonsContainer
           buttons={ navBarButtons }
           buttonClass={ 'nav_bar_button' }
@@ -99,9 +97,8 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
     achievements: state.achievements,
-    modal: state.modal,
+    auth: state.auth,
     questions: state.questions,
     user: state.user
   }
@@ -111,7 +108,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onGetQuestionTotals: () => dispatch(getQuestionTotals()),
     onUpdateUserQuestions: () => dispatch(updateUserQuestions()),
-    onHelpModal: (bool) => dispatch(help(bool))
+    onHelpModal: (bool) => dispatch(help(bool)),
+    onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
+    onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
   }
 }
 

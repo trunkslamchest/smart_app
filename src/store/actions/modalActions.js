@@ -1,5 +1,12 @@
 import * as actionTypes from './actionTypes'
 
+export const showModal = (bool) => {
+  return{
+    type: actionTypes.SHOWMODAL,
+    showModal: bool
+  }
+}
+
 export const loading = (bool) => {
   return {
     type: actionTypes.LOADINGMODAL,
@@ -42,9 +49,30 @@ export const help = (bool) => {
   }
 }
 
-export const showModal = (bool) => {
-  return{
-    type: actionTypes.SHOWMODAL,
-    showModal: bool
+export const setHelpHeader = (header) => {
+  return {
+    type: actionTypes.SET_HELP_HEADER,
+    helpHeader: header
+  }
+}
+
+export const clearHelpHeader = () => {
+  return {
+    type: actionTypes.CLEAR_HELP_HEADER,
+    helpHeader: null
+  }
+}
+
+export const setHelpSections = (sections) => {
+  return {
+    type: actionTypes.SET_HELP_SECTIONS,
+    helpSections: sections
+  }
+}
+
+export const clearHelpSections = () => {
+  return {
+    type: actionTypes.CLEAR_HELP_SECTIONS,
+    helpSections: null
   }
 }

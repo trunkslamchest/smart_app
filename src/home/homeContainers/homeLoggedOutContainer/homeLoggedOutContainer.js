@@ -3,9 +3,12 @@ import { connect } from 'react-redux'
 import {
   login,
   signup,
-  help
+  help,
+  setHelpHeader,
+  setHelpSections
 } from '../../../store/actions/actionIndex'
 
+import makeHomeHelpSections from '../../homeFunctions/makeHomeHelpSections'
 import makeHomeLoggedOutButtons from '../../homeFunctions/makeHomeLoggedOutButtons'
 
 import HomeLogoContainer from '../homeLogoContainer/homeLogoContainer'
@@ -17,7 +20,11 @@ const HomeLoggedOutContainer = (props) => {
 
   const onLogIn = () => { props.onLoginModal(true) }
   const onSignUp = () => { props.onSignupModal(true) }
-  const onHelp = () => { props.onHelpModal(true) }
+  const onHelp = () => {
+    props.onSetHelpHeader('Getting Started')
+    props.onSetHelpSections(makeHomeHelpSections)
+    props.onHelpModal(true)
+  }
 
   let homeButtons = makeHomeLoggedOutButtons(onLogIn, onSignUp, onHelp, props.modal)
 
@@ -35,18 +42,14 @@ const HomeLoggedOutContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    modal: state.modal
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     onLoginModal: (bool) => dispatch(login(bool)),
     onSignupModal: (bool) => dispatch(signup(bool)),
-    onHelpModal: (bool) => dispatch(help(bool))
+    onHelpModal: (bool) => dispatch(help(bool)),
+    onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
+    onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeLoggedOutContainer)
+export default connect(null, mapDispatchToProps)(HomeLoggedOutContainer)

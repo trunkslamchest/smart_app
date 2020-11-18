@@ -22,9 +22,10 @@
   align-self: flex-end;
   content: "";
   min-width: 125px;
+  z-index: 2;
 }
 
 .header_menu_wrapper {
   display: flex;
-
+  z-index: 2;
 }

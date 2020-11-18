@@ -17,6 +17,9 @@ import Footer from './UI/footer/footer'
 import LogIn from './user/logIn/logIn'
 import SignUp from './user/signUp/signUp'
 import LogOut from './user/logOut/logOut'
+import DeleteProfile from './user/deleteProfile/deleteProfile'
+import Help from './help/help'
+
 import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
 import HomeContainer from './home/HomeContainer'
@@ -36,6 +39,12 @@ import './App.css'
 const App = (props) => {
   return (
     <StoreController history={ props.history }>
+      { props.modal.login && <LogIn history={ props.history } /> }
+      { props.modal.logout && <LogOut history={ props.history } /> }
+      { props.modal.signup && <SignUp history={ props.history } /> }
+      { props.modal.deleteProfile && <DeleteProfile history={ props.history } /> }
+      { props.modal.help && <Help headerText={ props.modal.helpHeader } helpSections = { props.modal.helpSections } history={ props.history } /> }
+
       <Header history={ props.history } />
       <div className='main_container' name="main_container">
         {
@@ -48,9 +57,6 @@ const App = (props) => {
             history={ props.history }
           />
         }
-        { props.modal.login && <LogIn history={ props.history } /> }
-        { props.modal.logout && <LogOut history={ props.history } /> }
-        { props.modal.signup && <SignUp history={ props.history } /> }
         <div className='main_wrapper' name="main_wrapper">
           <Switch>
             <Route exact path={ routes.home }>
