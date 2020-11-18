@@ -1,10 +1,7 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 import { loading } from './store/actions/actionIndex'
-
 import { Route, Switch } from 'react-router-dom'
-
 import { routes } from './utility/paths'
 
 import StoreController from './store/controllers/storeController'
@@ -19,7 +16,6 @@ import SignUp from './user/signUp/signUp'
 import LogOut from './user/logOut/logOut'
 import DeleteProfile from './user/deleteProfile/deleteProfile'
 import Help from './help/help'
-
 import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
 import HomeContainer from './home/HomeContainer'
@@ -44,7 +40,6 @@ const App = (props) => {
       { props.modal.signup && <SignUp history={ props.history } /> }
       { props.modal.deleteProfile && <DeleteProfile history={ props.history } /> }
       { props.modal.help && <Help headerText={ props.modal.helpHeader } helpSections = { props.modal.helpSections } history={ props.history } /> }
-
       <Header history={ props.history } />
       <div className='main_container' name="main_container">
         {
