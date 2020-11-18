@@ -31,7 +31,7 @@ const makeLeaderBoardsHelpSections = [
           `b = total answers for the question`,
           `c = times users have run out of time while trying to answer the question`,
           `d = the question's difficulty rating (0.8 for Easy, 0.9 for Medium, 1.0 for Hard)`,
-          `t = time it takes the user to answer the question correctly (in seconds)`,
+          `t = time it takes the user to answer the question correctly (in seconds)`
         ]
       }
     ],
