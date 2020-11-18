@@ -1,14 +1,11 @@
-const makeHomeLoggedOutButtons = (onStartGame, route) => {
+const makeHomeLoggedOutButtons = (onStartGame) => {
   return [
     {
-      classType: 'home_start_button',
-      clickFunction: onStartGame,
       id: 'start_button',
       name: 'startButton',
+      onClickFunction: onStartGame,
       text: 'Start',
-      textContainerClass: 'home_button_text_container',
-      route: route,
-      wrapperClass: 'home_button_wrapper'
+      tooltipText: [ 'Select A Game Mode and start answering questions.' ]
     }
   ]
 }

@@ -15,13 +15,13 @@ import { routes } from '../../../utility/paths'
 import makeHomeLoggedInButtons from '../../homeFunctions/makeHomeLoggedInButtons'
 
 import HomeLogoContainer from '../homeLogoContainer/homeLogoContainer'
-import HomeButtonsContainer from '../homeButtonsContainer/homeButtonsContainer'
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './homeLoggedInContainer.css'
 
 const HomeLoggedInContainer = (props) => {
 
-  const onStartGame = (event) => {
+  const onStartGame = () => {
     if(props.play.gameMode) props.onResetGameMode()
     if(props.play.gameState) props.onResetGameState()
     if(props.play.gameQset) props.onResetGameQset()
@@ -33,16 +33,18 @@ const HomeLoggedInContainer = (props) => {
     props.history.push(routes.play)
   }
 
-  let homeButtons = makeHomeLoggedInButtons(onStartGame, routes.play)
+  let homeButtons = makeHomeLoggedInButtons(onStartGame)
 
 
   return(
     <div className='home_logged_in_container'>
       <HomeLogoContainer />
-      <HomeButtonsContainer
-        containerClass='logged_in_buttons_container'
+      <DefaultButtonsContainer
         buttons={ homeButtons }
-        history={ props.history }
+        buttonClass={ 'home_start_button' }
+        containerClass={ 'home_buttons_container' }
+        enableButton={ true }
+        // tooltipClass={  }
       />
     </div>
   )
@@ -50,7 +52,6 @@ const HomeLoggedInContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal,
     play: state.play
   }
 }
