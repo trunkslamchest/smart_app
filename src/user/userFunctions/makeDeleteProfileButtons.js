@@ -1,4 +1,4 @@
-const makeDeleteProfileButtons = (glyphIndex, onConfirm, onCancel, enableButton) => {
+const makeDeleteProfileButtons = (glyphIndex, onConfirm, onCancel) => {
   return [
     {
       name: 'deleteProfileConfirm',
@@ -8,7 +8,6 @@ const makeDeleteProfileButtons = (glyphIndex, onConfirm, onCancel, enableButton)
       onClickFunction: onConfirm,
       tooltipText: [ 'Confirm' ],
       type: 'button',
-      enableButton: enableButton,
       value: 'Confirm'
     },
     {
@@ -19,7 +18,6 @@ const makeDeleteProfileButtons = (glyphIndex, onConfirm, onCancel, enableButton)
       onClickFunction: onCancel,
       tooltipText: [ 'Cancel' ],
       type: 'reset',
-      enableButton: enableButton,
       value: 'Cancel'
     }
   ]

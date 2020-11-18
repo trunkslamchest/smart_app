@@ -94,6 +94,8 @@ class DefaultButton extends React.Component {
         </button>
     }
 
+  // console.log(this.props.tooltipText)
+
     return(
       <div
         className='default_button_container'

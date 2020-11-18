@@ -1,4 +1,4 @@
-const makeLogOutButtons = (glyphIndex, onConfirm, onCancel, enableButton) => {
+const makeLogOutButtons = (glyphIndex, onConfirm, onCancel) => {
   return [
     {
       name: 'LogOutSubmit',
@@ -8,7 +8,6 @@ const makeLogOutButtons = (glyphIndex, onConfirm, onCancel, enableButton) => {
       onClickFunction: onConfirm,
       tooltipText: [ 'Log Out' ],
       type: 'submit',
-      enableButton: enableButton,
       value: 'LogOut'
     },
     {
@@ -19,7 +18,6 @@ const makeLogOutButtons = (glyphIndex, onConfirm, onCancel, enableButton) => {
       onClickFunction: onCancel,
       tooltipText: [ 'Cancel' ],
       type: 'reset',
-      enableButton: enableButton,
       value: 'Cancel'
     }
   ]

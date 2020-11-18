@@ -94,7 +94,7 @@ const SignUpForm = (props) => {
     )
   })
 
-  let signUpButtons = makeSignUpButtons(formGlyphIndex, props.onSubmit, props.onReset, props.onCancel, props.enableButton)
+  let signUpButtons = makeSignUpButtons(formGlyphIndex, props.onSubmit, props.onReset, props.onCancel)
 
   return(
     <form

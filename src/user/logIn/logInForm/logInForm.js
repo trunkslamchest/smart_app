@@ -65,7 +65,7 @@ const LogInForm = (props) => {
     )
   })
 
-  let logInButtons = makeLogInButtons(glyphIndex, props.onSubmit, props.onCancel, props.enableButton)
+  let logInButtons = makeLogInButtons(glyphIndex, props.onSubmit, props.onCancel)
 
   return(
     <form

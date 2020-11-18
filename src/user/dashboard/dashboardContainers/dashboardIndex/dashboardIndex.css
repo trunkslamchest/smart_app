@@ -19,7 +19,8 @@
 }
 
 .dashboard_index_header h3 {
-  font: 300 20pt 'Lato', sans-serif;
+  color: rgba(255, 255, 255, 1);
+  font: 600 20pt 'LatoLight', sans-serif;
 }
 
 .dashboard_index_header h4 {

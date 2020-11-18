@@ -1,7 +1,6 @@
-const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel, enableButton) => {
+const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel) => {
   return [
     {
-      enableButton: enableButton,
       id: 'sign_up_form_submit',
       image: formGlyphIndex.formWhiteCheckMark,
       imageHover: formGlyphIndex.formBlackCheckMark,
@@ -12,7 +11,6 @@ const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel, enableBu
       value: 'Create Account'
     },
     {
-      enableButton: enableButton,
       id: 'sign_up_form_reset',
       image: formGlyphIndex.formWhiteReset,
       imageHover: formGlyphIndex.formBlackReset,
@@ -23,7 +21,6 @@ const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel, enableBu
       value: 'Reset'
     },
     {
-      enableButton: enableButton,
       id: 'sign_up_form_cancel',
       image: formGlyphIndex.formWhiteX,
       imageHover: formGlyphIndex.formBlackX,

@@ -62,13 +62,15 @@ class DeleteProfile extends React.Component {
 
   render(){
 
-  let deleteProfileButtons = makeDeleteProfileButtons(glyphIndex, this.onConfirm, this.onCancel, this.state.enableConfirmButton)
+    let deleteProfileButtons = makeDeleteProfileButtons(glyphIndex, this.onConfirm, this.onCancel)
 
-  // const loading =
-  //   <div className='loading_wrapper'>
-  //     <SmallLoadingSpinner />
-  //     <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
-  //   </div>
+    // const loading =
+    //   <div className='loading_wrapper'>
+    //     <SmallLoadingSpinner />
+    //     <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
+    //   </div>
+
+    console.log(deleteProfileButtons)
 
     return(
       <Modal

@@ -52,7 +52,7 @@ class LogOut extends React.Component {
         <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
       </div>
 
-    let logOutButtons = makeLogOutButtons(glyphIndex, this.onConfirm, this.onCancel, this.state.enableButton)
+    let logOutButtons = makeLogOutButtons(glyphIndex, this.onConfirm, this.onCancel)
 
     return(
       <Modal

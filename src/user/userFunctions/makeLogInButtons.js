@@ -1,4 +1,4 @@
-const makeLogInButtons = (glyphIndex, onSubmit, onCancel, enableButton) => {
+const makeLogInButtons = (glyphIndex, onSubmit, onCancel) => {
   return [
     {
       name: 'LogInSubmit',
@@ -8,7 +8,6 @@ const makeLogInButtons = (glyphIndex, onSubmit, onCancel, enableButton) => {
       onClickFunction: onSubmit,
       tooltipText: [ 'Login' ],
       type: 'submit',
-      enableButton: enableButton,
       value: 'Login'
     },
     {
@@ -19,7 +18,6 @@ const makeLogInButtons = (glyphIndex, onSubmit, onCancel, enableButton) => {
       onClickFunction: onCancel,
       tooltipText: [ 'Cancel' ],
       type: 'reset',
-      enableButton: enableButton,
       value: 'Cancel'
     }
   ]

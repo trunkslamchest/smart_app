@@ -46,7 +46,7 @@ const DeleteProfileForm = (props) => {
     })
   }
 
-  let deleteProfileFormButtons = makeDeleteProfileFormButtons(glyphIndex, props.onSubmitConfirm, props.onSubmitCancel, props.enableButton)
+  let deleteProfileFormButtons = makeDeleteProfileFormButtons(glyphIndex, props.onSubmitConfirm, props.onSubmitCancel)
 
   return(
     <>
