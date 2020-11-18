@@ -1,4 +1,4 @@
-const makeResultsNavBarButtons = (navBarIconIndex, routes) => {
+const makeResultsNavBarButtons = (navBarIconIndex, onHelp, routes) => {
   return [
       {
         id: 'nav_results',
@@ -23,10 +23,7 @@ const makeResultsNavBarButtons = (navBarIconIndex, routes) => {
         image: navBarIconIndex.helpNavBarIconWhite,
         imageHover: navBarIconIndex.helpNavBarIconGrey,
         name: 'Help',
-        // onClickFunction: null,
-        // params: {},
-        // route: routes.discuss,
-        // text: 'Discuss',
+        onClickFunction: onHelp,
         tooltipText: [ 'Help' ],
         type: 'button'
       }

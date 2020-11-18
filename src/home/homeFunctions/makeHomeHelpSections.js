@@ -116,7 +116,7 @@ const makeHomeHelpSections = [
         ]
       }
     ]
-  },
+  }
 ]
 
 export default makeHomeHelpSections

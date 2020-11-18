@@ -52,6 +52,18 @@ const makeLeaderBoardsHelpSections = [
       }
     ]
   },
+  {
+    sub_header_text: 'Support',
+    p_texts: [
+      {
+        header: '',
+        texts: [
+          `If you have any issues viewing or appearing on any leaderboards,
+          please submit a support ticket(TBA).`,
+        ]
+      }
+    ]
+  }
 ]
 
 export default makeLeaderBoardsHelpSections

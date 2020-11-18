@@ -89,7 +89,7 @@ const makeDashboardHelpSections = [
         header: '',
         texts: [
           `Here is where you can view all of the statistics gathered on the questions you have answered.`,
-          `You can view your statistics by clicking the 'Statistics' button (the line graphy) on the navigation bar located at the top of the page.`,
+          `You can view your statistics by clicking the 'Statistics' button (the line graph) on the navigation bar located at the top of the page.`,
           `If you have answered questions for a specific difficulty or category,
            you can click on it and view information on each question you have answered.
            If you have not answered questions for a specific difficulty or category,
@@ -132,6 +132,35 @@ const makeDashboardHelpSections = [
     sub_header_text: '',
     p_texts: [
       {
+        header: 'Rating',
+        texts: [
+          `After answering 5 questions, you will recieve a SmartApp™ Rating.`,
+          `You will also receive an overall rating for each difficulty level and category you answer questions in,
+           as well as individual ratings for each question you answer.`,
+          `The small green up arrow next to a given rating indicates that it is higher than the global average of users,
+           while the small red arrow indicates that the given rating is lower than the global average.
+           No arrow indicates that the rating is roughly equal to the global average.`
+        ]
+      }
+    ],
+    lists: [
+      {
+        list_header: `Every time you answer a question, the following calculation is ran on your performance:`,
+        list_items: [
+          `(((1 + ((a / b) + (c * 0.15)) + ((10 - t) / 10) + d) / 3)) * 10`,
+          `a = total incorrect answers for the question`,
+          `b = total answers for the question`,
+          `c = times users have run out of time while trying to answer the question`,
+          `d = the question's difficulty rating (0.8 for Easy, 0.9 for Medium, 1.0 for Hard)`,
+          `t = time it takes the user to answer the question correctly (in seconds)`
+        ]
+      }
+    ],
+  },
+  {
+    sub_header_text: '',
+    p_texts: [
+      {
         header: 'Rank',
         texts: [
           `After answering 5 questions, you are granted a SmartApp™ Rank that increases or decreases based on how well you do on each question.`,
@@ -160,32 +189,6 @@ const makeDashboardHelpSections = [
           `rating between 0.35 and 0.3 = F`,
           `rating between 0.3 and 0.25 = F-`,
           `rating lower than 0.25`
-        ]
-      }
-    ],
-  },
-  {
-    sub_header_text: '',
-    p_texts: [
-      {
-        header: 'Rating',
-        texts: [
-          `After answering 5 questions, you will recieve a SmartApp™ Rating.`,
-          `You will also receive an overall rating for each difficulty level and category you answer questions in,
-           as well as individual ratings for each question you answer.`
-        ]
-      }
-    ],
-    lists: [
-      {
-        list_header: `Every time you answer a question, the following calculation is ran on your performance:`,
-        list_items: [
-          `(((1 + ((a / b) + (c * 0.15)) + ((10 - t) / 10) + d) / 3)) * 10`,
-          `a = total incorrect answers for the question`,
-          `b = total answers for the question`,
-          `c = times users have run out of time while trying to answer the question`,
-          `d = the question's difficulty rating (0.8 for Easy, 0.9 for Medium, 1.0 for Hard)`,
-          `t = time it takes the user to answer the question correctly (in seconds)`
         ]
       }
     ],
@@ -241,6 +244,18 @@ const makeDashboardHelpSections = [
       }
     ]
   },
+  {
+    sub_header_text: 'Support',
+    p_texts: [
+      {
+        header: '',
+        texts: [
+          `If you have any issues with your Dashboards or Public Profile,
+          please submit a support ticket(TBA).`,
+        ]
+      }
+    ]
+  }
 ]
 
 export default makeDashboardHelpSections

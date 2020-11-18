@@ -17,15 +17,18 @@ import {
   resetAnswer,
   resetResults,
   resetVote,
-  resetComment
+  resetComment,
+  help,
+  setHelpHeader,
+  setHelpSections
 } from '../../store/actions/actionIndex'
 
 import makeResultsNavBarButtons from './resultsFunctions/makeResultsNavBarButtons'
+import makeResultsHelpSections from './resultsFunctions/makeResultsHelpSections'
 
 import ResultsStatsContainer from './resultsStats/resultsStatsContainer'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
-import StatsLegend from '../../UI/statsLegend/statsLegend'
 
 import resultsNavBarIconIndex from '../../assets/nav_bar_icons/resultsNavBarIconIndex'
 
@@ -116,13 +119,19 @@ class ResultsContainer extends React.Component{
     if(this.props.play.commentStatus) this.props.onResetComment()
   }
 
+  onHelp = () => {
+    this.props.onSetHelpHeader('SmartApp™ Results')
+    this.props.onSetHelpSections(makeResultsHelpSections)
+    this.props.onHelpModal(true)
+  }
+
   render(){
     const baseStaticRoute = routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid
 
     let routeBoard
     let statsRoute = this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats'
     let discussRoute = this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss'
-    let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, { stats: statsRoute, discuss: discussRoute })
+    let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, this.onHelp, { stats: statsRoute, discuss: discussRoute })
 
     const nextQuestionButton = [
       {
@@ -195,7 +204,6 @@ class ResultsContainer extends React.Component{
         />
         <div className='results_wrapper'>
           { routeBoard }
-          { this.state.showLegend && <StatsLegend /> }
         </div>
       </>
     )
@@ -204,7 +212,6 @@ class ResultsContainer extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal,
     play: state.play,
     user: state.user,
     questions: state.questions
@@ -228,6 +235,9 @@ const mapDispatchToProps = (dispatch) => {
     onResetResults: () => dispatch(resetResults()),
     onResetVote: (obj) => dispatch(resetVote(obj)),
     onResetComment: (obj) => dispatch(resetComment(obj)),
+    onHelpModal: (bool) => dispatch(help(bool)),
+    onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
+    onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
   }
 }
 

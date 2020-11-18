@@ -49,7 +49,6 @@ class Help extends React.Component {
     return (
         <Modal
           modalClass={ 'help_modal' }
-          // onHideModal={ this.onHideModal }
           showModal={ this.props.modal.help }
         >
         <ModalHeader header_text={ this.props.headerText } />
