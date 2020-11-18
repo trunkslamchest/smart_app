@@ -778,6 +778,19 @@ exports.getUser = functions
     });
 });
 
+var sortComments = function(cats) {
+  var comments = []
+  cats.forEach(cat => {
+    for(id in cat[1]){
+      let questionObj = { qid: id, cat: cat[0], question: cat[1][id].question }
+      if(!!cat[1][id].comments) questionObj.comments = Object.values(cat[1][id].comments)
+      else questionObj.comments = []
+      comments.push(questionObj)
+    }
+  })
+  return comments
+}
+
 exports.getUserProfile = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -788,11 +801,18 @@ exports.getUserProfile = functions
         let users = snap.val()
         for(let user in users){
           if(users[user].info.user_name === req.body.user_name) {
+            var easyComments = users[user].questions.Easy ? sortComments(Object.entries(users[user].questions.Easy.categories)) : []
+            var mediumComments = users[user].questions.Medium ? sortComments(Object.entries(users[user].questions.Medium.categories)) : []
+            var hardComments = users[user].questions.Hard ? sortComments(Object.entries(users[user].questions.Hard.categories)) : []
+            var allComments = [ ...easyComments, ...mediumComments, ...hardComments ]
+
             userObj = {
               achievements: users[user].achievements,
               experience: users[user].experience,
               info: users[user].info,
               questions: users[user].questions.totals,
+              comments: allComments,
+              votes: users[user].questions.totals.all.votes,
               settings: users[user].settings
             }
             break
@@ -807,7 +827,6 @@ exports.getUserProfile = functions
           if(!userObj.settings.privacy.profile.showAvatar) delete userObj.info.avatar
           if(!userObj.settings.privacy.profile.showBio) delete userObj.info.bio
           if(!userObj.settings.privacy.profile.showCountry) delete userObj.info.country
-          if(!userObj.settings.privacy.profile.showExperience) delete userObj.experience
           if(!userObj.settings.privacy.profile.showGender) delete userObj.info.gender
           if(!userObj.settings.privacy.profile.showGenderPronouns) delete userObj.info.gender_pronouns
           if(!userObj.settings.privacy.profile.showRealName) {
@@ -815,6 +834,8 @@ exports.getUserProfile = functions
             delete userObj.info.last_name
           }
           if(!userObj.settings.privacy.profile.showStats) delete userObj.questions
+          if(!userObj.settings.privacy.profile.showVotes) delete userObj.votes
+          if(!userObj.settings.privacy.profile.showComments) delete userObj.comments
         }
       }
 
@@ -1627,9 +1648,17 @@ exports.staticQuestion = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
     setCORSpost(req, res)
-    var resObj = {}
+    var voteObj = {}, ratingObj = {}, resObj = {}
     firebase.database().ref('/' + req.body.difficulty + '/categories/' + req.body.category + '/' + req.body.qid).once('value', function(snap){
       if(!!req.body.qid) {
+        voteObj = { ...snap.val().votes }
+
+        let voteAvg = calcVoteAvg(voteObj)
+        let voteRating = calcVoteRating(voteAvg)
+
+        voteObj["rating"] = voteRating
+        voteObj["average"] = voteAvg.total
+
         resObj = {
           qid: req.body.qid,
           difficulty: req.body.difficulty,
@@ -1640,7 +1669,8 @@ exports.staticQuestion = functions
           diffRating: snap.val().rating.difficulty,
           correct: snap.val().correct,
           comments: snap.val().comments ? snap.val().comments : null,
-          votes: snap.val().votes
+          votes: voteObj
+
         }
       }
     res.json(resObj).status(200)
