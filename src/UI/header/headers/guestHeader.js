@@ -6,52 +6,41 @@ import {
   signup
 } from '../../../store/actions/actionIndex'
 
-import HeaderIconButtonContainer from '../headerIconButton/headerIconButtonContainer'
+import makeLoggedOutHeaderButtons from '../headerFunctions/makeLoggedOutHeaderButtons'
+
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 import iconsIndex from '../../../assets/icons/iconsIndex'
 
 import '../header.css'
 
 const GuestHeader = (props) => {
 
-  const onLogIn = (event, args) => {
+  const onLogIn = (event) => {
     event.persist()
-    props.onLoginModal(args)
+    props.onLoginModal(true)
   }
 
-  const onSignUp = (event, args) => {
+  const onSignUp = (event) => {
     event.persist()
-    props.onSignupModal(args)
+    props.onSignupModal(true)
   }
 
-  const headerButtons = [
-    { buttonType: 'link', icon: iconsIndex.leaderboardWhiteIcon, iconHover: iconsIndex.leaderboardBlackIcon, iconClass: 'header_icon', id: 'header_leader_board_button', name: 'LeaderboardsButton', tooltipText: 'Leaderboards', route: routes.leader_boards + '/overall' },
-    { buttonType: 'modal', icon: iconsIndex.loginWhiteIcon, iconHover: iconsIndex.loginBlackIcon, iconClass: 'header_icon', id: 'header_login_button', name: 'LoginButton', tooltipText: 'Login', clickFunction: onLogIn, args: true },
-    { buttonType: 'modal', icon: iconsIndex.signUpWhiteIcon, iconHover: iconsIndex.signUpBlackIcon, iconClass: 'header_icon', id: 'header_sign_up_button', name: 'SignUpButton', tooltipText: 'Sign Up', clickFunction: onSignUp, args: true }
-  ]
+  const onPushLink = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    props.history.push(buttonParams.route)
+  }
 
-  const distribHeaderButtons = headerButtons.map((button, index) => {
-    return(
-      <HeaderIconButtonContainer
-        args={ button.args }
-        buttonClass='header_icon_button'
-        buttonType={ button.buttonType }
-        clickFunction={ button.clickFunction }
-        history={ props.history }
-        icon={ button.icon }
-        iconClass={ button.iconClass }
-        iconHover={ button.iconHover }
-        id={ button.id }
-        key={ index }
-        name={ button.name }
-        route={ button.route }
-        tooltipText={ button.tooltipText }
-      />
-    )
-  })
+
+  let headerButtons = makeLoggedOutHeaderButtons(iconsIndex, onLogIn, onSignUp, onPushLink, routes)
 
   return(
     <div className='header_nav_links'>
-      { distribHeaderButtons }
+      <DefaultButtonsContainer
+        buttons={ headerButtons }
+        buttonClass={ 'header_button' }
+        containerClass={ 'header_buttons_container' }
+        enableButton={ true }
+      />
     </div>
   )
 }

@@ -6,7 +6,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   outline: -webkit-focus-ring-color auto 0px;
-  margin: 0px auto;
+  margin: 0px auto 10px auto;
   width: 80%;
   max-width: 500px;
 }

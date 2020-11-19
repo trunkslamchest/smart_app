@@ -1,4 +1,4 @@
-/* .header_menu_container::before {
+.default_menu_container::before {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -9,7 +9,7 @@
   content: "";
 }
 
-.header_menu_container {
+.default_menu_container {
   position: absolute;
   top: 3.1em;
   background-color: grey;
@@ -25,7 +25,7 @@
   z-index: 2;
 }
 
-.header_menu_wrapper {
+.default_menu_wrapper {
   display: flex;
   z-index: 2;
-} */
+}

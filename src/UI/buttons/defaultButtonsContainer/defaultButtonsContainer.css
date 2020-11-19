@@ -19,6 +19,34 @@
   box-sizing: border-box;
 }
 
+.default_menu_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px 0px 0px 0px;
+  /* position: relative;
+  top: 3.1em;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  align-content: flex-end;
+  align-self: flex-end;
+  content: "";
+  min-width: 125px;
+  z-index: 2; */
+}
+
+.header_buttons_container {
+  display: flex;
+  flex-direction: row;
+}
+
 .home_buttons_container {
   align-items: center;
   align-content: center;

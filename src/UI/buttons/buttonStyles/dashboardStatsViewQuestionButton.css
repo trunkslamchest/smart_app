@@ -1,7 +1,6 @@
 .dashboard_stats_view_question_button {
   -webkit-appearance: none;
   align-items: center;
-  /* background: rgba(50, 50, 50, 0); */
   background-color: rgba(45, 45, 45, 1);
   border: 0px solid black;
   box-sizing: border-box;
@@ -23,13 +22,28 @@
   /* width: 75px; */
 }
 
-.dashboard_stats_view_question_button:hover {
-  color: rgba(50, 50, 50, 1);
+.dashboard_stats_view_question_button_active {
+  -webkit-appearance: none;
+  align-items: center;
   background-color: rgba(211, 143, 57, 1);
   border: 0px solid black;
   box-sizing: border-box;
-  font: 600 10pt 'PoppinsLight', sans-serif;
-  transition: background-color .2s ease-in-out 0s;
+  color: rgba(50, 50, 50, 1);
+  cursor: pointer;
+  display: inline-block;
+  font: 300 10pt 'PoppinsLight', sans-serif;
+  letter-spacing: normal;
+  margin: 0px;
+  padding: 10px 20px 10px 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+  /* width: 75px; */
 }
 
 .dashboard_stats_view_question_button_disabled {
@@ -56,16 +70,29 @@
   word-spacing: normal;
 }
 
-.dashboard_stats_view_question_button img {
+.dashboard_stats_view_question_button:hover,
+.dashboard_stats_view_question_button_active:hover {
+  color: rgba(50, 50, 50, 1);
+  background-color: rgba(211, 143, 57, 1);
+  border: 0px solid black;
+  box-sizing: border-box;
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  transition: background-color .2s ease-in-out 0s;
+}
+
+.dashboard_stats_view_question_button img,
+.dashboard_stats_view_question_button_active img {
   width: 20px;
   height: 20px;
 }
 
-.dashboard_stats_view_question_button span {
+.dashboard_stats_view_question_button span,
+.dashboard_stats_view_question_button_active span {
   align-self: stretch;
 }
 
-.dashboard_stats_view_question_button:active span {
+.dashboard_stats_view_question_button:active span,
+.dashboard_stats_view_question_button_active:active span {
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
@@ -76,7 +103,8 @@
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-.dashboard_stats_view_question_button:active img {
+.dashboard_stats_view_question_button:active img,
+.dashboard_stats_view_question_button_active:active img {
   width: 20px;
   height: 20px;
   opacity: 0;

@@ -17,6 +17,7 @@ const DefaultButtonContainer = (props) => {
             return(
               <DefaultButton
                 buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
+                buttonType={ button.buttonType }
                 history={ props.history }
                 id={ button.id }
                 image={ button.image }
@@ -24,8 +25,11 @@ const DefaultButtonContainer = (props) => {
                 key={ index }
                 location={ location.pathname }
                 name={ button.name }
+                menuButtons={ button.menuButtons }
                 enableButton={ props.enableButton }
+                offHover={ props.offHover }
                 onClickFunction={ button.onClickFunction }
+                onSwitchMenu={ props.onSwitchMenu }
                 params={ button.params }
                 route={ button.route }
                 text={ button.text }

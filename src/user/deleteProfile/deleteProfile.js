@@ -58,8 +58,6 @@ class DeleteProfile extends React.Component {
     this.props.onDeleteProfileModal(false)
   }
 
-  // onHideModal = () => { this.props.onDeleteProfileModal(false) }
-
   render(){
 
     let deleteProfileButtons = makeDeleteProfileButtons(glyphIndex, this.onConfirm, this.onCancel)
@@ -70,12 +68,9 @@ class DeleteProfile extends React.Component {
     //     <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
     //   </div>
 
-    console.log(deleteProfileButtons)
-
     return(
       <Modal
         modalClass={ 'delete_profile_modal' }
-        // onHideModal={ this.onHideModal }
         showModal={ this.props.modal.deleteProfile }
       >
         <div className='delete_profile_wrapper'>

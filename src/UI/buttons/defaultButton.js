@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import DefaultMenu from '../menus/defaultMenu/defaultMenu'
 import DefaultButtonTooltip from '../tooltips/defaultButtonTooltip'
 
 import './buttonStyles/addCommentButton.css'
@@ -15,17 +16,20 @@ import './buttonStyles/diffButton.css'
 import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
 import './buttonStyles/gameModesButton.css'
+import './buttonStyles/headerButton.css'
+import './buttonStyles/headerProfileButton.css'
 import './buttonStyles/homeButton.css'
 import './buttonStyles/homeStartButton.css'
 import './buttonStyles/navBarButton.css'
 import './buttonStyles/nextQuestionButton.css'
+import './buttonStyles/menuButton.css'
 import './buttonStyles/modalButton.css'
 import './buttonStyles/modalHelpButton.css'
 import './buttonStyles/questionCardChoiceButton.css'
 
 class DefaultButton extends React.Component {
 
-  state = { hover: false, tooltip: false }
+  state = { hover: false, menu: false, tooltip: false }
 
   componentWillUnmount(){
     this.setState({ hover: false, tooltip: false })
@@ -44,15 +48,30 @@ class DefaultButton extends React.Component {
 
   onClickFunction = (event) => {
     event.preventDefault()
+    event.persist()
+    this.setState({ tooltip: false })
     if(this.props.enableButton){
-      event.persist()
-      this.props.onClickFunction(event)
+      if(!!this.props.onSwitchMenu){
+        this.props.offHover()
+        this.props.onSwitchMenu()
+      }
+      if(this.props.buttonType === 'menu'){
+        let switchMenu = !this.state.menu
+        this.setState({ menu: switchMenu })
+      }
+      if(!!this.props.onClickFunction){ this.props.onClickFunction(event) }
     }
   }
 
-  render() {
-    let buttonType
+  onSwitchMenu = () => {
+    let switchMenu = !this.state.menu
+    this.setState({ menu: switchMenu })
+  }
 
+  render() {
+
+    let buttonType
+    let buttonClass
     let buttonContent =
       <>
         { !!this.props.text && <span params={ this.props.params }>{ this.props.text }</span> }
@@ -62,16 +81,21 @@ class DefaultButton extends React.Component {
             id={ `${this.props.id}_image` }
             name={ `${this.props.name}Image` }
             params={ this.props.params }
-            src={ this.state.hover || this.props.location === this.props.route ? this.props.imageHover : this.props.image }
+            src={ this.state.hover || this.state.menu || this.props.location === this.props.route ? this.props.imageHover : this.props.image }
           />
         }
       </>
+
+    if(this.props.enableButton)
+      if(this.state.hover || this.state.menu) buttonClass = `${this.props.buttonClass}_active`
+      else buttonClass = this.props.buttonClass
+    else buttonClass = `${this.props.buttonClass}_disabled`
 
     if(this.props.type === 'NavLink') {
       buttonType =
         <NavLink
           activeClassName={ `${this.props.buttonClass}_active` }
-          className={ this.props.enableButton ? this.props.buttonClass : `${this.props.buttonClass}_disabled` }
+          className={ buttonClass }
           id={ this.props.id }
           name={ this.props.name }
           params={ this.props.params }
@@ -83,18 +107,17 @@ class DefaultButton extends React.Component {
     } else {
       buttonType =
         <button
-          className={ this.props.enableButton ? this.props.buttonClass : `${this.props.buttonClass}_disabled` }
+          className={ buttonClass }
           id={ this.props.id }
           name={ this.props.name }
           params={ this.props.params }
           onClick={ this.onClickFunction }
+
           type={ this.props.type }
         >
           { buttonContent }
         </button>
     }
-
-  // console.log(this.props.tooltipText)
 
     return(
       <div
@@ -106,12 +129,20 @@ class DefaultButton extends React.Component {
         {
           this.props.tooltipText &&
           this.state.hover &&
+          !this.state.menu &&
           this.state.tooltip &&
             <DefaultButtonTooltip
-              offHover={ this.offHover }
               tooltipText={ this.props.tooltipText }
               tooltipClass={ this.props.tooltipClass }
             />
+        }
+        { this.state.menu &&
+          <DefaultMenu
+            menuButtons={ this.props.menuButtons }
+            menuClass={ 'header_menu' }
+            offHover={ this.offHover }
+            onSwitchMenu={ this.onSwitchMenu }
+          />
         }
       </div>
     )
