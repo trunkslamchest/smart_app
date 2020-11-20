@@ -1,12 +1,27 @@
+.header_button_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+  height: 100%;
+}
+
 .header_button {
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(50, 50, 50, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  display: inline-block;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -19,17 +34,21 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  height: 100%;
 }
 
 .header_button_active {
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  display: inline-block;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -42,17 +61,21 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  height: 100%;
 }
 
 .header_button_disabled {
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
-  display: inline-block;
   font: 100 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -80,6 +103,7 @@
 
 .header_button img,
 .header_button_active img {
+  align-self: stretch;
   width: 20px;
   height: 20px;
 }

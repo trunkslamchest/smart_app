@@ -2,9 +2,9 @@ import React from 'react'
 
 import HeaderMenuButton from './headerMenuButton'
 
-import './headerMenu.css'
-import './headerMenuButton.css'
-import './headerMenuButton2.scss'
+// import './headerMenu.css'
+// import './headerMenuButton.css'
+// import './headerMenuButton2.scss'
 
 class HeaderMenu extends React.Component {
 
@@ -33,6 +33,8 @@ class HeaderMenu extends React.Component {
         </HeaderMenuButton>
       )
     })
+
+    console.log('test')
 
     return(
       <div className="header_menu_container" ref={ this.setMenuRef } >

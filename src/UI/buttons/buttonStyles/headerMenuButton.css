@@ -1,19 +1,15 @@
-.dashboard_stats_view_question_button {
+.header_menu_button {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  background-color: rgba(45, 45, 45, 1);
+  background: rgba(50, 50, 50, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  font: 300 10pt 'PoppinsLight', sans-serif;
+  align-items: stretch;
+  font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
@@ -22,25 +18,22 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
-  /* width: 75px; */
+  width: 100%;
 }
 
-.dashboard_stats_view_question_button_active {
+.header_menu_button_active {
   -webkit-appearance: none;
   align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  background-color: rgba(211, 143, 57, 1);
+  background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  font: 300 10pt 'PoppinsLight', sans-serif;
+  display: inline-block;
+  font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
@@ -49,27 +42,24 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
-  /* width: 75px; */
+  width: 100%;
 }
 
-.dashboard_stats_view_question_button_disabled {
+.header_menu_button_disabled {
   -webkit-appearance: none;
   align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
-  font: 100 10pt 'PoppinsLight', sans-serif;
+  display: inline-block;
+  font: 100 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
   opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
-  padding: 2.5px 5px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   text-indent: 0px;
@@ -79,41 +69,41 @@
   word-spacing: normal;
 }
 
-.dashboard_stats_view_question_button:hover,
-.dashboard_stats_view_question_button_active:hover {
+.header_menu_button:hover,
+.header_menu_button_active:hover {
   color: rgba(50, 50, 50, 1);
-  background-color: rgba(211, 143, 57, 1);
+  background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
-  font: 600 10pt 'PoppinsLight', sans-serif;
+  font: 600 12pt 'PoppinsLight', sans-serif;
   transition: background-color .2s ease-in-out 0s;
 }
 
-.dashboard_stats_view_question_button img,
-.dashboard_stats_view_question_button_active img {
+.header_menu_button img,
+.header_menu_button_active img {
   width: 20px;
   height: 20px;
 }
 
-.dashboard_stats_view_question_button span,
-.dashboard_stats_view_question_button_active span {
+.header_menu_button span,
+.header_menu_button_active span {
   align-self: stretch;
 }
 
-.dashboard_stats_view_question_button:active span,
-.dashboard_stats_view_question_button_active:active span {
+.header_menu_button:active span,
+.header_menu_button_active:active span {
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
-  font: 600 10pt 'PoppinsLight', sans-serif;
+  font: 600 12pt 'PoppinsLight', sans-serif;
   transform: translate(0px, 15px);
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-.dashboard_stats_view_question_button:active img,
-.dashboard_stats_view_question_button_active:active img {
+.header_menu_button:active img,
+.header_menu_button_active:active img {
   width: 20px;
   height: 20px;
   opacity: 0;

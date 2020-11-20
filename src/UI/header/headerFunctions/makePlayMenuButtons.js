@@ -1,7 +1,8 @@
 const makePlayMenuButtons = (onInitGame, routes) => {
   return [
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       buttonType: 'menu',
       id: 'quick_play_menu_button',
       name: 'quickPlayMenuButton',
@@ -10,7 +11,8 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       text: "Quick Play",
     },
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       buttonType: 'menu',
       id: 'by_difficulty_menu_button',
       name: 'byDifficultyMenuButton',
@@ -19,7 +21,8 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       text: "By Difficulty",
     },
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       buttonType: 'menu',
       id: 'by_category_menu_button',
       name: 'byCategoryMenuButton',

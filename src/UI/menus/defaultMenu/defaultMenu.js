@@ -23,13 +23,15 @@ class DefaultMenu extends React.Component {
         className={ `${this.props.menuClass}_container` || "menu_container" }
         ref={ this.setMenuRef }
       >
-        <DefaultButtonsContainer
-          buttons={ this.props.menuButtons }
-          containerClass={ 'default_menu_buttons_container' }
-          enableButton={ true }
-          offHover={ this.props.offHover }
-          onSwitchMenu={ this.props.onSwitchMenu }
-        />
+        <div className={ `${this.props.menuClass}_wrapper` || "menu_wrapper" } >
+          <DefaultButtonsContainer
+            buttons={ this.props.menuButtons }
+            containerClass={ 'header_menu_buttons_container' }
+            enableButton={ true }
+            offHover={ this.props.offHover }
+            onSwitchMenu={ this.props.onSwitchMenu }
+          />
+        </div>
       </div>
     )
   }

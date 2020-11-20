@@ -1,12 +1,15 @@
 .nav_bar_button {
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(50, 50, 50, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  display: inline-block;
   letter-spacing: normal;
   margin: 0px;
   padding: 10px 30px;
@@ -23,12 +26,15 @@
 .nav_bar_button_active {
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  display: inline-block;
   letter-spacing: normal;
   margin: 0px;
   padding: 10px 30px;
@@ -47,12 +53,15 @@
   transition: none;
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(174, 174, 174, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
-  display: inline-block;
   letter-spacing: normal;
   margin: 0px;
   opacity: 0;

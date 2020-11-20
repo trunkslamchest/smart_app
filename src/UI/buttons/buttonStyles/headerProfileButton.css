@@ -6,7 +6,7 @@
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -19,6 +19,7 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  height: 100%;
 }
 
 .header_profile_button_active {
@@ -29,7 +30,7 @@
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -42,6 +43,7 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  height: 100%;
 }
 
 .header_profile_button_disabled {
@@ -52,7 +54,7 @@
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
-  display: inline-block;
+  display: flex;
   font: 100 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;

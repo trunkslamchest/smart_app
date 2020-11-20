@@ -17,6 +17,7 @@ import './buttonStyles/editCommentButton.css'
 import './buttonStyles/editCommentFormButton.css'
 import './buttonStyles/gameModesButton.css'
 import './buttonStyles/headerButton.css'
+import './buttonStyles/headerMenuButton.css'
 import './buttonStyles/headerProfileButton.css'
 import './buttonStyles/homeButton.css'
 import './buttonStyles/homeStartButton.css'
@@ -121,7 +122,7 @@ class DefaultButton extends React.Component {
 
     return(
       <div
-        className='default_button_container'
+        className={ this.props.buttonContainerClass || 'default_button_container' }
         onMouseEnter={ this.onHover }
         onMouseLeave={ this.offHover }
       >

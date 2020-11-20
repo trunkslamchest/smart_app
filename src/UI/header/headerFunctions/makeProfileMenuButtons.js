@@ -1,7 +1,8 @@
 const makePlayMenuButtons = (onPushLink, onLogOut, routes) => {
   return [
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       id: 'profile_menu_button',
       name: 'profileMenuButton',
       onClickFunction: onPushLink,
@@ -9,7 +10,8 @@ const makePlayMenuButtons = (onPushLink, onLogOut, routes) => {
       text: "Profile",
     },
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       id: 'stats_menu_button',
       name: 'statsMenuButton',
       onClickFunction: onPushLink,
@@ -17,7 +19,8 @@ const makePlayMenuButtons = (onPushLink, onLogOut, routes) => {
       text: "Statistics",
     },
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       id: 'achievements_menu_button',
       name: 'achievementsMenuButton',
       onClickFunction: onPushLink,
@@ -25,7 +28,8 @@ const makePlayMenuButtons = (onPushLink, onLogOut, routes) => {
       text: "Achievements",
     },
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       id: 'settings_menu_button',
       name: 'settingsMenuButton',
       onClickFunction: onPushLink,
@@ -33,7 +37,8 @@ const makePlayMenuButtons = (onPushLink, onLogOut, routes) => {
       text: "Settings",
     },
     {
-      buttonClass: 'menu_button',
+      buttonClass: 'header_menu_button',
+      buttonContainerClass: 'header_menu_button_container',
       id: 'log_out_menu_button',
       name: 'logOutMenuButton',
       onClickFunction: onLogOut,

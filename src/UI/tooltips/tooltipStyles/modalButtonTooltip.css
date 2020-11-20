@@ -23,6 +23,7 @@
   align-items: center;
   margin: 0px;
   padding: 0px;
+  z-index: 2;
 }
 
 .modal_button_tooltip_arrow {

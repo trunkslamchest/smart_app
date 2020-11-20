@@ -8,17 +8,6 @@
   margin: 10px 0px 0px 0px;
 }
 
-.default_button_container {
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: center;
-  border: 0px solid black;
-  box-sizing: border-box;
-}
-
 .default_menu_buttons_container {
   align-items: center;
   align-content: center;
@@ -27,24 +16,27 @@
   flex-direction: column;
   justify-content: center;
   margin: 0px 0px 0px 0px;
-  /* position: relative;
-  top: 3.1em;
-  background-color: grey;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: stretch;
-  align-content: flex-end;
-  align-self: flex-end;
-  content: "";
-  min-width: 125px;
-  z-index: 2; */
 }
 
 .header_buttons_container {
+  align-items: stretch;
+  align-content: stretch;
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  height: 100%;
+}
+
+.header_menu_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-color: rgba(50, 50, 50, 1);
+  width: 200px;
 }
 
 .home_buttons_container {

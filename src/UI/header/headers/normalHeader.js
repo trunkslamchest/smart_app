@@ -63,6 +63,7 @@ const NormalHeader = (props) => {
       <div className='header_nav_links'>
         <DefaultButtonsContainer
           buttons={ headerButtons }
+          buttonContainerClass={ 'header_button_container' }
           containerClass={ 'header_buttons_container' }
           enableButton={ true }
         />

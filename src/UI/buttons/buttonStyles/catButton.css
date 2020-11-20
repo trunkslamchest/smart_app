@@ -1,12 +1,14 @@
 .cat_button {
-  -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(50, 50, 50, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  display: inline-block;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -20,17 +22,20 @@
   text-transform: none;
   width: 150px;
   word-spacing: normal;
+  -webkit-appearance: none;
 }
 
 .cat_button_active {
-  -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(50, 50, 50, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  display: inline-block;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -44,17 +49,21 @@
   text-transform: none;
   width: 150px;
   word-spacing: normal;
+  -webkit-appearance: none;
 }
 
 .cat_button_disabled {
   -webkit-appearance: none;
   align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
-  display: inline-block;
   font: 100 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
@@ -90,6 +99,7 @@
 .cat_button span,
 .cat_button_active span {
   align-self: stretch;
+  text-align: center;
 }
 
 .cat_button:active span,

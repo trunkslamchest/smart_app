@@ -17,6 +17,7 @@ const DefaultButtonContainer = (props) => {
             return(
               <DefaultButton
                 buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
+                buttonContainerClass={ props.buttonContainerClass || button.buttonContainerClass || 'default_button_container' }
                 buttonType={ button.buttonType }
                 history={ props.history }
                 id={ button.id }
