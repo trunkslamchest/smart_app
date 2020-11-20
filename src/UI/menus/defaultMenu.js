@@ -1,9 +1,9 @@
 import React from 'react'
 
-import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import '../menuStyles/defaultMenu.css'
-import '../menuStyles/headerMenu.css'
+import './menuStyles/defaultMenu.css'
+import './menuStyles/headerMenu.css'
 
 class DefaultMenu extends React.Component {
 

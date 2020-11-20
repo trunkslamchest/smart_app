@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import DefaultMenu from '../menus/defaultMenu/defaultMenu'
+import DefaultMenu from '../menus/defaultMenu'
 import DefaultButtonTooltip from '../tooltips/defaultButtonTooltip'
 
 import './buttonStyles/addCommentButton.css'
