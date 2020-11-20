@@ -1,7 +1,7 @@
 const makeHomeButton = (iconsIndex, onPushLink, routes) => {
   return [
     {
-      buttonClass: 'home_button',
+      buttonClass: 'header_home_button',
       buttonType: 'link',
       id: 'header_home_button',
       image: iconsIndex.homeWhiteIcon,
