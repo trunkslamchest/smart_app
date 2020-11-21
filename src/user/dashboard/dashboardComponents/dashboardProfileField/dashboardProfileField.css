@@ -1,0 +1,57 @@
+.dashboard_profile_field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.dashboard_profile_field h3 {
+  color: rgba(255, 255, 255, 1);
+  font: 300 12pt 'PoppinsLight', sans-serif;
+  text-align: center;
+}
+
+.dashboard_profile_field ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  padding: 5px 0px 5px 0px;
+  margin: 0px;
+  min-width: 250px !important;
+  width: 100%;
+}
+
+.dashboard_profile_field li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  padding: 0px 25px;
+  color: rgba(255, 255, 255, 1);
+  font: 300 10pt 'Lato', sans-serif;
+}
+
+.dashboard_profile_field li span {
+  align-self: stretch;
+  color: rgba(255, 255, 255, 1);
+  font: 300 9pt "Roboto", sans-serif;
+}
+
+.dashboard_profile_country_flag {
+  margin-right: 5px;
+  align-self: center;
+  height: 11px;
+  width: 16px;
+}

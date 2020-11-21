@@ -1,70 +1,74 @@
 .dashboard_profile_wrapper {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding: 10px 0px 0px 0px;
+  flex-wrap: nowrap;
+  padding: 10px 0px 10px 0px;
   width: 100%;
-  /* background: rgba(50, 50, 50, 1); */
 }
 
 .dashboard_profile_body {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
   margin: 0px 0px 10px 0px;
   padding: 0px;
 }
 
-.dashboard_profile_body ul {
-  list-style: none;
-  padding: 10px 0px 10px 0px;
-  margin: 0px;
-  min-width: 250px !important;
+.dashboard_profile_fields_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
   width: 100%;
 }
 
-.dashboard_profile_body span {
+.dashboard_profile_last_login_join_date_container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
   align-content: center;
-  text-align: center;
-  margin-top: -5px;
-  padding: 0px 25px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0px 0px 0px;
+}
+
+.dashboard_profile_last_login_join_date_sub_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.dashboard_profile_last_login_join_date_sub_container h3 {
   color: rgba(255, 255, 255, 1);
   font: 300 12pt 'PoppinsLight', sans-serif;
-}
-
-.dashboard_profile_body li {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
   text-align: center;
-  margin-top: -5px;
-  padding: 0px 25px;
+}
+
+.dashboard_profile_last_login_join_date_sub_container span {
+  display: flex;
+  align-content: center;
+  align-self: center;
   color: rgba(255, 255, 255, 1);
-  font: 300 10pt 'Lato', sans-serif;
+  font: 300 9pt "Roboto", sans-serif;
 }
 
-.dashboard_profile_body img {
-  padding-right: 5px;
-}
-
-.dashboard_profile_body span {
+/* .dashboard_profile_body span {
   margin: 0px;
   padding: 5px 0px;
   width: 100%;
   text-align: center;
-}
+} */
 
-.dashboard_profile_body span a {
+/* .dashboard_profile_body span a {
   color: rgba(4, 108, 196, 1);
   margin: 0px;
   text-decoration: none;
@@ -91,4 +95,4 @@
 .dashboard_profile_body span a:visited {
   margin: 0px;
   text-decoration: none;
-}
+} */

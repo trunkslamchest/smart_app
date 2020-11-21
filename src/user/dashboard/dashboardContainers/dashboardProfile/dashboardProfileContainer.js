@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import { routes } from '../../../../utility/paths'
 import { connect } from 'react-redux'
+
 import { checkBlankString, checkBlankInt } from '../../../../utility/forms/checkBlank'
 import formatMonth from '../../../../utility/forms/formatMonth'
 import formatDay from '../../../../utility/forms/formatDay'
 
-import DashboardProfileHeader from '../../dashboardComponents/dashboardProfileHeader/dashboardProfileHeader'
-import DashboardProfileError from './dashboardProfileError/dashboardProfileError'
+import makeDashboardProfileHeaderButtons from '../../dashboardFunctions/makeDashboardProfileHeaderButtons'
+import makeDashboardProfileFields from '../../dashboardFunctions/makeDashboardProfileFields'
 
-import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
+import ContainerProfileHeader from '../../../../UI/components/headers/containerProfileHeader/containerProfileHeader'
+import DashboardProfileField from '../../dashboardComponents/dashboardProfileField/dashboardProfileField'
 
 import './dashboardProfileContainer.css'
 
@@ -37,69 +39,44 @@ const DashboardProfileContainer = (props) => {
     props.history.push(buttonParams.route)
   }
 
-  const profileFields = [
-    { name: 'Name', data: `${firstName.field} ${lastName.field}`, errors: [ {error: firstName.error}, { error: lastName.error } ] },
-    { name: 'Bio', data: bio.field, errors: bio.error },
-    { name: 'Country', data: country.field, errors: country.error },
-    { name: 'Gender Pronouns', data: genderPronouns.field, errors: genderPronouns.error },
-    { name: 'Gender', data: gender.field, errors: gender.error },
-    { name: 'Date Of Birth', data: fullDOB, errors: [ { error: dobDay.error}, { error: dobMonth.error }, { error: dobYear.error} ] },
-    { name: 'Last Login', data: last_login },
-    { name: 'Join Date', data: join_date }
-  ]
+  const profileFields = makeDashboardProfileFields(firstName, lastName, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date)
 
-  const headerButtons = [
-    {
-      id: 'edit_profile_button',
-      buttonClass: 'dashboard_profile_header_button',
-      name: 'editProfileButton',
-      onClickFunction: onClickHeaderButtonFunction,
-      params: JSON.stringify({ route: routes.dashboard_profile_edit }),
-      target: '_blank',
-      text: 'Edit Profile',
-      type: 'button'
-    },
-    {
-      id: 'view_public_profile_button',
-      buttonClass: 'dashboard_profile_header_button',
-      name: 'viewPublicProfileButton',
-      onClickFunction: onClickHeaderButtonFunction,
-      params: JSON.stringify({ route: routes.user_profile + '/' + user_name }),
-      text: 'View Public Profile',
-      target: '_blank'
-    }
-  ]
+  const headerButtons = makeDashboardProfileHeaderButtons(onClickHeaderButtonFunction, user_name, routes)
 
-  let distribProfileFields = profileFields.map(field => {
+  let distribProfileFields = profileFields.map((field, index) => {
     return (
-      <ul key={ profileFields.indexOf(field) + field.name }>
-        <span>{ field.name }</span>
-        { field.data && field.data.length &&
-          <li>
-            { field.name === "Country" && <img alt={ field.data } src={ flagIconIndex[field.data].image } /> }
-            { field.data }
-          </li>
-        }
-        { field.errors && typeof field.errors === 'string' && <DashboardProfileError error={ field.errors } /> }
-        { field.errors && typeof field.errors === 'object' && field.errors.map(errorMsg => <DashboardProfileError key={ field.errors.indexOf(errorMsg) } error={ errorMsg.error } /> ) }
-      </ul>
+      <DashboardProfileField
+        key={ index + field.name }
+        field={ field }
+        fieldClass={ 'dashboard_profile_field' }
+      />
     )
   })
 
   return(
     <div className='dashboard_profile_wrapper'>
-      <DashboardProfileHeader
+      <ContainerProfileHeader
         avatar={ avatar }
         containerClass={ 'dashboard_profile_header_buttons_container' }
         buttons={ headerButtons }
         email={ email }
         history={ props.history }
-        join_date={ join_date }
-        last_login={ last_login }
         user_name={ user_name }
       />
       <div className='dashboard_profile_body'>
-        { distribProfileFields }
+        <div className='dashboard_profile_fields_container'>
+          { distribProfileFields }
+        </div>
+        <div className='dashboard_profile_last_login_join_date_container'>
+          <div className='dashboard_profile_last_login_join_date_sub_container'>
+            <h3>Last Login</h3>
+            <span>{ last_login }</span>
+          </div>
+          <div className='dashboard_profile_last_login_join_date_sub_container'>
+            <h3>Join Date</h3>
+            <span>{ join_date }</span>
+          </div>
+        </div>
       </div>
     </div>
   )

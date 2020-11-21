@@ -23,7 +23,7 @@ const ContainerProfileHeader = (props) => {
           <div className='container_profile_header_top_left_text'>
             <div className='container_profile_header_top_left_text_top'>
               <h3>{ props.user_name }</h3>
-              { !!props.email && <h5>{ props.email }</h5> }
+              { !!props.email && <span>{ props.email }</span> }
               { (!!props.first_name || !!props.last_name) &&
                 <div className='container_profile_header_top_left_text_sub_countainer'>
                   { !!props.first_name && <span>{ props.first_name }</span> }
@@ -60,17 +60,18 @@ const ContainerProfileHeader = (props) => {
           { !!props.buttons &&
             <DefaultButtonsContainer
               buttons={ props.buttons }
-              button_class={ 'container_header_button' }
-              container_class={ 'container_buttons_profile_header_container' }
-              enableButtons={ true }
+              containerClass={ props.containerClass }
+              enableButton={ true }
             />
           }
           { !!props.date_block && props.date_block }
         </div>
       </div>
-      <div className='container_profile_header_bottom'>
-        { !!props.bio && <p>{ props.bio }</p> }
-      </div>
+      { !!props.bio &&
+        <div className='container_profile_header_bottom'>
+          <p>{ props.bio }</p>
+        </div>
+      }
     </div>
   )
 }
