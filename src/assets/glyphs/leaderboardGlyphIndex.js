@@ -1,11 +1,10 @@
-import leaderboardNext from './leaderboard/next_leaderboard_button.png'
-import leaderboardNextHover from './leaderboard/next_hover_leaderboard_button.png'
-import leaderboardNextDisabled from './leaderboard/next_disabled_leaderboard_button.png'
+import leaderboardNext from './white_next_button.svg'
+import leaderboardNextHover from './black_next_button.svg'
+import leaderboardNextDisabled from './grey_next_button.svg'
 
-import leaderboardPrev from './leaderboard/prev_leaderboard_button.png'
-import leaderboardPrevHover from './leaderboard/prev_hover_leaderboard_button.png'
-import leaderboardPrevDisabled from './leaderboard/prev_disabled_leaderboard_button.png'
-
+import leaderboardPrev from './white_prev_button.svg'
+import leaderboardPrevHover from './black_prev_button.svg'
+import leaderboardPrevDisabled from './grey_prev_button.svg'
 
 const leaderboardGlyphIndex = {
   'leaderboardNext': leaderboardNext,

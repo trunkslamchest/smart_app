@@ -1,18 +1,15 @@
 import React from 'react'
 
-import menu_arrow_grey_down from '../../../assets/menu_arrows/menu_arrow_grey_down.png'
-// import menu_arrow_white_down from '../../../assets/menu_arrows/menu_arrow_white_down.png'
-import menu_arrow_grey_left from '../../../assets/menu_arrows/menu_arrow_grey_left.png'
-import menu_arrow_white_left from '../../../assets/menu_arrows/menu_arrow_white_left.png'
+import menuArrowIndex from '../../../assets/menu_arrows/menuArrowIndex'
 
 import './leaderBoardsSubHeader.css'
 
 const LeaderBoardsSubHeader = (props) => {
 
   // const arrow_white_down = <img alt='open' className='menu_arrow' src={ menu_arrow_white_down } />
-  const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_grey_down } />
-  const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_grey_left } />
-  const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menu_arrow_white_left } />
+  const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
+  const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
+  const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
 
   let header_menu_arrow = arrow_white_left
 

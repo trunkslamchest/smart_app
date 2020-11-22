@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'
 import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardStatsCategoryContainer'
-// import StatsLegend from '../../../../UI/statsLegend/statsLegend'
 
 import UserStatsContainer from '../../../../UI/components/containers/userStatsContainer/userStatsContainer'
 
@@ -23,10 +22,8 @@ const DashboardStatsContainer = (props) => {
         user_experience={ props.user_experience }
         history={ props.history }
       />
-      {/* <h6>Click on a Difficulty or Category to view your answers</h6> */}
       <DashboardStatsDifficultyContainer history={ props.history } />
       <DashboardStatsCategoryContainer history={ props.history } />
-      {/* <StatsLegend /> */}
     </div>
   )
 }

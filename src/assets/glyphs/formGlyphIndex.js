@@ -1,18 +1,16 @@
-import formWhiteCheckMark from './formCheckBox/form_white_checkmark.png'
-import formBlackCheckMark from './formCheckBox/form_black_checkmark.png'
-import formOrangeCheckMark from './formCheckBox/form_orange_checkmark.png'
-import formGreenCheckMark from './formCheckBox/form_green_checkmark.png'
+import formWhiteCheckMark from './white_checkmark.svg'
+import formBlackCheckMark from './black_checkmark.svg'
+import formOrangeCheckMark from './orange_checkmark.svg'
+import formGreenCheckMark from './green_checkmark.svg'
 
+import formWhiteX from './white_x.svg'
+import formBlackX from './black_x.svg'
+import formOrangeX from './orange_x.svg'
+import formRedX from './red_x.svg'
 
-import formWhiteX from './formCheckBox/form_white_x.png'
-import formBlackX from './formCheckBox/form_black_x.png'
-import formOrangeX from './formCheckBox/form_orange_x.png'
-import formRedX from './formCheckBox/form_red_x.png'
-
-
-import formWhiteReset from './formCheckBox/form_white_reset.png'
-import formBlackReset from './formCheckBox/form_black_reset.png'
-import formOrangeReset from './formCheckBox/form_orange_reset.png'
+import formWhiteReset from './white_reset.svg'
+import formBlackReset from './black_reset.svg'
+import formOrangeReset from './orange_reset.svg'
 
 const formGlyphIndex = {
   'formWhiteCheckMark': formWhiteCheckMark,

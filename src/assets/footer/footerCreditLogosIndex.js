@@ -1,29 +1,33 @@
-import firebaseLogoRectangle from './footerCreditLogos/firebase_logo_rectangle.png'
-import flatironLogoRectangle from './footerCreditLogos/flatiron_logo_rectangle.png'
-import githubLogoRectangle from './footerCreditLogos/github_logo_rectangle.png'
-import hvhLogoRectangle from './footerCreditLogos/HVH_logo_rectangle.png'
-import otbLogoRectangle from './footerCreditLogos/OTB_logo_rectangle.png'
-import reactLogoRectangle from './footerCreditLogos/react_logo_rectangle.png'
+import firebaseLogoRectangle from './footerCreditLogos/firebase_footer_logo.svg'
+import firebaseLogoRectangleHover from './footerCreditLogos/firebase_hover_footer_logo.svg'
 
-import firebaseLogoRectangleHover from './footerCreditLogos/firebase_hover_logo_rectangle.png'
-import flatironLogoRectangleHover from './footerCreditLogos/flatiron_hover_logo_rectangle.png'
-import githubLogoRectangleHover from './footerCreditLogos/github_hover_logo_rectangle.png'
-import hvhLogoRectangleHover from './footerCreditLogos/HVH_hover_logo_rectangle.png'
-import otbLogoRectangleHover from './footerCreditLogos/OTB_hover_logo_rectangle.png'
-import reactLogoRectangleHover from './footerCreditLogos/react_hover_logo_rectangle.png'
+import flatironLogoRectangle from './footerCreditLogos/flatiron_footer_logo.svg'
+import flatironLogoRectangleHover from './footerCreditLogos/flatiron_hover_footer_logo.svg'
+
+import githubLogoRectangle from './footerCreditLogos/github_footer_logo.svg'
+import githubLogoRectangleHover from './footerCreditLogos/github_hover_footer_logo.svg'
+
+import hvhLogoRectangle from './footerCreditLogos/hvh_footer_logo.svg'
+import hvhLogoRectangleHover from './footerCreditLogos/hvh_hover_footer_logo.svg'
+
+import otbLogoRectangle from './footerCreditLogos/otb_footer_logo.svg'
+import otbLogoRectangleHover from './footerCreditLogos/otb_hover_footer_logo.svg'
+
+import reactLogoRectangle from './footerCreditLogos/react_footer_logo.svg'
+import reactLogoRectangleHover from './footerCreditLogos/react_hover_footer_logo.svg'
 
 const footerCreditLogosIndex = {
   'firebaseLogoRectangle': firebaseLogoRectangle,
-  'flatironLogoRectangle': flatironLogoRectangle,
-  'githubLogoRectangle': githubLogoRectangle,
-  'hvhLogoRectangle': hvhLogoRectangle,
-  'otbLogoRectangle': otbLogoRectangle,
-  'reactLogoRectangle': reactLogoRectangle,
   'firebaseLogoRectangleHover': firebaseLogoRectangleHover,
+  'flatironLogoRectangle': flatironLogoRectangle,
   'flatironLogoRectangleHover': flatironLogoRectangleHover,
+  'githubLogoRectangle': githubLogoRectangle,
   'githubLogoRectangleHover': githubLogoRectangleHover,
+  'hvhLogoRectangle': hvhLogoRectangle,
   'hvhLogoRectangleHover': hvhLogoRectangleHover,
+  'otbLogoRectangle': otbLogoRectangle,
   'otbLogoRectangleHover': otbLogoRectangleHover,
+  'reactLogoRectangle': reactLogoRectangle,
   'reactLogoRectangleHover': reactLogoRectangleHover
 }
 
