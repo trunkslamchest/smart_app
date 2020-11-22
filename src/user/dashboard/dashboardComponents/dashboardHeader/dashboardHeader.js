@@ -17,7 +17,7 @@ const DashboardHeader = (props) => {
             <DefaultButtonsContainer
               buttons={ props.buttons }
               button_class={ 'dashboard_header_button' }
-              container_class={ 'dashboard_buttons_header_container' }
+              containerClass={ 'dashboard_buttons_header_container' }
               enableButton={ true }
             />
           }

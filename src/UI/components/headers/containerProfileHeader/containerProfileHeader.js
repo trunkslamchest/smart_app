@@ -31,29 +31,31 @@ const ContainerProfileHeader = (props) => {
                 </div>
               }
             </div>
-            <div className='container_profile_header_top_left_text_bottom'>
-              { (!!props.gender || !!props.gender_pronouns) &&
-                <div className='container_profile_header_top_left_text_sub_countainer'>
-                  { !!props.gender && <span>{ props.gender }</span> }
-                  { !!props.gender_pronouns && <span>({ props.gender_pronouns })</span> }
-                </div>
-              }
-              { !!props.country &&
-                <div className="container_profile_header_top_left_text_sub_countainer">
-                  <img
-                    alt={ props.country }
-                    className='user_profile_info_flag_img'
-                    src={ flagIconIndex[props.country].image }
-                  />
-                  <span>{ props.country }</span>
-                </div>
-              }
-              { !!props.age &&
-                <div className='container_profile_header_top_left_text_sub_countainer'>
-                  <span>{ props.age } Years Old</span>
-                </div>
-              }
-            </div>
+            { (!!props.gender || !!props.gender_pronouns || !!props.country || !!props.age) &&
+              <div className='container_profile_header_top_left_text_bottom'>
+                { (!!props.gender || !!props.gender_pronouns) &&
+                  <div className='container_profile_header_top_left_text_sub_countainer'>
+                    { !!props.gender && <span>{ props.gender }</span> }
+                    { !!props.gender_pronouns && <span>({ props.gender_pronouns })</span> }
+                  </div>
+                }
+                { !!props.country &&
+                  <div className="container_profile_header_top_left_text_sub_countainer">
+                    <img
+                      alt={ props.country }
+                      className='user_profile_info_flag_img'
+                      src={ flagIconIndex[props.country].image }
+                    />
+                    <span>{ props.country }</span>
+                  </div>
+                }
+                { !!props.age &&
+                  <div className='container_profile_header_top_left_text_sub_countainer'>
+                    <span>{ props.age } Years Old</span>
+                  </div>
+                }
+              </div>
+            }
           </div>
         </div>
         <div className='container_profile_header_top_right'>

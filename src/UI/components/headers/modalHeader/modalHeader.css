@@ -7,6 +7,7 @@
   align-content: center;
   background: rgba(50, 50, 50, 1);
   border: 0px;
+  border-radius: 5px 5px 0px 0px;
   color: rgba(255, 255, 255, 1);
   padding: 5px 10px;
   margin: 0px;
@@ -15,7 +16,6 @@
 }
 
 .modal_header_top {
-  /* align-self: cen; */
   display: flex;
 }
 
@@ -37,7 +37,6 @@
   align-self: center;
   display: flex;
   text-align: center;
-  /* padding-right: 25px; */
   min-width: 65px;
   font: 300 20pt 'Lato';
 }

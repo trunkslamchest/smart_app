@@ -1,8 +1,9 @@
 .dashboard_wrapper {
   background-color: rgba(50, 50, 50, 1);
+  border-radius: 5px;
   margin: 0px 0px 20px 0px;
   width: 100%;
-  padding: 10px 0px 0px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 .dashboard_wrapper > * {

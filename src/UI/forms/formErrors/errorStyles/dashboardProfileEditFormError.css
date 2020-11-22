@@ -1,4 +1,4 @@
-.edit_profile_form_error_item_container {
+/* .default_form_error_container {
   background: rgba(168, 62, 50, 0.2);
   border: 1px solid rgb(168, 62, 50, 0.4);
   margin: 0px auto !important;
@@ -8,6 +8,6 @@
   justify-content: center;
 }
 
-.edit_profile_form_error_item_container span {
-  font: 400 10pt 'Lato', sans-serif;
-}
+.default_form_error_container span {
+  font: 400 10pt 'Roboto', sans-serif;
+} */

@@ -1,0 +1,17 @@
+.default_input_sub_container input,
+.default_input_sub_container textarea {
+  border: 0px solid grey;
+  border-radius: 5px;
+  display: flex;
+  font: 400 12px "Helvetica", sans-serif;
+  margin: 2.5px;
+  max-width: 350px;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px;
+  width: 50%;
+}
+
+.default_input_sub_container input::placeholder,
+.default_input_sub_container textarea::placeholder {
+  color: rgba(150, 150, 150, 1);
+}

@@ -1,3 +1,15 @@
+.dashboard_form_button_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+  height: 100%;
+}
+
 .dashboard_form_button {
   -webkit-appearance: none;
   align-items: center;
@@ -5,7 +17,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  background: rgba(50, 50, 50, 0);
+  background: rgba(50, 50, 50, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
@@ -31,10 +43,11 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  background: rgba(50, 50, 50, 0);
+  background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
+  border-radius: 5px;
   box-sizing: border-box;
-  color: rgba(235, 235, 235, 1);
+  color: rgba(50, 50, 50, 1);
   cursor: pointer;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
@@ -79,12 +92,13 @@
 
 .dashboard_form_button:hover,
 .dashboard_form_button_active:hover {
-  background: rgba(50, 50, 50, 1);
+  color: rgba(50, 50, 50, 1);
   background-color: rgba(244, 166, 66, 1);
+  border-radius: 5px;
   border: 0px solid black;
   box-sizing: border-box;
   font: 600 12pt 'PoppinsLight', sans-serif;
-  transition: background-color .2s ease-in-out 0s;
+  transition: background-color, border-radius .2s ease-in-out 0s;
 }
 
 .dashboard_form_button img,
@@ -98,7 +112,7 @@
   align-self: stretch;
 }
 
-.dashboard_form_button:active span,
+.default_button:active span,
 .dashboard_form_button_active:active span {
   color: rgba(50, 50, 50, 1);
   display: block;

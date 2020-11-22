@@ -7,7 +7,17 @@ import { check } from '../../../../utility/paths'
 import checkFunctions from '../../../../utility/checkFunctions'
 import validateEditProfile from '../../../../utility/validation/validateEditProfile'
 
-import DashboardEditProfileForm from './dashboardEditProfileForm/dashboardEditProfileForm'
+import makeDashboardEditProfileFormButtons from '../../dashboardFunctions/makeDashboardEditProfileFormButtons'
+import makeDashboardEditProfileFormInputs from '../../dashboardFunctions/makeDashboardEditProfileFormInputs'
+
+import DefaultForm from '../../../../UI/forms/defaultForm'
+
+import genders from '../../../../datasets/genders'
+import gender_pronouns from '../../../../datasets/genderPronouns'
+import months from '../../../../datasets/months'
+
+import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
+import formGlyphIndex from '../../../../assets/glyphs/formGlyphIndex'
 
 import './dashboardEditProfile.css'
 
@@ -31,8 +41,8 @@ class DashboardEditProfile extends React.Component {
     errors: {},
     form: { valid: false, pending: false },
     pulledStore: false,
-    enableButtons: true,
-    enableInputs: true
+    enableButton: true,
+    enableInput: true
   }
 
   componentDidMount(){ if(this.props.user.info) this.pulledStore() }
@@ -40,7 +50,31 @@ class DashboardEditProfile extends React.Component {
   componentDidUpdate() {
     if(this.props.user.info && !this.state.pulledStore)this.pulledStore()
     if(this.props.modal.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    if(!this.props.modal.loading && !this.state.enableButton) this.setState({ enableButton: true, enableInput: true })
+    if(!this.props.modal.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      avatar: '',
+      bio: '',
+      country: '',
+      dob: {
+        day: 0,
+        month: 'null',
+        year: 0
+      },
+      email: '',
+      first_name: '',
+      gender: '',
+      gender_pronouns: '',
+      last_name: '',
+      user_name: '',
+      errors: {},
+      form: { valid: false, pending: false },
+      pulledStore: false,
+      enableButton: true,
+      enableInput: true
+    })
   }
 
   pulledStore = () => {
@@ -61,7 +95,7 @@ class DashboardEditProfile extends React.Component {
 
   onChange = (event) => {
     let val = event.target.value === "Select" || event.target.value.length === 0 ? "null" : event.target.value
-    this.setState({ [event.target.name]: val })
+    this.setState({ [event.target.id]: val })
   }
 
   onDOBChange = (event) => {
@@ -114,6 +148,7 @@ class DashboardEditProfile extends React.Component {
 
     this.setState({ form: formCheck })
     if(formCheck.valid) this.checkUserExists()
+    else this.props.onLoadingModal(false)
   }
 
   checkUserExists = () => {
@@ -128,7 +163,7 @@ class DashboardEditProfile extends React.Component {
   }
 
   onValidEditProfile = () => {
-    if(!this.state.form.pending && this.state.enableButtons){
+    if(!this.state.form.pending && !this.state.enableButton){
       this.props.onAuthStart('editProfile', {
         uid: localStorage.id,
         info: {
@@ -163,61 +198,51 @@ class DashboardEditProfile extends React.Component {
       user_name: this.props.user.info.user_name,
       errors: {},
       form: { valid: false, pending: false },
-      enableButtons: true,
-      enableInputs: true
+      enableButton: true,
+      enableInput: true
     })
 
   }
 
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
-  componentWillUnmount(){
-    this.setState({
-      avatar: '',
-      bio: '',
-      country: '',
-      dob: {
-        day: 0,
-        month: 'null',
-        year: 0
-      },
-      email: '',
-      first_name: '',
-      gender: '',
-      gender_pronouns: '',
-      last_name: '',
-      user_name: '',
-      errors: {},
-      form: { valid: false, pending: false },
-      pulledStore: false,
-      enableButtons: true,
-      enableInputs: true
-    })
-  }
-
   render(){
+
+    let editProfileInputFields = makeDashboardEditProfileFormInputs(
+      this.onChange,
+      this.onAvatarChange,
+      this.onDOBChange,
+      flagIconIndex,
+      this.state.avatar,
+      this.state.bio,
+      this.state.country,
+      this.state.dob,
+      this.state.email,
+      this.state.first_name,
+      this.state.gender,
+      this.state.gender_pronouns,
+      this.state.last_name,
+      this.state.user_name,
+      genders,
+      gender_pronouns,
+      months
+    )
+
+    const editProfileFormButtons = makeDashboardEditProfileFormButtons(this.onSubmit, this.onReset, this.onCancel, formGlyphIndex)
+
     return(
-      <DashboardEditProfileForm
-        avatar={ this.state.avatar }
-        bio={ this.state.bio }
-        country={ this.state.country }
-        dob={ this.state.dob }
-        email={ this.state.email }
-        first_name={ this.state.first_name }
-        gender={ this.state.gender }
-        gender_pronouns={ this.state.gender_pronouns }
-        last_name={ this.state.last_name }
-        user_name={ this.state.user_name }
-        enableButtons={ this.state.enableButtons }
-        enableInputs={ this.state.enableInputs }
+      <DefaultForm
+        buttonContainerClass={ 'dashboard_form_buttons_container' }
+        inputFields={ editProfileInputFields }
+        inputContainerClass={ 'edit_profile_input_container' }
+        formButtons={ editProfileFormButtons }
+        formClass={ 'edit_profile_form' }
+        formId={ 'edit_profile_form' }
+        formName={ 'editProfileForm' }
+        enableButton={ this.state.enableButton }
+        enableInput={ this.state.enableInput }
         errors={ this.state.errors }
-        form={ this.state.form }
-        onChange={ this.onChange }
-        onAvatarChange={ this.onAvatarChange }
-        onDOBChange={ this.onDOBChange }
-        onCancel={ this.onCancel }
-        onReset={ this.onReset }
-        onSubmit={ this.onSubmit }
+        formValid={ this.state.form }
       />
     )
   }

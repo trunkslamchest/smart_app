@@ -1,5 +1,6 @@
 .user_profile_wrapper {
   background-color: rgba(50, 50, 50, 1);
+  border-radius: 5px;
   margin: 20px 0px 20px 0px;
   width: 100%;
   padding: 20px;

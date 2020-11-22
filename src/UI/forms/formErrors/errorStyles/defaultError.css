@@ -1,7 +1,7 @@
 .default_error {
-  /* background: rgba(255, 204, 204, 1); */
+  background: rgba(255, 204, 204, 1);
   /* background: green; */
-  /* border: 1px solid rgba(168, 62, 50, 1); */
+  border: 1px solid rgba(168, 62, 50, 1);
   border-radius: 2.5px;
   box-sizing: border-box;
   display: flex;
@@ -26,8 +26,8 @@
 
 .default_error span {
   align-self: center;
-  /* color: rgba(0, 0, 0, 1); */
+  color: rgba(0, 0, 0, 1);
   /* color: rgba(255, 204, 204, 1); */
-  color: rgba(255, 220, 21, 1);
+  /* color: rgba(255, 220, 21, 1); */
   font: 300 9pt "Roboto", sans-serif;
 }

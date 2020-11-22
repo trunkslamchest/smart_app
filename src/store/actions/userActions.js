@@ -15,6 +15,10 @@ import {
   updateStaticQuestionCommentStatus
 } from './questionsActions'
 
+// import {
+//   loading
+// } from './modalActions'
+
 import userFunctions from '../../utility/userFunctions'
 import questionsFunctions from '../../utility/questionsFunctions'
 
@@ -37,6 +41,7 @@ export const updateUserInfo = (authType, obj) => {
       // if(userRes){
         dispatch(authUpdateStatus('updateUserInfoSuccess', true))
         dispatch(initUpdateUserInfo(obj.info))
+        // dispatch(loading(false))
       // }
     })
   }

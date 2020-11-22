@@ -2,17 +2,18 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  width: 100%;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  margin: 0px 0px 0px 0px;
+  /* text-align: center; */
+  /* width: 100%; */
 }
 
 .dashboard_profile_field h3 {
   color: rgba(255, 255, 255, 1);
   font: 300 12pt 'PoppinsLight', sans-serif;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .dashboard_profile_field ul {
@@ -20,25 +21,27 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  text-align: center;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  /* text-align: center; */
   padding: 5px 0px 5px 0px;
   margin: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
   min-width: 250px !important;
-  width: 100%;
+  padding-inline-start: 0px;
+  /* width: 100%; */
 }
 
 .dashboard_profile_field li {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  padding: 0px 25px;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  /* padding: 0px 25px; */
   color: rgba(255, 255, 255, 1);
   font: 300 10pt 'Lato', sans-serif;
 }

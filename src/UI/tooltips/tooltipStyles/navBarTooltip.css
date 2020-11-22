@@ -44,6 +44,7 @@
 
 .nav_bar_tooltip_wrapper span {
   background-color: rgba(244, 166, 66, 1);
+  border-radius: 2.5px;
   color: rgba(40, 44, 52, 1);
   font: 600 10pt 'Poppins', 'sans-serif';
   padding: 2.5px 5px;

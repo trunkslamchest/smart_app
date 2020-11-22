@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DefaultError from '../../../../UI/components/errors/defaultError'
+import DefaultError from '../../../../UI/forms/formErrors/defaultError'
 
 import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
 
@@ -26,8 +26,8 @@ const DashboardProfileField = (props) => {
             <span>{ props.field.data }</span>
           </li>
         }
-        { props.field.errors && typeof props.field.errors === 'string' && <DefaultError error={ props.field.errors } /> }
-        { props.field.errors && typeof props.field.errors === 'object' && props.field.errors.map((errorMsg, index) => <DefaultError key={ index } error={ errorMsg.error } /> ) }
+        { props.field.errors && typeof props.field.errors === 'string' && <DefaultError error={ props.field.errors } errorClass={ 'default_warning' } /> }
+        { props.field.errors && typeof props.field.errors === 'object' && props.field.errors.map((errorMsg, index) => <DefaultError error={ errorMsg.error } errorClass={ 'default_warning' } key={ index } /> ) }
       </ul>
     </div>
   )

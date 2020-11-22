@@ -50,7 +50,3 @@ export default makeDashboardEditProfileFormButtons
 // this.props.imageHover
 // this.props.tooltipText
 // this.props.tooltipClass
-
-      // { idName: 'dashboardSettingsSubmit', type: 'input', form_type: 'submit', onClickFunction: this.onSubmit, value: 'Confirm' },
-      // { idName: 'dashboardSettingsReset', type: 'input', form_type: 'reset', onClickFunction: this.props.onReset, value: 'Reset' },
-      // { idName: 'dashboardSettingsCancel', type: 'button', onClickFunction: this.props.onCancel, value: 'Cancel' }

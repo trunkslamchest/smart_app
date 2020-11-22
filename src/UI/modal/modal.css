@@ -24,9 +24,8 @@
 
 .help_modal {
   animation: fade_in .2s ease-in-out 1;
-  /* background-color: rgba(50, 50, 50, 1); */
+  border-radius: 5px;
   left: 50%;
-  /* max-height: 300px; */
   width: 75%;
   max-width: 1000px;
   min-width: 300px;

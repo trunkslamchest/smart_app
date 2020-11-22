@@ -11,6 +11,11 @@ const makeDashboardProfileFields = (firstName, lastName, bio, country, gender, g
       errors: country.error
     },
     {
+      name: 'Bio',
+      data: bio.field,
+      errors: bio.error
+    },
+    {
       name: 'Gender',
       data: gender.field,
       errors: gender.error
@@ -24,20 +29,7 @@ const makeDashboardProfileFields = (firstName, lastName, bio, country, gender, g
       name: 'Date Of Birth',
       data: fullDOB,
       errors: [ { error: dobDay.error}, { error: dobMonth.error }, { error: dobYear.error} ]
-    },
-    {
-      name: 'Bio',
-      data: bio.field,
-      errors: bio.error
-    },
-    // {
-    //   name: 'Last Login',
-    //   data: last_login
-    // },
-    // {
-    //   name: 'Join Date',
-    //   data: join_date
-    // }
+    }
   ]
 }
 

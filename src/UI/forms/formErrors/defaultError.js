@@ -2,6 +2,7 @@ import React from 'react'
 
 import './errorStyles/defaultError.css'
 import './errorStyles/dashboardMissingFieldError.css'
+import './errorStyles/defaultWarning.css'
 
 import ErrorExclamationIndex from '../../../assets/glyphs/errorExclamationIndex'
 
@@ -15,7 +16,7 @@ const DefaultError = (props) => {
             id='default_error_exclamation'
             className='default_error_exclamation'
             name='defaultErrorExclamation'
-            src={ ErrorExclamationIndex.errorExclamationYellow }
+            src={ props.errorClass === 'default_warning' ? ErrorExclamationIndex.errorExclamationYellow : ErrorExclamationIndex.errorExclamationRed }
             title='Error'
           />
           <span>
