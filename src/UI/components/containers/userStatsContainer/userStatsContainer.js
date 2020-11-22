@@ -4,8 +4,7 @@ import levels from '../../../../datasets/levels'
 
 import ContainerHeaderCentered from '../../../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
 
-import trend_arrow_up from '../../../../assets/trends/trend_arrow_up.png'
-import trend_arrow_down from '../../../../assets/trends/trend_arrow_down.png'
+import trendArrowIndex from '../../../../assets/trend_arrows/trendArrowIndex'
 
 import './userStatsTotal.css'
 import './userStatsXP.css'
@@ -36,14 +35,14 @@ const UserStatsTotal = (props) => {
     <img
       alt='Higher than global average'
       className='trend_arrow'
-      src={ trend_arrow_up }
+      src={ trendArrowIndex.greenArrowUp }
     />
 
   const arrow_down =
     <img
       alt='Lower than global average'
       className='trend_arrow'
-      src={ trend_arrow_down }
+      src={ trendArrowIndex.redArrowDown }
     />
 
   let totalStats = <></>

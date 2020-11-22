@@ -5,9 +5,7 @@ import { connect } from 'react-redux'
 
 import DashboardStatsAnswersContainer from '../dashboardStatsAnswersContainer/dashboardStatsAnswersContainer'
 
-import trend_arrow_up from '../../../../../../assets/trends/trend_arrow_up.png'
-import trend_arrow_down from '../../../../../../assets/trends/trend_arrow_down.png'
-
+import trendArrowIndex from '../../../../../../assets/trend_arrows/trendArrowIndex'
 import menuArrowIndex from '../../../../../../assets/menu_arrows/menuArrowIndex'
 
 import './dashboardStatsCardHeaderButton.css'
@@ -86,8 +84,8 @@ class DashboardStatsCard extends React.Component {
       if(this.state.showStats) header_menu_arrow = arrow_grey_down
 
       if(stats.rating !== 0) {
-        arrow_up = <img alt='Higher than global average' className='header_button_trend_arrow' src={ trend_arrow_up } />
-        arrow_down = <img alt='Lower than global average' className='header_button_trend_arrow' src={ trend_arrow_down } />
+        arrow_up = <img alt='Higher than global average' className='header_button_trend_arrow' src={ trendArrowIndex.greenArrowUp } />
+        arrow_down = <img alt='Lower than global average' className='header_button_trend_arrow' src={ trendArrowIndex.redArrowDown } />
       }
 
       if(stats.answered > 0) questionsCorrect = this.numZero(((stats.correct / stats.answered) * 100).toFixed(2))

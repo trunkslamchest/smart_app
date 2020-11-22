@@ -1,28 +1,31 @@
-import internationalNavBarIconWhite from './international_white_nav_bar_button.png'
-// import internationalNavBarIconBlack from './international_black_nav_bar_button.png'
-import internationalNavBarIconGrey from './international_grey_nav_bar_button.png'
-import regionalNavBarIconWhite from './regional_white_nav_bar_button.png'
-// import regionalNavBarIconBlack from './regional_black_nav_bar_button.png'
-import regionalNavBarIconGrey from './regional_grey_nav_bar_button.png'
-import categoriesNavBarIconWhite from './categories_white_nav_bar_button.png'
-// import categoriesNavBarIconBlack from './categories_black_nav_bar_button.png'
-import categoriesNavBarIconGrey from './categories_grey_nav_bar_button.png'
-import helpNavBarIconWhite from './help_white_nav_bar_button.png'
-// import helpNavBarIconBlack from './help_black_nav_bar_button.png'
-import helpNavBarIconGrey from './help_grey_nav_bar_button.png'
+import internationalNavBarIconWhite from './white_international_nav_bar_button.svg'
+import internationalNavBarIconBlack from './black_international_nav_bar_button.svg'
+import internationalNavBarIconGrey from './grey_international_nav_bar_button.svg'
+
+import regionalNavBarIconWhite from './white_regional_nav_bar_button.svg'
+import regionalNavBarIconBlack from './black_regional_nav_bar_button.svg'
+import regionalNavBarIconGrey from './grey_regional_nav_bar_button.svg'
+
+import categoriesNavBarIconWhite from './white_categories_nav_bar_button.svg'
+import categoriesNavBarIconBlack from './black_categories_nav_bar_button.svg'
+import categoriesNavBarIconGrey from './grey_categories_nav_bar_button.svg'
+
+import helpNavBarIconWhite from './white_help_nav_bar_button.svg'
+import helpNavBarIconBlack from './black_help_nav_bar_button.svg'
+import helpNavBarIconGrey from './grey_help_nav_bar_button.svg'
 
 const leaderBoardNavBarIconIndex = {
   'internationalNavBarIconWhite': internationalNavBarIconWhite,
-  // 'internationalNavBarIconBlack': internationalNavBarIconBlack,
+  'internationalNavBarIconBlack': internationalNavBarIconBlack,
   'internationalNavBarIconGrey': internationalNavBarIconGrey,
   'regionalNavBarIconWhite': regionalNavBarIconWhite,
-  // 'regionalNavBarIconBlack': regionalNavBarIconBlack,
+  'regionalNavBarIconBlack': regionalNavBarIconBlack,
   'regionalNavBarIconGrey': regionalNavBarIconGrey,
   'categoriesNavBarIconWhite': categoriesNavBarIconWhite,
-  // 'categoriesNavBarIconBlack': categoriesNavBarIconBlack,
+  'categoriesNavBarIconBlack': categoriesNavBarIconBlack,
   'categoriesNavBarIconGrey': categoriesNavBarIconGrey,
   'helpNavBarIconWhite': helpNavBarIconWhite,
-  // 'helpNavBarIconBlack': helpNavBarIconBlack,
+  'helpNavBarIconBlack': helpNavBarIconBlack,
   'helpNavBarIconGrey': helpNavBarIconGrey
 }
 

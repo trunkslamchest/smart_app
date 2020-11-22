@@ -1,22 +1,24 @@
-import statsNavBarIconWhite from './stats_white_nav_bar_button.png'
-// import statsNavBarIconBlack from './stats_black_nav_bar_button.png'
-import statsNavBarIconGrey from './stats_grey_nav_bar_button.png'
-import discussNavBarIconWhite from './discuss_white_nav_bar_button.png'
-// import discussNavBarIconBlack from './discuss_black_nav_bar_button.png'
-import discussNavBarIconGrey from './discuss_grey_nav_bar_button.png'
-import helpNavBarIconWhite from './help_white_nav_bar_button.png'
-// import helpNavBarIconBlack from './help_black_nav_bar_button.png'
-import helpNavBarIconGrey from './help_grey_nav_bar_button.png'
+import statsNavBarIconWhite from './white_stats_nav_bar_button.svg'
+import statsNavBarIconBlack from './black_stats_nav_bar_button.svg'
+import statsNavBarIconGrey from './grey_stats_nav_bar_button.svg'
+
+import discussNavBarIconWhite from './white_discuss_nav_bar_button.svg'
+import discussNavBarIconBlack from './black_discuss_nav_bar_button.svg'
+import discussNavBarIconGrey from './grey_discuss_nav_bar_button.svg'
+
+import helpNavBarIconWhite from './white_help_nav_bar_button.svg'
+import helpNavBarIconBlack from './black_help_nav_bar_button.svg'
+import helpNavBarIconGrey from './grey_help_nav_bar_button.svg'
 
 const resultsNavBarIconIndex = {
   'statsNavBarIconWhite': statsNavBarIconWhite,
-  // 'statsNavBarIconBlack': statsNavBarIconBlack,
+  'statsNavBarIconBlack': statsNavBarIconBlack,
   'statsNavBarIconGrey': statsNavBarIconGrey,
   'discussNavBarIconWhite': discussNavBarIconWhite,
-  // 'discussNavBarIconBlack': discussNavBarIconBlack,
+  'discussNavBarIconBlack': discussNavBarIconBlack,
   'discussNavBarIconGrey': discussNavBarIconGrey,
   'helpNavBarIconWhite': helpNavBarIconWhite,
-  // 'helpNavBarIconBlack': helpNavBarIconBlack,
+  'helpNavBarIconBlack': helpNavBarIconBlack,
   'helpNavBarIconGrey': helpNavBarIconGrey
 }
 

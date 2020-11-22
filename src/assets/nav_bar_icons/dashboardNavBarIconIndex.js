@@ -1,34 +1,38 @@
-import profileNavBarIconWhite from './profile_white_nav_bar_button.png'
-// import profileNavBarIconBlack from './profile_black_nav_bar_button.png'
-import profileNavBarIconGrey from './profile_grey_nav_bar_button.png'
-import statsNavBarIconWhite from './stats_white_nav_bar_button.png'
-// import statsNavBarIconBlack from './stats_black_nav_bar_button.png'
-import statsNavBarIconGrey from './stats_grey_nav_bar_button.png'
-import achievementsNavBarIconWhite from './achievements_white_nav_bar_button.png'
-// import achievementsNavBarIconBlack from './achievements_black_nav_bar_button.png'
-import achievementsNavBarIconGrey from './achievements_grey_nav_bar_button.png'
-import settingsNavBarIconWhite from './settings_white_nav_bar_button.png'
-// import settingsNavBarIconBlack from './settings_black_nav_bar_button.png'
-import settingsNavBarIconGrey from './settings_grey_nav_bar_button.png'
-import helpNavBarIconWhite from './help_white_nav_bar_button.png'
-// import helpNavBarIconBlack from './help_black_nav_bar_button.png'
-import helpNavBarIconGrey from './help_grey_nav_bar_button.png'
+import profileNavBarIconWhite from './white_profile_nav_bar_button.svg'
+import profileNavBarIconBlack from './black_profile_nav_bar_button.svg'
+import profileNavBarIconGrey from './grey_profile_nav_bar_button.svg'
+
+import statsNavBarIconWhite from './white_stats_nav_bar_button.svg'
+import statsNavBarIconBlack from './black_stats_nav_bar_button.svg'
+import statsNavBarIconGrey from './grey_stats_nav_bar_button.svg'
+
+import achievementsNavBarIconWhite from './white_achievements_nav_bar_button.svg'
+import achievementsNavBarIconBlack from './black_achievements_nav_bar_button.svg'
+import achievementsNavBarIconGrey from './grey_achievements_nav_bar_button.svg'
+
+import settingsNavBarIconWhite from './white_settings_nav_bar_button.svg'
+import settingsNavBarIconBlack from './black_settings_nav_bar_button.svg'
+import settingsNavBarIconGrey from './grey_settings_nav_bar_button.svg'
+
+import helpNavBarIconWhite from './white_help_nav_bar_button.svg'
+import helpNavBarIconBlack from './black_help_nav_bar_button.svg'
+import helpNavBarIconGrey from './grey_help_nav_bar_button.svg'
 
 const dashboardNavBarIconIndex = {
   'profileNavBarIconWhite': profileNavBarIconWhite,
-  // 'profileNavBarIconBlack': profileNavBarIconBlack,
+  'profileNavBarIconBlack': profileNavBarIconBlack,
   'profileNavBarIconGrey': profileNavBarIconGrey,
   'statsNavBarIconWhite': statsNavBarIconWhite,
-  // 'statsNavBarIconBlack': statsNavBarIconBlack,
+  'statsNavBarIconBlack': statsNavBarIconBlack,
   'statsNavBarIconGrey': statsNavBarIconGrey,
   'achievementsNavBarIconWhite': achievementsNavBarIconWhite,
-  // 'achievementsNavBarIconBlack': achievementsNavBarIconBlack,
+  'achievementsNavBarIconBlack': achievementsNavBarIconBlack,
   'achievementsNavBarIconGrey': achievementsNavBarIconGrey,
   'settingsNavBarIconWhite': settingsNavBarIconWhite,
-  // 'settingsNavBarIconBlack': settingsNavBarIconBlack,
+  'settingsNavBarIconBlack': settingsNavBarIconBlack,
   'settingsNavBarIconGrey': settingsNavBarIconGrey,
   'helpNavBarIconWhite': helpNavBarIconWhite,
-  // 'helpNavBarIconBlack': helpNavBarIconBlack,
+  'helpNavBarIconBlack': helpNavBarIconBlack,
   'helpNavBarIconGrey': helpNavBarIconGrey
 }
 

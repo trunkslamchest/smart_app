@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 
 import levels from '../../../datasets/levels'
 
-import trend_arrow_up from '../../../assets/trends/trend_arrow_up.png'
-import trend_arrow_down from '../../../assets/trends/trend_arrow_down.png'
+import trendArrowIndex from '../../../assets/trend_arrows/trendArrowIndex'
 
 import './resultsStatsPerf.css'
 import './resultsStatsQuestion.css'
@@ -38,8 +37,8 @@ const ResultsStats = (props) => {
     width: `${ xpBar() }%`
   }
 
-  const arrow_up = <img alt='Higher than global average' className='trend_arrow' src={ trend_arrow_up } />
-  const arrow_down = <img alt='Lower than global average' className='trend_arrow' src={ trend_arrow_down } />
+  const arrow_up = <img alt='Higher than global average' className='trend_arrow' src={ trendArrowIndex.greenArrowUp } />
+  const arrow_down = <img alt='Lower than global average' className='trend_arrow' src={ trendArrowIndex.redArrowDown } />
 
   let rating_trend_arrow, time_trend_arrow
 
