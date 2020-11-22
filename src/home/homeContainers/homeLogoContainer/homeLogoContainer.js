@@ -1,6 +1,6 @@
 import React from 'react'
 
-import fullColorIndexLogo from '../../../assets/logos/indexLogos/full_color_index_logo.png'
+import fullColorIndexLogo from '../../../assets/logos/indexLogos/full_color_index_logo.svg'
 
 import './homeLogoContainer.css'
 

@@ -29,15 +29,34 @@ const HomeLoggedOutContainer = (props) => {
   let homeButtons = makeHomeLoggedOutButtons(onLogIn, onSignUp, onHelp, props.modal)
 
   return(
-    <div className='home_logged_out_container'>
-      <HomeLogoContainer />
-      <DefaultButtonsContainer
-        buttons={ homeButtons }
-        buttonClass={ 'home_button' }
-        containerClass={ 'home_buttons_container' }
-        enableButton={ true }
-        // tooltipClass={  }
-      />
+    <div className='home_logged_out_wrapper'>
+      <div className='home_logged_out_top_container'>
+        <HomeLogoContainer />
+          <div className='home_logged_out_top_right_container'>
+            <div className='home_logged_out_tagline_container'>
+              {/* <h3>
+                SmartApp™ is a trivia application
+              </h3> */}
+              <h3>
+                Answer questions. Gain Experience. Unlock Achievements. Improve Your Rank. Climb The Leaderboards. Challenge Your Friends.
+              </h3>
+              <h3>
+                Get Smart.
+              </h3>
+              {/* <span>
+                It's all for the pursuit of knowledge!
+              </span> */}
+            </div>
+            <DefaultButtonsContainer
+              buttons={ homeButtons }
+              buttonClass={ 'home_button' }
+              buttonContainerClass={ 'home_button_container' }
+              containerClass={ 'home_buttons_container' }
+              enableButton={ true }
+              // tooltipClass={  }
+            />
+          </div>
+      </div>
     </div>
   )
 }

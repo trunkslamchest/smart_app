@@ -4,13 +4,14 @@
   justify-content: center;
   align-content: center;
   align-items: center;
-  width: 100%;
-  padding: 20px 0px 25px 0px;
-  /* margin: 30px auto 30px auto; */
-  animation: fade_in .25s ease-in-out 1;
+  max-width: 750px;
+  width: 60%;
+  /* padding: 20px 0px 25px 0px; */
+  margin: 0px 2.5% 0px 2.5%;
+  /* animation: fade_in .25s ease-in-out 1; */
 }
 
 .home_logo_container img{
-  width: 750px;
+  width: 100%;
   height: auto;
 }

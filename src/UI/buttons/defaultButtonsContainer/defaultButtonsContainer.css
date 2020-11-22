@@ -32,11 +32,13 @@
   align-items: center;
   align-content: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0px;
   margin: 0px;
+  width: 100%;
+  /* max-width: 400px; */
 }
 
 .modal_button_container {
