@@ -7,8 +7,8 @@ import {
   clearAuthErrors
 } from '../../../store/actions/actionIndex'
 
-import makeLogInButtons from './logInFunctions/makeLogInButtons'
 import makeLogInFormInputs from './logInFunctions/makeLogInFormInputs'
+import makeLogInButtons from './logInFunctions/makeLogInButtons'
 import validateLogIn from '../../../utility/validation/validateLogIn'
 
 import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
@@ -73,9 +73,7 @@ class LogIn extends React.Component {
   }
 
   onCancel = () => {
-    this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: true }, password: '' })
-    this.props.onClearAuthErrors()
-    this.props.onClearAuthStatus()
+    this.onReset()
     this.props.onLogInModal(false)
   }
 

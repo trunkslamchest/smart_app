@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import makeSignUpInputField from './signUpFunctions/makeSignUpInputField'
-import makeSignUpButtons from './signUpFunctions/makeSignUpButtons'
+import makeSignUpInputField from '../signUpFunctions/makeSignUpInputField'
+import makeSignUpButtons from '../signUpFunctions/makeSignUpButtons'
 
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormErrorItem from './signUpFormErrorItem/signUpFormErrorItem'

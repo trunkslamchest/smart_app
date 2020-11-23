@@ -9,7 +9,6 @@ class FormCheckBox extends React.Component {
 
   onHover = () => { this.setState({ hover: true }) }
   offHover = () => { this.setState({ hover: false }) }
-
   disabledClickFunctions = (event) => { event.preventDefault() }
 
   render() {
@@ -30,17 +29,19 @@ class FormCheckBox extends React.Component {
     }
 
     return(
+      <div className={ this.props.checkBoxButtonContainerClass }>
         <button
           id={ this.props.id }
           className={ this.props.checkBoxClass }
           name={ this.props.name }
-          onClick={ this.props.disabled ? this.disabledClickFunctions : this.props.onChecked }
+          onClick={ this.props.disabled ? this.disabledClickFunctions : this.props.onChange }
           onMouseEnter={ this.onHover }
           onMouseLeave={ this.offHover }
         >
-          { this.props.status ?
+          { this.props.value ?
             <img
               alt={ 'checked' }
+              className={ this.props.checkBoxImgClass }
               name={ this.props.name }
               src={ checkmark }
               title={ this.props.name }
@@ -48,12 +49,14 @@ class FormCheckBox extends React.Component {
           :
             <img
               alt={ 'not checked' }
+              className={ this.props.checkBoxImgClass }
               name={ this.props.name }
               src={ xMark }
               title={ this.props.name }
             />
           }
         </button>
+      </div>
     )
   }
 }

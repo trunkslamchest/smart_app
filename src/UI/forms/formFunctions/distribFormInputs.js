@@ -10,6 +10,8 @@ import '../formInputs/inputStyles/editProfile/editProfileInput.css'
 import '../formInputs/inputStyles/editProfile/editProfileSelect.css'
 import '../formInputs/inputStyles/editProfile/editProfileImageButtonLabel.css'
 import '../formInputs/inputStyles/logIn/logInInput.css'
+import '../formInputs/inputStyles/signUp/signUpInput.css'
+import '../formInputs/inputStyles/signUp/signUpCheckBoxTOS.css'
 
 const distribFormInputs = (formValid, errors, enableInput, field, index) => {
   let fieldValue = field.val
@@ -28,7 +30,11 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
             accept={ field.accept }
             buttonText={ field.buttonText }
             enableInput={ enableInput }
-            className={ field.inputClass || 'default_input' }
+            checkBoxContainerClass={ field.checkBoxContainerClass }
+            checkBoxButtonContainerClass={ field.checkBoxButtonContainerClass }
+            checkBoxClass={ field.checkBoxClass }
+            checkBoxImgClass={ field.checkBoxImgClass }
+            className={ field.inputClass }
             label={ field.label }
             id={ field.id }
             imgAlt={ field.imgAlt }
@@ -38,6 +44,7 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
             imgName={ field.imgName }
             imgTitle={ field.imgTitle }
             img={ field.img }
+            inputClass={ field.inputClass }
             key={ (index + 10).toString() + (field.label || field.id) }
             labelClass={ field.labelClass }
             max={ field.max }
@@ -49,6 +56,7 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
             placeholder={ field.placeholder }
             rows={ field.rows }
             selectClass={ field.selectClass }
+            text={ field.text }
             type={ field.type }
             value={ fieldValue }
           />

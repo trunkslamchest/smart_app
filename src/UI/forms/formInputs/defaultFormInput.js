@@ -1,5 +1,8 @@
 import React from 'react'
 
+import FormCheckBox from '../../checkboxes/formCheckBox/formCheckBox'
+import formGlyphIndex from '../../../assets/glyphs/formGlyphIndex'
+
 const DefaultFormInput = (props) => {
 
   let input
@@ -78,10 +81,29 @@ const DefaultFormInput = (props) => {
             <span>{ props.buttonText }</span>
           </label>
         </div>
+    } else if(props.type === 'checkbox') {
+      input =
+        <div className={ props.checkBoxContainerClass || 'default_check_box_container' }>
+          <FormCheckBox
+            checkBoxClass={ props.checkBoxClass || 'default_check_box_button' }
+            checkBoxButtonContainerClass={ props.checkBoxButtonContainerClass || 'default_check_box_button_container' }
+            checkBoxImgClass={ props.checkBoxImgClass || 'default_check_box_img' }
+            checkedImageHover={ formGlyphIndex.formBlackCheckMark }
+            checkedImage={ formGlyphIndex.formGreenCheckMark }
+            disabled={ !props.enableInput }
+            id={ props.id }
+            name={ props.name }
+            onChange={ props.onChange }
+            uncheckedImageHover={ formGlyphIndex.formBlackX }
+            uncheckedImage={ formGlyphIndex.formRedX }
+            value={ props.value ? props.value : false }
+          />
+          { !!props.text && <p>{ props.text }</p> }
+        </div>
     } else {
       input =
         <input
-          className={ props.className ? props.className : null }
+          className={ props.inputClass || 'default_input' }
           disabled={ !props.enableInput }
           id={ props.id }
           max={ props.max ? props.max : null }

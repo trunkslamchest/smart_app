@@ -7,7 +7,7 @@ import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/de
 import './formStyles/defaultForm.css'
 import './formStyles/editProfileForm.css'
 import './formStyles/logInForm.css'
-
+import './formStyles/signUpForm.css'
 
 const DefaultForm = (props) => {
 
@@ -26,8 +26,6 @@ const DefaultForm = (props) => {
     }
     return input
   })
-
-  // console.log(props.errors)
 
   return(
     <>

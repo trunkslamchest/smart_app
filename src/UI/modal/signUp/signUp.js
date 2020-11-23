@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { check } from '../../../utility/paths'
+import { Link } from 'react-router-dom'
 import {
   signup,
   authStart,
@@ -7,53 +9,64 @@ import {
   clearAuthErrors
 } from '../../../store/actions/actionIndex'
 
-import { check } from '../../../utility/paths'
+import makeSignUpFormInputs from './signUpFunctions/makeSignUpFormInputs'
+import makeSignUpButtons from './signUpFunctions/makeSignUpButtons'
 import checkFunctions from '../../../utility/checkFunctions'
 import validateSignUp from '../../../utility/validation/validateSignUp'
 
-import SignUpForm from './signUpForm/signUpForm'
+import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import ModalHeader from '../../components/headers/modalHeader/modalHeader'
 import Modal from '../../modal/modal'
+import DefaultForm from '../../forms/defaultForm'
+
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './signUp.css'
 
 class SignUp extends React.Component {
 
   state = {
-    user_name: '',
-    password: '',
     email: '',
-    form: { valid: false, pending: false },
-    TOSagreement: false,
     enableButton: true,
-    enableInput: true
+    enableInput: true,
+    errors: {},
+    form: { valid: false, pending: false },
+    password: '',
+    tos: false,
+    user_name: ''
   }
 
   componentDidUpdate() {
     if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true, enableInput: true })
+    if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
+    if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
+      let email = []
+      if(this.props.auth.errors[0].code === 422) this.props.auth.errors.forEach(error => email.push(error) )
+      this.setState({ errors: { email: email } })
+      this.props.onClearAuthStatus()
+    }
   }
+
+  componentWillUnmount(){ this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' }) }
 
   onChange = (event) => {
     event.preventDefault()
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({[event.target.id]: event.target.value})
   }
 
   onChecked = (event) => {
     event.preventDefault()
-    let flipChecked = !this.state.TOSagreement
-    this.setState({ TOSagreement: flipChecked })
+    let flipChecked = !this.state.tos
+    this.setState({ tos: flipChecked })
   }
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.setState({ form: { valid: false, pending: true } })
-    if(!!this.props.auth.errors.length) {
-      this.props.onClearAuthErrors()
-      this.props.onClearAuthStatus()
-    }
-    let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.TOSagreement)
+    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    this.setState({ errors: {}, form: { valid: false, pending: true } })
+    let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.tos)
     this.setState({ form: authCheck })
     if(authCheck.valid) this.checkUserExists()
   }
@@ -78,15 +91,7 @@ class SignUp extends React.Component {
   }
 
   onReset = () => {
-    this.setState({
-      user_name: '',
-      password: '',
-      email: '',
-      form: { valid: false, pending: false },
-      TOSagreement: false,
-      enableButton: true,
-      enableInput: true
-    })
+    this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' })
     this.props.onClearAuthErrors()
     this.props.onClearAuthStatus()
   }
@@ -96,31 +101,51 @@ class SignUp extends React.Component {
     this.props.onSignUpModal(false)
   }
 
-  // onHideModal = () => { this.props.onSignUpModal(false) }
-
   render(){
+
+    const loading =
+      <div className='loading_wrapper'>
+        <SmallLoadingSpinner />
+        <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
+      </div>
+
+    const tosText =
+      <>
+        I acknowledge that I have read and agree to the <Link to='/terms_of_service' target='_blank'>Terms and Conditions</Link> and <Link to='/privacy' target='_blank'>Privacy Policy</Link> statements supplied by SmartApp™
+      </>
+
+    const signUpFormInputs = makeSignUpFormInputs(
+      this.state.tos,
+      this.state.email,
+      this.onChange,
+      this.onChecked,
+      this.state.password,
+      tosText,
+      this.state.user_name
+    )
+
+    const signUpButtons = makeSignUpButtons(glyphIndex, this.onSubmit, this.onReset, this.onCancel)
+
     return (
       <Modal
         modalClass={ 'sign_up_modal' }
-        // onHideModal={ this.onHideModal }
         showModal={ this.props.modal.signup }
       >
         <div className='sign_up_wrapper'>
           <ModalHeader header_text='Create New Account' />
-          <SignUpForm
-            email={ this.state.email }
-            enableButton={ this.state.enableButton }
-            enableInput={ this.state.enableInput }
-            form={ this.state.form }
-            onChange={ this.onChange }
-            onChecked={ this.onChecked }
-            onSubmit={ this.onSubmit }
-            onCancel={ this.onCancel }
-            onReset={ this.onReset }
-            password={ this.state.password }
-            TOSagreement={ this.state.TOSagreement }
-            user_name={ this.state.user_name }
-          />
+          { this.props.auth.loading && loading }
+            <DefaultForm
+              inputFields={ signUpFormInputs }
+              inputContainerClass={ 'sign_up_input_container' }
+              formButtons={ signUpButtons }
+              formClass={ 'sign_up_form' }
+              formId={ 'sign_up_form' }
+              formName={ 'signUpForm' }
+              enableButton={ this.state.enableButton }
+              enableInput={ this.state.enableInput }
+              errors={ this.state.errors }
+              formValid={ this.state.form }
+            />
         </div>
       </Modal>
     )

@@ -1,0 +1,37 @@
+.sign_up_form_error_container {
+  /* margin: 0px auto !important; */
+  padding: 2.5px 10px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.sign_up_form_error {
+  /* background-color: rgba(168, 62, 50, 0.2); */
+  background-color: rgba(255, 204, 204, 1);
+  border: 1px solid rgb(168, 62, 50, 0.4);
+  border-radius: 2.5px;
+  margin: 1px auto !important;
+  padding: 5px 15px;
+  /* width: 50%; */
+  display: flex;
+  justify-content: center;
+}
+
+.sign_up_form_error_exclamation {
+  align-self: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+  margin-right: 7.5px;
+  height: 10px;
+  width: 10px;
+}
+
+.sign_up_form_error span {
+  align-self: center;
+  color: rgba(0, 0, 0, 1);
+  /* color: rgba(255, 204, 204, 1); */
+  /* color: rgba(255, 220, 21, 1); */
+  font: 300 9pt "Roboto", sans-serif;
+}
