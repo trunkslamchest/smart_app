@@ -3,8 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="79px"
 	 height="15px" viewBox="0 0 79 15" enable-background="new 0 0 79 15" xml:space="preserve">
-<g id="dev">
-</g>
 <g id="vote_x5F_stars">
 	<g>
 		<polygon fill="#58595B" points="7.477,0.389 9.787,5.07 14.953,5.821 11.215,9.466 12.098,14.611 7.477,12.182 2.855,14.611 
@@ -116,21 +114,5 @@
 		<polygon fill="#F5C993" points="39.383,0.389 41.693,5.07 46.859,5.821 43.121,9.466 44.004,14.611 39.383,12.182 34.762,14.611 
 			35.645,9.466 31.906,5.821 37.072,5.07 		"/>
 	</g>
-</g>
-<g id="nav_x5F_bar_x5F_icons" display="none">
-</g>
-<g id="trend_x5F_arrows" display="none">
-</g>
-<g id="menu_x5F_arrows" display="none">
-</g>
-<g id="leaderboard_x5F_buttons" display="none">
-</g>
-<g id="exclamation" display="none">
-</g>
-<g id="glyphs" display="none">
-</g>
-<g id="footer_x5F_logos" display="none">
-</g>
-<g id="header_x5F_icons" display="none">
 </g>
 </svg>
