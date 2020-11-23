@@ -43,10 +43,10 @@ const App = (props) => {
       <Header history={ props.history } />
       <div className='main_container' name="main_container">
         {
-          props.auth.loading &&
-          (props.auth.authType === 'refresh' || props.auth.authType === 'editProfile') &&
+          props.modal.loading &&
+          // (props.auth.authType === 'refresh' || props.auth.authType === 'editProfile') &&
           <LoadingModal
-            show={ props.auth.loading }
+            show={ props.modal.loading }
             modalType={ 'auth' }
             barType={ props.auth.authType }
             history={ props.history }

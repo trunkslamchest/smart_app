@@ -9,6 +9,14 @@ import getTime from '../../utility/getTime'
 class AuthController extends React.Component {
 
   state = {
+    authGoogle: false,
+    authUser: false,
+    storeUserInfo: false,
+    storeUserQuestions: false,
+    storeAchievements: false,
+    storeQuestionTotals: false,
+    authRefreshSuccess: false,
+    authValid: false,
     initAuthLocalUser: false,
     initAuthQuestions: false,
     initAuthStart: false,
@@ -65,13 +73,51 @@ class AuthController extends React.Component {
     }
 
     if(this.props.auth.authType === 'refresh') {
-      if(this.props.auth.status === 'authUserGoogleSuccess' && !this.state.initAuthLocalUser) this.authUserLocalModule('authUserLocal')
-      if(this.props.auth.status === 'storeUserInfo' && this.props.user.info && !this.state.authUserInfoLocal) this.authUserInfoLocalModule('storeUserInfoSuccess')
-      if(this.props.auth.status === 'storeUserQuestions' && this.props.user.questions && !this.state.authUserQuestionsLocal) this.authUserQuestionsLocalModule('storeUserQuestionsSuccess')
-      if(this.props.auth.status === 'storeUserQuestionsSuccess' && this.props.user.info && this.props.user.questions && !this.state.authAchievements) this.authAchievementsModule('getAchievements')
-      if(this.props.auth.status === 'storeAchievementsSuccess' && this.props.user.info && this.props.user.questions && this.props.achievements.all && !this.state.initAuthQuestions) this.authQuestionsLocalModule('getQuestionsLocal')
-      if(this.props.auth.status === 'storeQuestionsLocal' && this.props.questions.totals) this.props.onAuthUpdateStatus('storeQuestionsLocalSuccess', true)
-      if(this.props.auth.status === 'storeQuestionsLocalSuccess' && !this.state.authLogInValid) this.authLogInValidModule('authValid')
+      if(this.props.auth.authType && !this.state.authGoogle) {
+        this.setState({ authGoogle: true })
+        this.props.onAuthUpdateStatus('authGoogle', true)
+      }
+
+      if(this.props.auth.id && !this.state.authUser) {
+        this.setState({ authUser: true })
+        this.props.onAuthUser()
+        this.props.onAuthUpdateStatus('authUser', true)
+      }
+
+      if(this.props.user.info && !this.state.storeUserInfo) {
+        this.setState({ storeUserInfo: true })
+        this.props.onAuthUpdateStatus('storeUserInfo', true)
+      }
+
+      if(this.props.user.questions && !this.state.storeUserQuestions) {
+        this.setState({ storeUserQuestions: true })
+        this.props.onStoreAchievements()
+        this.props.onAuthUpdateStatus('storeUserQuestions', true)
+      }
+
+      if(this.props.achievements.all && !this.state.storeAchievements) {
+        this.setState({ storeAchievements: true })
+        this.props.onGetQuestionTotals()
+        this.props.onAuthUpdateStatus('storeAchievements', true)
+      }
+
+      if(this.props.questions.totals && !this.state.storeQuestionTotals) {
+        this.setState({ storeQuestionTotals: true })
+        this.props.onAuthUpdateStatus('storeQuestionTotals', true)
+      }
+
+      if(this.props.auth.status === 'storeQuestionTotals' && !this.state.authRefreshSuccess) {
+        this.setState({ authRefreshSuccess: true })
+        this.props.onAuthUpdateStatus('authSuccess', true)
+      }
+
+      if(this.props.auth.status === 'authSuccess' && this.state.authRefreshSuccess) {
+        this.props.onAuthUpdateStatus('authValid', true)
+        localStorage.authValid = true
+        this.props.onClearAuthType()
+        this.setState({ authGoogle: false, authUser: false, storeUserInfo: false, storeUserQuestions: false, storeAchievements: false, storeQuestionTotals: false, authRefreshSuccess: false })
+      }
+
       if(this.props.auth.status === 'fail') this.refreshFailModule()
     }
 
@@ -136,6 +182,24 @@ class AuthController extends React.Component {
       this.props.history.push( routes.home )
     }
 
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if(
+      this.props.auth.status === nextProps.auth.status ||
+      nextProps.auth.status === 'storeQuestionTotals' ||
+      nextProps.auth.status === 'authSuccess'
+    ) {
+      // console.log(!nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
+      if(nextProps.auth.status === 'authSuccess') {
+        this.authWaitTimeoutQuarterSec = setTimeout(() => {
+          this.props.onAuthUpdateLoadingStatus(false)
+          this.props.onLoadingModal(false)
+        }, 250)
+      }
+      return true
+    }
+    else return false
   }
 
   componentWillUnmount(){

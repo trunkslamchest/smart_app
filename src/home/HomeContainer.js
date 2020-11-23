@@ -33,8 +33,14 @@ const HomeContainer = (props) => {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    modal: state.modal
   }
 }
 
-export default connect(mapStateToProps)(HomeContainer)
+// export default connect(mapStateToProps)(HomeContainer)
+
+export default connect(mapStateToProps)(React.memo(HomeContainer, (props, nextProps) => {
+  if(!nextProps.modal.loading) return true
+  else return false
+}))

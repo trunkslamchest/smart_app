@@ -15,7 +15,7 @@ import questionsFunctions from '../../utility/questionsFunctions'
 
 export const storeQuestionTotals = (totals) => {
   return dispatch => {
-    dispatch(authUpdateStatus('storeQuestionsLocal', true))
+    // dispatch(authUpdateStatus('storeQuestionsLocal', true))
     dispatch(initStoreQuestionTotals(totals))
   }
 }
@@ -31,7 +31,7 @@ export const getQuestionTotals = (props) => {
   return dispatch => {
     questionsFunctions('get', fetch.get.questionsTotals)
     .then(res => {
-      dispatch(authUpdateStatus('getQuestionsLocalSuccess', true))
+      // dispatch(authUpdateStatus('getQuestionsLocalSuccess', true))
       dispatch(storeQuestionTotals(res))
     })
   }

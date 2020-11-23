@@ -24,7 +24,7 @@ import questionsFunctions from '../../utility/questionsFunctions'
 
 export const storeUserInfo = (info, experience, achievements, settings) => {
   return dispatch => {
-    dispatch(authUpdateStatus('storeUserInfo', true))
+    // dispatch(authUpdateStatus('storeUserInfo', true))
     dispatch(initStoreUserInfo(info, experience, achievements, settings))
   }
 }
@@ -65,7 +65,7 @@ const initClearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, in
 
 export const storeUserQuestions = (questions) => {
   return dispatch => {
-    dispatch(authUpdateStatus('storeUserQuestions', true))
+    // dispatch(authUpdateStatus('storeUserQuestions', true))
     dispatch(initStoreUserQuestions(questions))
   }
 }

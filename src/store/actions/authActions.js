@@ -32,7 +32,7 @@ export const authStart = (authType, obj) => {
     }
     if(authType === 'refresh') {
       dispatch(initAuth(authType))
-      dispatch(authUpdateStatus('authUserGoogleStart', true))
+      // dispatch(authUpdateStatus('authUserGoogleStart', true))
       dispatch(authRefresh(authType, obj))
     }
     if(authType === 'logOut') {
@@ -128,7 +128,7 @@ export const authSuccess = (authType, obj) => {
     }
     if(authType === 'refresh') {
       updateLocalStorage(obj)
-      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authComplete(obj))
     }
     if(authType === 'deleteProfile') {
@@ -174,7 +174,7 @@ export const authUser = () => {
       if(userRes === null) localStorage.clear()
       // if(!!userRes.error) dispatch(authFail(userRes.error))
       else {
-        dispatch(authUpdateStatus('authUserLocalSuccess', true))
+        // dispatch(authUpdateStatus('authUserLocalSuccess', true))
         dispatch(storeUserInfo(userRes.info, userRes.experience, userRes.achievements, userRes.settings))
         dispatch(storeUserQuestions(userRes.questions))
       }
