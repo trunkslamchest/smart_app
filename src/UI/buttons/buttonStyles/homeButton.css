@@ -2,13 +2,14 @@
   align-items: center;
   align-content: center;
   display: flex;
-  flex-grow: 2;
+  /* flex-grow: 2; */
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
   border: 0px solid black;
   box-sizing: border-box;
   height: 100%;
+  width: 100%;
 }
 
 .home_button {
@@ -35,6 +36,7 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  max-width: 150px;
   width: 100%;
 }
 
@@ -62,6 +64,7 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
+  max-width: 150px;
   width: 100%;
 }
 
@@ -102,7 +105,6 @@
   font: 600 12pt 'PoppinsLight', sans-serif;
   transition: background-color .2s ease-in-out 0s;
   width: 100%;
-
 }
 
 .home_button img,
@@ -114,6 +116,8 @@
 .home_button span,
 .home_button_active span {
   align-self: stretch;
+  min-width: 60px;
+
 }
 
 .home_button:active span,
@@ -125,6 +129,7 @@
   transform: translate(0px, 15px);
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;
+  min-width: 60px;
   outline: -webkit-focus-ring-color auto 0px;
 }
 

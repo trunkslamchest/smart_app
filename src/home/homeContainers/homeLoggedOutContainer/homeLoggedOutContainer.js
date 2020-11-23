@@ -34,18 +34,15 @@ const HomeLoggedOutContainer = (props) => {
         <HomeLogoContainer />
           <div className='home_logged_out_top_right_container'>
             <div className='home_logged_out_tagline_container'>
-              {/* <h3>
-                SmartApp™ is a trivia application
-              </h3> */}
+              <h2>
+                Answer Questions. Unlock Achievements.
+              </h2>
+              <h2>
+                Improve Your Rank. Climb The Leaderboards.
+              </h2>
               <h3>
-                Answer questions. Gain Experience. Unlock Achievements. Improve Your Rank. Climb The Leaderboards. Challenge Your Friends.
+                Get Smart
               </h3>
-              <h3>
-                Get Smart.
-              </h3>
-              {/* <span>
-                It's all for the pursuit of knowledge!
-              </span> */}
             </div>
             <DefaultButtonsContainer
               buttons={ homeButtons }

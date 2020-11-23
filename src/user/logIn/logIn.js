@@ -36,7 +36,6 @@ class LogIn extends React.Component {
   componentDidUpdate() {
     if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
     if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
-
     if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
       let email = [], password = []
       if(this.props.auth.errors[0].code === 421) this.props.auth.errors.forEach(error => email.push(error) )
@@ -89,14 +88,13 @@ class LogIn extends React.Component {
       </div>
 
     const logInFormInputs = makeLogInFormInputs(this.onChange, this.state.email, this.state.password)
-
-    let logInButtons = makeLogInButtons(glyphIndex, this.onSubmit, this.onReset, this.onCancel)
+    const logInButtons = makeLogInButtons(glyphIndex, this.onSubmit, this.onReset, this.onCancel)
 
     return (
-        <Modal
-          modalClass={ 'log_in_modal' }
-          showModal={ this.props.modal.login }
-        >
+      <Modal
+        modalClass={ 'log_in_modal' }
+        showModal={ this.props.modal.login }
+      >
         <div className='log_in_wrapper'>
           <ModalHeader header_text='Log In' />
           { this.props.auth.loading && loading }

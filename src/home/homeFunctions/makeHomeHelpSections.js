@@ -1,5 +1,23 @@
 const makeHomeHelpSections = [
   {
+    sub_header_text: 'What is SmartApp™?',
+    p_texts: [
+      {
+        texts: [
+          `SmartApp™ is a trivia application. Answer multiple choice questions as fast as you can.`,
+          `The more questions you answer correctly,
+          the more experience you gain,
+          the more achievements you unlock,
+          the more your rank improves,
+          the more your rating increases,
+          the higher you place on the leaderboards,
+          and the smarter you become!`,
+          `It's all in the pursuit of knowledge!`
+        ]
+      }
+    ]
+  },
+  {
     sub_header_text: 'Signing Up',
     p_texts: [
       {
