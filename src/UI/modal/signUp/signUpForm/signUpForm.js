@@ -2,17 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import makeSignUpInputField from '../../userFunctions/makeSignUpInputField'
-import makeSignUpButtons from '../../userFunctions/makeSignUpButtons'
+import makeSignUpInputField from './signUpFunctions/makeSignUpInputField'
+import makeSignUpButtons from './signUpFunctions/makeSignUpButtons'
 
 import SignUpFormInput from './signUpFormInput/signUpFormInput'
 import SignUpFormErrorItem from './signUpFormErrorItem/signUpFormErrorItem'
-import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+import DefaultButtonsContainer from '../../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
-import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+import BaseDynamicBar from '../../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import formGlyphIndex from '../../../assets/glyphs/formGlyphIndex'
+import formGlyphIndex from '../../../../assets/glyphs/formGlyphIndex'
 
 import './signUpForm.css'
 

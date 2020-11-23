@@ -1,8 +1,8 @@
 import React from 'react'
 
-import formGlyphIndex from '../../../../assets/glyphs/formGlyphIndex'
+import formGlyphIndex from '../../../../../assets/glyphs/formGlyphIndex'
 
-import FormCheckBox from '../../../../UI/checkboxes/formCheckBox/formCheckBox'
+import FormCheckBox from '../../../../checkboxes/formCheckBox/formCheckBox'
 
 import './signUpFormInput.css'
 import './signUpFormTOS.css'

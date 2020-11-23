@@ -4,19 +4,20 @@ import {
   help,
   clearHelpHeader,
   clearHelpSections
-} from '../store/actions/actionIndex'
+} from '../../../store/actions/actionIndex'
 
 import makeHelpButton from './helpFunctions/makeHelpButton'
 
-import ModalHeader from '../UI/components/headers/modalHeader/modalHeader'
-import Modal from '../UI/modal/modal'
-// import DocsHeader from '../UI/docs/headers/docsHeader/docsHeader'
-import DocsSubHeader from '../UI/docs/headers/docsSubHeader/docsSubHeader'
-import DocsP from '../UI/docs/body_text/docsP/docsP'
-import DocsUL from '../UI/docs/body_text/docsUL/docsUL'
-import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import Modal from '../../modal/modal'
 
-import glyphIndex from '../assets/glyphs/glyphIndex'
+// import DocsHeader from '../../docs/headers/docsHeader/docsHeader'
+import DocsSubHeader from '../../docs/headers/docsSubHeader/docsSubHeader'
+import DocsP from '../../docs/body_text/docsP/docsP'
+import DocsUL from '../../docs/body_text/docsUL/docsUL'
+import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './help.css'
 

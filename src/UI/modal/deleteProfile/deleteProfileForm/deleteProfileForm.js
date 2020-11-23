@@ -1,18 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import makeDeleteProfileFormButtons from '../../userFunctions/makeDeleteProfileFormButtons'
+import makeDeleteProfileFormButtons from '../deleteProfileFunctions/makeDeleteProfileFormButtons'
 
 import DeleteProfileFormInput from './deleteProfileFormInput/deleteProfileFormInput'
 import DeleteProfileFormErrorItem from './deleteProfileFormErrorItem/deleteProfileFormErrorItem'
 
-import ModalSubHeader from '../../../UI/components/subHeaders/modalSubHeader/modalSubHeader'
-import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+import ModalSubHeader from '../../../components/subHeaders/modalSubHeader/modalSubHeader'
+import DefaultButtonsContainer from '../../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
-import SmallLoadingSpinner from '../../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+import BaseDynamicBar from '../../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import glyphIndex from '../../../assets/glyphs/glyphIndex'
+import glyphIndex from '../../../../assets/glyphs/glyphIndex'
 
 import './deleteProfileForm.css'
 

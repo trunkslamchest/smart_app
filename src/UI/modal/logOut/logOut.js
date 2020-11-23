@@ -4,18 +4,18 @@ import {
   logout,
   authStart,
   clearAuthErrors
-} from '../../store/actions/actionIndex'
+} from '../../../store/actions/actionIndex'
 
-import makeLogOutButtons from '../userFunctions/makeLogOutButtons'
+import makeLogOutButtons from './logOutFunctions/makeLogOutButtons'
 
-import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
-import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
-import Modal from '../../UI/modal/modal'
-import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import Modal from '../../modal/modal'
+import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import glyphIndex from '../../assets/glyphs/glyphIndex'
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './logOut.css'
 

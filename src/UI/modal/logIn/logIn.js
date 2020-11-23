@@ -5,20 +5,20 @@ import {
   authStart,
   clearAuthStatus,
   clearAuthErrors
-} from '../../store/actions/actionIndex'
+} from '../../../store/actions/actionIndex'
 
-import makeLogInButtons from '../userFunctions/makeLogInButtons'
-import makeLogInFormInputs from '../userFunctions/makeLogInFormInputs'
-import validateLogIn from '../../utility/validation/validateLogIn'
+import makeLogInButtons from './logInFunctions/makeLogInButtons'
+import makeLogInFormInputs from './logInFunctions/makeLogInFormInputs'
+import validateLogIn from '../../../utility/validation/validateLogIn'
 
-import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
-import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
-import Modal from '../../UI/modal/modal'
-import DefaultForm from '../../UI/forms/defaultForm'
+import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import Modal from '../../modal/modal'
+import DefaultForm from '../../forms/defaultForm'
 
-import glyphIndex from '../../assets/glyphs/glyphIndex'
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './logIn.css'
 

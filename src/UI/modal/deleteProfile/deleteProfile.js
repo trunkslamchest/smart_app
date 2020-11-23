@@ -4,22 +4,22 @@ import {
   authStart,
   clearAuthErrors,
   deleteProfile
-} from '../../store/actions/actionIndex'
+} from '../../../store/actions/actionIndex'
 
-// import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
-// import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
+import makeDeleteProfileButtons from './deleteProfileFunctions/makeDeleteProfileButtons'
+// import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+// import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import validateDeleteProfile from '../../utility/validation/validateDeleteProfile'
+import validateDeleteProfile from '../../../utility/validation/validateDeleteProfile'
 
-import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
-import Modal from '../../UI/modal/modal'
+import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import Modal from '../../modal/modal'
 
 import DeleteProfileForm from './deleteProfileForm/deleteProfileForm'
-import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import makeDeleteProfileButtons from '../userFunctions/makeDeleteProfileButtons'
 
-import glyphIndex from '../../assets/glyphs/glyphIndex'
+import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './deleteProfile.css'
 

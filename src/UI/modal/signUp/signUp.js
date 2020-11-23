@@ -1,15 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { signup, authStart, clearAuthStatus, clearAuthErrors } from '../../store/actions/actionIndex'
+import {
+  signup,
+  authStart,
+  clearAuthStatus,
+  clearAuthErrors
+} from '../../../store/actions/actionIndex'
 
-import { check } from '../../utility/paths'
-import checkFunctions from '../../utility/checkFunctions'
-import validateSignUp from '../../utility/validation/validateSignUp'
+import { check } from '../../../utility/paths'
+import checkFunctions from '../../../utility/checkFunctions'
+import validateSignUp from '../../../utility/validation/validateSignUp'
 
 import SignUpForm from './signUpForm/signUpForm'
 
-import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
-import Modal from '../../UI/modal/modal'
+import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import Modal from '../../modal/modal'
 
 import './signUp.css'
 
