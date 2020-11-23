@@ -3,18 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px"
 	 height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<g id="dev">
-</g>
-<g id="vote_x5F_stars">
-</g>
-<g id="form_x5F_checkmark">
-</g>
-<g id="leaderboard_x5F_buttons">
-</g>
-<g id="footer_x5F_mobile_x5F_button">
-</g>
-<g id="menu_x5F_arrows">
-</g>
 <g id="header_x5F_icons">
 	<rect y="-0.014" display="none" fill="#323232" width="30.014" height="30.027"/>
 	<polygon display="none" fill="#F4A642" points="7.497,-0.004 7.497,30.004 22.502,15 	"/>
@@ -213,11 +201,5 @@
 			17.743,24.812 26.344,29.903 26.344,30.022 27.971,30.022 30,30.022 30,0.022 		"/>
 		<polygon fill="#010101" points="17.639,26.493 10.638,26.493 10.638,18.552 7.108,18.552 7.108,30.022 23.602,30.022 		"/>
 	</g>
-</g>
-<g id="footerCreditLogos">
-</g>
-<g id="nav_x5F_bar_x5F_icons">
-</g>
-<g id="exclamation">
 </g>
 </svg>

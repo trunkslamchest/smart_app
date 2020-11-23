@@ -3,18 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px"
 	 height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<g id="dev">
-</g>
-<g id="vote_x5F_stars">
-</g>
-<g id="form_x5F_checkmark">
-</g>
-<g id="leaderboard_x5F_buttons">
-</g>
-<g id="footer_x5F_mobile_x5F_button">
-</g>
-<g id="menu_x5F_arrows">
-</g>
 <g id="header_x5F_icons">
 	<rect y="-0.014" display="none" fill="#323232" width="30.014" height="30.027"/>
 	<polygon display="none" fill="#F4A642" points="7.497,-0.004 7.497,30.004 22.502,15 	"/>
@@ -242,11 +230,5 @@
 			<path fill="#010101" d="M1.005,30.006L1.005,30.006l0.01,0v-0.194C1.014,29.878,1.005,29.941,1.005,30.006z"/>
 		</g>
 	</g>
-</g>
-<g id="footerCreditLogos">
-</g>
-<g id="nav_x5F_bar_x5F_icons">
-</g>
-<g id="exclamation">
 </g>
 </svg>

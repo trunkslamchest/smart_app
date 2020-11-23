@@ -3,18 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px"
 	 height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<g id="dev">
-</g>
-<g id="vote_x5F_stars">
-</g>
-<g id="form_x5F_checkmark">
-</g>
-<g id="leaderboard_x5F_buttons">
-</g>
-<g id="footer_x5F_mobile_x5F_button">
-</g>
-<g id="menu_x5F_arrows">
-</g>
 <g id="header_x5F_icons">
 	<rect y="-0.014" display="none" fill="#323232" width="30.014" height="30.027"/>
 	<polygon display="none" fill="#F4A642" points="7.497,-0.004 7.497,30.004 22.502,15 	"/>
@@ -327,11 +315,5 @@
 			C4.146,8.573,4.127,8.451,4.127,8.301V4.935l-0.902,0.28C3.137,5.154,3.047,5.07,2.957,4.962c-0.092-0.109-0.135-0.258-0.135-0.45
 			c0-0.36,0.219-0.612,0.656-0.756l1.008-0.341h0.332c0.258,0,0.463,0.074,0.613,0.225S5.656,3.993,5.656,4.25V8.94z"/>
 	</g>
-</g>
-<g id="footerCreditLogos">
-</g>
-<g id="nav_x5F_bar_x5F_icons">
-</g>
-<g id="exclamation">
 </g>
 </svg>

@@ -3,26 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px"
 	 height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-<g id="backgrounds">
-</g>
-<g id="dev">
-</g>
-<g id="colors">
-</g>
-<g id="old_x5F_logo">
-</g>
-<g id="new_x5F_logo">
-</g>
-<g id="favicon">
-</g>
-<g id="_x31_92">
-</g>
-<g id="_x35_12">
-</g>
-<g id="index_x5F_logo">
-</g>
-<g id="header_x5F_logo">
-</g>
 <g id="header_x5F_icon">
 	<rect display="none" fill-rule="evenodd" clip-rule="evenodd" fill="#646464" width="39.934" height="40"/>
 	<g>
@@ -135,7 +115,5 @@
 				c0.076,0.001,0.154-0.003,0.254-0.004C39.931,10.321,39.909,10.292,39.882,10.263z"/>
 		</g>
 	</g>
-</g>
-<g id="footer_x5F_logo">
 </g>
 </svg>

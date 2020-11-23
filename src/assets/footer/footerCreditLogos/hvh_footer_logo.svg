@@ -3,20 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px"
 	 height="35px" viewBox="0 0 80 35" enable-background="new 0 0 80 35" xml:space="preserve">
-<g id="dev">
-</g>
-<g id="vote_x5F_stars">
-</g>
-<g id="form_x5F_checkmark">
-</g>
-<g id="leaderboard_x5F_buttons">
-</g>
-<g id="footer_x5F_mobile_x5F_button">
-</g>
-<g id="menu_x5F_arrows">
-</g>
-<g id="header_x5F_icons">
-</g>
 <g id="footer_x5F_logos">
 	<g display="none">
 		<path display="inline" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M79.652,22.276
@@ -2183,9 +2169,5 @@
 			C42.056,29.1,42.011,29.049,41.989,28.999z M38.633,27.149c0.327-0.826,0.646-1.642,0.979-2.5c0.338,0.852,0.66,1.669,0.989,2.5
 			C39.941,27.149,39.296,27.149,38.633,27.149z"/>
 	</g>
-</g>
-<g id="nav_x5F_bar_x5F_icons">
-</g>
-<g id="exclamation">
 </g>
 </svg>

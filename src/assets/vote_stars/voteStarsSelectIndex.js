@@ -1,7 +1,7 @@
-import vote_star_selected from './select/vote_star_selected.png'
-import vote_star_unselected from './select/vote_star_unselected.png'
-import vote_star_no_stars_selected from './select/vote_star_no_stars_selected.png'
-import vote_star_no_stars_unselected from './select/vote_star_no_stars_unselected.png'
+import vote_star_selected from './select/vote_star_selected.svg'
+import vote_star_unselected from './select/vote_star_unselected.svg'
+import vote_star_no_stars_selected from './select/vote_star_no_stars_selected.svg'
+import vote_star_no_stars_unselected from './select/vote_star_no_stars_unselected.svg'
 
 const voteStarsSelectIndex = {
   "Selected": vote_star_selected,

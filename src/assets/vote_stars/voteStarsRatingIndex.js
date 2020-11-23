@@ -1,4 +1,3 @@
-
 import average_star_rating from './rating/average_star_rating.png'
 import five_star_rating from './rating/5_star_rating.png'
 import four_star_rating from './rating/4_star_rating.png'

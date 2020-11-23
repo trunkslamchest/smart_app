@@ -3,10 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px"
 	 height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<g id="dev">
-</g>
-<g id="vote_x5F_stars">
-</g>
 <g id="nav_x5F_bar_x5F_icons">
 	<g display="none">
 		<rect x="2.856" y="5" display="inline" width="2.16" height="6.667"/>
@@ -748,19 +744,5 @@
 			<rect x="7.271" y="24.127" fill="#FFFFFF" width="22.729" height="5.892"/>
 		</g>
 	</g>
-</g>
-<g id="trend_x5F_arrows">
-</g>
-<g id="menu_x5F_arrows">
-</g>
-<g id="leaderboard_x5F_buttons">
-</g>
-<g id="exclamation">
-</g>
-<g id="glyphs">
-</g>
-<g id="footer_x5F_logos">
-</g>
-<g id="header_x5F_icons">
 </g>
 </svg>
