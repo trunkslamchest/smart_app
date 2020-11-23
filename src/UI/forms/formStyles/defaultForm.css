@@ -7,6 +7,23 @@
   align-items: center;
 }
 
+.default_form_header {
+
+}
+
+.default_form_header h2 {
+  color: rgba(255, 255, 255, 1);
+  font: 300 12pt 'PoppinsLight', sans-serif;
+  text-align: center;
+}
+
+.default_form_header h3 {
+  color: rgba(255, 255, 255, 1);
+  font: 300 10pt 'PoppinsLight', sans-serif;
+  padding: 0px 0px 10px 0px;
+  text-align: center;
+}
+
 .default_input_container {
   width: 100%;
   padding: 0px 0px 5px 0px;

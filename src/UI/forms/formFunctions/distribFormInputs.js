@@ -12,6 +12,7 @@ import '../formInputs/inputStyles/editProfile/editProfileImageButtonLabel.css'
 import '../formInputs/inputStyles/logIn/logInInput.css'
 import '../formInputs/inputStyles/signUp/signUpInput.css'
 import '../formInputs/inputStyles/signUp/signUpCheckBoxTOS.css'
+import '../formInputs/inputStyles/deleteProfile/deleteProfileInput.css'
 
 const distribFormInputs = (formValid, errors, enableInput, field, index) => {
   let fieldValue = field.val

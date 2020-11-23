@@ -8,6 +8,7 @@ import './formStyles/defaultForm.css'
 import './formStyles/editProfileForm.css'
 import './formStyles/logInForm.css'
 import './formStyles/signUpForm.css'
+import './formStyles/deleteProfileForm.css'
 
 const DefaultForm = (props) => {
 
@@ -29,9 +30,10 @@ const DefaultForm = (props) => {
 
   return(
     <>
-      { !!props.formHeaderText &&
+      {(!!props.formHeaderText || !!props.formSubHeaderText) &&
         <div className={ props.formHeaderClass || 'default_form_header' }>
-          <h3>{ props.formHeaderText }</h3>
+          { !!props.formHeaderText && <h2>{ props.formHeaderText }</h2> }
+          { !!props.formSubHeaderText && <h3>{ props.formSubHeaderText }</h3> }
         </div>
       }
       <form

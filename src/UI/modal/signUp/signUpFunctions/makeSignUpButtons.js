@@ -1,9 +1,9 @@
-const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel) => {
+const makeSignUpButtons = (glyphIndex, onSubmit, onReset, onCancel) => {
   return [
     {
       id: 'sign_up_form_submit',
-      image: formGlyphIndex.formWhiteCheckMark,
-      imageHover: formGlyphIndex.formBlackCheckMark,
+      image: glyphIndex.formWhiteCheckMark,
+      imageHover: glyphIndex.formBlackCheckMark,
       name: 'SignUpFormSubmit',
       onClickFunction: onSubmit,
       tooltipText: [ 'Sign Up' ],
@@ -12,8 +12,8 @@ const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel) => {
     },
     {
       id: 'sign_up_form_reset',
-      image: formGlyphIndex.formWhiteReset,
-      imageHover: formGlyphIndex.formBlackReset,
+      image: glyphIndex.formWhiteReset,
+      imageHover: glyphIndex.formBlackReset,
       name: 'SignUpFormReset',
       onClickFunction: onReset,
       tooltipText: [ 'Reset' ],
@@ -22,8 +22,8 @@ const makeSignUpButtons = (formGlyphIndex, onSubmit, onReset, onCancel) => {
     },
     {
       id: 'sign_up_form_cancel',
-      image: formGlyphIndex.formWhiteX,
-      imageHover: formGlyphIndex.formBlackX,
+      image: glyphIndex.formWhiteX,
+      imageHover: glyphIndex.formBlackX,
       name: 'SignUpFormCancel',
       onClickFunction: onCancel,
       tooltipText: [ 'Cancel' ],

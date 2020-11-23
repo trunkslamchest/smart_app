@@ -12,6 +12,7 @@
 
 .loading_modal {
   animation: fade_in .2s ease-in-out 1;
+  border-radius: 10px;
   background-color: rgba(50, 50, 50, 1);
   left: 50%;
   max-width: 75%;
@@ -24,7 +25,7 @@
 
 .help_modal {
   animation: fade_in .2s ease-in-out 1;
-  border-radius: 5px;
+  border-radius: 10px;
   left: 50%;
   width: 75%;
   max-width: 1000px;
@@ -51,6 +52,7 @@
 .sign_up_modal {
   animation: fade_in .2s ease-in-out 1;
   background-color: rgba(50, 50, 50, 1);
+  border-radius: 10px;
   left: 50%;
   max-width: 75%;
   min-width: 50%;
@@ -63,6 +65,7 @@
 .log_out_modal {
   animation: fade_in .2s ease-in-out 1;
   background-color: rgba(50, 50, 50, 1);
+  border-radius: 10px;
   left: 50%;
   max-width: 75%;
   min-width: 50%;
@@ -75,6 +78,7 @@
 .delete_profile_modal {
   animation: fade_in .2s ease-in-out 1;
   background-color: rgba(50, 50, 50, 1);
+  border-radius: 10px;
   left: 50%;
   max-width: 75%;
   min-width: 50%;

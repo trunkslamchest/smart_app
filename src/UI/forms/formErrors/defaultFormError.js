@@ -5,6 +5,7 @@ import './errorStyles/dashboardProfileEditFormError.css'
 import './errorStyles/editProfileFormError.css'
 import './errorStyles/logInFormError.css'
 import './errorStyles/signUpFormError.css'
+import './errorStyles/deleteProfileFormError.css'
 
 import ErrorExclamationIndex from '../../../assets/glyphs/errorExclamationIndex'
 
