@@ -1,4 +1,4 @@
-const makeDashboardProfileInputs = (
+const makeDashboardEditProfileFormInputs = (
     onChange,
     onAvatarChange,
     onDOBChange,
@@ -200,4 +200,4 @@ const makeDashboardProfileInputs = (
     ]
   }
 
-export default makeDashboardProfileInputs
+export default makeDashboardEditProfileFormInputs

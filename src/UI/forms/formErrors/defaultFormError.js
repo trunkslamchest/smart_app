@@ -3,7 +3,7 @@ import React from 'react'
 import './errorStyles/defaultFormError.css'
 import './errorStyles/dashboardProfileEditFormError.css'
 import './errorStyles/editProfileFormError.css'
-
+import './errorStyles/logInFormError.css'
 
 import ErrorExclamationIndex from '../../../assets/glyphs/errorExclamationIndex'
 

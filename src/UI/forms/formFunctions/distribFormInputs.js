@@ -9,6 +9,7 @@ import '../formInputs/inputStyles/default/defaultFormSelect.css'
 import '../formInputs/inputStyles/editProfile/editProfileInput.css'
 import '../formInputs/inputStyles/editProfile/editProfileSelect.css'
 import '../formInputs/inputStyles/editProfile/editProfileImageButtonLabel.css'
+import '../formInputs/inputStyles/logIn/logInInput.css'
 
 const distribFormInputs = (formValid, errors, enableInput, field, index) => {
   let fieldValue = field.val

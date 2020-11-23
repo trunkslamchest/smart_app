@@ -38,6 +38,7 @@
 .log_in_modal {
   animation: fade_in .2s ease-in-out 1;
   background-color: rgba(50, 50, 50, 1);
+  border-radius: 10px;
   left: 50%;
   max-width: 75%;
   min-width: 50%;

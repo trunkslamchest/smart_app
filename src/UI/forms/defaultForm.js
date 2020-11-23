@@ -6,6 +6,8 @@ import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/de
 
 import './formStyles/defaultForm.css'
 import './formStyles/editProfileForm.css'
+import './formStyles/logInForm.css'
+
 
 const DefaultForm = (props) => {
 
@@ -25,11 +27,15 @@ const DefaultForm = (props) => {
     return input
   })
 
+  // console.log(props.errors)
+
   return(
     <>
-      <div className={ props.formHeaderClass || 'default_form_header' }>
-        { !!props.formHeaderText && <h3>{ props.formHeaderText }</h3> }
-      </div>
+      { !!props.formHeaderText &&
+        <div className={ props.formHeaderClass || 'default_form_header' }>
+          <h3>{ props.formHeaderText }</h3>
+        </div>
+      }
       <form
         id={ props.formId }
         name={ props.formName }

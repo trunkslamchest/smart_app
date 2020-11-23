@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DashboardButtonsContainer from '../../dashboardContainers/dashboardButtonsContainer/dashboardButtonsContainer'
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './dashboardSubHeader.css'
 
@@ -14,10 +14,10 @@ const DashboardSubHeader = (props) => {
         <div className='dashboard_sub_header_right'>
           { !!props.sub_text && <span>{ props.sub_text }</span> }
           { !!props.buttons &&
-            <DashboardButtonsContainer
+            <DefaultButtonsContainer
               buttons={ props.buttons }
               button_class={ 'dashboard_sub_header_button' }
-              container_class={ 'dashboard_buttons_sub_header_container' }
+              containerClass={ 'dashboard_buttons_sub_header_container' }
               enableButtons={ true }
             />
           }

@@ -7,12 +7,18 @@ import {
   clearAuthErrors
 } from '../../store/actions/actionIndex'
 
+import makeLogInButtons from '../userFunctions/makeLogInButtons'
+import makeLogInFormInputs from '../userFunctions/makeLogInFormInputs'
 import validateLogIn from '../../utility/validation/validateLogIn'
 
-import LogInForm from './logInForm/logInForm'
+import BaseDynamicBar from '../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
+import SmallLoadingSpinner from '../../UI/loading/smallLoadingSpinner/smallLoadingSpinner'
 
 import ModalHeader from '../../UI/components/headers/modalHeader/modalHeader'
 import Modal from '../../UI/modal/modal'
+import DefaultForm from '../../UI/forms/defaultForm'
+
+import glyphIndex from '../../assets/glyphs/glyphIndex'
 
 import './logIn.css'
 
@@ -22,66 +28,91 @@ class LogIn extends React.Component {
     email: '',
     enableButton: true,
     enableInput: true,
+    errors: {},
     form: { valid: false, pending: false },
     password: ''
   }
 
   componentDidUpdate() {
     if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true, enableInput: true })
+    if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
+
+    if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
+      let email = [], password = []
+      if(this.props.auth.errors[0].code === 421) this.props.auth.errors.forEach(error => email.push(error) )
+      else if(this.props.auth.errors[0].code === 423) this.props.auth.errors.forEach(error => password.push(error) )
+      this.setState({ errors: { email: email, password: password, } })
+      this.props.onClearAuthStatus()
+    }
   }
 
-  onChange = (event) => { this.setState({[event.target.name]: event.target.value}) }
+  componentWillUnmount(){ this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
+
+  onChange = (event) => { this.setState({[event.target.id]: event.target.value}) }
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.setState({ form: { valid: false, pending: true } })
-    if(!!this.props.auth.errors.length) {
-      this.props.onClearAuthErrors()
-      this.props.onClearAuthStatus()
-    }
+    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    this.setState({ errors: {}, form: { valid: false, pending: true } })
     let authCheck = validateLogIn(this.state.email, this.state.password)
     this.setState({ form: authCheck })
     if(authCheck.valid) this.onValidateLogIn(authCheck)
   }
 
   onValidateLogIn = () => {
-    if(!this.state.form.pending && this.state.enableButton)this.props.onAuthStart('logIn', { email: this.state.email, password: this.state.password, returnSecureToken: true })
+    if(!this.state.form.pending && this.state.enableButton) this.props.onAuthStart('logIn', {
+      email: this.state.email,
+      password: this.state.password,
+      returnSecureToken: true
+    })
+  }
+
+  onReset = () => {
+    this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: true }, password: '' })
+    this.props.onClearAuthErrors()
+    this.props.onClearAuthStatus()
   }
 
   onCancel = () => {
-    this.setState({
-      email: '',
-      enableButton: true,
-      enableInput: true,
-      form: { valid: true },
-      password: ''
-    })
+    this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: true }, password: '' })
     this.props.onClearAuthErrors()
+    this.props.onClearAuthStatus()
     this.props.onLogInModal(false)
   }
 
-  // onHideModal = () => { this.props.onLogInModal(false) }
-
   render(){
+
+    const loading =
+      <div className='loading_wrapper'>
+        <SmallLoadingSpinner />
+        <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogIn' } />
+      </div>
+
+    const logInFormInputs = makeLogInFormInputs(this.onChange, this.state.email, this.state.password)
+
+    let logInButtons = makeLogInButtons(glyphIndex, this.onSubmit, this.onReset, this.onCancel)
+
     return (
         <Modal
           modalClass={ 'log_in_modal' }
-          // onHideModal={ this.onHideModal }
           showModal={ this.props.modal.login }
         >
         <div className='log_in_wrapper'>
           <ModalHeader header_text='Log In' />
-          <LogInForm
-            email={ this.state.email }
-            enableButton={ this.state.enableButton }
-            enableInput={ this.state.enableInput }
-            form={ this.state.form }
-            onChange={ this.onChange }
-            onSubmit={ this.onSubmit  }
-            onCancel={ this.onCancel }
-            password={ this.state.password }
-          />
+          { this.props.auth.loading && loading }
+            <DefaultForm
+              // buttonContainerClass={ 'dashboard_form_buttons_container' }
+              inputFields={ logInFormInputs }
+              inputContainerClass={ 'log_in_input_container' }
+              formButtons={ logInButtons }
+              formClass={ 'log_in_form' }
+              formId={ 'log_in_form' }
+              formName={ 'logInForm' }
+              enableButton={ this.state.enableButton }
+              enableInput={ this.state.enableInput }
+              errors={ this.state.errors }
+              formValid={ this.state.form }
+            />
         </div>
       </Modal>
     )
