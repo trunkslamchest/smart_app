@@ -35,11 +35,11 @@ export const initStoreUserInfo = (info, experience, achievements, settings) => {
 
 export const updateUserInfo = (authType, obj) => {
   return dispatch => {
-    dispatch(authUpdateStatus('updateUserInfo', true))
+    // dispatch(authUpdateStatus('updateUserInfo', true))
     userFunctions('patch', fetch.patch.user, obj)
     .then((userRes) => {
       // if(userRes){
-        dispatch(authUpdateStatus('updateUserInfoSuccess', true))
+        dispatch(authUpdateStatus('updateUserSuccess', true))
         dispatch(initUpdateUserInfo(obj.info))
         // dispatch(loading(false))
       // }
