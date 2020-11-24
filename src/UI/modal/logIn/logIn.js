@@ -68,7 +68,7 @@ class LogIn extends React.Component {
 
   onReset = () => {
     this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: true }, password: '' })
-    this.props.onClearAuthErrors()
+    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
     // this.props.onClearAuthStatus()
   }
 

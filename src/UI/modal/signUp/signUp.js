@@ -92,7 +92,7 @@ class SignUp extends React.Component {
 
   onReset = () => {
     this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' })
-    this.props.onClearAuthErrors()
+    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
     this.props.onClearAuthStatus()
   }
 

@@ -12,6 +12,7 @@ class AuthController extends React.Component {
     authGoogle: false,
     authUser: false,
     createUser: false,
+    deleteUser: false,
     storeUserInfo: false,
     storeUserQuestions: false,
     storeAchievements: false,
@@ -29,6 +30,7 @@ class AuthController extends React.Component {
     clearAuthCreds: false,
     clearLocalStorage: false,
     logOutSuccess: false,
+    deleteUserSuccess: false,
 
     initAuthLocalUser: false,
     initAuthQuestions: false,
@@ -64,6 +66,17 @@ class AuthController extends React.Component {
   componentDidUpdate(){
 
     if(this.props.auth.authType === 'refresh') {
+
+      if(this.props.auth.status === 'fail') {
+        console.log('test')
+        this.props.onAuthUpdateLoadingStatus(false)
+        this.props.onClearAuthStatus()
+
+        this.clearLocalStorage()
+        this.props.onClearAuthType()
+
+      }
+
       if(this.props.auth.authType && !this.state.authGoogle) {
         this.setState({ authGoogle: true })
         this.props.onAuthUpdateStatus('authGoogle', true)
@@ -118,7 +131,7 @@ class AuthController extends React.Component {
         this.props.onClearAuthType()
         this.props.onAuthUpdateLoadingStatus(false)
       }
-      if(this.props.auth.status === 'fail') this.clearLocalStorage()
+
     }
 
     if(this.props.auth.authType === 'logIn') {
@@ -178,7 +191,14 @@ class AuthController extends React.Component {
         this.props.history.push( routes.dashboard )
       }
 
-      if(this.props.auth.status === 'fail') this.clearLocalStorage()
+      if(this.props.auth.status === 'fail') {
+        this.props.onAuthUpdateLoadingStatus(false)
+        this.props.onClearAuthStatus()
+
+        this.clearLocalStorage()
+        this.props.onClearAuthType()
+
+      }
     }
 
     if(this.props.auth.authType === 'signUp') {
@@ -317,8 +337,75 @@ class AuthController extends React.Component {
         this.props.onAuthUpdateStatus('authGoogle', true)
       }
 
+    // this.props.onDeleteUser(this.props.auth.id)
 
 
+      if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) {
+        this.setState({ deleteUser: true })
+        this.props.onDeleteUser(this.props.auth.id)
+        // this.props.onAuthUpdateStatus('deleteUser', true)
+      }
+
+      if(this.props.auth.status === 'deleteLocalUserSuccess' && !this.state.clearUserInfo) {
+        this.setState({ clearUserInfo: true })
+        this.props.onClearUserInfo()
+        this.props.onAuthUpdateStatus('clearUserInfo', true)
+      }
+
+      if(!this.props.user.info && !this.state.clearUserQuestions) {
+        this.setState({ clearUserQuestions: true })
+        this.props.onClearUserQuestions()
+        this.props.onAuthUpdateStatus('clearUserQuestions', true)
+      }
+
+      if(!this.props.user.questions && !this.state.clearUserSettings) {
+        this.setState({ clearUserSettings: true })
+        this.props.onClearUserSettings()
+        this.props.onAuthUpdateStatus('clearUserSettings', true)
+      }
+
+      if(!this.props.user.settings && !this.state.clearQuestionTotals) {
+        this.setState({ clearQuestionTotals: true })
+        this.props.onClearQuestionTotals()
+        this.props.onAuthUpdateStatus('clearQuestionTotals', true)
+      }
+
+      if(!this.props.questions.totals && !this.state.clearAchievements) {
+        this.setState({ clearAchievements: true })
+        this.props.onClearAchievements()
+        this.props.onAuthUpdateStatus('clearAchievements', true)
+      }
+
+      if(!this.props.achievements.all && !this.state.clearAuthCreds) {
+        this.setState({ clearAuthCreds: true })
+        this.props.onClearAuthCreds()
+        this.props.onAuthUpdateStatus('clearAuthCreds', true)
+      }
+
+      if(!this.props.auth.id && !this.state.clearLocalStorage) {
+        this.setState({ clearLocalStorage: true })
+        this.clearLocalStorage()
+        this.props.onAuthUpdateStatus('clearLocalStorage', true)
+        this.props.onLoadingModal(false)
+        this.props.onDeleteProfileModal(false)
+        this.props.onClearAuthStatus()
+      }
+
+      if(!this.props.auth.id && !this.props.modal.loading && !this.state.deleteUserSuccess) {
+        this.props.onAuthUpdateLoadingStatus(false)
+        this.props.history.push( routes.home )
+        this.setState({
+          clearUserInfo: false,
+          clearUserQuestions: false,
+          clearUserSettings: false,
+          clearQuestionTotals: false,
+          clearAchievements: false,
+          clearAuthCreds: false,
+          clearLocalStorage: false,
+          deleteUserSuccess: true
+        })
+        this.props.onClearAuthType()
+      }
 
 
       // if(this.props.modal.deleteProfile) {
@@ -347,7 +434,7 @@ class AuthController extends React.Component {
       // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
 
       if(
-        (this.props.auth.authType === 'logOut' && (this.props.auth.status !== nextProps.auth.status || !!this.props.auth.authType )) ||
+        ((this.props.auth.authType === 'logOut' || this.props.auth.authType === 'deleteProfile')  && (this.props.auth.status !== nextProps.auth.status || !!this.props.auth.authType )) ||
         (this.props.auth.status === nextProps.auth.status || nextProps.auth.status === 'storeQuestionTotals' || nextProps.auth.status === 'authSuccess')
       ) {
         if(!!this.props.auth.authType && nextProps.auth.status === 'authSuccess') {

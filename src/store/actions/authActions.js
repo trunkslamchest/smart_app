@@ -131,7 +131,7 @@ export const authSuccess = (authType, obj) => {
       dispatch(authComplete(obj))
     }
     if(authType === 'deleteProfile') {
-      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authDelete(obj))
     }
   }
@@ -232,7 +232,7 @@ export const authRefresh = (authType, obj) => {
 
 export const authDelete = (obj) => {
   return dispatch => {
-    dispatch(authUpdateStatus('initDeleteAuthUser', true))
+    // dispatch(authUpdateStatus('initDeleteAuthUser', true))
     const delObj = {
       displayName: obj.user,
       email: obj.email,
@@ -245,6 +245,7 @@ export const authDelete = (obj) => {
     authFunctions('delete', auth.delete, delObj)
     .then(authRes => {
         if(!!authRes.error) dispatch(authFail(authRes.error))
+        // else(dispatch(authLogOut()))
         else dispatch(authUpdateStatus('deleteAuthUserSuccess', true))
     })
   }
