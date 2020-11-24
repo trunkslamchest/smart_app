@@ -11,7 +11,7 @@ import { createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-import ScrollRestore from './utility/scrollRestore'
+// import ScrollRestore from './utility/scrollRestore'
 
 import modalReducer from './store/reducers/modalReducer'
 import authReducer from './store/reducers/authReducer'
@@ -56,7 +56,7 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 const RouterApp = (
   <Provider store={store}>
     <Router history={history}>
-      <ScrollRestore />
+      {/* <ScrollRestore /> */}
       <App history={history}/>
     </Router>
   </Provider>

@@ -12,24 +12,14 @@ import './loadingModalSpinner.css'
 
 class LoadingModal extends React.Component {
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   // console.log(nextProps.auth.status)
-  //   if(
-  //     (this.props.auth.status !== nextProps.auth.status) ||
-  //     (this.props.play.status !== nextProps.play.status) ||
-  //     (this.props.play.status !== nextProps.play.status) ||
-  //     (this.props.play.voteStatus !== nextProps.play.voteStatus) ||
-  //     (this.props.play.commentStatus !== nextProps.play.commentStatus) ||
-  //     nextProps.auth.status === 'authValid'
-  //   ) return true
-  //   else return false
-  // }
-
+  shouldComponentUpdate(nextProps, nextState){
+    if(!nextProps.modal.loading) return true
+    else return false
+  }
 
   componentWillUnmount(){ this.props.onLoadingModal(false) }
 
   render(){
-  // console.log(this.props.show)
     return (
       <Modal
         modalClass={ 'loading_modal' }
@@ -46,9 +36,7 @@ class LoadingModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    play: state.play
+    modal: state.modal
   }
 }
 

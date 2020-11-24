@@ -8,8 +8,8 @@ import {
 import {
   storeUserInfo,
   updateUserInfo,
-  clearUserInfo,
-  clearUserSettings,
+  // clearUserInfo,
+  // clearUserSettings,
   storeUserQuestions
 } from './userActions'
 
@@ -22,12 +22,12 @@ export const authStart = (authType, obj) => {
   return dispatch => {
     if(authType === 'logIn') {
       dispatch(initAuth(authType))
-      dispatch(authUpdateStatus('authUserGoogleStart', true))
+      // dispatch(authUpdateStatus('authUserGoogleStart', true))
       dispatch(authLogIn(authType, obj))
     }
     if(authType === 'signUp') {
       dispatch(initAuth(authType))
-      dispatch(authUpdateStatus('authUserGoogleStart', true))
+      // dispatch(authUpdateStatus('authUserGoogleStart', true))
       dispatch(authSignUp(authType, obj))
     }
     if(authType === 'refresh') {
@@ -37,7 +37,7 @@ export const authStart = (authType, obj) => {
     }
     if(authType === 'logOut') {
       dispatch(initAuth(authType))
-      dispatch(authUpdateStatus('initUserLogOut', true))
+      // dispatch(authUpdateStatus('initLogOut', true))
       dispatch(authLogOut(authType, obj))
     }
     if(authType === 'editProfile') {
@@ -56,8 +56,7 @@ const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
     error: null,
-    authType: authType,
-    loading: true,
+    authType: authType
   }
 }
 
@@ -118,12 +117,12 @@ export const authSuccess = (authType, obj) => {
   return dispatch => {
     if(authType === 'logIn') {
       updateLocalStorage(obj)
-      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authComplete(obj))
     }
     if(authType === 'signUp') {
       updateLocalStorage(obj)
-      dispatch(authUpdateStatus('authUserGoogleSuccess', true))
+      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(createUser(obj))
     }
     if(authType === 'refresh') {
@@ -161,7 +160,7 @@ const createUser = (obj) => {
     userObj[id] = signUpObjTemplate(obj.email, obj.user)
     userFunctions('post', fetch.post.user, userObj)
     .then(res => {
-      dispatch(authUpdateStatus('createUserLocalSuccess', true))
+      // dispatch(authUpdateStatus('createUserLocalSuccess', true))
       dispatch(authComplete(obj))
     })
   }
@@ -252,11 +251,16 @@ export const authDelete = (obj) => {
 }
 
 export const authLogOut = () => {
-  return dispatch => {
-    dispatch(authUpdateStatus('initClearUserInfo', true))
-    dispatch(clearUserInfo())
-    dispatch(clearUserSettings())
+  // return dispatch => {
+  //   dispatch(authUpdateStatus('initLogOut', true))
+  //   // dispatch(clearUserInfo())
+  //   // dispatch(clearUserSettings())
 
+  // }
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+    // status: 'initLogOut',
+    loading: true
   }
 }
 

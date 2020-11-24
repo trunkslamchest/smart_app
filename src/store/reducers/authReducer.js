@@ -66,13 +66,18 @@ const authLogIn = (currentState, action) => {
 }
 
 const authLogOut = (currentState, action) => {
+  // return {
+  //   ...currentState,
+  //   authType: null,
+  //   id: null,
+  //   refreshToken: null,
+  //   token: null
+  // }
+
   return {
     ...currentState,
-    authType: null,
-    cert: false,
-    id: null,
-    refreshToken: null,
-    token: null
+    // status: action.status,
+    loading: action.loading
   }
 }
 

@@ -5,9 +5,9 @@ import {
   updateGameStatus
 } from './playActions'
 
-import {
-  authUpdateStatus
-} from './authActions'
+// import {
+//   authUpdateStatus
+// } from './authActions'
 
 import { fetch } from '../../utility/paths'
 
@@ -39,7 +39,7 @@ export const getQuestionTotals = (props) => {
 
 export const clearQuestionTotals = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearQuestionTotalsSuccess', true))
+    // dispatch(authUpdateStatus('clearQuestionTotalsSuccess', true))
     dispatch(initClearQuestionTotals())
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
+  loading,
   logout,
   authStart,
   clearAuthErrors
@@ -25,12 +26,13 @@ class LogOut extends React.Component {
 
   componentDidUpdate() {
     if((this.props.auth.loading || this.props.modal.logout) && this.state.enableButton) this.setState({ enableButton: false })
-    if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true })
+    // if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true })
   }
 
   onConfirm = () => {
     this.setState({ enableButton: false })
     if(this.state.enableButton) this.props.onAuthStart('logOut', {})
+    // this.props.onLoadingModal(true)
   }
 
   onCancel = () => {
@@ -86,6 +88,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onLoadingModal: (bool) => dispatch(loading(bool)),
     onLogOutModal: (bool) => dispatch(logout(bool)),
     onAuthStart: (type, obj) => dispatch(authStart(type, obj)),
     onClearAuthErrors: () => dispatch(clearAuthErrors())

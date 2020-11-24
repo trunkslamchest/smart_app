@@ -37,15 +37,21 @@ const HomeLoggedInContainer = (props) => {
 
 
   return(
-    <div className='home_logged_in_container'>
-      <HomeLogoContainer />
-      <DefaultButtonsContainer
-        buttons={ homeButtons }
-        buttonClass={ 'home_start_button' }
-        containerClass={ 'home_buttons_container' }
-        enableButton={ true }
-        // tooltipClass={  }
-      />
+    <div className='home_logged_in_wrapper'>
+      <div className='home_logged_in_top_container'>
+
+        <HomeLogoContainer />
+        <div className='home_logged_in_top_right_container'>
+
+        <DefaultButtonsContainer
+          buttons={ homeButtons }
+          buttonClass={ 'home_start_button' }
+          containerClass={ 'home_buttons_container' }
+          enableButton={ true }
+          // tooltipClass={  }
+        />
+      </div>
+    </div>
     </div>
   )
 }

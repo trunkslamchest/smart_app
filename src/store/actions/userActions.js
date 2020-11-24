@@ -56,7 +56,7 @@ const initUpdateUserInfo = (info) => {
 
 export const clearUserInfo = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearUserInfo', true))
+    // dispatch(authUpdateStatus('clearUserInfo', true))
     dispatch(initClearUserInfo())
   }
 }
@@ -119,7 +119,7 @@ export const updateUserQuestions = () => {
 
 export const clearUserQuestions = () => {
   return dispatch => {
-    dispatch(authUpdateStatus('clearUserQuestions', true))
+    // dispatch(authUpdateStatus('clearUserQuestions', true))
     dispatch(initClearUserQuestions())
   }
 }
