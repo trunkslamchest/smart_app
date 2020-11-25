@@ -52,6 +52,8 @@ const UserStatsTotal = (props) => {
   let performance = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rating!</p>
   let totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
 
+  // console.log(props)
+
   if(props.user_questions && props.question_totals){
     totalQuestionsAnswered = ((props.user_questions.all.answered / props.question_totals.all.totals.questions) * 100).toFixed(2)
     if(props.user_questions.all.answered > 0) totalQuestionsCorrect = ((props.user_questions.all.correct / props.user_questions.all.answered) * 100).toFixed(2)

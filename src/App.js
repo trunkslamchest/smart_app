@@ -5,8 +5,9 @@ import { Route, Switch } from 'react-router-dom'
 import { routes } from './utility/paths'
 
 import StoreController from './store/controllers/storeController'
-import PlayController from './store/controllers/playController'
 import LeaderBoardsController from './store/controllers/leaderBoardsController'
+import ProfileController from './store/controllers/profileController'
+import PlayController from './store/controllers/playController'
 
 import Header from './UI/header/header'
 import Footer from './UI/footer/footer'
@@ -20,7 +21,7 @@ import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
 import HomeContainer from './home/HomeContainer'
 import DashboardContainer from './user/dashboard/dashboardContainer'
-import UserProfileContainer from './user/profile/userProfileContainer'
+// import UserProfileContainer from './user/profile/userProfileContainer'
 import ResultsContainer from './play/results/resultsContainer'
 
 import TermsOfService from './docs/termsOfService/termsOfService'
@@ -77,8 +78,15 @@ const App = (props) => {
             <Route path={ routes.dashboard }>
               <DashboardContainer history={ props.history } />
             </Route>
-            <Route path={ routes.user_profile }>
+            {/* <Route path={ routes.user_profile }>
               <UserProfileContainer history={ props.history } />
+            </Route> */}
+            <Route path={ routes.user_profile }>
+              <ProfileController
+                switchLoadingModalType={ switchLoadingModalType }
+                switchLoadingModalBarType={ switchLoadingModalBarType }
+                history={ props.history }
+              />
             </Route>
             <Route path={ routes.static_results }>
               <ResultsContainer staticResults={ true } history={ props.history } />

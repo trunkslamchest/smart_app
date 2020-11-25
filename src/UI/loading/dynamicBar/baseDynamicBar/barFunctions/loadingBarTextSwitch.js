@@ -10,7 +10,7 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(status === 'storeUserInfo') barText = 'Storing User Information to Redux'
   if(status === 'storeUserQuestions') barText = 'Caching User Questions'
   if(status === 'storeAchievements') barText = 'Fetching SmartApp™ Achievements'
-  if(status === 'storeQuestionTotals') barText = 'Fetching SmartApp™ Totals'
+  if(status === 'storeQuestionTotals') barText = 'Fetching SmartApp™ Question Totals'
   if(status === 'authSuccess') barText = 'Cleaning Up Auth Routines'
   if(status === 'authValid') barText = 'Success'
   if(status === 'initUserEdit') barText = 'Initializing User Update'
@@ -30,6 +30,14 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'getOverallLeaderBoards') barText = 'Fetching International Leaderboards'
     if(status === 'getCatLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
     // if(status === 'getCatLeaderBoards') barText = 'Fetching Category Leaderboards'
+    // if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
+  }
+
+  if(barType === 'userProfile') {
+    if(status === 'initUserProfile') barText = 'Initializing SmartApp™ Profile'
+    if(status === 'getUserProfile') barText = 'Fetching SmartApp™ Question Totals'
+    if(status === 'getQuestionTotals') barText = 'SmartApp™ Profile Mounted'
+    // if(status === 'displayProfile') barText = 'SmartApp™ Profile Mounted'
     // if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
   }
 

@@ -21,7 +21,7 @@ class LeaderBoardsController extends React.Component {
   }
 
   componentDidMount(){
-    if(!this.props.leaderBoards.status && !this.props.leaderBoards.overall) this.initLeaderBoardModule()
+    if(!this.props.leaderBoards.status && !this.props.leaderBoards.overall) this.initLeaderBoardsModule()
   }
 
   componentDidUpdate(){
@@ -34,7 +34,7 @@ class LeaderBoardsController extends React.Component {
   shouldComponentUpdate(nextProps, nextState){
     let render = false
 
-   if(nextProps.modal.loading) {
+   if(this.props.modal.loading || nextProps.modal.loading) {
       render = true
     }
 
@@ -56,7 +56,7 @@ class LeaderBoardsController extends React.Component {
     clearTimeout(this.authWaitTimeoutOneSec)
   }
 
-  initLeaderBoardModule = () => {
+  initLeaderBoardsModule = () => {
     this.props.onLoadingModal(true)
     this.props.switchLoadingModalType('leaderBoards')
     this.props.switchLoadingModalBarType('leaderBoards')
@@ -80,22 +80,28 @@ class LeaderBoardsController extends React.Component {
     this.props.onUpdateLeaderBoardsStatus('displayLeaderBoards')
     this.setState({ displayLeaderBoards: true })
     this.props.onUpdateLeaderBoardsLoadingStatus(false)
+    this.props.onLoadingModal(false)
   }
 
   leaderBoardsCleanupModule = () => {
     this.setState({ storeOverallLeaderBoards: false, storeCatLeaderBoards: false })
-    this.props.onLoadingModal(false)
-}
+  }
 
   render(){
-
     return(
-      <LeaderBoardsContainer
-        history={ this.props.history }
-        overallRoute={ routes.leader_boards + '/overall' }
-        countriesRoute={ routes.leader_boards + '/countries' }
-        catRoute={ routes.leader_boards + '/categories' }
-      />
+      <>
+        {
+          this.props.leaderBoards.status === 'displayLeaderBoards' &&
+          !this.props.leaderBoards.loading &&
+          !this.props.modal.loading &&
+            <LeaderBoardsContainer
+              history={ this.props.history }
+              overallRoute={ routes.leader_boards + '/overall' }
+              countriesRoute={ routes.leader_boards + '/countries' }
+              catRoute={ routes.leader_boards + '/categories' }
+            />
+        }
+      </>
     )
   }
 

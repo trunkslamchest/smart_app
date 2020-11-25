@@ -37,6 +37,14 @@ export var loadingBarClassSwitch = function(barType, status) {
     // if(status === 'displayLeaderBoards') barClass = 'loading_bar_final'
   }
 
+  if(barType === 'userProfile') {
+    if(status === 'initUserProfile') barClass = 'loading_bar_1'
+    if(status === 'getUserProfile') barClass = 'loading_bar_5'
+    if(status === 'getQuestionTotals') barClass = 'loading_bar_final'
+    // if(status === 'displayProfile') barClass = 'SmartApp™ Profile Mounted'
+    // if(status === 'displayLeaderBoards') barClass = 'SmartApp™ Leaderboards Mounted'
+  }
+
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barClass = 'loading_bar_5'
     if(status === 'setGameModeSuccess') barClass = 'loading_bar_10'

@@ -42,7 +42,9 @@ class StoreController extends React.Component {
     if(
       !!this.props.auth.status||
       !!this.props.authType ||
-      nextProps.leaderBoards.status
+      nextProps.leaderBoards.status ||
+      nextProps.profile.status
+
       // nextProps.leaderBoards.loading
       // !!nextProps.authType ||
     ) {
@@ -65,7 +67,6 @@ class StoreController extends React.Component {
       this.props.onClearAuthType()
       this.props.onAuthUpdateLoadingStatus(false)
     }
-
   }
 
   render(){
@@ -85,6 +86,7 @@ const mapStateToProps = state => {
     leaderBoards: state.leaderBoards,
     modal: state.modal,
     play: state.play,
+    profile: state.profile,
     questions: state.questions,
     user: state.user
   }

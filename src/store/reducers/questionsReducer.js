@@ -17,6 +17,8 @@ const initialState = {
 const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
 
 const getQuestionTotals = (currentState, action) => { return { ...currentState, totals: null, } }
+// const getQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
+
 
 const getQuickQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
 

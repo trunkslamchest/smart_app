@@ -16,14 +16,22 @@ export const storeQuestionTotals = (totals) => {
   }
 }
 
-export const getQuestionTotals = (props) => {
+export const getQuestionTotals = () => {
   return dispatch => {
     questionsFunctions('get', fetch.get.questionsTotals)
     .then(res => {
       dispatch(storeQuestionTotals(res))
+      // dispatch(initGetQuestionTotals(res))
     })
   }
 }
+
+// const initGetQuestionTotals = (totals) => {
+//   return {
+//     type: actionTypes.GET_QUESTION_TOTALS,
+//     totals: totals
+//   }
+// }
 
 export const clearQuestionTotals = () => {
   return dispatch => {

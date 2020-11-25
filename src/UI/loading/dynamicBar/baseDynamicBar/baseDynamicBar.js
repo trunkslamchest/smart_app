@@ -33,6 +33,8 @@ class BaseDynamicBar extends React.Component {
     if(this.props.modalType === 'auth') loadStatus = this.props.auth.status
     if(this.props.modalType === 'play') loadStatus = this.props.play.status
     if(this.props.modalType === 'leaderBoards') loadStatus = this.props.leaderBoards.status
+    if(this.props.modalType === 'userProfile') loadStatus = this.props.profile.status
+
 
     if(this.props.modalType === 'questionVote') loadStatus = this.props.play.voteStatus
     if(this.props.modalType === 'questionComment') loadStatus = this.props.play.commentStatus
@@ -54,7 +56,8 @@ const mapStateToProps = state => {
   return {
     auth: state.auth,
     leaderBoards: state.leaderBoards,
-    play: state.play
+    play: state.play,
+    profile: state.profile
   }
 }
 

@@ -5,12 +5,12 @@ import userFunctions from '../../utility/userFunctions'
 
 export const getUserProfile = (user_name) => {
   return dispatch => {
-    dispatch(updateUserProfileLoadingStatus(true))
+    // dispatch(updateUserProfileLoadingStatus(true))
     userFunctions('getUserProfile', fetch.post.userProfile, user_name)
     .then(userRes => {
       dispatch(initGetUserProfile(userRes))
-      dispatch(updateUserProfileStatus('display'))
-      dispatch(updateUserProfileLoadingStatus(false))
+      // dispatch(updateUserProfileStatus('display'))
+      // dispatch(updateUserProfileLoadingStatus(false))
     })
   }
 }

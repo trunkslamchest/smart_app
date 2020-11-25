@@ -352,7 +352,7 @@ const mapDispatchToProps = dispatch => {
     onLogOutModal: (bool) => dispatch(logout(bool)),
     onSignUpModal: (bool) => dispatch(signup(bool)),
     onDeleteProfileModal: (bool) => dispatch(deleteProfile(bool)),
-    onGetQuestionTotals: (props) => dispatch(getQuestionTotals(props)),
+    onGetQuestionTotals: () => dispatch(getQuestionTotals()),
     onClearQuestionTotals: () => dispatch(clearQuestionTotals()),
     onUpdateUserLoginTime: (time) => dispatch(updateUserLoginTime(time)),
     onClearUserInfo: () => dispatch(clearUserInfo()),
