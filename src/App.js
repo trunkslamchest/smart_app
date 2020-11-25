@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { loading } from './store/actions/actionIndex'
 import { Route, Switch } from 'react-router-dom'
@@ -34,7 +34,19 @@ import './App.css'
 
 const App = (props) => {
 
+  const [loadingModalType, setLoadingModalType] = useState('auth');
+  const [loadingModalBarType, setLoadingModalBarType] = useState(props.auth.authType);
+
+
   // console.log(props.auth.authType)
+
+  const switchLoadingModalType = (modalType) => {
+    setLoadingModalType(modalType)
+  }
+
+  const switchLoadingModalBarType = (barType) => {
+    setLoadingModalBarType(barType)
+  }
 
   return (
     <StoreController history={ props.history }>
@@ -50,8 +62,10 @@ const App = (props) => {
           // (props.auth.authType === 'refresh' || props.auth.authType === 'editProfile') &&
           <LoadingModal
             show={ props.modal.loading }
-            modalType={ 'auth' }
-            barType={ props.auth.authType }
+            // modalType={ 'auth' }
+            modalType={ loadingModalType }
+            // barType={ props.auth.authType }
+            barType={ loadingModalBarType }
             history={ props.history }
           />
         }
@@ -73,7 +87,11 @@ const App = (props) => {
               <PlayController history={ props.history } />
             </Route>
             <Route path={ routes.leader_boards }>
-              <LeaderBoardsController history={ props.history } />
+              <LeaderBoardsController
+                switchLoadingModalType={ switchLoadingModalType }
+                switchLoadingModalBarType={ switchLoadingModalBarType }
+                history={ props.history }
+              />
             </Route>
             <Route exact path={ routes.tos }><TermsOfService /></Route>
             <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>

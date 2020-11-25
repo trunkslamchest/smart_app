@@ -21,6 +21,8 @@ class LoadingModal extends React.Component {
 
   render(){
 
+    // console.log(this.props)
+
     return (
       <Modal
         modalClass={ 'loading_modal' }

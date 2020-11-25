@@ -1,7 +1,8 @@
 export var loadingBarTextSwitch = function(barType, status) {
   let barText = ''
 
-  // console.log(barType, status)
+  // console.log('bar text', barType)
+  // console.log('bar text', status)
 
   if(!status) barText = 'Allocating Resources'
   if(status === 'authGoogle') barText = 'Initializing Google Authentication'
@@ -23,6 +24,14 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(status === 'clearAchievements') barText = 'Unachieving Question Achievements'
   if(status === 'clearAuthCreds') barText = 'Removing Authentication Credentials'
   if(status === 'clearLocalStorage') barText = 'Profile Deletion Success'
+
+  if(barType === 'leaderBoards') {
+    if(status === 'initLeaderBoards') barText = 'Initializing SmartApp™ Leaderboards'
+    if(status === 'getOverallLeaderBoards') barText = 'Fetching International Leaderboards'
+    if(status === 'getCatLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
+    // if(status === 'getCatLeaderBoards') barText = 'Fetching Category Leaderboards'
+    // if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
+  }
 
   if(barType === 'authLogOut') { if(status === 'authSuccess') barText = 'Log Out Success' }
 

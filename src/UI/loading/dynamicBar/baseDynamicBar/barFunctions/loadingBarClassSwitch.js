@@ -29,6 +29,14 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'authSuccess') barClass = 'loading_bar_final'
   }
 
+  if(barType === 'leaderBoards') {
+    if(status === 'initLeaderBoards') barClass = 'loading_bar_1'
+    if(status === 'getOverallLeaderBoards') barClass = 'loading_bar_5'
+    if(status === 'getCatLeaderBoards') barClass = 'loading_bar_final'
+    // if(status === 'getCatLeaderBoards') barClass = 'loading_bar_10'
+    // if(status === 'displayLeaderBoards') barClass = 'loading_bar_final'
+  }
+
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barClass = 'loading_bar_5'
     if(status === 'setGameModeSuccess') barClass = 'loading_bar_10'

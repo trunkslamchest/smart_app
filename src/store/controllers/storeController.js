@@ -27,16 +27,23 @@ class StoreController extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     // console.log(
-    //   this.props.auth, nextProps.auth, "|",
+    //   // this.props.auth, nextProps.auth, "|",
     //   // this.props.modal, nextProps.modal, "|",
     //   // this.props.modal.loading, nextProps.modal.loading, "|",
+    //   // !!nextProps.leaderBoards.status, "|",
+    //   // nextProps.leaderBoards.loading
+    //   this.props.leaderBoards, "|",
+    //   nextProps.leaderBoards, "|",
+    //   nextProps.modal.loading
     // )
 
     let render = false
 
     if(
       !!this.props.auth.status||
-      !!this.props.authType
+      !!this.props.authType ||
+      nextProps.leaderBoards.status
+      // nextProps.leaderBoards.loading
       // !!nextProps.authType ||
     ) {
       render = true
@@ -75,11 +82,10 @@ class StoreController extends React.Component {
 const mapStateToProps = state => {
   return{
     auth: state.auth,
+    leaderBoards: state.leaderBoards,
     modal: state.modal,
-    logIn: state.logIn,
     play: state.play,
     questions: state.questions,
-    signUp: state.signUp,
     user: state.user
   }
 }

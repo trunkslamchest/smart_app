@@ -7,7 +7,6 @@ const initialState = {
   loading: false
 }
 
-
 const getOverallLeaderBoards = (currentState, action) => {
   return { ...currentState, overall: action.overall }
 }
@@ -28,14 +27,14 @@ const updateLeaderBoardsLoadingStatus = (currentState, action) => {
   return { ...currentState, loading: action.loading }
 }
 
-const leaderBoardsReducer = (currentState, action) => {
+const leaderBoardsReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case(actionTypes.GET_OVERALL_LEADERBOARDS): return getOverallLeaderBoards(currentState, action)
     case(actionTypes.GET_CAT_LEADERBOARDS): return getCatLeaderBoards(currentState, action)
     case(actionTypes.CLEAR_LEADERBOARDS): return clearLeaderBoards(currentState, action)
     case(actionTypes.UPDATE_LEADERBOARDS_STATUS): return updateLeaderBoardsStatus(currentState, action)
     case(actionTypes.UPDATE_LEADERBOARDS_LOADING_STATUS): return updateLeaderBoardsLoadingStatus(currentState, action)
-    default: return initialState
+    default: return currentState
   }
 }
 

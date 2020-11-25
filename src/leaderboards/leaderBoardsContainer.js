@@ -2,11 +2,6 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
-  getOverallLeaderBoards,
-  getCatLeaderBoards,
-  clearLeaderBoards,
-  updateLeaderBoardsStatus,
-  updateLeaderBoardsLoadingStatus,
   help,
   setHelpHeader,
   setHelpSections
@@ -72,11 +67,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetOverallLeaderBoards: () => dispatch(getOverallLeaderBoards()),
-    onGetCatLeaderBoards: () => dispatch(getCatLeaderBoards()),
-    onClearLeaderBoards: () => dispatch(clearLeaderBoards()),
-    onUpdateLeaderBoardsStatus: (status) => dispatch(updateLeaderBoardsStatus(status)),
-    onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status)),
     onHelpModal: (bool) => dispatch(help(bool)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
     onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
