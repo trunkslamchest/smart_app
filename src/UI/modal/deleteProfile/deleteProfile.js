@@ -85,7 +85,7 @@ class DeleteProfile extends React.Component {
     const loading =
       <div className='loading_wrapper'>
         <SmallLoadingSpinner />
-        <BaseDynamicBar modalType={ 'auth' } barType={ 'authLogOut' } />
+        <BaseDynamicBar modalType={ 'auth' } barType={ 'deleteProfile' } />
       </div>
 
     const deleteProfileButtons = makeDeleteProfileButtons(glyphIndex, this.onConfirm, this.onCancel)

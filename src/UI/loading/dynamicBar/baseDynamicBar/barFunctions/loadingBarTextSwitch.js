@@ -1,7 +1,7 @@
 export var loadingBarTextSwitch = function(barType, status) {
   let barText = ''
 
-  // console.log('bar text', status)
+  // console.log(barType, status)
 
   if(!status) barText = 'Allocating Resources'
   if(status === 'authGoogle') barText = 'Initializing Google Authentication'
@@ -22,6 +22,16 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(status === 'clearQuestionTotals') barText = 'Restoring Question Totals'
   if(status === 'clearAchievements') barText = 'Unachieving Question Achievements'
   if(status === 'clearAuthCreds') barText = 'Removing Authentication Credentials'
+  if(status === 'clearLocalStorage') barText = 'Profile Deletion Success'
+
+  if(barType === 'authLogOut') {
+    if(status === 'authSuccess') barText = 'Log Out Success'
+
+  }
+
+  if(barType === 'deleteProfile') {
+    if(status === 'authSuccess') barText = 'Profile Delection Success :('
+  }
 
 
   if(barType === 'loadQuestion'){

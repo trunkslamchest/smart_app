@@ -60,9 +60,7 @@ class AuthController extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') {
-      this.loginRefreshSignUpGroup()
-    }
+    if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') this.loginRefreshSignUpGroup()
 
     if(this.props.auth.authType === 'editProfile') {
       if(this.props.auth.status === 'updateUserSuccess' && !this.state.authSuccess){
@@ -80,6 +78,8 @@ class AuthController extends React.Component {
       if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
       if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
       if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
+      if(this.props.auth.status === 'authSuccess' && !this.props.modal.logout) this.authRedirectModule('logOut')
+
     }
 
     if(this.props.auth.authType === 'deleteProfile') {
@@ -92,52 +92,53 @@ class AuthController extends React.Component {
       if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
       if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
       if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
+      if(this.props.auth.status === 'authSuccess' && !this.props.modal.deleteProfile) this.authRedirectModule('deleteProfile')
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  // shouldComponentUpdate(nextProps, nextState){
     // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
 
-    console.log(
-      this.props.auth.authType, nextProps.auth.authType, "|",
-      this.props.auth.status, nextProps.auth.status, "|",
-      this.props.auth.loading, nextProps.auth.loading, "|",
-      this.props.modal.logout, nextProps.modal.logout, "|",
-      this.state.authCleanup, nextState.authCleanup, "|",
-      this.props.modal.login,  nextProps.modal.logout
-    )
+    // console.log(
+    //   this.props.auth.authType, nextProps.auth.authType, "|",
+    //   this.props.auth.status, nextProps.auth.status, "|",
+    //   this.props.auth.loading, nextProps.auth.loading, "|",
+    //   this.props.modal.logout, nextProps.modal.logout, "|",
+    //   this.state.authCleanup, nextState.authCleanup, "|",
+    //   this.props.modal.login, nextProps.modal.logout
+    // )
 
-    let render = false
+    // let render = false
 
-    if(this.props.auth.status === "authValid" || this.props.auth.status === "clearAuthCreds") {
-      if(this.props.modal.loading || nextProps.modal.loading ||this.props.auth.loading || nextProps.auth.loading) {
-        render = true
-      }
-    }
+    // if(this.props.auth.status === "authValid" || this.props.auth.status === "clearAuthCreds") {
+    //   if(this.props.modal.loading || nextProps.modal.loading ||this.props.auth.loading || nextProps.auth.loading) {
+    //     render = true
+    //   }
+    // }
 
-    if(this.props.auth.authType === 'refresh') {
-      render = true
-    }
+    // if(this.props.auth.authType === 'refresh') {
+    //   render = true
+    // }
 
-    if(nextProps.modal.login) {
-      render = true
-    }
+    // if(nextProps.modal.login) {
+    //   render = true
+    // }
 
-    if(nextProps.modal.signup) {
-      render = true
-    }
+    // if(nextProps.modal.signup) {
+    //   render = true
+    // }
 
-    if(nextProps.modal.logout) {
-      render = true
-    }
+    // if(nextProps.modal.logout) {
+    //   render = true
+    // }
 
-    if(nextProps.modal.deleteProfile) {
-      render = true
-    }
+    // if(nextProps.modal.deleteProfile) {
+    //   render = true
+    // }
 
-    return render
-    // return true
-  }
+    // return render
+  //   return true
+  // }
 
   componentWillUnmount(){
     clearTimeout(this.authWaitTimeoutQuarterSec)
@@ -246,16 +247,17 @@ class AuthController extends React.Component {
 
   authFinalizeLogOutModule = () => {
     this.setState({ clearLocalStorage: true })
-    this.props.history.push( routes.home )
+    this.props.onAuthUpdateStatus('authSuccess')
+    this.clearLocalStorageModule()
     this.authWaitTimeoutQuarterSec = setTimeout(() => {
       if(!!this.props.modal.loading) this.props.onLoadingModal(false)
       if(!!this.props.modal.logout) this.props.onLogOutModal(false)
       if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
-      this.props.onAuthUpdateLoadingStatus(false)
     }, 250)
-    this.clearLocalStorageModule()
-    this.props.onClearAuthStatus()
-    this.props.onClearAuthType()
+  }
+
+  authRedirectModule = (authType) => {
+    this.props.onRedirect(authType)
     this.clearLocalStateModule()
   }
 

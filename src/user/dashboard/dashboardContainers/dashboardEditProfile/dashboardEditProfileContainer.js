@@ -55,7 +55,6 @@ class DashboardEditProfile extends React.Component {
 
   componentDidUpdate() {
     if(this.props.user.info && !this.state.pulledStore)this.pulledStore()
-    if(this.props.modal.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
     if(!this.props.modal.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
   }
 
@@ -171,7 +170,7 @@ class DashboardEditProfile extends React.Component {
   }
 
   onValidEditProfile = () => {
-    if(!this.state.form.pending && !this.state.enableButton){
+    if(!this.state.form.pending && this.state.enableButton){
       this.props.onAuthStart('editProfile', {
         uid: localStorage.id,
         info: {
@@ -215,6 +214,8 @@ class DashboardEditProfile extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
+
+    console.log(this.props.modal.loading && this.state.enableButton)
 
     let editProfileInputFields = makeDashboardEditProfileFormInputs(
       this.onChange,

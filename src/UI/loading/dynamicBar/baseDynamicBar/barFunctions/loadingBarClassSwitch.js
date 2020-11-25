@@ -22,7 +22,12 @@ export var loadingBarClassSwitch = function(barType, status) {
   if(status === 'clearUserSettings') barClass = 'loading_bar_11'
   if(status === 'clearQuestionTotals') barClass = 'loading_bar_13'
   if(status === 'clearAchievements') barClass = 'loading_bar_15'
-  if(status === 'clearAuthCreds') barClass = 'loading_bar_final'
+  if(status === 'clearAuthCreds') barClass = 'loading_bar_10'
+  if(status === 'clearLocalStorage') barClass = 'loading_bar_final'
+
+  if(barType === 'authLogOut'|| barType === 'deleteProfile') {
+    if(status === 'authSuccess') barClass = 'loading_bar_final'
+  }
 
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barClass = 'loading_bar_5'
