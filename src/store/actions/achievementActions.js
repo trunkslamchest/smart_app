@@ -12,7 +12,6 @@ export const storeAchievements = () => {
   return dispatch => {
     achievementFunctions('get', fetch.get.achievements)
     .then(res => {
-      // dispatch(authUpdateStatus('storeAchievementsSuccess', true))
       dispatch(initStoreAchievements(res))
     })
   }

@@ -15,116 +15,58 @@ import {
   updateStaticQuestionCommentStatus
 } from './questionsActions'
 
-// import {
-//   loading
-// } from './modalActions'
-
 import userFunctions from '../../utility/userFunctions'
 import questionsFunctions from '../../utility/questionsFunctions'
 
-export const storeUserInfo = (info, experience, achievements, settings) => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('storeUserInfo', true))
-    dispatch(initStoreUserInfo(info, experience, achievements, settings))
-  }
-}
-
-export const initStoreUserInfo = (info, experience, achievements, settings) => {
-  return { type: actionTypes.STORE_USER_INFO, info: info, experience: experience, achievements: achievements, settings: settings }
-}
+export const storeUserInfo = (info, experience, achievements, settings) => { return { type: actionTypes.STORE_USER_INFO, info: info, experience: experience, achievements: achievements, settings: settings } }
 
 export const updateUserInfo = (authType, obj) => {
   return dispatch => {
-    // dispatch(authUpdateStatus('updateUserInfo', true))
     userFunctions('patch', fetch.patch.user, obj)
     .then((userRes) => {
       // if(userRes){
         dispatch(authUpdateStatus('updateUserSuccess', true))
         dispatch(initUpdateUserInfo(obj.info))
-        // dispatch(loading(false))
       // }
     })
   }
 }
 
-const initUpdateUserInfo = (info) => {
-  return {
-    type: actionTypes.UPDATE_USER_INFO,
-    info: info
-  }
-}
+const initUpdateUserInfo = (info) => { return { type: actionTypes.UPDATE_USER_INFO, info: info } }
 
-export const clearUserInfo = () => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('clearUserInfo', true))
-    dispatch(initClearUserInfo())
-  }
-}
+export const clearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, info: null, experience: null, achievements: null } }
 
-const initClearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, info: null, experience: null, achievements: null } }
+export const storeUserQuestions = (questions) => { return { type: actionTypes.STORE_USER_QUESTIONS, questions: questions } }
 
-export const storeUserQuestions = (questions) => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('storeUserQuestions', true))
-    dispatch(initStoreUserQuestions(questions))
-  }
-}
-
-export const storeUserSettings = (settings) => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('storeUserSettings', true))
-    dispatch(initStoreUserSettings(settings))
-  }
-}
-
-export const initStoreUserSettings = (settings) => {
-  return { type: actionTypes.STORE_USER_SETTINGS, settings: settings }
-}
+export const storeUserSettings = (settings) => { return { type: actionTypes.STORE_USER_SETTINGS, settings: settings } }
 
 export const updateUserSettings = (obj) => {
   return dispatch => {
-    // dispatch(authUpdateStatus('updateUserSettings', true))
     userFunctions('patch', fetch.patch.userSettings, obj)
     .then((userRes) => {
       // if(userRes){
-        // console.log(userRes)
-        // dispatch(authUpdateStatus('updateUserSettingsSuccess', true))
         dispatch(storeUserSettings(userRes))
       // }
     })
   }
 }
 
-export const clearUserSettings = () => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('clearUserSettings', true))
-    dispatch(initClearUserSettings())
-  }
-}
-
-const initClearUserSettings = () => { return { type: actionTypes.CLEAR_USER_SETTINGS, settings: null } }
-
-export const initStoreUserQuestions = (questions) => { return { type: actionTypes.STORE_USER_QUESTIONS, questions: questions } }
+export const clearUserSettings = () => { return { type: actionTypes.CLEAR_USER_SETTINGS, settings: null } }
 
 export const updateUserQuestions = () => {
   return dispatch => {
     if(localStorage.id) {
       userFunctions('getUser', fetch.get.user, localStorage.id)
       .then(userRes => {
+      // if(userRes){
         dispatch(storeUserQuestions(userRes.questions))
+      // }
       })
     }
   }
 }
 
-export const clearUserQuestions = () => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('clearUserQuestions', true))
-    dispatch(initClearUserQuestions())
-  }
-}
-
-const initClearUserQuestions = () => { return { type: actionTypes.CLEAR_USER_QUESTIONS, questions: null } }
+export const clearUserQuestions = () => { return { type: actionTypes.CLEAR_USER_QUESTIONS, questions: null } }
 
 export const deleteUser = (id) => {
   return dispatch => {

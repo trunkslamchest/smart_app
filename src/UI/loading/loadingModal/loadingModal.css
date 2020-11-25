@@ -20,7 +20,7 @@
   justify-content: center;
   padding: 15px 0px 0px 0px;
   z-index: 500;
-  /* width: 75%; */
+  width: 100%;
 }
 
 .loading_wrapper_votes {

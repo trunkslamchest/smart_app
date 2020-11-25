@@ -7,14 +7,14 @@ const initialState = {
   errors: [],
   id: null,
   token: null,
-  refreshToken: null
+  refreshToken: null,
+  userCache: null
 }
 
 const authUpdateStatus = (currentState, action) => {
   return {
     ...currentState,
-    status: action.status,
-    loading: action.loading
+    status: action.status
   }
 }
 
@@ -29,7 +29,8 @@ const authStart = (currentState, action) => {
   return {
     ...currentState,
     errors: [],
-    authType: action.authType
+    authType: action.authType,
+    loading: true
   }
 }
 
@@ -66,17 +67,8 @@ const authLogIn = (currentState, action) => {
 }
 
 const authLogOut = (currentState, action) => {
-  // return {
-  //   ...currentState,
-  //   authType: null,
-  //   id: null,
-  //   refreshToken: null,
-  //   token: null
-  // }
-
   return {
     ...currentState,
-    // status: action.status,
     loading: action.loading
   }
 }
@@ -92,6 +84,7 @@ const authUser = (currentState, action) => {
   return {
     ...currentState,
     errors: [ ...currentState.errors, action.error ],
+    userCache: action.userCache
   }
 }
 
@@ -126,8 +119,7 @@ const clearAuthCreds = (currentState, action) => {
     ...currentState,
     id: action.id,
     refreshToken: action.refreshToken,
-    token: action.token,
-    status: action.status
+    token: action.token
   }
 }
 
@@ -149,8 +141,7 @@ const clearAuthStatus = (currentState, action) => {
   return {
     ...currentState,
     errors: action.errors,
-    status: action.status,
-    loading: action.loading
+    status: action.status
   }
 }
 
@@ -174,6 +165,13 @@ const clearAuthErrors = (currentState, action) => {
   }
 }
 
+const clearUserCache = (currentState, action) => {
+  return {
+    ...currentState,
+    userCache: action.userCache
+  }
+}
+
 const authReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.AUTH_UPDATE_LOADING_STATUS: return authUpdateLoadingStatus(currentState, action)
@@ -194,7 +192,8 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_AUTH_TYPE: return clearAuthType(currentState, action)
     case actionTypes.CLEAR_AUTH_STATUS: return clearAuthStatus(currentState, action)
     case actionTypes.CLEAR_AUTH_ERRORS: return clearAuthErrors(currentState, action)
-    case actionTypes.SET_AUTH_TYPE : return setAuthType(currentState, action)
+    case actionTypes.SET_AUTH_TYPE: return setAuthType(currentState, action)
+    case actionTypes.CLEAR_USER_CACHE: return clearUserCache(currentState, action)
     default: return currentState
   }
 }

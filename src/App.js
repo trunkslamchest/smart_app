@@ -33,6 +33,9 @@ import E404 from './error/E404'
 import './App.css'
 
 const App = (props) => {
+
+  // console.log(props.auth.authType)
+
   return (
     <StoreController history={ props.history }>
       { props.modal.login && <LogIn history={ props.history } /> }

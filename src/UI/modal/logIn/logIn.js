@@ -45,9 +45,9 @@ class LogIn extends React.Component {
     }
   }
 
-  componentWillUnmount(){ this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
+  componentWillUnmount(){ this.clearLocalState() }
 
-  onChange = (event) => { this.setState({[event.target.id]: event.target.value}) }
+  onChange = (event) => { this.setState( { [event.target.id]: event.target.value } ) }
 
   onSubmit = (event) => {
     event.preventDefault()
@@ -67,15 +67,16 @@ class LogIn extends React.Component {
   }
 
   onReset = () => {
-    this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: true }, password: '' })
+    this.clearLocalState()
     if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
-    // this.props.onClearAuthStatus()
   }
 
   onCancel = () => {
     this.onReset()
     this.props.onLogInModal(false)
   }
+
+  clearLocalState = () => { this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
 
   render(){
 

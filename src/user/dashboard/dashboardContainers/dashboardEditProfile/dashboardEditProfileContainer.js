@@ -1,7 +1,13 @@
 import React from 'react'
 import { routes } from '../../../../utility/paths.js'
 import { connect } from 'react-redux'
-import { loading, authStart, updateUserInfo } from '../../../../store/actions/actionIndex'
+import { 
+  loading,
+  authStart,
+  updateUserInfo,
+  clearAuthErrors,
+  clearAuthStatus
+} from '../../../../store/actions/actionIndex'
 
 import { check } from '../../../../utility/paths'
 import checkFunctions from '../../../../utility/checkFunctions'
@@ -131,6 +137,8 @@ class DashboardEditProfile extends React.Component {
   onSubmit = (event) => {
     event.persist()
     event.preventDefault()
+    this.props.onClearAuthStatus()
+    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
     this.props.onLoadingModal(true)
     this.setState({ form: { valid: false, pending: true } })
 
@@ -250,6 +258,7 @@ class DashboardEditProfile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     modal: state.modal,
     user: state.user
   }
@@ -259,7 +268,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onAuthStart: (authType, obj, props) => dispatch(authStart(authType, obj, props)),
-    onUpdateUserInfo: (obj, props) => dispatch(updateUserInfo(obj, props))
+    onUpdateUserInfo: (obj, props) => dispatch(updateUserInfo(obj, props)),
+    onClearAuthStatus: () => dispatch(clearAuthStatus()),
+    onClearAuthErrors: () => dispatch(clearAuthErrors())
   }
 }
 

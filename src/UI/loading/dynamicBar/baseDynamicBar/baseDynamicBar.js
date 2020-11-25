@@ -10,16 +10,26 @@ import './baseDynamicBar.css'
 class BaseDynamicBar extends React.Component {
 
   // shouldComponentUpdate(nextProps, nextState){
-  //   console.log(nextProps)
-  //   if(this.props.auth.status !== nextProps.auth.status) return true
+  //   if(
+  //     (!!this.props.barType || !!this.props.auth.authType) &&
+  //     (!!nextProps.barType || !!nextProps.auth.authType)
+
+  //   ) {
+  //     // console.log(this.props.barType, nextProps.auth.authType)
+
+  //     return true
+  //   }
   //   else return false
   // }
 
-  // console.log(loadStatus)
 
   render() {
 
-    let loadStatus
+  // console.log(this.props.barType, this.props.auth.authType)
+
+    let loadStatus, barType
+
+    barType = this.props.barType || this.props.auth.authType
 
     if(this.props.modalType === 'auth') loadStatus = this.props.auth.status
     if(this.props.modalType === 'play') loadStatus = this.props.play.status
@@ -29,10 +39,10 @@ class BaseDynamicBar extends React.Component {
     return(
       <div className="dyanmic_bar_container">
         <div className="loading_bar_container">
-          <div className={ loadingBarClassSwitch(this.props.barType, loadStatus) }></div>
+          <div className={ loadingBarClassSwitch(barType, loadStatus) }></div>
         </div>
         <div className="loading_text">
-          <p>{ loadingBarTextSwitch(this.props.barType, loadStatus) }</p>
+          <p>{ loadingBarTextSwitch(barType, loadStatus) }</p>
         </div>
       </div>
     )

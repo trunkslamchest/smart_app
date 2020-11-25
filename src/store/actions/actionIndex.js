@@ -32,7 +32,8 @@ export {
   clearAuthType,
   clearAuthStatus,
   clearAuthErrors,
-  setAuthType
+  setAuthType,
+  clearUserCache
   // setAuthRedirectPath,
   // checkAuthState,
   // checkAuthTimeout,

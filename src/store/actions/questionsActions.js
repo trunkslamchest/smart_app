@@ -5,22 +5,11 @@ import {
   updateGameStatus
 } from './playActions'
 
-// import {
-//   authUpdateStatus
-// } from './authActions'
-
 import { fetch } from '../../utility/paths'
 
 import questionsFunctions from '../../utility/questionsFunctions'
 
 export const storeQuestionTotals = (totals) => {
-  return dispatch => {
-    // dispatch(authUpdateStatus('storeQuestionsLocal', true))
-    dispatch(initStoreQuestionTotals(totals))
-  }
-}
-
-const initStoreQuestionTotals = (totals) => {
   return {
     type: actionTypes.STORE_QUESTION_TOTALS,
     totals: totals
@@ -31,7 +20,6 @@ export const getQuestionTotals = (props) => {
   return dispatch => {
     questionsFunctions('get', fetch.get.questionsTotals)
     .then(res => {
-      // dispatch(authUpdateStatus('getQuestionsLocalSuccess', true))
       dispatch(storeQuestionTotals(res))
     })
   }
@@ -39,7 +27,6 @@ export const getQuestionTotals = (props) => {
 
 export const clearQuestionTotals = () => {
   return dispatch => {
-    // dispatch(authUpdateStatus('clearQuestionTotalsSuccess', true))
     dispatch(initClearQuestionTotals())
   }
 }
@@ -162,7 +149,6 @@ export const clearStaticUserQuestion = (res) => {
 
 export const updateStaticQuestionVotes = (votes, vote, rating) => {
   return dispatch => {
-    // dispatch(voteLoading(true))
     dispatch(updateStaticQuestionVoteStatus('updateStaticQuestionVote'))
     dispatch(initUpdateStaticQuestionVotes(votes, rating))
     dispatch(updateStaticUserVote(vote))

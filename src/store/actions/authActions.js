@@ -6,11 +6,7 @@ import {
 } from '../../utility/paths'
 
 import {
-  storeUserInfo,
-  updateUserInfo,
-  // clearUserInfo,
-  // clearUserSettings,
-  storeUserQuestions
+  updateUserInfo
 } from './userActions'
 
 import authFunctions from '../../utility/authFunctions'
@@ -22,22 +18,18 @@ export const authStart = (authType, obj) => {
   return dispatch => {
     if(authType === 'logIn') {
       dispatch(initAuth(authType))
-      // dispatch(authUpdateStatus('authUserGoogleStart', true))
       dispatch(authLogIn(authType, obj))
     }
     if(authType === 'signUp') {
       dispatch(initAuth(authType))
-      // dispatch(authUpdateStatus('authUserGoogleStart', true))
       dispatch(authSignUp(authType, obj))
     }
     if(authType === 'refresh') {
       dispatch(initAuth(authType))
-      // dispatch(authUpdateStatus('authUserGoogleStart', true))
       dispatch(authRefresh(authType, obj))
     }
     if(authType === 'logOut') {
       dispatch(initAuth(authType))
-      // dispatch(authUpdateStatus('initLogOut', true))
       dispatch(authLogOut(authType, obj))
     }
     if(authType === 'editProfile') {
@@ -56,7 +48,8 @@ const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
     error: null,
-    authType: authType
+    authType: authType,
+    loading: true
   }
 }
 
@@ -70,8 +63,7 @@ export const authUpdateLoadingStatus = (bool) => {
 export const authUpdateStatus = (status, loading) => {
   return {
     type: actionTypes.AUTH_UPDATE_STATUS,
-    status: status,
-    loading: loading
+    status: status
   }
 }
 
@@ -117,21 +109,17 @@ export const authSuccess = (authType, obj) => {
   return dispatch => {
     if(authType === 'logIn') {
       updateLocalStorage(obj)
-      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authComplete(obj))
     }
     if(authType === 'signUp') {
       updateLocalStorage(obj)
-      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(createUser(obj))
     }
     if(authType === 'refresh') {
       updateLocalStorage(obj)
-      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authComplete(obj))
     }
     if(authType === 'deleteProfile') {
-      // dispatch(authUpdateStatus('authUserGoogleSuccess', true))
       dispatch(authDelete(obj))
     }
   }
@@ -159,8 +147,7 @@ const createUser = (obj) => {
     let id = obj.id, userObj = {}
     userObj[id] = signUpObjTemplate(obj.email, obj.user)
     userFunctions('post', fetch.post.user, userObj)
-    .then(res => {
-      // dispatch(authUpdateStatus('createUserLocalSuccess', true))
+    .then(() => {
       dispatch(authComplete(obj))
     })
   }
@@ -173,10 +160,30 @@ export const authUser = () => {
       if(userRes === null) localStorage.clear()
       // if(!!userRes.error) dispatch(authFail(userRes.error))
       else {
-        // dispatch(authUpdateStatus('authUserLocalSuccess', true))
-        dispatch(storeUserInfo(userRes.info, userRes.experience, userRes.achievements, userRes.settings))
-        dispatch(storeUserQuestions(userRes.questions))
+        dispatch(cacheUser(userRes))
       }
+    })
+  }
+}
+
+const cacheUser = (user) => {
+  return {
+    type: actionTypes.AUTH_USER,
+    userCache: user
+  }
+}
+
+export const authRefresh = (authType, obj) => {
+  return dispatch => {
+    authFunctions('refreshToken', auth.refreshToken, obj)
+    .then(authRes => {
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else dispatch(authSuccess(authType, {
+        expires: authRes.expires_in,
+        id: authRes.user_id,
+        refresh: authRes.refresh_token,
+        token: authRes.id_token
+      }))
     })
   }
 }
@@ -215,24 +222,8 @@ export const authLogIn = (authType, obj) => {
   }
 }
 
-export const authRefresh = (authType, obj) => {
-  return dispatch => {
-    authFunctions('refreshToken', auth.refreshToken, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else dispatch(authSuccess(authType, {
-        expires: authRes.expires_in,
-        id: authRes.user_id,
-        refresh: authRes.refresh_token,
-        token: authRes.id_token
-      }))
-    })
-  }
-}
-
 export const authDelete = (obj) => {
   return dispatch => {
-    // dispatch(authUpdateStatus('initDeleteAuthUser', true))
     const delObj = {
       displayName: obj.user,
       email: obj.email,
@@ -245,22 +236,14 @@ export const authDelete = (obj) => {
     authFunctions('delete', auth.delete, delObj)
     .then(authRes => {
         if(!!authRes.error) dispatch(authFail(authRes.error))
-        // else(dispatch(authLogOut()))
         else dispatch(authUpdateStatus('deleteAuthUserSuccess', true))
     })
   }
 }
 
 export const authLogOut = () => {
-  // return dispatch => {
-  //   dispatch(authUpdateStatus('initLogOut', true))
-  //   // dispatch(clearUserInfo())
-  //   // dispatch(clearUserSettings())
-
-  // }
   return {
     type: actionTypes.AUTH_LOGOUT,
-    // status: 'initLogOut',
     loading: true
   }
 }
@@ -283,15 +266,13 @@ export const clearAuthStatus = () => {
   return {
     type: actionTypes.CLEAR_AUTH_STATUS,
     errors: [],
-    status: null,
-    loading: false
+    status: null
   }
 }
 
 export const clearAuthCreds = () => {
   return {
     type: actionTypes.CLEAR_AUTH_CREDS,
-    status: 'clearAuthCredsSuccess',
     id: null,
     refreshToken: null,
     token: null
@@ -341,5 +322,12 @@ export const authTimeout = (expirationTime) => {
   return {
     type: actionTypes.AUTH_TIMEOUT,
     expirationTime: expirationTime
+  }
+}
+
+export const clearUserCache = () => {
+  return {
+    type: actionTypes.CLEAR_USER_CACHE,
+    userCache: null
   }
 }

@@ -38,9 +38,9 @@ const mapStateToProps = state => {
   }
 }
 
-// export default connect(mapStateToProps)(HomeContainer)
+export default connect(mapStateToProps)(HomeContainer)
 
-export default connect(mapStateToProps)(React.memo(HomeContainer, (props, nextProps) => {
-  if(!nextProps.modal.loading) return true
-  else return false
-}))
+// export default connect(mapStateToProps)(React.memo(HomeContainer, (props, nextProps) => {
+//   if(!nextProps.modal.loading) return true
+//   else return false
+// }))

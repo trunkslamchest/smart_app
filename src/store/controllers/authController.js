@@ -20,8 +20,11 @@ import {
   clearUserSettings,
   clearUserQuestions,
   deleteUser,
+  storeUserInfo,
+  storeUserQuestions,
   storeAchievements,
-  clearAchievements
+  clearAchievements,
+  clearUserCache
 } from '../actions/actionIndex'
 import { routes } from '../../utility/paths'
 import getTime from '../../utility/getTime'
@@ -38,23 +41,18 @@ class AuthController extends React.Component {
     storeQuestionTotals: false,
     authSuccess: false,
     authValid: false,
+    authCleanup: false,
     clearUserInfo: false,
     clearUserQuestions: false,
     clearUserSettings: false,
     clearQuestionTotals: false,
     clearAchievements: false,
     clearAuthCreds: false,
-    clearLocalStorage: false,
-    logOutSuccess: false,
-    deleteUserSuccess: false,
-    updateUserSuccess: false,
+    clearLocalStorage: false
   }
 
   componentDidMount(){
-    if (!localStorage.token) {
-      this.clearLocalStorage()
-      this.props.onAuthUpdateStatus(null, false)
-    }
+    if (!localStorage.token) this.clearLocalStorageModule()
     else {
       this.props.onLoadingModal(true)
       this.props.onAuthStart('refresh', { grant_type: "refresh_token", refresh_token: localStorage.refreshToken })
@@ -62,372 +60,83 @@ class AuthController extends React.Component {
   }
 
   componentDidUpdate(){
-
-    if(this.props.auth.authType === 'refresh') {
-
-      if(this.props.auth.authType && !this.state.authGoogle) {
-        this.setState({ authGoogle: true })
-        this.props.onAuthUpdateStatus('authGoogle', true)
-      }
-
-      if(this.props.auth.id && !this.state.authUser) {
-        this.setState({ authUser: true })
-        this.props.onAuthUser()
-        this.props.onAuthUpdateStatus('authUser', true)
-      }
-
-      if(this.props.user.info && !this.state.storeUserInfo) {
-        this.setState({ storeUserInfo: true })
-        this.props.onAuthUpdateStatus('storeUserInfo', true)
-      }
-
-      if(this.props.user.questions && !this.state.storeUserQuestions) {
-        this.setState({ storeUserQuestions: true })
-        this.props.onStoreAchievements()
-        this.props.onAuthUpdateStatus('storeUserQuestions', true)
-      }
-
-      if(this.props.achievements.all && !this.state.storeAchievements) {
-        this.setState({ storeAchievements: true })
-        this.props.onGetQuestionTotals()
-        this.props.onAuthUpdateStatus('storeAchievements', true)
-      }
-
-      if(this.props.questions.totals && !this.state.storeQuestionTotals) {
-        this.setState({ storeQuestionTotals: true })
-        this.props.onAuthUpdateStatus('storeQuestionTotals', true)
-      }
-
-      if(this.props.auth.status === 'storeQuestionTotals' && !this.state.authSuccess) {
-        this.setState({ authSuccess: true })
-        this.props.onAuthUpdateStatus('authSuccess', true)
-      }
-
-      if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) {
-        this.setState({
-          authGoogle: false,
-          authUser: false,
-          storeUserInfo: false,
-          storeUserQuestions: false,
-          storeAchievements: false,
-          storeQuestionTotals: false,
-          authSuccess: false
-        })
-        this.props.onUpdateUserLoginTime({ time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
-        localStorage.authValid = true
-        this.props.onClearAuthType()
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.onAuthUpdateStatus('authValid', false)
-      }
-
-      if(this.props.auth.status === 'fail') {
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.onClearAuthStatus()
-        this.clearLocalStorage()
-        this.props.onClearAuthType()
-      }
-    }
-
-    if(this.props.auth.authType === 'logIn') {
-      if(this.props.auth.authType && !this.state.authGoogle) {
-        this.setState({ authGoogle: true })
-        this.props.onAuthUpdateStatus('authGoogle', true)
-      }
-
-      if(this.props.auth.id && !this.state.authUser) {
-        this.setState({ authUser: true })
-        this.props.onAuthUser()
-        this.props.onAuthUpdateStatus('authUser', true)
-      }
-
-      if(this.props.user.info && !this.state.storeUserInfo) {
-        this.setState({ storeUserInfo: true })
-        this.props.onAuthUpdateStatus('storeUserInfo', true)
-      }
-
-      if(this.props.user.questions && !this.state.storeUserQuestions) {
-        this.setState({ storeUserQuestions: true })
-        this.props.onStoreAchievements()
-        this.props.onAuthUpdateStatus('storeUserQuestions', true)
-      }
-
-      if(this.props.achievements.all && !this.state.storeAchievements) {
-        this.setState({ storeAchievements: true })
-        this.props.onGetQuestionTotals()
-        this.props.onAuthUpdateStatus('storeAchievements', true)
-      }
-
-      if(this.props.questions.totals && !this.state.storeQuestionTotals) {
-        this.setState({ storeQuestionTotals: true })
-        this.props.onAuthUpdateStatus('storeQuestionTotals', true)
-      }
-
-      if(this.props.auth.status === 'storeQuestionTotals' && !this.state.authSuccess) {
-        this.setState({ authSuccess: true })
-        this.props.onAuthUpdateStatus('authSuccess', true)
-      }
-
-      if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) {
-        this.setState({
-          authGoogle: false,
-          authUser: false,
-          storeUserInfo: false,
-          storeUserQuestions: false,
-          storeAchievements: false,
-          storeQuestionTotals: false,
-          authSuccess: false
-        })
-        this.props.onUpdateUserLoginTime({ time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
-        localStorage.authValid = true
-        this.props.onClearAuthType()
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.history.push( routes.dashboard )
-        this.props.onAuthUpdateStatus('authValid', false)
-      }
-
-      if(this.props.auth.status === 'fail') {
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.onClearAuthStatus()
-        this.clearLocalStorage()
-        this.props.onClearAuthType()
-      }
-    }
-
-    if(this.props.auth.authType === 'signUp') {
-      if(this.props.auth.authType && !this.state.authGoogle) {
-        this.setState({ authGoogle: true })
-        this.props.onAuthUpdateStatus('authGoogle', true)
-      }
-
-      if(this.props.auth.id && !this.state.authUser) {
-        this.setState({ authUser: true })
-        this.props.onAuthUser()
-        this.props.onAuthUpdateStatus('authUser', true)
-      }
-
-      if(this.props.user.info && !this.state.storeUserInfo) {
-        this.setState({ storeUserInfo: true })
-        this.props.onAuthUpdateStatus('storeUserInfo', true)
-      }
-
-      if(this.props.user.questions && !this.state.storeUserQuestions) {
-        this.setState({ storeUserQuestions: true })
-        this.props.onStoreAchievements()
-        this.props.onAuthUpdateStatus('storeUserQuestions', true)
-      }
-
-      if(this.props.achievements.all && !this.state.storeAchievements) {
-        this.setState({ storeAchievements: true })
-        this.props.onGetQuestionTotals()
-        this.props.onAuthUpdateStatus('storeAchievements', true)
-      }
-
-      if(this.props.questions.totals && !this.state.storeQuestionTotals) {
-        this.setState({ storeQuestionTotals: true })
-        this.props.onAuthUpdateStatus('storeQuestionTotals', true)
-      }
-
-      if(this.props.auth.status === 'storeQuestionTotals' && !this.state.authSuccess) {
-        this.setState({ authSuccess: true })
-        this.props.onAuthUpdateStatus('authSuccess', true)
-      }
-
-      if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) {
-        this.setState({
-          authGoogle: false,
-          authUser: false,
-          storeUserInfo: false,
-          storeUserQuestions: false,
-          storeAchievements: false,
-          storeQuestionTotals: false,
-          authSuccess: false
-        })
-        this.props.onUpdateUserLoginTime({ time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
-        localStorage.authValid = true
-        this.props.onClearAuthType()
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.history.push( routes.dashboard )
-        this.props.onAuthUpdateStatus('authValid', false)
-      }
-
-      if(this.props.auth.status === 'fail') {
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.onClearAuthStatus()
-        this.clearLocalStorage()
-        this.props.onClearAuthType()
-      }
-    }
-
-    if(this.props.auth.authType === 'logOut') {
-      if(this.props.user.info && !this.state.clearUserInfo) {
-        this.setState({ clearUserInfo: true })
-        this.props.onClearUserInfo()
-        this.props.onAuthUpdateStatus('clearUserInfo', true)
-      }
-
-      if(!this.props.user.info && !this.state.clearUserQuestions) {
-        this.setState({ clearUserQuestions: true })
-        this.props.onClearUserQuestions()
-        this.props.onAuthUpdateStatus('clearUserQuestions', true)
-      }
-
-      if(!this.props.user.questions && !this.state.clearUserSettings) {
-        this.setState({ clearUserSettings: true })
-        this.props.onClearUserSettings()
-        this.props.onAuthUpdateStatus('clearUserSettings', true)
-      }
-
-      if(!this.props.user.settings && !this.state.clearQuestionTotals) {
-        this.setState({ clearQuestionTotals: true })
-        this.props.onClearQuestionTotals()
-        this.props.onAuthUpdateStatus('clearQuestionTotals', true)
-      }
-
-      if(!this.props.questions.totals && !this.state.clearAchievements) {
-        this.setState({ clearAchievements: true })
-        this.props.onClearAchievements()
-        this.props.onAuthUpdateStatus('clearAchievements', true)
-      }
-
-      if(!this.props.achievements.all && !this.state.clearAuthCreds) {
-        this.setState({ clearAuthCreds: true })
-        this.props.onClearAuthCreds()
-        this.props.onAuthUpdateStatus('clearAuthCreds', true)
-      }
-
-      if(!this.props.auth.id && !this.state.clearLocalStorage) {
-        this.setState({ clearLocalStorage: true })
-        this.clearLocalStorage()
-        this.props.onAuthUpdateStatus('clearLocalStorage', true)
-        this.props.onLoadingModal(false)
-        this.props.onLogOutModal(false)
-        this.props.onClearAuthStatus()
-      }
-
-      if(!this.props.auth.id && !this.props.modal.loading && !this.state.logOutSuccess) {
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.history.push( routes.home )
-        this.setState({
-          clearUserInfo: false,
-          clearUserQuestions: false,
-          clearUserSettings: false,
-          clearQuestionTotals: false,
-          clearAchievements: false,
-          clearAuthCreds: false,
-          clearLocalStorage: false,
-          logOutSuccess: true
-        })
-        this.props.onClearAuthType()
-      }
+    if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') {
+      this.loginRefreshSignUpGroup()
     }
 
     if(this.props.auth.authType === 'editProfile') {
-
-      if(this.props.auth.status === 'updateUserSuccess' && !this.state.updateUserSuccess){
-        this.setState({ updateUserSuccess: true })
+      if(this.props.auth.status === 'updateUserSuccess' && !this.state.authSuccess){
+        this.setState({ authSuccess: true })
         this.props.onAuthUpdateStatus('authSuccess', true)
       }
+      if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) this.authValidModule('editProfile')
+    }
 
-      if(this.props.auth.status === 'authSuccess' && !this.state.authValid){
-        this.setState({ updateUserSuccess: false, authValid: true })
-        this.props.onClearAuthType()
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.history.push( routes.dashboard_profile )
-        this.props.onAuthUpdateStatus('authValid', false)
-      }
+    if(this.props.auth.authType === 'logOut') {
+      if(this.props.user.info && !this.state.clearUserInfo) this.clearUserInfoModule()
+      if(!this.props.user.info && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
+      if(!this.props.user.questions && !this.state.clearUserSettings) this.clearUserSettingsModule()
+      if(!this.props.user.settings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
+      if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
+      if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
+      if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
     }
 
     if(this.props.auth.authType === 'deleteProfile') {
-      if(this.props.auth.authType && !this.state.authGoogle) {
-        this.setState({ authGoogle: true })
-        this.props.onAuthUpdateStatus('authGoogle', true)
-      }
-
-      if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) {
-        this.setState({ deleteUser: true })
-        this.props.onDeleteUser(this.props.auth.id)
-      }
-
-      if(this.props.auth.status === 'deleteLocalUserSuccess' && !this.state.clearUserInfo) {
-        this.setState({ clearUserInfo: true })
-        this.props.onClearUserInfo()
-        this.props.onAuthUpdateStatus('clearUserInfo', true)
-      }
-
-      if(!this.props.user.info && !this.state.clearUserQuestions) {
-        this.setState({ clearUserQuestions: true })
-        this.props.onClearUserQuestions()
-        this.props.onAuthUpdateStatus('clearUserQuestions', true)
-      }
-
-      if(!this.props.user.questions && !this.state.clearUserSettings) {
-        this.setState({ clearUserSettings: true })
-        this.props.onClearUserSettings()
-        this.props.onAuthUpdateStatus('clearUserSettings', true)
-      }
-
-      if(!this.props.user.settings && !this.state.clearQuestionTotals) {
-        this.setState({ clearQuestionTotals: true })
-        this.props.onClearQuestionTotals()
-        this.props.onAuthUpdateStatus('clearQuestionTotals', true)
-      }
-
-      if(!this.props.questions.totals && !this.state.clearAchievements) {
-        this.setState({ clearAchievements: true })
-        this.props.onClearAchievements()
-        this.props.onAuthUpdateStatus('clearAchievements', true)
-      }
-
-      if(!this.props.achievements.all && !this.state.clearAuthCreds) {
-        this.setState({ clearAuthCreds: true })
-        this.props.onClearAuthCreds()
-        this.props.onAuthUpdateStatus('clearAuthCreds', true)
-      }
-
-      if(!this.props.auth.id && !this.state.clearLocalStorage) {
-        this.setState({ clearLocalStorage: true })
-        this.clearLocalStorage()
-        this.props.onAuthUpdateStatus('clearLocalStorage', true)
-        this.props.onLoadingModal(false)
-        this.props.onDeleteProfileModal(false)
-        this.props.onClearAuthStatus()
-      }
-
-      if(!this.props.auth.id && !this.props.modal.loading && !this.state.deleteUserSuccess) {
-        this.props.onAuthUpdateLoadingStatus(false)
-        this.props.history.push( routes.home )
-        this.setState({
-          clearUserInfo: false,
-          clearUserQuestions: false,
-          clearUserSettings: false,
-          clearQuestionTotals: false,
-          clearAchievements: false,
-          clearAuthCreds: false,
-          clearLocalStorage: false,
-          deleteUserSuccess: true
-        })
-        this.props.onClearAuthType()
-      }
+      if(this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
+      if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
+      if(this.props.auth.status === 'deleteLocalUserSuccess' && !this.state.clearUserInfo) this.clearUserInfoModule()
+      if(!this.props.user.info && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
+      if(!this.props.user.questions && !this.state.clearUserSettings) this.clearUserSettingsModule()
+      if(!this.props.user.settings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
+      if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
+      if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
+      if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
     }
   }
 
   shouldComponentUpdate(nextProps, nextState){
-      // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
+    // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
 
-      if(
-        ((this.props.auth.authType === 'logOut' || this.props.auth.authType === 'deleteProfile')  && (this.props.auth.status !== nextProps.auth.status || !!this.props.auth.authType )) ||
-        (this.props.auth.status === nextProps.auth.status || nextProps.auth.status === 'storeQuestionTotals' || nextProps.auth.status === 'authSuccess')
-      ) {
-        if(!!this.props.auth.authType && nextProps.auth.status === 'authSuccess') {
-          // console.log(this.props.auth.authType, this.props.auth.status, nextProps.auth.status)
-          this.authWaitTimeoutQuarterSec = setTimeout(() => {
-            if(!!this.props.modal.loading) this.props.onLoadingModal(false)
-            if(!!this.props.modal.login) this.props.onLogInModal(false)
-            if(!!this.props.modal.signup) this.props.onSignUpModal(false)
-          }, 250)
-        }
-        return true
-      } else return false
+    console.log(
+      this.props.auth.authType, nextProps.auth.authType, "|",
+      this.props.auth.status, nextProps.auth.status, "|",
+      this.props.auth.loading, nextProps.auth.loading, "|",
+      this.props.modal.logout, nextProps.modal.logout, "|",
+      this.state.authCleanup, nextState.authCleanup, "|",
+      this.props.modal.login,  nextProps.modal.logout
+    )
+
+    let render = false
+
+    if(this.props.auth.status === "authValid" || this.props.auth.status === "clearAuthCreds") {
+      if(this.props.modal.loading || nextProps.modal.loading ||this.props.auth.loading || nextProps.auth.loading) {
+        render = true
+      }
+    }
+
+    if(this.props.auth.authType === 'refresh') {
+      render = true
+    }
+
+    if(nextProps.modal.login) {
+      render = true
+    }
+
+    if(nextProps.modal.signup) {
+      render = true
+    }
+
+    if(nextProps.modal.logout) {
+      render = true
+    }
+
+    if(nextProps.modal.deleteProfile) {
+      render = true
+    }
+
+    return render
+    // return true
   }
 
   componentWillUnmount(){
@@ -436,9 +145,186 @@ class AuthController extends React.Component {
     clearTimeout(this.authWaitTimeoutOneSec)
   }
 
-  clearLocalStorage = () => {
+  authFailModule = () => {
+    this.props.onAuthUpdateLoadingStatus(false)
+    this.props.onClearAuthStatus()
+    this.clearLocalStorageModule()
+    this.props.onClearAuthType()
+  }
+
+  authGoogleModule = () => {
+    if(this.props.auth.authType && !this.state.authGoogle) {
+      this.props.onAuthUpdateStatus('authGoogle')
+      this.setState({ authGoogle: true })
+    }
+  }
+
+  loginRefreshSignUpGroup = () => {
+    if(this.props.auth.status === 'fail') this.authFailModule()
+    if(this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
+    if(this.props.auth.id && !this.state.authUser) this.authUserModule()
+    if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
+    if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
+    if(this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule()
+    if(this.props.achievements.all && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule()
+    if(this.props.questions.totals && !this.state.authSuccess) this.authSuccessModule()
+    if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
+    if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
+  }
+
+  authUserModule = () => {
+    this.props.onAuthUpdateStatus('authUser')
+    this.setState({ authUser: true })
+    this.props.onAuthUser()
+  }
+
+  storeUserInfoModule = (userCache) => {
+    this.props.onAuthUpdateStatus('storeUserInfo')
+    this.setState({ storeUserInfo: true })
+    this.props.onStoreUserInfo(userCache.info, userCache.experience, userCache.achievements, userCache.settings)
+  }
+
+  storeUserQuestionsModule = (questions) => {
+    this.props.onAuthUpdateStatus('storeUserQuestions')
+    this.setState({ storeUserQuestions: true })
+    this.props.onStoreUserQuestions(questions)
+  }
+
+  storeAchievementsModule = () => {
+    this.props.onAuthUpdateStatus('storeAchievements')
+    this.setState({ storeAchievements: true })
+    this.props.onStoreAchievements()
+  }
+
+  storeQuestionTotalsModule = () => {
+    this.props.onAuthUpdateStatus('storeQuestionTotals')
+    this.setState({ storeQuestionTotals: true })
+    this.props.onGetQuestionTotals()
+  }
+
+  authSuccessModule = () => {
+    this.props.onAuthUpdateStatus('authSuccess')
+    this.setState({ authSuccess: true })
+  }
+
+  authCleanupModule = () => {
+    this.props.onAuthUpdateStatus('authCleanup')
+    this.setState({ authCleanup: true })
+
+    if(
+      this.props.auth.authType === 'signUp' ||
+      this.props.auth.authType === 'logIn' ||
+      this.props.auth.authType === 'refresh'
+    ) this.props.onUpdateUserLoginTime({ time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
+  }
+
+  authValidModule = () => {
+    this.props.onAuthUpdateStatus('authValid')
+    this.setState({ authValid: true })
+
+    if(
+      this.props.auth.authType === 'signUp' ||
+      this.props.auth.authType === 'logIn'
+    ) this.props.history.push( routes.dashboard )
+
+    if(this.props.auth.authType === 'editProfile') this.props.history.push( routes.dashboard_profile )
+
+    this.authWaitTimeoutQuarterSec = setTimeout(() => {
+      if(!!this.props.modal.loading) this.props.onLoadingModal(false)
+      if(!!this.props.modal.login) this.props.onLogInModal(false)
+      if(!!this.props.modal.signup) this.props.onSignUpModal(false)
+      if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
+
+      this.props.onAuthUpdateLoadingStatus(false)
+    }, 250)
+
+    localStorage.authValid = true
+    this.props.onClearUserCache()
+    this.props.onClearAuthType()
+    this.clearLocalStateModule()
+  }
+
+  authFinalizeLogOutModule = () => {
+    this.setState({ clearLocalStorage: true })
+    this.props.history.push( routes.home )
+    this.authWaitTimeoutQuarterSec = setTimeout(() => {
+      if(!!this.props.modal.loading) this.props.onLoadingModal(false)
+      if(!!this.props.modal.logout) this.props.onLogOutModal(false)
+      if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
+      this.props.onAuthUpdateLoadingStatus(false)
+    }, 250)
+    this.clearLocalStorageModule()
+    this.props.onClearAuthStatus()
+    this.props.onClearAuthType()
+    this.clearLocalStateModule()
+  }
+
+  authDeleteUserModule = () => {
+    this.setState({ deleteUser: true })
+    this.props.onDeleteUser(this.props.auth.id)
+  }
+
+  clearLocalStorageModule = () => {
     localStorage.clear()
     localStorage.access = 'guest'
+  }
+
+  clearLocalStateModule = () => {
+    this.setState({
+      authGoogle: false,
+      authUser: false,
+      deleteUser: false,
+      storeUserInfo: false,
+      storeUserQuestions: false,
+      storeAchievements: false,
+      storeQuestionTotals: false,
+      authSuccess: false,
+      authValid: false,
+      authCleanup: false,
+      clearUserInfo: false,
+      clearUserQuestions: false,
+      clearUserSettings: false,
+      clearQuestionTotals: false,
+      clearAchievements: false,
+      clearAuthCreds: false,
+      clearLocalStorage: false
+    })
+  }
+
+  clearUserInfoModule = () => {
+    this.setState({ clearUserInfo: true })
+    this.props.onClearUserInfo()
+    this.props.onAuthUpdateStatus('clearUserInfo', true)
+  }
+
+  clearUserQuestionsModule = () => {
+    this.setState({ clearUserQuestions: true })
+    this.props.onClearUserQuestions()
+    this.props.onAuthUpdateStatus('clearUserQuestions', true)
+  }
+
+  clearUserSettingsModule = () => {
+    this.setState({ clearUserSettings: true })
+    this.props.onClearUserSettings()
+    this.props.onAuthUpdateStatus('clearUserSettings', true)
+  }
+
+  clearQuestionTotalsModule = () => {
+    this.setState({ clearQuestionTotals: true })
+    this.props.onClearQuestionTotals()
+    this.props.onAuthUpdateStatus('clearQuestionTotals', true)
+  }
+
+  clearAchievementsModule = () => {
+    this.setState({ clearAchievements: true })
+    this.props.onClearAchievements()
+    this.props.onAuthUpdateStatus('clearAchievements', true)
+  }
+
+  clearAuthCredsModule = () => {
+    this.setState({ clearAuthCreds: true })
+    this.props.onClearAuthCreds()
+    this.props.onAuthUpdateStatus('clearAuthCreds', true)
   }
 
   render(){ return <>{ this.props.children }</> }
@@ -475,8 +361,11 @@ const mapDispatchToProps = dispatch => {
     onClearUserSettings: () => dispatch(clearUserSettings()),
     onClearUserQuestions: () => dispatch(clearUserQuestions()),
     onDeleteUser: (id) => dispatch(deleteUser(id)),
+    onStoreUserInfo: (info, experience, achievements, settings) => dispatch(storeUserInfo(info, experience, achievements, settings)),
+    onStoreUserQuestions: (questions) => dispatch(storeUserQuestions(questions)),
     onStoreAchievements: () => dispatch(storeAchievements()),
-    onClearAchievements: () => dispatch(clearAchievements())
+    onClearAchievements: () => dispatch(clearAchievements()),
+    onClearUserCache: () => dispatch(clearUserCache())
   }
 }
 

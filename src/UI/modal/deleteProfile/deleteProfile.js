@@ -56,6 +56,7 @@ class DeleteProfile extends React.Component {
 
   onSubmitConfirm = (event) => {
     event.preventDefault()
+    this.props.onClearAuthStatus()
     if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
     this.setState({ errors: {}, form: { valid: false, pending: true } })
     let authCheck = validateDeleteProfile(this.state.password)
