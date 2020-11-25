@@ -241,12 +241,7 @@ export const authDelete = (obj) => {
   }
 }
 
-export const authLogOut = () => {
-  return {
-    type: actionTypes.AUTH_LOGOUT,
-    loading: true
-  }
-}
+export const authLogOut = () => { return { type: actionTypes.AUTH_LOGOUT, loading: true } }
 
 export const setAuthType = (authType) => {
   return {

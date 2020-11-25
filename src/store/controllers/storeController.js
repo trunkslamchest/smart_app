@@ -62,8 +62,6 @@ class StoreController extends React.Component {
   }
 
   render(){
-
-    // console.log(this.state)
     return(
       <AuthController onRedirect={ this.onRedirect } history={ this.props.history }>
         <QuestionsController history={ this.props.history }>

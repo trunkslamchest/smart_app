@@ -1,7 +1,7 @@
 import React from 'react'
 import { routes } from '../../../../utility/paths.js'
 import { connect } from 'react-redux'
-import { 
+import {
   loading,
   authStart,
   updateUserInfo,
@@ -214,9 +214,6 @@ class DashboardEditProfile extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
-
-    console.log(this.props.modal.loading && this.state.enableButton)
-
     let editProfileInputFields = makeDashboardEditProfileFormInputs(
       this.onChange,
       this.onAvatarChange,

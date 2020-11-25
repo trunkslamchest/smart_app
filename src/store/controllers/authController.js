@@ -63,10 +63,7 @@ class AuthController extends React.Component {
     if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') this.loginRefreshSignUpGroup()
 
     if(this.props.auth.authType === 'editProfile') {
-      if(this.props.auth.status === 'updateUserSuccess' && !this.state.authSuccess){
-        this.setState({ authSuccess: true })
-        this.props.onAuthUpdateStatus('authSuccess', true)
-      }
+      if(this.props.auth.status === 'updateUserSuccess' && !this.state.authSuccess) this.authSuccessModule()
       if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) this.authValidModule('editProfile')
     }
 
@@ -79,7 +76,6 @@ class AuthController extends React.Component {
       if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
       if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
       if(this.props.auth.status === 'authSuccess' && !this.props.modal.logout) this.authRedirectModule('logOut')
-
     }
 
     if(this.props.auth.authType === 'deleteProfile') {

@@ -24,15 +24,9 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(status === 'clearAuthCreds') barText = 'Removing Authentication Credentials'
   if(status === 'clearLocalStorage') barText = 'Profile Deletion Success'
 
-  if(barType === 'authLogOut') {
-    if(status === 'authSuccess') barText = 'Log Out Success'
+  if(barType === 'authLogOut') { if(status === 'authSuccess') barText = 'Log Out Success' }
 
-  }
-
-  if(barType === 'deleteProfile') {
-    if(status === 'authSuccess') barText = 'Profile Delection Success :('
-  }
-
+  if(barType === 'deleteProfile') { if(status === 'authSuccess') barText = 'Profile Delection Success :(' }
 
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barText = 'Initialzing Game Sequence'
