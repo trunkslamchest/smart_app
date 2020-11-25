@@ -25,6 +25,10 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(status === 'clearAuthCreds') barText = 'Removing Authentication Credentials'
   if(status === 'clearLocalStorage') barText = 'Profile Deletion Success'
 
+  if(barType === 'authLogOut') { if(status === 'authSuccess') barText = 'Log Out Success' }
+
+  if(barType === 'deleteProfile') { if(status === 'authSuccess') barText = 'Profile Delection Success :(' }
+
   if(barType === 'leaderBoards') {
     if(status === 'initLeaderBoards') barText = 'Initializing SmartApp™ Leaderboards'
     if(status === 'getOverallLeaderBoards') barText = 'Fetching International Leaderboards'
@@ -41,17 +45,15 @@ export var loadingBarTextSwitch = function(barType, status) {
     // if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
   }
 
-  if(barType === 'authLogOut') { if(status === 'authSuccess') barText = 'Log Out Success' }
-
-  if(barType === 'deleteProfile') { if(status === 'authSuccess') barText = 'Profile Delection Success :(' }
-
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barText = 'Initialzing Game Sequence'
     if(status === 'setGameModeSuccess') barText = 'Setting Game Mode'
     if(status === 'setQuickPlay') barText = 'Initializing Quick Play'
     if(status === 'setQset') barText = 'Retrieving Question Set'
-    if(status === 'setQuestionSuccess') barText = 'Setting Question'
-    if(status === 'displayQuestion') barText = 'Question Load Complete'
+    if(status === 'setQuestionSuccess') barText = 'Question Load Complete'
+    // if(status === 'setQuestionSuccess') barText = 'Setting Question'
+    // if(status === 'displayQuestion') barText = 'Question Load Complete'
+
   }
 
   if(barType === 'loadResults'){

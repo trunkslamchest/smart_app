@@ -50,8 +50,9 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'setGameModeSuccess') barClass = 'loading_bar_10'
     if(status === 'setQuickPlay') barClass = 'loading_bar_12'
     if(status === 'setQset') barClass = 'loading_bar_14'
-    if(status === 'setQuestionSuccess') barClass = 'loading_bar_16'
-    if(status === 'displayQuestion') barClass = 'loading_bar_final'
+    if(status === 'setQuestionSuccess') barClass = 'loading_bar_final'
+    // if(status === 'setQuestionSuccess') barClass = 'loading_bar_16'
+    // if(status === 'displayQuestion') barClass = 'loading_bar_final'
   }
 
   if(barType === 'loadResults'){

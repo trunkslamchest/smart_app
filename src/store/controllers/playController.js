@@ -21,33 +21,19 @@ class PlayController extends React.Component {
   componentDidUpdate(){
     if(this.props.auth.status === 'authValid' && !this.props.auth.loading) {
       if(!this.props.play.gameState) this.initGameModule()
-
       if(this.props.play.gameState === 'reInit' && !this.props.play.question) this.reInitGameModule()
-
       if(this.props.play.gameState === 'init' && !this.props.play.gameMode) this.selectGameModeModule()
-
       if(this.props.play.gameState === 'select' && this.props.play.status === 'setGameModeSuccess') this.mountGameModeModule()
-
       if(this.props.play.gameState === 'select' && this.props.play.status === 'selectQset') this.selectQsetModule()
-
       if(this.props.play.gameState === 'select' && this.props.play.gameQset) this.setQsetModule()
-
       if(this.props.play.gameState === 'mount' && this.props.play.question) this.setGameQuestionModule()
-
       if(this.props.play.gameState === 'mount' && this.props.play.status === 'setQuestionSuccess') this.displayQuestionModule()
-
       if(this.props.play.gameState === 'question' && this.props.play.answer) this.setAnsweredModule()
-
       if(this.props.play.gameState === 'answered' && !this.props.play.results) this.getResultsModule()
-
       if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionSuccess' && this.props.play.results) this.updateQuestionTotalsModule()
-
       if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionTotalsSuccess' && this.props.play.question.answers) this.updateUserQuestionsModule()
-
       if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateUserQuestionsSuccess') this.setResultsModule()
-
       if(this.props.play.gameState === 'results' && this.props.play.status === 'setAllResultsSuccess') this.displayResultsModule()
-
       if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && this.props.play.results.vote) this.updateUserVotesModule()
 
       if(this.props.play.gameState === 'results'
@@ -62,6 +48,17 @@ class PlayController extends React.Component {
          this.props.user.questions[this.props.play.question.difficulty].categories[this.props.play.question.category][this.props.play.question.id].comments[this.props.play.results.comment.cid])
         this.displayCommentsModule()
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    let render = false
+
+   if(this.props.modal.loading || nextProps.modal.loading || this.props.auth.status === 'authValid') {
+      render = true
+    }
+
+    return render
+    // return true
   }
 
   componentWillUnmount(){
