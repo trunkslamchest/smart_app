@@ -8,6 +8,7 @@ import StoreController from './store/controllers/storeController'
 import LeaderBoardsController from './store/controllers/leaderBoardsController'
 import ProfileController from './store/controllers/profileController'
 import PlayController from './store/controllers/playController'
+import QuestionsController from './store/controllers/questionsController'
 
 import Header from './UI/header/header'
 import Footer from './UI/footer/footer'
@@ -21,8 +22,6 @@ import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
 import HomeContainer from './home/HomeContainer'
 import DashboardContainer from './user/dashboard/dashboardContainer'
-// import UserProfileContainer from './user/profile/userProfileContainer'
-import ResultsContainer from './play/results/resultsContainer'
 
 import TermsOfService from './docs/termsOfService/termsOfService'
 import PrivacyPolicy from './docs/privacyPolicy/privacyPolicy'
@@ -38,16 +37,9 @@ const App = (props) => {
   const [loadingModalType, setLoadingModalType] = useState('auth');
   const [loadingModalBarType, setLoadingModalBarType] = useState(props.auth.authType);
 
+  const switchLoadingModalType = (modalType) => { setLoadingModalType(modalType) }
 
-  // console.log(props.auth.authType)
-
-  const switchLoadingModalType = (modalType) => {
-    setLoadingModalType(modalType)
-  }
-
-  const switchLoadingModalBarType = (barType) => {
-    setLoadingModalBarType(barType)
-  }
+  const switchLoadingModalBarType = (barType) => { setLoadingModalBarType(barType) }
 
   return (
     <StoreController history={ props.history }>
@@ -60,12 +52,9 @@ const App = (props) => {
       <div className='main_container' name="main_container">
         {
           props.modal.loading &&
-          // (props.auth.authType === 'refresh' || props.auth.authType === 'editProfile') &&
           <LoadingModal
             show={ props.modal.loading }
-            // modalType={ 'auth' }
             modalType={ loadingModalType }
-            // barType={ props.auth.authType }
             barType={ loadingModalBarType }
             history={ props.history }
           />
@@ -78,27 +67,28 @@ const App = (props) => {
             <Route path={ routes.dashboard }>
               <DashboardContainer history={ props.history } />
             </Route>
-            {/* <Route path={ routes.user_profile }>
-              <UserProfileContainer history={ props.history } />
-            </Route> */}
             <Route path={ routes.user_profile }>
               <ProfileController
+                history={ props.history }
                 switchLoadingModalType={ switchLoadingModalType }
                 switchLoadingModalBarType={ switchLoadingModalBarType }
-                history={ props.history }
               />
             </Route>
             <Route path={ routes.static_results }>
-              <ResultsContainer staticResults={ true } history={ props.history } />
+              <QuestionsController
+                history={ props.history }
+                switchLoadingModalType={ switchLoadingModalType }
+                switchLoadingModalBarType={ switchLoadingModalBarType }
+              />
             </Route>
             <Route path={ routes.play }>
               <PlayController history={ props.history } />
             </Route>
             <Route path={ routes.leader_boards }>
               <LeaderBoardsController
+                history={ props.history }
                 switchLoadingModalType={ switchLoadingModalType }
                 switchLoadingModalBarType={ switchLoadingModalBarType }
-                history={ props.history }
               />
             </Route>
             <Route exact path={ routes.tos }><TermsOfService /></Route>

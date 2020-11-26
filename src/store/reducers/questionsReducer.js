@@ -1,17 +1,18 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  comment: null,
+  commentLoading: false,
+  commentStatus: null,
+  loading: false,
   question: {},
   staticQuestion: null,
   staticUserResults: null,
   status: null,
   totals: null,
   vote: null,
-  voteStatus: null,
   voteLoading: false,
-  comment: null,
-  commentStatus: null,
-  commentLoading: false
+  voteStatus: null
 }
 
 const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
@@ -77,6 +78,9 @@ const updateQuestionTotalsFromPlayController = (currentState, action) => {
 }
 
 const updateQuestionStatus = (currentState, action) => { return { ...currentState, status: action.status } }
+
+const updateQuestionLoadingStatus = (currentState, action) => { return { ...currentState, loading: action.loading } }
+
 
 const updateStaticQuestionVotes = (currentState, action) => {
   return {
@@ -173,6 +177,7 @@ export const questionsReducer = (currentState = initialState, action) => {
     case actionTypes.SET_STATIC_USER_QUESTION: return setStaticUserQuestion(currentState, action)
     case actionTypes.UPDATE_QUESTION_TOTALS_FROM_PLAY_CONTROLLER: return updateQuestionTotalsFromPlayController(currentState, action)
     case actionTypes.UPDATE_QUESTION_STATUS: return updateQuestionStatus(currentState, action)
+    case actionTypes.UPDATE_QUESTION_LOADING_STATUS: return updateQuestionLoadingStatus(currentState, action)
     case actionTypes.UPDATE_STATIC_QUESTION_VOTES: return updateStaticQuestionVotes(currentState, action)
     case actionTypes.UPDATE_STATIC_QUESTION_COMMENTS: return updateStaticQuestionComments(currentState, action)
     case actionTypes.UPDATE_STATIC_QUESTION_VOTE_STATUS: return updateStaticQuestionVoteStatus(currentState, action)

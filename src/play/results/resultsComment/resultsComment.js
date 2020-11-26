@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 
 import BaseDynamicBar from '../../../UI/loading/dynamicBar/baseDynamicBar/baseDynamicBar'
@@ -26,7 +25,7 @@ const ResultsComment = (props) => {
     if(props.play.results && props.play.question.comments) allComments = Object.entries(props.play.question.comments)
   }
 
-  if(allComments && (props.play.status === 'displayResults' || props.questions.status === 'StaticQuestionSuccess')){
+  if(allComments && (props.play.status === 'displayResults' || props.questions.status === 'displayStaticQuestion')){
     distribComments = allComments.map(comment =>
       <CommentCard
         comment={ comment[1] }

@@ -3,10 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
 import {
-  getStaticQuestion,
   clearStaticQuestion,
   clearQuestionStatus,
-  setStaticUserQuestion,
   clearStaticUserQuestion,
   clearStaticQuestionVoteStatus,
   clearStaticUserVote,
@@ -37,72 +35,30 @@ import './resultsContainer.css'
 class ResultsContainer extends React.Component{
 
   state = {
-    cat: null,
-    diff: null,
-    displayStaticResults: false,
     enableNextQuestionButton: false,
-    initDefaultResults: false,
-    initStaticResults: false,
-    initStaticUserResults: false,
-    showLegend: false,
-    showNextQuestionButton: false,
-    qid: null
+    showNextQuestionButton: false
   }
 
   componentDidMount(){
     if(!this.props.staticResults) {
       document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
       this.startResultTimers()
-    } else {
-      let parseLocation = this.props.history.location.pathname.split("/")
-
-      if(parseLocation[parseLocation.length - 1] === 'stats' || parseLocation[parseLocation.length - 1] === 'discuss' ) parseLocation.pop()
-
-      let qid = parseLocation[parseLocation.length - 1],
-          cat = parseLocation[parseLocation.length - 2],
-          diff = parseLocation[parseLocation.length - 3]
-
-      document.title = `SmartApp™ | Results | ${ qid }`
-      this.setState({ cat: cat, diff: diff, qid: qid })
-    }
-  }
-
-  componentDidUpdate(){
-    if(this.props.staticResults && !this.state.initStaticResults){
-      this.props.onGetStaticQuestion({ qid: this.state.qid, category: this.state.cat, difficulty: this.state.diff })
-      this.setState({ initStaticResults: true })
-    }
-
-    if(this.props.questions.staticQuestion && !this.state.initStaticUserResults && this.props.user.questions) {
-      this.props.onSetStaticUserQuestion(this.props.user.questions[this.state.diff].categories[this.state.cat][this.state.qid])
-      this.setState({ initStaticUserResults: true })
-    }
-
-    if(this.props.questions.staticUserResults && !this.state.displayStaticResults) {
-      this.setState({
-        displayStaticResults: true,
-        enableNextQuestionButton: true,
-        showLegend: true
-      })
     }
   }
 
   startResultTimers = () => {
     this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
     this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
-    this.showLegendTimeout = setTimeout(() => { this.setState({ showLegend: true })}, 3000)
   }
 
   componentWillUnmount(){
     clearTimeout(this.nextQuestionButtonTimeout)
     clearTimeout(this.enableNextQuestionTimeout)
-    clearTimeout(this.showLegendTimeout)
     this.props.onClearStaticQuestion()
     this.props.onClearStaticUserQuestion()
     this.props.onClearQuestionStatus()
     this.props.onClearStaticQuestionVoteStatus()
     this.props.onClearStaticUserVote()
-    this.setState({ displayStaticResults: false, initDefaultResults: false, initStaticResults: false, initStaticUserResults: false })
   }
 
   onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
@@ -126,7 +82,8 @@ class ResultsContainer extends React.Component{
   }
 
   render(){
-    const baseStaticRoute = routes.static_results + '/' + this.state.diff + '/' + this.state.cat + '/' + this.state.qid
+
+    const baseStaticRoute = routes.static_results + '/' + this.props.diff + '/' + this.props.cat + '/' + this.props.qid
 
     let routeBoard
     let statsRoute = this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats'
@@ -148,26 +105,24 @@ class ResultsContainer extends React.Component{
     ]
 
     if(this.props.staticResults){
-      if(this.state.displayStaticResults) {
-        routeBoard =
-          <Switch>
-            <Route exact path={ baseStaticRoute + '/stats' }>
-              <ResultsStatsContainer
-                history={ this.props.history }
-                staticResults={ this.props.staticResults }
-              />
-            </Route>
-            <Route exact path={ baseStaticRoute + '/discuss' }>
-              <ResultsDiscussContainer
-                cat={ this.state.cat }
-                diff={ this.state.diff }
-                history={ this.props.history }
-                qid={ this.state.qid }
-                staticResults={ this.props.staticResults }
-              />
-            </Route>
-          </Switch>
-      }
+      routeBoard =
+        <Switch>
+          <Route exact path={ baseStaticRoute + '/stats' }>
+            <ResultsStatsContainer
+              history={ this.props.history }
+              staticResults={ this.props.staticResults }
+            />
+          </Route>
+          <Route exact path={ baseStaticRoute + '/discuss' }>
+            <ResultsDiscussContainer
+              cat={ this.props.cat }
+              diff={ this.props.diff }
+              history={ this.props.history }
+              qid={ this.props.qid }
+              staticResults={ this.props.staticResults }
+            />
+          </Route>
+        </Switch>
     } else {
       routeBoard =
         <Switch>
@@ -220,8 +175,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetStaticQuestion: (obj) => dispatch(getStaticQuestion(obj)),
-    onSetStaticUserQuestion: (obj) => dispatch(setStaticUserQuestion(obj)),
     onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
     onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
     onClearQuestionStatus: () => dispatch(clearQuestionStatus()),

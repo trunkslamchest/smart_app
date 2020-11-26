@@ -10,7 +10,6 @@ import {
 } from '../actions/actionIndex'
 
 import AuthController from './authController'
-import QuestionsController from './questionsController'
 
 class StoreController extends React.Component {
 
@@ -26,16 +25,17 @@ class StoreController extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // console.log(
-    //   // this.props.auth, nextProps.auth, "|",
-    //   // this.props.modal, nextProps.modal, "|",
-    //   // this.props.modal.loading, nextProps.modal.loading, "|",
-    //   // !!nextProps.leaderBoards.status, "|",
-    //   // nextProps.leaderBoards.loading
-    //   this.props.leaderBoards, "|",
-    //   nextProps.leaderBoards, "|",
-    //   nextProps.modal.loading
-    // )
+    console.log(
+      // this.props.auth, nextProps.auth, "|",
+      // this.props.modal, nextProps.modal, "|",
+      // this.props.modal.loading, nextProps.modal.loading, "|",
+      // !!nextProps.leaderBoards.status, "|",
+      // nextProps.leaderBoards.loading
+      // this.props.leaderBoards, "|",
+      // nextProps.leaderBoards, "|",
+      // this.props.questions.status, "|",
+      // nextProps.questions.status
+    )
 
     let render = false
 
@@ -43,7 +43,10 @@ class StoreController extends React.Component {
       !!this.props.auth.status||
       !!this.props.authType ||
       nextProps.leaderBoards.status ||
-      nextProps.profile.status
+      nextProps.profile.status ||
+      nextProps.questions.status ||
+      nextProps.questions.commentStatus ||
+      nextProps.questions.voteStatus
 
       // nextProps.leaderBoards.loading
       // !!nextProps.authType ||
@@ -72,9 +75,7 @@ class StoreController extends React.Component {
   render(){
     return(
       <AuthController onRedirect={ this.onRedirect } history={ this.props.history }>
-        <QuestionsController history={ this.props.history }>
           { this.props.children }
-        </QuestionsController>
       </AuthController>
     )
   }

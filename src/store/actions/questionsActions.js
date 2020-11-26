@@ -89,10 +89,10 @@ export const getCatQuestion = (obj) => {
 
 export const getStaticQuestion = (obj) => {
   return dispatch => {
-    dispatch(updateQuestionStatus('getStaticQuestion'))
+    // dispatch(updateQuestionStatus('getStaticQuestion'))
     questionsFunctions('getStaticQuestion', fetch.get.staticQuestion, obj)
     .then(res => {
-      dispatch(updateQuestionStatus('StaticQuestionSuccess'))
+      // dispatch(updateQuestionStatus('StaticQuestionSuccess'))
       dispatch(initSetStaticQuestion(res))
     })
   }
@@ -107,7 +107,7 @@ const initSetStaticQuestion = (res) => {
 
 export const clearStaticQuestion = (obj) => {
   return dispatch => {
-    dispatch(updateQuestionStatus('ClearStaticQuestion'))
+    // dispatch(updateQuestionStatus('ClearStaticQuestion'))
     dispatch(initClearStaticQuestion())
   }
 }
@@ -127,9 +127,16 @@ export const updateQuestionStatus = (status) => {
   }
 }
 
+export const updateQuestionLoadingStatus = (bool) => {
+  return {
+    type: actionTypes.UPDATE_QUESTION_LOADING_STATUS,
+    loading: bool
+  }
+}
+
 export const clearQuestionStatus = (obj) => {
   return dispatch => {
-    dispatch(updateQuestionStatus('ClearQuestionStatus'))
+    // dispatch(updateQuestionStatus('ClearQuestionStatus'))
     dispatch(initClearQuestionStatus())
   }
 }

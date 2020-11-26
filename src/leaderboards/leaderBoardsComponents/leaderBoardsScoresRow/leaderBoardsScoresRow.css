@@ -1,4 +1,5 @@
 .leader_boards_scores_row {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -10,7 +11,22 @@
   color: rgba(255, 255, 255, 1);
   background: rgba(50, 50, 50, 0);
   border: 0px;
+  padding-left: 0em;
+  padding-right: 0em;
+  outline: -webkit-focus-ring-color auto 0px;
+  animation: leaderboard_row_fade_in .25s ease-in-out 0s 1;
+
 }
+
+@keyframes leaderboard_row_fade_in {
+  0% {
+    opacity: 0;
+  };
+  100% {
+    opacity: 1;
+  };
+}
+
 
 .leader_boards_scores_row_blank {
   display: flex;
@@ -21,10 +37,11 @@
   align-content: center;
   width: 100%;
   font: 600 10pt "LatoThin";
-  color: rgba(50, 50, 50, 1);
+  color: rgba(255, 255, 255, 0);
   background: rgba(50, 50, 50, 0);
   border: 0px;
-  padding: 1px 6px;
+  padding-left: 0em;
+  padding-right: 0em;
 }
 
 .leader_boards_scores_row_sub_blank {
@@ -38,8 +55,10 @@
 }
 
 .leader_boards_scores_row_sub_blank_span {
-  padding: 2.5px 0px;
+  padding: 3.5px 0px;
   text-align: center;
+  font: 600 10pt "LatoThin";
+
 }
 
 .leader_boards_scores_row:hover,
@@ -47,12 +66,18 @@
 .leader_boards_scores_row_left span:hover {
   color: rgba(50, 50, 50, 1);
   font: 600 10pt "Lato";
-  padding-left: .5em;
-  padding-right: 1em;
+  padding-left: .25em;
+  padding-right: .5em;
+  border-radius: 5px;
   transition: padding .1s ease-in-out;
 
   background: rgba(244, 166, 66, 1);
+  width: 100%;
   cursor: pointer;
+}
+
+.leader_boards_scores_row:active {
+
 }
 
 .leader_boards_scores_row_left {
@@ -68,6 +93,16 @@
 .leader_boards_scores_row_left span {
   padding: 2.5px 0px;
   text-align: center;
+  /* animation: leaderboard_row_left_slide_in .2s ease-in-out 0s 1; */
+}
+
+@keyframes leaderboard_row_left_slide_in {
+  0% {
+    transform: translateX(-20px);
+  };
+  100% {
+    transform: translateX(0px);
+  };
 }
 
 .leader_boards_scores_row_img_flag {
@@ -81,10 +116,10 @@
 }
 
 .leader_boards_scores_row_left span:nth-child(1) {
-  min-width: 37.5px;
-  width: 3%;
-  padding-right: .25em;
-  text-align: right;
+  min-width: 17.5px;
+  width: 1%;
+  padding-right: 0em;
+  text-align: left;
 }
 
 .leader_boards_scores_row_left span:nth-child(2) {
@@ -118,15 +153,25 @@
 
 .leader_boards_scores_row_right span {
   text-align: center;
+  /* animation: leaderboard_row_right_slide_in .2s ease-in-out 0s 1; */
+}
+
+@keyframes leaderboard_row_right_slide_in {
+  0% {
+    transform: translateX(25px);
+  };
+  100% {
+    transform: translateX(0px);
+  };
 }
 
 .leader_boards_scores_row_span {
-  padding-right: 3.75em;
+  /* padding-right: 3.75em; */
 
 }
 
 .leader_boards_scores_row_country_span {
-  padding-right: 4.75em;
+  /* padding-right: 4.75em; */
 
 }
 

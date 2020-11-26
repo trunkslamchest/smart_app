@@ -7,7 +7,7 @@
   align-content: center;
   width: 100%;
   /* background: rgba(50, 50, 50, 1); */
-  padding: 5px 10px 5px 0px;
+  padding: 5px 0px 5px 0px;
   color: rgba(255, 255, 255, 1);
   font: 600 10pt "LatoThin";
 }
@@ -16,15 +16,16 @@
   color: rgba(50, 50, 50, 1);
   font: 600 10pt "Lato";
   padding-left: .5em;
-  padding-right: 1.5em;
+  padding-right: .5em;
+  border-radius: 5px;
   background-color: rgba(244, 166, 66, 1);
   transition: background-color, padding .1s ease-in-out;
   cursor: pointer;
 }
 
 .leader_boards_sub_header h3 {
-  text-align: center;
-  padding: 0px 20px;
+  text-align: left;
+  padding: 0px 0px;
 }
 
 .leader_boards_sub_header_right {
@@ -60,12 +61,13 @@
   color: rgba(50, 50, 50, 1);
   font: 600 10pt "Lato";
   padding-left: .5em;
-  padding-right: 1.5em;
+  padding-right: .5em;
+  border-radius: 5px;
 }
 
 .leader_boards_sub_header_active h3 {
-  text-align: center;
-  padding: 0px 20px;
+  text-align: left;
+  padding: 0px 0px;
 }
 
 .leader_boards_sub_header_right_active {
@@ -87,7 +89,7 @@
   color: rgba(50, 50, 50, 1);
   font: 600 10pt "Lato";
   padding-left: .5em;
-  padding-right: 1.5em;
+  padding-right: .5em;
   background-color: rgba(244, 166, 66, 1);
   cursor: pointer;
 }

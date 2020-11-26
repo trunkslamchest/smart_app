@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import {
   setVote,
   voteLoading,
@@ -32,9 +31,7 @@ class ResultsDiscussContainer extends React.Component {
     enableVoteButtons: false
   }
 
-  componentDidMount() {
-    this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 500)
-  }
+  componentDidMount() { this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 500) }
 
   componentDidUpdate(){
     if(((this.props.play.results && this.props.play.results.vote) ||
@@ -125,19 +122,24 @@ class ResultsDiscussContainer extends React.Component {
 
   render(){
 
-    let voteProps
+    let voteProps, voteBlock
 
     if(this.props.play.question) voteProps = this.props.play.question.votes
     if(this.props.questions.staticQuestion) voteProps = this.props.questions.staticQuestion.votes
 
+    if(this.props.play.question || this.props.questions.staticQuestion) {
+      voteBlock =
+        <VoteContainer
+          enableVoteButtons={ this.state.enableVoteButtons }
+          onClickVoteFunctions={ this.onClickVoteFunctions }
+          showVoteButtons={ this.state.showVoteButtons }
+          voteProps={ voteProps }
+        />
+    }
+
     return(
       <div className='results_discuss_container'>
-          <VoteContainer
-            enableVoteButtons={ this.state.enableVoteButtons }
-            onClickVoteFunctions={ this.onClickVoteFunctions }
-            showVoteButtons={ this.state.showVoteButtons }
-            voteProps={ voteProps }
-          />
+          { voteBlock }
           <ResultsComment
             comment={ this.state.comment }
             commentForm={ this.state.commentForm }

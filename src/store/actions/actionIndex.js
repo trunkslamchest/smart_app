@@ -74,6 +74,7 @@ export {
   getStaticQuestion,
   setStaticUserQuestion,
   updateQuestionStatus,
+  updateQuestionLoadingStatus,
   updateStaticQuestionVotes,
   updateStaticQuestionVoteStatus,
   updateStaticUserVote,

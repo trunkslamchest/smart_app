@@ -1,6 +1,13 @@
 .leader_boards_wrapper {
   background: rgba(50, 50, 50, 1);
+  border-radius: 5px;
   margin: 0px 0px 20px 0px;
-  width: 100%;
-  padding: 10px 0px 0px 0px;
+  width: 90%;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
