@@ -25,17 +25,26 @@ class ResultsDiscussContainer extends React.Component {
     commentForm: { valid: true },
     showCommentButton: false,
     showComments: true,
-    showVoteButtons: true,
+    showVoteButtons: false,
+    showVoteStats: false,
     enableCommentButton: false,
     enableAddCommentButton: true,
     enableVoteButtons: false
   }
 
-  componentDidMount() { this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true })}, 500) }
+  componentDidMount() { 
+    if(!this.props.staticResults) {
+      this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true, showVoteButtons: true })}, 500)
+    }
+    else {
+      this.setState({ enableVoteButtons: true, showVoteButtons: true })
+    }
+  }
 
   componentDidUpdate(){
     if(((this.props.play.results && this.props.play.results.vote) ||
-       (this.props.questions.staticUserResults && this.props.questions.staticUserResults.vote)) && this.state.showVoteButtons) this.setState({ showVoteButtons: false })
+      (this.props.questions.staticUserResults && this.props.questions.staticUserResults.vote)) && this.state.showVoteButtons) this.setState({ showVoteButtons: false, showVoteStats: true })
+
     if(this.props.play.commentLoading && this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: false })
     if(!this.props.play.commentLoading && !this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: true })
   }
@@ -75,7 +84,7 @@ class ResultsDiscussContainer extends React.Component {
     voteObj['vote'] = event.target.attributes.vote.value
 
     this.props.onSetVote(voteObj)
-    this.setState({ showVoteButtons: false, enableVoteButtons: false })
+    this.setState({ showVoteButtons: false, enableVoteButtons: false, showVoteStats: true })
   }
 
   onClickCommentFunctions = () => { this.setState({ enableCommentButton: false }) }
@@ -122,6 +131,8 @@ class ResultsDiscussContainer extends React.Component {
 
   render(){
 
+    console.log(this.state)
+
     let voteProps, voteBlock
 
     if(this.props.play.question) voteProps = this.props.play.question.votes
@@ -133,6 +144,7 @@ class ResultsDiscussContainer extends React.Component {
           enableVoteButtons={ this.state.enableVoteButtons }
           onClickVoteFunctions={ this.onClickVoteFunctions }
           showVoteButtons={ this.state.showVoteButtons }
+          showVoteStats={ this.state.showVoteStats }
           voteProps={ voteProps }
         />
     }

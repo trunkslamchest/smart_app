@@ -116,6 +116,52 @@ class VoteContainer extends React.Component {
     })
 
 
+    // if(this.props.showVoteButtons) {
+    //   headerText = <div className='vote_header_text_sub_container'><h3>Rate this question</h3></div>
+    //   headerSubText = <div className='vote_header_sub_text_sub_container'>{ distribVotesButtons }</div>
+    //   voteBlock =
+    //     <div className="vote_container">
+    //       <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
+    //     </div>
+    // } else {
+    //   if(!!this.props.play.results || !!this.props.questions.staticUserResults) {
+    //     headerText = <div className='vote_header_text_sub_container'><h3>Approval Rating</h3></div>
+    //     headerSubText = <div className='vote_header_sub_text_sub_container'><h4>{ this.props.voteProps.rating }</h4></div>
+    //     header = <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
+    //   }
+    //   else {
+    //     headerText = 'Votes'
+    //     header = <ContainerHeaderCentered header_text={ headerText } />
+    //   }
+
+    //   voteBlock =
+    //     <div className="vote_container">
+    //       { header }
+    //       <div className='vote_totals_graph_container'>
+    //         <div className='vote_totals_graph_sub_header_container'>
+    //           <div className='vote_totals_graph_sub_header_container_left'>
+    //             <div className='vote_average_vote_img_container'>
+    //               <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
+    //                 style={{
+    //                   alignSelf: 'stretch',
+    //                   backgroundImage: `url(${voteStarsRatingIndex.AverageStars})`,
+    //                   backgroundRepeat: 'no-repeat',
+    //                   width: `${ roundVoteAverageForStarRating(voteAvg.total) }%`
+    //                 }}
+    //               />
+    //             </div>
+    //             <span>{ roundVoteAverage(voteAvg.total) } { this.props.voteProps.average === 1 ? 'Star' : 'Stars' }</span>
+    //           </div>
+    //           <div className='vote_totals_graph_sub_header_container_center'></div>
+    //           <div className='vote_totals_graph_sub_header_container_right'>
+    //             <span>{ this.props.voteProps.total } total { this.props.voteProps.total === 1 ? 'vote' : 'votes'}</span>
+    //           </div>
+    //         </div>
+    //         { distribVoteTotals }
+    //       </div>
+    //     </div>
+    // }
+
     if(this.props.showVoteButtons) {
       headerText = <div className='vote_header_text_sub_container'><h3>Rate this question</h3></div>
       headerSubText = <div className='vote_header_sub_text_sub_container'>{ distribVotesButtons }</div>
@@ -123,7 +169,9 @@ class VoteContainer extends React.Component {
         <div className="vote_container">
           <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
         </div>
-    } else {
+    }
+
+    if(this.props.showVoteStats) {
       if(!!this.props.play.results || !!this.props.questions.staticUserResults) {
         headerText = <div className='vote_header_text_sub_container'><h3>Approval Rating</h3></div>
         headerSubText = <div className='vote_header_sub_text_sub_container'><h4>{ this.props.voteProps.rating }</h4></div>
