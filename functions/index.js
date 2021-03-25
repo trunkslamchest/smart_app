@@ -3,6 +3,8 @@ const functions = require('firebase-functions')
 const firebase = require("firebase")
 const admin = require('firebase-admin')
 
+const fetch = require('node-fetch')
+
 const url = {
   database: env.parsed.DEPLOY_DB_ROOT,
   databaseAchievements: env.parsed.DEPLOY_DB_ACHIEVEMENTS,

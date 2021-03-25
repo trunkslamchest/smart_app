@@ -53,6 +53,8 @@ class PlayController extends React.Component {
   shouldComponentUpdate(nextProps, nextState){
     let render = false
 
+    // console.log(nextProps)
+
    if(this.props.modal.loading || nextProps.modal.loading || this.props.auth.status === 'authValid') {
       render = true
     }
@@ -103,6 +105,7 @@ class PlayController extends React.Component {
       this.props.onUpdateGameStatus('setGameModeSuccess', true)
       this.props.onSetGameState('select')
     } else {
+      this.props.onLoadingModal(false)
       this.props.onUpdateGameStatus('selectGameMode', false)
       this.props.onSetGameState('select')
     }
