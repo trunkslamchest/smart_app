@@ -1,8 +1,8 @@
 export var loadingBarClassSwitch = function(barType, status) {
   let barClass = ''
 
-  // console.log('bar class', barType)
-  // console.log('bar class', status)
+  // console.log('barType', barType)
+  // console.log('status', status)
 
   if(!status) barClass = 'loading_bar_0'
   if(status === 'authGoogle') barClass = 'loading_bar_1'
@@ -73,7 +73,7 @@ export var loadingBarClassSwitch = function(barType, status) {
 
   if(barType === 'questionComment'){
     if(status === 'initComment') barClass = 'loading_bar_5'
-    if(status === 'sentComment') barClass = 'loading_bar_10'
+    if(status === 'sentComment' || status === 'updateStaticQuestionComment') barClass = 'loading_bar_10'
     if(status === 'commentSuccess') barClass = 'loading_bar_final'
   }
 

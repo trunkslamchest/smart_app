@@ -74,8 +74,8 @@ export var loadingBarTextSwitch = function(barType, status) {
 
   if(barType === 'questionComment'){
     if(status === 'initComment') barText = 'Validating User Comment'
-    if(status === 'sentComment') barText = 'Fetching Local Comments'
-    if(status === 'commentSuccess') barText = 'Updating Comment Tables'
+    if(status === 'sentComment' || status === 'updateStaticQuestionComment') barText = 'Fetching Local Comments'
+    if(status === 'commentSuccess') barText = 'Updated Comment Tables'
   }
 
   return barText

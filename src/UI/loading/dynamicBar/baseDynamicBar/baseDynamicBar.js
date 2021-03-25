@@ -26,6 +26,8 @@ class BaseDynamicBar extends React.Component {
 
   // console.log(this.props.modalType, this.props.barType)
   // console.log(this.props.modalType, this.props.leaderBoards.status)
+  // console.log(this.props.barType, this.props.questions.commentStatus)
+  // console.log('modalType', this.props.modalType)
 
     let loadStatus
     let barType = this.props.barType || this.props.auth.authType
@@ -37,7 +39,7 @@ class BaseDynamicBar extends React.Component {
 
 
     if(this.props.modalType === 'questionVote') loadStatus = this.props.play.voteStatus
-    if(this.props.modalType === 'questionComment') loadStatus = this.props.play.commentStatus
+    if(this.props.modalType === 'questionComment') loadStatus = this.props.play.commentStatus || this.props.questions.commentStatus
 
     return(
       <div className="dyanmic_bar_container">
@@ -57,7 +59,8 @@ const mapStateToProps = state => {
     auth: state.auth,
     leaderBoards: state.leaderBoards,
     play: state.play,
-    profile: state.profile
+    profile: state.profile,
+    questions: state.questions
   }
 }
 

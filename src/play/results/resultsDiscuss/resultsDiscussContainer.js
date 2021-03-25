@@ -131,7 +131,7 @@ class ResultsDiscussContainer extends React.Component {
 
   render(){
 
-    console.log(this.state)
+    // console.log(this.state)
 
     let voteProps, voteBlock
 
