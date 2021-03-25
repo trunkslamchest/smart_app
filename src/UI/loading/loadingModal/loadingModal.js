@@ -17,7 +17,7 @@ class LoadingModal extends React.Component {
   //   else return false
   // }
 
-  componentWillUnmount(){ this.props.onLoadingModal(false) }
+  // componentWillUnmount(){ this.props.onLoadingModal(false) }
 
   render(){
 

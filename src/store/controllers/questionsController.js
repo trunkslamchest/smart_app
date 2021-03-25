@@ -58,6 +58,7 @@ class QuestionsController extends React.Component {
 
     if(this.props.questions.status === 'setStaticUserResults' && !this.state.displayStaticResults) this.displayStaticQuestionModule()
 
+    if(this.props.questions.status === 'displayStaticQuestion' && this.props.questions.staticQuestion && this.props.questions.loading) this.cleanupStaticQuestionModule()
 
     if(this.props.questions.status === 'displayStaticQuestion') {
       if(this.props.questions.voteStatus === 'updateStaticUserVote' && this.props.questions.vote) this.updateStaticUserVoteModule()
@@ -92,9 +93,9 @@ class QuestionsController extends React.Component {
 
   initQuestionModule = () => {
     this.props.onLoadingModal(true)
+    this.props.onUpdateQuestionLoadingStatus(true)
     this.props.switchLoadingModalType('staticQuestion')
     this.props.switchLoadingModalBarType('staticQuestion')
-    this.props.onUpdateQuestionLoadingStatus(true)
     this.props.onUpdateQuestionStatus('initStaticQuestion')
   }
 
@@ -112,9 +113,13 @@ class QuestionsController extends React.Component {
 
   displayStaticQuestionModule = () => {
     this.props.onUpdateQuestionStatus('displayStaticQuestion')
-    this.props.onLoadingModal(false)
+    this.setState({ displayStaticResults: true })
+  }
+
+  cleanupStaticQuestionModule = () => {
     this.props.onUpdateQuestionLoadingStatus(false)
-    this.setState({ initStaticResults: false, initStaticUserResults: false, displayStaticResults: true })
+    this.props.onLoadingModal(false)
+    this.setState({ initStaticResults: false, initStaticUserResults: false })
   }
 
   updateStaticUserVoteModule = () => {
@@ -151,8 +156,8 @@ class QuestionsController extends React.Component {
       <>
         {
           this.props.questions.status === 'displayStaticQuestion' &&
-          !this.props.questions.loading &&
-          !this.props.modal.loading &&
+          // !this.props.questions.loading &&
+          // !this.props.modal.loading &&
             <ResultsContainer
               cat={ this.state.cat }
               diff={ this.state.diff }

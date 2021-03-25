@@ -116,7 +116,7 @@ const updateStaticUserVote = (currentState, action) => {
   return {
     ...currentState,
     staticUserResults: {
-      ...currentState.statUserResults,
+      ...currentState.staticUserResults,
       vote: action.vote
     },
     vote: action.vote
