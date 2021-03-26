@@ -3,9 +3,10 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
   align-items: center;
+  margin: 50px 0px;
 }
 
 .home_logged_out_tech_sub_container {
@@ -36,7 +37,7 @@
 
 .home_logged_out_tech_icon_img_container img {
   height: auto;
-  width: 100%;
+  width: 75px;
 }
 
 .home_logged_out_tech_icon_text_container {

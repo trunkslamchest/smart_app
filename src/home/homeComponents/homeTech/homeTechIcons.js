@@ -1,51 +1,54 @@
-const homeTechIcons = (cssIMG, scssIMG, firebaseIMG, htmlIMG, jsIMG, otdbIMG, reactIMG, reduxIMG) => {
+// const homeTechIcons = (cssIcon, scssIcon, firebaseIcon, htmlIcon, jsIcon, otdbIcon, reactIcon, reduxIcon) => {
+const homeTechIcons = (iconsIndex) => {
+
   return [
     {
       id: 'home_tech_css',
-      image: cssIMG,
+      image: iconsIndex.css,
       name: 'homeTechCSS',
+      route: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
       text: 'CSS 3'
     },
     {
       id: 'home_tech_scss',
-      image: scssIMG,
+      image: iconsIndex.scss,
       name: 'homeTechSCSS',
+      route: 'https://sass-lang.com/',
       text: 'SCSS 4'
     },
     {
       id: 'home_tech_firebase',
-      image: firebaseIMG,
+      image: iconsIndex.firebase,
       name: 'homeTechFirebase',
-      text: 'Firebase'
+      route: 'https://firebase.google.com/',
+      text: 'Firebase 8.3'
     },
     {
       id: 'home_tech_html',
-      image: htmlIMG,
+      image: iconsIndex.html,
       name: 'homeTechHTML',
+      route: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
       text: 'HTML 5'
     },
     {
       id: 'home_tech_js',
-      image: jsIMG,
+      image: iconsIndex.js,
       name: 'homeTechJS',
+      route: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
       text: 'Javascript 1.8'
     },
     {
-      id: 'home_tech_otdb',
-      image: otdbIMG,
-      name: 'homeTechOTDB',
-      text: 'Open Trivia Database'
-    },
-    {
       id: 'home_tech_react',
-      image: reactIMG,
+      image: iconsIndex.react,
       name: 'homeTechReact',
+      route: 'https://reactjs.org/',
       text: 'React 16'
     },
     {
       id: 'home_tech_redux',
-      image: reduxIMG,
+      image: iconsIndex.redux,
       name: 'homeTechRedux',
+      route: 'https://redux.js.org/',
       text: 'Redux 7'
     }
   ]

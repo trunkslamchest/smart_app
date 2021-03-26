@@ -1,20 +1,6 @@
 const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpIMG, rankRatingIMG, leaderboardsIMG) => {
   return [
     {
-      desc: 'Users Description',
-      headline: 'User Profiles',
-      highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
-      ],
-      id: 'home_features_users',
-      image: usersIMG,
-      name: 'homeFeaturesUsers'
-    },
-    {
       desc: 'Questions Description',
       headline: 'Smart App Nexus',
       highlights: [
@@ -27,6 +13,20 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
       id: 'home_features_questions',
       image: questionsIMG,
       name: 'homeFeaturesQuestions'
+    },
+    {
+      desc: 'Users Description',
+      headline: 'User Profiles',
+      highlights: [
+        'highlight1',
+        'highlight2',
+        'highlight3',
+        'highlight4',
+        'highlight5',
+      ],
+      id: 'home_features_users',
+      image: usersIMG,
+      name: 'homeFeaturesUsers'
     },
     {
       desc: 'Statistics Description',

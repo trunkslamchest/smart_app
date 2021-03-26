@@ -1,5 +1,5 @@
-import firebaseLogoRectangle from './footerCreditLogos/firebase_footer_logo.svg'
-import firebaseLogoRectangleHover from './footerCreditLogos/firebase_hover_footer_logo.svg'
+// import firebaseLogoRectangle from './footerCreditLogos/firebase_footer_logo.svg'
+// import firebaseLogoRectangleHover from './footerCreditLogos/firebase_hover_footer_logo.svg'
 
 import flatironLogoRectangle from './footerCreditLogos/flatiron_footer_logo.svg'
 import flatironLogoRectangleHover from './footerCreditLogos/flatiron_hover_footer_logo.svg'
@@ -13,12 +13,12 @@ import hvhLogoRectangleHover from './footerCreditLogos/hvh_hover_footer_logo.svg
 import otbLogoRectangle from './footerCreditLogos/otb_footer_logo.svg'
 import otbLogoRectangleHover from './footerCreditLogos/otb_hover_footer_logo.svg'
 
-import reactLogoRectangle from './footerCreditLogos/react_footer_logo.svg'
-import reactLogoRectangleHover from './footerCreditLogos/react_hover_footer_logo.svg'
+// import reactLogoRectangle from './footerCreditLogos/react_footer_logo.svg'
+// import reactLogoRectangleHover from './footerCreditLogos/react_hover_footer_logo.svg'
 
 const footerCreditLogosIndex = {
-  'firebaseLogoRectangle': firebaseLogoRectangle,
-  'firebaseLogoRectangleHover': firebaseLogoRectangleHover,
+  // 'firebaseLogoRectangle': firebaseLogoRectangle,
+  // 'firebaseLogoRectangleHover': firebaseLogoRectangleHover,
   'flatironLogoRectangle': flatironLogoRectangle,
   'flatironLogoRectangleHover': flatironLogoRectangleHover,
   'githubLogoRectangle': githubLogoRectangle,
@@ -27,8 +27,8 @@ const footerCreditLogosIndex = {
   'hvhLogoRectangleHover': hvhLogoRectangleHover,
   'otbLogoRectangle': otbLogoRectangle,
   'otbLogoRectangleHover': otbLogoRectangleHover,
-  'reactLogoRectangle': reactLogoRectangle,
-  'reactLogoRectangleHover': reactLogoRectangleHover
+  // 'reactLogoRectangle': reactLogoRectangle,
+  // 'reactLogoRectangleHover': reactLogoRectangleHover
 }
 
 export default footerCreditLogosIndex
