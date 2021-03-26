@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import HomeLoggedInContainer from './homeContainers/homeLoggedInContainer/homeLoggedInContainer'
 import HomeLoggedOutContainer from './homeContainers/homeLoggedOutContainer/homeLoggedOutContainer'
 
-// import fullColorIndexLogo from '../assets/logos/indexLogos/full_color_index_logo.png'
-
 import './HomeContainer.css'
 
 const HomeContainer = (props) => {
@@ -21,8 +19,6 @@ const HomeContainer = (props) => {
       homePage = <HomeLoggedOutContainer history={ props.history } />
     }
   }
-
-  // console.log(!!fullColorIndexLogo)
 
   return(
     <>

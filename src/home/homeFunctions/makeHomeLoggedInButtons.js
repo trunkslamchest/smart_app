@@ -1,4 +1,4 @@
-const makeHomeLoggedOutButtons = (onStartGame) => {
+const makeHomeLoggedInButtons = (onStartGame) => {
   return [
     {
       id: 'start_button',
@@ -10,4 +10,4 @@ const makeHomeLoggedOutButtons = (onStartGame) => {
   ]
 }
 
-export default makeHomeLoggedOutButtons
+export default makeHomeLoggedInButtons
