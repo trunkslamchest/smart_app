@@ -43,32 +43,34 @@
 
 # Introduction
   ### Description
-  SmartApp is a trivia application designed for people who love trivia, love to test their knowledge, and/or religiously watch Jeopardy. SmartApp was also developed with an administrative panel that collects user traffic and browsing data in real time, an in-browser database editor. SmartApp utilizes the Open Trivia Database for it's trivia dataset.
+  SmartApp is a trivia application designed for people who love trivia, love to test their knowledge, and/or religiously watch Jeopardy. SmartApp utilizes the Open Trivia Database for it's trivia dataset. Answer Questions. Unlock Achievements. Improve Your Rank. Climb The Leaderboards. Get Smart.
 
   ### Key Features
   - 250 trivia questions to answer
   - 3 difficulty levels
   - 20 categories
-  - Statisically generated user ratings
-  - Login/Signup secured with bcrypt & JWT Auth
-  - Easy to access API functionality using FastJSON API for derivated work
-  - Access Restricted administrative panel featuring realtime page & element tracking & in-browser database editor
-  - Vote/Comment on trivia questions after answering a question
+  - User profiles with personalization and privacy settings
+  - In depth question based user statistics
+  - Unlockable Achievements
+  - Performance based experience/leveling system
+  - Statistically generated ranks/ratings
+  - Interational/Regional/Category Specific Live Leaderboards
+  - Community based Vote/Comment system for answered questions
+  - Login/Signup secured with Google Identity Toolkit
+  - RESTful API functionality using Firebase Cloud Functions
   - Conditional rendering and keyframe animations
-  - Message other users (TBA)
-  - Challenge other users to answer questions (TBA)
-  - Custom Statisically Analytics Queries for Administrators/Developers (TBA)
   - Fun for the whole family
 
   ### Goals
-  The two main goals of the project is to develop an application that was engaging to the end user, as well as explore potentialities to collect and curate user generated data in real time. 
+  The two main goals of the project is to develop an application that was engaging to the end user, and to challenge my abilities in developing a small to mid sized project. Smart App eventually grew to encompass a wide feature set aimed at driving user interactivity, and will continue to grow as time progresses.
 
   ### Challenges
   - Creating an effective workflow to get MVP and deliverables completed before a set deadline
-  - Developing an application that is engaging enough for a user to generate enough traffic to collect on the administrative panel
-  - Designing a gameplay loop that is easy to follow as well as a visual style that is legible and non intrusive
-  - Refactoring large portions of the administrative panel to utilize as little communication between the frontend and backend as possible
-  - Deployment
+  - Deploying systems and abstraction layers for an application that scale with the scope of the project
+  - Designing a visual style that is legible and non intrusive
+  - Developing a smooth gameplay loop that is easy to follow
+  - Refactoring the entire project to utilize with Redux and Firebase
+  - Writing effective algorithms that aid with the distribution of user centric data
 
 &nbsp;
 
