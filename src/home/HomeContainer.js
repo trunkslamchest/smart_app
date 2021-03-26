@@ -20,11 +20,7 @@ const HomeContainer = (props) => {
     }
   }
 
-  return(
-    <>
-      { homePage }
-    </>
-  )
+  return(<>{ homePage }</>)
 }
 
 const mapStateToProps = state => {

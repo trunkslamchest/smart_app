@@ -3,38 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="75px"
 	 height="75px" viewBox="0 0 75 75" enable-background="new 0 0 75 75" xml:space="preserve">
-<g id="dev">
-</g>
-<g id="vote_x5F_stars" display="none">
-</g>
-<g id="nav_x5F_bar_x5F_icons" display="none">
-</g>
-<g id="trend_x5F_arrows" display="none">
-</g>
-<g id="menu_x5F_arrows" display="none">
-</g>
-<g id="leaderboard_x5F_buttons" display="none">
-</g>
-<g id="exclamation" display="none">
-	<rect x="-2.666" y="35.417" display="inline" fill="none" width="13.918" height="13.5"/>
-	<text transform="matrix(1 0 0 1 -2.667 44.2603)" display="inline" font-family="'Lato-Regular'" font-size="12">!</text>
-	<circle display="inline" fill="#010101" cx="10.009" cy="52.342" r="5.009"/>
-	<path display="inline" fill="#FFFFFF" d="M4.252,44.083c0-0.104,0.021-0.202,0.059-0.294c0.038-0.092,0.09-0.172,0.156-0.24
-		c0.064-0.068,0.145-0.122,0.236-0.162s0.19-0.06,0.294-0.06c0.104,0,0.202,0.02,0.294,0.06s0.172,0.094,0.24,0.162
-		c0.068,0.068,0.121,0.148,0.159,0.24c0.038,0.092,0.057,0.19,0.057,0.294c0,0.108-0.019,0.207-0.057,0.297
-		c-0.038,0.09-0.091,0.169-0.159,0.237s-0.148,0.121-0.24,0.159c-0.092,0.038-0.189,0.057-0.294,0.057
-		c-0.104,0-0.202-0.019-0.294-0.057c-0.092-0.038-0.172-0.091-0.236-0.159C4.4,44.55,4.349,44.471,4.311,44.381
-		C4.272,44.291,4.252,44.192,4.252,44.083z M5.525,36.146v3.432c0,0.18-0.003,0.356-0.009,0.528
-		c-0.006,0.172-0.015,0.345-0.027,0.519c-0.012,0.174-0.027,0.352-0.045,0.534s-0.039,0.377-0.063,0.585H4.655
-		c-0.024-0.208-0.045-0.403-0.063-0.585c-0.019-0.182-0.033-0.36-0.046-0.534c-0.012-0.174-0.021-0.347-0.027-0.519
-		c-0.006-0.172-0.008-0.348-0.008-0.528v-3.432H5.525z"/>
-</g>
-<g id="glyphs" display="none">
-</g>
-<g id="footer_x5F_logos" display="none">
-</g>
-<g id="header_x5F_icons" display="none">
-</g>
 <g id="home_x5F_icons">
 	<g>
 		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#264DE3" points="64.737,67.375 37.531,73.25 10.25,67.375 10.25,1.875 
