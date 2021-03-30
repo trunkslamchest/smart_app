@@ -36,16 +36,10 @@ class HomeBanner extends React.Component {
       <div className='home_logged_out_banner_container'>
         <HomeLogoContainer />
           <div className='home_logged_out_banner_right_container'>
-            <div className='home_logged_out_tagline_container'>
-              <h2>
-                Answer Questions. Unlock Achievements.
-              </h2>
-              <h2>
-                Improve Your Rank. Climb The Leaderboards.
-              </h2>
-              <h3>
-                Get Smart
-              </h3>
+            <div className='home_logged_out_banner_text_container'>
+              <p>
+                <span>Login</span> or <span>Sign Up</span> to get started!
+              </p>
             </div>
             <DefaultButtonsContainer
               buttons={ homeButtons }

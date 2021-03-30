@@ -1,8 +1,9 @@
-const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpIMG, rankRatingIMG, leaderboardsIMG) => {
+// const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpIMG, rankRatingIMG, leaderboardsIMG) => {
+const homeFeaturesList = (homeFeaturesIndex) => {
   return [
     {
       desc: 'Questions Description',
-      headline: 'Smart App Nexus',
+      headline: 'SmartApp™ Nexus',
       highlights: [
         'highlight1',
         'highlight2',
@@ -11,7 +12,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_questions',
-      image: questionsIMG,
+      image: homeFeaturesIndex.temp,
+      // image: questionsIMG,
       name: 'homeFeaturesQuestions'
     },
     {
@@ -25,7 +27,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_users',
-      image: usersIMG,
+      image: homeFeaturesIndex.temp,
+      // image: usersIMG,
       name: 'homeFeaturesUsers'
     },
     {
@@ -39,7 +42,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_stats',
-      image: statsIMG,
+      image: homeFeaturesIndex.temp,
+      // image: statsIMG,
       name: 'homeFeaturesStats'
     },
     {
@@ -53,7 +57,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_achievements',
-      image: achievementsIMG,
+      image: homeFeaturesIndex.temp,
+      // image: achievementsIMG,
       name: 'homeFeaturesAchievements'
     },
     {
@@ -67,7 +72,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_xp',
-      image: xpIMG,
+      image: homeFeaturesIndex.temp,
+      // image: xpIMG,
       name: 'homeFeaturesXP'
     },
     {
@@ -81,7 +87,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_rank_rating',
-      image: rankRatingIMG,
+      image: homeFeaturesIndex.temp,
+      // image: rankRatingIMG,
       name: 'homeFeaturesRankRating'
     },
     {
@@ -95,7 +102,8 @@ const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpI
         'highlight5',
       ],
       id: 'home_features_leaderboards',
-      image: leaderboardsIMG,
+      image: homeFeaturesIndex.temp,
+      // image: leaderboardsIMG,
       name: 'homeFeaturesLeaderboards'
     }
   ]
