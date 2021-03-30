@@ -12,6 +12,7 @@ const HomeLoggedOutContainer = (props) => {
     <div className='home_logged_out_wrapper'>
       <HomeBanner history={ props.history } />
       <HomeFeatures history={ props.history } />
+      <div className='home_logged_out_features_divider'></div>
       <HomeTech history={ props.history } />
     </div>
   )

@@ -21,38 +21,38 @@ const makeHomeLoggedOutFeaturesList = (props) => {
       {
         makeHomeFeaturesList.map((feature, index) => {
           return(
-            <div
-              className='home_logged_out_features_sub_container'
-              key={ index }
-            >
-              <div className='home_logged_out_features_sub_left_container'>
-                <div className='home_logged_out_features_sub_left_img_container'>
-                  <img
-                    alt={ feature.id }
-                    id={ `${feature.id}_image` }
-                    name={ `${feature.name}Image` }
-                    src={ feature.image }
-                  />
+            <React.Fragment key={ index }>
+              <div className='home_logged_out_features_divider'></div>
+              <div className='home_logged_out_features_sub_container'>
+                <div className='home_logged_out_features_sub_left_container'>
+                  <div className='home_logged_out_features_sub_left_img_container'>
+                    <img
+                      alt={ feature.id }
+                      id={ `${feature.id}_image` }
+                      name={ `${feature.name}Image` }
+                      src={ feature.image }
+                    />
+                  </div>
+                </div>
+                <div className='home_logged_out_features_sub_right_container'>
+                  <div className='home_logged_out_features_sub_right_headline_container'>
+                    <h2>{ feature.headline }</h2>
+                  </div>
+                  <div className='home_logged_out_features_sub_right_text_container'>
+                    <span>{ feature.desc }</span>
+                  </div>
+                  <div className='home_logged_out_features_sub_right_highlights_container'>
+                    { feature.highlights.map((highlight, h_index) => {
+                      return(
+                        <p key={ h_index }>
+                          { highlight }
+                        </p>
+                      )
+                    }) }
+                  </div>
                 </div>
               </div>
-              <div className='home_logged_out_features_sub_right_container'>
-                <div className='home_logged_out_features_sub_right_headline_container'>
-                  <h2>{ feature.headline }</h2>
-                </div>
-                <div className='home_logged_out_features_sub_right_text_container'>
-                  <span>{ feature.desc }</span>
-                </div>
-                <div className='home_logged_out_features_sub_right_highlights_container'>
-                  { feature.highlights.map((highlight, h_index) => {
-                    return(
-                      <p key={ h_index }>
-                        { highlight }
-                      </p>
-                    )
-                  }) }
-                </div>
-              </div>
-            </div>
+            </React.Fragment >
           )
         })
       }

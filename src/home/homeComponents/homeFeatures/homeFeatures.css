@@ -9,8 +9,15 @@
   margin: 0px 0px 25px 0px;
 }
 
+.home_logged_out_features_divider{
+	background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(200,200,200, 1), rgba(255, 255, 255, 0) );
+  height: 1px;
+  margin: 5px 0px;
+  width: 75%;
+}
+
 .home_logged_out_features_sub_container {
-  border: 1px solid rgba(200, 200, 200, 1);
+  /* border: 1px solid rgba(200, 200, 200, 1); */
   border-radius: 10px;
   display: flex;
   flex-direction: row;
