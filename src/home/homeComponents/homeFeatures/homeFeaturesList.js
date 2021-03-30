@@ -2,14 +2,19 @@
 const homeFeaturesList = (homeFeaturesIndex) => {
   return [
     {
-      desc: 'Questions Description',
-      headline: 'SmartApp™ Nexus',
+      desc: [
+        `The SmartApp™ Nexus stores all answerable questions for SmartApp™, and is responsible for tracking of all sorts of statistics for each question, category and difficulty.
+         Statistics are dynamicly collected, complied and sorted, yielding detailed information as more questions are answered by more users.
+        `,
+        'The smarter you get, the larger the Nexus grows:'
+      ],
+      headline: 'The SmartApp™ Nexus',
       highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
+        '200+ Questions',
+        '16 Categories',
+        '3 Difficulty Levels',
+        // 'Trend Tracking Capabilities',
+        // 'Approval/Comment Features'
       ],
       id: 'home_features_questions',
       image: homeFeaturesIndex.temp,
@@ -17,14 +22,14 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesQuestions'
     },
     {
-      desc: 'Users Description',
+      desc: [ 'SmartApp™ Profiles are where all of your statistics, information, experience and acheivements are made available to you. Whether you want to drill down' ],
       headline: 'User Profiles',
       highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
+        'User Generated Statistics',
+        'Custom Privacy Settings',
+        'Secured with Google Identity Toolkit',
+        // 'highlight4',
+        // 'highlight5',
       ],
       id: 'home_features_users',
       image: homeFeaturesIndex.temp,
@@ -32,7 +37,7 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesUsers'
     },
     {
-      desc: 'Statistics Description',
+      desc: ['Statistics Description'],
       headline: 'In Depth Statistics',
       highlights: [
         'highlight1',
@@ -47,7 +52,7 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesStats'
     },
     {
-      desc: 'Achievements Description',
+      desc: ['Achievements Description'],
       headline: 'Achievements',
       highlights: [
         'highlight1',
@@ -62,7 +67,7 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesAchievements'
     },
     {
-      desc: 'Experience Description',
+      desc: ['Experience Description'],
       headline: 'Level Up',
       highlights: [
         'highlight1',
@@ -77,7 +82,7 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesXP'
     },
     {
-      desc: 'Rank and Rating Description',
+      desc: ['Rank and Rating Description'],
       headline: 'Ranks and Ratings',
       highlights: [
         'highlight1',
@@ -92,7 +97,7 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesRankRating'
     },
     {
-      desc: 'Leaderboards Description',
+      desc: ['Leaderboards Description'],
       headline: 'Live Leaderboards',
       highlights: [
         'highlight1',
