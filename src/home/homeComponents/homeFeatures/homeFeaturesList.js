@@ -3,16 +3,16 @@ const homeFeaturesList = (homeFeaturesIndex) => {
   return [
     {
       desc: [
-        `The SmartApp™ Nexus stores all answerable questions for SmartApp™, and is responsible for tracking of all sorts of statistics for each question, category and difficulty.
-         Statistics are dynamicly collected, complied and sorted, yielding detailed information as more questions are answered by more users.
-        `,
-        'The smarter you get, the larger the Nexus grows:'
+        `The SmartApp™ Nexus stores over 200+ questions in 16 different categories from 3 separate difficulty levels.
+         It is also responsible for tracking of all sorts of statistics for each question, category and difficulty,
+         which it then uses to define trends and patterns within the data it recieves.`,
+        `From general trends, to individual metrics, The SmartApp™ Nexus offers important data to let you know how you stack up with yourself, and with your competition.`
       ],
-      headline: 'The SmartApp™ Nexus',
+      headline: 'Nexus',
       highlights: [
-        '200+ Questions',
-        '16 Categories',
-        '3 Difficulty Levels',
+        // '200+ Questions',
+        // '16 Categories',
+        // '3 Difficulty Levels',
         // 'Trend Tracking Capabilities',
         // 'Approval/Comment Features'
       ],
@@ -22,12 +22,16 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesQuestions'
     },
     {
-      desc: [ 'SmartApp™ Profiles are where all of your statistics, information, experience and acheivements are made available to you. Whether you want to drill down' ],
-      headline: 'User Profiles',
+      desc: [
+        `SmartApp™ Profiles are where all of your statistics, information, experience and acheivements are made available to you.`,
+        `Whether you want to drill down on your performance, check out other people's stats, edit your information, or change your privacy settings,
+         SmartApp™ Profiles makes it quick and easy to find yourself, or someone else.`
+      ],
+      headline: 'Profiles',
       highlights: [
-        'User Generated Statistics',
-        'Custom Privacy Settings',
-        'Secured with Google Identity Toolkit',
+        // 'User Generated Statistics',
+        // 'Custom Privacy Settings',
+        // 'Secured with Google Identity Toolkit',
         // 'highlight4',
         // 'highlight5',
       ],
@@ -36,45 +40,39 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       // image: usersIMG,
       name: 'homeFeaturesUsers'
     },
+    // {
+    //   desc: [
+    //     `We know you want to know how well you're doing in your quest for absolute knowledge.
+    //      So we want to provide you with the information you need to succeed.`,
+    //     `From general trends, to individual metrics, SmartApp™ offers important data to let you know how you stack up with yourself, and with your competition.`
+    //   ],
+    //   headline: 'In Depth Statistics',
+    //   highlights: [
+    //     // 'Individual Performance Reports',
+    //     // 'Percentage Based User Comparisons',
+    //     // 'Dynamic Question Ratings',
+    //     // 'highlight4',
+    //     // 'highlight5',
+    //   ],
+    //   id: 'home_features_stats',
+    //   image: homeFeaturesIndex.temp,
+    //   // image: statsIMG,
+    //   name: 'homeFeaturesStats'
+    // },
     {
-      desc: ['Statistics Description'],
-      headline: 'In Depth Statistics',
-      highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
+      desc: [
+        `Everyone loves the feeling progress. And we wanted to give you that illusion of progress.
+         As you answer more questions, you will earn experience points based on your performance.
+         The better you do, the more experience you gain, the higher your level becomes.`,
+         `It is all quite elementary, my dear Watson.`
       ],
-      id: 'home_features_stats',
-      image: homeFeaturesIndex.temp,
-      // image: statsIMG,
-      name: 'homeFeaturesStats'
-    },
-    {
-      desc: ['Achievements Description'],
-      headline: 'Achievements',
+      headline: 'Experience',
       highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
-      ],
-      id: 'home_features_achievements',
-      image: homeFeaturesIndex.temp,
-      // image: achievementsIMG,
-      name: 'homeFeaturesAchievements'
-    },
-    {
-      desc: ['Experience Description'],
-      headline: 'Level Up',
-      highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
+        // 'highlight1',
+        // 'highlight2',
+        // 'highlight3',
+        // 'highlight4',
+        // 'highlight5',
       ],
       id: 'home_features_xp',
       image: homeFeaturesIndex.temp,
@@ -82,14 +80,20 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesXP'
     },
     {
-      desc: ['Rank and Rating Description'],
-      headline: 'Ranks and Ratings',
+      desc: [
+        `Along with gaining experience and leveling up,
+         you will receive ranks and ratings for each question you answer based on how fast you, as well as others, have answered a question correctly.`,
+         `Question ranks and ratings are then compiled to produce your overall SmartApp™ Rank and SmartApp™ Rating.
+         There are also ranks and ratings for how well you perform for individual difficulties and categories.`,
+        `No matter how you do, you will always know how well you do.`
+      ],
+      headline: 'Ratings',
       highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
+        // 'highlight1',
+        // 'highlight2',
+        // 'highlight3',
+        // 'highlight4',
+        // 'highlight5',
       ],
       id: 'home_features_rank_rating',
       image: homeFeaturesIndex.temp,
@@ -97,14 +101,38 @@ const homeFeaturesList = (homeFeaturesIndex) => {
       name: 'homeFeaturesRankRating'
     },
     {
-      desc: ['Leaderboards Description'],
-      headline: 'Live Leaderboards',
+      desc: [
+        `Still haven't scratched that itch for progress?
+         SmartApp™ also offers over 25 achievements to unlock.`,
+        `With achievements ranging from 'Answer Your First Question Correctly' to 'Answer Your First 10 Questions Correctly In Under 1 Second',
+         SmartApp™ gives you plenty of reasons to grind for those meaningless goals you forever hope to reach.`
+      ],
+      headline: 'Achievements',
       highlights: [
-        'highlight1',
-        'highlight2',
-        'highlight3',
-        'highlight4',
-        'highlight5',
+        // '25 Achievements',
+        // 'highlight2',
+        // 'highlight3',
+        // 'highlight4',
+        // 'highlight5',
+      ],
+      id: 'home_features_achievements',
+      image: homeFeaturesIndex.temp,
+      // image: achievementsIMG,
+      name: 'homeFeaturesAchievements'
+    },
+    {
+      desc: [
+        `Wanna know how your trivia knowledge stacks up against everyone in your country? How 'bout the entire planet?
+         SmartApp™'s Leaderboards has you covered.`,
+        `It doesn't matter where you want to assert your trivia dominance, everyone will know how smart you are when you hit that #1 spot.`
+      ],
+      headline: 'Leaderboards',
+      highlights: [
+        // 'highlight1',
+        // 'highlight2',
+        // 'highlight3',
+        // 'highlight4',
+        // 'highlight5',
       ],
       id: 'home_features_leaderboards',
       image: homeFeaturesIndex.temp,

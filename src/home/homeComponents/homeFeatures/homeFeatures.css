@@ -7,14 +7,9 @@
   align-content: center;
   align-items: center;
   width: 100%;
-  margin: 15px 0px 0px 0px;
-}
+  margin: 0px 0px 0px 0px;
+  padding: 25px 0px 0px 0px;
 
-.home_logged_out_features_divider{
-	background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(200,200,200, 1), rgba(255, 255, 255, 0) );
-  height: 1px;
-  margin: 5px 0px;
-  width: 75%;
 }
 
 .home_logged_out_features_sub_container {
@@ -69,7 +64,23 @@
 
 .home_logged_out_features_sub_right_headline_container h2 {
   color: rgba(75, 75, 75, 1);
-  font: 600 18pt 'Lato';
+  font: 600 18pt 'Baloo';
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.home_logged_out_features_sub_right_headline_container h2 span {
+  color: rgba(0, 0, 102, 1);
+  font: 600 18pt 'Baloo';
+  margin: 0px 0px 10px 0px;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.home_logged_out_features_sub_right_headline_container h2 span span {
+  color: rgba(0, 0, 0, 1);
+  font: 600 16pt 'Baloo';
   margin: 0px 0px 10px 0px;
   padding: 5px 0px 5px 0px;
   text-align: center;
@@ -92,16 +103,16 @@
 
 .home_logged_out_features_sub_right_highlights_container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: center;
-  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
   width: 100%;
 }
 
 .home_logged_out_features_sub_right_highlights_container p {
   font: 300 10pt 'Lato';
-  margin: 0px 0px 5px 5px;
+  margin: 0px 0px 5px 10px;
   /* width: 40%; */
 }

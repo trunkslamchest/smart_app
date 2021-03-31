@@ -6,7 +6,7 @@
   align-content: center;
   align-items: center;
   width: 90%;
-  margin: 15px 0px 0px 0px;
+  margin: 15px 0px 15px 0px;
   height: 25vh;
 }
 
@@ -45,14 +45,41 @@
 
 }
 
+.home_logged_out_banner_text_container h1 {
+  font: 600 16pt 'Lato';
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+}
+
+.home_logged_out_banner_text_container h1 span {
+  color: rgba(0, 0, 102, 1);
+  font: 600 16pt 'Baloo';
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+}
+
 .home_logged_out_banner_text_container h2 {
-  font: 300 13pt 'Lato';
-  margin: 0px 0px 0px 0px;
+  font: 300 12pt 'Lato';
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+}
+
+.home_logged_out_banner_text_container h2 span {
+  color: rgba(0, 0, 102, 1);
+  font: 600 12pt 'Baloo';
+  margin: 10px 0px 10px 0px;
   text-align: center;
 }
 
 .home_logged_out_banner_text_container h3 {
-  font: 600 15pt 'Lato';
+  font: 300 10pt 'Lato';
+  margin: 10px 0px 10px 0px;
+  text-align: justify;
+}
+
+.home_logged_out_banner_text_container h3 span {
+  color: rgba(0, 0, 0, 1);
+  font: 600 10pt 'Lato';
   margin: 10px 0px 10px 0px;
   text-align: justify;
 }

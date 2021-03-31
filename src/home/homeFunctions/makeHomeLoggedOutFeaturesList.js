@@ -24,7 +24,7 @@ const makeHomeLoggedOutFeaturesList = (props) => {
     return(
       <div className='home_logged_out_features_sub_right_container'>
         <div className='home_logged_out_features_sub_right_headline_container'>
-          <h2>{ feature.headline }</h2>
+          <h2><span>SmartApp<span>™</span></span> { feature.headline }</h2>
         </div>
         <div className='home_logged_out_features_sub_right_text_container'>
             { feature.desc.map((text, d_index) => {
