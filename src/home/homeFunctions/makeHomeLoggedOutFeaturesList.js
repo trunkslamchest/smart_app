@@ -7,22 +7,21 @@ const makeHomeLoggedOutFeaturesList = (props) => {
 
   const makeHomeFeaturesList = homeFeaturesList(homeFeaturesIndex)
 
-  const imgContainer = (feature) => {
+  const featureImage = (feature) => {
     return(
-      <div className='home_logged_out_features_sub_img_container'>
-          <img
-            alt={ feature.id }
-            id={ `${feature.id}_image` }
-            name={ `${feature.name}Image` }
-            src={ feature.image }
-          />
-      </div>
+      <img
+        alt={ feature.id }
+        id={ `${feature.id}_image` }
+        name={ `${feature.name}Image` }
+        src={ feature.image }
+      />
     )
   }
 
-  const textContainer = (feature) => {
+  const featureText = (feature) => {
     return(
-      <div className='home_logged_out_features_sub_desc_container'>
+      <div className='home_logged_out_features_sub_desc_wrapper'>
+
         <div className='home_logged_out_features_sub_desc_headline_container'>
           <h2><span>SmartApp<span>™</span></span> { feature.headline }</h2>
         </div>
@@ -34,8 +33,8 @@ const makeHomeLoggedOutFeaturesList = (props) => {
                 </p>
               )
             }) }
-          { feature.highlights &&
-            <div className='home_logged_out_features_sub_right_highlights_container'>
+          { !!feature.highlights.length &&
+            <div className='home_logged_out_features_sub_desc_highlights_container'>
               { feature.highlights.map((highlight, h_index) => {
                 return(
                   <p key={ h_index }>
@@ -55,19 +54,25 @@ const makeHomeLoggedOutFeaturesList = (props) => {
       { makeHomeFeaturesList.map((feature, index) => {
         return(
           <React.Fragment key={ index }>
-              <div className='home_logged_out_features_sub_container'>
                 { index % 2 === 0 ?
-                    <>
-                      { imgContainer(feature) }
-                      { textContainer(feature) }
-                    </>
-                  :
-                    <>
-                      { textContainer(feature) }
-                      { imgContainer(feature) }
-                    </>
+                  <div className='home_logged_out_features_sub_container'>
+                    <div className='home_logged_out_features_sub_left_img_container'>
+                      { featureImage(feature) }
+                    </div>
+                    <div className='home_logged_out_features_sub_right_desc_container'>
+                      { featureText(feature) }
+                    </div>
+                  </div>
+                :
+                  <div className='home_logged_out_features_sub_container'>
+                    <div className='home_logged_out_features_sub_left_desc_container'>
+                      { featureText(feature) }
+                    </div>
+                    <div className='home_logged_out_features_sub_right_img_container'>
+                      { featureImage(feature) }
+                    </div>
+                  </div>
                 }
-            </div>
           </React.Fragment >
         )
       })}
