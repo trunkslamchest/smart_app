@@ -1,21 +1,57 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {
+  help,
+  setHelpHeader,
+  setHelpSections
+} from '../../../store/actions/actionIndex'
+
+import makeHomeHelpSections from '../../homeFunctions/makeHomeHelpSections'
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './homeBottomBanner.css'
 
-const HomeBottomBanner = (props) => {
+class HomeBottomBanner extends React.Component {
 
-  return(
-    <div className='home_logged_out_bottom_banner'>
-      <div className='home_logged_out_text_container'>
-        <h2>
-          Answer Questions. Unlock Achievements. Improve Your Rank. Climb The Leaderboards.
-        </h2>
-        <h3>
-          Get Smart
-        </h3>
+  onHelp = () => {
+    this.props.onSetHelpHeader('Getting Started')
+    this.props.onSetHelpSections(makeHomeHelpSections)
+    this.props.onHelpModal(true)
+  }
+
+  render(){
+
+    const helpButton = [
+      {
+        id: 'help_button',
+        name: 'HelpButton',
+        onClickFunction: this.onHelp,
+        text: 'Would You Like To Know More?',
+        tooltipText: [ 'Information on how to get started' ]
+      }
+    ]
+
+    return(
+      <div className='home_logged_out_bottom_banner'>
+          <DefaultButtonsContainer
+            buttons={ helpButton }
+            buttonClass={ 'home_button' }
+            buttonContainerClass={ 'home_help_button_container' }
+            containerClass={ 'home_help_buttons_container' }
+            enableButton={ true }
+            // tooltipClass={  }
+          />
       </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default HomeBottomBanner
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onHelpModal: (bool) => dispatch(help(bool)),
+    onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
+    onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HomeBottomBanner)

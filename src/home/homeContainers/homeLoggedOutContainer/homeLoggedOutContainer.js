@@ -1,6 +1,7 @@
 import React from 'react'
 
 import HomeBanner from '../../homeComponents/homeBanner/homeBanner'
+import HomeButtonBanner from '../../homeComponents/homeButtonBanner/homeButtonBanner'
 import HomeSubBanner from '../../homeComponents/homeSubBanner/homeSubBanner'
 import HomeBottomBanner from '../../homeComponents/homeBottomBanner/homeBottomBanner'
 import HomeFeatures from '../../homeComponents/homeFeatures/homeFeatures'
@@ -14,14 +15,16 @@ const HomeLoggedOutContainer = (props) => {
     <div className='home_logged_out_wrapper'>
       <HomeBanner history={ props.history } />
       <div className='home_logged_out_features_divider'></div>
-      <HomeSubBanner history={props.history} />
+      <HomeButtonBanner history={ props.history } />
       <div className='home_logged_out_features_divider'></div>
-      <HomeFeatures history={ props.history } />
+      <HomeSubBanner history={props.history} />
       {/* <div className='home_logged_out_features_divider'></div> */}
+      <HomeFeatures history={ props.history } />
+      <div className='home_logged_out_features_divider'></div>
       <HomeBottomBanner history={props.history} />
       <div className='home_logged_out_features_divider'></div>
       <HomeTech history={ props.history } />
-      <div className='home_logged_out_features_divider'></div>
+      {/* <div className='home_logged_out_features_divider'></div> */}
     </div>
   )
 }

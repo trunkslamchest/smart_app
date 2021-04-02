@@ -15,14 +15,11 @@ const HomeBanner = (props) => {
               <span>SmartApp</span>™ is for people who love trivia and love to test their knowledge.
             </h1>
             <h2>
-              Whether you are noobie, a mastermind know-it-all, <span>SmartApp</span>™ is made to help you expand your mind.
+              Whether you are noobie or a mastermind know-it-all, <span>SmartApp</span>™ is made to help you expand your mind.
             </h2>
             <h3>
-              <span>Login</span> or <span>Sign Up</span> to get started today.
+              <span>Login</span> or <span>Sign Up</span> and get smart today.
             </h3>
-            {/* <p>
-              <span>Login</span> or <span>Sign Up</span> to get started!
-            </p> */}
           </div>
         </div>
     </div>

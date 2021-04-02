@@ -33,11 +33,21 @@
   align-content: center;
   display: flex;
   flex-wrap: nowrap;
-  /* flex-direction: column; */
   flex-direction: row;
-  /* justify-content: center; */
   justify-content: center;
+  padding: 0px;
+  margin: 0px;
+  width: 50%;
+  max-width: 400px;
+}
 
+.home_help_buttons_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
   padding: 0px;
   margin: 0px;
   width: 50%;

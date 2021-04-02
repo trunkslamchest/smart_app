@@ -1,12 +1,9 @@
-// const homeFeaturesList = (usersIMG, questionsIMG, statsIMG, achievementsIMG, xpIMG, rankRatingIMG, leaderboardsIMG) => {
 const homeFeaturesList = (homeFeaturesIndex) => {
   return [
     {
       desc: [
-        `The SmartApp™ Nexus stores over 200+ questions in 16 different categories from 3 separate difficulty levels.
-         It is also responsible for tracking of all sorts of statistics for each question, category and difficulty,
-         which it then uses to define trends and patterns within the data it recieves.`,
-        `From general trends, to individual metrics, The SmartApp™ Nexus offers important data to let you know how you stack up with yourself, and with your competition.`
+        `The SmartApp™ Nexus stores and collects data for over 200+ questions from 16 different categories in 3 separate difficulty levels.`,
+        `From general trends, to individual metrics, The SmartApp™ Nexus collects the data that lets you know how you stack up against yourself, and with your competition.`
       ],
       headline: 'Nexus',
       highlights: [

@@ -1,4 +1,4 @@
-const makeHomeLoggedOutButtons = (onLogIn, onSignUp, onHelp) => {
+const makeHomeLoggedOutButtons = (onLogIn, onSignUp) => {
   return [
     {
       id: 'log_in_button',
@@ -14,13 +14,6 @@ const makeHomeLoggedOutButtons = (onLogIn, onSignUp, onHelp) => {
       text: 'Sign Up',
       tooltipText: [ 'Create a new account' ]
 
-    },
-    {
-      id: 'help_button',
-      name: 'HelpButton',
-      onClickFunction: onHelp,
-      text: 'Help',
-      tooltipText: [ 'Information on how to get started' ]
     }
   ]
 }

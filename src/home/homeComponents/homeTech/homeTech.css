@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  margin: 15px 0px;
+  margin: 30px 0px 15px 0px;
 }
 
 .home_logged_out_tech_sub_container {
@@ -39,6 +39,13 @@
   height: auto;
   width: 75px;
 }
+
+.home_logged_out_tech_icon_img_container a {
+  height: 0px;
+  width: 0px;
+  text-decoration: none;
+}
+
 
 .home_logged_out_tech_icon_text_container {
 
