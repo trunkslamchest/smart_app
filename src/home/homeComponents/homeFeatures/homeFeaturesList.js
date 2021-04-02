@@ -58,10 +58,10 @@ const homeFeaturesList = (homeFeaturesIndex) => {
     // },
     {
       desc: [
-        `Everyone loves the feeling progress. And we wanted to give you that illusion of progress.
-         As you answer more questions, you will earn experience points based on your performance.
+        `Everyone loves the feeling progress. And SmartApp™ wants to give you that illusion of progress.`,
+        `As you answer more questions, you will earn experience points based on your performance.
          The better you do, the more experience you gain, the higher your level becomes.`,
-         `It is all quite elementary, my dear Watson.`
+        `It is quite elementary, my dear Watson.`
       ],
       headline: 'Experience',
       highlights: [
@@ -79,9 +79,9 @@ const homeFeaturesList = (homeFeaturesIndex) => {
     {
       desc: [
         `Along with gaining experience and leveling up,
-         you will receive ranks and ratings for each question you answer based on how fast you, as well as others, have answered a question correctly.`,
-         `Question ranks and ratings are then compiled to produce your overall SmartApp™ Rank and SmartApp™ Rating.
-         There are also ranks and ratings for how well you perform for individual difficulties and categories.`,
+         you will receive ranks and ratings for each question you answer based on how fast you, as well as others, have answered a question.`,
+        `Question ranks and ratings are then compiled to produce your overall SmartApp™ Rank and SmartApp™ Rating.
+         There are also ranks and ratings for how well you perform for individual categories and difficulties.`,
         `No matter how you do, you will always know how well you do.`
       ],
       headline: 'Ratings',
@@ -99,10 +99,8 @@ const homeFeaturesList = (homeFeaturesIndex) => {
     },
     {
       desc: [
-        `Still haven't scratched that itch for progress?
-         SmartApp™ also offers over 25 achievements to unlock.`,
-        `With achievements ranging from 'Answer Your First Question Correctly' to 'Answer Your First 10 Questions Correctly In Under 1 Second',
-         SmartApp™ gives you plenty of reasons to grind for those meaningless goals you forever hope to reach.`
+        `Still haven't scratched that itch for meaningless progress?`,
+        `With over 25 achievements to unlock, SmartApp™ gives you plenty of reasons to grind for those lofty goals you forever hope to reach.`
       ],
       headline: 'Achievements',
       highlights: [
@@ -119,8 +117,8 @@ const homeFeaturesList = (homeFeaturesIndex) => {
     },
     {
       desc: [
-        `Wanna know how your trivia knowledge stacks up against everyone in your country? How 'bout the entire planet?
-         SmartApp™'s Leaderboards has you covered.`,
+        `Wanna know how your trivia knowledge stacks up against everyone in your country? How 'bout the entire planet?`,
+        `SmartApp™'s Leaderboards have you covered.`,
         `It doesn't matter where you want to assert your trivia dominance, everyone will know how smart you are when you hit that #1 spot.`
       ],
       headline: 'Leaderboards',
