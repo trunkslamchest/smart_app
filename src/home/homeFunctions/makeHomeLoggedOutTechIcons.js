@@ -5,17 +5,6 @@ import homeIconsIndex from '../../assets/home_icons/homeIconsIndex'
 
 const makeHomeTechIcons = (props) => {
 
-  // const makeHomeTechIcons = homeTechIcons(
-    // cssIMG,
-  //   scssIMG,
-  //   firebaseIMG,
-  //   htmlIMG,
-  //   jsIMG,
-  //   otdbIMG,
-  //   reactIMG,
-  //   reduxIMG
-  // )
-
   const makeHomeTechIcons = homeTechIcons(homeIconsIndex)
 
   return(
@@ -41,11 +30,6 @@ const makeHomeTechIcons = (props) => {
                   />
                 </a>
               </div>
-                {/* <div className='home_logged_out_tech_icon_text_container'>
-                  <span>
-                    { icon.text }
-                  </span>
-                </div> */}
             </div>
           )
         })

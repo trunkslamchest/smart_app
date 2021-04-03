@@ -7,7 +7,7 @@ const CarouselSlideContainer = (props) => {
     <>
       {
         props.currentSlide &&
-        <div className='default_carousel_slide_container'>
+        <div className={ props.currentSlideState === "mount" ? 'default_carousel_slide_container' : 'dismount_default_carousel_slide_container' }>
           <div className='default_carousel_slide_img_container'>
             <img
               alt={ props.currentSlide.name }

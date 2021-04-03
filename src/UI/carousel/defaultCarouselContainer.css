@@ -5,5 +5,6 @@
   justify-content: center;
   align-content: center;
   align-items: center;
+  min-height: 345px;
   width: 100%;
 }

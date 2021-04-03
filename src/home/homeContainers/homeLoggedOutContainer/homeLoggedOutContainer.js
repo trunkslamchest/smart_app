@@ -26,13 +26,14 @@ const HomeLoggedOutContainer = (props) => {
         slides={ homeFeaturesCarousel(homeFeaturesIndex) }
       />
       <div className='home_logged_out_features_divider'></div>
-      <HomeSubBanner history={props.history} />
+      <HomeBottomBanner history={props.history} />
       {/* <div className='home_logged_out_features_divider'></div> */}
       {/* <HomeFeatures history={ props.history } /> */}
       <div className='home_logged_out_features_divider'></div>
-      <HomeBottomBanner history={props.history} />
+      <HomeSubBanner history={props.history} />
       <div className='home_logged_out_features_divider'></div>
       <HomeTech history={ props.history } />
+      <div className='home_logged_out_features_divider'></div>
       {/* <div className='home_logged_out_features_divider'></div> */}
     </div>
   )

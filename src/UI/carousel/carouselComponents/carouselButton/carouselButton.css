@@ -1,18 +1,23 @@
 .carousel_button_container {
+  /* background-color: rgba(51, 51, 51, 1); */
+  /* background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(51, 51, 51, 1), rgba(51, 51, 51, 1), rgba(255, 255, 255, 0)); */
+
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-content: center;
   align-items: center;
-  margin: 0px 0px 20px 0px;
-  width: 100%;
+  margin: 0px 0px 40px 0px;
+  /* padding: 10px 20px; */
+  /* width: 100%; */
 }
 
 .carousel_button_selected {
   border-radius: 50px;
   -webkit-appearance: none;
-  background: rgba(200, 200, 200, 1);
+  background: rgba(0, 0, 102, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 0);
@@ -33,20 +38,12 @@
 
 .carousel_button_selected:hover {
   cursor: default;
-
-  /* color: rgba(50, 50, 50, 1);
-  background-color: rgba(244, 166, 66, 1);
-  border-radius: 5px;
-  border: 0px solid black;
-  box-sizing: border-box;
-  font: 300 0pt 'PoppinsLight', sans-serif;
-  transition: background-color .2s ease-in-out 0s; */
 }
 
 .carousel_button_unselected {
   border-radius: 50px;
   -webkit-appearance: none;
-  background: rgba(100, 100, 100, 1);
+  background: rgba(150, 150, 150, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 0);

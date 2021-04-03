@@ -22,7 +22,6 @@ const makeCarouselButtons = (props) => {
         { i }
       </button>
     )
-
   }
 
   return buttons
