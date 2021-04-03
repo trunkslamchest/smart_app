@@ -42,23 +42,25 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
       }
     },
     // {
-    //   desc: [
-    //     `We know you want to know how well you're doing in your quest for absolute knowledge.
-    //      So we want to provide you with the information you need to succeed.`,
-    //     `From general trends, to individual metrics, SmartApp™ offers important data to let you know how you stack up with yourself, and with your competition.`
-    //   ],
-    //   headline: 'In Depth Statistics',
-    //   highlights: [
-    //     // 'Individual Performance Reports',
-    //     // 'Percentage Based User Comparisons',
-    //     // 'Dynamic Question Ratings',
-    //     // 'highlight4',
-    //     // 'highlight5',
-    //   ],
     //   id: 'home_features_stats',
     //   image: homeFeaturesIndex.temp,
     //   // image: statsIMG,
-    //   name: 'homeFeaturesStats'
+    //   name: 'homeFeaturesStats',
+    //   text: {
+    //     desc: [
+    //       `We know you want to know how well you're doing in your quest for absolute knowledge.
+    //       So we want to provide you with the information you need to succeed.`,
+    //       `From general trends, to individual metrics, SmartApp™ offers important data to let you know how you stack up with yourself, and with your competition.`
+    //     ],
+    //     headline: 'In Depth Statistics',
+    //     highlights: [
+    //       // 'Individual Performance Reports',
+    //       // 'Percentage Based User Comparisons',
+    //       // 'Dynamic Question Ratings',
+    //       // 'highlight4',
+    //       // 'highlight5',
+    //     ]
+    //   }
     // },
     {
       id: 'home_features_xp',
