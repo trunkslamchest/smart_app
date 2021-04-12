@@ -54,6 +54,12 @@ class DefaultCarouselContainer extends React.Component {
     })
   }
 
+  componentWillUnmount(){
+    clearInterval(this.startSlideTimer)
+    clearInterval(this.slideOutTimer)
+    clearTimeout(this.slideInTimeout)
+  }
+
   render(){
     return(
       <div className='default_carousel_container'>
