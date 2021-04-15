@@ -74,6 +74,7 @@
   flex-wrap: nowrap;
   align-content: center;
   align-items: center;
+  /* max-width: 700px; */
   max-width: 600px;
   width: 50%;
   justify-content: flex-end;
@@ -83,6 +84,7 @@
 
 .default_carousel_slide_img_container img {
   height: auto;
+  /* min-width: 350px; */
   min-width: 300px;
   width: 100%;
 }

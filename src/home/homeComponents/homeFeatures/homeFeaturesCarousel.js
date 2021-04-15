@@ -2,8 +2,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
   return [
     {
       id: 'home_features_questions',
-      image: homeFeaturesIndex.temp,
-      // image: questionsIMG,
+      image: homeFeaturesIndex.nexus,
       name: 'homeFeaturesQuestions',
       text: {
         desc: [
@@ -22,8 +21,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
     },
     {
       id: 'home_features_users',
-      image: homeFeaturesIndex.temp,
-      // image: usersIMG,
+      image: homeFeaturesIndex.profiles,
       name: 'homeFeaturesUsers',
       text: {
         desc: [
@@ -64,8 +62,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
     // },
     {
       id: 'home_features_xp',
-      image: homeFeaturesIndex.temp,
-      // image: xpIMG,
+      image: homeFeaturesIndex.xp,
       name: 'homeFeaturesXP',
       text: {
         desc: [
@@ -86,8 +83,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
     },
     {
       id: 'home_features_rank_rating',
-      image: homeFeaturesIndex.temp,
-      // image: rankRatingIMG,
+      image: homeFeaturesIndex.rating,
       name: 'homeFeaturesRankRating',
       text: {
         desc: [
@@ -109,8 +105,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
     },
     {
       id: 'home_features_achievements',
-      image: homeFeaturesIndex.temp,
-      // image: achievementsIMG,
+      image: homeFeaturesIndex.achievements,
       name: 'homeFeaturesAchievements',
       text: {
         desc: [
@@ -129,8 +124,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
     },
     {
       id: 'home_features_leaderboards',
-      image: homeFeaturesIndex.temp,
-      // image: leaderboardsIMG,
+      image: homeFeaturesIndex.leaderboards,
       name: 'homeFeaturesLeaderboards',
       text: {
         desc: [

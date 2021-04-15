@@ -14,7 +14,7 @@ const homeFeaturesList = (homeFeaturesIndex) => {
         // 'Approval/Comment Features'
       ],
       id: 'home_features_questions',
-      image: homeFeaturesIndex.temp,
+      image: homeFeaturesIndex.nexus,
       // image: questionsIMG,
       name: 'homeFeaturesQuestions'
     },
