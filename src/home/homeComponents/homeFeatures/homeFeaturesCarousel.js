@@ -68,8 +68,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
         desc: [
           `Everyone loves the feeling progress. And SmartApp™ wants to give you that illusion of progress.`,
           `As you answer more questions, you will earn experience points based on your performance.
-          The better you do, the more experience you gain, the higher your level becomes.`,
-          `It is quite elementary, my dear Watson.`
+          The better you do, the more experience you gain, the higher your level becomes.`
         ],
         headline: 'Experience',
         highlights: [
