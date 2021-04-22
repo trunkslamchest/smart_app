@@ -222,7 +222,7 @@ class AuthController extends React.Component {
     if(
       this.props.auth.authType === 'signUp' ||
       this.props.auth.authType === 'logIn'
-    ) this.props.history.push( routes.dashboard )
+    ) this.props.history.push( routes.home )
 
     if(this.props.auth.authType === 'editProfile') this.props.history.push( routes.dashboard_profile )
 

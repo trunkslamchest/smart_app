@@ -12,10 +12,14 @@ import {
 } from '../../../store/actions/actionIndex'
 import { routes } from '../../../utility/paths'
 
+import HomeBanner from '../../homeComponents/homeBanner/homeBanner'
+import HomeGreeting from '../../homeComponents/homeGreeting/homeGreeting'
+
+
 import makeHomeLoggedInButtons from '../../homeFunctions/makeHomeLoggedInButtons'
 
-import HomeLogoContainer from '../homeLogoContainer/homeLogoContainer'
-import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+// import HomeLogoContainer from '../homeLogoContainer/homeLogoContainer'
+// import DefaultButtonsContainer from '../../../UI/buttons/defaultButtons/Container/defaultButtonsContainer'
 
 import './homeLoggedInContainer.css'
 
@@ -38,27 +42,17 @@ const HomeLoggedInContainer = (props) => {
 
   return(
     <div className='home_logged_in_wrapper'>
-      <div className='home_logged_in_top_container'>
-
-        <HomeLogoContainer />
-        <div className='home_logged_in_top_right_container'>
-
-        <DefaultButtonsContainer
-          buttons={ homeButtons }
-          buttonClass={ 'home_start_button' }
-          containerClass={ 'home_buttons_container' }
-          enableButton={ true }
-          // tooltipClass={  }
-        />
-      </div>
-    </div>
+      <HomeBanner />
+      <div className='home_logged_out_features_divider'></div>
+      <HomeGreeting user_name={ props.user.info.user_name } />
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    play: state.play
+    play: state.play,
+    user: state.user
   }
 }
 
@@ -76,3 +70,20 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeLoggedInContainer)
+
+    // <div className='home_logged_in_wrapper'>
+    //   <div className='home_logged_in_top_container'>
+
+    //     <HomeLogoContainer />
+    //     <div className='home_logged_in_top_right_container'>
+
+    //     <DefaultButtonsContainer
+    //       buttons={ homeButtons }
+    //       buttonClass={ 'home_start_button' }
+    //       containerClass={ 'home_buttons_container' }
+    //       enableButton={ true }
+    //       // tooltipClass={  }
+    //     />
+    //     </div>
+    //   </div>
+    // </div>
