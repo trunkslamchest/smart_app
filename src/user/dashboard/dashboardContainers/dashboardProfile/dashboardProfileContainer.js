@@ -12,6 +12,9 @@ import makeDashboardProfileFields from '../../dashboardFunctions/makeDashboardPr
 import ContainerProfileHeader from '../../../../UI/components/headers/containerProfileHeader/containerProfileHeader'
 import DashboardProfileField from '../../dashboardComponents/dashboardProfileField/dashboardProfileField'
 
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
@@ -53,21 +56,48 @@ const DashboardProfileContainer = (props) => {
     )
   })
 
+  let last_login_block =
+    <div className='dashboard_date_sub_container'>
+      <h4>Last Login</h4>
+      <h5>{ last_login }</h5>
+    </div>
+
+  let join_date_block =
+    <div className='dashboard_date_sub_container'>
+      <h4>Join Date</h4>
+      <h5>{ join_date }</h5>
+    </div>
+
+  let date_block =
+    <div className='dashboard_date_container'>
+      { join_date_block }
+      { last_login_block }
+    </div>
+
   return(
     <div className='dashboard_profile_wrapper'>
       <ContainerProfileHeader
         avatar={ avatar }
         containerClass={ 'dashboard_profile_header_buttons_container' }
-        buttons={ headerButtons }
+        // buttons={ headerButtons }
         email={ email }
         history={ props.history }
         user_name={ user_name }
+        date_block={ date_block }
       />
       <div className='dashboard_profile_body'>
         <div className='dashboard_profile_fields_container'>
           { distribProfileFields }
         </div>
-        <div className='dashboard_profile_last_login_join_date_container'>
+        <DefaultButtonsContainer
+          buttons={ headerButtons }
+          buttonClass={ 'dashboard_profile_header_button' }
+          containerClass={ 'dashboard_profile_header_buttons_container' }
+          enableButton={ true }
+          // tooltipClass={ 'nav_bar_tooltip' }
+        />
+        {/* { headerButtons } */}
+        {/* <div className='dashboard_profile_last_login_join_date_container'>
           <div className='dashboard_profile_last_login_join_date_sub_container'>
             <h3>Last Login</h3>
             <span>{ last_login }</span>
@@ -76,7 +106,7 @@ const DashboardProfileContainer = (props) => {
             <h3>Join Date</h3>
             <span>{ join_date }</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

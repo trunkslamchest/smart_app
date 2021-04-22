@@ -18,6 +18,7 @@ const UserProfileInfoContainer = (props) => {
   let gender_pronouns = props.info.gender_pronouns !== 'null' && props.info.gender_pronouns
   let age = (props.info.dob && props.info.dob.year !== 0) && new Date().getFullYear() - props.info.dob.year
   let bio = props.info.bio !== 'null' && props.info.bio
+
   let last_login =
     <div className='user_profile_info_date_sub_container'>
       <h4>Last Login</h4>

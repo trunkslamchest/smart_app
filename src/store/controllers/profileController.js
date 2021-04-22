@@ -84,7 +84,6 @@ class ProfileController extends React.Component {
     this.props.onLoadingModal(false)
   }
 
-
   render(){
     return(
       <>

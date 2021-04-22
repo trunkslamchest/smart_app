@@ -11,7 +11,9 @@
 }
 
 .dashboard_profile_field h3 {
-  color: rgba(255, 255, 255, 1);
+  /* color: rgba(255, 255, 255, 1); */
+  color: rgba(50, 50, 50, 1);
+
   font: 300 12pt 'PoppinsLight', sans-serif;
   /* text-align: center; */
 }
@@ -48,7 +50,7 @@
 
 .dashboard_profile_field li span {
   align-self: stretch;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(50, 50, 50, 1);
   font: 300 9pt "Roboto", sans-serif;
 }
 
