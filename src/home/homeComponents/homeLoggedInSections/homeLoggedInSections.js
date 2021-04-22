@@ -30,13 +30,6 @@ const HomeLoggedInSections = (props) => {
     props.onHelpModal(true)
   }
 
-  const onInitGame = (event) => {
-    if(!!props.play.status) onClearGame()
-    let buttonParams = JSON.parse(event.target.attributes.params.value)
-    localStorage.gameMode = buttonParams.mode
-    props.history.push(buttonParams.route)
-  }
-
   const onPushLink = (event) => {
     if(!!props.play.status) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -54,7 +47,7 @@ const HomeLoggedInSections = (props) => {
     if(!!props.play.commented) props.onResetComment()
   }
 
-  let homeButtons = makeHomeLoggedInButtons(onInitGame, onPushLink, onHelp, routes, props.user.info.user_name)
+  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, routes, props.user.info.user_name)
 
   let homeButtonSections = homeButtons.map((button, index) => {
     return(

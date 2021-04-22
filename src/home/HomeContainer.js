@@ -14,7 +14,7 @@ const HomeContainer = (props) => {
 
   if(!props.auth.loading) {
     if(props.auth.status === 'authValid') {
-      homePage = <HomeLoggedInContainer history={ props.history } />
+      homePage = <HomeLoggedInContainer history={ props.history } user_name={ props.user.info.user_name } />
     } else {
       homePage = <HomeLoggedOutContainer history={ props.history } />
     }
@@ -26,7 +26,8 @@ const HomeContainer = (props) => {
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    modal: state.modal
+    modal: state.modal,
+    user: state.user
   }
 }
 
