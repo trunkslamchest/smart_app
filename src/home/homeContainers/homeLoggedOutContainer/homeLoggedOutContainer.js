@@ -4,7 +4,6 @@ import HomeBanner from '../../homeComponents/homeBanner/homeBanner'
 import HomeButtonBanner from '../../homeComponents/homeButtonBanner/homeButtonBanner'
 import HomeSubBanner from '../../homeComponents/homeSubBanner/homeSubBanner'
 import HomeBottomBanner from '../../homeComponents/homeBottomBanner/homeBottomBanner'
-// import HomeFeatures from '../../homeComponents/homeFeatures/homeFeatures'
 import HomeTech from '../../homeComponents/homeTech/homeTech'
 
 import homeFeaturesIndex from '../../../assets/home_features/homeFeaturesIndex'
@@ -19,22 +18,17 @@ const HomeLoggedOutContainer = (props) => {
   return(
     <div className='home_logged_out_wrapper'>
       <HomeBanner history={ props.history } />
-      <div className='home_logged_out_features_divider'></div>
+      <div className='divider_medium'></div>
       <HomeButtonBanner history={ props.history } />
-      <div className='home_logged_out_features_divider'></div>
-      <DefaultCarouselContainer
-        slides={ homeFeaturesCarousel(homeFeaturesIndex) }
-      />
-      <div className='home_logged_out_features_divider'></div>
+      <div className='divider_medium'></div>
+      <DefaultCarouselContainer slides={ homeFeaturesCarousel(homeFeaturesIndex) } />
+      <div className='divider_medium'></div>
       <HomeBottomBanner history={props.history} />
-      {/* <div className='home_logged_out_features_divider'></div> */}
-      {/* <HomeFeatures history={ props.history } /> */}
-      <div className='home_logged_out_features_divider'></div>
+      <div className='divider_medium'></div>
       <HomeSubBanner history={props.history} />
-      <div className='home_logged_out_features_divider'></div>
+      <div className='divider_medium'></div>
       <HomeTech history={ props.history } />
-      <div className='home_logged_out_features_divider'></div>
-      {/* <div className='home_logged_out_features_divider'></div> */}
+      <div className='divider_medium'></div>
     </div>
   )
 }
