@@ -7,6 +7,6 @@
 }
 
 .dashboard_missing_field_error span {
-  color: rgba(200, 200, 200, 1);
+  color: rgba(50, 50, 50, 1);
   font: 300 11pt 'Lato', sans-serif;
 }

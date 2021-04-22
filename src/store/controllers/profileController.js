@@ -28,9 +28,13 @@ class ProfileController extends React.Component {
 
   componentDidUpdate() {
     if(this.props.profile.status === 'initUserProfile' && !this.props.profile.userData) this.getProfileModule()
-    if((this.props.profile.userData && this.props.profile.status === 'getUserProfile') && (this.props.profile.userData.settings.privacy.profile.showStats && !this.props.questions.totals)) this.getQuestionTotalsModule()
-    if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
-    if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
+    if(typeof this.props.profile.userData !== 'string') {
+      if((this.props.profile.userData && this.props.profile.status === 'getUserProfile') && (this.props.profile.userData.settings.privacy.profile.showStats && !this.props.questions.totals)) this.getQuestionTotalsModule()
+      if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
+      if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
+    } else {
+      this.displayProfileModule()
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState){

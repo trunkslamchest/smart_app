@@ -28,6 +28,7 @@
 }
 
 .dashboard_profile_last_login_join_date_container {
+  color: rgba(50, 50, 50, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -48,7 +49,6 @@
 }
 
 .dashboard_profile_last_login_join_date_sub_container h3 {
-  color: rgba(255, 255, 255, 1);
   font: 300 12pt 'PoppinsLight', sans-serif;
   text-align: center;
 }
@@ -57,42 +57,5 @@
   display: flex;
   align-content: center;
   align-self: center;
-  color: rgba(255, 255, 255, 1);
   font: 300 9pt "Roboto", sans-serif;
 }
-
-/* .dashboard_profile_body span {
-  margin: 0px;
-  padding: 5px 0px;
-  width: 100%;
-  text-align: center;
-} */
-
-/* .dashboard_profile_body span a {
-  color: rgba(4, 108, 196, 1);
-  margin: 0px;
-  text-decoration: none;
-}
-
-.dashboard_profile_body span a:active {
-  color: rgba(244, 166, 66, 1);
-  margin: 0px;
-  text-decoration: none;
-  transition-property: color;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
-}
-
-.dashboard_profile_body span a:hover {
-  color: rgba(244, 166, 66, 1);
-  margin: 0px;
-  text-decoration: none;
-  transition-property: color;
-  transition-duration: .1s, .1s;
-  transition-timing-function: ease-in-out;
-}
-
-.dashboard_profile_body span a:visited {
-  margin: 0px;
-  text-decoration: none;
-} */

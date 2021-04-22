@@ -13,6 +13,8 @@ class FormCheckBox extends React.Component {
 
   render() {
 
+    console.log(this.props.status)
+
     let checkmark, xMark
 
     if(this.props.disabled) {
@@ -34,11 +36,11 @@ class FormCheckBox extends React.Component {
           id={ this.props.id }
           className={ this.props.checkBoxClass }
           name={ this.props.name }
-          onClick={ this.props.disabled ? this.disabledClickFunctions : this.props.onChange }
+          onClick={ this.props.disabled ? this.disabledClickFunctions : this.props.onChecked }
           onMouseEnter={ this.onHover }
           onMouseLeave={ this.offHover }
         >
-          { this.props.value ?
+          { this.props.status ?
             <img
               alt={ 'checked' }
               className={ this.props.checkBoxImgClass }

@@ -12,14 +12,15 @@ const HomeLoggedInContainer = (props) => {
   return(
     <div className='home_logged_in_wrapper'>
       <HomeBanner />
-      <div className='divider_medium'></div>
+      <div className='divider_medium' />
       <HomeGreeting user_name={ props.user_name } />
+      <div className='divider_medium' />
       <HomeLoggedInSections history={props.history} />
-      <div className='divider_medium'></div>
+      <div className='divider_medium' />
       <HomeSubBanner history={props.history} />
-      <div className='divider_medium'></div>
+      <div className='divider_medium' />
       <HomeTech history={ props.history } />
-      <div className='divider_medium'></div>
+      <div className='divider_medium' />
     </div>
   )
 }
