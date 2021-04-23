@@ -5,6 +5,7 @@
 @import url('./buttonStyles/dashboardFormButton.css');
 @import url('./buttonStyles/dashboardProfileHeaderButton.css');
 @import url('./buttonStyles/dashboardStatsViewQuestionButton.css');
+@import url('./buttonStyles/defaultButtons/defaultButtons.css');
 @import url('./buttonStyles/defaultButton.css');
 @import url('./buttonStyles/diffButton.css');
 @import url('./buttonStyles/editCommentButton.css');
@@ -21,7 +22,7 @@
 @import url('./buttonStyles/menuButton.css');
 @import url('./buttonStyles/modalButton.css');
 @import url('./buttonStyles/modalHelpButton.css');
-@import url('./buttonStyles/navBarButtons/navBarButton.css');
+@import url('./buttonStyles/navBarButtons/navBarButtons.css');
 @import url('./buttonStyles/nextQuestionButton.css');
 @import url('./buttonStyles/questionCardChoiceButton.css');
 

@@ -98,7 +98,9 @@ class LogIn extends React.Component {
           <ModalHeader header_text='Log In' />
           { this.props.auth.loading && loading }
             <DefaultForm
-              // buttonContainerClass={ 'dashboard_form_buttons_container' }
+              // buttonClass={ 'log_in_button' }
+              // containerClass={ 'log_in_buttons_container' }
+              buttonRow={ true }
               inputFields={ logInFormInputs }
               inputContainerClass={ 'log_in_input_container' }
               formButtons={ logInButtons }

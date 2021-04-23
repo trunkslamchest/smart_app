@@ -135,6 +135,7 @@ class SignUp extends React.Component {
           <ModalHeader header_text='Create New Account' />
           { this.props.auth.loading && loading }
             <DefaultForm
+              buttonRow={ true }
               inputFields={ signUpFormInputs }
               inputContainerClass={ 'sign_up_input_container' }
               formButtons={ signUpButtons }

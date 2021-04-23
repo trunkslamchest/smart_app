@@ -27,7 +27,7 @@ const DefaultButtonContainer = (props) => {
             return(
               <DefaultButton
                 // buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
-                buttonClass={ props.buttonRow ? calcButtonClass(props.buttonClass, props.buttons.length, index) : props.buttonClass || button.buttonClass || 'default_button' }
+                buttonClass={ props.buttonRow ? calcButtonClass(props.buttonClass || button.buttonClass || 'default_button', props.buttons.length, index) : props.buttonClass || button.buttonClass || 'default_button' }
                 buttonContainerClass={ props.buttonContainerClass || button.buttonContainerClass || 'default_button_container' }
                 buttonType={ button.buttonType }
                 history={ props.history }

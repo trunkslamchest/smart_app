@@ -1,7 +1,6 @@
 .tos_check_box_container {
   background-color: rgba(255, 255, 255, 1);
-
-  border: 1px solid rgba(50, 50, 50, 1);
+  border: 1px solid rgba(150, 150, 150, 1);
   border-radius: 5px;
   align-items: center;
   align-content: center;
