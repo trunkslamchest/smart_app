@@ -35,6 +35,7 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
             checkBoxButtonContainerClass={ field.checkBoxButtonContainerClass }
             checkBoxClass={ field.checkBoxClass }
             checkBoxImgClass={ field.checkBoxImgClass }
+            checkBoxDisabledClass={ field.checkBoxDisabledClass }
             className={ field.inputClass }
             label={ field.label }
             id={ field.id }

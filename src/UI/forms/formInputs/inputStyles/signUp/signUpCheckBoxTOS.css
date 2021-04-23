@@ -58,7 +58,7 @@
 }
 
 .tos_check_box:disabled {
-  background: rgba(255, 255, 255, 0);
+  background: rgba(150, 150, 150, 1);
   color: rgba(255, 255, 255, 1);
   cursor: default;
   border: 0px solid rgba(0, 0, 0, 1);
@@ -81,5 +81,35 @@
 
 .tos_check_box:disabled img:active {
   cursor: default;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_disabled {
+  background: rgba(150, 150, 150, 1);
+  color: rgba(255, 255, 255, 1);
+  cursor: not-allowed;
+  border: 0px solid rgba(0, 0, 0, 1);
+  font: 100 0px 'Lato';
+  padding: 2.5px;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: transform .25s ease-in-out;
+}
+
+.tos_check_box_disabled img {
+  filter: grayscale(1.0);
+  width: 20px;
+  height: 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_disabled img:hover {
+  filter: grayscale(1.0);
+  cursor: not-allowed;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_disabled img:active {
+  filter: grayscale(1.0);
+  cursor: not-allowed;
   outline: -webkit-focus-ring-color auto 0px;
 }

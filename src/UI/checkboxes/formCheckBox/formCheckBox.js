@@ -13,11 +13,13 @@ class FormCheckBox extends React.Component {
 
   render() {
 
+    // console.log(this.props.disabled)
+
     let checkmark, xMark
 
     if(this.props.disabled) {
-      checkmark = this.props.checkedImage
-      xMark = this.props.uncheckedImage
+      checkmark = this.props.checkedImageDisabled
+      xMark = this.props.uncheckedImageDisabled
     } else {
       if(this.state.hover) {
         checkmark = this.props.checkedImageHover
@@ -32,7 +34,7 @@ class FormCheckBox extends React.Component {
       <div className={ this.props.checkBoxButtonContainerClass }>
         <button
           id={ this.props.id }
-          className={ this.props.checkBoxClass }
+          className={ this.props.disabled ? this.props.checkBoxDisabledClass : this.props.checkBoxClass }
           name={ this.props.name }
           onClick={ this.props.disabled ? this.disabledClickFunctions : this.props.onChecked }
           onMouseEnter={ this.onHover }

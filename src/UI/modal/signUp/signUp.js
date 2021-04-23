@@ -33,14 +33,15 @@ class SignUp extends React.Component {
     enableInput: true,
     errors: {},
     form: { valid: false, pending: false },
+    validationLoading: false,
     password: '',
     tos: false,
     user_name: ''
   }
 
   componentDidUpdate() {
-    if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
+    // if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
+    // if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
     if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
       let email = []
       if(this.props.auth.errors[0].code === 422) this.props.auth.errors.forEach(error => email.push(error) )
@@ -64,23 +65,45 @@ class SignUp extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
+    this.setState({ validationLoading: true })
     if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
-    this.setState({ errors: {}, form: { valid: false, pending: true } })
+    this.setState({ errors: {}, form: { valid: false, pending: true }, enableButton: false, enableInput: false })
     let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.tos)
     this.setState({ form: authCheck })
     if(authCheck.valid) this.checkUserExists()
+    else {
+      // console.log(authCheck)
+      this.setState({
+        validationLoading: false,
+        enableButton: true,
+        enableInput: true
+      })
+    }
   }
 
   checkUserExists = () => {
     checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name, type: 'signUp' })
     .then(userNameRes => {
-      if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
+      // console.log('valid')
+      if(!userNameRes.valid) this.setState({
+        form: {
+          valid: false,
+          user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] },
+          pending: false
+        },
+        validationLoading: false,
+        enableButton: true,
+        enableInput: true
+      })
+
+      // if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
       else this.onValidateSignUp()
     })
   }
 
   onValidateSignUp = () => {
-    if(!this.state.form.pending && this.state.enableButton) {
+    // if(!this.state.form.pending && this.state.enableButton) {
+    if(!this.state.form.pending) {
       this.props.onAuthStart('signUp', {
         displayName: this.state.user_name,
         email: this.state.email,
@@ -102,6 +125,8 @@ class SignUp extends React.Component {
   }
 
   render(){
+
+    // console.log(this.state.validationLoading, this.state.enableButton, this.state.enableInput)
 
     const loading =
       <div className='loading_wrapper'>
@@ -133,7 +158,7 @@ class SignUp extends React.Component {
       >
         <div className='sign_up_wrapper'>
           <ModalHeader header_text='Create New Account' />
-          { this.props.auth.loading && loading }
+          { (this.props.auth.loading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }
               inputFields={ signUpFormInputs }

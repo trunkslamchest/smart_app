@@ -41,6 +41,7 @@ const makeSignUpFormInputs = (checked, email, onChange, onChecked, password, tos
       checkBoxButtonContainerClass: 'tos_check_box_button_container',
       checkBoxClass: 'tos_check_box',
       checkBoxImgClass: 'tos_check_box_img',
+      checkBoxDisabledClass: 'tos_check_box_disabled',
       errorContainerClass: 'sign_up_form_error_container',
       errorClass: 'sign_up_form_error',
       id: 'tos',

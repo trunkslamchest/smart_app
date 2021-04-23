@@ -99,19 +99,28 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  /* border: 1px solid rgba(200, 200, 200, 1); */
+  border: 1px solid rgba(150, 150, 150, 1);
   color: rgba(255, 255, 255, 1) !important;
-  border: 0px solid rgba(200, 200, 200, 1);
+  /* border: 0px solid rgba(200, 200, 200, 1); */
   -webkit-box-shadow: 0 0 0px 100px #FFF inset;
 }
 
 input:-webkit-autofill:disabled,
 textarea:-webkit-autofill:disabled,
 select:-webkit-autofill:disabled {
-  border: 0px solid rgba(200, 200, 200, 1);
-  cursor: default;
+  border: 0px solid rgba(150, 150, 150, 1);
+  cursor: not-allowed;
   -webkit-text-fill-color: rgba(255, 255, 255, 1) !important;
-  -webkit-box-shadow: 0 0 0px 100px rgba(50, 50, 50, 1) inset;
+  -webkit-box-shadow: 0 0 0px 100px rgba(150, 150, 150, 1) inset;
+}
+
+input:-webkit-autofill:disabled:hover,
+textarea:-webkit-autofill:disabled:hover,
+select:-webkit-autofill:disabled:hover {
+  border: 0px solid rgba(150, 150, 150, 1);
+  cursor: not-allowed;
+  -webkit-text-fill-color: rgba(255, 255, 255, 1) !important;
+  -webkit-box-shadow: 0 0 0px 100px rgba(150, 150, 150, 1) inset;
 }
 
 
