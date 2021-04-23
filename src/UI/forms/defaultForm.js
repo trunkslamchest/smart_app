@@ -30,6 +30,8 @@ const DefaultForm = (props) => {
     return input
   })
 
+  // console.log(props.enableButton)
+
   return(
     <>
       {(!!props.formHeaderText || !!props.formSubHeaderText) &&

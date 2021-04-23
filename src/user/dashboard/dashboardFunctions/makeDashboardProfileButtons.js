@@ -2,7 +2,7 @@ const makeDashboardProfileHeaderButtons = (onClickHeaderButtonFunction, user_nam
   return [
     {
       id: 'edit_profile_button',
-      buttonClass: 'dashboard_profile_header_button',
+      // buttonClass: 'dashboard_profile_header_button',
       name: 'editProfileButton',
       onClickFunction: onClickHeaderButtonFunction,
       params: JSON.stringify({ route: routes.dashboard_profile_edit }),
@@ -12,7 +12,7 @@ const makeDashboardProfileHeaderButtons = (onClickHeaderButtonFunction, user_nam
     },
     {
       id: 'view_public_profile_button',
-      buttonClass: 'dashboard_profile_header_button',
+      // buttonClass: 'dashboard_profile_header_button',
       name: 'viewPublicProfileButton',
       onClickFunction: onClickHeaderButtonFunction,
       params: JSON.stringify({ route: routes.user_profile + '/' + user_name }),

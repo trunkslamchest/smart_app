@@ -42,8 +42,8 @@ class Dashboard extends React.Component{
 
     const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, routes)
 
-    if(!this.props.auth.loading) {
-      if(this.props.auth.status === 'authValid' || this.props.auth.status === 'fail') {
+    // if(!this.props.auth.loading) {
+      if(this.props.auth.status === 'authValid' || this.props.auth.authType === 'deleteProfile') {
         routeBoard =
           <Switch>
             <Route exact path={ routes.dashboard }>
@@ -76,13 +76,14 @@ class Dashboard extends React.Component{
             </Route>
           </Switch>
       }
-    }
+    // }
 
     return(
       <>
         <DefaultButtonsContainer
           buttons={ navBarButtons }
           buttonClass={ 'nav_bar_button' }
+          buttonRow={ true }
           containerClass={ 'nav_bar_container' }
           enableButton={ true }
           tooltipClass={ 'nav_bar_tooltip' }

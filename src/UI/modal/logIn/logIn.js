@@ -30,17 +30,20 @@ class LogIn extends React.Component {
     enableInput: true,
     errors: {},
     form: { valid: false, pending: false },
-    password: ''
+    password: '',
+    validationLoading: false
   }
 
   componentDidUpdate() {
-    if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
+    // if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
+    // if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
     if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
       let email = [], password = []
       if(this.props.auth.errors[0].code === 421) this.props.auth.errors.forEach(error => email.push(error) )
       else if(this.props.auth.errors[0].code === 423) this.props.auth.errors.forEach(error => password.push(error) )
-      this.setState({ errors: { email: email, password: password, } })
+      else this.props.auth.errors.forEach(error => password.push(error) )
+      this.setState({ errors: { email: email, password: password, }, validationLoading: false, enableButton: true, enableInput: true })
+      this.props.onClearAuthErrors()
       this.props.onClearAuthStatus()
     }
   }
@@ -52,33 +55,50 @@ class LogIn extends React.Component {
   onSubmit = (event) => {
     event.preventDefault()
     if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
-    this.setState({ errors: {}, form: { valid: false, pending: true } })
+    this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableButton: false, enableInput: false })
     let authCheck = validateLogIn(this.state.email, this.state.password)
     this.setState({ form: authCheck })
-    if(authCheck.valid) this.onValidateLogIn(authCheck)
+    if(authCheck.valid) {
+      this.onValidateLogIn(authCheck)
+    } else {
+      this.setState({
+        validationLoading: false,
+        enableButton: true,
+        enableInput: true
+      })
+    }
   }
 
   onValidateLogIn = () => {
-    if(!this.state.form.pending && this.state.enableButton) this.props.onAuthStart('logIn', {
-      email: this.state.email,
-      password: this.state.password,
-      returnSecureToken: true
-    })
+    if(!this.state.form.pending) {
+      this.props.onAuthStart('logIn', {
+        email: this.state.email,
+        password: this.state.password,
+        returnSecureToken: true
+      })
+    }
   }
 
   onReset = () => {
     this.clearLocalState()
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    if(!!this.props.auth.errors.length) {
+      this.props.onClearAuthErrors()
+      this.props.onClearAuthStatus()
+    }
   }
 
   onCancel = () => {
     this.onReset()
     this.props.onLogInModal(false)
+    this.props.onClearAuthErrors()
+    this.props.onClearAuthStatus()
   }
 
-  clearLocalState = () => { this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
+  clearLocalState = () => { this.setState({ email: '', validationLoading: false, enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
 
   render(){
+
+    console.log(this.state.enableButton, this.state.errors, this.props.auth.errors)
 
     const loading =
       <div className='loading_wrapper'>
@@ -96,7 +116,7 @@ class LogIn extends React.Component {
       >
         <div className='log_in_wrapper'>
           <ModalHeader header_text='Log In' />
-          { this.props.auth.loading && loading }
+            { (this.props.auth.loading || this.state.validationLoading) && loading }
             <DefaultForm
               // buttonClass={ 'log_in_button' }
               // containerClass={ 'log_in_buttons_container' }

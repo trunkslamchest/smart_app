@@ -33,10 +33,10 @@ class SignUp extends React.Component {
     enableInput: true,
     errors: {},
     form: { valid: false, pending: false },
-    validationLoading: false,
     password: '',
     tos: false,
-    user_name: ''
+    user_name: '',
+    validationLoading: false
   }
 
   componentDidUpdate() {
@@ -65,9 +65,8 @@ class SignUp extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.setState({ validationLoading: true })
     if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
-    this.setState({ errors: {}, form: { valid: false, pending: true }, enableButton: false, enableInput: false })
+    this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableButton: false, enableInput: false })
     let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.tos)
     this.setState({ form: authCheck })
     if(authCheck.valid) this.checkUserExists()
@@ -84,20 +83,24 @@ class SignUp extends React.Component {
   checkUserExists = () => {
     checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name, type: 'signUp' })
     .then(userNameRes => {
+      if(userNameRes.valid) {
       // console.log('valid')
-      if(!userNameRes.valid) this.setState({
-        form: {
-          valid: false,
-          user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] },
-          pending: false
-        },
-        validationLoading: false,
-        enableButton: true,
-        enableInput: true
-      })
+        this.onValidateSignUp()
+      }
+      else {
+        this.setState({
+          form: {
+            valid: false,
+            user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] },
+            pending: false
+          },
+          validationLoading: false,
+          enableButton: true,
+          enableInput: true
+        })
 
-      // if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
-      else this.onValidateSignUp()
+        // if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
+      }
     })
   }
 

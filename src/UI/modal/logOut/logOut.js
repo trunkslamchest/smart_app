@@ -67,8 +67,9 @@ class LogOut extends React.Component {
           { this.props.auth.loading && loading }
           <DefaultButtonsContainer
             buttons={ logOutButtons }
-            buttonClass={ 'modal_button' }
-            containerClass={ 'modal_button_container' }
+            // buttonClass={ 'modal_button' }
+            buttonRow={ true }
+            // containerClass={ 'modal_button_container' }
             enableButton={ this.state.enableButton }
             tooltipClass={ 'modal_button_tooltip' }
           />

@@ -18,9 +18,9 @@
 }
 
 .default_form_header h3 {
-  color: rgba(255, 255, 255, 1);
-  font: 300 10pt 'PoppinsLight', sans-serif;
-  padding: 0px 0px 10px 0px;
+  color: rgba(50, 50, 50, 1);
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  padding: 10px 0px;
   text-align: center;
 }
 

@@ -8,6 +8,7 @@ import {
   clearAuthCreds,
   clearAuthType,
   clearAuthStatus,
+  clearAuthErrors,
   loading,
   login,
   logout,
@@ -144,9 +145,9 @@ class AuthController extends React.Component {
 
   authFailModule = () => {
     this.props.onAuthUpdateLoadingStatus(false)
-    this.props.onClearAuthStatus()
-    this.clearLocalStorageModule()
-    this.props.onClearAuthType()
+    // this.props.onClearAuthStatus()
+    // this.clearLocalStorageModule()
+    // this.props.onClearAuthType()
   }
 
   authGoogleModule = () => {
@@ -217,6 +218,8 @@ class AuthController extends React.Component {
 
   authValidModule = () => {
     this.props.onAuthUpdateStatus('authValid')
+    this.props.onClearAuthErrors()
+
     this.setState({ authValid: true })
 
     if(
@@ -347,6 +350,7 @@ const mapDispatchToProps = dispatch => {
     onClearAuthCreds: () => dispatch(clearAuthCreds()),
     onClearAuthType: () => dispatch(clearAuthType()),
     onClearAuthStatus: () => dispatch(clearAuthStatus()),
+    onClearAuthErrors: () => dispatch(clearAuthErrors()),
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onLogInModal: (bool) => dispatch(login(bool)),
     onLogOutModal: (bool) => dispatch(logout(bool)),

@@ -39,7 +39,7 @@
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  font: 300 12pt 'PoppinsLight', sans-serif;
+  font: 300 10pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
   margin: 0px;
   padding: 10px 20px;
@@ -61,7 +61,7 @@
   /* border-radius: 5px; */
   border: 0px solid black;
   box-sizing: border-box;
-  font: 600 12pt 'PoppinsLight', sans-serif;
+  font: 600 10pt 'PoppinsLight', sans-serif;
   transition: background-color, border-radius .2s ease-in-out 0s;
 }
 
@@ -81,7 +81,7 @@
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
-  font: 600 12pt 'PoppinsLight', sans-serif;
+  font: 600 10pt 'PoppinsLight', sans-serif;
   transform: translate(0px, 15px);
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;

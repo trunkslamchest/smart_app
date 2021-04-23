@@ -1,5 +1,5 @@
 .delete_profile_input_sub_container input {
-  border: 0px solid rgba(200, 200, 200, 1);
+  border: 1px solid rgba(150, 150, 150, 1);
   border-radius: 5px;
   display: flex;
   font: 400 12px "Lato", sans-serif;
@@ -19,7 +19,7 @@
   border-radius: 5px;
   display: flex;
   color: rgba(255, 255, 255, 1);
-  background-color: rgba(50, 50, 50, 1);
+  background-color: rgba(200, 200, 200, 1);
   font: 400 12px "Lato", sans-serif;
   max-width: 350px;
   margin: 0px;

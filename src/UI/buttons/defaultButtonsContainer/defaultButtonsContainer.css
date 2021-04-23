@@ -113,7 +113,7 @@
   padding: 0px 10px 0px 10px;
 }
 
-.dashboard_profile_header_buttons_container {
+.dashboard_profile_buttons_container {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -121,7 +121,7 @@
   align-content: center;
   align-items: center;
   margin: 0em auto;
-  padding: 0em;
+  padding: 10px 0px;
 }
 
 .dashboard_stats_view_question_button_container {

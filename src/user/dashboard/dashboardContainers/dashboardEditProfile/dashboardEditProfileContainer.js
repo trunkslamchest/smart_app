@@ -241,8 +241,9 @@ class DashboardEditProfile extends React.Component {
       <>
         <DashboardHeader header_text={ 'Edit Your Profile' } />
         <DefaultForm
-          buttonClass={ 'edit_profile_button' }
+          // buttonClass={ 'edit_profile_button' }
           buttonContainerClass={ 'dashboard_form_buttons_container' }
+          buttonRow={ true }
           dividers={ true }
           inputFields={ editProfileInputFields }
           inputContainerClass={ 'edit_profile_input_container' }

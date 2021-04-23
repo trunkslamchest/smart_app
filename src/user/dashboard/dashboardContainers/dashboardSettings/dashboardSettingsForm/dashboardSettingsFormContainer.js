@@ -42,15 +42,13 @@ class DashboardSettingsFormContainer extends React.Component {
 
     const distribPrivacyProfileSettings = privacyProfileSettings.map((setting, index) => {
       return (
-        <>
+        <React.Fragment key={ index }>
         <DashboardSettingsPrivacyProfileCard
-          key={ index }
           setting={ setting }
           status={ this.props[setting.name] }
           onChecked={ this.props.onChecked }
         />
-        {/* <div className='divider_medium' /> */}
-        </>
+        </React.Fragment>
       )
     })
 
@@ -71,7 +69,8 @@ class DashboardSettingsFormContainer extends React.Component {
           </div>
           <DefaultButtonsContainer
             buttons={ formButtons }
-            buttonClass={ 'dashboard_form_button' }
+            // buttonClass={ 'dashboard_form_button' }
+            buttonRow={ true }
             containerClass={ 'dashboard_form_buttons_container' }
             enableButton={ this.props.enableButtons }
             tooltipClass={ 'dashboard_form_button_tooltip' }

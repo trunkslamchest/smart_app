@@ -6,7 +6,7 @@ import { checkBlankString, checkBlankInt } from '../../../../utility/forms/check
 import formatMonth from '../../../../utility/forms/formatMonth'
 import formatDay from '../../../../utility/forms/formatDay'
 
-import makeDashboardProfileHeaderButtons from '../../dashboardFunctions/makeDashboardProfileHeaderButtons'
+import makeDashboardProfileButtons from '../../dashboardFunctions/makeDashboardProfileButtons'
 import makeDashboardProfileFields from '../../dashboardFunctions/makeDashboardProfileFields'
 
 import ContainerProfileHeader from '../../../../UI/components/headers/containerProfileHeader/containerProfileHeader'
@@ -36,25 +36,24 @@ const DashboardProfileContainer = (props) => {
   let last_login = `${ props.user.info.last_login.time } ${ formatMonth(props.user.info.last_login.month) } ${ formatDay(props.user.info.last_login.day) }, ${ props.user.info.last_login.year }`
   let join_date = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
 
-  const onClickHeaderButtonFunction = (event) => {
+  const onClickProfileButtonFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     props.history.push(buttonParams.route)
   }
 
   const profileFields = makeDashboardProfileFields(firstName, lastName, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date)
 
-  const headerButtons = makeDashboardProfileHeaderButtons(onClickHeaderButtonFunction, user_name, routes)
+  const profileButtons = makeDashboardProfileButtons(onClickProfileButtonFunction, user_name, routes)
 
   let distribProfileFields = profileFields.map((field, index) => {
     return (
-      <>
+      <React.Fragment key={ index + field.name }>
         <DashboardProfileField
-          key={ index + field.name }
           field={ field }
           fieldClass={ 'dashboard_profile_field' }
         />
         <div className='divider_medium'/>
-      </>
+      </React.Fragment>
     )
   })
 
@@ -91,9 +90,10 @@ const DashboardProfileContainer = (props) => {
           { distribProfileFields }
         </div>
         <DefaultButtonsContainer
-          buttons={ headerButtons }
-          buttonClass={ 'dashboard_profile_header_button' }
-          containerClass={ 'dashboard_profile_header_buttons_container' }
+          buttons={ profileButtons }
+          // buttonClass={ 'dashboard_profile_header_button' }
+          buttonRow={ true }
+          containerClass={ 'dashboard_profile_buttons_container' }
           enableButton={ true }
         />
       </div>
