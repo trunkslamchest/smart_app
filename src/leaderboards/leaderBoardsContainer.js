@@ -49,6 +49,7 @@ const LeaderBoardsContainer = (props) => {
       <DefaultButtonsContainer
         buttons={ navBarButtons }
         buttonClass={ 'nav_bar_button' }
+        buttonRow={ true }
         containerClass={ 'nav_bar_container' }
         enableButton={ true }
         history={ props.history }

@@ -1,6 +1,5 @@
 import React from 'react'
 
-// import LeaderBoardsNavButtonTooltip from '../../../UI/tooltips/leaderBoardsNavButtonTooltip/leaderBoardsNavButtonTooltip'
 import DefaultButtonTooltip from '../../../UI/tooltips/defaultButtonTooltip'
 
 import cookieFunctions from '../../../utility/cookieFunctions'

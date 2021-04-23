@@ -9,6 +9,16 @@ const DefaultButtonContainer = (props) => {
 
   const location = useLocation()
 
+  const calcButtonClass = (buttonClass, buttons, index) => {
+    if(index === 0) {
+      return `${ buttonClass }_left`
+    } else if ( index === buttons - 1) {
+      return `${ buttonClass }_right`
+    } else {
+      return `${ buttonClass }_middle`
+    }
+  }
+
   return(
     <>
       { !!props.buttons &&
@@ -16,7 +26,8 @@ const DefaultButtonContainer = (props) => {
           { props.buttons.map((button, index) => {
             return(
               <DefaultButton
-                buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
+                // buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
+                buttonClass={ props.buttonRow ? calcButtonClass(props.buttonClass, props.buttons.length, index) : props.buttonClass || button.buttonClass || 'default_button' }
                 buttonContainerClass={ props.buttonContainerClass || button.buttonContainerClass || 'default_button_container' }
                 buttonType={ button.buttonType }
                 history={ props.history }

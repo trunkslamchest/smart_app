@@ -36,10 +36,13 @@ class Help extends React.Component {
     if(!!this.props.modal.helpHeader && !!this.props.modal.helpSections) {
       distribHelpSections = this.props.modal.helpSections.map((section, s_index) => {
         return(
-          <div className='docs_sub_wrapper' key={ s_index } >
-            { !!section.sub_header_text && <DocsSubHeader sub_header_text={ section.sub_header_text } /> }
-            { !!section.p_texts && section.p_texts.map((p_text, p_index) => { return <DocsP key={ p_index } header={ p_text.header } texts={ p_text.texts } /> }) }
-            { !!section.lists && section.lists.map((list, l_index) => { return <DocsUL key={ l_index } list_header={ list.list_header } list_items={ list.list_items } /> }) }
+          <div className='docs_sub_container' key={ s_index }>
+            <div className='docs_sub_wrapper'>
+              { !!section.sub_header_text && <DocsSubHeader sub_header_text={ section.sub_header_text } /> }
+              { !!section.p_texts && section.p_texts.map((p_text, p_index) => { return <DocsP key={ p_index } header={ p_text.header } texts={ p_text.texts } /> }) }
+              { !!section.lists && section.lists.map((list, l_index) => { return <DocsUL key={ l_index } list_header={ list.list_header } list_items={ list.list_items } /> }) }
+            </div>
+            <div className='divider_left' />
           </div>
         )
       })
@@ -61,7 +64,8 @@ class Help extends React.Component {
           <DefaultButtonsContainer
             buttons={ helpButtons }
             buttonClass={ 'modal_help_button' }
-            containerClass={ 'modal_help_button_container' }
+            buttonContainerClass={ 'modal_help_button_container' }
+            // containerClass={ 'modal_help_buttons_container' }
             enableButton={ true }
           />
       </Modal>

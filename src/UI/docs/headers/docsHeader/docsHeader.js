@@ -12,6 +12,7 @@ const DocsHeader = (props) => {
         <div className='docs_header_right'>
           <h2>{ !!props.sub_text && props.sub_text }</h2>
         </div>
+      <div className='divider_left' />
     </div>
   )
 }

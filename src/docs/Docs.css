@@ -1,7 +1,12 @@
 .docs_wrapper {
   margin: 0px 0px 20px 0px;
-  width: 100%;
+  width: 90%;
   padding: 10px 0px 0px 0px;
+}
+
+.docs_sub_container {
+  padding: 0px 0px 15px 25px;
+  width: 100%;
 }
 
 .docs_sub_wrapper {
