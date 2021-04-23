@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { routes } from '../../../../utility/paths'
 import { connect } from 'react-redux'
+import { deleteProfile } from '../../../../store/actions/actionIndex'
 
 import { checkBlankString, checkBlankInt } from '../../../../utility/forms/checkBlank'
 import formatMonth from '../../../../utility/forms/formatMonth'
@@ -41,9 +42,11 @@ const DashboardProfileContainer = (props) => {
     props.history.push(buttonParams.route)
   }
 
+  const onClickDelete = () => { props.onDeleteProfileModal(true) }
+
   const profileFields = makeDashboardProfileFields(firstName, lastName, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date)
 
-  const profileButtons = makeDashboardProfileButtons(onClickProfileButtonFunction, user_name, routes)
+  const profileButtons = makeDashboardProfileButtons(onClickProfileButtonFunction, onClickDelete, user_name, routes)
 
   let distribProfileFields = profileFields.map((field, index) => {
     return (
@@ -91,7 +94,6 @@ const DashboardProfileContainer = (props) => {
         </div>
         <DefaultButtonsContainer
           buttons={ profileButtons }
-          // buttonClass={ 'dashboard_profile_header_button' }
           buttonRow={ true }
           containerClass={ 'dashboard_profile_buttons_container' }
           enableButton={ true }
@@ -101,10 +103,16 @@ const DashboardProfileContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    user: state.user
+    user: store.user
   }
 }
 
-export default connect(mapStateToProps)(DashboardProfileContainer)
+const dispatch = (dispatch) => {
+  return {
+    onDeleteProfileModal: (bool) => (dispatch(deleteProfile(bool)))
+  }
+}
+
+export default connect(store, dispatch)(DashboardProfileContainer)

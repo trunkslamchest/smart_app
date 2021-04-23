@@ -1,4 +1,4 @@
-const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, onDelete, formGlyphIndex) => {
+const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, formGlyphIndex) => {
   return [
     {
       id: 'dashboard_settings_submit',
@@ -26,15 +26,7 @@ const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, onDelete, for
       imageHover: formGlyphIndex.formBlackX,
       tooltipText: [ 'Cancel' ],
       type: 'button'
-    },
-      {
-        id: 'delete_profile_button',
-        name: 'deleteProfileButton',
-        onClickFunction: onDelete,
-        target: '_blank',
-        text: 'Delete Profile',
-        type: 'button'
-      }
+    }
   ]
 }
 

@@ -1,10 +1,9 @@
-const makeDashboardProfileHeaderButtons = (onClickHeaderButtonFunction, user_name, routes) => {
+const makeDashboardProfileHeaderButtons = (onClickButtonFunction, onDelete, user_name, routes) => {
   return [
     {
       id: 'edit_profile_button',
-      // buttonClass: 'dashboard_profile_header_button',
       name: 'editProfileButton',
-      onClickFunction: onClickHeaderButtonFunction,
+      onClickFunction: onClickButtonFunction,
       params: JSON.stringify({ route: routes.dashboard_profile_edit }),
       target: '_blank',
       text: 'Edit Profile',
@@ -12,15 +11,22 @@ const makeDashboardProfileHeaderButtons = (onClickHeaderButtonFunction, user_nam
     },
     {
       id: 'view_public_profile_button',
-      // buttonClass: 'dashboard_profile_header_button',
       name: 'viewPublicProfileButton',
-      onClickFunction: onClickHeaderButtonFunction,
+      onClickFunction: onClickButtonFunction,
       params: JSON.stringify({ route: routes.user_profile + '/' + user_name }),
       target: '_blank',
       text: 'View Public Profile',
       type: 'button'
+    },
+    {
+      id: 'delete_profile_button',
+      name: 'deleteProfileButton',
+      onClickFunction: onDelete,
+      target: '_blank',
+      text: 'Delete Profile',
+      type: 'button'
     }
-    ]
+  ]
 }
 
 export default makeDashboardProfileHeaderButtons

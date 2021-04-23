@@ -38,7 +38,7 @@ class DashboardSettingsFormContainer extends React.Component {
       { name: 'showVotes', text: 'Display your Votes' }
     ]
 
-    let formButtons = makeDashboardSettingsButtons(this.onSubmit, this.props.onReset, this.props.onCancel, this.onClickDelete, formGlyphIndex)
+    let formButtons = makeDashboardSettingsButtons(this.onSubmit, this.props.onReset, this.props.onCancel, formGlyphIndex)
 
     const distribPrivacyProfileSettings = privacyProfileSettings.map((setting, index) => {
       return (
