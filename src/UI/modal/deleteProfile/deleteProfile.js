@@ -63,10 +63,7 @@ class DeleteProfile extends React.Component {
     this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableSubmitButton: false, enableInput: false })
     let authCheck = validateDeleteProfile(this.state.password)
     this.setState({ form: authCheck })
-    if(authCheck.valid) {
-      // console.log('valid')
-      this.onValidateDeleteProfile()
-    }
+    if(authCheck.valid) this.onValidateDeleteProfile()
     else {
       this.setState({
         validationLoading: false,
@@ -118,8 +115,6 @@ class DeleteProfile extends React.Component {
           { this.state.enableConfirmButton &&
             <DefaultButtonsContainer
               buttons={ deleteProfileButtons }
-              // buttonClass={ 'modal_button' }
-              // containerClass={ 'modal_button_container' }
               buttonRow={ true }
               enableButton={ this.state.enableConfirmButton }
               tooltipClass={ 'modal_button_tooltip' }

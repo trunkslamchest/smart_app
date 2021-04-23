@@ -7,7 +7,6 @@ import {
 
 import { routes } from '../../../../utility/paths'
 
-// import BasicModal from '../../../../UI/modal/basicModal/basicModal'
 import DashboardSettingsFormContainer from './dashboardSettingsForm/dashboardSettingsFormContainer'
 
 import './dashboardSettingsContainer.css'
@@ -103,12 +102,9 @@ class DashboardSettingsContainer extends React.Component {
     this.props.switchbasicModalContent("Your settings have been saved!")
     this.props.onBasicModal(true)
     this.enableButtonsTimeout = setTimeout(() => { this.enableButtons() }, 3000)
-    // this.props.history.push( routes.dashboard_profile )
   }
 
-  enableButtons = () => {
-    this.setState({ enableButtons: true })
-  }
+  enableButtons = () => { this.setState({ enableButtons: true }) }
 
   onReset = () => {
     this.setState({
@@ -139,9 +135,6 @@ class DashboardSettingsContainer extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
-
-    // console.log(this.props.basicModalContent)
-
     return(
       <div className="dashboard_settings_container">
         <DashboardSettingsFormContainer
@@ -168,18 +161,18 @@ class DashboardSettingsContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    user: state.user
+    auth: store.auth,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onUpdateUserSettings: (settings) => dispatch(updateUserSettings(settings)),
     onBasicModal: (bool) => dispatch(basic(bool))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardSettingsContainer)
+export default connect(store, dispatch)(DashboardSettingsContainer)

@@ -39,7 +39,6 @@ const App = (props) => {
   const [loadingModalBarType, setLoadingModalBarType] = useState(props.auth.authType);
   const [basicModalContent, setBasicModalContent] = useState(null);
 
-
   const switchLoadingModalType = (modalType) => { setLoadingModalType(modalType) }
 
   const switchLoadingModalBarType = (barType) => { setLoadingModalBarType(barType) }
@@ -113,17 +112,17 @@ const App = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return {
-    auth: state.auth,
-    modal: state.modal
+    auth: store.auth,
+    modal: store.modal
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const dispatch = dispatch => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(store, dispatch)(App)

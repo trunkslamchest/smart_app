@@ -97,9 +97,6 @@ class LogIn extends React.Component {
   clearLocalState = () => { this.setState({ email: '', validationLoading: false, enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
 
   render(){
-
-    console.log(this.state.enableButton, this.state.errors, this.props.auth.errors)
-
     const loading =
       <div className='loading_wrapper'>
         <SmallLoadingSpinner />
@@ -118,8 +115,6 @@ class LogIn extends React.Component {
           <ModalHeader header_text='Log In' />
             { (this.props.auth.loading || this.state.validationLoading) && loading }
             <DefaultForm
-              // buttonClass={ 'log_in_button' }
-              // containerClass={ 'log_in_buttons_container' }
               buttonRow={ true }
               inputFields={ logInFormInputs }
               inputContainerClass={ 'log_in_input_container' }

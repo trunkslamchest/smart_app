@@ -74,7 +74,6 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
           }
         </>
       }
-      {/* <div className='divider_medium' /> */}
     </div>
   )
 }

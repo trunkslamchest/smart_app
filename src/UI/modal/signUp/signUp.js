@@ -53,7 +53,7 @@ class SignUp extends React.Component {
   componentWillUnmount(){ this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' }) }
 
   onChange = (event) => {
-    // event.preventDefault()
+    event.preventDefault()
     this.setState({[event.target.id]: event.target.value})
   }
 
@@ -83,10 +83,7 @@ class SignUp extends React.Component {
   checkUserExists = () => {
     checkFunctions('checkUserName', check.user_name, { user_name: this.state.user_name, type: 'signUp' })
     .then(userNameRes => {
-      if(userNameRes.valid) {
-      // console.log('valid')
-        this.onValidateSignUp()
-      }
+      if(userNameRes.valid) this.onValidateSignUp()
       else {
         this.setState({
           form: {
@@ -98,14 +95,11 @@ class SignUp extends React.Component {
           enableButton: true,
           enableInput: true
         })
-
-        // if(!userNameRes.valid) this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
       }
     })
   }
 
   onValidateSignUp = () => {
-    // if(!this.state.form.pending && this.state.enableButton) {
     if(!this.state.form.pending) {
       this.props.onAuthStart('signUp', {
         displayName: this.state.user_name,
@@ -128,9 +122,6 @@ class SignUp extends React.Component {
   }
 
   render(){
-
-    // console.log(this.state.validationLoading, this.state.enableButton, this.state.enableInput)
-
     const loading =
       <div className='loading_wrapper'>
         <SmallLoadingSpinner />
