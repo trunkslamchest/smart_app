@@ -72,7 +72,10 @@ class Dashboard extends React.Component{
               />
             </Route>
             <Route exact path={ routes.dashboard_settings }>
-              <DashboardSettingsContainer history={ this.props.history } />
+              <DashboardSettingsContainer
+                switchbasicModalContent={ this.props.switchbasicModalContent }
+                history={ this.props.history }
+              />
             </Route>
           </Switch>
       }

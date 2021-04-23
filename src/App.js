@@ -13,6 +13,7 @@ import QuestionsController from './store/controllers/questionsController'
 import Header from './UI/header/header'
 import Footer from './UI/footer/footer'
 
+import BasicModal from './UI/modal/basicModal/basicModal'
 import LogIn from './UI/modal/logIn/logIn'
 import SignUp from './UI/modal/signUp/signUp'
 import LogOut from './UI/modal/logOut/logOut'
@@ -36,13 +37,18 @@ const App = (props) => {
 
   const [loadingModalType, setLoadingModalType] = useState('auth');
   const [loadingModalBarType, setLoadingModalBarType] = useState(props.auth.authType);
+  const [basicModalContent, setBasicModalContent] = useState(null);
+
 
   const switchLoadingModalType = (modalType) => { setLoadingModalType(modalType) }
 
   const switchLoadingModalBarType = (barType) => { setLoadingModalBarType(barType) }
 
+  const switchbasicModalContent = (content) => { setBasicModalContent(content) }
+
   return (
     <StoreController history={ props.history }>
+      { props.modal.basic && <BasicModal content={ basicModalContent } history={ props.history } switchbasicModalContent={ switchbasicModalContent } /> }
       { props.modal.login && <LogIn history={ props.history } /> }
       { props.modal.logout && <LogOut history={ props.history } /> }
       { props.modal.signup && <SignUp history={ props.history } /> }
@@ -65,7 +71,10 @@ const App = (props) => {
               <HomeContainer history={ props.history } />
             </Route>
             <Route path={ routes.dashboard }>
-              <DashboardContainer history={ props.history } />
+              <DashboardContainer
+                switchbasicModalContent={ switchbasicModalContent }
+                history={ props.history }
+              />
             </Route>
             <Route path={ routes.user_profile }>
               <ProfileController

@@ -1,9 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { updateUserSettings } from '../../../../store/actions/actionIndex'
+import {
+  updateUserSettings,
+  basic
+} from '../../../../store/actions/actionIndex'
 
 import { routes } from '../../../../utility/paths'
 
+// import BasicModal from '../../../../UI/modal/basicModal/basicModal'
 import DashboardSettingsFormContainer from './dashboardSettingsForm/dashboardSettingsFormContainer'
 
 import './dashboardSettingsContainer.css'
@@ -40,6 +44,10 @@ class DashboardSettingsContainer extends React.Component {
 
   componentDidUpdate(){ if(this.props.user.settings && !this.state.pulledStore) this.pulledStore() }
 
+  componentWillUnmount(){
+    clearTimeout(this.enableButtonsTimeout)
+  }
+
   pulledStore = () => {
     this.setState({
       ...this.state,
@@ -68,10 +76,8 @@ class DashboardSettingsContainer extends React.Component {
   }
 
   onChecked = (event) => {
-    console.log(event)
     event.preventDefault()
     let flipSetting = !this.state.settings.privacy.profile[event.target.name]
-
     this.setState({
       ...this.state,
       settings:{
@@ -94,6 +100,14 @@ class DashboardSettingsContainer extends React.Component {
       settings: this.state.settings
     })
     this.setState({ enableButtons: false })
+    this.props.switchbasicModalContent("Your settings have been saved!")
+    this.props.onBasicModal(true)
+    this.enableButtonsTimeout = setTimeout(() => { this.enableButtons() }, 3000)
+    // this.props.history.push( routes.dashboard_profile )
+  }
+
+  enableButtons = () => {
+    this.setState({ enableButtons: true })
   }
 
   onReset = () => {
@@ -125,6 +139,9 @@ class DashboardSettingsContainer extends React.Component {
   onCancel = () => { this.props.history.push( routes.dashboard_profile ) }
 
   render(){
+
+    // console.log(this.props.basicModalContent)
+
     return(
       <div className="dashboard_settings_container">
         <DashboardSettingsFormContainer
@@ -160,7 +177,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateUserSettings: (settings) => dispatch(updateUserSettings(settings))
+    onUpdateUserSettings: (settings) => dispatch(updateUserSettings(settings)),
+    onBasicModal: (bool) => dispatch(basic(bool))
   }
 }
 

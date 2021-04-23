@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   showModal: false,
+  basic: false,
   loading: false,
   login: false,
   logout: false,
@@ -16,6 +17,13 @@ const showModal = (currentState, action) => {
   return{
     ...currentState,
     showModal: action.showModal
+  }
+}
+
+const basicModal = (currentState, action) => {
+  return {
+    ...currentState,
+    basic: action.basic
   }
 }
 
@@ -92,6 +100,7 @@ const clearHelpSections = (currentState, action) => {
 const modalReducer = (currentState = initialState, action) => {
   switch(action.type){
     case actionTypes.SHOWMODAL: return showModal(currentState, action)
+    case actionTypes.BASICMODAL: return basicModal(currentState, action)
     case actionTypes.LOADINGMODAL: return loadingModal(currentState, action)
     case actionTypes.LOGINMODAL: return loginModal(currentState, action)
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)

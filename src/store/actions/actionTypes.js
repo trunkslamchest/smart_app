@@ -1,4 +1,5 @@
 export const SHOWMODAL = 'SHOWMODAL'
+export const BASICMODAL = 'BASICMODAL'
 export const LOADINGMODAL = 'LOADINGMODAL'
 export const LOGINMODAL = 'LOGINMODAL'
 export const LOGOUTMODAL = 'LOGOUTMODAL'

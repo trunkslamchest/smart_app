@@ -7,6 +7,13 @@ export const showModal = (bool) => {
   }
 }
 
+export const basic = (bool) => {
+  return {
+    type: actionTypes.BASICMODAL,
+    basic: bool
+  }
+}
+
 export const loading = (bool) => {
   return {
     type: actionTypes.LOADINGMODAL,
