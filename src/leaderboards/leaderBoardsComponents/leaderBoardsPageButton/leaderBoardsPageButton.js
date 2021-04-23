@@ -3,12 +3,11 @@ import React from 'react'
 // import LeaderBoardsNavButtonTooltip from '../../../UI/tooltips/leaderBoardsNavButtonTooltip/leaderBoardsNavButtonTooltip'
 import DefaultButtonTooltip from '../../../UI/tooltips/defaultButtonTooltip'
 
-
 import cookieFunctions from '../../../utility/cookieFunctions'
 
-import './leaderBoardsNavButton.css'
+import './leaderBoardsPageButton.css'
 
-class LeaderBoardsNavButton extends React.Component {
+class LeaderBoardsPageButton extends React.Component {
 
   state = { hover: false, showTooltip: false }
 
@@ -79,4 +78,4 @@ class LeaderBoardsNavButton extends React.Component {
   }
 }
 
-export default LeaderBoardsNavButton
+export default LeaderBoardsPageButton

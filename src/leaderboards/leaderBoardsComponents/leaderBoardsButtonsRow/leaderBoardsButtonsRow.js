@@ -1,6 +1,6 @@
 import React from 'react'
 
-import LeaderBoardsNavButton from '../leaderBoardsNavButton/leaderBoardsNavButton'
+import LeaderBoardsPageButton from '../leaderBoardsPageButton/leaderBoardsPageButton'
 
 import leaderboardGlyphIndex from '../../../assets/glyphs/leaderboardGlyphIndex'
 
@@ -8,7 +8,7 @@ import './leaderBoardsButtonsRow.css'
 
 const LeaderBoardsButtonsRow = (props) => {
 
-  let leaderBoardNavButtons = [
+  let leaderBoardPageButtons = [
     {
       alt: 'PreviousPageButton',
       id: 'leaderboard_prev_button',
@@ -31,11 +31,25 @@ const LeaderBoardsButtonsRow = (props) => {
     }
   ]
 
-  const distribLeaderBoardNavButtons = leaderBoardNavButtons.map((button, index) => {
+  const calcButtonClass = (buttons, pageLimit, index) => {
+    if(pageLimit){
+      if(index === 0) {
+        return 'leader_boards_buttons_row_button_left'
+      } else if ( index === buttons - 1) {
+        return 'leader_boards_buttons_row_button_right'
+      } else {
+        return 'leader_boards_buttons_row_button_middle'
+      }
+    } else {
+      return 'leader_boards_buttons_row_button_disabled'
+    }
+  }
+
+  const distribLeaderBoardPageButtons = leaderBoardPageButtons.map((button, index) => {
     return(
-      <LeaderBoardsNavButton
+      <LeaderBoardsPageButton
         alt={ button.alt }
-        buttonClass={ button.pageLimit ? 'leader_boards_buttons_row_button' : 'leader_boards_buttons_row_button_disabled' }
+        buttonClass={ calcButtonClass(leaderBoardPageButtons.length, button.pageLimit, index) }
         id={ button.id }
         image={ button.image }
         imageHover={ button.imageHover }
@@ -52,7 +66,7 @@ const LeaderBoardsButtonsRow = (props) => {
 
   return(
     <div className="leader_boards_buttons_row_container">
-      { distribLeaderBoardNavButtons }
+      { distribLeaderBoardPageButtons }
     </div>
   )
 }

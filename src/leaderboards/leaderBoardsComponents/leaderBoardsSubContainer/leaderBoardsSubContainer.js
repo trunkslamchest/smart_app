@@ -5,16 +5,15 @@ import LeaderBoardsScoresCard from '../leaderBoardsScoresCard/leaderBoardsScores
 import './leaderBoardsSubContainer.css'
 
 class LeaderBoardsSubContainer extends React.Component {
+
   render() {
 
     const scoresSet = Object.entries(this.props.scores)
 
-    const distribScoresSet = scoresSet.map(scores => {
+    const distribScoresSet = scoresSet.map((scores, index) => {
       return(
-        <div
-          className='leader_boards_sub_wrapper'
-          key={ scoresSet.indexOf(scores) }
-        >
+        <React.Fragment key={ index }>
+        <div className='leader_boards_sub_wrapper'>
           <LeaderBoardsScoresCard
             history={ this.props.history }
             pageLimit={ this.props.pageLimit }
@@ -24,6 +23,8 @@ class LeaderBoardsSubContainer extends React.Component {
             key={ scoresSet.indexOf(scores) + scores[0] }
           />
         </div>
+        <div className='divider_large' />
+        </React.Fragment>
       )
     })
 

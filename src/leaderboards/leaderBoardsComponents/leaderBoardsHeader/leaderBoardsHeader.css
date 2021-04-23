@@ -1,26 +1,33 @@
 .leader_boards_header {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  width: 95%;
+  width: 100%;
   /* background: rgba(50, 50, 50, 1); */
   border: 0px;
-  padding: .5em 0em .5em 0em;
+  color: rgba(255, 255, 255, 1);
+  /* background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1)); */
+  border-radius: 5px 5px 0px 0px;
+  background-color: rgba(0, 0, 51, 1);
+
+  /* background: rgba(0, 0, 102, 1); */
+  padding: 5px 30px 5px 10px;
+  /* height: 35px; */
 
 }
 
 .leader_boards_header h3 {
-  color: rgba(255, 255, 255, 1);
-  font: 600 15pt "LatoThin";
+  /* color: rgba(255, 255, 255, 1); */
+  font: 300 15pt "PoppinsLight";
   /* padding: 5px 0px 5px 10px; */
   text-align: center;
 }
 
 .leader_boards_header h4 {
-  color: rgba(255, 255, 255, 1);
+  /* color: rgba(255, 255, 255, 1); */
   font: 300 9pt "LatoItalic";
   /* padding-right: 3.5em; */
   margin-block-start: 0em;

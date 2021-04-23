@@ -103,7 +103,7 @@ class LeaderBoardsScoresCard extends React.Component {
     }
 
     return(
-      <div className="leader_boards_countries_card" >
+      <div className="leader_boards_scores_card_container" >
         <div
           hover_trigger="headerButtonHover"
           onClick={ this.onDropDown }
@@ -119,8 +119,12 @@ class LeaderBoardsScoresCard extends React.Component {
             sub_text={ 'Rating' }
           />
         </div>
-        <div className='leader_boards_row_ref' ref={ this.setRowsRef }>
-          { distribScores }
+        { this.state.showScores &&
+
+        <div className={ this.state.showScores ? 'leader_boards_row_ref' : 'leader_boards_row_ref_hidden' } ref={ this.setRowsRef }>
+          <div className='leader_boards_scores_card_wrapper'>
+            { distribScores }
+          </div>
           { this.state.showScores &&
             <LeaderBoardsButtonsRow
               onChangePage={ this.onChangePage }
@@ -129,6 +133,7 @@ class LeaderBoardsScoresCard extends React.Component {
             />
           }
         </div>
+       }
       </div>
     )
   }

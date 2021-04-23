@@ -1,9 +1,9 @@
 .leader_boards_wrapper {
-  background: rgba(50, 50, 50, 1);
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1));
   border-radius: 5px;
   margin: 0px 0px 20px 0px;
   width: 90%;
-  padding: 10px 0px 10px 0px;
+  padding: 0px 0px 10px 0px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

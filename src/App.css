@@ -170,3 +170,10 @@ select:not(:-internal-list-box) {
   margin: 0px auto;
   width: 50%;
 }
+
+.divider_blank {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(200,200,200, 0), rgba(255, 255, 255, 0) );
+  height: 1px;
+  margin: 0px auto;
+  width: 50%;
+}
