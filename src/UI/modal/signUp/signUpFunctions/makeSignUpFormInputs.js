@@ -51,7 +51,7 @@ const makeSignUpFormInputs = (checked, email, onChange, onChecked, password, tos
       text: tosText,
       type: 'checkbox',
       val: checked
-    },
+    }
   ]
 }
 

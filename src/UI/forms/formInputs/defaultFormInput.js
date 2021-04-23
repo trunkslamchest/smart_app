@@ -93,10 +93,10 @@ const DefaultFormInput = (props) => {
             disabled={ !props.enableInput }
             id={ props.id }
             name={ props.name }
-            onChange={ props.onChange }
+            onChecked={ props.onChange }
             uncheckedImageHover={ formGlyphIndex.formBlackX }
             uncheckedImage={ formGlyphIndex.formRedX }
-            value={ props.value ? props.value : false }
+            status={ props.value ? props.value : false }
           />
           { !!props.text && <p>{ props.text }</p> }
         </div>
@@ -118,7 +118,12 @@ const DefaultFormInput = (props) => {
     }
   }
 
-  return(<>{ input }</>)
+  return(
+    <>
+      { input }
+      {/* <div className='divider_medium' /> */}
+    </>
+  )
 }
 
 export default DefaultFormInput

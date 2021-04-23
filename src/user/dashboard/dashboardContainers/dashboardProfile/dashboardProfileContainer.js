@@ -14,7 +14,6 @@ import DashboardProfileField from '../../dashboardComponents/dashboardProfileFie
 
 import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
@@ -48,11 +47,14 @@ const DashboardProfileContainer = (props) => {
 
   let distribProfileFields = profileFields.map((field, index) => {
     return (
-      <DashboardProfileField
-        key={ index + field.name }
-        field={ field }
-        fieldClass={ 'dashboard_profile_field' }
-      />
+      <>
+        <DashboardProfileField
+          key={ index + field.name }
+          field={ field }
+          fieldClass={ 'dashboard_profile_field' }
+        />
+        <div className='divider_medium'/>
+      </>
     )
   })
 
@@ -75,11 +77,10 @@ const DashboardProfileContainer = (props) => {
     </div>
 
   return(
-    <div className='dashboard_profile_wrapper'>
+    <>
       <ContainerProfileHeader
         avatar={ avatar }
         containerClass={ 'dashboard_profile_header_buttons_container' }
-        // buttons={ headerButtons }
         email={ email }
         history={ props.history }
         user_name={ user_name }
@@ -94,21 +95,9 @@ const DashboardProfileContainer = (props) => {
           buttonClass={ 'dashboard_profile_header_button' }
           containerClass={ 'dashboard_profile_header_buttons_container' }
           enableButton={ true }
-          // tooltipClass={ 'nav_bar_tooltip' }
         />
-        {/* { headerButtons } */}
-        {/* <div className='dashboard_profile_last_login_join_date_container'>
-          <div className='dashboard_profile_last_login_join_date_sub_container'>
-            <h3>Last Login</h3>
-            <span>{ last_login }</span>
-          </div>
-          <div className='dashboard_profile_last_login_join_date_sub_container'>
-            <h3>Join Date</h3>
-            <span>{ join_date }</span>
-          </div>
-        </div> */}
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,38 +1,40 @@
-const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, formGlyphIndex) => {
+const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, onDelete, formGlyphIndex) => {
   return [
     {
       id: 'dashboard_settings_submit',
       name: 'dashboardSettingsSubmit',
-      // params: ,
       onClickFunction: onSubmit,
-      type: 'button',
-      // text: ,
       image: formGlyphIndex.formWhiteCheckMark,
       imageHover: formGlyphIndex.formBlackCheckMark,
       tooltipText: [ 'Confirm' ],
+      type: 'button'
     },
     {
       id: 'dashboard_settings_reset',
       name: 'dashboardSettingsReset',
-      // params: ,
       onClickFunction: onReset,
-      type: 'button',
-      // text: ,
       image: formGlyphIndex.formWhiteReset,
       imageHover: formGlyphIndex.formBlackReset,
       tooltipText: [ 'Reset' ],
+      type: 'button'
     },
     {
       id: 'dashboard_settings_cancel',
       name: 'dashboardSettingsCancel',
-      // params: ,
       onClickFunction: onCancel,
-      type: 'button',
-      // text: ,
       image: formGlyphIndex.formWhiteX,
       imageHover: formGlyphIndex.formBlackX,
       tooltipText: [ 'Cancel' ],
-    }
+      type: 'button'
+    },
+      {
+        id: 'delete_profile_button',
+        name: 'deleteProfileButton',
+        onClickFunction: onDelete,
+        target: '_blank',
+        text: 'Delete Profile',
+        type: 'button'
+      }
   ]
 }
 

@@ -16,6 +16,7 @@ import validateEditProfile from '../../../../utility/validation/validateEditProf
 import makeDashboardEditProfileFormButtons from '../../dashboardFunctions/makeDashboardEditProfileFormButtons'
 import makeDashboardEditProfileFormInputs from '../../dashboardFunctions/makeDashboardEditProfileFormInputs'
 
+import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DefaultForm from '../../../../UI/forms/defaultForm'
 
 import genders from '../../../../datasets/genders'
@@ -237,19 +238,23 @@ class DashboardEditProfile extends React.Component {
     const editProfileFormButtons = makeDashboardEditProfileFormButtons(this.onSubmit, this.onReset, this.onCancel, formGlyphIndex)
 
     return(
-      <DefaultForm
-        buttonContainerClass={ 'dashboard_form_buttons_container' }
-        inputFields={ editProfileInputFields }
-        inputContainerClass={ 'edit_profile_input_container' }
-        formButtons={ editProfileFormButtons }
-        formClass={ 'edit_profile_form' }
-        formId={ 'edit_profile_form' }
-        formName={ 'editProfileForm' }
-        enableButton={ this.state.enableButton }
-        enableInput={ this.state.enableInput }
-        errors={ this.state.errors }
-        formValid={ this.state.form }
-      />
+      <>
+        <DashboardHeader header_text={ 'Edit Your Profile' } />
+        <DefaultForm
+          buttonClass={ 'edit_profile_button' }
+          buttonContainerClass={ 'dashboard_form_buttons_container' }
+          inputFields={ editProfileInputFields }
+          inputContainerClass={ 'edit_profile_input_container' }
+          formButtons={ editProfileFormButtons }
+          formClass={ 'edit_profile_form' }
+          formId={ 'edit_profile_form' }
+          formName={ 'editProfileForm' }
+          enableButton={ this.state.enableButton }
+          enableInput={ this.state.enableInput }
+          errors={ this.state.errors }
+          formValid={ this.state.form }
+        />
+      </>
     )
   }
 }

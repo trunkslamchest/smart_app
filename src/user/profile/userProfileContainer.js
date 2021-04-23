@@ -25,35 +25,37 @@ const UserProfileContainer = (props) => {
           info={ props.userData.info }
           history={ props.history }
         />
-        { props.userData.settings.privacy.profile.showStats &&
-          <UserStatsContainer
-            from_dashboard={ false }
-            question_totals={ props.questionTotals }
-            user_questions={ props.userData.questions }
-            user_experience={ props.userData.experience }
-            history={ props.history }
-          />
-        }
-        { props.userData.settings.privacy.profile.showAchievements &&
-          <UserAchievementsContainer
-            all_achievements={ props.achievements }
-            from_dashboard={ false }
-            history={ props.history }
-            user_achievements={ props.userData.achievements }
-          />
-        }
-        { props.userData.settings.privacy.profile.showVotes &&
-          <VoteContainer
-            enableVoteButtons={ false }
-            showVoteButtons={ false }
-            voteProps={ props.userData.votes }
-          />
-        }
-        { props.userData.settings.privacy.profile.showComments &&
-          <UserProfileCommentsContainer
-            questions={ props.userData.comments }
-            history={ props.history }
-          />}
+        <div className='user_profile_body_wrapper'>
+          { props.userData.settings.privacy.profile.showStats &&
+            <UserStatsContainer
+              from_dashboard={ false }
+              question_totals={ props.questionTotals }
+              user_questions={ props.userData.questions }
+              user_experience={ props.userData.experience }
+              history={ props.history }
+            />
+          }
+          { props.userData.settings.privacy.profile.showAchievements &&
+            <UserAchievementsContainer
+              all_achievements={ props.achievements }
+              from_dashboard={ false }
+              history={ props.history }
+              user_achievements={ props.userData.achievements }
+            />
+          }
+          { props.userData.settings.privacy.profile.showVotes &&
+            <VoteContainer
+              enableVoteButtons={ false }
+              showVoteButtons={ false }
+              voteProps={ props.userData.votes }
+            />
+          }
+          { props.userData.settings.privacy.profile.showComments &&
+            <UserProfileCommentsContainer
+              questions={ props.userData.comments }
+              history={ props.history }
+            />}
+        </div>
       </div>
   }
 

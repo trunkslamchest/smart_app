@@ -52,7 +52,7 @@ class SignUp extends React.Component {
   componentWillUnmount(){ this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' }) }
 
   onChange = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     this.setState({[event.target.id]: event.target.value})
   }
 

@@ -38,30 +38,19 @@ class DashboardSettingsFormContainer extends React.Component {
       { name: 'showVotes', text: 'Display your Votes' }
     ]
 
-    const headerButtons = [
-      {
-        buttonClass: 'dashboard_profile_header_button',
-        type: 'button',
-        id: 'delete_profile_button',
-        name: 'deleteProfileButton',
-        onClickFunction: this.onClickDelete,
-        // params: JSON.stringify({ route: routes.dashboard_profile_edit }),
-        target: '_blank',
-        text: 'Delete Profile',
-        // value: 'Delete Profile'
-      },
-    ]
-
-    let formButtons = makeDashboardSettingsButtons(this.onSubmit, this.props.onReset, this.props.onCancel, formGlyphIndex)
+    let formButtons = makeDashboardSettingsButtons(this.onSubmit, this.props.onReset, this.props.onCancel, this.onClickDelete, formGlyphIndex)
 
     const distribPrivacyProfileSettings = privacyProfileSettings.map((setting, index) => {
       return (
+        <>
         <DashboardSettingsPrivacyProfileCard
           key={ index }
           setting={ setting }
           status={ this.props[setting.name] }
           onChecked={ this.props.onChecked }
         />
+        {/* <div className='divider_medium' /> */}
+        </>
       )
     })
 
@@ -73,9 +62,10 @@ class DashboardSettingsFormContainer extends React.Component {
           className='dashboard_settings_form'
         >
           <div className="dashboard_settings_privacy_container">
-            <DashboardHeader header_text={ "Privacy" } buttons={ headerButtons } />
+            <DashboardHeader header_text={ "Settings" } />
             <div className="dashboard_settings_privacy_profile_container">
-              <DashboardSubHeader header_text={ 'Pubilc Profile' } />
+              <DashboardSubHeader header_text={ 'Privacy' } />
+              <div className='divider_medium' />
               { distribPrivacyProfileSettings }
             </div>
           </div>

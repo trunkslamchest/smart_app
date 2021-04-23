@@ -2,7 +2,7 @@ import React from 'react'
 
 import levels from '../../../../datasets/levels'
 
-import ContainerHeaderCentered from '../../../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
+import ContainerHeader from '../../../../UI/components/headers/containerHeader/containerHeader'
 
 import trendArrowIndex from '../../../../assets/trend_arrows/trendArrowIndex'
 
@@ -51,8 +51,6 @@ const UserStatsTotal = (props) => {
   let header = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rank & rating</p>
   let performance = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rating!</p>
   let totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
-
-  // console.log(props)
 
   if(props.user_questions && props.question_totals){
     totalQuestionsAnswered = ((props.user_questions.all.answered / props.question_totals.all.totals.questions) * 100).toFixed(2)
@@ -117,8 +115,10 @@ const UserStatsTotal = (props) => {
 
   return(
     <>
-      { !props.from_dashboard && <ContainerHeaderCentered header_text={ 'Statistics' } /> }
+      { !props.from_dashboard && <ContainerHeader header_text={ 'Statistics' } /> }
+      <div className='divider_small' />
       { totalStats }
+      <div className='divider_medium' />
     </>
   )
 }

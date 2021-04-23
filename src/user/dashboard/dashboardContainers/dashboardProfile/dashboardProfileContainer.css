@@ -2,19 +2,22 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  margin: 0px 0px 10px 0px;
+  margin: 15px 0px;
+  padding: 15px;
+  width: 90%;
   /* width: 100%; */
 }
 
 .dashboard_profile_body {
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1));
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
   align-items: center;
-  margin: 0px 0px 10px 0px;
-  padding: 0px;
+  margin: 0px 0px;
+  padding: 0px 5px;
 }
 
 .dashboard_date_container {
@@ -47,7 +50,7 @@
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  margin: 0px 0px 0px 15px;
+  margin: 0px 0px 0px 0px;
   width: 100%;
 }
 

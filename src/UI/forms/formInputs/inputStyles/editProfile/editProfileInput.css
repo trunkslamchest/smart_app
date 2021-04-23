@@ -6,11 +6,11 @@
 }
 
 .edit_profile_input_sub_container input {
-  border: 0px solid grey;
+  border: 1px solid rgba(150, 150, 150, 1);
   border-radius: 5px;
   display: flex;
-  font: 400 12px "Helvetica", sans-serif;
-  margin: 2.5px 0px 0px 0px;
+  font: 400 12px "Roboto", sans-serif;
+  margin: 5px 0px;
   max-width: 350px;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;
@@ -18,11 +18,11 @@
 }
 
 .edit_profile_input_sub_container textarea {
-  border: 0px solid grey;
+  border: 1px solid rgba(150, 150, 150, 1);
   border-radius: 5px;
   display: flex;
-  font: 400 12px "Helvetica", sans-serif;
-  margin: 2.5px 0px 0px 0px;
+  font: 400 12px "Roboto", sans-serif;
+  margin: 5px 0px;
   max-width: 500px;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;

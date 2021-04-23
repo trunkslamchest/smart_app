@@ -12,13 +12,13 @@ const DashboardSettingsPrivacyProfileCard = (props) => {
       <span>{ props.setting.text }</span>
       <FormCheckBox
         checkBoxClass='settings_form_check_box_button'
-        checkedImage={ formGlyphIndex.formWhiteCheckMark }
+        checkedImage={ formGlyphIndex.formBlackCheckMark }
         checkedImageHover={ formGlyphIndex.formOrangeCheckMark }
         id={ props.setting.name }
         name={ props.setting.name }
         onChecked={ props.onChecked }
         status={ props.status }
-        uncheckedImage={ formGlyphIndex.formWhiteX }
+        uncheckedImage={ formGlyphIndex.formBlackX }
         uncheckedImageHover={ formGlyphIndex.formOrangeX }
       />
     </div>

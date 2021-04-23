@@ -1,4 +1,5 @@
 .dashboard_stats_container {
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1));
   padding: 0px 0px 10px 0px;
 }
 
@@ -13,7 +14,7 @@
   width: 100%;
   padding: 0px 30px 0px 25px;
 
-  background: rgba(255,255,255, 1);
+  background: rgba(255, 255, 255, 1);
 }
 
 .stats_header h3 {
@@ -21,6 +22,7 @@
 }
 
 .stats_sub_container {
+  background-color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -28,9 +30,13 @@
   align-items: center;
   align-content: center;
   padding: 0px 0px 10px 0px;
+  margin: 0px 5px;
 }
 
 .stats_sub_header {
+  /* border-radius: 5px 5px 0px 0px; */
+  /* background-image: linear-gradient(90deg, rgba(0, 0, 102, 1), rgba(0, 0, 102, 0)); */
+  background-color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -39,11 +45,14 @@
   align-content: center;
   width: 100%;
   border: 0px;
-  padding: 0px 20px 10px 15px;
-  color: rgba(255, 255, 255, 1);
+  margin: 0px 5px;
+  padding: 5px 15px 5px 10px;
+  /* color: rgba(50, 50, 50, 1); */
+  /* color: rgba(255, 255, 255, 1); */
 }
 
 .stats_sub_header h3 {
-  font: 600 15pt "LatoThin";
+  color: rgba(50, 50, 50, 1);
+  font: 300 15pt "PoppinsLight";
   text-align: center;
 }

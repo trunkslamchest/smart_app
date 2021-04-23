@@ -13,8 +13,6 @@ class FormCheckBox extends React.Component {
 
   render() {
 
-    console.log(this.props.status)
-
     let checkmark, xMark
 
     if(this.props.disabled) {

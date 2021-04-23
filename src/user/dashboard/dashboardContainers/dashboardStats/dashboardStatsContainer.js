@@ -14,7 +14,7 @@ const DashboardStatsContainer = (props) => {
 
   return(
     <div className='dashboard_stats_container'>
-      <DashboardHeader header_text={ 'Overall' } />
+      <DashboardHeader header_text={ 'Statistics' } />
       <UserStatsContainer
         from_dashboard={ true }
         question_totals={ props.question_totals }
@@ -23,7 +23,9 @@ const DashboardStatsContainer = (props) => {
         history={ props.history }
       />
       <DashboardStatsDifficultyContainer history={ props.history } />
+      <div className='divider_medium' />
       <DashboardStatsCategoryContainer history={ props.history } />
+      <div className='divider_medium' />
     </div>
   )
 }

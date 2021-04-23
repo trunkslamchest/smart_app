@@ -5,10 +5,13 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  /* color: rgb(225, 225, 225, 1); */
-  color: rgba(50, 50, 50, 1);
-  /* background-color: rgba(50, 50, 50, 1); */
+  color: rgb(225, 225, 225, 1);
+  /* color: rgba(50, 50, 50, 1); */
+  /* background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1)); */
+  border-radius: 5px 5px 0px 0px;
+  background-color: rgba(0, 0, 51, 1);
   /* background: rgba(0, 0, 102, 1); */
+  padding: 15px;
 }
 
 .container_profile_header_top {
@@ -18,6 +21,7 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  padding-left: 15px;
 }
 
 .container_profile_header_top_left {

@@ -8,10 +8,14 @@
   width: 100%;
   /* background: rgba(50, 50, 50, 1); */
   border: 0px;
-  /* color: rgba(255, 255, 255, 1); */
-  color: rgba(50, 50, 50, 1);
-  padding: 0px 0px 0px 15px;
-  height: 35px;
+  color: rgba(255, 255, 255, 1);
+  /* background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1)); */
+  border-radius: 5px 5px 0px 0px;
+  background-color: rgba(0, 0, 51, 1);
+
+  /* background: rgba(0, 0, 102, 1); */
+  padding: 5px 5px 5px 10px;
+  /* height: 35px; */
 }
 
 .dashboard_header_left {
@@ -25,7 +29,7 @@
 .dashboard_header_left h3 {
   align-self: center;
   /* display: flex; */
-  font: 600 15pt "LatoThin";
+  font: 300 15pt "PoppinsLight";
 }
 
 .dashboard_header_right {
@@ -40,6 +44,6 @@
   align-self: center;
   /* align-self: center;
   display: flex; */
-  padding-right: 2em;
+  /* padding-right: 2em; */
   font: 300 9pt 'LatoItalic';
 }
