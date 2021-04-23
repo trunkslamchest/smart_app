@@ -12,8 +12,9 @@
 
 .loading_modal {
   animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  background-color: rgba(50, 50, 50, 1);
   left: 50%;
   max-width: 75%;
   min-width: 50%;
