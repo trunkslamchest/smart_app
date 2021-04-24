@@ -45,37 +45,60 @@ const UserStatsTotal = (props) => {
       src={ trendArrowIndex.redArrowDown }
     />
 
-  let totalStats = <></>
-  let rank = <span>NR</span>
-  let rating = <span>NR</span>
-  let header = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rank & rating</p>
-  let performance = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rating!</p>
+  // let rank = <span>NR</span>
+  // let rating = <span>NR</span>
+  // let header = <></>
+  let totalStats
+  let performance
   let totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
 
   if(props.user_questions && props.question_totals){
     totalQuestionsAnswered = ((props.user_questions.all.answered / props.question_totals.all.totals.questions) * 100).toFixed(2)
     if(props.user_questions.all.answered > 0) totalQuestionsCorrect = ((props.user_questions.all.correct / props.user_questions.all.answered) * 100).toFixed(2)
     if(props.user_questions.all.answered >= 5) {
-      header = <></>
-      rank = props.user_questions.all.rank
-      rating = props.user_questions.all.rating
+      // header = <></>
+      // rank = props.user_questions.all.rank
+      // rating = props.user_questions.all.rating
       performance =
         <>
-          { header }
+          {/* { header } */}
           <div className="user_stats_performance_sub_container">
             <div className="user_stats_total_rank">
               <h2>SmartApp™ Rank</h2>
-              <h1>{ rank }</h1>
+              <h1>{ props.user_questions.all.rank }</h1>
             </div>
             <div className="user_stats_total_rating">
               <h2>SmartApp™ Rating</h2>
               <div className="user_stats_total_rating_sub_container">
-                <h1>{ (rating * 10).toFixed(2) }</h1>
-                { rating > props.question_totals.all.averages.questions.performance ? arrow_up : arrow_down }
+                <h1>{ (props.user_questions.all.rating * 10).toFixed(2) }</h1>
+                { props.user_questions.all.rating > props.question_totals.all.averages.questions.performance ? arrow_up : arrow_down }
               </div>
             </div>
           </div>
         </>
+    } else {
+      if(props.from_dashboard){
+        // header = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rank & rating</p>
+        performance = <p>Answer <span>{ 5 - props.user_questions.all.answered }</span> more questions to receive a rank & rating!</p>
+      } else {
+        performance =
+          <>
+            {/* { header } */}
+            <div className="user_stats_performance_sub_container">
+              <div className="user_stats_total_rank">
+                <h2>SmartApp™ Rank</h2>
+                <h1>NR</h1>
+              </div>
+              <div className="user_stats_total_rating">
+                <h2>SmartApp™ Rating</h2>
+                <div className="user_stats_total_rating_sub_container">
+                  <h1>NR</h1>
+                  {/* { rating > props.question_totals.all.averages.questions.performance ? arrow_up : arrow_down } */}
+                </div>
+              </div>
+            </div>
+          </>
+      }
     }
 
     totalQuestionsAnswered = numZero(totalQuestionsAnswered)

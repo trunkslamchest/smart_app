@@ -43,9 +43,7 @@ class DashboardSettingsContainer extends React.Component {
 
   componentDidUpdate(){ if(this.props.user.settings && !this.state.pulledStore) this.pulledStore() }
 
-  componentWillUnmount(){
-    clearTimeout(this.enableButtonsTimeout)
-  }
+  componentWillUnmount(){ clearTimeout(this.enableButtonsTimeout) }
 
   pulledStore = () => {
     this.setState({

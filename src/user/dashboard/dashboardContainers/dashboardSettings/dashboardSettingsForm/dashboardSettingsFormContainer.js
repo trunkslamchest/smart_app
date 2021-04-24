@@ -69,7 +69,6 @@ class DashboardSettingsFormContainer extends React.Component {
           </div>
           <DefaultButtonsContainer
             buttons={ formButtons }
-            // buttonClass={ 'dashboard_form_button' }
             buttonRow={ true }
             containerClass={ 'dashboard_form_buttons_container' }
             enableButton={ this.props.enableButtons }

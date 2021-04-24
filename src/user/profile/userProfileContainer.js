@@ -12,6 +12,8 @@ const UserProfileContainer = (props) => {
 
   let userProfileBlock
 
+  // console.log(props.userData)
+
   // if(props.userData.settings.privacy.profile.private) {
   if(typeof props.userData === "string") {
     userProfileBlock =
@@ -40,6 +42,7 @@ const UserProfileContainer = (props) => {
               all_achievements={ props.achievements }
               from_dashboard={ false }
               history={ props.history }
+              user_name={ props.userData.info.user_name }
               user_achievements={ props.userData.achievements }
             />
           }

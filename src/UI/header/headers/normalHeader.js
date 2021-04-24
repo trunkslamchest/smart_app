@@ -56,7 +56,12 @@ const NormalHeader = (props) => {
 
   const playMenuButtons = makePlayMenuButtons(onInitGame, routes)
   const profileMenuButtons = makeProfileMenuButtons(onPushLink, onLogOut, routes)
-  const headerButtons = makeLoggedInHeaderButtons(iconsIndex, onPushLink, playMenuButtons, profileMenuButtons, props.user.info.avatar, routes)
+
+  let headerButtons
+
+  if(props.user.info) {
+    headerButtons = makeLoggedInHeaderButtons(iconsIndex, onPushLink, playMenuButtons, profileMenuButtons, props.user.info.avatar, routes)
+  }
 
   return(
     <>

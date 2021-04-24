@@ -38,13 +38,12 @@
 
 .container_header_right h2 {
   align-self: center;
-  display: flex;
+  /* display: flex; */
   /* padding-right: 25px; */
   font: 300 8pt "LatoItalic";
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-inline-start: 0em;
   margin-inline-end: 0em;
-  min-width: 65px;
   text-align: center;
 }

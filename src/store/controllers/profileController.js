@@ -28,19 +28,20 @@ class ProfileController extends React.Component {
 
   componentDidUpdate() {
     if(this.props.profile.status === 'initUserProfile' && !this.props.profile.userData) this.getProfileModule()
-    if(typeof this.props.profile.userData !== 'string') {
-      if((this.props.profile.userData && this.props.profile.status === 'getUserProfile') && (this.props.profile.userData.settings.privacy.profile.showStats && !this.props.questions.totals)) this.getQuestionTotalsModule()
-      if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
-      if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
-    } else {
-      this.displayProfileModule()
-    }
+// if(this.props.profile.userData && !this.state.displayProfile) this.displayProfileModule()
+    // if(typeof this.props.profile.userData !== 'string') {
+      // if((this.props.profile.userData && this.props.profile.status === 'getUserProfile') && (this.props.profile.userData.settings.privacy.profile.showStats && !this.props.questions.totals)) this.getQuestionTotalsModule()
+      // if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
+    //   if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
+    // } else {
+      if(this.props.profile.userData && this.props.questions.totals && this.props.achievements.all && !this.state.displayProfile) this.displayProfileModule()
+    // }
   }
 
   shouldComponentUpdate(nextProps, nextState){
     let render = false
 
-   if(this.props.modal.loading || nextProps.modal.loading) {
+   if(this.props.modal.loading || this.props.profile.loading || nextProps.modal.loading) {
       render = true
     }
 
@@ -85,6 +86,12 @@ class ProfileController extends React.Component {
   }
 
   render(){
+
+    if(this.props.profile.status === 'displayProfile'){
+
+      console.log(this.props.profile.userData)
+    }
+
     return(
       <>
         {
@@ -107,6 +114,7 @@ class ProfileController extends React.Component {
 const mapStateToProps = (state) => {
   return {
     achievements: state.achievements,
+    auth: state.auth,
     modal: state.modal,
     questions: state.questions,
     profile: state.profile

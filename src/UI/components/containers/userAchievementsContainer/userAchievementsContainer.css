@@ -1,14 +1,54 @@
 .user_achievements_container {
   /* background-color: rgba(35, 35, 35, 1); */
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1));
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: nowrap; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* align-content: center; */
+  width: 100%;
   padding: 0px 0px 10px 0px;
 }
 
+.user_achievements_wrapper {
+  background-color: rgba(255, 255, 255, 1);
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  /* align-content: center; */
+  padding: 0px;
+  margin: 0px 5px;
+  /* width: 100%; */
+}
+
+.user_achievements_sub_container {
+  /* background-color: rgba(35, 35, 35, 1); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  padding: 15px 0px;
+  color: rgba(255, 255, 255, 1);
+  /* background: rgba(50, 50, 50, 1); */
+}
+
+.user_achievements_sub_container h3 {
+  
+  color: rgba(100, 100, 100, 1);
+  font: 300 12pt 'LatoLightItalic', sans-serif;
+  align-self: center;
+  text-align: left;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding: 2.5px 0px 2.5px 30px;
+  width: 100%;
+}
 .user_achievements_header {
   display: flex;
   flex-direction: row;
@@ -34,36 +74,3 @@
   text-align: center;
 }
 
-.user_achievements_wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  width: 100%;
-}
-
-.user_achievements_sub_container {
-  /* background-color: rgba(35, 35, 35, 1); */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  width: 100%;
-  padding: 10px 0px 0px 0px;
-  color: rgba(255, 255, 255, 1);
-  /* background: rgba(50, 50, 50, 1); */
-}
-
-.user_achievements_sub_container h3 {
-  font: 300 13pt 'LatoLight', sans-serif;
-  align-self: center;
-  text-align: center;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-  padding: 2.5px 0px;
-  width: 100%;
-}
