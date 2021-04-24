@@ -12,6 +12,8 @@ const DashboardStatsContainer = (props) => {
 
   useEffect(() => { document.title = "SmartApp™ | Dashboard | Stats" }, [])
 
+  console.log(props)
+
   return(
     <div className='dashboard_stats_container'>
       <DashboardHeader header_text={ 'Statistics' } />

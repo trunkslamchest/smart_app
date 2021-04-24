@@ -146,7 +146,7 @@ class AuthController extends React.Component {
   authFailModule = () => {
     this.props.onAuthUpdateLoadingStatus(false)
     // this.props.onClearAuthStatus()
-    // this.clearLocalStorageModule()
+    this.clearLocalStorageModule()
     // this.props.onClearAuthType()
   }
 
@@ -158,14 +158,14 @@ class AuthController extends React.Component {
   }
 
   loginRefreshSignUpGroup = () => {
-    if(this.props.auth.status === 'fail') this.authFailModule()
+    if(this.props.auth.status === 'fail' && this.props.auth.loading) this.authFailModule()
     if(this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
     if(this.props.auth.id && !this.state.authUser) this.authUserModule()
     if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
     if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
     if(this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule()
     if(this.props.achievements.all && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule()
-    if(this.props.questions.totals && !this.state.authSuccess) this.authSuccessModule()
+    if(this.props.user.info && this.props.questions.totals && !this.state.authSuccess) this.authSuccessModule()
     if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
     if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
   }
@@ -213,7 +213,7 @@ class AuthController extends React.Component {
       this.props.auth.authType === 'signUp' ||
       this.props.auth.authType === 'logIn' ||
       this.props.auth.authType === 'refresh'
-    ) this.props.onUpdateUserLoginTime({ time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
+    ) this.props.onUpdateUserLoginTime({ uid: this.props.auth.id, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
   }
 
   authValidModule = () => {
@@ -328,7 +328,11 @@ class AuthController extends React.Component {
     this.props.onAuthUpdateStatus('clearAuthCreds', true)
   }
 
-  render(){ return <>{ this.props.children }</> }
+  render(){
+
+    // console.log(this.state)
+
+    return <>{ this.props.children }</> }
 }
 
 const mapStateToProps = state => {

@@ -81,7 +81,7 @@ const signUpObjTemplate = (email, user_name) => {
             "rating": 0
           }
         },
-        "categories": {
+        "category": {
           "Anime": {
             "answered": 0,
             "avg_time": 0,

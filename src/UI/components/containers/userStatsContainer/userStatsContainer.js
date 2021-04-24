@@ -53,7 +53,7 @@ const UserStatsTotal = (props) => {
   let totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
 
   if(props.user_questions && props.question_totals){
-    totalQuestionsAnswered = ((props.user_questions.all.answered / props.question_totals.all.totals.questions) * 100).toFixed(2)
+    totalQuestionsAnswered = ((props.user_questions.all.answered / props.question_totals.all.questions) * 100).toFixed(2)
     if(props.user_questions.all.answered > 0) totalQuestionsCorrect = ((props.user_questions.all.correct / props.user_questions.all.answered) * 100).toFixed(2)
     if(props.user_questions.all.answered >= 5) {
       // header = <></>
@@ -107,7 +107,7 @@ const UserStatsTotal = (props) => {
     totalStats =
       <div className="user_stats_total">
         <ul>
-          <li>{ props.user_questions.all.answered }/{ props.question_totals.all.totals.questions } answered ({ totalQuestionsAnswered }%)</li>
+          <li>{ props.user_questions.all.answered }/{ props.question_totals.all.questions } answered ({ totalQuestionsAnswered }%)</li>
           <li>
             { props.user_questions.all.correct }/{ props.user_questions.all.answered } correct ({ totalQuestionsCorrect }%)
             { totalQuestionsCorrect > props.question_totals.all.averages.questions.correct ? arrow_up : arrow_down }

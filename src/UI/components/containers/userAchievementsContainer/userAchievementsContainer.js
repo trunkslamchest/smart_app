@@ -13,8 +13,6 @@ class UserAchievementsContainer extends React.Component {
 
   render(){
 
-    console.log(this.props)
-
     let distribUnlockedAchievements, distribLockedAchievements, achievementsBlock, headerText, headerText2
 
     if(this.props.all_achievements.all && this.props.user_achievements){

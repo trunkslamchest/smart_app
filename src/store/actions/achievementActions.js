@@ -20,7 +20,7 @@ export const storeAchievements = () => {
 const initStoreAchievements = (obj) => {
   return {
     type: actionTypes.STORE_ACHIEVEMENTS,
-    all: obj.achievements,
+    all: obj.list,
     totals: obj.totals
   }
 }

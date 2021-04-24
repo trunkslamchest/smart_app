@@ -8,6 +8,8 @@ import {
   deleteProfile
 } from '../../../store/actions/actionIndex'
 
+import { routes } from '../../../utility/paths'
+
 import makeDeleteProfileFormInputs from './deleteProfileFunctions/makeDeleteProfileFormInputs'
 import makeDeleteProfileButtons from './deleteProfileFunctions/makeDeleteProfileButtons'
 import makeDeleteProfileFormButtons from './deleteProfileFunctions/makeDeleteProfileFormButtons'
@@ -82,6 +84,7 @@ class DeleteProfile extends React.Component {
         returnSecureToken: true
       })
     }
+    this.props.history.push( routes.home )
   }
 
   onSubmitCancel = () => {

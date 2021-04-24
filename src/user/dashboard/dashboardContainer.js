@@ -78,6 +78,8 @@ const Dashboard = (props) => {
           />
         </Route>
       </Switch>
+    } else {
+      props.history.push( routes.home )
     }
     // }
 
