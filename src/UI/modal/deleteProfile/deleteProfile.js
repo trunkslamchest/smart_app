@@ -95,8 +95,6 @@ class DeleteProfile extends React.Component {
 
   render(){
 
-    console.log(this.state.enableSubmitButton, this.state.enableInput, this.state.errors)
-
     const loading =
       <div className='loading_wrapper'>
         <SmallLoadingSpinner />

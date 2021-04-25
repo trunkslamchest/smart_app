@@ -71,13 +71,13 @@
 }
 
 .home_logged_out_text_container h2 {
-  font: 600 12pt 'LatoLight';
+  font: 300 12pt 'Poppins';
   margin: 0px 0px 0px 0px;
   text-align: center;
 }
 
 .home_logged_out_text_container h3 {
   font: 600 18pt 'Lato';
-  margin: 5px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   text-align: justify;
 }

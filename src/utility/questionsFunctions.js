@@ -22,9 +22,12 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
+
       })
       .then(res => res.json())
     },
@@ -35,9 +38,11 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
@@ -48,9 +53,11 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
@@ -61,9 +68,11 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
@@ -74,61 +83,71 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
 
     patchQuestionVote: function(url, obj) {
       return fetch(url, {
-        method: "PATCH",
+        method: "POST",
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
 
     patchQuestionComment: function(url, obj) {
       return fetch(url, {
-        method: "PATCH",
+        method: "POST",
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
 
     editQuestionComment: function(url, obj) {
       return fetch(url, {
-        method: "PATCH",
+        method: "POST",
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
 
     deleteQuestionComment: function(url, obj) {
       return fetch(url, {
-        method: "PATCH",
+        method: "POST",
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          "Content-Type": 'application/json'
+          // "Content-Type": 'application/json'
+          "Content-Type": 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(obj)
+        // body: JSON.stringify(obj)
+        body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     }

@@ -12,8 +12,10 @@
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
           "Content-Type": 'application/json'
+          // "Content-Type": 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(obj)
+        // body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
@@ -25,8 +27,10 @@
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
           "Content-Type": 'application/json'
+          // "Content-Type": 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(obj)
+        // body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
@@ -38,8 +42,10 @@
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
           "Content-Type": 'application/json'
+          // "Content-Type": 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(obj)
+        // body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     },
@@ -51,8 +57,10 @@
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
           "Content-Type": 'application/json'
+          // "Content-Type": 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(obj)
+        // body: `data=${JSON.stringify(obj)}`
       })
       .then(res => res.json())
     }
