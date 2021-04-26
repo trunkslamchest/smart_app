@@ -34,6 +34,7 @@ class AuthController extends React.Component {
 
   state = {
     authGoogle: false,
+    authGoogleFail: false,
     authUser: false,
     deleteUser: false,
     storeUserInfo: false,
@@ -62,6 +63,9 @@ class AuthController extends React.Component {
 
   componentDidUpdate(){
     if(this.props.auth.authType === 'refresh' || this.props.auth.authType === 'logIn' || this.props.auth.authType === 'signUp') this.loginRefreshSignUpGroup()
+
+    // if(this.props.auth.authType === 'refresh')
+    if(this.props.auth.authType === 'refresh' && this.props.auth.errors.length) this.authFailRefreshModule()
 
     if(this.props.auth.authType === 'editProfile') {
       if(this.props.auth.status === 'updateUserSuccess' && !this.state.authSuccess) this.authSuccessModule()
@@ -150,6 +154,14 @@ class AuthController extends React.Component {
     // this.props.onClearAuthType()
   }
 
+  authFailRefreshModule = () => {
+    this.props.onAuthUpdateLoadingStatus(false)
+    this.props.onClearAuthStatus()
+    this.clearLocalStorageModule()
+    this.props.onClearAuthType()
+    this.props.onLoadingModal(false)
+  }
+
   authGoogleModule = () => {
     if(this.props.auth.authType && !this.state.authGoogle) {
       this.props.onAuthUpdateStatus('authGoogle')
@@ -160,6 +172,8 @@ class AuthController extends React.Component {
   loginRefreshSignUpGroup = () => {
     if(this.props.auth.status === 'fail' && this.props.auth.loading) this.authFailModule()
     if(this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
+    // if(this.props.auth.status === 'fail' && this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
+
     if(this.props.auth.id && !this.state.authUser) this.authUserModule()
     if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
     if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)

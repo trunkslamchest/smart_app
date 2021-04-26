@@ -83,7 +83,7 @@ const authRefresh = (currentState, action) => {
 const authUser = (currentState, action) => {
   return {
     ...currentState,
-    errors: [ ...currentState.errors, action.error ],
+    errors: action.error ? [ ...currentState.errors, action.error ] : [],
     userCache: action.userCache
   }
 }
