@@ -184,13 +184,6 @@ class PlayController extends React.Component {
   }
 
   updateQuestionTotalsModule = () => {
-    // this.props.onUpdateQuestionTotalsFromPlayController({
-    //   difficulty: this.props.play.question.difficulty,
-    //   category: this.props.play.question.category,
-    //   time: this.props.play.answer.time,
-    //   avg_time: this.props.play.results.avg_time,
-    //   result: this.props.play.results.result
-    // })
     this.props.onUpdateQuestionTotalsFromPlayController(this.props.play.results.questionTotals)
     this.props.onUpdateGameStatus('updateQuestionTotalsSuccess', true)
   }
@@ -212,22 +205,32 @@ class PlayController extends React.Component {
       this.props.onUpdateUserAchievementsFromPlayController(this.props.play.results.achievements)
     }
     this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
-    this.props.onUpdateUserQuestionTotalsFromPlayController({
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      answer: this.props.play.answer,
-      result: this.props.play.results.result
-    }, this.props.questions.totals)
-    this.props.onUpdateUserQuestionsFromPlayController({
-      qid: this.props.play.question.id,
-      question: this.props.play.question.question,
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      answer: this.props.play.answer,
-      results: this.props.play.results,
-      experience: this.props.play.results.experience,
-      achievements: this.props.play.results.achievements
-    })
+    // this.props.onUpdateUserQuestionTotalsFromPlayController({
+    //   difficulty: this.props.play.question.difficulty,
+    //   category: this.props.play.question.category,
+    //   answer: this.props.play.answer,
+    //   result: this.props.play.results.result
+    // }, this.props.questions.totals)
+    this.props.onUpdateUserQuestionTotalsFromPlayController(this.props.play.results.userTotals)
+    // this.props.onUpdateUserQuestionsFromPlayController({
+    //   qid: this.props.play.question.id,
+    //   question: this.props.play.question.question,
+    //   answer: this.props.play.answer,
+    //   results: this.props.play.results,
+    //   experience: this.props.play.results.experience,
+    //   achievements: this.props.play.results.achievements
+    // })
+    this.props.onUpdateUserQuestionsFromPlayController(this.props.play.question.id, {
+        answer: this.props.play.answer.choice,
+        category: this.props.play.question.category,
+        correct_answer: this.props.play.results.correct_answer,
+        difficulty: this.props.play.question.difficulty,
+        experience: this.props.play.results.experience,
+        performance: this.props.play.results.performance.qPerf,
+        question: this.props.play.question.question,
+        result: this.props.play.results.result,
+        time: this.props.play.answer.time
+      })
     this.props.onUpdateGameStatus('updateUserQuestionsSuccess', true)
   }
 
@@ -360,7 +363,7 @@ const mapDispatchToProps = (dispatch) => {
     onUpdateUserAchievementsFromPlayController: (obj) => dispatch(actions.updateUserAchievementsFromPlayController(obj)),
     onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
     onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
-    onUpdateUserQuestionsFromPlayController: (obj) => dispatch(actions.updateUserQuestionsFromPlayController(obj)),
+    onUpdateUserQuestionsFromPlayController: (id, obj) => dispatch(actions.updateUserQuestionsFromPlayController(id, obj)),
     onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
     onUpdateUserVotesFromPlayController: (id, obj) => dispatch(actions.updateUserVotesFromPlayController(id, obj)),
     onUpdateUserCommentsFromPlayController: (id, obj) => dispatch(actions.updateUserCommentsFromPlayController(id, obj)),

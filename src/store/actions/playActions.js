@@ -58,7 +58,8 @@ export const getResults = (obj) => {
         performance: res.performance,
         experience: res.experience,
         achievements: res.achievements.user,
-        questionTotals: res.totals
+        userTotals: res.userTotals,
+        questionTotals: res.questionTotals
       }))
       dispatch(updateAchievements({ all: res.achievements.all, totals: res.achievements.totals }))
       dispatch(updateQuestion({

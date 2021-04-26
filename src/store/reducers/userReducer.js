@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes'
 
 import { userQuestionRating } from '../../utility/calculation/calcRating'
 import { userQuestionRank } from '../../utility/calculation/calcRank'
-import { userQuestionAvgTime } from '../../utility/calculation/calcAvgTime'
+// import { userQuestionAvgTime } from '../../utility/calculation/calcAvgTime'
 
 const initialState = {
   achievements: null,
@@ -110,89 +110,66 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
 }
 
 const updateUserQuestionsFromPlayController = (currentState, action) => {
-  let uQuestions = { ...currentState.questions }
+  // let uQuestions = { ...currentState.questions }
 
-  if(!currentState.questions[action.question.difficulty]) {
-    uQuestions[action.question.difficulty] = {
-      'categories': {
-        [action.question.category]: {
-          [action.question.qid]: {
-            answer: action.question.answer.choice,
-            correct_answer: action.question.results.correct_answer,
-            question: action.question.question,
-            result: action.question.results.result,
-            time: action.question.answer.time,
-            performance: action.question.results.performance.qPerf,
-            experience: action.question.results.experience,
-            achievements: action.question.results.achievements
-          }
-        }
-      }
-    }
-  } else if(!currentState.questions[action.question.difficulty].categories[action.question.category]) {
-    uQuestions[action.question.difficulty].categories[action.question.category] = {
-      [action.question.qid]: {
-        answer: action.question.answer.choice,
-        correct_answer: action.question.results.correct_answer,
-        question: action.question.question,
-        result: action.question.results.result,
-        time: action.question.answer.time,
-        performance: action.question.results.performance.qPerf,
-        experience: action.question.results.experience,
-        achievements: action.question.results.achievements
-      }
-    }
-  } else {
-    uQuestions[action.question.difficulty].categories[action.question.category][action.question.qid] = {
-      answer: action.question.answer.choice,
-      correct_answer: action.question.results.correct_answer,
-      question: action.question.question,
-      result: action.question.results.result,
-      time: action.question.answer.time,
-      performance: action.question.results.performance.qPerf,
-      experience: action.question.results.experience,
-      achievements: action.question.results.achievements
-    }
-  }
+  // if(!currentState.questions[action.question.difficulty]) {
+  //   uQuestions[action.question.difficulty] = {
+  //     'categories': {
+  //       [action.question.category]: {
+  //         [action.question.qid]: {
+  //           answer: action.question.answer.choice,
+  //           correct_answer: action.question.results.correct_answer,
+  //           question: action.question.question,
+  //           result: action.question.results.result,
+  //           time: action.question.answer.time,
+  //           performance: action.question.results.performance.qPerf,
+  //           experience: action.question.results.experience,
+  //           achievements: action.question.results.achievements
+  //         }
+  //       }
+  //     }
+  //   }
+  // } else if(!currentState.questions[action.question.difficulty].categories[action.question.category]) {
+  //   uQuestions[action.question.difficulty].categories[action.question.category] = {
+  //     [action.question.qid]: {
+  //       answer: action.question.answer.choice,
+  //       correct_answer: action.question.results.correct_answer,
+  //       question: action.question.question,
+  //       result: action.question.results.result,
+  //       time: action.question.answer.time,
+  //       performance: action.question.results.performance.qPerf,
+  //       experience: action.question.results.experience,
+  //       achievements: action.question.results.achievements
+  //     }
+  //   }
+  // } else {
+  //   uQuestions[action.question.difficulty].categories[action.question.category][action.question.qid] = {
+  //     answer: action.question.answer.choice,
+  //     correct_answer: action.question.results.correct_answer,
+  //     question: action.question.question,
+  //     result: action.question.results.result,
+  //     time: action.question.answer.time,
+  //     performance: action.question.results.performance.qPerf,
+  //     experience: action.question.results.experience,
+  //     achievements: action.question.results.achievements
+  //   }
+  // }
 
+  // return{
+  //   ...currentState,
+  //   questions: uQuestions
+  // }
   return{
     ...currentState,
-    questions: uQuestions
+    questions: {
+      ...currentState.questions,
+      list: { ...currentState.questions.list, [action.qid]: action.question }
+    }
   }
 }
 
 const updateUserQuestionTotalsFromPlayController = (currentState, action) => {
-  let uTotals = { ...currentState.questions.totals },
-      nTotalAvgTime = userQuestionAvgTime(uTotals.all.avg_time, action.result.answer.time),
-      nDiffAvgTime = userQuestionAvgTime(uTotals.difficulty[action.result.difficulty].avg_time, action.result.answer.time),
-      nCatAvgTime = userQuestionAvgTime(uTotals.categories[action.result.category].avg_time, action.result.answer.time)
-
-  uTotals.all.answered += 1
-  uTotals.all.avg_time = nTotalAvgTime
-  uTotals.difficulty[action.result.difficulty].answered += 1
-  uTotals.difficulty[action.result.difficulty].avg_time = nDiffAvgTime
-  uTotals.categories[action.result.category].answered += 1
-  uTotals.categories[action.result.category].avg_time = nCatAvgTime
-
-  if(action.result.result === 'Correct') {
-    uTotals.difficulty[action.result.difficulty].correct += 1
-    uTotals.categories[action.result.category].correct += 1
-    uTotals.all.correct += 1
-  }
-
-  if(action.result.result === 'Incorrect') {
-    uTotals.difficulty[action.result.difficulty].incorrect += 1
-    uTotals.categories[action.result.category].incorrect += 1
-    uTotals.all.incorrect += 1
-  }
-
-  if(action.result.result === 'Outta Time') {
-    uTotals.difficulty[action.result.difficulty].outta_times += 1
-    uTotals.categories[action.result.category].outta_times += 1
-    uTotals.all.outta_times += 1
-  }
-
-  return { ...currentState, questions: { ...currentState.questions, totals: uTotals } }
+  return { ...currentState, questions: { ...currentState.questions, totals: action.userTotals } }
 }
 
 const updateUserVotesFromPlayController = (currentState, action) => {

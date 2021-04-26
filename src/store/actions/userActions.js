@@ -117,14 +117,16 @@ export const updateUserAchievementsFromPlayController = (achievements) => {
 
 export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
 
-export const updateUserQuestionsFromPlayController = (question) => {
+export const updateUserQuestionsFromPlayController = (qid, question) => {
+  console.log(qid, question)
   return {
     type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER,
+    qid: qid,
     question: question
   }
 }
 
-export const updateUserQuestionTotalsFromPlayController = (result) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, result: result } }
+export const updateUserQuestionTotalsFromPlayController = (userTotals) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, userTotals: userTotals } }
 
 export const updateUserVotesFromPlayController = (vote) => {
   return dispatch => {
