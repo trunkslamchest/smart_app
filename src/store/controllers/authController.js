@@ -174,7 +174,7 @@ class AuthController extends React.Component {
     if(this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
     // if(this.props.auth.status === 'fail' && this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
 
-    if(this.props.auth.id && !this.state.authUser) this.authUserModule()
+    if(this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
     if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
     if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
     if(this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule()
