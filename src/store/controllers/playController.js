@@ -38,7 +38,7 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'results'
          && this.props.play.voteStatus === 'voteSuccess'
-         && this.props.user.questions[this.props.play.question.difficulty].categories[this.props.play.question.category][this.props.play.question.id].vote)
+         && this.props.user.questions.list[this.props.play.question.id].vote)
          this.displayVotesModule()
 
       if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.results.comment) this.updateUserCommentsModule()
@@ -197,29 +197,20 @@ class PlayController extends React.Component {
       oPerf: this.props.play.results.performance.oPerf,
       qPerf: this.props.play.results.performance.qPerf
     })
+
     this.props.onUpdateUserExperienceFromPlayController({
       level: this.props.play.results.experience.level,
       total: this.props.play.results.experience.newTotal
     })
+
     if(this.props.play.results.achievements.total > 0){
       this.props.onUpdateUserAchievementsFromPlayController(this.props.play.results.achievements)
     }
+
     this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
-    // this.props.onUpdateUserQuestionTotalsFromPlayController({
-    //   difficulty: this.props.play.question.difficulty,
-    //   category: this.props.play.question.category,
-    //   answer: this.props.play.answer,
-    //   result: this.props.play.results.result
-    // }, this.props.questions.totals)
+
     this.props.onUpdateUserQuestionTotalsFromPlayController(this.props.play.results.userTotals)
-    // this.props.onUpdateUserQuestionsFromPlayController({
-    //   qid: this.props.play.question.id,
-    //   question: this.props.play.question.question,
-    //   answer: this.props.play.answer,
-    //   results: this.props.play.results,
-    //   experience: this.props.play.results.experience,
-    //   achievements: this.props.play.results.achievements
-    // })
+
     this.props.onUpdateUserQuestionsFromPlayController(this.props.play.question.id, {
         answer: this.props.play.answer.choice,
         category: this.props.play.question.category,
@@ -231,6 +222,7 @@ class PlayController extends React.Component {
         result: this.props.play.results.result,
         time: this.props.play.answer.time
       })
+
     this.props.onUpdateGameStatus('updateUserQuestionsSuccess', true)
   }
 

@@ -110,55 +110,6 @@ const updateUserQuestionIdsFromPlayController = (currentState, action) => {
 }
 
 const updateUserQuestionsFromPlayController = (currentState, action) => {
-  // let uQuestions = { ...currentState.questions }
-
-  // if(!currentState.questions[action.question.difficulty]) {
-  //   uQuestions[action.question.difficulty] = {
-  //     'categories': {
-  //       [action.question.category]: {
-  //         [action.question.qid]: {
-  //           answer: action.question.answer.choice,
-  //           correct_answer: action.question.results.correct_answer,
-  //           question: action.question.question,
-  //           result: action.question.results.result,
-  //           time: action.question.answer.time,
-  //           performance: action.question.results.performance.qPerf,
-  //           experience: action.question.results.experience,
-  //           achievements: action.question.results.achievements
-  //         }
-  //       }
-  //     }
-  //   }
-  // } else if(!currentState.questions[action.question.difficulty].categories[action.question.category]) {
-  //   uQuestions[action.question.difficulty].categories[action.question.category] = {
-  //     [action.question.qid]: {
-  //       answer: action.question.answer.choice,
-  //       correct_answer: action.question.results.correct_answer,
-  //       question: action.question.question,
-  //       result: action.question.results.result,
-  //       time: action.question.answer.time,
-  //       performance: action.question.results.performance.qPerf,
-  //       experience: action.question.results.experience,
-  //       achievements: action.question.results.achievements
-  //     }
-  //   }
-  // } else {
-  //   uQuestions[action.question.difficulty].categories[action.question.category][action.question.qid] = {
-  //     answer: action.question.answer.choice,
-  //     correct_answer: action.question.results.correct_answer,
-  //     question: action.question.question,
-  //     result: action.question.results.result,
-  //     time: action.question.answer.time,
-  //     performance: action.question.results.performance.qPerf,
-  //     experience: action.question.results.experience,
-  //     achievements: action.question.results.achievements
-  //   }
-  // }
-
-  // return{
-  //   ...currentState,
-  //   questions: uQuestions
-  // }
   return{
     ...currentState,
     questions: {
@@ -182,20 +133,14 @@ const updateUserVotesFromPlayController = (currentState, action) => {
   return {
     ...currentState,
     questions: { ...currentState.questions,
-      [action.res.difficulty]: {
-        ...currentState.questions[action.res.difficulty],
-        categories: {
-          ...currentState.questions[action.res.difficulty].categories,
-          [action.res.category]: {
-            ...currentState.questions[action.res.difficulty].categories[action.res.category],
-            [action.res.qid]: {
-              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
-              vote: {
-                [action.res.vid]: vote
-              }
-            }
-          }
-        }
+      list: {
+        ...currentState.questions.list,
+        [action.res.qid]: {
+          ...currentState.questions.list[action.res.qid],
+          vote: {
+            [action.res.vid]: vote
+          },
+        },
       },
       totals: {
         ...currentState.questions.totals,
@@ -206,6 +151,34 @@ const updateUserVotesFromPlayController = (currentState, action) => {
       }
     }
   }
+
+  // return {
+  //   ...currentState,
+  //   questions: { ...currentState.questions,
+  //     [action.res.difficulty]: {
+  //       ...currentState.questions[action.res.difficulty],
+  //       categories: {
+  //         ...currentState.questions[action.res.difficulty].categories,
+  //         [action.res.category]: {
+  //           ...currentState.questions[action.res.difficulty].categories[action.res.category],
+  //           [action.res.qid]: {
+  //             ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
+  //             vote: {
+  //               [action.res.vid]: vote
+  //             }
+  //           }
+  //         }
+  //       }
+  //     },
+  //     totals: {
+  //       ...currentState.questions.totals,
+  //       all: {
+  //         ...currentState.questions.totals.all,
+  //         votes: voteTotals
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 const updateUserCommentsFromPlayController = (currentState, action) => {
@@ -277,22 +250,6 @@ const editUserComment = (currentState, action) => {
     }
   }
 }
-
-// const editUserComment = (currentState, action) => {
-//   let updateQuestions = { ...currentState.questions },
-//       difficulty = action.question.difficulty,
-//       category = action.question.category,
-//       qid = action.question.qid,
-//       cid = action.comment.cid
-
-//   updateQuestions[difficulty].categories[category][qid].comments[cid].comment = action.comment.comment
-//   updateQuestions[difficulty].categories[category][qid].comments[cid].timestamp = action.comment.timestamp
-
-//   return {
-//     ...currentState,
-//     questions: updateQuestions
-//   }
-// }
 
 const deleteUserComment = (currentState, action) => {
   let question = { ...currentState.questions[action.question.difficulty].categories[action.question.category][action.question.qid] },
