@@ -132,7 +132,7 @@ export const setComment = (obj) => {
 
 export const updateCommentStatus = (status, loading) => { return { type: actionTypes.UPDATE_COMMENT_STATUS, commentStatus: status, commentLoading: loading } }
 
-const updateComments = (res) => { return { type: actionTypes.SET_COMMENT, comments: res.commentsObj, comment: res.commentObj } }
+const updateComments = (res) => { return { type: actionTypes.SET_COMMENT, comments: res.questionCommentsObj, comment: res.commentObj } }
 
 export const resetComment = () => { return { type: actionTypes.RESET_COMMENT, comment: null, commentStatus: null, commentLoading: false } }
 

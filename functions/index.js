@@ -590,24 +590,16 @@ exports.questionResults = functions
 
     getRef.then((db) => {
 
-      var question = db.questions.list[reqData.qid]
-      var questionTotals = db.questions.totals
-
-      var user = db.users.list[reqData.uid]
-      var userTotals = db.users.totals
-
-      var acheivements = db.achievements.list
-      var acheivementsTotals = db.achievements.totals
-
-      // console.log(questionTotals)
-      // console.log(user)
-      // console.log(userTotals)
-      // console.log(acheivements)
-      // console.log(acheivementsTotals)
+      var question = db.questions.list[reqData.qid],
+          questionTotals = db.questions.totals,
+          user = db.users.list[reqData.uid],
+          userTotals = db.users.totals,
+          acheivements = db.achievements.list,
+          acheivementsTotals = db.achievements.totals
 
       let calcObj = {},
           resObj = {},
-          userObj = {},
+          // userObj = {},
           questionObj = {},
           calcUserTotalsObj = {},
           calcUserDiffTotalsObj = {},
@@ -679,6 +671,13 @@ exports.questionResults = functions
         avg_time: calcAvgTime
       }
 
+      questionObj = {
+        time: reqData.time,
+        result: calcResult,
+        performance: perfObj,
+        experience: xpObj
+      }
+
       calcUserTotalsObj = {
         ...reqData.userTotals.all,
         answered: reqData.userTotals.all.answered + 1,
@@ -721,9 +720,7 @@ exports.questionResults = functions
 
       calcAllTotalsObj.averages = {
         ...questionTotals.all.averages,
-        // answers: questionTotals.all.averages.answers === 0 ? 1 : parseFloat(((parseFloat(calcAllTotalsObj.answers) + 1.00) / calcAllTotalsObj.answers).toFixed(2)),
         answers: parseFloat((parseFloat(calcAllTotalsObj.answers) / userTotals.registered).toFixed(2)),
-
         avgTime: questionTotals.all.averages.avgTime === 0 ? reqData.time : parseFloat(((parseFloat(calcAllTotalsObj.total_time) / calcAllTotalsObj.answers)).toFixed(2)),
         correct: parseFloat(((parseFloat(calcAllTotalsObj.correct) / calcAllTotalsObj.answers) * 100).toFixed(2)),
         incorrect: parseFloat(((parseFloat(calcAllTotalsObj.incorrect) / calcAllTotalsObj.answers) * 100).toFixed(2)),
@@ -731,10 +728,6 @@ exports.questionResults = functions
         // rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
         rating: calcAllTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
-
-
-      // console.log(calcAllTotalsObj)
-
 
       calcAllDiffTotalsObj = {
         ...questionTotals.difficulty[reqData.difficulty],
@@ -747,9 +740,7 @@ exports.questionResults = functions
 
       calcAllDiffTotalsObj.averages = {
         ...questionTotals.difficulty[reqData.difficulty].averages,
-        // answers: questionTotals.difficulty[reqData.difficulty].averages.answers === 0 ? 1 : parseFloat(((parseFloat(calcAllDiffTotalsObj.answers) + 1.00) / calcAllDiffTotalsObj.answers).toFixed(2)),
         answers: parseFloat(((parseFloat(calcAllDiffTotalsObj.answers) / calcAllTotalsObj.answers) * 100).toFixed(2)),
-
         avgTime: questionTotals.difficulty[reqData.difficulty].averages.avgTime === 0 ? reqData.time : parseFloat(((parseFloat(calcAllDiffTotalsObj.total_time) / calcAllDiffTotalsObj.answers)).toFixed(2)),
         correct: parseFloat(((parseFloat(calcAllDiffTotalsObj.correct) / calcAllDiffTotalsObj.answers) * 100).toFixed(2)),
         incorrect: parseFloat(((parseFloat(calcAllDiffTotalsObj.incorrect) / calcAllDiffTotalsObj.answers) * 100).toFixed(2)),
@@ -757,10 +748,6 @@ exports.questionResults = functions
         // rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
         rating: calcAllDiffTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllDiffTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
-
-
-      // console.log(calcAllDiffTotalsObj)
-
 
       calcAllCatTotalsObj = {
         ...questionTotals.category[reqData.category],
@@ -773,9 +760,7 @@ exports.questionResults = functions
 
       calcAllCatTotalsObj.averages = {
         ...questionTotals.category[reqData.category].averages,
-        // answers: questionTotals.category[reqData.category].averages.answers === 0 ? 1 : parseFloat(((parseFloat(calcAllCatTotalsObj.answers) + 1.00) / calcAllCatTotalsObj.answers).toFixed(2)),
         answers: parseFloat(((parseFloat(calcAllCatTotalsObj.answers) / calcAllTotalsObj.answers) * 100).toFixed(2)),
-
         avgTime: questionTotals.category[reqData.category].averages.avgTime === 0 ? reqData.time : parseFloat(((parseFloat(calcAllCatTotalsObj.total_time) / calcAllCatTotalsObj.answers)).toFixed(2)),
         correct: parseFloat(((parseFloat(calcAllCatTotalsObj.correct) / calcAllCatTotalsObj.answers) * 100).toFixed(2)),
         incorrect: parseFloat(((parseFloat(calcAllCatTotalsObj.incorrect) / calcAllCatTotalsObj.answers) * 100).toFixed(2)),
@@ -784,44 +769,7 @@ exports.questionResults = functions
         rating: calcAllCatTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllCatTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
 
-
-      // console.log(calcAllCatTotalsObj)
-
-
-      questionObj = {
-        time: reqData.time,
-        result: calcResult,
-        performance: perfObj,
-        experience: xpObj
-      }
-
       achievementsObj = calcAchievements(acheivements, acheivementsTotals, reqData.achievements, questionObj, calcUserTotalsObj, calcUserDiffTotalsObj, calcUserCatTotalsObj)
-
-      //     userObj = {
-      //       uid: reqData.uid,
-      //       qid: reqData.qid,
-      //       difficulty: reqData.difficulty,
-      //       category: reqData.category,
-      //       time: reqData.time,
-      //       result: calcResult,
-      //       answer: reqData.answer,
-      //       correct_answer: question.correct,
-      //       question: question.question,
-      //       performance: perfObj,
-      //       experience: xpObj,
-      //       totals: totalsObj,
-      //       diffTotals: diffTotalsObj,
-      //       catTotals: catTotalsObj,
-      //       achievements: achievementsObj.user
-      //     }
-
-      // console.log(perfObj)
-      // console.log(xpObj)
-      // console.log(ratingObj)
-      // console.log(calcObj)
-      // console.log(totalsObj)
-      // console.log(diffTotalsObj)
-      // console.log(catTotalsObj)
 
       var userIdsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'ids',
           userAchievementsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'achievements',
@@ -838,8 +786,6 @@ exports.questionResults = functions
           userAchievementsObj = {},
           userQuestionObj = {},
           userQuestionTemp = {
-            // uid: reqData.uid,
-            // qid: reqData.qid,
             difficulty: reqData.difficulty,
             category: reqData.category,
             time: reqData.time,
@@ -849,10 +795,6 @@ exports.questionResults = functions
             question: question.question,
             performance: perfObj.qPerf,
             experience: xpObj,
-            // totals: totalsObj,
-            // diffTotals: diffTotalsObj,
-            // catTotals: catTotalsObj,
-            // achievements: achievementsObj.user
           }
           userXpObj = {},
           userTotalsObj = {},
@@ -873,12 +815,6 @@ exports.questionResults = functions
           allTotalsObj[allTotalsPath] = calcAllTotalsObj
           allDiffTotalsObj[allDiffTotalsPath] = calcAllDiffTotalsObj
           allCatTotalsObj[allCatTotalsPath] = calcAllCatTotalsObj
-
-
-      // console.log(allTotalsObj)
-      // console.log(allDiffTotalsObj)
-      // console.log(allCatTotalsObj)
-
 
       if(!user.questions.ids) userIdsObj[userIdsPath] = [ reqData.qid ]
       else userIdsObj[userIdsPath] = [ ...user.questions.ids, reqData.qid ]
@@ -919,8 +855,6 @@ exports.questionResults = functions
         }
       }
 
-      // console.log(user.questions.totals)
-
       firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'answers').update(calcObj)
       firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'rating').update(ratingObj)
 
@@ -942,6 +876,181 @@ exports.questionResults = functions
       res.json(resObj).status(200);
     })
 });
+
+exports.questionVote = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res)
+
+    const reqData = JSON.parse(req.body.data)
+
+    var getRef = firebase.database().ref('/').get().then((snap) => {
+        return snap.val()
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    getRef.then((db) => {
+      let voteObj = {}, ratingObj = {}, voteTotalsObj = {}, userVoteObj = {}, userVoteTotalsObj = {},
+          voteTotalsBlankObj = { ZeroStars: 0, OneStars: 0, TwoStars: 0, ThreeStars: 0, FourStars: 0, FireStars: 0, total: 0 }
+
+      var question = db.questions.list[reqData.qid]
+          questionTotals = db.questions.totals,
+          user = db.users.list[reqData.uid],
+          userTotals = db.users.totals
+
+      var vid = firebase.database().ref().push().key
+
+      voteObj = { ...question.votes }
+      voteObj[reqData.vote] = voteObj[reqData.vote] + 1
+      voteObj.total = voteObj.total + 1
+
+      let voteAvg = calcVoteAvg(voteObj)
+
+      let voteRating = calcVoteRating(voteAvg)
+      ratingObj = { ...question.rating, approval: voteRating }
+
+      voteTotalsObj = { ...questionTotals.all.votes, [reqData.vote]: questionTotals.all.votes[reqData.vote] + 1, total: questionTotals.all.votes.total + 1 }
+
+      voteAveragesObj = {
+        ...questionTotals.all.averages.votes,
+        ZeroStars: parseFloat((parseFloat(voteTotalsObj.ZeroStars / voteTotalsObj.total) * 100).toFixed(2)),
+        OneStars: parseFloat((parseFloat(voteTotalsObj.OneStars / voteTotalsObj.total) * 100).toFixed(2)),
+        TwoStars: parseFloat((parseFloat(voteTotalsObj.TwoStars / voteTotalsObj.total) * 100).toFixed(2)),
+        ThreeStars: parseFloat((parseFloat(voteTotalsObj.ThreeStars / voteTotalsObj.total) * 100).toFixed(2)),
+        FourStars: parseFloat((parseFloat(voteTotalsObj.FourStars / voteTotalsObj.total) * 100).toFixed(2)),
+        FiveStars: parseFloat((parseFloat(voteTotalsObj.FiveStars / voteTotalsObj.total) * 100).toFixed(2)),
+      }
+
+      firebase.database().ref('/questions/list/' + reqData.qid + '/votes').update(voteObj)
+      firebase.database().ref('/questions/list/' + reqData.qid + '/rating').update(ratingObj)
+      firebase.database().ref('/questions/totals/all/votes').update(voteTotalsObj)
+      firebase.database().ref('/questions/totals/all/averages/votes').update(voteAveragesObj)
+
+      voteObj["vid"] = vid
+      voteObj["rating"] = voteRating
+      voteObj["average"] = voteAvg.total
+      voteObj["vote"] = reqData.vote
+
+      var userVotePath = '/users/list/' + reqData.uid + '/questions/list/' + reqData.qid + '/vote',
+          userVoteTotalPath = '/users/list/' + reqData.uid + '/questions/totals/all/votes'
+
+      userVoteObj[userVotePath] = { ...user.questions.list[reqData.qid].votes, [vid]: { vote: reqData.vote } }
+
+      if(user.questions.totals.all.votes) userVoteTotalsObj[userVoteTotalPath] = { ...voteTotalsBlankObj, [reqData.vote]: 1, total: 1 }
+      else userVoteTotalsObj[userVoteTotalPath] = { ...user.questions.totals.all.votes, [reqData.vote]: user.questions.totals.all.votes[reqData.vote] + 1, total: user.questions.totals.all.votes.total + 1 }
+
+      firebase.database().ref().update(userVoteObj);
+      firebase.database().ref().update(userVoteTotalsObj);
+
+      res.json(voteObj).status(200)
+    // res.json({ message: 'done' }).status(200);
+    })
+})
+
+exports.questionComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpatch(req, res)
+
+    const reqData = JSON.parse(req.body.data)
+
+    var getRef = firebase.database().ref('/').get().then((snap) => {
+        return snap.val()
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    getRef.then((db) => {
+
+    let questionCommentsObj = {}, commentsTotalObj = {}, commentObj = {}, userCommentObj = {}, userCommentTotalsObj = {}, resObj = {}
+
+    var question = db.questions.list[reqData.qid]
+        questionTotals = db.questions.totals,
+        user = db.users.list[reqData.uid],
+        userTotals = db.users.totals
+
+    var commentsTotalPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
+    var userCommentPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments'
+    var userCommentsTotalPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
+
+
+    var cid = firebase.database().ref().push().key
+
+    commentObj = {
+      [cid]: {
+        cid: cid,
+        comment: reqData.comment,
+        user: reqData.user_name,
+        timestamp: reqData.timestamp
+      }
+    }
+
+    commentsTotalObj[commentsTotalPath] =  questionTotals.all.comments + 1
+
+    if(!question.comments) questionCommentsObj = commentObj
+    else questionCommentsObj = { ...question.comments, ...commentObj }
+
+    firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments').update(questionCommentsObj)
+    firebase.database().ref().update(commentsTotalObj)
+
+    if(!user.questions.list[reqData.qid].comments) userCommentObj[userCommentPath] = { [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
+    else userCommentObj[userCommentPath] = { ...user.questions.list[reqData.qid].comments, [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
+
+    firebase.database().ref().update(userCommentObj);
+
+
+      if(!user.questions.totals.all.comments) userCommentTotalsObj[userCommentsTotalPath] = { total: 1 }
+      else userCommentTotalsObj[userCommentsTotalPath] = { total: user.questions.totals.all.comments.total + 1 }
+      firebase.database().ref().update(userCommentTotalsObj);
+
+      commentObj = {
+        cid: cid,
+        qid: reqData.qid,
+        comment: reqData.comment,
+        timestamp: reqData.timestamp
+      }
+
+      resObj = { questionCommentsObj, commentObj }
+
+      res.json(resObj).status(200)
+    // res.json({ message: 'done' }).status(200);
+    })
+})
+
+
+
+var calcVoteRating = function(voteAvg) {
+  let adjustAvg = (voteAvg.total * 2) / 10.00
+  if(adjustAvg > 1.00) return 'S'
+  if(adjustAvg <= 1.00 && adjustAvg >= 0.95) return 'A+'
+  if(adjustAvg < 0.95 && adjustAvg >= 0.9) return 'A'
+  if(adjustAvg < 0.9 && adjustAvg >= 0.85) return 'A-'
+  if(adjustAvg < 0.85 && adjustAvg >= 0.8) return 'B+'
+  if(adjustAvg < 0.8 && adjustAvg >= 0.75) return 'B'
+  if(adjustAvg < 0.75 && adjustAvg >= 0.7) return 'B-'
+  if(adjustAvg < 0.7 && adjustAvg >= 0.65) return 'C+'
+  if(adjustAvg < 0.65 && adjustAvg >= 0.6) return 'C'
+  if(adjustAvg < 0.6 && adjustAvg >= 0.55) return 'C-'
+  if(adjustAvg < 0.55 && adjustAvg >= 0.5) return 'D+'
+  if(adjustAvg < 0.5 && adjustAvg >= 0.45) return 'D'
+  if(adjustAvg < 0.45 && adjustAvg >= 0.4) return 'D-'
+  if(adjustAvg < 0.4 && adjustAvg >= 0.35) return 'F+'
+  if(adjustAvg < 0.35 && adjustAvg >= 0.3) return 'F'
+  if(adjustAvg < 0.3 && adjustAvg >= 0.25) return 'F-'
+  if(adjustAvg < 0.25) return 'E'
+}
+
+var calcVoteAvg = function(voteObj) {
+  let multiplyObj = { ...voteObj }
+  multiplyObj.FiveStars = voteObj.FiveStars * 5
+  multiplyObj.FourStars = voteObj.FourStars * 4
+  multiplyObj.ThreeStars = voteObj.ThreeStars * 3
+  multiplyObj.TwoStars = voteObj.TwoStars * 2
+  multiplyObj.OneStars = voteObj.OneStars * 1
+  multiplyObj.total = parseFloat(((multiplyObj.FiveStars + multiplyObj.FourStars + multiplyObj.ThreeStars + multiplyObj.TwoStars + multiplyObj.OneStars) / voteObj.total).toFixed(2))
+  return multiplyObj
+}
 
 var calcAvg = function(obj) {
   var funcAvg = function(part, all) { return part / all }

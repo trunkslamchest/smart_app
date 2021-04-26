@@ -151,6 +151,37 @@ const updateUserVotesFromPlayController = (currentState, action) => {
       }
     }
   }
+}
+
+const updateUserCommentsFromPlayController = (currentState, action) => {
+  let comment = { comment: action.res.comment, timestamp: action.res.timestamp },
+      commentTotals = { ...currentState.questions.totals.all.comments }
+
+  commentTotals.total += 1
+
+  return {
+    ...currentState,
+    questions: { ...currentState.questions,
+      list: {
+        ...currentState.questions.list,
+        [action.res.qid]: {
+          ...currentState.questions.list[action.res.qid],
+          comments: {
+            ...currentState.questions.list[action.res.qid].comments,
+            [action.res.cid]: comment
+          }
+        }
+
+      },
+      totals: {
+        ...currentState.questions.totals,
+        all: {
+          ...currentState.questions.totals.all,
+          comments: commentTotals
+        }
+      }
+    }
+  }
 
   // return {
   //   ...currentState,
@@ -163,8 +194,9 @@ const updateUserVotesFromPlayController = (currentState, action) => {
   //           ...currentState.questions[action.res.difficulty].categories[action.res.category],
   //           [action.res.qid]: {
   //             ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
-  //             vote: {
-  //               [action.res.vid]: vote
+  //             comments: {
+  //               ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
+  //               [action.res.cid]: comment
   //             }
   //           }
   //         }
@@ -174,47 +206,11 @@ const updateUserVotesFromPlayController = (currentState, action) => {
   //       ...currentState.questions.totals,
   //       all: {
   //         ...currentState.questions.totals.all,
-  //         votes: voteTotals
+  //         comments: commentTotals
   //       }
   //     }
   //   }
   // }
-}
-
-const updateUserCommentsFromPlayController = (currentState, action) => {
-  let comment = { comment: action.res.comment, timestamp: action.res.timestamp },
-      commentTotals = { ...currentState.questions.totals.all.comments }
-
-  commentTotals.total += 1
-
-  return {
-    ...currentState,
-    questions: { ...currentState.questions,
-      [action.res.difficulty]: {
-        ...currentState.questions[action.res.difficulty],
-        categories: {
-          ...currentState.questions[action.res.difficulty].categories,
-          [action.res.category]: {
-            ...currentState.questions[action.res.difficulty].categories[action.res.category],
-            [action.res.qid]: {
-              ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
-              comments: {
-                ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
-                [action.res.cid]: comment
-              }
-            }
-          }
-        }
-      },
-      totals: {
-        ...currentState.questions.totals,
-        all: {
-          ...currentState.questions.totals.all,
-          comments: commentTotals
-        }
-      }
-    }
-  }
 }
 
 const editUserComment = (currentState, action) => {
