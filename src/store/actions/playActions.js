@@ -50,9 +50,24 @@ export const getResults = (obj) => {
   return dispatch => {
     questionsFunctions('getQuestionResults', fetch.get.questionResults, obj)
     .then(res => {
-      dispatch(setResults({ result: res.answerResult, correct_answer: res.correct, avg_time: res.avg_time, performance: res.performance, experience: res.experience, achievements: res.achievements.user }))
+      console.log(res)
+      dispatch(setResults({
+        result: res.answerResult,
+        correct_answer: res.correct,
+        avg_time: res.avg_time,
+        performance: res.performance,
+        experience: res.experience,
+        achievements: res.achievements.user,
+        questionTotals: res.totals
+      }))
       dispatch(updateAchievements({ all: res.achievements.all, totals: res.achievements.totals }))
-      dispatch(updateQuestion({answers: res.answers, diffRating: res.diffRating, perfRating: res.perfRating, votes: res.votes, comments: res.comments }))
+      dispatch(updateQuestion({
+        answers: res.answers,
+        diffRating: res.diffRating,
+        perfRating: res.perfRating,
+        votes: res.votes,
+        comments: res.comments
+      }))
     })
   }
 }

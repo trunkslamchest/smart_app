@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-// import * as actions from '../../../store/actions/actionIndex'
 
 import DashboardStatsAnswersContainer from '../dashboardStatsAnswersContainer/dashboardStatsAnswersContainer'
 
@@ -53,44 +51,38 @@ class DashboardStatsCard extends React.Component {
   }
 
   render(){
-
-    // console.log(this.props)
-
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
     const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
 
     let statsCardBlock
-    let qSet = this.props.qSet[0]
     let header_menu_arrow = arrow_white_left
     let header_menu_arrow_disabled = arrow_grey_left
 
     if(typeof this.props.answers === 'string') {
       statsCardBlock =
         <div className="stats_card_no_answers_container">
-          <h3>{ qSet }</h3>
+          <h3>{ this.props.cat || this.props.diff }</h3>
           <div className="stats_card_no_answers_left_container">
-            {/* <h4>You have not answered any { qSet } questions</h4> */}
             { header_menu_arrow_disabled }
           </div>
         </div>
     } else {
 
-      let stats = this.props.qSet[1],
-          questionsAnswered = this.numZero(((stats.answered / this.props.totals[qSet].questions) * 100).toFixed(2)),
-          questionsCorrect = "0",
-          arrow_up,
-          arrow_down
+      let questionsCorrect = "0",
+        questionsAnswered = this.numZero(((this.props.userTotals.answered / this.props.qSetTotals.questions) * 100).toFixed(2)),
+        arrow_up,
+        arrow_down
 
       if(this.state.headerButtonHover) header_menu_arrow = arrow_grey_left
       if(this.state.showStats) header_menu_arrow = arrow_grey_down
 
-      if(stats.rating !== 0) {
+      if(this.props.userTotals.rating !== 0) {
         arrow_up = <img alt='Higher than global average' className='header_button_trend_arrow' src={ trendArrowIndex.greenArrowUp } />
         arrow_down = <img alt='Lower than global average' className='header_button_trend_arrow' src={ trendArrowIndex.redArrowDown } />
       }
 
-      if(stats.answered > 0) questionsCorrect = this.numZero(((stats.correct / stats.answered) * 100).toFixed(2))
+      if(this.props.userTotals.answered > 0) questionsCorrect = this.numZero(((this.props.userTotals.correct / this.props.userTotals.answered) * 100).toFixed(2))
 
       statsCardBlock =
         <>
@@ -102,18 +94,18 @@ class DashboardStatsCard extends React.Component {
             onMouseEnter={ this.onStatHover }
             onMouseLeave={ this.offStatHover }
           >
-            <h3>{ qSet }</h3>
+            <h3>{ this.props.cat || this.props.diff }</h3>
             <div className={ this.state.showStats ? "stats_card_header_button_right_container_active" : "stats_card_header_button_right_container" }>
               <div className={ this.state.showStats ? "stats_card_header_button_rank_rating_container_active" : "stats_card_header_button_rank_rating_container" }>
                 <div className="stats_card_header_button_rank_sub_container">
                   <h4>Rank</h4>
-                  <span>{ stats.rank }</span>
+                  <span>{ this.props.userTotals.rank }</span>
                 </div>
                 <div className="stats_card_header_button_rating_sub_container">
                   <h4>Rating</h4>
                   <span>
-                    { (stats.rating).toFixed(2) }
-                    { stats.rating >= this.props.totals[qSet].averages.questions.performance ? arrow_up : arrow_down }
+                    { (this.props.userTotals.rating).toFixed(2) }
+                    { this.props.userTotals.rating >= this.props.qSetTotals.averages.rating ? arrow_up : arrow_down }
                   </span>
                 </div>
               </div>
@@ -121,21 +113,21 @@ class DashboardStatsCard extends React.Component {
                 <div className="stats_card_header_button_avg_time_container">
                   <h4>Average Time</h4>
                   <span>
-                    { (stats.avg_time).toFixed(2) } seconds
-                    { stats.avg_time <= this.props.totals[qSet].averages.questions.avgTime ? arrow_up : arrow_down }
+                    { (this.props.userTotals.avg_time).toFixed(2) } seconds
+                    { this.props.userTotals.avg_time <= this.props.qSetTotals.averages.avgTime ? arrow_up : arrow_down }
                   </span>
                 </div>
                 <div className="stats_card_header_button_outta_times_container">
                   <h4>Outta Times</h4>
-                  <span>{ stats.outta_times }</span>
+                  <span>{ this.props.userTotals.outta_times }</span>
                 </div>
               </div>
               <div className={ this.state.showStats ? "stats_card_header_button_right_active" : "stats_card_header_button_right" } >
                   <div className={ this.state.showStats ? "stats_card_header_button_right_text_sub_container_active" : "stats_card_header_button_right_text_sub_container" } >
-                    <span>{ stats.answered }/{ this.props.totals[qSet].questions } answered ({ questionsAnswered }%)</span>
-                    <span>{ stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)</span>
+                    <span>{ this.props.userTotals.answered }/{ this.props.qSetTotals.questions } answered ({ questionsAnswered }%)</span>
+                    <span>{ this.props.userTotals.correct }/{ this.props.userTotals.answered } correct ({ questionsCorrect }%)</span>
                   </div>
-                  { questionsCorrect >= this.props.totals[qSet].averages.questions.correct ? arrow_up : arrow_down }
+                  { questionsCorrect >= this.props.qSetTotals.averages.correct ? arrow_up : arrow_down }
               </div>
             </div>
             { header_menu_arrow }
@@ -147,7 +139,7 @@ class DashboardStatsCard extends React.Component {
                 history={ this.props.history }
                 diff={ this.props.diff ? this.props.diff : null }
                 cat={ this.props.cat ? this.props.cat : null }
-                qSet={ qSet }
+                qSet={ this.props.qSet }
               />
             </div>
           }
@@ -158,17 +150,17 @@ class DashboardStatsCard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    user: state.user,
-    questions: state.questions
+    user: store.user,
+    questions: store.questions
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
 
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsCard)
+export default connect(store, dispatch)(DashboardStatsCard)

@@ -30,53 +30,55 @@ const getCatQuestion = (currentState, action) => { return { ...currentState, que
 const getStaticQuestion = (currentState, action) => { return { ...currentState, staticQuestion: action.res } }
 
 const updateQuestionTotalsFromPlayController = (currentState, action) => {
-  let uTotals = { ...currentState.totals }
+  // let uTotals = { ...currentState.totals }
 
-  uTotals.all.answers += 1
-  uTotals.difficulty[action.result.difficulty].answers += 1
-  uTotals.category[action.result.category].answers += 1
+  // uTotals.all.answers += 1
+  // uTotals.difficulty[action.result.difficulty].answers += 1
+  // uTotals.category[action.result.category].answers += 1
 
-  if(action.result.result === 'Correct') {
-    uTotals.all.correct += 1
-    uTotals.difficulty[action.result.difficulty].correct += 1
-    uTotals.category[action.result.category].correct += 1
-  }
+  // if(action.result.result === 'Correct') {
+  //   uTotals.all.correct += 1
+  //   uTotals.difficulty[action.result.difficulty].correct += 1
+  //   uTotals.category[action.result.category].correct += 1
+  // }
 
-  if(action.result.result === 'Incorrect') {
-    uTotals.all.incorrect += 1
-    uTotals.difficulty[action.result.difficulty].incorrect += 1
-    uTotals.category[action.result.category].incorrect += 1
-  }
+  // if(action.result.result === 'Incorrect') {
+  //   uTotals.all.incorrect += 1
+  //   uTotals.difficulty[action.result.difficulty].incorrect += 1
+  //   uTotals.category[action.result.category].incorrect += 1
+  // }
 
-  if(action.result.result === 'Outta Time') {
-    uTotals.all.outta_time += 1
-    uTotals.difficulty[action.result.difficulty].outta_time += 1
-    uTotals.category[action.result.category].outta_time += 1
-  }
+  // if(action.result.result === 'Outta Time') {
+  //   uTotals.all.outta_time += 1
+  //   uTotals.difficulty[action.result.difficulty].outta_time += 1
+  //   uTotals.category[action.result.category].outta_time += 1
+  // }
 
-  console.log(uTotals)
+  // console.log(uTotals)
 
-  uTotals.all.total_time = uTotals.all.total_time + action.result.time
-  uTotals.difficulty[action.result.difficulty].total_time = uTotals.difficulty[action.result.difficulty].total_time + action.result.time
-  uTotals.category[action.result.category].total_time = uTotals.category[action.result.category].total_time + action.result.time
+  // uTotals.all.total_time = uTotals.all.total_time + action.result.time
+  // uTotals.difficulty[action.result.difficulty].total_time = uTotals.difficulty[action.result.difficulty].total_time + action.result.time
+  // uTotals.category[action.result.category].total_time = uTotals.category[action.result.category].total_time + action.result.time
 
-  uTotals.all.averages.avgTime = uTotals.all.total_time / uTotals.all.answers
-  uTotals.difficulty[action.result.difficulty].averages.avgTime = uTotals.difficulty[action.result.difficulty].total_time / uTotals.difficulty[action.result.difficulty].answers
-  uTotals.category[action.result.category].averages.avgTime = uTotals.category[action.result.category].total_time / uTotals.category[action.result.category].answers
+  // uTotals.all.averages.avgTime = uTotals.all.total_time / uTotals.all.answers
+  // uTotals.difficulty[action.result.difficulty].averages.avgTime = uTotals.difficulty[action.result.difficulty].total_time / uTotals.difficulty[action.result.difficulty].answers
+  // uTotals.category[action.result.category].averages.avgTime = uTotals.category[action.result.category].total_time / uTotals.category[action.result.category].answers
 
-  uTotals.all.averages.correct = (uTotals.all.correct / uTotals.all.answers) * 100
-  uTotals.difficulty[action.result.difficulty].averages.correct = (uTotals.difficulty[action.result.difficulty].correct / uTotals.difficulty[action.result.difficulty].answers) * 100
-  uTotals.category[action.result.category].averages.correct = (uTotals.category[action.result.category].correct / uTotals.category[action.result.category].answers) * 100
+  // uTotals.all.averages.correct = (uTotals.all.correct / uTotals.all.answers) * 100
+  // uTotals.difficulty[action.result.difficulty].averages.correct = (uTotals.difficulty[action.result.difficulty].correct / uTotals.difficulty[action.result.difficulty].answers) * 100
+  // uTotals.category[action.result.category].averages.correct = (uTotals.category[action.result.category].correct / uTotals.category[action.result.category].answers) * 100
 
-  uTotals.all.averages.incorrect = (uTotals.all.incorrect / uTotals.all.answers) * 100
-  uTotals.difficulty[action.result.difficulty].averages.incorrect = (uTotals.difficulty[action.result.difficulty].incorrect / uTotals.difficulty[action.result.difficulty].answers) * 100
-  uTotals.category[action.result.category].averages.incorrect = (uTotals.category[action.result.category].incorrect / uTotals.category[action.result.category].answers) * 100
+  // uTotals.all.averages.incorrect = (uTotals.all.incorrect / uTotals.all.answers) * 100
+  // uTotals.difficulty[action.result.difficulty].averages.incorrect = (uTotals.difficulty[action.result.difficulty].incorrect / uTotals.difficulty[action.result.difficulty].answers) * 100
+  // uTotals.category[action.result.category].averages.incorrect = (uTotals.category[action.result.category].incorrect / uTotals.category[action.result.category].answers) * 100
 
-  uTotals.all.averages.outtaTime = (uTotals.all.outta_time / uTotals.all.answers) * 100
-  uTotals.difficulty[action.result.difficulty].averages.outtaTime = (uTotals.difficulty[action.result.difficulty].outta_time / uTotals.difficulty[action.result.difficulty].answers) * 100
-  uTotals.category[action.result.category].averages.outtaTime = (uTotals.category[action.result.category].outta_time / uTotals.category[action.result.category].answers) * 100
+  // uTotals.all.averages.outtaTime = (uTotals.all.outta_time / uTotals.all.answers) * 100
+  // uTotals.difficulty[action.result.difficulty].averages.outtaTime = (uTotals.difficulty[action.result.difficulty].outta_time / uTotals.difficulty[action.result.difficulty].answers) * 100
+  // uTotals.category[action.result.category].averages.outtaTime = (uTotals.category[action.result.category].outta_time / uTotals.category[action.result.category].answers) * 100
 
-  return { ...currentState, totals: uTotals }
+  // return { ...currentState, totals: uTotals }
+  return { ...currentState, totals: action.totals }
+
 }
 
 const updateQuestionStatus = (currentState, action) => { return { ...currentState, status: action.status } }

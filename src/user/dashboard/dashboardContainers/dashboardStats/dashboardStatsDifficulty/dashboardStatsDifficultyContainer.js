@@ -1,74 +1,33 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
-// import * as actions from '../../../store/actions/actionIndex'
 
 import DashboardStatsCard from '../dashboardStatsComponents/dashboardStatsCard/dashboardStatsCard'
 
 import './dashboardStatsDifficulty.css'
 
-class DashboardStatsDifficultyContainer extends React.Component {
-  render(){
+const DashboardStatsDifficultyContainer = (props) => {
 
     var distribAnswers
 
-    // if(this.props.user.questions){
-    //   let allAnswers = this.props.user.questions, diffTotals = Object.entries(this.props.user.questions.totals.difficulty)
-    //   distribAnswers = diffTotals.map(diff => {
-    //     return (<DashboardStatsCard
-    //       answers={ !!allAnswers[diff[0]] ? allAnswers[diff[0]].categories : "null" }
-    //       history={ this.props.history }
-    //       diff={ diff[0] }
-    //       key={ diffTotals.indexOf(diff) + 1 }
-    //       qSet={ diff }
-    //       totals={ this.props.questions.totals.difficulty }
-    //     />)
-    //     }
-    //   )
-    // }
-
-    if(this.props.user.questions){
-      let allAnswers = this.props.user.questions.list, diffTotals = Object.entries(this.props.user.questions.totals.difficulty)
-          // console.log(catTotals[0])
-          // console.log(allAnswers)
-
+    if(props.user.questions){
+      let allAnswers = props.user.questions.list, diffTotals = Object.entries(props.user.questions.totals.difficulty)
 
       distribAnswers = diffTotals.map((diff, index) => {
-        let statCard, sortAnswers = {}
-        // if(this.props.questions.totals.category[cat[0]]) {
+        let sortAnswers = {}
 
-          for(let answer in allAnswers) {
-                if(allAnswers[answer].difficulty === diff[0]) {
-                  // console.log(cat[0])
-                  sortAnswers[answer] = allAnswers[answer]
-                }
-          }
-        // }
+        for(let answer in allAnswers) {
+          if(allAnswers[answer].difficulty === diff[0]) sortAnswers[answer] = allAnswers[answer]
+        }
 
-          //       // if(diff !== 'totals' &&
-          //   //        diff !== 'ids' &&
-          //   //        !!allAnswers[diff].categories[cat[0]]) {
-          //       if(allAnswers[answer].category === cat[0]) {
-          //         console.log(!!sortAnswers[cat[0]])
-          //         if(!!sortAnswers[cat[0]]) sortAnswers[cat[0]] = { answer: allAnswers[answer] }
-          //         else sortAnswers[cat[0]] = { ...sortAnswers[cat[0]], answer: allAnswers[answer] }
-          //         // sortAnswers[cat[0]] = { ...sortAnswers[cat[0]],  }
-          //         // console.log(cat[0], allAnswers[answer])
-          //         sortAnswers[cat[0]] = { ...sortAnswers[cat[0]], answer: allAnswers[answer] }
-          //       }
-          //         // sortCats[diff] = { ...sortCats[diff], ...allAnswers[diff].categories[cat[0]] }
-          //   }
-                  // console.log(sortAnswers)
-          statCard = <DashboardStatsCard
-                      answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
-                      history={ this.props.history }
-                      key={ index + 1 }
-                      diff={ diff[0] }
-                      qSet={ diff }
-                      totals={ this.props.questions.totals.difficulty }
-                    />
-        // }
-        return statCard
+        return <DashboardStatsCard
+                answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
+                history={ props.history }
+                key={ index + 1 }
+                diff={ diff[0] }
+                qSet={ 'difficulty' }
+                qSetTotals={ props.questions.totals.difficulty[diff[0]] }
+                userTotals={ diff[1] }
+              />
       })
     }
 
@@ -82,20 +41,19 @@ class DashboardStatsDifficultyContainer extends React.Component {
         { distribAnswers[1] }
       </div>
     )
-  }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    user: state.user,
-    questions: state.questions
+    user: store.user,
+    questions: store.questions
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
 
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardStatsDifficultyContainer)
+export default connect(store, dispatch)(DashboardStatsDifficultyContainer)

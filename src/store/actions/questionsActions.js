@@ -46,17 +46,17 @@ const initClearQuestionTotals = () => {
   }
 }
 
-export const updateQuestionTotalsFromPlayController = (result) => {
+export const updateQuestionTotalsFromPlayController = (totals) => {
   return dispatch => {
     dispatch(updateGameStatus('updateQuestionTotalsSuccess', true))
-    dispatch(initUpdateQuestionTotalsFromPlayController(result))
+    dispatch(initUpdateQuestionTotalsFromPlayController(totals))
   }
 }
 
-const initUpdateQuestionTotalsFromPlayController = (result) => {
+const initUpdateQuestionTotalsFromPlayController = (totals) => {
   return {
     type: actionTypes.UPDATE_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
-    result: result
+    totals: totals
   }
 }
 

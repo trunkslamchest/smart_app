@@ -71,7 +71,7 @@ const UserStatsTotal = (props) => {
               <h2>SmartApp™ Rating</h2>
               <div className="user_stats_total_rating_sub_container">
                 <h1>{ (props.user_questions.all.rating * 10).toFixed(2) }</h1>
-                { props.user_questions.all.rating > props.question_totals.all.averages.questions.performance ? arrow_up : arrow_down }
+                { props.user_questions.all.rating > props.question_totals.all.averages.rating ? arrow_up : arrow_down }
               </div>
             </div>
           </div>
@@ -110,12 +110,12 @@ const UserStatsTotal = (props) => {
           <li>{ props.user_questions.all.answered }/{ props.question_totals.all.questions } answered ({ totalQuestionsAnswered }%)</li>
           <li>
             { props.user_questions.all.correct }/{ props.user_questions.all.answered } correct ({ totalQuestionsCorrect }%)
-            { totalQuestionsCorrect > props.question_totals.all.averages.questions.correct ? arrow_up : arrow_down }
+            { totalQuestionsCorrect > props.question_totals.all.averages.correct ? arrow_up : arrow_down }
           </li>
           <br />
           <li>
             Average Time: { props.user_questions.all.avg_time } seconds
-            { props.user_questions.all.avg_time < props.question_totals.all.averages.questions.avgTime ? arrow_up : arrow_down }
+            { props.user_questions.all.avg_time < props.question_totals.all.averages.avgTime ? arrow_up : arrow_down }
           </li>
           <li>Outta Times: { props.user_questions.all.outta_times }</li>
         </ul>

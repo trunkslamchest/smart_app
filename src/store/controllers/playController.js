@@ -184,13 +184,14 @@ class PlayController extends React.Component {
   }
 
   updateQuestionTotalsModule = () => {
-    this.props.onUpdateQuestionTotalsFromPlayController({
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      time: this.props.play.answer.time,
-      avg_time: this.props.play.results.avg_time,
-      result: this.props.play.results.result
-    })
+    // this.props.onUpdateQuestionTotalsFromPlayController({
+    //   difficulty: this.props.play.question.difficulty,
+    //   category: this.props.play.question.category,
+    //   time: this.props.play.answer.time,
+    //   avg_time: this.props.play.results.avg_time,
+    //   result: this.props.play.results.result
+    // })
+    this.props.onUpdateQuestionTotalsFromPlayController(this.props.play.results.questionTotals)
     this.props.onUpdateGameStatus('updateQuestionTotalsSuccess', true)
   }
 
