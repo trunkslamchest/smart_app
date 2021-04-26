@@ -18,6 +18,8 @@ const DashboardStatsAnswerCard = (props) => {
       distribComments,
       resultGlyph
 
+  // console.log(props)
+
   const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
   const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
 
@@ -65,6 +67,8 @@ const DashboardStatsAnswerCard = (props) => {
         <h4>You have not commented on this question</h4>
       </div>
   }
+
+  // console.log(props)
 
   return(
     <div className="dashboard_stats_answer_card_container">

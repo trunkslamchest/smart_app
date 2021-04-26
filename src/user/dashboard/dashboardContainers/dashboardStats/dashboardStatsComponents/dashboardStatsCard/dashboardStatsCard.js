@@ -54,6 +54,8 @@ class DashboardStatsCard extends React.Component {
 
   render(){
 
+    // console.log(this.props)
+
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
     const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
@@ -75,7 +77,7 @@ class DashboardStatsCard extends React.Component {
     } else {
 
       let stats = this.props.qSet[1],
-          questionsAnswered = this.numZero(((stats.answered / this.props.totals[qSet].totals.questions) * 100).toFixed(2)),
+          questionsAnswered = this.numZero(((stats.answered / this.props.totals[qSet].questions) * 100).toFixed(2)),
           questionsCorrect = "0",
           arrow_up,
           arrow_down
@@ -130,7 +132,7 @@ class DashboardStatsCard extends React.Component {
               </div>
               <div className={ this.state.showStats ? "stats_card_header_button_right_active" : "stats_card_header_button_right" } >
                   <div className={ this.state.showStats ? "stats_card_header_button_right_text_sub_container_active" : "stats_card_header_button_right_text_sub_container" } >
-                    <span>{ stats.answered }/{ this.props.totals[qSet].totals.questions } answered ({ questionsAnswered }%)</span>
+                    <span>{ stats.answered }/{ this.props.totals[qSet].questions } answered ({ questionsAnswered }%)</span>
                     <span>{ stats.correct }/{ stats.answered } correct ({ questionsCorrect }%)</span>
                   </div>
                   { questionsCorrect >= this.props.totals[qSet].averages.questions.correct ? arrow_up : arrow_down }

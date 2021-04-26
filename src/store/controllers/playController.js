@@ -199,7 +199,7 @@ class PlayController extends React.Component {
       difficulty: this.props.play.question.difficulty,
       category: this.props.play.question.category,
       dRating: this.props.user.questions.totals.difficulty[this.props.play.question.difficulty].rating,
-      cRating: this.props.user.questions.totals.categories[this.props.play.question.category].rating,
+      cRating: this.props.user.questions.totals.category[this.props.play.question.category].rating,
       oPerf: this.props.play.results.performance.oPerf,
       qPerf: this.props.play.results.performance.qPerf
     })

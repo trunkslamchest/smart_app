@@ -67,9 +67,9 @@ const updateUserPerformanceFromPlayController = (currentState, action) => {
           }
         },
         categories: {
-          ...currentState.questions.totals.categories,
+          ...currentState.questions.totals.category,
           [action.res.category]: {
-            ...currentState.questions.totals.categories[action.res.category],
+            ...currentState.questions.totals.category[action.res.category],
             rank: newCrank,
             rating: newCrating
           }

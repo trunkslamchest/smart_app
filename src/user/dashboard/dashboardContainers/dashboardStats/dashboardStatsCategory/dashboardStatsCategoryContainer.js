@@ -10,29 +10,49 @@ import './dashboardStatsCategory.css'
 class DashboardStatsCategoryContainer extends React.Component {
   render(){
 
-    var distribCats
+    var distribAnswers
 
     if(this.props.user.questions){
-      let allAnswers = this.props.user.questions, catTotals = Object.entries(this.props.user.questions.totals.category)
-      distribCats = catTotals.map(cat => {
-        let statCard, sortCats = {}
-        if(this.props.questions.totals.category[cat[0]]) {
-          for(let diff in allAnswers) {
-            if(diff !== 'totals' &&
-               diff !== 'ids' &&
-               !!allAnswers[diff].categories[cat[0]]) {
-              sortCats[diff] = { ...sortCats[diff], ...allAnswers[diff].categories[cat[0]] }
-            }
+      let allAnswers = this.props.user.questions.list, catTotals = Object.entries(this.props.user.questions.totals.category)
+          // console.log(catTotals[0])
+          // console.log(allAnswers)
+
+
+      distribAnswers = catTotals.map((cat, index) => {
+        let statCard, sortAnswers = {}
+        // if(this.props.questions.totals.category[cat[0]]) {
+
+          for(let answer in allAnswers) {
+                if(allAnswers[answer].category === cat[0]) {
+                  // console.log(cat[0])
+                  sortAnswers[answer] = allAnswers[answer]
+                }
           }
+        // }
+
+          //       // if(diff !== 'totals' &&
+          //   //        diff !== 'ids' &&
+          //   //        !!allAnswers[diff].categories[cat[0]]) {
+          //       if(allAnswers[answer].category === cat[0]) {
+          //         console.log(!!sortAnswers[cat[0]])
+          //         if(!!sortAnswers[cat[0]]) sortAnswers[cat[0]] = { answer: allAnswers[answer] }
+          //         else sortAnswers[cat[0]] = { ...sortAnswers[cat[0]], answer: allAnswers[answer] }
+          //         // sortAnswers[cat[0]] = { ...sortAnswers[cat[0]],  }
+          //         // console.log(cat[0], allAnswers[answer])
+          //         sortAnswers[cat[0]] = { ...sortAnswers[cat[0]], answer: allAnswers[answer] }
+          //       }
+          //         // sortCats[diff] = { ...sortCats[diff], ...allAnswers[diff].categories[cat[0]] }
+          //   }
+                  // console.log(sortAnswers)
           statCard = <DashboardStatsCard
-                      answers={ Object.values(sortCats).length !== 0 ? sortCats : 'null' }
+                      answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
                       history={ this.props.history }
-                      key={ catTotals.indexOf(cat) + 1 }
+                      key={ index + 1 }
                       cat={ cat[0] }
                       qSet={ cat }
                       totals={ this.props.questions.totals.category }
                     />
-        }
+        // }
         return statCard
       })
     }
@@ -42,7 +62,7 @@ class DashboardStatsCategoryContainer extends React.Component {
         <div className="stats_sub_header">
           <h3>Categories</h3>
         </div>
-        { distribCats }
+        { distribAnswers }
       </div>
     )
   }

@@ -8,14 +8,18 @@ const DashboardStatsAnswersContainer = (props) => {
 
   let answers = Object.entries(props.answers)
 
-  let distribAnswers = answers.map(questions => {
+  // console.log(answers)
+
+  let distribAnswers = answers.map((questions, index) => {
+    // console.log(questions)
     return(
       <DashboardStatsAnswersWrapper
-        diff={ !!props.cat ? questions[0] : props.diff }
-        cat={ !!props.diff ? questions[0] : props.cat }
+        diff={ !!props.cat ? questions[1].difficulty : props.diff }
+        cat={ !!props.diff ? questions[1].category : props.cat }
         history={ props.history }
-        key={ answers.indexOf(questions) }
-        qSet={ questions[0] }
+        key={ index }
+        // qSet={ question[1]. }
+        qid={ questions[0] }
         questions={ questions[1] }
       />
     )

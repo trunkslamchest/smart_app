@@ -22,23 +22,23 @@ const clearAchievements = (currentState, action) => {
 }
 
 const updateAchievements = (currentState, action) => {
-  let achievementsObj = {}
+  // let achievementsObj = {}
   // console.log(action.res)
-  for(let achievement in action.res){
-    if(achievement !== 'totals'){
-      achievementsObj[achievement] = {
-        ...currentState.all[achievement],
-        total: action.res[achievement].total
-      }
-    }
-  }
+  // for(let achievement in action.res){
+  //   if(achievement !== 'totals'){
+  //     achievementsObj[achievement] = {
+  //       ...currentState.all[achievement],
+  //       total: action.res[achievement].total
+  //     }
+  //   }
+  // }
 
   return {
     ...currentState,
-    all: achievementsObj,
+    all: action.all,
     totals: {
       ...currentState.totals,
-      all_unlocked: action.res.totals.all_unlocked
+      all_unlocked: action.totals.all_unlocked
     }
   }
 }
@@ -48,7 +48,6 @@ const achievementReducer = (currentState = initialState, action) => {
     case actionTypes.STORE_ACHIEVEMENTS: return storeAchievements(currentState, action);
     case actionTypes.CLEAR_ACHIEVEMENTS: return clearAchievements(currentState, action);
     case actionTypes.UPDATE_ACHIEVEMENTS: return updateAchievements(currentState, action);
-
     default: return currentState;
   }
 }

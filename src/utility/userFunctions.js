@@ -20,7 +20,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify({id})
-        body: `data=${JSON.stringify({id})}`
+        body: "data=" + encodeURIComponent(JSON.stringify({id}))
       })
       .then(res => res.json())
     },
@@ -35,7 +35,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify({user_name})
-        body: `data=${JSON.stringify({user_name})}`
+        body: "data=" + encodeURIComponent(JSON.stringify({user_name}))
 
       })
       .then(res => res.json())
@@ -54,14 +54,14 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify(obj)
-        body: `data=${JSON.stringify(obj)}`
+        body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
     },
 
     patch: function(url, obj){
       return fetch(url, {
-        method: "PATCH",
+        method: "POST",
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
@@ -69,7 +69,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify(obj)
-        body: `data=${JSON.stringify(obj)}`
+        body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
     },
@@ -84,7 +84,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify(obj)
-        body: `data=${JSON.stringify(obj)}`
+        body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
     },
@@ -99,7 +99,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify(obj)
-        body: `data=${JSON.stringify(obj)}`
+        body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
     },
@@ -114,7 +114,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify(obj)
-        body: `data=${JSON.stringify(obj)}`
+        body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
     },
@@ -129,7 +129,7 @@
           "Content-Type": 'application/x-www-form-urlencoded'
         },
         // body: JSON.stringify(obj)
-        body: `data=${JSON.stringify(obj)}`
+        body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
     }
