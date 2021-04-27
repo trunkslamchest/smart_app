@@ -174,12 +174,17 @@ const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMM
 
 export const deleteUserComment = (obj) => {
   return dispatch => {
+    // questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, obj)
+    // .then((qRes) => userFunctions('deleteUserComment', fetch.delete.userComment, qRes)
+    //   .then(cRes => {
+    //     dispatch(initDeleteUserComment(cRes))
+    //   })
+    // )
+
     questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, obj)
-    .then((qRes) => userFunctions('deleteUserComment', fetch.delete.userComment, qRes)
-      .then(cRes => {
-        dispatch(initDeleteUserComment(cRes))
-      })
-    )
+    .then((res) => {
+      dispatch(initDeleteUserComment(res))
+    })
   }
 }
 
