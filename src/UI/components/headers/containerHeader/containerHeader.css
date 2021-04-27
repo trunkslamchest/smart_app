@@ -9,7 +9,7 @@
   background: rgba(255, 255, 255, 1);
   border: 0px;
   color: rgba(50, 50, 50, 1);
-  margin: 0px 5px;
+  margin: 0px 2px;
   padding: 5px 15px 5px 10px;
   /* height: 35px; */
 }
@@ -40,7 +40,7 @@
   align-self: center;
   /* display: flex; */
   /* padding-right: 25px; */
-  font: 300 8pt "LatoItalic";
+  font: 300 9pt "LatoItalic";
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-inline-start: 0em;

@@ -8,8 +8,6 @@ import './userProfileCommentsContainer.css'
 
 const UserProfileCommentsContainer = (props) => {
 
-  console.log(props)
-
   const distribQuestions = props.questions.map((question, index) => {
     return(
       <UserProfileQuestionCard
