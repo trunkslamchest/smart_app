@@ -45,7 +45,6 @@ class PlayController extends React.Component {
 
       if(this.props.play.gameState === 'results' &&
          this.props.play.commentStatus === 'commentSuccess' &&
-        //  this.props.user.questions[this.props.play.question.difficulty].categories[this.props.play.question.category][this.props.play.question.id].comments[this.props.play.results.comment.cid])
         this.props.user.questions.list[this.props.play.question.id].comments[this.props.play.results.comment.cid])
         this.displayCommentsModule()
     }

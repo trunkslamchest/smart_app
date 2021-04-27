@@ -23,11 +23,9 @@ export const storeUserInfo = (info, experience, achievements, settings) => { ret
 export const updateUserInfo = (authType, obj) => {
   return dispatch => {
     userFunctions('patch', fetch.patch.user, obj)
-    .then((userRes) => {
-      // if(userRes){
-        dispatch(authUpdateStatus('updateUserSuccess', true))
-        dispatch(initUpdateUserInfo(obj.info))
-      // }
+    .then((res) => {
+      dispatch(authUpdateStatus('updateUserSuccess', true))
+      dispatch(initUpdateUserInfo(obj.info))
     })
   }
 }
@@ -44,9 +42,7 @@ export const updateUserSettings = (obj) => {
   return dispatch => {
     userFunctions('patch', fetch.patch.userSettings, obj)
     .then((userRes) => {
-      // if(userRes){
-        dispatch(storeUserSettings(userRes))
-      // }
+      dispatch(storeUserSettings(userRes))
     })
   }
 }
@@ -58,9 +54,7 @@ export const updateUserQuestions = () => {
     if(localStorage.id) {
       userFunctions('getUser', fetch.get.user, localStorage.id)
       .then(userRes => {
-      // if(userRes){
         dispatch(storeUserQuestions(userRes.questions))
-      // }
       })
     }
   }
@@ -160,17 +154,9 @@ export const initUpdateUserCommentsFromPlayController = (res) => {
 
 export const editUserComment = (obj) => {
   return dispatch => {
-    // questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
-    // .then((qRes) => {
-    //   userFunctions('editUserComment', fetch.patch.editUserComment, qRes)
-    //   .then(uRes => {
-    //     dispatch(initEditUserComment(uRes))
-    //   })
-    // })
-
     questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
     .then((res) => {
-        dispatch(initEditUserComment(res))
+      dispatch(initEditUserComment(res))
     })
   }
 }
@@ -179,13 +165,6 @@ const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMM
 
 export const deleteUserComment = (obj) => {
   return dispatch => {
-    // questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, obj)
-    // .then((qRes) => userFunctions('deleteUserComment', fetch.delete.userComment, qRes)
-    //   .then(cRes => {
-    //     dispatch(initDeleteUserComment(cRes))
-    //   })
-    // )
-
     questionsFunctions('deleteQuestionComment', fetch.delete.questionComment, obj)
     .then((res) => {
       dispatch(initDeleteUserComment(res))

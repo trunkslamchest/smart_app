@@ -188,36 +188,8 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
 
 const editUserComment = (currentState, action) => {
   let questions = { ...currentState.questions },
-      // difficulty = action.question.difficulty,
-      // category = action.question.category,
       qid = action.question.qid,
       cid = action.comment.cid
-
-  // return {
-  //   ...currentState,
-  //   questions: { ...questions,
-  //     [difficulty]: {
-  //       ...questions[difficulty],
-  //       categories: {
-  //         ...questions[difficulty].categories,
-  //         [category]: {
-  //           ...questions[difficulty].categories[category],
-  //           [qid]: {
-  //             ...questions[difficulty].categories[category][qid],
-  //             comments: {
-  //               ...questions[difficulty].categories[category][qid].comments,
-  //               [cid]: {
-  //                 ...questions[difficulty].categories[category][qid].comments[cid],
-  //                 comment: action.comment.comment,
-  //                 timestamp: action.comment.timestamp
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 
   return {
     ...currentState,

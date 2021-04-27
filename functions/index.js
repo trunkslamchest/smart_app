@@ -3,8 +3,6 @@ const functions = require('firebase-functions')
 const firebase = require("firebase")
 const admin = require('firebase-admin')
 
-// const fetch = require('node-fetch')
-
 const url = {
   database: env.parsed.LOCAL_DB,
   // database: env.parsed.DEPLOY_DB_ROOT,
@@ -41,25 +39,6 @@ var setCORSpost = function(req, res){
   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
 }
-
-// var setCORSpatch = function(req, res){
-//   res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
-//   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
-//   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-// }
-
-// var setCORSdelete = function(req, res){
-//   res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
-//   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
-//   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-// }
-
-// var setCORScrossPatch = function(req, res){
-//   res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
-//   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
-//   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-//   // res.set('Access-Control-Allow-Origin', '*');
-// }
 
 exports.checkUserName = functions
   .region('us-east1')
@@ -1123,6 +1102,604 @@ exports.staticQuestion = functions
     });
 });
 
+exports.createKeys = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+    var keys = []
+
+    for(i = 0; i < 500; i++){
+      var createKey = firebase.database().ref().push().key
+      keys.push(createKey)
+    }
+
+    console.log(keys)
+    res.json(keys)
+});
+
+exports.createFakeUsers = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+
+    var users = {}
+
+    const countries = [
+      'Afghanistan',
+      'Aland Islands',
+      'Albania',
+      'Algeria',
+      'American Samoa',
+      'Andorra',
+      'Angola',
+      'Anguilla',
+      'Antiqua And Barbuda',
+      'Argentina',
+      'Armenia',
+      'Aruba',
+      'Australia',
+      'Austria',
+      'Azerbaijan',
+      'Bahamas',
+      'Bahrain',
+      'Bangladesh',
+      'Barbados',
+      'Belarus',
+      'Belgium',
+      'Belize',
+      'Benin',
+      'Bermuda',
+      'Bhutan',
+      'Bolivia',
+      'Bosnia And Herzegovina',
+      'Botswana',
+      'Bouvet Island',
+      'Brazil',
+      'British Indian Ocean Territory',
+      'British Virgin Islands',
+      'Brunei Darussalam',
+      'Bulgaria',
+      'Burkina Faso',
+      'Burundi',
+      'Cabo Verde',
+      'Cambodia',
+      'Cameroon',
+      'Canada',
+      'Catalonia',
+      'Cayman Islands',
+      'Central African Republic',
+      'Chad',
+      'Chile',
+      'China',
+      'Christmas Island',
+      'Cocos Islands',
+      'Colombia',
+      'Comoros',
+      'Congo',
+      'Cook Islands',
+      'Costa Rica',
+      "Côte d'Ivoire",
+      'Croatia',
+      'Cuba',
+      'Cyprus',
+      'Czech Republic',
+      'Democratic Republic Of The Congo',
+      'Denmark',
+      'Djibouti',
+      'Dominica',
+      'Dominican Republic',
+      'Ecuador',
+      'Egypt',
+      'El Salvador',
+      'England',
+      'Equatorial Guinea',
+      'Eritrea',
+      'Estonia',
+      'Eswatini',
+      'Ethiopia',
+      'European Union',
+      'Falkland Islands',
+      'Faroe Islands',
+      'Fiji',
+      'Finland',
+      'France',
+      'French Guiana',
+      'French Polynesia',
+      'French Southern Territories',
+      'Gabon',
+      'Gambia',
+      'Georgia',
+      'Germany',
+      'Ghana',
+      'Gibraltar',
+      'Greece',
+      'Greenland',
+      'Grenada',
+      'Guadeloupe',
+      'Guam',
+      'Guatemala',
+      'Guinea',
+      'Guinea Bissau',
+      'Guyana',
+      'Haiti',
+      'Heard And McDonald Islands',
+      'Holy See',
+      'Honduras',
+      'HongKong',
+      'Hungary',
+      'Iceland',
+      'India',
+      'Indonesia',
+      'Iran',
+      'Iraq',
+      'Ireland',
+      'Israel',
+      'Italy',
+      'Jamaica',
+      'Japan',
+      'Jordan',
+      'Kazakhstan',
+      'Kenya',
+      'Kiribati',
+      'Kuwait',
+      'Kyrgystan',
+      'Laos',
+      'Latvia',
+      'Lebanon',
+      'Lesotho',
+      'Liberia',
+      'Libya',
+      'Liechtenstien',
+      'Lithuania',
+      'Luxembourg',
+      'Macao',
+      'Madagascar',
+      'Malawi',
+      'Malaysia',
+      'Maldives',
+      'Mali',
+      'Malta',
+      'Marshall Islands',
+      'Martinique',
+      'Mauritania',
+      'Mauritius',
+      'Mayotte',
+      'Mexico',
+      'Micronesia',
+      'Moldova',
+      'Monaco',
+      'Mongolia',
+      'Montenegro',
+      'Montserrat',
+      'Morocco',
+      'Mozambique',
+      'Myanmar',
+      'Nambia',
+      'Nauru',
+      'Nepal',
+      'Netherlands',
+      'Netherlands Antilles',
+      'New Caledonia',
+      'New Zealand',
+      'Nicaraqua',
+      'Niger',
+      'Nigeria',
+      'Niue',
+      'Norfolk Islands',
+      'Northern Mariana Islands',
+      'North Korea',
+      'North Macedonia',
+      'Norway',
+      'Oman',
+      'Pakistan',
+      'Palau',
+      'Palestine',
+      'Panama',
+      'Papua New Guinea',
+      'Paraguay',
+      'Peru',
+      'Philippines',
+      'Pitcairn',
+      'Poland',
+      'Portugal',
+      'Puerto Rico',
+      'Qatar',
+      'Reunion',
+      'Romania',
+      'Russia',
+      'Rwanda',
+      'Saint Helena',
+      'Saint Kitts And Nevis',
+      'Saint Lucia',
+      'Saint Pierre And Miquelon',
+      'Saint Vincent And The Grenadines',
+      'Samoa',
+      'San Marino',
+      'Sao Tome And Principe',
+      'Saudi Arabia',
+      'Scotland',
+      'Senegal',
+      'Serbia',
+      'Serbia And Montenegro',
+      'Seychelles',
+      'Sierra Leone',
+      'Singapore',
+      'Slovakia',
+      'Slovenia',
+      'Soloman Islands',
+      'Somalia',
+      'South Africa',
+      'South Georgia',
+      'South Korea',
+      'Spain',
+      'Sri Lanka',
+      'Sudan',
+      'Suriname',
+      'Svalbard And Jan Mayen',
+      'Sweden',
+      'Switzerland',
+      'Syria',
+      'Taiwan',
+      'Tajikistan',
+      'Tanzania',
+      'Thailand',
+      'Timor Leste',
+      'Togo',
+      'Tokelau',
+      'Tonga',
+      'Trinidad And Tobago',
+      'Tunisia',
+      'Turkey',
+      'Turkmenistan',
+      'Turks And Caicos Islands',
+      'Tuvalu',
+      'Uganda',
+      'Ukraine',
+      'United Arab Emirates',
+      'United Kingdom',
+      'United States Of America',
+      'Uruguay',
+      'US Virgin Islands',
+      'Uzbekistan',
+      'Vanuatu',
+      'Venezuela',
+      'Vietnam',
+      'Wales',
+      'Wallis And Futuna',
+      'Western Sahara',
+      'Yemen',
+      'Zambia',
+      'Zimbabwe'
+    ]
+
+    for(i = 0; i < 50; i++){
+      var createKey = firebase.database().ref().push().key
+      var randomUserNumber = Math.floor(Math.random() * Math.floor(10000))
+
+      users[createKey] = {
+        "info": {
+          "avatar": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/avatars%2Fdefault_avatar.png?alt=media&token=49efd887-faca-4f07-89fc-0d92df9f2f87",
+          "bio": "null",
+          "country": countries[Math.floor(Math.random() * countries.length)],
+          "email": `userTemp${randomUserNumber}@gmail.com`,
+          "first_name": "null",
+          "gender": "null",
+          "gender_pronouns": "null",
+          "dob": {
+            "day": 0,
+            "month": "null",
+            "year": 0
+          },
+          "join_date": {
+            "day": 23,
+            "month": "March",
+            "year": 2018
+          },
+          "last_login": {
+            "time": "08:24:32 AM",
+            "day": 23,
+            "month": "January",
+            "year": 2020
+          },
+          "last_name": "null",
+          "user_name": `userTemp${randomUserNumber}`
+        },
+        "questions": {
+          "totals": {
+            "all": {
+              "answered": Math.floor(Math.random() * Math.floor(100)),
+              "avg_time": genRand(1, 10, 2),
+              "comments": {
+                "total": 0
+              },
+              "correct": Math.floor(Math.random() * Math.floor(45)),
+              "incorrect": Math.floor(Math.random() * Math.floor(45)),
+              "outta_times": Math.floor(Math.random() * Math.floor(10)),
+              "rank": calcRating(genRand(0.25, 1, 2)),
+              "rating":  genRand(0.25, 1, 2),
+              "votes": {
+                "total": 0,
+                "FiveStars": 0,
+                "FourStars": 0,
+                "ThreeStars": 0,
+                "TwoStars": 0,
+                "OneStars": 0,
+                "ZeroStars": 0
+              }
+            },
+            "difficulty": {
+              "Easy": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Medium": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Hard": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              }
+            },
+            "categories": {
+              "Anime": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Art": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Books": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Celebrities": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Computers": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Film": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "General": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Geography": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "History": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Mathematics": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Music": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Mythology": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Nature": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Politics": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Science": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Sports": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Television": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Theatre": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Vehicles": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              },
+              "Video Games": {
+                "answered": Math.floor(Math.random() * Math.floor(10)),
+                "avg_time": genRand(1, 10, 2),
+                "correct": Math.floor(Math.random() * Math.floor(4)),
+                "incorrect": Math.floor(Math.random() * Math.floor(4)),
+                "outta_times": Math.floor(Math.random() * Math.floor(10)),
+                "rank": calcRating(genRand(0.25, 1, 2)),
+                "rating": genRand(0.25, 1, 2)
+              }
+            }
+          }
+        },
+        "experience": {
+          "avg": 0,
+          "level": genRand(1, 20, 0),
+          "total": genRand(10, 1000, 0)
+        },
+        "achievements": {
+          "total": 0,
+          "unlocked": [ "null" ]
+        },
+        "settings": {
+          "privacy": {
+            "profile": {
+              "private": false,
+              "showAchievements": true,
+              "showAvatar": true,
+              "showAge": true,
+              "showBio": true,
+              "showCountry": true,
+              "showExperience": true,
+              "showGender": true,
+              "showGenderPronouns": true,
+              "showRealName": true,
+              "showStats": true
+            }
+          }
+        }
+      }
+
+    }
+
+    // console.log(users)
+    res.json(users)
+});
+
+var genRand = function(min, max, decimalPlaces) {
+    var rand = Math.random() < 0.5 ? ((1-Math.random()) * (max-min) + min) : (Math.random() * (max-min) + min)
+    var power = Math.pow(10, decimalPlaces)
+    return Math.floor(rand*power) / power
+}
+
+var calcRating = function(stat) {
+  if(stat > 1.00) return 'S'
+  if(stat <= 1.00 && stat >= 0.95) return 'A+'
+  if(stat < 0.95 && stat >= 0.9) return 'A'
+  if(stat < 0.9 && stat >= 0.85) return 'A-'
+  if(stat < 0.85 && stat >= 0.8) return 'B+'
+  if(stat < 0.8 && stat >= 0.75) return 'B'
+  if(stat < 0.75 && stat >= 0.7) return 'B-'
+  if(stat < 0.7 && stat >= 0.65) return 'C+'
+  if(stat < 0.65 && stat >= 0.6) return 'C'
+  if(stat < 0.6 && stat >= 0.55) return 'C-'
+  if(stat < 0.55 && stat >= 0.5) return 'D+'
+  if(stat < 0.5 && stat >= 0.45) return 'D'
+  if(stat < 0.45 && stat >= 0.4) return 'D-'
+  if(stat < 0.4 && stat >= 0.35) return 'F+'
+  if(stat < 0.35 && stat >= 0.3) return 'F'
+  if(stat < 0.3 && stat >= 0.25) return 'F-'
+  if(stat < 0.25) return 'E'
+}
+
 var calcVoteRating = function(voteAvg) {
   let adjustAvg = (voteAvg.total * 2) / 10.00
   if(adjustAvg > 1.00) return 'S'
@@ -1153,57 +1730,6 @@ var calcVoteAvg = function(voteObj) {
   multiplyObj.OneStars = voteObj.OneStars * 1
   multiplyObj.total = parseFloat(((multiplyObj.FiveStars + multiplyObj.FourStars + multiplyObj.ThreeStars + multiplyObj.TwoStars + multiplyObj.OneStars) / voteObj.total).toFixed(2))
   return multiplyObj
-}
-
-var calcAvg = function(obj) {
-  var funcAvg = function(part, all) { return part / all }
-  var funcAvg100 = function(part, all) { return parseFloat(((part / all) * 100).toFixed(2)) }
-
-  var avgObj = {
-    questions: {
-      correct: funcAvg100(obj.correct, obj.answers),
-      incorrect: funcAvg100(obj.incorrect, obj.answers),
-      outtaTime: funcAvg100(obj.outta_time, obj.answers),
-      avgTime: funcAvg(obj.total_time, obj.answers),
-      performance: funcAvg(obj.total_perf, obj.answers)
-    },
-    votes: {
-      good: funcAvg100(obj.votes.good, obj.votes.total),
-      neutral: funcAvg100(obj.votes.neutral, obj.votes.total),
-      bad: funcAvg100(obj.votes.bad, obj.votes.total)
-    }
-  }
-
-  return avgObj
-}
-
-var calcTotals = function(diffCats, obj) {
-  for(diff in diffCats){
-    var statsObj = {
-      totalSum: 0, answersSum: 0, correctSum: 0, incorrectSum: 0, outtaTimeSum: 0, commentSum: 0, timeTotalSum: 0, perfSum: 0,
-      voteSum: { total: 0, good: 0, neutral: 0, bad: 0 }
-    }
-
-    calcStats(diff, diffCats, statsObj)
-
-    obj['questions'] = obj['questions'] ? obj['questions'] + statsObj.totalSum : statsObj.totalSum
-    obj['answers'] = obj['answers'] ? obj['answers'] + statsObj.answersSum : statsObj.answersSum
-    obj['correct'] = obj['correct'] ? obj['correct'] + statsObj.correctSum : statsObj.correctSum
-    obj['incorrect'] = obj['incorrect'] ? obj['incorrect'] + statsObj.incorrectSum : statsObj.incorrectSum
-    obj['outta_time'] = obj['outta_time'] ? obj['outta_time'] + statsObj.outtaTimeSum : statsObj.outtaTimeSum
-    obj['total_time'] = obj['total_time'] ? obj['total_time'] + statsObj.timeTotalSum : statsObj.timeTotalSum
-    obj['total_perf'] = obj['total_perf'] ? obj['total_perf'] + statsObj.perfSum : statsObj.perfSum
-    obj['votes'] = obj['votes'] ?
-      {
-        total: obj["votes"].total + statsObj.voteSum.total,
-        good: obj["votes"].good + statsObj.voteSum.good,
-        neutral: obj["votes"].neutral + statsObj.voteSum.neutral,
-        bad: obj["votes"].bad + statsObj.voteSum.bad
-      }
-    : statsObj.voteSum
-  }
-
-  return obj
 }
 
 var calcAchievements = function(achievements, achievementsTotals, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
@@ -1246,27 +1772,6 @@ var calcAchievements = function(achievements, achievementsTotals, userAchievemen
   achievementsObj = { res: resAchievementsObj, user: userAchievementsObj, all: achievements, totals: totalsObj }
 
   return achievementsObj
-}
-
-var calcStats = function(diff, diffCats, statsObj) {
-  var questions = diffCats[diff][1]
-
-  for(question in questions) {
-    statsObj.totalSum++
-    statsObj.timeTotalSum += questions[question].answers.total_time
-    statsObj.perfSum += questions[question].rating.performance
-    questions[question].answers.total && (statsObj.answersSum += questions[question].answers.total)
-    questions[question].answers.correct && (statsObj.correctSum += questions[question].answers.correct)
-    questions[question].answers.incorrect && (statsObj.incorrectSum += questions[question].answers.incorrect)
-    questions[question].answers.outta_time && (statsObj.outtaTimeSum += questions[question].answers.outta_time)
-    questions[question].votes.total && (statsObj.voteSum.total += questions[question].votes.total)
-    questions[question].votes.good && (statsObj.voteSum.good += questions[question].votes.good)
-    questions[question].votes.neutral && (statsObj.voteSum.neutral += questions[question].votes.neutral)
-    questions[question].votes.bad && (statsObj.voteSum.bad += questions[question].votes.bad)
-    questions[question].comments && Object.keys(questions[question].comments)[0] !== 'null' && (statsObj.commentSum += (Object.keys(questions[question].comments).length))
-  }
-
-  return statsObj
 }
 
 var calcExperience = function(diff, time, result) {

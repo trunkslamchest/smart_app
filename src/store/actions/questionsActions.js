@@ -21,17 +21,9 @@ export const getQuestionTotals = () => {
     questionsFunctions('get', fetch.get.questionsTotals)
     .then(res => {
       dispatch(storeQuestionTotals(res))
-      // dispatch(initGetQuestionTotals(res))
     })
   }
 }
-
-// const initGetQuestionTotals = (totals) => {
-//   return {
-//     type: actionTypes.GET_QUESTION_TOTALS,
-//     totals: totals
-//   }
-// }
 
 export const clearQuestionTotals = () => {
   return dispatch => {
@@ -89,10 +81,8 @@ export const getCatQuestion = (obj) => {
 
 export const getStaticQuestion = (obj) => {
   return dispatch => {
-    // dispatch(updateQuestionStatus('getStaticQuestion'))
     questionsFunctions('getStaticQuestion', fetch.get.staticQuestion, obj)
     .then(res => {
-      // dispatch(updateQuestionStatus('StaticQuestionSuccess'))
       dispatch(initSetStaticQuestion(res))
     })
   }
@@ -107,7 +97,6 @@ const initSetStaticQuestion = (res) => {
 
 export const clearStaticQuestion = (obj) => {
   return dispatch => {
-    // dispatch(updateQuestionStatus('ClearStaticQuestion'))
     dispatch(initClearStaticQuestion())
   }
 }
@@ -136,7 +125,6 @@ export const updateQuestionLoadingStatus = (bool) => {
 
 export const clearQuestionStatus = (obj) => {
   return dispatch => {
-    // dispatch(updateQuestionStatus('ClearQuestionStatus'))
     dispatch(initClearQuestionStatus())
   }
 }
