@@ -325,6 +325,27 @@ exports.deleteUser = functions
 
     firebase.database().ref(user).remove()
 
+    var getRef = firebase.database().ref('/').get().then((snap) => {
+        return snap.val()
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    getRef.then((db) => {
+
+      var userTotals = db.users.totals,
+          userTotalsObj = {},
+          userTotalsPath = '/users/totals'
+
+      userTotalsObj[userTotalsPath] = {
+        ...userTotals,
+        registered: userTotals.registered - 1
+      }
+
+      firebase.database().ref().update(userTotalsObj)
+    })
+
+
     res.json({msg: 'Your Profile has been removed.'}).status(200)
     // res.json({ message: 'done' }).status(200);
 });
@@ -880,7 +901,7 @@ exports.questionResults = functions
 exports.questionVote = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
-    setCORSpatch(req, res)
+    setCORSpost(req, res)
 
     const reqData = JSON.parse(req.body.data)
 
@@ -951,7 +972,7 @@ exports.questionVote = functions
 exports.questionComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
-    setCORSpatch(req, res)
+    setCORSpost(req, res)
 
     const reqData = JSON.parse(req.body.data)
 
@@ -963,42 +984,40 @@ exports.questionComment = functions
 
     getRef.then((db) => {
 
-    let questionCommentsObj = {}, commentsTotalObj = {}, commentObj = {}, userCommentObj = {}, userCommentTotalsObj = {}, resObj = {}
+      let questionCommentsObj = {}, commentsTotalObj = {}, commentObj = {}, userCommentObj = {}, userCommentTotalsObj = {}, resObj = {}
 
-    var question = db.questions.list[reqData.qid]
-        questionTotals = db.questions.totals,
-        user = db.users.list[reqData.uid],
-        userTotals = db.users.totals
+      var question = db.questions.list[reqData.qid]
+          questionTotals = db.questions.totals,
+          user = db.users.list[reqData.uid],
+          userTotals = db.users.totals
 
-    var commentsTotalPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
-    var userCommentPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments'
-    var userCommentsTotalPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
+      var commentsTotalPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
+      var userCommentPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments'
+      var userCommentsTotalPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
 
+      var cid = firebase.database().ref().push().key
 
-    var cid = firebase.database().ref().push().key
-
-    commentObj = {
-      [cid]: {
-        cid: cid,
-        comment: reqData.comment,
-        user: reqData.user_name,
-        timestamp: reqData.timestamp
+      commentObj = {
+        [cid]: {
+          cid: cid,
+          comment: reqData.comment,
+          user: reqData.user_name,
+          timestamp: reqData.timestamp
+        }
       }
-    }
 
-    commentsTotalObj[commentsTotalPath] =  questionTotals.all.comments + 1
+      commentsTotalObj[commentsTotalPath] =  questionTotals.all.comments + 1
 
-    if(!question.comments) questionCommentsObj = commentObj
-    else questionCommentsObj = { ...question.comments, ...commentObj }
+      if(!question.comments) questionCommentsObj = commentObj
+      else questionCommentsObj = { ...question.comments, ...commentObj }
 
-    firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments').update(questionCommentsObj)
-    firebase.database().ref().update(commentsTotalObj)
+      firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments').update(questionCommentsObj)
+      firebase.database().ref().update(commentsTotalObj)
 
-    if(!user.questions.list[reqData.qid].comments) userCommentObj[userCommentPath] = { [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
-    else userCommentObj[userCommentPath] = { ...user.questions.list[reqData.qid].comments, [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
+      if(!user.questions.list[reqData.qid].comments) userCommentObj[userCommentPath] = { [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
+      else userCommentObj[userCommentPath] = { ...user.questions.list[reqData.qid].comments, [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
 
-    firebase.database().ref().update(userCommentObj);
-
+      firebase.database().ref().update(userCommentObj);
 
       if(!user.questions.totals.all.comments) userCommentTotalsObj[userCommentsTotalPath] = { total: 1 }
       else userCommentTotalsObj[userCommentsTotalPath] = { total: user.questions.totals.all.comments.total + 1 }
@@ -1014,10 +1033,73 @@ exports.questionComment = functions
       resObj = { questionCommentsObj, commentObj }
 
       res.json(resObj).status(200)
-    // res.json({ message: 'done' }).status(200);
+      // res.json({ message: 'done' }).status(200);
     })
 })
 
+exports.deleteQuestionComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res);
+
+    const reqData = JSON.parse(req.body.data)
+
+    var questionComment = `/questions/list/${reqData.question.qid}/comments/${reqData.comment.cid}`,
+        userComment = `/users/list/${reqData.comment.uid}/questions/list/${reqData.question.qid}/comments/${reqData.comment.cid}`
+
+    firebase.database().ref(questionComment).remove()
+    firebase.database().ref(userComment).remove()
+
+    var getRef = firebase.database().ref('/').get().then((snap) => {
+        return snap.val()
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    getRef.then((db) => {
+
+      let questionCommentTotalsObj = {}, userCommentTotalsObj = {}
+
+      var questionTotals = db.questions.totals,
+          user = db.users.list[reqData.comment.uid],
+          questionCommentTotalsPath = '/questions/totals/all',
+          userPath = `/users/list/${reqData.comment.uid}/questions/totals/all`
+
+      questionCommentTotalsObj[questionCommentTotalsPath] = {
+        ...questionTotals.all,
+        comments: questionTotals.all.comments - 1
+      }
+
+      userCommentTotalsObj[userPath] = {
+        ...user.questions.totals.all,
+        comments: { total: user.questions.totals.all.comments.total - 1 }
+      }
+
+      firebase.database().ref().update(questionCommentTotalsObj);
+      firebase.database().ref().update(userCommentTotalsObj);
+
+      res.json(reqData).status(200)
+    })
+});
+
+
+
+exports.editQuestionComment = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res);
+
+    const reqData = JSON.parse(req.body.data)
+
+    var questionComment = `/questions/list/${reqData.question.qid}/comments/${reqData.comment.cid}`,
+        userComment = `/users/list/${reqData.comment.uid}/questions/list/${reqData.question.qid}/comments/${reqData.comment.cid}`,
+        updateCommentObj = { comment: reqData.comment.comment, timestamp: reqData.comment.timestamp }
+
+      firebase.database().ref(questionComment).update(updateCommentObj)
+      firebase.database().ref(userComment).update(updateCommentObj)
+
+    res.json(reqData).status(200)
+});
 
 
 var calcVoteRating = function(voteAvg) {

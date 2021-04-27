@@ -132,7 +132,8 @@ const updateUserVotesFromPlayController = (currentState, action) => {
 
   return {
     ...currentState,
-    questions: { ...currentState.questions,
+    questions: {
+      ...currentState.questions,
       list: {
         ...currentState.questions.list,
         [action.res.qid]: {
@@ -161,7 +162,8 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
 
   return {
     ...currentState,
-    questions: { ...currentState.questions,
+    questions: {
+      ...currentState.questions,
       list: {
         ...currentState.questions.list,
         [action.res.qid]: {
@@ -182,63 +184,55 @@ const updateUserCommentsFromPlayController = (currentState, action) => {
       }
     }
   }
-
-  // return {
-  //   ...currentState,
-  //   questions: { ...currentState.questions,
-  //     [action.res.difficulty]: {
-  //       ...currentState.questions[action.res.difficulty],
-  //       categories: {
-  //         ...currentState.questions[action.res.difficulty].categories,
-  //         [action.res.category]: {
-  //           ...currentState.questions[action.res.difficulty].categories[action.res.category],
-  //           [action.res.qid]: {
-  //             ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid],
-  //             comments: {
-  //               ...currentState.questions[action.res.difficulty].categories[action.res.category][action.res.qid].comments,
-  //               [action.res.cid]: comment
-  //             }
-  //           }
-  //         }
-  //       }
-  //     },
-  //     totals: {
-  //       ...currentState.questions.totals,
-  //       all: {
-  //         ...currentState.questions.totals.all,
-  //         comments: commentTotals
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 const editUserComment = (currentState, action) => {
   let questions = { ...currentState.questions },
-      difficulty = action.question.difficulty,
-      category = action.question.category,
+      // difficulty = action.question.difficulty,
+      // category = action.question.category,
       qid = action.question.qid,
       cid = action.comment.cid
 
+  // return {
+  //   ...currentState,
+  //   questions: { ...questions,
+  //     [difficulty]: {
+  //       ...questions[difficulty],
+  //       categories: {
+  //         ...questions[difficulty].categories,
+  //         [category]: {
+  //           ...questions[difficulty].categories[category],
+  //           [qid]: {
+  //             ...questions[difficulty].categories[category][qid],
+  //             comments: {
+  //               ...questions[difficulty].categories[category][qid].comments,
+  //               [cid]: {
+  //                 ...questions[difficulty].categories[category][qid].comments[cid],
+  //                 comment: action.comment.comment,
+  //                 timestamp: action.comment.timestamp
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
   return {
     ...currentState,
-    questions: { ...questions,
-      [difficulty]: {
-        ...questions[difficulty],
-        categories: {
-          ...questions[difficulty].categories,
-          [category]: {
-            ...questions[difficulty].categories[category],
-            [qid]: {
-              ...questions[difficulty].categories[category][qid],
-              comments: {
-                ...questions[difficulty].categories[category][qid].comments,
-                [cid]: {
-                  ...questions[difficulty].categories[category][qid].comments[cid],
-                  comment: action.comment.comment,
-                  timestamp: action.comment.timestamp
-                }
-              }
+    questions: {
+      ...questions,
+      list: {
+        ...questions.list,
+        [qid]: {
+          ...questions.list[qid],
+          comments: {
+            ...questions.list[qid].comments,
+            [cid]: {
+              ...questions.list[qid].comments[cid],
+              comment: action.comment.comment,
+              timestamp: action.comment.timestamp
             }
           }
         }
@@ -248,7 +242,7 @@ const editUserComment = (currentState, action) => {
 }
 
 const deleteUserComment = (currentState, action) => {
-  let question = { ...currentState.questions[action.question.difficulty].categories[action.question.category][action.question.qid] },
+  let question = { ...currentState.questions.list[action.question.qid] },
       commentTotals = { ...currentState.questions.totals.all.comments }
 
   commentTotals.total -= 1
@@ -258,15 +252,9 @@ const deleteUserComment = (currentState, action) => {
   return {
     ...currentState,
     questions: { ...currentState.questions,
-      [action.question.difficulty]: {
-        ...currentState.questions[action.question.difficulty],
-        categories: {
-          ...currentState.questions[action.question.difficulty].categories,
-          [action.question.category]: {
-            ...currentState.questions[action.question.difficulty].categories[action.question.category],
-            [action.question.qid]: question
-          }
-        }
+      list: {
+        ...currentState.questions.list,
+        [action.question.qid]: question
       },
       totals: {
         ...currentState.questions.totals,

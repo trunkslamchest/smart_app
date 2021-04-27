@@ -160,12 +160,17 @@ export const initUpdateUserCommentsFromPlayController = (res) => {
 
 export const editUserComment = (obj) => {
   return dispatch => {
+    // questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
+    // .then((qRes) => {
+    //   userFunctions('editUserComment', fetch.patch.editUserComment, qRes)
+    //   .then(uRes => {
+    //     dispatch(initEditUserComment(uRes))
+    //   })
+    // })
+
     questionsFunctions('editQuestionComment', fetch.patch.editQuestionComment, obj)
-    .then((qRes) => {
-      userFunctions('editUserComment', fetch.patch.editUserComment, qRes)
-      .then(uRes => {
-        dispatch(initEditUserComment(uRes))
-      })
+    .then((res) => {
+        dispatch(initEditUserComment(res))
     })
   }
 }
