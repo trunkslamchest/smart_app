@@ -3,35 +3,16 @@ const functions = require('firebase-functions')
 const firebase = require("firebase")
 const admin = require('firebase-admin')
 
-const fetch = require('node-fetch')
+// const fetch = require('node-fetch')
 
 const url = {
-  // database: env.parsed.LOCAL_DB,
-//   databaseAchievements: env.parsed.DEPLOY_DB_ACHIEVEMENTS,
-//   databaseQuestions: env.parsed.DEPLOY_DB_QUESTIONS,
-//   databaseUsers: env.parsed.DEPLOY_DB_USERS,
+  database: env.parsed.LOCAL_DB,
+  // database: env.parsed.DEPLOY_DB_ROOT,
+
   rootSecured: env.parsed.LOCAL_SECURED,
-  rootUnsecured: env.parsed.LOCAL_UNSECURED,
-//   // rootSecured: env.parsed.DEPLOY_SECURED,
-//   // rootUnsecured: env.parsed.DEPLOY_UNSECURED
-
-//   crossRoute: env.parsed.FIREBASE_CROSS_ROUTE,
-
-//   getAchievementsFromResults: env.parsed.FIREBASE_LOCAL_GET_ACHIEVEMENTS_FROM_RESULTS,
-//   crossUpdateUserQuestion: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_QUESTION,
-//   crossUpdateUserVote: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_VOTE,
-//   crossUpdateUserComment: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_USER_COMMENT,
-//   crossDeleteUserComment: env.parsed.FIREBASE_LOCAL_CROSS_DELETE_USER_COMMENT,
-//   crossEditUserComment: env.parsed.FIREBASE_LOCAL_CROSS_EDIT_USER_COMMENT,
-//   crossUpdateAchievements: env.parsed.FIREBASE_LOCAL_CROSS_UPDATE_ACHIEVEMENTS
-
-//   // getAchievementsFromResults: env.parsed.FIREBASE_DEPLOY_GET_ACHIEVEMENTS_FROM_RESULTS,
-//   // crossUpdateUserQuestion: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_QUESTION,
-//   // crossUpdateUserVote: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_VOTE,
-//   // crossUpdateUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_USER_COMMENT,
-//   // crossDeleteUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_DELETE_USER_COMMENT,
-//   // crossEditUserComment: env.parsed.FIREBASE_DEPLOY_CROSS_EDIT_USER_COMMENT,
-//   // crossUpdatAchievements: env.parsed.FIREBASE_DEPLOY_CROSS_UPDATE_ACHIEVEMENTS
+  rootUnsecured: env.parsed.LOCAL_UNSECURED
+  // rootSecured: env.parsed.DEPLOY_SECURED,
+  // rootUnsecured: env.parsed.DEPLOY_UNSECURED
 }
 
 var firebaseConfig = {
@@ -61,24 +42,24 @@ var setCORSpost = function(req, res){
   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
 }
 
-var setCORSpatch = function(req, res){
-  res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
-  res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-}
+// var setCORSpatch = function(req, res){
+//   res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
+//   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
+//   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+// }
 
-var setCORSdelete = function(req, res){
-  res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
-  res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-}
+// var setCORSdelete = function(req, res){
+//   res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
+//   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
+//   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+// }
 
-var setCORScrossPatch = function(req, res){
-  res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
-  res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
-  if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-  // res.set('Access-Control-Allow-Origin', '*');
-}
+// var setCORScrossPatch = function(req, res){
+//   res.set('Access-Control-Allow-Methods', ['PATCH', 'OPTIONS'])
+//   res.set('Access-Control-Allow-Headers', ['Content-Type', 'Accept'])
+//   if(req.headers.origin === url.rootSecured || url.rootUnsecured || url.crossRoute ) res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
+//   // res.set('Access-Control-Allow-Origin', '*');
+// }
 
 exports.checkUserName = functions
   .region('us-east1')
@@ -616,6 +597,7 @@ exports.questionResults = functions
           user = db.users.list[reqData.uid],
           userTotals = db.users.totals,
           acheivements = db.achievements.list,
+          // acheivementsUser = user.achievements
           acheivementsTotals = db.achievements.totals
 
       let calcObj = {},
@@ -790,7 +772,7 @@ exports.questionResults = functions
         rating: calcAllCatTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllCatTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
 
-      achievementsObj = calcAchievements(acheivements, acheivementsTotals, reqData.achievements, questionObj, calcUserTotalsObj, calcUserDiffTotalsObj, calcUserCatTotalsObj)
+      achievementsObj = calcAchievements(acheivements, acheivementsTotals, user.achievements, questionObj, calcUserTotalsObj, calcUserDiffTotalsObj, calcUserCatTotalsObj)
 
       var userIdsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'ids',
           userAchievementsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'achievements',
@@ -802,6 +784,8 @@ exports.questionResults = functions
           allTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all'
           allDiffTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'difficulty' + '/' + reqData.difficulty
           allCatTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'category' + '/' + reqData.category
+
+      console.log(achievementsObj)
 
       var userIdsObj = {},
           userAchievementsObj = {},
@@ -824,6 +808,8 @@ exports.questionResults = functions
           allTotalsObj = {},
           allDiffTotalsObj = {},
           allCatTotalsObj = {}
+
+          if(achievementsObj.res.total > 1) userQuestionTemp.achievements = achievementsObj.res
 
           userQuestionObj[userQuestionPath] = userQuestionTemp
           userXpObj[userXpPath] = {
@@ -1082,8 +1068,6 @@ exports.deleteQuestionComment = functions
     })
 });
 
-
-
 exports.editQuestionComment = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -1101,6 +1085,43 @@ exports.editQuestionComment = functions
     res.json(reqData).status(200)
 });
 
+exports.staticQuestion = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSpost(req, res)
+
+    const reqData = JSON.parse(req.body.data)
+
+    var voteObj = {}, resObj = {}
+    firebase.database().ref('/questions/list/' + reqData.qid).once('value', function(snap){
+
+      var question = snap.val()
+
+      voteObj = { ...question.votes }
+
+      let voteAvg = calcVoteAvg(voteObj)
+      let voteRating = calcVoteRating(voteAvg)
+
+      voteObj["rating"] = voteRating
+      voteObj["average"] = voteAvg.total
+
+      resObj = {
+        qid: reqData.qid,
+        difficulty: reqData.difficulty,
+        category: reqData.category,
+        answers: question.answers,
+        question: question.question,
+        rating: question.rating,
+        diffRating: question.rating.difficulty,
+        correct: question.correct,
+        comments: question.comments ? question.comments : null,
+        votes: voteObj
+      }
+
+      res.json(resObj).status(200)
+      // res.json({ message: 'done' }).status(200);
+    });
+});
 
 var calcVoteRating = function(voteAvg) {
   let adjustAvg = (voteAvg.total * 2) / 10.00
@@ -1212,6 +1233,10 @@ var calcAchievements = function(achievements, achievementsTotals, userAchievemen
     resAchievementsObj = { total: 0, unlocked: [] }
     userAchievementsObj = { total: 0, unlocked: [ "null" ] }
   } else {
+    console.log(userAchievements.total)
+    console.log(unlockedAchievements.length)
+
+
     unlockedAchievements.forEach(achievement => achievements[achievement].total += 1)
     resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
     userAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }

@@ -214,6 +214,7 @@ export const clearStaticUserVote = () => {
 }
 
 export const updateStaticQuestionComments = (obj) => {
+  console.log(obj)
   return dispatch => {
     dispatch(commentLoading(true))
     dispatch(updateStaticQuestionCommentStatus('updateStaticQuestionComment'))
@@ -224,7 +225,7 @@ export const updateStaticQuestionComments = (obj) => {
 const initUpdateStaticQuestionComments = (obj) => {
   return {
     type: actionTypes.UPDATE_STATIC_QUESTION_COMMENTS,
-    comments: obj.commentsObj,
+    comments: obj.questionCommentsObj,
     comment: obj.commentObj
   }
 }

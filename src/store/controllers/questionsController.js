@@ -107,7 +107,7 @@ class QuestionsController extends React.Component {
 
   setStaticUserResultsModule = () => {
     this.props.onUpdateQuestionStatus('setStaticUserResults')
-    this.props.onSetStaticUserQuestion(this.props.user.questions[this.state.diff].categories[this.state.cat][this.state.qid])
+    this.props.onSetStaticUserQuestion(this.props.user.questions.list[this.state.qid])
     this.setState({ initStaticUserResults: true })
   }
 

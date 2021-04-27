@@ -18,8 +18,6 @@ const initialState = {
 const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
 
 const getQuestionTotals = (currentState, action) => { return { ...currentState, totals: null, } }
-// const getQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
-
 
 const getQuickQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
 
@@ -50,6 +48,7 @@ const updateStaticQuestionVotes = (currentState, action) => {
 }
 
 const updateStaticQuestionComments = (currentState, action) => {
+  console.log(action)
   return {
     ...currentState,
     staticQuestion: {
@@ -112,7 +111,6 @@ const deleteStaticQuestionComment = (currentState, action) => {
     staticQuestion: { ...currentState.staticQuestion, comments: uComments }
   }
 }
-
 
 const clearStaticQuestionVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus } }
 const clearStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }

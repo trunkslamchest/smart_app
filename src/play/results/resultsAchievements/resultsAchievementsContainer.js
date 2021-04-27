@@ -26,7 +26,7 @@ const ResultsAchievementContainer = (props) => {
     }
 
     if(props.questions.staticUserResults) {
-      if(props.questions.staticUserResults.achievements.unlocked && props.showAchievements){
+      if(props.questions.staticUserResults.achievements && props.showAchievements){
         distribAchievements = props.questions.staticUserResults.achievements.unlocked.map(achievement => {
           return (
             <ResultsAchievementCard
