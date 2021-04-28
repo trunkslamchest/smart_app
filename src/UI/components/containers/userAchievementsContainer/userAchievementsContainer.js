@@ -58,7 +58,7 @@ class UserAchievementsContainer extends React.Component {
 
       }
 
-      console.log(this.props)
+      // console.log(this.props)
 
       achievementsBlock =
       <div className='user_achievements_container'>

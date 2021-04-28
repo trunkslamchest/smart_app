@@ -94,7 +94,8 @@ class VoteContainer extends React.Component {
             <div
               style={{
                 display: 'flex',
-                color: 'rgba(255, 255, 255, 1)',
+                // color: 'rgba(255, 255, 255, 1)',
+                color: 'rgba(50, 50, 50, 1)',
                 justifyContent: `${ voteTotal.percent < 7.5 ? "flex-start" : "flex-end" }`,
                 alignContent: 'flex-end',
                 alignItems: 'flex-end',
@@ -138,7 +139,7 @@ class VoteContainer extends React.Component {
       }
 
       voteBlock =
-        <div className="vote_container">
+        <div className={ this.props.staticUserProfile ? "vote_container_profile" : "vote_container"}>
           { header }
           { this.props.staticUserProfile && <div className='divider_left' /> }
           <div className={ this.props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
@@ -163,6 +164,7 @@ class VoteContainer extends React.Component {
             </div>
             { distribVoteTotals }
           </div>
+          <div className='divider_left' />
         </div>
     }
 

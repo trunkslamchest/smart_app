@@ -12,9 +12,6 @@ const UserProfileContainer = (props) => {
 
   let userProfileBlock
 
-  // console.log(props)
-
-  // if(props.userData.settings.privacy.profile.private) {
   if(typeof props.userData === "string") {
     userProfileBlock =
       <div className="user_profile_wrapper_private">

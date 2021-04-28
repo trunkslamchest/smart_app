@@ -35,7 +35,7 @@ class ProfileController extends React.Component {
     //   if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
     // } else {
 
-      console.log(this.props.achievements)
+      // console.log(this.props.achievements)
 
       if(this.props.profile.userData && this.props.questions.totals && this.props.achievements.all && !this.state.displayProfile) this.displayProfileModule()
     // }

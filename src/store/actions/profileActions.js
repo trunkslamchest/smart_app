@@ -7,8 +7,8 @@ export const getUserProfile = (user_name) => {
   return dispatch => {
     // dispatch(updateUserProfileLoadingStatus(true))
     userFunctions('getUserProfile', fetch.post.userProfile, user_name)
-    .then(userRes => {
-      dispatch(initGetUserProfile(userRes))
+    .then(res => {
+      dispatch(initGetUserProfile(res))
       // dispatch(updateUserProfileStatus('display'))
       // dispatch(updateUserProfileLoadingStatus(false))
     })

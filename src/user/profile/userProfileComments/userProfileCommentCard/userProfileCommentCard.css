@@ -1,12 +1,12 @@
 .user_profile_comment_card_container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-content: center;
   align-items: center;
   width: 100%;
-  padding: 0px 0px 5px 15px;
+  padding: 5px 15px 5px 15px;
 }
 
 .user_profile_comment_card_container span {
@@ -14,10 +14,10 @@
 
 .user_profile_comment_card_container span:nth-child(1) {
   align-self: flex-end;
-  font: 300 9pt 'LatoItalic';
+  font: 300 10pt 'Lato';
 }
 
 .user_profile_comment_card_container span:nth-child(2) {
   align-self: flex-start;
-  font: 300 10pt 'Lato';
+  font: 300 9pt 'LatoItalic';
 }

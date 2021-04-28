@@ -5,7 +5,8 @@ import UserProfileCommentCard from '../userProfileCommentCard/userProfileComment
 import'./userProfileQuestionCard.css'
 
 const UserProfileQuestionCard = (props) => {
-  const distribComments = props.question.comments.map((comment, index) => {
+
+  const distribComments = Object.values(props.question.comments).map((comment, index) => {
     return(
       <UserProfileCommentCard
         key={ index }
@@ -15,10 +16,13 @@ const UserProfileQuestionCard = (props) => {
   })
 
   return(
-    <div className='user_profile_question_card_container'>
-      <span>{ props.question.question }</span>
-      { distribComments }
-    </div>
+    <>
+      <div className='user_profile_question_card_container'>
+        <span>{ props.question.question }</span>
+        { distribComments }
+      </div>
+      <div className='divider_left' />
+    </>
   )
 }
 
