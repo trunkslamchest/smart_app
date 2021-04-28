@@ -34,14 +34,20 @@ class ProfileController extends React.Component {
       // if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
     //   if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
     // } else {
-      if(this.props.profile.userData && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
+
+      console.log(this.props.achievements)
+
+      if(this.props.profile.userData && this.props.questions.totals && this.props.achievements.all && !this.state.displayProfile) this.displayProfileModule()
     // }
   }
 
   shouldComponentUpdate(nextProps, nextState){
     let render = false
 
-   if(this.props.modal.loading || this.props.profile.loading || nextProps.modal.loading) {
+   if(this.props.modal.loading || this.props.profile.loading ||
+      nextProps.modal.loading || nextProps.profile.loading ) {
+      // console.log(this.props.modal.loading)
+
       render = true
     }
 
@@ -89,7 +95,7 @@ class ProfileController extends React.Component {
 
     // if(this.props.profile.status === 'displayProfile'){
 
-    //   console.log(this.props.profile.userData)
+      // console.log(this.props.achievements)
     // }
 
     return(

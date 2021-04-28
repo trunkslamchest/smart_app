@@ -12,7 +12,7 @@ const UserProfileContainer = (props) => {
 
   let userProfileBlock
 
-  // console.log(props.userData)
+  // console.log(props)
 
   // if(props.userData.settings.privacy.profile.private) {
   if(typeof props.userData === "string") {
