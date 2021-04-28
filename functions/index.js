@@ -14,7 +14,8 @@ const url = {
 }
 
 var firebaseConfig = {
-  databaseURL: env.parsed.LOCAL_DB,
+  // databaseURL: env.parsed.LOCAL_DB,
+  databaseURL: url.database,
   apiKey: env.parsed.FIREBASE_API_KEY,
   authDomain: env.parsed.FIREBASE_AUTH_DOMAIN,
   projectId: env.parsed.FIREBASE_PROJECT_ID,
@@ -576,12 +577,10 @@ exports.questionResults = functions
           user = db.users.list[reqData.uid],
           userTotals = db.users.totals,
           acheivements = db.achievements.list,
-          // acheivementsUser = user.achievements
           acheivementsTotals = db.achievements.totals
 
       let calcObj = {},
           resObj = {},
-          // userObj = {},
           questionObj = {},
           calcUserTotalsObj = {},
           calcUserDiffTotalsObj = {},
@@ -763,8 +762,6 @@ exports.questionResults = functions
           allTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all'
           allDiffTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'difficulty' + '/' + reqData.difficulty
           allCatTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'category' + '/' + reqData.category
-
-      console.log(achievementsObj)
 
       var userIdsObj = {},
           userAchievementsObj = {},
@@ -1759,10 +1756,6 @@ var calcAchievements = function(achievements, achievementsTotals, userAchievemen
     resAchievementsObj = { total: 0, unlocked: [] }
     userAchievementsObj = { total: 0, unlocked: [ "null" ] }
   } else {
-    console.log(userAchievements.total)
-    console.log(unlockedAchievements.length)
-
-
     unlockedAchievements.forEach(achievement => achievements[achievement].total += 1)
     resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
     userAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }

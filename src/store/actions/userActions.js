@@ -112,7 +112,6 @@ export const updateUserAchievementsFromPlayController = (achievements) => {
 export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
 
 export const updateUserQuestionsFromPlayController = (qid, question) => {
-  console.log(qid, question)
   return {
     type: actionTypes.UPDATE_USER_QUESTIONS_FROM_PLAY_CONTROLLER,
     qid: qid,

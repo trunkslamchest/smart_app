@@ -7,6 +7,8 @@
 @import url('./buttonStyles/dashboardStatsViewQuestionButton.css');
 @import url('./buttonStyles/defaultButtons/defaultButtons.css');
 @import url('./buttonStyles/defaultButton.css');
+@import url('./buttonStyles/defaultButtonAlt.css');
+
 @import url('./buttonStyles/diffButton.css');
 @import url('./buttonStyles/editCommentButton.css');
 @import url('./buttonStyles/editCommentFormButton.css');

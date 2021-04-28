@@ -19,15 +19,18 @@ const DashboardStatsCategoryContainer = (props) => {
           if(allAnswers[answer].category === cat[0]) sortAnswers[answer] = allAnswers[answer]
         }
 
-        return <DashboardStatsCard
-                answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
-                history={ props.history }
-                key={ index + 1 }
-                cat={ cat[0] }
-                qSet={ 'category' }
-                qSetTotals={ props.questions.totals.category[cat[0]] }
-                userTotals={ cat[1] }
-              />
+        return(
+          <div className='stats_card_button_wrapper' key={ index + 1 }>
+            <DashboardStatsCard
+              answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
+              history={ props.history }
+              cat={ cat[0] }
+              qSet={ 'category' }
+              qSetTotals={ props.questions.totals.category[cat[0]] }
+              userTotals={ cat[1] }
+            />
+          </div>
+        )
       })
     }
 

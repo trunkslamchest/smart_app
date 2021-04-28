@@ -1,14 +1,15 @@
 .dashboard_stats_answers_wrapper {
   /* padding: 10px; */
-  background-color: rgba(20, 20, 20, 1);
+  /* background-color: rgba(20, 20, 20, 1); */
   /* background-color: rgba(211, 143, 57, 1); */
 
-  padding: 0px 0px 5px 0px;
-  width: 100%;
+  padding: 0px 0px 0px 0px;
+  /* margin: 0px 0px 0px 2.5px; */
+  /* width: 100%; */
 }
 
 .dashboard_stats_answers_wrapper_header {
-  background: rgba(245, 167, 66, 1);
+  /* background: rgba(245, 167, 66, 1); */
   /* background-color: rgba(211, 143, 57, 1); */
   /* color: rgba(40, 44, 52, 1); */
   color: rgba(50, 50, 50, 1);

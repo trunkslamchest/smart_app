@@ -19,15 +19,18 @@ const DashboardStatsDifficultyContainer = (props) => {
           if(allAnswers[answer].difficulty === diff[0]) sortAnswers[answer] = allAnswers[answer]
         }
 
-        return <DashboardStatsCard
-                answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
-                history={ props.history }
-                key={ index + 1 }
-                diff={ diff[0] }
-                qSet={ 'difficulty' }
-                qSetTotals={ props.questions.totals.difficulty[diff[0]] }
-                userTotals={ diff[1] }
-              />
+        return (
+          <div className='stats_card_button_wrapper' key={ index + 1 }>
+            <DashboardStatsCard
+              answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
+              history={ props.history }
+              diff={ diff[0] }
+              qSet={ 'difficulty' }
+              qSetTotals={ props.questions.totals.difficulty[diff[0]] }
+              userTotals={ diff[1] }
+            />
+          </div>
+        )
       })
     }
 

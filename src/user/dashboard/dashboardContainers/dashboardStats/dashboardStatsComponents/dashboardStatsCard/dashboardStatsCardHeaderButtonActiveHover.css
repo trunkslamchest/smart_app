@@ -1,8 +1,10 @@
 .stats_card_header_button_active:hover {
   background: rgba(245, 167, 66, 1);
+  border-radius: 5px;
   color: rgba(40, 44, 52, 1);
   cursor: pointer;
-  padding: 7.5px 10px 7.5px 20px;
+  padding: 7.5px 15px 7.5px 10px;
+  /* padding: 10px 15px 10px 15px; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

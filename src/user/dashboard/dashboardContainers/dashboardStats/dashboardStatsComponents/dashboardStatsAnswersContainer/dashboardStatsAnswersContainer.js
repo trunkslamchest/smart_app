@@ -27,6 +27,10 @@ const DashboardStatsAnswersContainer = (props) => {
 
   return(
     <div className='dashboard_stats_answers_container'>
+      <div className='divider_left' />
+      <div className='dashboard_stats_answers_header_container'>
+        <h1>Questions</h1>
+      </div>
       { distribAnswers }
     </div>
   )

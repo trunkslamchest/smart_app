@@ -26,9 +26,9 @@ const DashboardStatsAnswersWrapper = (props) => {
 
   return(
     <div className="dashboard_stats_answers_wrapper">
-      <div className="dashboard_stats_answers_wrapper_header">
+      {/* <div className="dashboard_stats_answers_wrapper_header">
         <h3>{ props.qSet }</h3>
-      </div>
+      </div> */}
       {/* { distribAnswers } */}
       <DashboardStatsAnswerCard
         answer={ props.questions }

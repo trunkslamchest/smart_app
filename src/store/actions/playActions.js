@@ -50,7 +50,6 @@ export const getResults = (obj) => {
   return dispatch => {
     questionsFunctions('getQuestionResults', fetch.get.questionResults, obj)
     .then(res => {
-      console.log(res)
       dispatch(setResults({
         result: res.answerResult,
         correct_answer: res.correct,
