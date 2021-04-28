@@ -1,5 +1,4 @@
 const makeDashboardStatsCardHeaderCards = (userTotals, qSetTotals, questionsAnswered, questionsCorrect, arrow_up, arrow_down) => {
-
   return(
     [
       {

@@ -85,7 +85,7 @@ class DashboardStatsCard extends React.Component {
   render(){
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
-    const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
+    // const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
 
     let statsCardBlock
     // let header_menu_arrow = arrow_white_left
@@ -146,10 +146,4 @@ const store = (store) => {
   }
 }
 
-const dispatch = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(store, dispatch)(DashboardStatsCard)
+export default connect(store)(DashboardStatsCard)

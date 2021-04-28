@@ -51,10 +51,4 @@ const store = (store) => {
   }
 }
 
-const dispatch = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(store, dispatch)(DashboardStatsCategoryContainer)
+export default connect(store)(DashboardStatsCategoryContainer)
