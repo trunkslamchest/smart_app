@@ -50,6 +50,8 @@ const UserProfileContainer = (props) => {
             <VoteContainer
               enableVoteButtons={ false }
               showVoteButtons={ false }
+              showVoteStats={ true }
+              staticUserProfile={ true }
               voteProps={ props.userData.votes }
             />
           }

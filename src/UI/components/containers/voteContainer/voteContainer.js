@@ -129,8 +129,10 @@ class VoteContainer extends React.Component {
         headerText = <div className='vote_header_text_sub_container'><h3>Approval Rating</h3></div>
         headerSubText = <div className='vote_header_sub_text_sub_container'><h4>{ this.props.voteProps.rating }</h4></div>
         header = <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
-      }
-      else {
+      } else if (this.props.staticUserProfile){
+        headerText = 'Votes'
+        header = <ContainerHeader header_text={ headerText } />
+      } else {
         headerText = 'Votes'
         header = <ContainerHeaderCentered header_text={ headerText } />
       }
@@ -138,7 +140,8 @@ class VoteContainer extends React.Component {
       voteBlock =
         <div className="vote_container">
           { header }
-          <div className='vote_totals_graph_container'>
+          { this.props.staticUserProfile && <div className='divider_left' /> }
+          <div className={ this.props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
             <div className='vote_totals_graph_sub_header_container'>
               <div className='vote_totals_graph_sub_header_container_left'>
                 <div className='vote_average_vote_img_container'>
