@@ -160,10 +160,20 @@ exports.getUserProfile = functions
 
       for(let user in users){
         if(users[user].info.user_name === reqData.user_name) {
-          var easyComments = users[user].questions.Easy ? sortComments(Object.entries(users[user].questions.Easy.categories)) : []
-          var mediumComments = users[user].questions.Medium ? sortComments(Object.entries(users[user].questions.Medium.categories)) : []
-          var hardComments = users[user].questions.Hard ? sortComments(Object.entries(users[user].questions.Hard.categories)) : []
-          var allComments = [ ...easyComments, ...mediumComments, ...hardComments ]
+
+        let questions = users[user].questions.list,
+            allComments = []
+
+          for(let question in questions) {
+            if(questions[question].comments) {
+              allComments.push(
+                {
+                  question: questions[question].question,
+                  comments: questions[question].comments
+                }
+              )
+            }
+          }
 
           userObj = {
             achievements: users[user].achievements,
