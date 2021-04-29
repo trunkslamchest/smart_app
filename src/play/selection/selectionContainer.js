@@ -6,7 +6,15 @@ import gameModes from '../../datasets/gameModes'
 import difficulties from '../../datasets/difficulties'
 import categories from '../../datasets/categories'
 
-import ContainerHeaderCentered from '../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
+// import ContainerHeaderCentered from '../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
+// import ContainerSubHeaderCentered from '../../UI/components/subHeaders/containerSubHeaderCentered/containerSubHeaderCentered'
+
+// import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
+// import PlaySubHeaderCentered from '../playComponents/playSubHeaderCentered/playSubHeaderCentered'
+import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
+
+
+
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './selectionContainer.css'
@@ -26,10 +34,10 @@ class SelectionContainer extends React.Component {
   componentDidMount(){
     if(this.props.play.gameMode === 'by_diff') {
       document.title = "SmartApp™ | Play | Difficulty | Select"
-      this.setState({ set: 'Difficulty', subSet: difficulties, buttonClass: 'diff_button', containerClass: 'diff_buttons_container', tooltipClass: 'diff_button_tooltip', enableButton: true })
+      this.setState({ set: 'Difficulty', subSet: difficulties, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'diff_button_tooltip', enableButton: true })
     } else if(this.props.play.gameMode === 'by_cat') {
       document.title = "SmartApp™ | Play | Category | Select"
-      this.setState({ set: 'Category', subSet: categories, buttonClass: 'cat_button', containerClass: 'cat_buttons_container', tooltipClass: 'cat_button_tooltip', enableButton: true })
+      this.setState({ set: 'Category', subSet: categories, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'cat_button_tooltip', enableButton: true })
     } else {
       document.title = "SmartApp™ | Play | Select"
       this.setState({ gameModes: gameModes, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'game_modes_button_tooltip', enableButton: true })
@@ -90,10 +98,15 @@ class SelectionContainer extends React.Component {
 
     return(
       <div className='selection_wrapper'>
-        <ContainerHeaderCentered header_text={ `Select A ${varHeaderText}` } />
+        {/* <ContainerHeaderCentered header_text={ `Select A ${varHeaderText}` } /> */}
+        {/* <ContainerSubHeaderCentered header_text={ `Select A ${varHeaderText}` } /> */}
+        {/* <PlaySubHeaderCentered header_text={ `Select A ${varHeaderText}` } /> */}
+        <PlayHeaderCentered header_text={ `Select A ${varHeaderText}` } />
+
         <DefaultButtonsContainer
           buttons={ selectionButtons }
           buttonClass={ this.state.buttonClass }
+          buttonContainerClass={ 'game_modes_button_container' }
           containerClass={ this.state.containerClass }
           enableButton={ this.state.enableButton }
           tooltipClass={ this.state.tooltipClass }
