@@ -8,11 +8,11 @@
 @import url('./buttonStyles/defaultButtons/defaultButtons.css');
 @import url('./buttonStyles/defaultButton.css');
 @import url('./buttonStyles/defaultButtonAlt.css');
-
 @import url('./buttonStyles/diffButton.css');
 @import url('./buttonStyles/editCommentButton.css');
 @import url('./buttonStyles/editCommentFormButton.css');
 @import url('./buttonStyles/editProfileButton.css');
+@import url('./buttonStyles/footerLogoButton.css');
 @import url('./buttonStyles/gameModesButton.css');
 @import url('./buttonStyles/headerButton.css');
 @import url('./buttonStyles/headerHomeButton.css');

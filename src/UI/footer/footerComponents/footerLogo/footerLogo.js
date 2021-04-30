@@ -1,41 +1,40 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { routes } from '../../../../utility/paths'
+
+import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './footerLogo.css'
 
 const FooterLogo = (props) => {
 
-  const [hoverState, setHoverState] = useState(false);
   const location = useLocation()
-
-  const switchHoverState = (bool) => { setHoverState(bool) }
-
-  const onHover = () => { switchHoverState(true) }
-  const offHover = () => { switchHoverState(false) }
 
   const onClickFunctions = () => {
     document.body.scrollTop = 0
     if (location.pathname !== props.route) props.history.push( props.route )
   }
 
+  let footerLogoButton = [
+    {
+      buttonClass: 'footer_logo_button',
+      buttonType: 'link',
+      id: 'footer_logo_button',
+      image: props.logo,
+      imageHover: props.logoHover,
+      name: 'footerLogoButton',
+      onClickFunction: onClickFunctions,
+      params: JSON.stringify({ route: routes.home })
+    }
+  ]
+
   return (
-    <div className='footer_logo_container'>
-      <a
-        href={ props.auth.status !== 'authValid' ? props.route : undefined }
-        rel='noopener noreferrer'
-        // target='_blank'
-        onMouseEnter={ onHover }
-        onMouseLeave={ offHover }
-        onClick={ props.auth.status === 'authValid' ? onClickFunctions : null }
-      >
-        <img
-          alt='footer_logo'
-          name='footerLogo'
-          src={ hoverState ? props.logoHover : props.logo }
-        />
-      </a>
-    </div>
+    <DefaultButtonsContainer
+      buttons={ footerLogoButton }
+      containerClass={ 'footer_logo_container' }
+      enableButton={ true }
+    />
   )
 }
 

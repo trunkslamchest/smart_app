@@ -30,7 +30,6 @@ const GuestHeader = (props) => {
     props.history.push(buttonParams.route)
   }
 
-
   let headerButtons = makeLoggedOutHeaderButtons(iconsIndex, onLogIn, onSignUp, onPushLink, routes)
 
   return(
@@ -45,11 +44,11 @@ const GuestHeader = (props) => {
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(login(bool)),
     onSignupModal: (bool) => dispatch(signup(bool))
   }
 }
 
-export default connect(null, mapDispatchToProps)(GuestHeader)
+export default connect(null, dispatch)(GuestHeader)

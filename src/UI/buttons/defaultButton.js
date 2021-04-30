@@ -128,29 +128,6 @@ const DefaultButton = (props) =>  {
           { buttonContent }
         </button>
     }
-
-
-  // props.history.push( props.route )
-    
-    // let route = JSON.parse(this.props.params).route
-    // console.log(route)
-    // buttonType =
-    // <a
-    //   // href={ this.props.auth.status !== 'authValid' ? this.props.route : undefined }
-    //   href={ JSON.parse(props.params).route }
-    //   // onClick={ onClickFunction }
-    //   rel='noopener noreferrer'
-    // >
-    //   <button
-    //     className={ buttonClass }
-    //     id={ props.id }
-    //     name={ props.name }
-    //     params={ props.params }
-    //     type={ props.buttonType }
-    //   >
-    //     { buttonContent }
-    //   </button>
-    // </a>
   } else {
     buttonType =
       <button
