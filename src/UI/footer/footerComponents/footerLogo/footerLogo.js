@@ -6,13 +6,13 @@ import './footerLogo.css'
 
 const FooterLogo = (props) => {
 
-  const [hoverState, setHover] = useState(false);
+  const [hoverState, setHoverState] = useState(false);
   const location = useLocation()
 
-  const switchHover = (bool) => { setHover(bool) }
+  const switchHoverState = (bool) => { setHoverState(bool) }
 
-  const onHover = () => { switchHover(true) }
-  const offHover = () => { switchHover(false) }
+  const onHover = () => { switchHoverState(true) }
+  const offHover = () => { switchHoverState(false) }
 
   const onClickFunctions = () => {
     document.body.scrollTop = 0
@@ -21,20 +21,20 @@ const FooterLogo = (props) => {
 
   return (
     <div className='footer_logo_container'>
-    <a
-      href={ props.auth.status !== 'authValid' ? props.route : undefined }
-      rel='noopener noreferrer'
-      // target='_blank'
-      onMouseEnter={ onHover }
-      onMouseLeave={ offHover }
-      onClick={ props.auth.status === 'authValid' ? onClickFunctions : null }
-    >
-      <img
-        alt='footer_logo'
-        name='footerLogo'
-        src={ hoverState ? props.logoHover : props.logo }
-      />
-    </a>
+      <a
+        href={ props.auth.status !== 'authValid' ? props.route : undefined }
+        rel='noopener noreferrer'
+        // target='_blank'
+        onMouseEnter={ onHover }
+        onMouseLeave={ offHover }
+        onClick={ props.auth.status === 'authValid' ? onClickFunctions : null }
+      >
+        <img
+          alt='footer_logo'
+          name='footerLogo'
+          src={ hoverState ? props.logoHover : props.logo }
+        />
+      </a>
     </div>
   )
 }

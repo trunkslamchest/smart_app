@@ -6,7 +6,8 @@ import {
   getUserProfile,
   clearUserProfile,
   updateUserProfileStatus,
-  updateUserProfileLoadingStatus
+  updateUserProfileLoadingStatus,
+  storeAchievements
 } from '../../store/actions/actionIndex'
 
 import UserProfileContainer from '../../user/profile/userProfileContainer'
@@ -31,6 +32,8 @@ class ProfileController extends React.Component {
 // if(this.props.profile.userData && !this.state.displayProfile) this.displayProfileModule()
     // if(typeof this.props.profile.userData !== 'string') {
       if((this.props.profile.userData && this.props.profile.status === 'getUserProfile' && !this.props.questions.totals)) this.getQuestionTotalsModule()
+      if((this.props.questions.totals && this.props.profile.status === 'getQuestionTotals' && !this.props.achievements.all)) this.getAchievementsModule()
+
       // if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
     //   if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
     // } else {
@@ -84,6 +87,11 @@ class ProfileController extends React.Component {
     this.props.onGetQuestionTotals()
   }
 
+  getAchievementsModule = () => {
+    this.props.onUpdateUserProfileStatus('getAchievements')
+    this.props.onGetAcheivements()
+  }
+
   displayProfileModule = () => {
     this.props.onUpdateUserProfileStatus('displayProfile')
     this.setState({ displayProfile: true })
@@ -117,20 +125,21 @@ class ProfileController extends React.Component {
 
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    achievements: state.achievements,
-    auth: state.auth,
-    modal: state.modal,
-    questions: state.questions,
-    profile: state.profile
+    achievements: store.achievements,
+    auth: store.auth,
+    modal: store.modal,
+    questions: store.questions,
+    profile: store.profile
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onGetQuestionTotals: () => dispatch(getQuestionTotals()),
+    onGetAcheivements: () => dispatch(storeAchievements()),
     onGetUserProfile: (user_name) => dispatch(getUserProfile(user_name)),
     onClearUserProfile: () => dispatch(clearUserProfile()),
     onUpdateUserProfileStatus: (status) => dispatch(updateUserProfileStatus(status)),
@@ -138,4 +147,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileController)
+export default connect(store, dispatch)(ProfileController)

@@ -1,132 +1,198 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import DefaultMenu from '../menus/defaultMenu'
 import DefaultButtonTooltip from '../tooltips/defaultButtonTooltip'
 
 import './buttonStylesIndex.css'
 
-class DefaultButton extends React.Component {
+const DefaultButton = (props) =>  {
 
-  state = { hover: false, menu: false, tooltip: false }
+  const [hoverState, setHoverState] = useState(false)
+  const [tooltipState, setTooltipState] = useState(false)
+  const [menuState, setMenuState] = useState(false)
 
-  componentWillUnmount(){
-    this.setState({ hover: false, tooltip: false })
-    clearTimeout(this.toolTipTimeout)
+  const location = useLocation()
+  const timerRef = useRef(null);
+
+  const switchHoverState = (bool) => { setHoverState(bool) }
+  const switchTooltipState = (bool) => { setTooltipState(bool) }
+  const switchMenuState = (bool) => { setMenuState(bool) }
+
+  const onHover = () => {
+    switchHoverState(true)
+    timerRef.current = setTimeout(() => { switchTooltipState(true) }, 250);
   }
 
-  onHover = () => {
-    this.setState({ hover: true })
-    this.toolTipTimeout = setTimeout(() => { this.setState({ tooltip: true })}, 250)
+  const offHover = () => {
+    switchHoverState(false)
+    switchTooltipState(false)
+    if(timerRef.current) clearTimeout(timerRef.current);
   }
 
-  offHover = () => {
-    this.setState({ hover: false, tooltip: false })
-    clearTimeout(this.toolTipTimeout)
-  }
+  const onClickFunction = (event) => {
 
-  onClickFunction = (event) => {
     event.preventDefault()
     event.persist()
-    this.setState({ tooltip: false })
-    if(this.props.enableButton){
-      if(!!this.props.onSwitchMenu){
-        this.props.offHover()
-        this.props.onSwitchMenu()
+    if(props.enableButton){
+      if(!!props.onSwitchMenu){
+        props.offHover()
+        props.onSwitchMenu()
       }
-      if(this.props.buttonType === 'menu'){
-        let switchMenu = !this.state.menu
-        this.setState({ menu: switchMenu })
+      if(props.buttonType === 'menu'){
+        let switchMenu = !menuState
+        switchMenuState(switchMenu)
       }
-      if(!!this.props.onClickFunction){ this.props.onClickFunction(event) }
+      if(props.buttonType === 'link'){
+        document.body.scrollTop = 0
+        if (location.pathname !== props.route) props.history.push( props.route )
+      }
+      if(!!props.onClickFunction){ props.onClickFunction(event) }
     }
+
+    if(props.tooltipText && timerRef.current) clearTimeout(timerRef.current);
+
   }
 
-  onSwitchMenu = () => {
-    let switchMenu = !this.state.menu
-    this.setState({ menu: switchMenu })
+  const onSwitchMenu = () => {
+    let switchMenu = !menuState
+    switchMenuState(switchMenu)
   }
 
-  render() {
 
-    let buttonType
-    let buttonClass
-    let buttonContent =
-      <>
-        { !!this.props.text && <span params={ this.props.params }>{ this.props.text }</span> }
-        { !!this.props.imageHover &&
-          <img
-            alt={ this.props.id }
-            id={ `${this.props.id}_image` }
-            name={ `${this.props.name}Image` }
-            params={ this.props.params }
-            src={ this.state.hover || this.state.menu || this.props.location === this.props.route ? this.props.imageHover : this.props.image }
-          />
-        }
-      </>
+  let buttonType
+  let buttonClass
+  let buttonContent =
+    <>
+      { !!props.text && <span params={ props.params }>{ props.text }</span> }
+      { !!props.imageHover &&
+        <img
+          alt={ props.id }
+          id={ `${props.id}_image` }
+          name={ `${props.name}Image` }
+          // params={ this.props.params }
+          src={ hoverState || menuState || props.location === props.route ? props.imageHover : props.image }
+        />
+      }
+    </>
 
-    if(this.props.enableButton)
-      if(this.state.hover || this.state.menu) buttonClass = `${this.props.buttonClass}_active`
-      else buttonClass = this.props.buttonClass
-    else buttonClass = `${this.props.buttonClass}_disabled`
+  if(props.enableButton)
+    if(hoverState || menuState) buttonClass = `${props.buttonClass}_active`
+    else buttonClass = props.buttonClass
+  else buttonClass = `${props.buttonClass}_disabled`
 
-    if(this.props.type === 'NavLink') {
+  if(props.buttonType === 'NavLink') {
+    buttonType =
+      <NavLink
+        activeClassName={ `${props.buttonClass}_active` }
+        className={ buttonClass }
+        id={ props.id }
+        name={ props.name }
+        params={ props.params }
+        to={ props.route }
+        type={ props.type }
+      >
+        { buttonContent }
+      </NavLink>
+  } else if (props.buttonType === 'link') {
+    let route = JSON.parse(props.params).route
+    // console.log(location.pathname, )
+    if (location.pathname !== route) {
       buttonType =
-        <NavLink
-          activeClassName={ `${this.props.buttonClass}_active` }
+      <a
+        // href={ this.props.auth.status !== 'authValid' ? this.props.route : undefined }
+        href={ JSON.parse(props.params).route }
+        // onClick={ onClickFunction }
+        rel='noopener noreferrer'
+      >
+        <button
           className={ buttonClass }
-          id={ this.props.id }
-          name={ this.props.name }
-          params={ this.props.params }
-          to={ this.props.route }
-          type={ this.props.type }
+          id={ props.id }
+          name={ props.name }
+          params={ props.params }
+          type={ props.buttonType }
         >
           { buttonContent }
-        </NavLink>
+        </button>
+      </a>
     } else {
       buttonType =
         <button
           className={ buttonClass }
-          id={ this.props.id }
-          name={ this.props.name }
-          params={ this.props.params }
-          onClick={ this.onClickFunction }
-
-          type={ this.props.type }
+          id={ props.id }
+          name={ props.name }
+          params={ props.params }
+          type={ props.buttonType }
         >
           { buttonContent }
         </button>
     }
 
-    return(
-      <div
-        className={ this.props.buttonContainerClass || 'default_button_container' }
-        onMouseEnter={ this.onHover }
-        onMouseLeave={ this.offHover }
+
+  // props.history.push( props.route )
+    
+    // let route = JSON.parse(this.props.params).route
+    // console.log(route)
+    // buttonType =
+    // <a
+    //   // href={ this.props.auth.status !== 'authValid' ? this.props.route : undefined }
+    //   href={ JSON.parse(props.params).route }
+    //   // onClick={ onClickFunction }
+    //   rel='noopener noreferrer'
+    // >
+    //   <button
+    //     className={ buttonClass }
+    //     id={ props.id }
+    //     name={ props.name }
+    //     params={ props.params }
+    //     type={ props.buttonType }
+    //   >
+    //     { buttonContent }
+    //   </button>
+    // </a>
+  } else {
+    buttonType =
+      <button
+        className={ buttonClass }
+        id={ props.id }
+        name={ props.name }
+        params={ props.params }
+        onClick={ onClickFunction }
+        type={ props.type }
       >
-        { buttonType }
-        {
-          this.props.enableButton &&
-          this.props.tooltipText &&
-          this.state.hover &&
-          !this.state.menu &&
-          this.state.tooltip &&
-            <DefaultButtonTooltip
-              tooltipText={ this.props.tooltipText }
-              tooltipClass={ this.props.tooltipClass }
-            />
-        }
-        { this.state.menu &&
-          <DefaultMenu
-            menuButtons={ this.props.menuButtons }
-            menuClass={ 'header_menu' }
-            offHover={ this.offHover }
-            onSwitchMenu={ this.onSwitchMenu }
-          />
-        }
-      </div>
-    )
+        { buttonContent }
+      </button>
   }
+
+  return(
+    <div
+      className={ props.buttonContainerClass || 'default_button_container' }
+      onMouseEnter={ onHover }
+      onMouseLeave={ offHover }
+    >
+      { buttonType }
+      {
+        props.enableButton &&
+        props.tooltipText &&
+        hoverState &&
+        !menuState &&
+        tooltipState &&
+          <DefaultButtonTooltip
+            tooltipText={ props.tooltipText }
+            tooltipClass={ props.tooltipClass }
+          />
+      }
+      { menuState &&
+        <DefaultMenu
+          menuButtons={ props.menuButtons }
+          menuClass={ 'header_menu' }
+          offHover={ offHover }
+          onSwitchMenu={ onSwitchMenu }
+        />
+      }
+    </div>
+  )
 }
 
 export default DefaultButton
