@@ -30,7 +30,8 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     document.title = "SmartApp™ | Dashboard"
-  }, [])
+    if(localStorage.authValid !== 'true') props.history.push( routes.home )
+  }, [props.history])
 
   const onHelp = () => {
     props.onSetHelpHeader('SmartApp™ Dashboards')
@@ -40,62 +41,60 @@ const Dashboard = (props) => {
 
   const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, routes)
 
-  let routeBoard
+  let dashboardBlock
 
-  // if(!this.props.auth.loading) {
   if(props.auth.status === 'authValid' || props.auth.authType === 'deleteProfile') {
-    routeBoard =
-      <Switch>
-        <Route exact path={ routes.dashboard }>
-          <DashboardIndex />
-        </Route>
-        <Route exact path={ routes.dashboard_profile }>
-          <DashboardProfileContainer history={ props.history } />
-        </Route>
-        <Route path={ routes.dashboard_profile_edit }>
-          <DashboardEditProfileContainer history={ props.history } />
-        </Route>
-        <Route exact path={ routes.dashboard_stats }>
-          <DashboardStatsContainer
-            history={ props.history }
-            question_totals={ props.questions.totals }
-            user_questions={ props.user.questions.totals }
-            user_experience={ props.user.experience }
-          />
-        </Route>
-        <Route exact path={ routes.dashboard_achievements }>
-          <UserAchievementsContainer
-            all_achievements={ props.achievements }
-            from_dashboard={ true }
-            history={ props.history }
-            user_achievements={ props.user.achievements }
-          />
-        </Route>
-        <Route exact path={ routes.dashboard_settings }>
-          <DashboardSettingsContainer
-            switchbasicModalContent={ props.switchbasicModalContent }
-            history={ props.history }
-          />
-        </Route>
-      </Switch>
-    } else {
-      props.history.push( routes.home )
+    dashboardBlock =
+      <>
+        <DefaultButtonsContainer
+          buttons={ navBarButtons }
+          buttonClass={ 'nav_bar_button' }
+          buttonRow={ true }
+          containerClass={ 'nav_bar_container' }
+          enableButton={ true }
+          tooltipClass={ 'nav_bar_tooltip' }
+        />
+        <div className='dashboard_wrapper'>
+          <Switch>
+            <Route exact path={ routes.dashboard }>
+              <DashboardIndex />
+            </Route>
+            <Route exact path={ routes.dashboard_profile }>
+              <DashboardProfileContainer history={ props.history } />
+            </Route>
+            <Route path={ routes.dashboard_profile_edit }>
+              <DashboardEditProfileContainer history={ props.history } />
+            </Route>
+            <Route exact path={ routes.dashboard_stats }>
+              <DashboardStatsContainer
+                history={ props.history }
+                question_totals={ props.questions.totals }
+                user_questions={ props.user.questions.totals }
+                user_experience={ props.user.experience }
+              />
+            </Route>
+            <Route exact path={ routes.dashboard_achievements }>
+              <UserAchievementsContainer
+                all_achievements={ props.achievements }
+                from_dashboard={ true }
+                history={ props.history }
+                user_achievements={ props.user.achievements }
+              />
+            </Route>
+            <Route exact path={ routes.dashboard_settings }>
+              <DashboardSettingsContainer
+                switchbasicModalContent={ props.switchbasicModalContent }
+                history={ props.history }
+              />
+            </Route>
+          </Switch>
+        </div>
+      </>
     }
-    // }
 
   return(
     <>
-      <DefaultButtonsContainer
-        buttons={ navBarButtons }
-        buttonClass={ 'nav_bar_button' }
-        buttonRow={ true }
-        containerClass={ 'nav_bar_container' }
-        enableButton={ true }
-        tooltipClass={ 'nav_bar_tooltip' }
-      />
-      <div className='dashboard_wrapper'>
-        { routeBoard }
-      </div>
+      { dashboardBlock }
     </>
   )
 }
