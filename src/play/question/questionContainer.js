@@ -23,8 +23,6 @@ class QuestionContainer extends React.Component{
 
     if(!this.props.play.gameMode || this.props.play.answer) this.props.history.push( routes.play )
 
-    console.log(routes[this.props.play.gameMode] + '/completed')
-
     if((this.props.play.status === 'setGameModeSuccess') && this.props.play.gameMode !== 'quick_play') this.props.history.push( routes[this.props.play.gameMode] + '/select' )
     if(this.props.play.gameState === 'completed') {
       if(this.props.play.gameMode === 'quick_play') this.props.history.push( routes.play + '/completed' )
