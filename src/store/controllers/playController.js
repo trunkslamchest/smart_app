@@ -17,7 +17,6 @@ class PlayController extends React.Component {
   componentDidMount(){
     if(this.props.auth.status === 'authValid'&& !this.props.play.gameState) this.initGameModule()
     if(this.props.play.gameMode === 'quick_play' && this.props.play.gameState === 'select') this.mountGameModeModule('setQuickPlay')
-
   }
 
   componentDidUpdate(){
@@ -52,7 +51,6 @@ class PlayController extends React.Component {
          this.props.play.commentStatus === 'commentSuccess' &&
         this.props.user.questions.list[this.props.play.question.id].comments[this.props.play.results.comment.cid])
         this.displayCommentsModule()
-
     }
   }
 
@@ -81,8 +79,6 @@ class PlayController extends React.Component {
   }
 
   reInitGameModule = () => {
-    // console.log(this.props.gameMode)
-    console.log(routes[this.props.play.gameMode] + '/question')
     if (this.props.play.gameMode === 'quick_play') {
       this.props.onUpdateGameStatus('setQuickPlay', true)
       let questionObj = { answeredIds: [] }
@@ -110,8 +106,8 @@ class PlayController extends React.Component {
     this.props.onLoadingModal(false)
     this.props.onUpdateGameStatus('selectGameMode', false)
     this.props.onSetGameState('select')
-    this.props.onResetGameMode()
     if(this.props.play.question) this.props.onResetQuestion()
+    if(this.props.play.gameMode) this.props.onResetGameMode()
     if(this.props.play.gameQset) this.props.onResetGameQset()
     if(this.props.play.answer) this.props.onResetAnswer()
     if(this.props.play.results) this.props.onResetResults()
@@ -121,13 +117,13 @@ class PlayController extends React.Component {
 
   setGameCompletedModule = () => {
     this.props.onUpdateGameStatus('displayQuestion', false)
+
     if (this.props.play.gameMode === 'quick_play') {
       this.props.history.push( routes.play + '/completed' )
-    
     } else {
       this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-
     }
+
     this.props.onSetGameState('completed')
     this.props.onLoadingModal(false)
   }
@@ -135,26 +131,24 @@ class PlayController extends React.Component {
   mountGameModeModule = (gameMode) => {
     this.props.onUpdateGameStatus(gameMode, true)
     let questionObj = { answeredIds: [] }
-    if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
 
+    if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
     if(this.props.play.gameQset) questionObj.qSet = this.props.play.gameQset
 
     if(gameMode === 'setQuickPlay') this.props.onGetQuickQuestion(questionObj)
     if(gameMode === 'setByDiff') this.props.onGetDiffQuestion(questionObj)
     if(gameMode === 'setByCat') this.props.onGetCatQuestion(questionObj)
+
     this.props.onSetGameState('mount')
   }
 
   displayQuestionModule = () => {
-     if(this.props.play.question.completed && this.props.play.gameState === 'mount') 
-    {
-
-    this.setGameCompletedModule()
+     if(this.props.play.question.completed && this.props.play.gameState === 'mount') {
+      this.setGameCompletedModule()
     } else {
-
-    this.props.onUpdateGameStatus('displayQuestion', false)
-    this.props.onSetGameState('question')
-    this.props.onLoadingModal(false)
+      this.props.onUpdateGameStatus('displayQuestion', false)
+      this.props.onSetGameState('question')
+      this.props.onLoadingModal(false)
     }
   }
 
@@ -275,21 +269,11 @@ class PlayController extends React.Component {
 
   render(){
 
-    // console.log(routes[localStorage.gameMode] + '/completed' )
-    // console.log(routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed' || routes.play + '/completed')
-
     let loadingModal,
         completedPath
 
     if(this.props.play.gameMode === 'quick_play' || localStorage.gameMode === 'quick_play') completedPath = routes.play + '/completed'
-
-    // if(this.props.play.gameMode === 'quick_play' || !this.props.play.gameMode) completedPath = routes.play + '/completed'
-      // if(!this.props.play.gameMode && !this.props.play.question) completedPath = routes.play + '/completed'
-    // if(this.props.play.gameMode === 'quick_play' && !this.props.play.question) completedPath = routes.play + '/completed'
-
     else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed'
-
-    console.log(this.props.play.gameMode, completedPath)
 
     if(this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
       loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } history={ this.props.history } />
@@ -307,7 +291,6 @@ class PlayController extends React.Component {
         <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.play.gameMode] + '/results' }>
           <ResultsContainer staticResults={ false } history={ this.props.history } />
         </Route>
-        {/* <Route exact path={ routes[this.props.play.gameMode] + '/question' }> */}
         <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.play.gameMode] + '/question' }>
           <QuestionContainer history={ this.props.history } />
         </Route>

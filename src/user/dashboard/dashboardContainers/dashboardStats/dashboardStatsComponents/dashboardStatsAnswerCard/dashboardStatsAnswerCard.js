@@ -10,7 +10,12 @@ import './dashboardStatsAnswerCard.css'
 
 const DashboardStatsAnswerCard = (props) => {
 
-  const onClickFunction = () => { props.history.push(routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats') }
+  // const onClickFunction = () => { props.history.push(routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats') }
+
+  const onPushLink = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    props.history.push(buttonParams.route)
+  }
 
   let answer = props.answer,
       vote,
@@ -21,15 +26,17 @@ const DashboardStatsAnswerCard = (props) => {
   const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
   const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
 
-  const viewQuestionButtons = [
+  const viewQuestionButton = [
     {
+      buttonType: 'NavLink',
       id: 'dashboard_stats_view_question_button',
       name: 'dashboardStatsViewQuestionButton',
-      onClickFunction: onClickFunction,
-      // params: JSON.stringify({ gameMode: gameMode.val }),
-      type: 'button',
+      // onClickFunction: onClickFunction,
+      onClickFunction: onPushLink,
+      params: JSON.stringify({ route: routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats' }),
+      route: routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats',
       text: 'View Question',
-      // tooltipText: [ 'View Results for this question' ]
+      tooltipText: [ 'View Results for this question' ]
     }
   ]
 
@@ -73,10 +80,9 @@ const DashboardStatsAnswerCard = (props) => {
        <div className="dashboard_stats_answer_card_header">
         <h5>{ answer.question }</h5>
           <DefaultButtonsContainer
-            buttons={ viewQuestionButtons }
+            buttons={ viewQuestionButton }
             containerClass={ 'dashboard_stats_view_question_button_container' }
             buttonClass={ 'dashboard_stats_view_question_button' }
-            // buttonClass={ 'default_button_alt' }
             enableButton={ true }
             // tooltipClass={ 'dashboard_stats_view_question_button_tooltip' }
           />

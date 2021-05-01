@@ -45,7 +45,9 @@ class ResultsContainer extends React.Component{
       this.startResultTimers()
     }
 
-    if(!this.props.play.question) this.props.history.push( routes.play )
+    console.log(this.props)
+
+    if(!this.props.play.question && !this.props.staticResults) this.props.history.push( routes.play )
 
     // if(!this.props.play.question || !this.props.play.results) this.props.history.push( routes.play )
     // else {
