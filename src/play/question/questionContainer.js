@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { loading, setAnswer } from '../../store/actions/actionIndex'
+import { routes } from '../../utility/paths'
 
 import QuestionCard from './questionCard/questionCard'
 
@@ -19,6 +20,14 @@ class QuestionContainer extends React.Component{
   }
 
   componentDidMount(){
+
+    console.log(localStorage.gameMode, this.props.play.gameMode)
+
+    if(!this.props.play.gameMode) this.props.history.push( routes.play )
+
+    if(this.props.play.status === 'setGameModeSuccess' && this.props.play.gameMode !== 'quick_play') this.props.history.push( routes[this.props.play.gameMode] + '/select' )
+
+
     if(this.props.play.gameMode === 'quick_play') document.title = 'SmartApp™ | Play | Quick Play | Question'
     if(this.props.play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Question'
     if(this.props.play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Question'

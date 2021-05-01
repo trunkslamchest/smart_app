@@ -1,8 +1,11 @@
 import React from 'react'
+// import { useEffect }  from 'react'
+// import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { setGameMode, setGameQset } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
+
 
 import gameModes from '../../datasets/gameModes'
 import difficulties from '../../datasets/difficulties'
@@ -21,6 +24,19 @@ import './selectionContainer.css'
 const SelectionContainer = (props) => {
 
   const location = useLocation()
+
+  // useEffect(() => {
+  //   // console.log(location.pathname)
+  //   // if(!!localStorage.gameMode && )
+  // }, [location])
+
+  // useOnMount(function() {
+
+  //   // console.log(localStorage.gameMode, props.play.gameMode)
+
+
+  //   return function cleanup(){}
+  // }, [])
 
   const onClickGameModeFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)

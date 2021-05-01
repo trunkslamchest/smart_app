@@ -9,7 +9,7 @@ import QuestionContainer from '../../play/question/questionContainer'
 import ResultsContainer from '../../play/results/resultsContainer'
 import CompletedContainer from '../../play/completed/completedContainer'
 
-import Wrapper from '../../UI/wrapper/wrapper'
+// import Wrapper from '../../UI/wrapper/wrapper'
 import LoadingModal from '../../UI/loading/loadingModal/loadingModal'
 
 class PlayController extends React.Component {
@@ -266,6 +266,8 @@ class PlayController extends React.Component {
 
   render(){
 
+    // console.log(this.props.play.gameMode)
+
     let loadingModal
 
     if(this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
@@ -281,10 +283,12 @@ class PlayController extends React.Component {
           <Route exact path={ routes[this.props.play.gameMode] + '/completed' }>
             <CompletedContainer history={ this.props.history } />
           </Route>
-          <Route path={ routes[this.props.play.gameMode] + '/results' }>
+          <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.play.gameMode] + '/results' }>
             <ResultsContainer staticResults={ false } history={ this.props.history } />
           </Route>
-          <Route exact path={ routes[this.props.play.gameMode] + '/question' }>
+          {/* <Route exact path={ routes[this.props.play.gameMode] + '/question' }> */}
+          <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.play.gameMode] + '/question' }>
+
             <QuestionContainer history={ this.props.history } />
           </Route>
           <Route path={ routes.play || routes[this.props.play.gameMode] + '/select' }>
@@ -292,7 +296,6 @@ class PlayController extends React.Component {
               setGameMode={ this.props.onSetGameMode }
               setGameState={ this.props.onSetGameState }
               resetGameQset={ this.props.onResetGameQset }
-
               updateGameStatus={ this.props.onUpdateGameStatus }
               resetQuestion={ this.props.onResetQuestion }
               reSelectGameMode={ this.reSelectGameModeModule }
