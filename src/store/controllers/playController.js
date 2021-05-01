@@ -116,9 +116,14 @@ class PlayController extends React.Component {
   }
 
   setGameCompletedModule = () => {
-    console.log('completed')
     this.props.onUpdateGameStatus('displayQuestion', false)
-    this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+    if (this.props.play.gameMode === 'quick_play') {
+      this.props.history.push( routes.play + '/completed' )
+    
+    } else {
+      this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+
+    }
     this.props.onSetGameState('completed')
     this.props.onLoadingModal(false)
   }
@@ -266,9 +271,16 @@ class PlayController extends React.Component {
 
   render(){
 
-    // console.log(this.props.play.gameMode)
+    // console.log(routes[localStorage.gameMode] + '/completed' )
+    // console.log(routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed' || routes.play + '/completed')
 
-    let loadingModal
+    let loadingModal,
+        completedPath
+
+    if(this.props.play.gameMode === 'quick_play') completedPath = routes.play + '/completed'
+    else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed'
+
+    console.log(this.props.play.gameMode, completedPath)
 
     if(this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
       loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } history={ this.props.history } />
@@ -279,31 +291,30 @@ class PlayController extends React.Component {
     }
 
     let routeBoard =
-        <Switch>
-          <Route exact path={ routes[this.props.play.gameMode] + '/completed' }>
-            <CompletedContainer history={ this.props.history } />
-          </Route>
-          <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.play.gameMode] + '/results' }>
-            <ResultsContainer staticResults={ false } history={ this.props.history } />
-          </Route>
-          {/* <Route exact path={ routes[this.props.play.gameMode] + '/question' }> */}
-          <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.play.gameMode] + '/question' }>
-
-            <QuestionContainer history={ this.props.history } />
-          </Route>
-          <Route path={ routes.play || routes[this.props.play.gameMode] + '/select' }>
-            <SelectionContainer
-              setGameMode={ this.props.onSetGameMode }
-              setGameState={ this.props.onSetGameState }
-              resetGameQset={ this.props.onResetGameQset }
-              updateGameStatus={ this.props.onUpdateGameStatus }
-              resetQuestion={ this.props.onResetQuestion }
-              reSelectGameMode={ this.reSelectGameModeModule }
-              onLoadingModal={ this.props.onLoadingModal }
-              history={ this.props.history }
-            />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route exact path={ completedPath }>
+          <CompletedContainer history={ this.props.history } />
+        </Route>
+        <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.play.gameMode] + '/results' }>
+          <ResultsContainer staticResults={ false } history={ this.props.history } />
+        </Route>
+        {/* <Route exact path={ routes[this.props.play.gameMode] + '/question' }> */}
+        <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.play.gameMode] + '/question' }>
+          <QuestionContainer history={ this.props.history } />
+        </Route>
+        <Route path={ routes.play || routes[this.props.play.gameMode] + '/select' }>
+          <SelectionContainer
+            setGameMode={ this.props.onSetGameMode }
+            setGameState={ this.props.onSetGameState }
+            resetGameQset={ this.props.onResetGameQset }
+            updateGameStatus={ this.props.onUpdateGameStatus }
+            resetQuestion={ this.props.onResetQuestion }
+            reSelectGameMode={ this.reSelectGameModeModule }
+            onLoadingModal={ this.props.onLoadingModal }
+            history={ this.props.history }
+          />
+        </Route>
+      </Switch>
 
     return(
       <>

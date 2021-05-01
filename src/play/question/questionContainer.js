@@ -21,11 +21,15 @@ class QuestionContainer extends React.Component{
 
   componentDidMount(){
 
-    console.log(localStorage.gameMode, this.props.play.gameMode)
+    if(!this.props.play.gameMode || this.props.play.answer) this.props.history.push( routes.play )
 
-    if(!this.props.play.gameMode) this.props.history.push( routes.play )
+    console.log(routes[this.props.play.gameMode] + '/completed')
 
-    if(this.props.play.status === 'setGameModeSuccess' && this.props.play.gameMode !== 'quick_play') this.props.history.push( routes[this.props.play.gameMode] + '/select' )
+    if((this.props.play.status === 'setGameModeSuccess') && this.props.play.gameMode !== 'quick_play') this.props.history.push( routes[this.props.play.gameMode] + '/select' )
+    if(this.props.play.gameState === 'completed') {
+      if(this.props.play.gameMode === 'quick_play') this.props.history.push( routes.play + '/completed' )
+      else this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+    }
 
 
     if(this.props.play.gameMode === 'quick_play') document.title = 'SmartApp™ | Play | Quick Play | Question'

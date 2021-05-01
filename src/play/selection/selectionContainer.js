@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom'
 import { setGameMode, setGameQset } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
 
-
 import gameModes from '../../datasets/gameModes'
 import difficulties from '../../datasets/difficulties'
 import categories from '../../datasets/categories'
@@ -73,6 +72,7 @@ const SelectionContainer = (props) => {
     }
     if(props.play.gameState !== 'select')  props.setGameState('select')
     if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
+
     if(props.play.question) props.resetQuestion()
     if(props.play.gameQset) props.resetGameQset()
 
@@ -97,6 +97,23 @@ const SelectionContainer = (props) => {
     headerText = 'Category'
     buttonGroup = categoryButtons
   }
+
+  // if(location.pathname === `${routes.by_cat}/completed`) {
+    // if(!props.play.gameMode) {
+    //   props.setGameMode('by_cat')
+    //   props.setGameState('select')
+    // }
+
+    // if(props.play.gameState !== 'select')  props.setGameState('select')
+    // if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
+
+    // if(props.play.question) props.resetQuestion()
+    // if(props.play.gameQset) props.resetGameQset()
+
+    // document.title = "SmartApp™ | Play | Category | Select"
+    // headerText = 'Category'
+    // buttonGroup = categoryButtons
+  // }
 
   return(
     <div className='selection_wrapper'>

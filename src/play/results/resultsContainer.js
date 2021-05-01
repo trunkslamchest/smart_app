@@ -43,7 +43,11 @@ class ResultsContainer extends React.Component{
     if(!this.props.staticResults) {
       document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
       this.startResultTimers()
-    } 
+    }
+
+    if(!this.props.play.question) this.props.history.push( routes.play )
+
+    // if(!this.props.play.question || !this.props.play.results) this.props.history.push( routes.play )
     // else {
     //   this.props.onLoadingModal(true)
     // }
