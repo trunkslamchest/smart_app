@@ -7,7 +7,7 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       id: 'quick_play_menu_button',
       name: 'quickPlayMenuButton',
       onClickFunction: onInitGame,
-      params: JSON.stringify({ mode: 'quick_play', route: routes.quick_play }),
+      params: JSON.stringify({ gameMode: 'quick_play', route: routes.quick_question }),
       text: "Quick Play",
     },
     {
@@ -17,7 +17,7 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       id: 'by_category_menu_button',
       name: 'byCategoryMenuButton',
       onClickFunction: onInitGame,
-      params: JSON.stringify({ mode: 'by_cat', route: routes.by_cat }),
+      params: JSON.stringify({ route: routes.by_cat_select }),
       text: "By Category",
     },
     {
@@ -27,7 +27,7 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       id: 'by_difficulty_menu_button',
       name: 'byDifficultyMenuButton',
       onClickFunction: onInitGame,
-      params: JSON.stringify({ mode: 'by_diff', route: routes.by_diff }),
+      params: JSON.stringify({ route: routes.by_diff_select }),
       text: "By Difficulty",
     }
   ]

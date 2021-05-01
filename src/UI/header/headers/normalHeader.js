@@ -10,7 +10,10 @@ import {
   resetAnswer,
   resetResults,
   resetVote,
-  resetComment
+  resetComment,
+  setGameMode,
+  setGameState,
+  updateGameStatus
 } from '../../../store/actions/actionIndex'
 
 import makeLoggedInHeaderButtons from '../headerFunctions/makeLoggedInHeaderButtons'
@@ -28,8 +31,10 @@ const NormalHeader = (props) => {
   const onInitGame = (event) => {
     if(!!props.play.status) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    localStorage.gameMode = buttonParams.mode
-    props.history.push(buttonParams.route)
+    localStorage.gameMode = buttonParams.gameMode
+    props.onSetGameState('select')
+    props.onSetGameMode(buttonParams.gameMode)
+    props.history.push( buttonParams.route )
   }
 
   const onPushLink = (event) => {
@@ -95,7 +100,11 @@ const mapDispatchToProps = (dispatch) => {
     onResetAnswer: () => dispatch(resetAnswer()),
     onResetResults: () => dispatch(resetResults()),
     onResetVote: (obj) => dispatch(resetVote(obj)),
-    onResetComment: (obj) => dispatch(resetComment(obj))
+    onResetComment: (obj) => dispatch(resetComment(obj)),
+    onSetGameMode: (mode) => dispatch(setGameMode(mode)),
+    onSetGameState: (state) => dispatch(setGameState(state)),
+    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading)),
+
   }
 }
 

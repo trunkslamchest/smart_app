@@ -76,6 +76,7 @@ class ResultsContainer extends React.Component{
     if(this.props.play.results) this.props.onResetResults()
     if(this.props.play.voteStatus) this.props.onResetVote()
     if(this.props.play.commentStatus) this.props.onResetComment()
+    // this.props.history.push(routes[this.props.gameMode] + '/question')
   }
 
   onHelp = () => {

@@ -1,4 +1,4 @@
-const makeLeaderBoardsNavButtons = (navBarIconIndex, onHelp, routes) => {
+const makeLeaderBoardsNavButtons = (navBarIconIndex, onHelp, onPushLink, routes) => {
   return [
       {
         buttonType: 'NavLink',
@@ -6,6 +6,8 @@ const makeLeaderBoardsNavButtons = (navBarIconIndex, onHelp, routes) => {
         image: navBarIconIndex.internationalNavBarIconWhite,
         imageHover: navBarIconIndex.internationalNavBarIconGrey,
         name: 'overall',
+        onClickFunction: onPushLink,
+        params: JSON.stringify({ route: routes.overall }),
         route: routes.overall,
         tooltipText: [ 'International Leaderboard' ]
       },
@@ -15,6 +17,8 @@ const makeLeaderBoardsNavButtons = (navBarIconIndex, onHelp, routes) => {
         image: navBarIconIndex.regionalNavBarIconWhite,
         imageHover: navBarIconIndex.regionalNavBarIconGrey,
         name: 'countries',
+        onClickFunction: onPushLink,
+        params: JSON.stringify({ route: routes.countries }),
         route: routes.countries,
         tooltipText: [ 'Regional Leaderboard' ]
       },
@@ -24,6 +28,8 @@ const makeLeaderBoardsNavButtons = (navBarIconIndex, onHelp, routes) => {
         image: navBarIconIndex.categoriesNavBarIconWhite,
         imageHover: navBarIconIndex.categoriesNavBarIconGrey,
         name: 'cat',
+        onClickFunction: onPushLink,
+        params: JSON.stringify({ route: routes.categories }),
         route: routes.categories,
         tooltipText: [ 'Category Leaderboard' ]
       },

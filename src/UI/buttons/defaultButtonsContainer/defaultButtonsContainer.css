@@ -67,6 +67,11 @@
   /* max-width: 400px; */
 }
 
+.footer_links_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;}
+
 .modal_button_container {
   align-items: center;
   align-content: center;

@@ -1,132 +1,113 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { setGameMode, setGameQset } from '../../store/actions/actionIndex'
+import { routes } from '../../utility/paths'
 
 import gameModes from '../../datasets/gameModes'
 import difficulties from '../../datasets/difficulties'
 import categories from '../../datasets/categories'
 
-// import ContainerHeaderCentered from '../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
-// import ContainerSubHeaderCentered from '../../UI/components/subHeaders/containerSubHeaderCentered/containerSubHeaderCentered'
+import makeSelectionButtons from '../playFunctions/makeSelectionButtons'
+import makeDifficultyButtons from '../playFunctions/makeDifficultyButtons'
+import makeCategoryButtons from '../playFunctions/makeCategoryButtons'
 
-// import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
-// import PlaySubHeaderCentered from '../playComponents/playSubHeaderCentered/playSubHeaderCentered'
 import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
-
-
 
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './selectionContainer.css'
 
-class SelectionContainer extends React.Component {
+const SelectionContainer = (props) => {
 
-  state = {
-    buttonClass: null,
-    containerClass: null,
-    enableButton: false,
-    gameModes: null,
-    set: null,
-    subSet: null,
-    tooltipClass: null
-  }
+  const location = useLocation()
 
-  componentDidMount(){
-    if(this.props.play.gameMode === 'by_diff') {
-      document.title = "SmartApp™ | Play | Difficulty | Select"
-      this.setState({ set: 'Difficulty', subSet: difficulties, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'diff_button_tooltip', enableButton: true })
-    } else if(this.props.play.gameMode === 'by_cat') {
-      document.title = "SmartApp™ | Play | Category | Select"
-      this.setState({ set: 'Category', subSet: categories, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'cat_button_tooltip', enableButton: true })
-    } else {
-      document.title = "SmartApp™ | Play | Select"
-      this.setState({ gameModes: gameModes, buttonClass: 'game_modes_button', containerClass: 'game_modes_buttons_container', tooltipClass: 'game_modes_button_tooltip', enableButton: true })
-    }
-  }
-
-  componentDidUpdate(){ }
-
-  componentWillUnmount(){ }
-
-  onClickGameModeFunction = (event) => {
+  const onClickGameModeFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     localStorage.gameMode = buttonParams.gameMode
-    this.props.onSetGameMode(buttonParams.gameMode)
+    props.onSetGameMode(buttonParams.gameMode)
+    props.history.push( buttonParams.route )
   }
 
-  onClickQsetFunction = (event) => {
+  const onClickQsetFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    this.props.onSetGameQset(buttonParams.qSet)
+    props.onSetGameQset(buttonParams.qSet)
+    props.history.push( buttonParams.route )
   }
 
-  render(){
+  let selectionButtons = makeSelectionButtons(gameModes, routes, onClickGameModeFunction)
+  let difficultyButtons = makeDifficultyButtons(difficulties, routes, onClickQsetFunction)
+  let categoryButtons = makeCategoryButtons(categories, routes, onClickQsetFunction)
 
-    let selectionButtons
-    let varHeaderText = ''
+  let headerText
+  let buttonGroup
 
-    if(this.state.gameModes){
-      varHeaderText = 'Game Mode'
-      selectionButtons = this.state.gameModes.map((gameMode, index) => {
-        return {
-          id: `${gameMode.val}_button`,
-          key: index,
-          name: gameMode.name,
-          onClickFunction: this.onClickGameModeFunction,
-          params: JSON.stringify({ gameMode: gameMode.val }),
-          type: 'button',
-          text: gameMode.name,
-          tooltipText: gameMode.description
-        }
-      })
-    }
+  if(location.pathname === routes.play) {
+    if(props.play.gameMode) props.reSelectGameMode()
 
-    if(this.state.subSet){
-      varHeaderText = this.state.set
-      selectionButtons = this.state.subSet.map((qSet, index) => {
-        return {
-          id: `${qSet.val}_button`,
-          key: index,
-          name: qSet.name,
-          onClickFunction: this.onClickQsetFunction,
-          params: JSON.stringify({ qSet: qSet.name }),
-          type: 'button',
-          text: qSet.name,
-          tooltipText: qSet.description
-        }
-      })
-    }
-
-    return(
-      <div className='selection_wrapper'>
-        {/* <ContainerHeaderCentered header_text={ `Select A ${varHeaderText}` } /> */}
-        {/* <ContainerSubHeaderCentered header_text={ `Select A ${varHeaderText}` } /> */}
-        {/* <PlaySubHeaderCentered header_text={ `Select A ${varHeaderText}` } /> */}
-        <PlayHeaderCentered header_text={ `Select A ${varHeaderText}` } />
-
-        <DefaultButtonsContainer
-          buttons={ selectionButtons }
-          buttonClass={ this.state.buttonClass }
-          buttonContainerClass={ 'game_modes_button_container' }
-          containerClass={ this.state.containerClass }
-          enableButton={ this.state.enableButton }
-          tooltipClass={ this.state.tooltipClass }
-        />
-      </div>
-    )
+    document.title = "SmartApp™ | Play | Select"
+    headerText = 'Game Mode'
+    buttonGroup = selectionButtons
   }
+
+  if(location.pathname === routes.by_diff_select) {
+    if(!props.play.gameMode) {
+      props.setGameMode('by_diff')
+      props.setGameState('select')
+    }
+    if(props.play.gameState !== 'select')  props.setGameState('select')
+    if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
+    if(props.play.question) props.resetQuestion()
+    if(props.play.gameQset) props.resetGameQset()
+
+    document.title = "SmartApp™ | Play | Difficulty | Select"
+    headerText = 'Difficulty'
+    buttonGroup = difficultyButtons
+  }
+
+  if(location.pathname === routes.by_cat_select) {
+    if(!props.play.gameMode) {
+      props.setGameMode('by_cat')
+      props.setGameState('select')
+    }
+
+    if(props.play.gameState !== 'select')  props.setGameState('select')
+    if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
+
+    if(props.play.question) props.resetQuestion()
+    if(props.play.gameQset) props.resetGameQset()
+
+    document.title = "SmartApp™ | Play | Category | Select"
+    headerText = 'Category'
+    buttonGroup = categoryButtons
+  }
+
+  return(
+    <div className='selection_wrapper'>
+      <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
+      <DefaultButtonsContainer
+        buttons={ buttonGroup }
+        buttonClass={ 'game_modes_button' }
+        buttonContainerClass={ 'game_modes_button_container' }
+        containerClass={ 'game_modes_buttons_container' }
+        enableButton={ true }
+        tooltipClass={ 'game_modes_button_tooltip' }
+      />
+    </div>
+  )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    play: state.play
+    play: store.play
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onSetGameMode: (mode) => dispatch(setGameMode(mode)),
     onSetGameQset: (set) => dispatch(setGameQset(set))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelectionContainer)
+export default connect(store, dispatch)(SelectionContainer)

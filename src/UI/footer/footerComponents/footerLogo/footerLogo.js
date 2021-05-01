@@ -19,13 +19,15 @@ const FooterLogo = (props) => {
   let footerLogoButton = [
     {
       buttonClass: 'footer_logo_button',
-      buttonType: 'link',
+      buttonType: 'NavLink',
       id: 'footer_logo_button',
       image: props.logo,
       imageHover: props.logoHover,
       name: 'footerLogoButton',
+      homeButton: true,
       onClickFunction: onClickFunctions,
-      params: JSON.stringify({ route: routes.home })
+      params: JSON.stringify({ route: routes.home }),
+      route: routes.home
     }
   ]
 
@@ -34,6 +36,7 @@ const FooterLogo = (props) => {
       buttons={ footerLogoButton }
       containerClass={ 'footer_logo_container' }
       enableButton={ true }
+      history={ props.history }
     />
   )
 }

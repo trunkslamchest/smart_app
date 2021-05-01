@@ -2,13 +2,15 @@ const makeLoggedInHeaderButtons = (iconsIndex, onPushLink, playMenuButtons, prof
   return [
     {
       buttonClass: 'header_button',
-      buttonType: 'link',
+      buttonType: 'NavLink',
       id: 'header_leader_board_button',
       image: iconsIndex.leaderboardWhiteIcon,
       imageHover: iconsIndex.leaderboardBlackIcon,
       name: 'LeaderboardsButton',
+      navButton: false,
       onClickFunction: onPushLink,
       params: JSON.stringify({ route: routes.leader_boards + '/overall' }),
+      route: routes.leader_boards + '/overall',
       tooltipText: [ 'Leaderboards' ]
     },
     {

@@ -39,7 +39,12 @@ const Dashboard = (props) => {
     props.onHelpModal(true)
   }
 
-  const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, routes)
+  const onPushLink = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    props.history.push(buttonParams.route)
+  }
+
+  const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, onPushLink, routes)
 
   let dashboardBlock
 

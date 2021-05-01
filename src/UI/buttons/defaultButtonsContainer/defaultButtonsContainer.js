@@ -19,11 +19,14 @@ const DefaultButtonContainer = (props) => {
     }
   }
 
+  // console.log(props.buttons)
+
   return(
     <>
       { !!props.buttons &&
         <div className={ props.containerClass || 'default_buttons_container' }>
           { props.buttons.map((button, index) => {
+            // console.log(button)
             return(
               <DefaultButton
                 // buttonClass={ props.buttonClass || button.buttonClass || 'default_button' }
@@ -31,12 +34,14 @@ const DefaultButtonContainer = (props) => {
                 buttonContainerClass={ props.buttonContainerClass || button.buttonContainerClass || 'default_button_container' }
                 buttonType={ button.buttonType }
                 history={ props.history }
+                homeButton={ button.homeButton }
                 id={ button.id }
                 image={ button.image }
                 imageHover={ button.imageHover }
                 key={ index }
                 location={ location.pathname }
                 name={ button.name }
+                navButton={ button.navButton }
                 menuButtons={ button.menuButtons }
                 enableButton={ props.enableButton }
                 offHover={ props.offHover }

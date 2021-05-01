@@ -27,7 +27,12 @@ const LeaderBoardsContainer = (props) => {
     props.onHelpModal(true)
   }
 
-  const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, onHelp, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
+  const onPushLink = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    props.history.push(buttonParams.route)
+  }
+
+  const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, onHelp, onPushLink, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
 
   const routeBoard =
     <div className="leader_boards_wrapper">

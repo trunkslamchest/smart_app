@@ -22,7 +22,9 @@ const DefaultButton = (props) =>  {
 
   const onHover = () => {
     switchHoverState(true)
-    timerRef.current = setTimeout(() => { switchTooltipState(true) }, 250);
+    if(props.tooltipText) {
+      timerRef.current = setTimeout(() => { switchTooltipState(true) }, 250);
+    }
   }
 
   const offHover = () => {
@@ -45,8 +47,11 @@ const DefaultButton = (props) =>  {
         switchMenuState(switchMenu)
       }
       if(props.buttonType === 'link'){
+        let route = JSON.parse(props.params).route
+
+        console.log(props)
         document.body.scrollTop = 0
-        if (location.pathname !== props.route) props.history.push( props.route )
+        if (location.pathname !== route) props.history.push( route )
       }
       if(!!props.onClickFunction){ props.onClickFunction(event) }
     }
@@ -60,9 +65,30 @@ const DefaultButton = (props) =>  {
     switchMenuState(switchMenu)
   }
 
-
   let buttonType
   let buttonClass
+  let buttonIMG = props.image
+
+  // console.log(props.location === props.route)
+
+  // if( hoverState || menuState || props.location === props.route ){
+  //   buttonIMG = props.imageHover
+  // } else {
+  //   buttonIMG = props.image
+  // }
+
+  if( (hoverState || menuState) || (props.location === props.route && !props.homeButton)){
+    buttonIMG = props.imageHover
+  }
+
+  if(props.homeButton) {
+    if(hoverState){
+      buttonIMG = props.imageHover
+    } else {
+      buttonIMG = props.image
+    }
+  }
+
   let buttonContent =
     <>
       { !!props.text && <span params={ props.params }>{ props.text }</span> }
@@ -71,8 +97,8 @@ const DefaultButton = (props) =>  {
           alt={ props.id }
           id={ `${props.id}_image` }
           name={ `${props.name}Image` }
-          // params={ this.props.params }
-          src={ hoverState || menuState || props.location === props.route ? props.imageHover : props.image }
+          params={ props.params }
+          src={ buttonIMG }
         />
       }
     </>
@@ -83,51 +109,53 @@ const DefaultButton = (props) =>  {
   else buttonClass = `${props.buttonClass}_disabled`
 
   if(props.buttonType === 'NavLink') {
+  // console.log(props)
     buttonType =
       <NavLink
         activeClassName={ `${props.buttonClass}_active` }
         className={ buttonClass }
         id={ props.id }
         name={ props.name }
+        onClick={ onClickFunction }
         params={ props.params }
         to={ props.route }
         type={ props.type }
       >
         { buttonContent }
       </NavLink>
-  } else if (props.buttonType === 'link') {
-    let route = JSON.parse(props.params).route
-    // console.log(location.pathname, )
-    if (location.pathname !== route) {
-      buttonType =
-      <a
-        // href={ this.props.auth.status !== 'authValid' ? this.props.route : undefined }
-        href={ JSON.parse(props.params).route }
-        // onClick={ onClickFunction }
-        rel='noopener noreferrer'
-      >
-        <button
-          className={ buttonClass }
-          id={ props.id }
-          name={ props.name }
-          params={ props.params }
-          type={ props.buttonType }
-        >
-          { buttonContent }
-        </button>
-      </a>
-    } else {
-      buttonType =
-        <button
-          className={ buttonClass }
-          id={ props.id }
-          name={ props.name }
-          params={ props.params }
-          type={ props.buttonType }
-        >
-          { buttonContent }
-        </button>
-    }
+  // } else if (props.buttonType === 'link') {
+    // let route = JSON.parse(props.params).route
+
+
+    // if (location.pathname !== route) {
+    //   buttonType =
+    //   <a
+    //     href={ route }
+    //     rel='noopener noreferrer'
+    //   >
+    //     <button
+    //       className={ buttonClass }
+    //       id={ props.id }
+    //       name={ props.name }
+    //       params={ props.params }
+    //       type={ props.buttonType }
+    //     >
+    //       { buttonContent }
+    //     </button>
+    //   </a>
+    // } else {
+    //   buttonType =
+    //     <button
+    //       className={ buttonClass }
+    //       id={ props.id }
+    //       name={ props.name }
+    //       onClick={ onClickFunction }
+    //       params={ props.params }
+    //       type={ props.buttonType }
+    //     >
+    //       { buttonContent }
+    //     </button>
+    // // }
   } else {
     buttonType =
       <button
@@ -141,6 +169,8 @@ const DefaultButton = (props) =>  {
         { buttonContent }
       </button>
   }
+
+  // console.log(props)
 
   return(
     <div
