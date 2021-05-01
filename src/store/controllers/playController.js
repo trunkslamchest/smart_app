@@ -113,6 +113,10 @@ class PlayController extends React.Component {
     this.props.onResetGameMode()
     if(this.props.play.question) this.props.onResetQuestion()
     if(this.props.play.gameQset) this.props.onResetGameQset()
+    if(this.props.play.answer) this.props.onResetAnswer()
+    if(this.props.play.results) this.props.onResetResults()
+    if(this.props.play.voteStatus) this.props.onResetVote()
+    if(this.props.play.commentStatus) this.props.onResetComment()
   }
 
   setGameCompletedModule = () => {
@@ -277,7 +281,12 @@ class PlayController extends React.Component {
     let loadingModal,
         completedPath
 
-    if(this.props.play.gameMode === 'quick_play') completedPath = routes.play + '/completed'
+    if(this.props.play.gameMode === 'quick_play' || localStorage.gameMode === 'quick_play') completedPath = routes.play + '/completed'
+
+    // if(this.props.play.gameMode === 'quick_play' || !this.props.play.gameMode) completedPath = routes.play + '/completed'
+      // if(!this.props.play.gameMode && !this.props.play.question) completedPath = routes.play + '/completed'
+    // if(this.props.play.gameMode === 'quick_play' && !this.props.play.question) completedPath = routes.play + '/completed'
+
     else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed'
 
     console.log(this.props.play.gameMode, completedPath)

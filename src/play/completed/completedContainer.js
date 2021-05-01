@@ -30,10 +30,9 @@ class CompletedContainer extends React.Component {
     this.completedTimeout = setTimeout(() => { this.setState({ showWrapper: true })}, 100)
     this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 2000)
 
-    // if(!this.props.play.question.completed) this.props.history.push( routes.play)
+    console.log(this.props.play.gameMode)
 
-    if(!this.props.play.gameMode) this.props.history.push( routes.play)
-
+    if(!this.props.play.gameMode) this.props.history.push( routes.play )
   }
 
   componentDidUpdate(){ }

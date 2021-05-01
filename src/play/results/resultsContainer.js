@@ -89,6 +89,11 @@ class ResultsContainer extends React.Component{
     this.props.onHelpModal(true)
   }
 
+  onPushLink = (event) => {
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    this.props.history.push(buttonParams.route)
+  }
+
   render(){
 
     const baseStaticRoute = routes.static_results + '/' + this.props.diff + '/' + this.props.cat + '/' + this.props.qid
@@ -96,7 +101,7 @@ class ResultsContainer extends React.Component{
     let routeBoard
     let statsRoute = this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats'
     let discussRoute = this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss'
-    let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, this.onHelp, { stats: statsRoute, discuss: discussRoute })
+    let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, this.onHelp, this.onPushLink, { stats: statsRoute, discuss: discussRoute })
 
     const nextQuestionButton = [
       {

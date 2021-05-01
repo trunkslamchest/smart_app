@@ -15,7 +15,6 @@ import makeDifficultyButtons from '../playFunctions/makeDifficultyButtons'
 import makeCategoryButtons from '../playFunctions/makeCategoryButtons'
 
 import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
-
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './selectionContainer.css'
@@ -98,40 +97,28 @@ const SelectionContainer = (props) => {
     buttonGroup = categoryButtons
   }
 
-  // if(location.pathname === `${routes.by_cat}/completed`) {
-    // if(!props.play.gameMode) {
-    //   props.setGameMode('by_cat')
-    //   props.setGameState('select')
-    // }
-
-    // if(props.play.gameState !== 'select')  props.setGameState('select')
-    // if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
-
-    // if(props.play.question) props.resetQuestion()
-    // if(props.play.gameQset) props.resetGameQset()
-
-    // document.title = "SmartApp™ | Play | Category | Select"
-    // headerText = 'Category'
-    // buttonGroup = categoryButtons
-  // }
-
   return(
-    <div className='selection_wrapper'>
-      <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
-      <DefaultButtonsContainer
-        buttons={ buttonGroup }
-        buttonClass={ 'game_modes_button' }
-        buttonContainerClass={ 'game_modes_button_container' }
-        containerClass={ 'game_modes_buttons_container' }
-        enableButton={ true }
-        tooltipClass={ 'game_modes_button_tooltip' }
-      />
-    </div>
+    <>
+      { !props.modal.loading &&
+        <div className='selection_wrapper'>
+          <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
+          <DefaultButtonsContainer
+            buttons={ buttonGroup }
+            buttonClass={ 'game_modes_button' }
+            buttonContainerClass={ 'game_modes_button_container' }
+            containerClass={ 'game_modes_buttons_container' }
+            enableButton={ true }
+            tooltipClass={ 'game_modes_button_tooltip' }
+          />
+        </div>
+      }
+    </>
   )
 }
 
 const store = (store) => {
   return {
+    modal: store.modal,
     play: store.play
   }
 }
