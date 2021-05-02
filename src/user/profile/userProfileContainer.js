@@ -34,7 +34,7 @@ const UserProfileContainer = (props) => {
               history={ props.history }
             />
           }
-          { props.userData.settings.privacy.profile.showAchievements &&
+          { (props.userData.settings.privacy.profile.showAchievements && !!props.userData.achievements.total ) &&
             <UserAchievementsContainer
               all_achievements={ props.achievements }
               from_dashboard={ false }
@@ -43,7 +43,7 @@ const UserProfileContainer = (props) => {
               user_achievements={ props.userData.achievements }
             />
           }
-          { props.userData.settings.privacy.profile.showVotes &&
+          { (props.userData.settings.privacy.profile.showVotes && !!props.userData.votes.total ) &&
             <VoteContainer
               enableVoteButtons={ false }
               showVoteButtons={ false }
@@ -52,7 +52,7 @@ const UserProfileContainer = (props) => {
               voteProps={ props.userData.votes }
             />
           }
-          { props.userData.settings.privacy.profile.showComments &&
+          { (props.userData.settings.privacy.profile.showComments && !!props.userData.comments.length) &&
             <UserProfileCommentsContainer
               questions={ props.userData.comments }
               history={ props.history }

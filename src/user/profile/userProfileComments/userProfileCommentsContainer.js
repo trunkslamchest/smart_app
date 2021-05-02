@@ -17,7 +17,6 @@ const UserProfileCommentsContainer = (props) => {
     )
   })
 
-
   return(
     <div className="user_profile_comments_container">
       <ContainerHeader header_text={ 'Comments' } />
