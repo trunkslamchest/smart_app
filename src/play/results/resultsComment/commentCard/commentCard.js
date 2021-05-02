@@ -162,6 +162,7 @@ class commentCard extends React.Component {
             <h5>{ commentUser }</h5>
             <span>{ this.props.comment.timestamp }</span>
           </div>
+          <div className='divider_right' />
           <li>
             <p>{ this.props.comment.comment }</p>
           </li>
@@ -174,7 +175,13 @@ class commentCard extends React.Component {
         </ul>
     }
 
-    return <>{ commentCard }</>
+    return (
+      <>
+        <div className='comment_card_container'>
+          { commentCard }
+        </div>
+      </>
+    )
   }
 }
 

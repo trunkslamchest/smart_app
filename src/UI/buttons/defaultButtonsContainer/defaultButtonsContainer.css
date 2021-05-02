@@ -163,7 +163,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  margin: 0px 0px 10px 0px;
+  margin: 10px 0px 10px 0px;
 }
 
 .edit_comment_buttons_container {
@@ -173,7 +173,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .next_question_buttons_container {

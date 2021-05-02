@@ -1,6 +1,6 @@
 .results_achievement_container {
   animation: fade_in .25s ease-in-out 1;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1), rgba(255, 255, 255, 1));
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1), rgba(255, 255, 255, 1));
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -28,7 +28,7 @@
 }
 
 .results_achievement_sub_container {
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1));
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

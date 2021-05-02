@@ -32,6 +32,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0px auto;
+  /* padding: 5px 0px; */
   width: 100%;
 }
 
@@ -49,13 +50,15 @@
 }
 
 .results_all_comments ul {
+  background: rgba(255, 255, 255, 1);
   list-style: none;
-  margin-block-start: 0px;
+  /* margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding: 5px 0px 0px 0px;
-  padding-inline-start: 0px;
+  margin-inline-end: 0px; */
+  /* padding: 0px 0px 0px 0px; */
+  /* padding-inline-start: 0px; */
+  padding: 10px;
   text-align: left;
   width: 100%;
 }
@@ -64,6 +67,7 @@
   min-width: 100%;
   max-width: 100%;
   width: 100%;
+  padding: 10px 5px;
 }
 
 .results_all_comments li p {
@@ -72,7 +76,8 @@
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding: 5px 15px;
+  padding: 5px 20px;
+  height: 50px;
   z-index: -1;
 }
 
@@ -85,11 +90,12 @@
   justify-content: space-between;
   min-width: 100%;
   max-width: 100%;
+  margin: 0px 0px 2.5px 0px;
   width: 100%;
 }
 
 .results_all_comments_comment_header h5 {
-  font: 400 10pt 'Lato', sans-serif;
+  font: 600 10pt 'Lato', sans-serif;
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
@@ -123,6 +129,6 @@
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 0px;
 }
 
