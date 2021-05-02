@@ -81,19 +81,19 @@ class StoreController extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const store = (store) => {
   return{
-    auth: state.auth,
-    leaderBoards: state.leaderBoards,
-    modal: state.modal,
-    play: state.play,
-    profile: state.profile,
-    questions: state.questions,
-    user: state.user
+    auth: store.auth,
+    leaderBoards: store.leaderBoards,
+    modal: store.modal,
+    play: store.play,
+    profile: store.profile,
+    questions: store.questions,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const dispatch = (dispatch) => {
   return {
     onShowModal: (bool) => dispatch(showModal(bool)),
     onClearAuthStatus: () => dispatch(clearAuthStatus()),
@@ -102,4 +102,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StoreController)
+export default connect(store, dispatch)(StoreController)

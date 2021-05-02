@@ -174,15 +174,15 @@ class ResultsContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    play: state.play,
-    user: state.user,
-    questions: state.questions
+    play: store.play,
+    user: store.user,
+    questions: store.questions
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
     onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
@@ -203,4 +203,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsContainer)
+export default connect(store, dispatch)(ResultsContainer)

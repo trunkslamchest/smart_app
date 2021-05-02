@@ -11,12 +11,8 @@ import {
   resetResults
 } from '../../store/actions/actionIndex'
 
-// import ContainerHeaderCentered from '../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
-// import ContainerSubHeaderCentered from '../../UI/components/subHeaders/containerSubHeaderCentered/containerSubHeaderCentered'
-
 import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
 import PlaySubHeaderCentered from '../playComponents/playSubHeaderCentered/playSubHeaderCentered'
-
 
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
@@ -100,10 +96,8 @@ class CompletedContainer extends React.Component {
     if(this.state.showWrapper) {
       compeletedWrapper =
       <div className='completed_wrapper'>
-        {/* <ContainerHeaderCentered header_text={ this.props.play.question.msg1 } /> */}
         <PlayHeaderCentered header_text={ this.props.play.question.msg1 } />
         <div className='divider_medium' />
-        {/* <ContainerSubHeaderCentered header_text={ this.props.play.question.msg2 } /> */}
         <PlaySubHeaderCentered header_text={ this.props.play.question.msg2 } />
         <div className='divider_medium' />
         <DefaultButtonsContainer
@@ -118,13 +112,13 @@ class CompletedContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const store = (store) => {
   return {
-    play: state.play
+    play: store.play
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onSetGameMode: (mode) => dispatch(setGameMode(mode)),
     onSetGameState: (state) => dispatch(setGameState(state)),
@@ -136,4 +130,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompletedContainer)
+export default connect(store, dispatch)(CompletedContainer)

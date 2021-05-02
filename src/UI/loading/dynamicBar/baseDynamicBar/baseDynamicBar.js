@@ -54,14 +54,14 @@ class BaseDynamicBar extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return {
-    auth: state.auth,
-    leaderBoards: state.leaderBoards,
-    play: state.play,
-    profile: state.profile,
-    questions: state.questions
+    auth: store.auth,
+    leaderBoards: store.leaderBoards,
+    play: store.play,
+    profile: store.profile,
+    questions: store.questions
   }
 }
 
-export default connect(mapStateToProps)(BaseDynamicBar)
+export default connect(store)(BaseDynamicBar)

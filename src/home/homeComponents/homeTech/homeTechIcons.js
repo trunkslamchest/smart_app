@@ -1,4 +1,3 @@
-// const homeTechIcons = (cssIcon, scssIcon, firebaseIcon, htmlIcon, jsIcon, otdbIcon, reactIcon, reduxIcon) => {
 const homeTechIcons = (iconsIndex) => {
 
   return [

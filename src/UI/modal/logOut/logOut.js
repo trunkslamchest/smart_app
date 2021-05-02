@@ -80,14 +80,14 @@ class LogOut extends React.Component {
 
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    modal: state.modal,
-    auth: state.auth
+    modal: store.modal,
+    auth: store.auth
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onLogOutModal: (bool) => dispatch(logout(bool)),
@@ -97,4 +97,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogOut)
+export default connect(store, dispatch)(LogOut)

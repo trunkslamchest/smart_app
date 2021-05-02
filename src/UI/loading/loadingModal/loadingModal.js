@@ -37,17 +37,17 @@ class LoadingModal extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    modal: state.modal
+    auth: store.auth,
+    modal: store.modal
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(actions.loading(bool))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoadingModal)
+export default connect(store, dispatch)(LoadingModal)

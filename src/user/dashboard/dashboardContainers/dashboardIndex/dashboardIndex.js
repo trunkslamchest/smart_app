@@ -14,10 +14,10 @@ const DashboardIndex = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    user: state.user
+    user: store.user
   }
 }
 
-export default connect(mapStateToProps)(DashboardIndex)
+export default connect(store)(DashboardIndex)

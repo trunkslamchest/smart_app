@@ -133,14 +133,14 @@ class LogIn extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    modal: state.modal
+    auth: store.auth,
+    modal: store.modal
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLogInModal: (bool) => dispatch(login(bool)),
     onAuthStart: (type, obj, props) => dispatch(authStart(type, obj, props)),
@@ -149,4 +149,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
+export default connect(store, dispatch)(LogIn)

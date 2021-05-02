@@ -39,14 +39,13 @@ class HomeBottomBanner extends React.Component {
             buttonContainerClass={ 'home_help_button_container' }
             containerClass={ 'home_help_buttons_container' }
             enableButton={ true }
-            // tooltipClass={  }
           />
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onHelpModal: (bool) => dispatch(help(bool)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
@@ -54,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(HomeBottomBanner)
+export default connect(null, dispatch)(HomeBottomBanner)

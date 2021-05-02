@@ -24,11 +24,11 @@ const ResultsAchievementCard = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return {
-    achievements: state.achievements
+    achievements: store.achievements
   }
 }
 
-export default connect(mapStateToProps)(ResultsAchievementCard)
+export default connect(store)(ResultsAchievementCard)
 

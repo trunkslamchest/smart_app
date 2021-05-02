@@ -93,18 +93,18 @@ class QuestionContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    modal: state.modal,
-    play: state.play
+    modal: store.modal,
+    play: store.play
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onSetAnswer: (obj) => dispatch(setAnswer(obj)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionContainer)
+export default connect(store, dispatch)(QuestionContainer)

@@ -107,15 +107,15 @@ class LeaderBoardsController extends React.Component {
 
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    modal: state.modal,
-    auth: state.auth,
-    leaderBoards: state.leaderBoards
+    modal: store.modal,
+    auth: store.auth,
+    leaderBoards: store.leaderBoards
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onGetOverallLeaderBoards: () => dispatch(getOverallLeaderBoards()),
     onGetCatLeaderBoards: () => dispatch(getCatLeaderBoards()),
@@ -126,4 +126,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoardsController)
+export default connect(store, dispatch)(LeaderBoardsController)

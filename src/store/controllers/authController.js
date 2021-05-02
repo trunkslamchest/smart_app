@@ -359,17 +359,17 @@ class AuthController extends React.Component {
     return <>{ this.props.children }</> }
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return{
-    auth: state.auth,
-    modal: state.modal,
-    achievements: state.achievements,
-    questions: state.questions,
-    user: state.user
+    auth: store.auth,
+    modal: store.modal,
+    achievements: store.achievements,
+    questions: store.questions,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const dispatch = dispatch => {
   return {
     onAuthUpdateLoadingStatus: (bool) => dispatch(authUpdateLoadingStatus(bool)),
     onAuthUpdateStatus: (status, loading) => dispatch(authUpdateStatus(status, loading)),
@@ -399,4 +399,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthController)
+export default connect(store, dispatch)(AuthController)

@@ -78,20 +78,20 @@ class ResultsStatsContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    play: state.play,
-    user: state.user,
-    achievements: state.achievements,
-    questions: state.questions
+    play: store.play,
+    user: store.user,
+    achievements: store.achievements,
+    questions: store.questions
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onSetVote: (obj) => dispatch(setVote(obj)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsStatsContainer)
+export default connect(store, dispatch)(ResultsStatsContainer)

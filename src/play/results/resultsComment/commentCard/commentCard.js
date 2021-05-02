@@ -185,15 +185,15 @@ class commentCard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return {
-    play: state.play,
-    questions: state.questions,
-    user: state.user
+    play: store.play,
+    questions: store.questions,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onEditUserComment: (obj) => dispatch(editUserComment(obj)),
     onEditQuestionComment: (obj) => dispatch(editQuestionComment(obj)),
@@ -202,4 +202,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(commentCard)
+export default connect(store, dispatch)(commentCard)

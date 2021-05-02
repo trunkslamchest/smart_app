@@ -57,12 +57,12 @@ const ResultsAchievementContainer = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return{
-    achievements: state.achievements,
-    play: state.play,
-    questions: state.questions
+    achievements: store.achievements,
+    play: store.play,
+    questions: store.questions
   }
 }
 
-export default connect(mapStateToProps)(ResultsAchievementContainer)
+export default connect(store)(ResultsAchievementContainer)

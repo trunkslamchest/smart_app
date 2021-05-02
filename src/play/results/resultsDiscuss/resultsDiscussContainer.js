@@ -170,15 +170,15 @@ class ResultsDiscussContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    play: state.play,
-    user: state.user,
-    questions: state.questions
+    play: store.play,
+    user: store.user,
+    questions: store.questions
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onSetVote: (obj) => dispatch(setVote(obj)),
     onVoteLoading: (bool) => dispatch(voteLoading(bool)),
@@ -190,4 +190,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsDiscussContainer)
+export default connect(store, dispatch)(ResultsDiscussContainer)

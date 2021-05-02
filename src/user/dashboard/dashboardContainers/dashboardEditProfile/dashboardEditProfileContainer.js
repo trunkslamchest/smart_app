@@ -261,15 +261,15 @@ class DashboardEditProfile extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    user: state.user
+    auth: store.auth,
+    modal: store.modal,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onAuthStart: (authType, obj, props) => dispatch(authStart(authType, obj, props)),
@@ -279,4 +279,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardEditProfile)
+export default connect(store, dispatch)(DashboardEditProfile)

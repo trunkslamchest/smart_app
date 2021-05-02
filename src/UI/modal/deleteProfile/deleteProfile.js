@@ -144,15 +144,15 @@ class DeleteProfile extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    user: state.user,
-    modal: state.modal
+    auth: store.auth,
+    user: store.user,
+    modal: store.modal
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onDeleteProfileModal: (bool) => (dispatch(deleteProfile(bool))),
     onAuthStart: (type, obj) => dispatch(authStart(type, obj)),
@@ -162,4 +162,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteProfile)
+export default connect(store, dispatch)(DeleteProfile)

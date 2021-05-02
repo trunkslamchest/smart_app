@@ -79,14 +79,14 @@ const HomeLoggedInSections = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    play: state.play,
-    user: state.user
+    play: store.play,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onHelpModal: (bool) => dispatch(help(bool)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
@@ -102,4 +102,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeLoggedInSections)
+export default connect(store, dispatch)(HomeLoggedInSections)

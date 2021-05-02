@@ -19,23 +19,22 @@ const HomeButtonBanner = (props) => {
 
     return(
       <div className='home_logged_out_button_banner'>
-            <DefaultButtonsContainer
-              buttons={ homeButtons }
-              buttonClass={ 'home_button' }
-              buttonContainerClass={ 'home_button_container' }
-              containerClass={ 'home_buttons_container' }
-              enableButton={ true }
-              // tooltipClass={  }
-            />
+        <DefaultButtonsContainer
+          buttons={ homeButtons }
+          buttonClass={ 'home_button' }
+          buttonContainerClass={ 'home_button_container' }
+          containerClass={ 'home_buttons_container' }
+          enableButton={ true }
+        />
       </div>
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLoginModal: (bool) => dispatch(login(bool)),
     onSignupModal: (bool) => dispatch(signup(bool)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(HomeButtonBanner)
+export default connect(null, dispatch)(HomeButtonBanner)

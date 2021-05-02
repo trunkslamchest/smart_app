@@ -8,7 +8,6 @@ const LeaderBoardsCatContainer = (props) => {
 
   useEffect(() => { document.title = "SmartApp™ | Category Leaderboards" }, [])
 
-
   return(
     <>
       <LeaderBoardsHeader header_text={ "Categories" } sub_text={ null } />
@@ -23,10 +22,10 @@ const LeaderBoardsCatContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    leaderBoards: state.leaderBoards
+    leaderBoards: store.leaderBoards
   }
 }
 
-export default connect(mapStateToProps)(LeaderBoardsCatContainer)
+export default connect(store)(LeaderBoardsCatContainer)

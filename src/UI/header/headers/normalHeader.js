@@ -82,15 +82,15 @@ const NormalHeader = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    play: state.play,
-    user: state.user
+    auth: store.auth,
+    play: store.play,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onLogoutModal: (bool) => dispatch(logout(bool)),
     onResetGameMode: () => dispatch(resetGameMode()),
@@ -109,4 +109,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NormalHeader)
+export default connect(store, dispatch)(NormalHeader)

@@ -80,17 +80,17 @@ class DashboardSettingsFormContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    modal: state.modal,
-    user: state.user
+    modal: store.modal,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onDeleteProfileModal: (bool) => (dispatch(deleteProfile(bool)))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardSettingsFormContainer)
+export default connect(store, dispatch)(DashboardSettingsFormContainer)

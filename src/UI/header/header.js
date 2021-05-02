@@ -52,10 +52,10 @@ const Header = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth
+    auth: store.auth
   }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(store)(Header)

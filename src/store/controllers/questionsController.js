@@ -171,17 +171,17 @@ class QuestionsController extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    modal: state.modal,
-    auth: state.auth,
-    play: state.play,
-    user: state.user,
-    questions: state.questions
+    modal: store.modal,
+    auth: store.auth,
+    play: store.play,
+    user: store.user,
+    questions: store.questions
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onGetStaticQuestion: (obj) => dispatch(getStaticQuestion(obj)),
     onSetStaticUserQuestion: (obj) => dispatch(setStaticUserQuestion(obj)),
@@ -204,4 +204,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionsController)
+export default connect(store, dispatch)(QuestionsController)

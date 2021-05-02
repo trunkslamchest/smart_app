@@ -20,11 +20,11 @@ const ResultsHeader = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = (store) => {
   return {
-    play: state.play,
-    questions: state.questions
+    play: store.play,
+    questions: store.questions
   }
 }
 
-export default connect(mapStateToProps)(ResultsHeader)
+export default connect(store)(ResultsHeader)

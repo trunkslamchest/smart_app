@@ -67,11 +67,11 @@ const ResultsComment = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return {
-    play: state.play,
-    questions: state.questions
+    play: store.play,
+    questions: store.questions
   }
 }
 
-export default connect(mapStateToProps)(ResultsComment)
+export default connect(store)(ResultsComment)

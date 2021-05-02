@@ -172,15 +172,15 @@ class SignUp extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    user: state.user
+    auth: store.auth,
+    modal: store.modal,
+    user: store.user
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onSignUpModal: (bool) => dispatch(signup(bool)),
     onAuthStart: (type, obj, props) => dispatch(authStart(type, obj, props)),
@@ -189,4 +189,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(store, dispatch)(SignUp)

@@ -68,10 +68,10 @@ const QuestionCard = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return{
-    play: state.play
+    play: store.play
   }
 }
 
-export default connect(mapStateToProps)(QuestionCard)
+export default connect(store)(QuestionCard)

@@ -73,13 +73,13 @@ class Help extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    modal: state.modal
+    modal: store.modal
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onHelpModal: (bool) => dispatch(help(bool)),
     onClearHelpHeader: () => dispatch(clearHelpHeader()),
@@ -87,4 +87,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Help)
+export default connect(store, dispatch)(Help)

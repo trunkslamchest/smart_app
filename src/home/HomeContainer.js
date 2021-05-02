@@ -23,15 +23,15 @@ const HomeContainer = (props) => {
   return(<>{ homePage }</>)
 }
 
-const mapStateToProps = state => {
+const store = (store) => {
   return {
-    auth: state.auth,
-    modal: state.modal,
-    user: state.user
+    auth: store.auth,
+    modal: store.modal,
+    user: store.user
   }
 }
 
-export default connect(mapStateToProps)(HomeContainer)
+export default connect(store)(HomeContainer)
 
 // export default connect(mapStateToProps)(React.memo(HomeContainer, (props, nextProps) => {
 //   if(!nextProps.modal.loading) return true

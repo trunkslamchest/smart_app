@@ -178,12 +178,12 @@ const ResultsStats = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const store = store => {
   return {
-    play: state.play,
-    questions: state.questions,
-    user: state.user
+    play: store.play,
+    questions: store.questions,
+    user: store.user
   }
 }
 
-export default connect(mapStateToProps)(ResultsStats)
+export default connect(store)(ResultsStats)
