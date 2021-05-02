@@ -45,7 +45,9 @@ const ResultsAchievementContainer = (props) => {
     <>
       { !!distribAchievements && !!distribAchievements.length &&
         <div className='results_achievement_container'>
-          { achievementHeader }
+          <div className='results_achievement_header_container'>
+            { achievementHeader }
+          </div>
           <div className='results_achievement_sub_container'>
             { distribAchievements }
           </div>

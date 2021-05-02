@@ -161,6 +161,7 @@ class ResultsContainer extends React.Component{
         <DefaultButtonsContainer
           buttons={ navBarButtons }
           buttonClass={ 'nav_bar_button' }
+          buttonRow={ true }
           containerClass={ 'nav_bar_container' }
           enableButton={ true }
           tooltipClass={ 'nav_bar_tooltip' }

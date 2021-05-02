@@ -100,6 +100,7 @@ const SelectionContainer = (props) => {
       { !props.modal.loading &&
         <div className='selection_wrapper'>
           <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
+          <div className='divider_medium' />
           <DefaultButtonsContainer
             buttons={ buttonGroup }
             buttonClass={ 'game_modes_button' }

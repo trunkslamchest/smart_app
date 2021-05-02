@@ -13,6 +13,7 @@ const ResultsHeader = (props) => {
             { !props.staticResults && `${ props.play.results.result }!` }
             { props.questions.staticUserResults && `${ props.questions.staticUserResults.result }!` }
           </h3>
+          <div className='divider_medium' />
         </div>
       }
     </>

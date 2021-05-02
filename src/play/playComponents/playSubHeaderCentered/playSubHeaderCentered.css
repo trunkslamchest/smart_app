@@ -9,12 +9,17 @@
   /* background: rgba(50, 50, 50, 1); */
   border: 0px;
   color: rgba(255, 255, 255, 1);
+  /* background: rgba(255, 255, 255, 1); */
+  /* color: rgba(50, 50, 50, 1); */
   /* background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1)); */
-  border-radius: 5px 5px 0px 0px;
+  /* border-radius: 5px 5px 0px 0px; */
   background-color: rgba(0, 0, 51, 1);
 
   /* background: rgba(0, 0, 102, 1); */
-  padding: 5px 5px 5px 10px;
+  /* margin: 0px 2px 0px 2px; */
+  margin: 0px;
+
+  padding: 5px 0px;
   /* height: 35px; */
 }
 
@@ -26,7 +31,11 @@
 .play_sub_header_centered_text_container h1 {
   align-self: center;
   /* display: flex; */
-  font: 300 15pt "PoppinsLight";
+  /* font: 300 14pt "Poppins"; */
+  /* font: 600 15pt 'LatoLight'; */
+  /* font: 300 15pt 'LatoLight'; */
+  font: 600 15pt "LatoThin";
+
 }
 
 .play_sub_header_centered_text_container span {

@@ -6,8 +6,10 @@ import calcVoteAvg from '../../../../utility/calculation/calcVoteAvg'
 import roundVoteAverageForStarRating from '../../../../utility/calculation/roundVoteAverageForStarRating'
 import roundVoteAverage from '../../../../utility/calculation/roundVoteAverage'
 
-import ContainerHeader from '../../../components/headers/containerHeader/containerHeader'
-import ContainerHeaderCentered from '../../../components/headers/containerHeaderCentered/containerHeaderCentered'
+import VoteHeader from '../../../components/headers/voteHeader/voteHeader'
+import VoteHeaderCentered from '../../../components/headers/voteHeaderCentered/voteHeaderCentered'
+
+import VoteBar from './voteBar'
 
 import BaseDynamicBar from '../../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../../loading/smallLoadingSpinner/smallLoadingSpinner'
@@ -15,7 +17,7 @@ import SmallLoadingSpinner from '../../../loading/smallLoadingSpinner/smallLoadi
 import { voteStarsRatingIndex } from '../../../../assets/vote_stars/voteStarsRatingIndex'
 import voteStarsSelectIndex from '../../../../assets/vote_stars/voteStarsSelectIndex'
 
-
+import './voteGraph.css'
 import './voteContainer.css'
 import './voteButtons.css'
 
@@ -84,6 +86,7 @@ class VoteContainer extends React.Component {
       )
     })
 
+
     const distribVoteTotals = voteTotals.map((voteTotal, index) => {
       return(
         <div className='vote_totals_graph_row_container' key={ index } >
@@ -91,23 +94,7 @@ class VoteContainer extends React.Component {
             <img alt={ voteTotal.alt } name={ voteTotal.name } src={ voteTotal.img } title={ voteTotal.title } />
           </div>
           <div className='vote_totals_graph_row_container_center'>
-            <div
-              style={{
-                display: 'flex',
-                // color: 'rgba(255, 255, 255, 1)',
-                color: 'rgba(50, 50, 50, 1)',
-                justifyContent: `${ voteTotal.percent < 7.5 ? "flex-start" : "flex-end" }`,
-                alignContent: 'flex-end',
-                alignItems: 'flex-end',
-                alignSelf: 'stretch',
-                boxSizing: "border-box",
-                background: 'rgba(23, 90, 54, 1)',
-                padding: '2.5px 5px',
-                width: `${ voteTotal.percent }%`
-              }}
-            >
-              <span>{ voteTotal.percent }%</span>
-            </div>
+            <VoteBar voteTotalPercent={ voteTotal.percent} />
           </div>
           <div className='vote_totals_graph_row_container_right'>
             <span>{ voteTotal.totals } { voteTotal.totals === 1 ? 'vote' : 'votes'}</span>
@@ -121,7 +108,7 @@ class VoteContainer extends React.Component {
       headerSubText = <div className='vote_header_sub_text_sub_container'>{ distribVotesButtons }</div>
       voteBlock =
         <div className="vote_container">
-          <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
+          <VoteHeader header_text={ headerText } sub_text={ headerSubText } />
         </div>
     }
 
@@ -129,42 +116,47 @@ class VoteContainer extends React.Component {
       if(!!this.props.play.results || !!this.props.questions.staticUserResults) {
         headerText = <div className='vote_header_text_sub_container'><h3>Approval Rating</h3></div>
         headerSubText = <div className='vote_header_sub_text_sub_container'><h4>{ this.props.voteProps.rating }</h4></div>
-        header = <ContainerHeader header_text={ headerText } sub_text={ headerSubText } />
+        header = <VoteHeader header_text={ headerText } sub_text={ headerSubText } />
       } else if (this.props.staticUserProfile){
         headerText = 'Votes'
-        header = <ContainerHeader header_text={ headerText } />
+        header = <VoteHeader header_text={ headerText } />
       } else {
         headerText = 'Votes'
-        header = <ContainerHeaderCentered header_text={ headerText } />
+        header = <VoteHeaderCentered header_text={ headerText } />
       }
 
       voteBlock =
         <div className={ this.props.staticUserProfile ? "vote_container_profile" : "vote_container"}>
-          { header }
-          { this.props.staticUserProfile && <div className='divider_left' /> }
-          <div className={ this.props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
-            <div className='vote_totals_graph_sub_header_container'>
-              <div className='vote_totals_graph_sub_header_container_left'>
-                <div className='vote_average_vote_img_container'>
-                  <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
-                    style={{
-                      alignSelf: 'stretch',
-                      backgroundImage: `url(${voteStarsRatingIndex.AverageStars})`,
-                      backgroundRepeat: 'no-repeat',
-                      width: `${ roundVoteAverageForStarRating(voteAvg.total) }%`
-                    }}
-                  />
+          <div className='vote_wrapper'>
+            { header }
+            <div className='divider_left' />
+            {/* { this.props.staticUserProfile &&  } */}
+            <div className={ this.props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
+              <div className='vote_totals_graph_wrapper'>
+                <div className='vote_totals_graph_sub_header_container'>
+                  <div className='vote_totals_graph_sub_header_container_left'>
+                    <div className='vote_average_vote_img_container'>
+                      <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
+                        style={{
+                          alignSelf: 'stretch',
+                          backgroundImage: `url(${voteStarsRatingIndex.AverageStars})`,
+                          backgroundRepeat: 'no-repeat',
+                          width: `${ roundVoteAverageForStarRating(voteAvg.total) }%`
+                        }}
+                      />
+                    </div>
+                    <span>{ roundVoteAverage(voteAvg.total) } { this.props.voteProps.average === 1 ? 'Star' : 'Stars' }</span>
+                  </div>
+                  <div className='vote_totals_graph_sub_header_container_center'><span>|</span></div>
+                  <div className='vote_totals_graph_sub_header_container_right'>
+                    <span>{ this.props.voteProps.total } total { this.props.voteProps.total === 1 ? 'vote' : 'votes'}</span>
+                  </div>
                 </div>
-                <span>{ roundVoteAverage(voteAvg.total) } { this.props.voteProps.average === 1 ? 'Star' : 'Stars' }</span>
+                { distribVoteTotals }
               </div>
-              <div className='vote_totals_graph_sub_header_container_center'></div>
-              <div className='vote_totals_graph_sub_header_container_right'>
-                <span>{ this.props.voteProps.total } total { this.props.voteProps.total === 1 ? 'vote' : 'votes'}</span>
-              </div>
+              <div className='divider_medium' />
             </div>
-            { distribVoteTotals }
           </div>
-          <div className='divider_left' />
         </div>
     }
 

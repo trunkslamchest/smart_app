@@ -14,6 +14,7 @@ const ResultsAnswer = (props) => {
             { !props.staticResults && `${ props.play.results.correct_answer }` }
             { props.questions.staticUserResults && `${ props.questions.staticUserResults.correct_answer }` }
           </h4>
+          <div className='divider_medium' />
         </div>
       }
     </>

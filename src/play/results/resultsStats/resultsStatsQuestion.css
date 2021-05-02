@@ -5,7 +5,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  padding: 10px 0px;
+  padding: 0px 0px;
   width: 100%;
 }
 
@@ -16,97 +16,147 @@
 }
 
 .results_question_sub_container {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1), rgba(255, 255, 255, 1));
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  margin: 5px 0px;
+  margin: 0px 0px;
+  /* width: calc(100% - 30px); */
+  width: 100%;
+
 }
 
-.results_diff_container {
+.results_question_sub_container h4 {
+  font: 300 12pt 'Poppins';
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-align: center;
+}
+
+.results_question_sub_container h5 {
+  font: 300 10pt 'Poppins';
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-align: center;
+}
+
+.results_question_sub_container h6 {
+  font: 300 10pt 'Lato';
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-align: center;
+}
+
+.results_question_sub_wrapper_left {
   align-content: center;
   align-items: center;
+  /* background: rgba(255, 255, 255, 1); */
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1), rgba(255, 255, 255, 1));
+
+  /* border: 1px solid rgba(200, 200, 200, 1); */
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  margin: 0px 10px;
+  margin: 0px 1px 0px 1px;
+  /* padding: 0px 0px 5px 0px; */
+  width: 35%;
 }
 
-.results_diff_container h4 {
-  font: 400 10pt "Lato";
+.results_question_sub_wrapper_header_left {
+  background: rgba(255, 255, 255, 1);
+
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0px 0px 0px;
 }
 
-.results_diff_container h5 {
-  font: 300 10pt "Lato";
-}
-
-.results_diff_container h6 {
-  position: relative;
-  /* top: -.15em; */
-  font: 300 12pt "Lato";
-}
-
-.results_diff_sub_container {
+.results_question_sub_wrapper_sub_header_left {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  margin: 0px 0px 0px 0px;
+
 }
 
-.results_diff {
-  margin: 0px 10px;
+.results_question_sub_wrapper_sub_header_left h5 {
+  width: 50%;
 }
 
-.results_diff_rating {
-  margin: 0px 10px;
-}
-
-.results_totals_container {
+.results_question_sub_wrapper_text_left {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
   align-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 0px 0px 10px 0px;
+}
+
+.results_question_sub_wrapper_text_left h6 {
+  width: 50%;
+}
+
+.results_question_sub_wrapper_right {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1), rgba(255, 255, 255, 1));
+  align-content: center;
+  align-items: center;
+  /* border: 1px solid rgba(200, 200, 200, 1); */
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  margin: 0px 10px;
+  margin: 0px 1px 0px 1px;
+  /* padding: 0px 0px 5px 0px; */
+  width: 65%;
 }
 
-.results_totals_container h4 {
-  font: 400 10pt "Lato";
+.results_question_sub_wrapper_header_right {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0px 0px 0px;
 }
 
-.results_totals_container h5 {
-  position: relative;
-  /* top: -.15em; */
-  font: 300 12pt "Lato";
-}
-
-.results_totals_container h6 {
-  font: 400 12pt "Lato";
-}
-
-.results_totals_sub_container {
+.results_question_sub_wrapper_sub_header_right {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  /* margin: 0px 0px 2.5px 0px; */
 }
 
-.results_totals_correct {
-  margin: 0px 10px;
+.results_question_sub_wrapper_sub_header_right h5 {
+  width: 25%;
+
 }
 
-.results_totals_incorrect {
-  margin: 0px 10px;
+.results_question_sub_wrapper_text_right {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 0px 0px 10px 0px;
 }
 
-.results_totals_outta_time {
-  margin: 0px 10px;
+.results_question_sub_wrapper_text_right h6 {
+  width: 25%;
 }

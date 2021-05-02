@@ -1,14 +1,13 @@
-.play_header_centered_container {
+.vote_header_centered {
   background: rgba(255, 255, 255, 1);
   border: 0px;
-  border-radius: 5px 5px 0px 0px;
   color: rgba(50, 50, 50, 1);
-  margin: 2px 2px 0px 2px;
-  padding: 15px 0px 15px 0px;
+  margin: 0px 2px;
+  padding: 5px 15px 5px 10px;
   /* height: 35px; */
 }
 
-.play_header_centered_text_container {
+.vote_header_centered_text {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -17,17 +16,17 @@
   align-content: center;
 }
 
-.play_header_centered_text_container h1 {
+.vote_header_centered_text h1 {
   align-self: center;
   display: flex;
-  font: 300 18pt "PoppinsLight";
+  font: 300 15pt "PoppinsLight";
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-inline-start: 0em;
   margin-inline-end: 0em;
 }
 
-.play_header_centered_text_container span {
+.vote_header_centered_text h2 {
   align-self: center;
   /* display: flex; */
   /* padding-right: 25px; */

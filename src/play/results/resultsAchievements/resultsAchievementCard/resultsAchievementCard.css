@@ -1,16 +1,19 @@
 .results_achievement_card {
+  background: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  align-self: flex-start;
-  padding: 0px 5px;
+  align-self: center;
+  margin: 1px;
+  padding: 10px 5px;
   height: 140px;
   flex-grow: 1;
   flex-shrink: 3;
-  flex-basis: 175px;
+  flex-basis: 200px;
+  /* width: calc((100% / 4) - 2px); */
 }
 
 .results_achievement_card_img_container {

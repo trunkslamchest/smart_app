@@ -32,7 +32,7 @@ class ResultsDiscussContainer extends React.Component {
     enableVoteButtons: false
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     if(!this.props.staticResults) {
       this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true, showVoteButtons: true })}, 500)
     }
@@ -151,7 +151,8 @@ class ResultsDiscussContainer extends React.Component {
 
     return(
       <div className='results_discuss_container'>
-          { voteBlock }
+        { voteBlock }
+        <div className='results_comment_container'>
           <ResultsComment
             comment={ this.state.comment }
             commentForm={ this.state.commentForm }
@@ -163,6 +164,7 @@ class ResultsDiscussContainer extends React.Component {
             showComments={ this.state.showComments }
             staticResults={ this.props.staticResults }
           />
+        </div>
       </div>
     )
   }

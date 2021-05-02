@@ -11,8 +11,13 @@ import {
   resetResults
 } from '../../store/actions/actionIndex'
 
-import ContainerHeaderCentered from '../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
-import ContainerSubHeaderCentered from '../../UI/components/subHeaders/containerSubHeaderCentered/containerSubHeaderCentered'
+// import ContainerHeaderCentered from '../../UI/components/headers/containerHeaderCentered/containerHeaderCentered'
+// import ContainerSubHeaderCentered from '../../UI/components/subHeaders/containerSubHeaderCentered/containerSubHeaderCentered'
+
+import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderCentered'
+import PlaySubHeaderCentered from '../playComponents/playSubHeaderCentered/playSubHeaderCentered'
+
+
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import LoadingSpinnerRoller from '../../UI/loading/spinner/roller'
@@ -95,8 +100,12 @@ class CompletedContainer extends React.Component {
     if(this.state.showWrapper) {
       compeletedWrapper =
       <div className='completed_wrapper'>
-        <ContainerHeaderCentered header_text={ this.props.play.question.msg1 } />
-        <ContainerSubHeaderCentered header_text={ this.props.play.question.msg2 } />
+        {/* <ContainerHeaderCentered header_text={ this.props.play.question.msg1 } /> */}
+        <PlayHeaderCentered header_text={ this.props.play.question.msg1 } />
+        <div className='divider_medium' />
+        {/* <ContainerSubHeaderCentered header_text={ this.props.play.question.msg2 } /> */}
+        <PlaySubHeaderCentered header_text={ this.props.play.question.msg2 } />
+        <div className='divider_medium' />
         <DefaultButtonsContainer
           buttons={ completedButtons }
           containerClass={ 'completed_buttons_container' }
