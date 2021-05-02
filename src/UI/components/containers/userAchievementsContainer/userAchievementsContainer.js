@@ -72,14 +72,16 @@ class UserAchievementsContainer extends React.Component {
           <div className='divider_left' />
         </div>
         { this.props.from_dashboard &&
-          <div className='user_achievements_wrapper'>
-            <ContainerHeader header_text={ headerText2 } sub_text={ `${this.props.all_achievements.totals.all - this.props.user_achievements.total}/${this.props.all_achievements.totals.all}` } />
-            <div className='divider_left' />
-            <div className='user_achievements_sub_container'>
-              { distribLockedAchievements }
+          <>
+            <div className='user_achievements_wrapper'>
+              <ContainerHeader header_text={ headerText2 } sub_text={ `${this.props.all_achievements.totals.all - this.props.user_achievements.total}/${this.props.all_achievements.totals.all}` } />
+              <div className='divider_left' />
+              <div className='user_achievements_sub_container'>
+                { distribLockedAchievements }
+              </div>
             </div>
             <div className='divider_left' />
-          </div>
+          </>
         }
       </div>
     }

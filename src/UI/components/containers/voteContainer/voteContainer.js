@@ -6,6 +6,7 @@ import calcVoteAvg from '../../../../utility/calculation/calcVoteAvg'
 import roundVoteAverageForStarRating from '../../../../utility/calculation/roundVoteAverageForStarRating'
 import roundVoteAverage from '../../../../utility/calculation/roundVoteAverage'
 
+import ContainerHeader from '../../../components/headers/containerHeader/containerHeader'
 import VoteHeader from '../../../components/headers/voteHeader/voteHeader'
 import VoteHeaderCentered from '../../../components/headers/voteHeaderCentered/voteHeaderCentered'
 
@@ -119,20 +120,22 @@ class VoteContainer extends React.Component {
         header = <VoteHeader header_text={ headerText } sub_text={ headerSubText } />
       } else if (this.props.staticUserProfile){
         headerText = 'Votes'
-        header = <VoteHeader header_text={ headerText } />
+        header = <ContainerHeader header_text={ headerText } />
       } else {
         headerText = 'Votes'
         header = <VoteHeaderCentered header_text={ headerText } />
       }
 
+    console.log(this.props.voteProps)
+
       voteBlock =
         <div className={ this.props.staticUserProfile ? "vote_container_profile" : "vote_container"}>
-          <div className='vote_wrapper'>
+          <div className={ this.props.staticUserProfile ? 'vote_wrapper_profile' : 'vote_wrapper' }>
             { header }
             <div className='divider_left' />
             {/* { this.props.staticUserProfile &&  } */}
             <div className={ this.props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
-              <div className='vote_totals_graph_wrapper'>
+              <div className={ this.props.staticUserProfile ? 'vote_totals_graph_wrapper_profile' : 'vote_totals_graph_wrapper' } >
                 <div className='vote_totals_graph_sub_header_container'>
                   <div className='vote_totals_graph_sub_header_container_left'>
                     <div className='vote_average_vote_img_container'>
@@ -157,6 +160,7 @@ class VoteContainer extends React.Component {
               <div className='divider_medium' />
             </div>
           </div>
+          { this.props.staticUserProfile && <div className='divider_left' /> }
         </div>
     }
 

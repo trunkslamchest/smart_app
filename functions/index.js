@@ -502,8 +502,8 @@ exports.diffQuestion = functions
       } else {
         question = {
           completed: true,
-          msg1: 'You have answered all the questions!',
-          msg2: 'Check back soon to see if more questions have been added to SmartApp™'
+          msg1: `You have answered all the ${reqData.qSet} questions!`,
+          msg2: `Check back soon to see if more ${reqData.qSet} questions have been added to SmartApp™`
         }
       }
 
@@ -545,8 +545,8 @@ exports.catQuestion = functions
         } else {
           question = {
             completed: true,
-            msg1: 'You have answered all the questions!',
-            msg2: 'Check back soon to see if more questions have been added to SmartApp™'
+            msg1: `You have answered all the ${reqData.qSet} questions!`,
+            msg2: `Check back soon to see if more ${reqData.qSet} questions have been added to SmartApp™`
           }
         }
 
@@ -885,7 +885,7 @@ exports.questionVote = functions
 
     getRef.then((db) => {
       let voteObj = {}, ratingObj = {}, voteTotalsObj = {}, userVoteObj = {}, userVoteTotalsObj = {},
-          voteTotalsBlankObj = { ZeroStars: 0, OneStars: 0, TwoStars: 0, ThreeStars: 0, FourStars: 0, FireStars: 0, total: 0 }
+          voteTotalsBlankObj = { ZeroStars: 0, OneStars: 0, TwoStars: 0, ThreeStars: 0, FourStars: 0, FiveStars: 0, total: 0 }
 
       var question = db.questions.list[reqData.qid]
           questionTotals = db.questions.totals,

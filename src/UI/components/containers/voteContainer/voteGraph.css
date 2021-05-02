@@ -23,14 +23,21 @@
   font: 300 14pt 'Lato', sans-serif;
   justify-content: center;
   list-style: none;
-  margin: 0px auto;
-  padding: 5px 10px;
+  margin: 5px auto;
+  padding: 0px 0px;
   width: 80%;
 }
 
 .vote_totals_graph_wrapper {
   background: rgba(255, 255, 255, 1);
   margin: -1px;
+  padding: 5px 0px 5px 0px;
+  width: calc(100% - 2px);
+}
+
+.vote_totals_graph_wrapper_profile {
+  background: rgba(255, 255, 255, 1);
+  margin: 1px;
   padding: 5px 0px 5px 0px;
   width: calc(100% - 2px);
 }
