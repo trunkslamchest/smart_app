@@ -8,7 +8,13 @@ import DefaultButtonsContainer from '../../../buttons/defaultButtonsContainer/de
 
 const FooterLinks = (props) => {
 
-  const footerLinkButtons = makeFooterLinkButtons(routes)
+  const onPushLink = (event) => {
+    document.body.scrollTop = 0
+    let buttonParams = JSON.parse(event.target.attributes.params.value)
+    props.history.push(buttonParams.route)
+  }
+
+  const footerLinkButtons = makeFooterLinkButtons(onPushLink, routes)
 
   return(
     <DefaultButtonsContainer

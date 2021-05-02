@@ -26,8 +26,6 @@ const XPBar = (props) => {
     });
   }, [userXP, prevLevelXP, userLevel])
 
-  console.log(xpBarWidth)
-
   return(
     <div className='xp_bar_container'>
     <div className='xp_bar_background'>
