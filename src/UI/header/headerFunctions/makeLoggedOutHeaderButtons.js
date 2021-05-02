@@ -1,13 +1,17 @@
 const makeLoggedOutHeaderButtons = (iconsIndex, onLogIn, onSignUp, onPushLink, routes) => {
   return [
     {
-      buttonType: 'link',
+      buttonClass: 'header_leader_board_button',
+      buttonType: 'NavLink',
       id: 'header_leader_board_button',
+      headerButton: true,
       image: iconsIndex.leaderboardWhiteIcon,
       imageHover: iconsIndex.leaderboardBlackIcon,
       name: 'LeaderboardsButton',
-      params: JSON.stringify({ route: routes.leader_boards + '/overall' }),
+      navButton: false,
       onClickFunction: onPushLink,
+      params: JSON.stringify({ route: routes.leader_boards + '/overall' }),
+      route: routes.leader_boards + '/overall',
       tooltipText: [ 'Leaderboards' ]
     },
     {

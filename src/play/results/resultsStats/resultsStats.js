@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import levels from '../../../datasets/levels'
 
+import XPBar from '../../../UI/components/xpBar/xpBar'
 import PlaySubHeaderCentered from '../../playComponents/playSubHeaderCentered/playSubHeaderCentered'
 
 import trendArrowIndex from '../../../assets/trend_arrows/trendArrowIndex'
@@ -13,31 +14,31 @@ import './resultsStatsXP.css'
 
 const ResultsStats = (props) => {
 
-  const xpBar = () => {
-    let currXP, prevLevelXP
+  // const xpBar = () => {
+  //   let currXP, prevLevelXP
 
-    if(!props.staticResults) {
-      currXP = props.user.experience.total
-      prevLevelXP = parseInt(levels[props.user.experience.level - 1])
-      if(props.user.experience.level === 1) return currXP
-      else return currXP - prevLevelXP
-    }
+  //   if(!props.staticResults) {
+  //     currXP = props.user.experience.total
+  //     prevLevelXP = parseInt(levels[props.user.experience.level - 1])
+  //     if(props.user.experience.level === 1) return currXP
+  //     else return currXP - prevLevelXP
+  //   }
 
-    if(props.questions.staticUserResults) {
-      currXP = props.questions.staticUserResults.experience.newTotal
-      prevLevelXP = parseInt(levels[props.questions.staticUserResults.experience.level - 1])
-      if(props.questions.staticUserResults.experience.level === 1) return currXP
-      else return currXP - prevLevelXP
-    }
-  }
+  //   if(props.questions.staticUserResults) {
+  //     currXP = props.questions.staticUserResults.experience.newTotal
+  //     prevLevelXP = parseInt(levels[props.questions.staticUserResults.experience.level - 1])
+  //     if(props.questions.staticUserResults.experience.level === 1) return currXP
+  //     else return currXP - prevLevelXP
+  //   }
+  // }
 
-  const xpBarClass = {
-    border: "0px solid rgba(200, 200, 200, 1)",
-    boxSizing: "border-box",
-    background: "green",
-    height: "10px",
-    width: `${ xpBar() }%`
-  }
+  // const xpBarClass = {
+  //   border: "0px solid rgba(200, 200, 200, 1)",
+  //   boxSizing: "border-box",
+  //   background: "green",
+  //   height: "10px",
+  //   width: `${ xpBar() }%`
+  // }
 
   const arrow_up = <img alt='Higher than global average' className='trend_arrow' src={ trendArrowIndex.greenArrowUp } />
   const arrow_down = <img alt='Lower than global average' className='trend_arrow' src={ trendArrowIndex.redArrowDown } />
@@ -106,9 +107,14 @@ const ResultsStats = (props) => {
                   { !props.staticResults && <h4>Level { props.user.experience.level }</h4> }
                   { props.questions.staticUserResults && <h4>Level { props.questions.staticUserResults.experience.level }</h4> }
                   <div className="results_xp_bar_sub_container">
-                    <div className="results_xp_bar">
+                    {/* <div className="results_xp_bar">
                       <div style={ xpBarClass }></div>
-                    </div>
+                    </div> */}
+                  <XPBar
+                      userXP={ !props.staticResults ? props.user.experience.total : props.questions.staticUserResults.experience.newTotal }
+                      userLevel={ !props.staticResults ? props.user.experience.level : props.questions.staticUserResults.experience.level }
+                      prevLevelXP={ !props.staticResults ? levels[props.user.experience.level - 1] ? levels[props.user.experience.level - 1] : 0 : levels[props.questions.staticUserResults.experience.level - 1] ? levels[props.questions.staticUserResults.experience.level - 1] : 0 }
+                    />
                   </div>
                 </div>
                 <div className='results_xp_total'>

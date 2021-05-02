@@ -1,9 +1,10 @@
 const makeLoggedInHeaderButtons = (iconsIndex, onPushLink, playMenuButtons, profileMenuButtons, avatar, routes) => {
   return [
     {
-      buttonClass: 'header_button',
+      buttonClass: 'header_leader_board_button',
       buttonType: 'NavLink',
       id: 'header_leader_board_button',
+      headerButton: true,
       image: iconsIndex.leaderboardWhiteIcon,
       imageHover: iconsIndex.leaderboardBlackIcon,
       name: 'LeaderboardsButton',

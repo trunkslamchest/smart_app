@@ -1,4 +1,22 @@
-.vote_header_container {
+.vote_buttons_header {
+  /* width: 100%; */
+  /* background: rgba(255, 255, 255, 1); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: rgba(0, 0, 51, 1);
+  border: 0px;
+  border-radius: 5px 5px 0px 0px;
+  color: rgba(255, 255, 255, 1);
+  margin: 0px -2px 0px -2px;
+  padding: 15px 15px;
+  /* height: 35px; */
+}
+
+.vote_stats_header {
   /* width: 100%; */
   /* background: rgba(255, 255, 255, 1); */
   display: flex;

@@ -34,6 +34,7 @@ const DefaultButtonContainer = (props) => {
                 buttonContainerClass={ props.buttonContainerClass || button.buttonContainerClass || 'default_button_container' }
                 buttonType={ button.buttonType }
                 history={ props.history }
+                headerButton={ button.headerButton }
                 homeButton={ button.homeButton }
                 id={ button.id }
                 image={ button.image }

@@ -5,7 +5,7 @@ import './voteHeader.css'
 const VoteHeader = (props) => {
 
   return(
-    <div className='vote_header_container'>
+    <div className={ props.headerClass }>
       <div className='vote_header_wrapper'>
         <div className='vote_header_left'>
           <h1>{ !!props.header_text && props.header_text }</h1>

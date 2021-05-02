@@ -69,11 +69,11 @@ const DefaultButton = (props) =>  {
   let buttonClass
   let buttonIMG = props.image
 
-  if( (hoverState || menuState) || (props.location === props.route && !props.homeButton)){
+  if( (hoverState || menuState) || (props.location === props.route && (!props.homeButton || !props.headerButton))){
     buttonIMG = props.imageHover
   }
 
-  if(props.homeButton) {
+  if(props.homeButton || props.headerButton) {
     if(hoverState){
       buttonIMG = props.imageHover
     } else {
@@ -101,10 +101,9 @@ const DefaultButton = (props) =>  {
   else buttonClass = `${props.buttonClass}_disabled`
 
   if(props.buttonType === 'NavLink') {
-  // console.log(props)
     buttonType =
       <NavLink
-        activeClassName={ `${props.buttonClass}_active` }
+        activeClassName={`${props.buttonClass}_active` }
         className={ buttonClass }
         id={ props.id }
         name={ props.name }

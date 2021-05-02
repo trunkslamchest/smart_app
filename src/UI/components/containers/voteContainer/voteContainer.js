@@ -109,7 +109,7 @@ class VoteContainer extends React.Component {
       headerSubText = <div className='vote_header_sub_text_sub_container'>{ distribVotesButtons }</div>
       voteBlock =
         <div className="vote_container">
-          <VoteHeader header_text={ headerText } sub_text={ headerSubText } />
+          <VoteHeader header_text={ headerText } sub_text={ headerSubText } headerClass='vote_buttons_header' />
         </div>
     }
 
@@ -117,7 +117,7 @@ class VoteContainer extends React.Component {
       if(!!this.props.play.results || !!this.props.questions.staticUserResults) {
         headerText = <div className='vote_header_text_sub_container'><h3>Approval Rating</h3></div>
         headerSubText = <div className='vote_header_sub_text_sub_container'><h4>{ this.props.voteProps.rating }</h4></div>
-        header = <VoteHeader header_text={ headerText } sub_text={ headerSubText } />
+        header = <VoteHeader header_text={ headerText } sub_text={ headerSubText } headerClass='vote_stats_header' />
       } else if (this.props.staticUserProfile){
         headerText = 'Votes'
         header = <ContainerHeader header_text={ headerText } />

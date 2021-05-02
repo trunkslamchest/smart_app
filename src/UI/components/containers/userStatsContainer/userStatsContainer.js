@@ -2,6 +2,7 @@ import React from 'react'
 
 import levels from '../../../../datasets/levels'
 
+import XPBar from '../../xpBar/xpBar'
 import ContainerHeader from '../../../../UI/components/headers/containerHeader/containerHeader'
 
 import trendArrowIndex from '../../../../assets/trend_arrows/trendArrowIndex'
@@ -17,19 +18,19 @@ const UserStatsTotal = (props) => {
     return !!parseInt(a[ a.length - 1]) ? parseFloat(a.join('')) : Math.round(parseInt(num))
   }
 
-  const xpBar = () => {
-    let currXP = props.user_experience.total, prevLevelXP = parseInt(levels[props.user_experience.level - 1])
-    if(props.user_experience.level === 1) return currXP
-    else return currXP - prevLevelXP
-  }
+  // const xpBar = () => {
+  //   let currXP = props.user_experience.total, prevLevelXP = parseInt(levels[props.user_experience.level - 1])
+  //   if(props.user_experience.level === 1) return currXP
+  //   else return currXP - prevLevelXP
+  // }
 
-  const xpBarClass = {
-    border: "0px solid rgba(200, 200, 200, 1)",
-    boxSizing: "border-box",
-    background: "green",
-    height: "10px",
-    width: `${ xpBar() }%`
-  }
+  // const xpBarClass = {
+  //   border: "0px solid rgba(200, 200, 200, 1)",
+  //   boxSizing: "border-box",
+  //   background: "green",
+  //   height: "10px",
+  //   width: `${ xpBar() }%`
+  // }
 
   const arrow_up =
     <img
@@ -123,9 +124,14 @@ const UserStatsTotal = (props) => {
           <div className="user_stats_experience_container">
             <h3>Level { props.user_experience.level }</h3>
             <div className="user_stats_experience_bar_container">
-              <div className="user_stats_experience_bar">
-                <div style={ xpBarClass }></div>
-              </div>
+              {/* <div className="user_stats_experience_bar"> */}
+                {/* <div style={ xpBarClass } /> */}
+              {/* </div> */}
+              <XPBar
+                userXP={ props.user_experience.total }
+                userLevel={ props.user_experience.level }
+                prevLevelXP={ levels[props.user_experience.level - 1] ? levels[props.user_experience.level - 1] : 0 }
+              />
               <h4>{ props.user_experience.total }/{ levels[props.user_experience.level] }</h4>
             </div>
           </div>
