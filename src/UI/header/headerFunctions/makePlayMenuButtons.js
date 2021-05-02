@@ -17,7 +17,7 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       id: 'by_category_menu_button',
       name: 'byCategoryMenuButton',
       onClickFunction: onInitGame,
-      params: JSON.stringify({ route: routes.by_cat_select }),
+      params: JSON.stringify({ gameMode: 'by_cat', route: routes.by_cat_select }),
       text: "By Category",
     },
     {
@@ -27,7 +27,7 @@ const makePlayMenuButtons = (onInitGame, routes) => {
       id: 'by_difficulty_menu_button',
       name: 'byDifficultyMenuButton',
       onClickFunction: onInitGame,
-      params: JSON.stringify({ route: routes.by_diff_select }),
+      params: JSON.stringify({ gameMode: 'by_diff', route: routes.by_diff_select }),
       text: "By Difficulty",
     }
   ]

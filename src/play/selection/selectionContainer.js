@@ -46,14 +46,6 @@ const SelectionContainer = (props) => {
 
   }, [location, props])
 
-  // useOnMount(function() {
-
-  //   // console.log(localStorage.gameMode, props.play.gameMode)
-
-
-  //   return function cleanup(){}
-  // }, [])
-
   const onClickGameModeFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     localStorage.gameMode = buttonParams.gameMode
@@ -75,9 +67,6 @@ const SelectionContainer = (props) => {
   let buttonGroup
 
   if(location.pathname === routes.play) {
-// // console.log(props.play.gameMode) 
-//     if(props.play.gameMode) props.reSelectGameMode()
-
     document.title = "SmartApp™ | Play | Select"
     headerText = 'Game Mode'
     buttonGroup = selectionButtons

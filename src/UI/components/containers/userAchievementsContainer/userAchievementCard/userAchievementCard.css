@@ -1,39 +1,41 @@
 .user_achievement_card {
+  background: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  align-self: flex-start;
-  padding: 0px 5px;
-  height: 125px;
+  align-self: center;
+  margin: 1px;
+  padding: 10px 5px;
+  height: 140px;
   flex-grow: 1;
   flex-shrink: 3;
-  flex-basis: 175px;
-  /* max-width: 175px; */
-  /* min-width: 175px; */
-  /* width: 175px; */
+  flex-basis: 200px;
+  /* width: calc((100% / 4) - 2px); */
 }
 
 .user_achievement_card_img_container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   /* width: 100%; */
   /* height: 55%; */
   /* max-width: 50%; */
-  padding: 5px 0px;
+  /* padding: 5px 0px; */
 }
 
 .user_achievement_card_img_unlocked {
+  padding: 5px 0px;
   border-radius: .5em;
   border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .user_achievement_card_img_locked {
+  padding: 5px 0px;
   border-radius: .5em;
   border: 1px solid rgba(255, 255, 255, 1);
   filter: grayscale(100%);
@@ -49,7 +51,7 @@
 }
 
 .user_achievement_card_text_container h4 {
-  font: 300 10pt 'Lato';
+  font: 600 10pt 'Lato';
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
@@ -76,7 +78,7 @@
 }
 
 .user_achievement_card_text_container_unlocked h4 {
-  color: rgba(100, 100, 100, 1);
+  color: rgba(50, 50, 50, 1);
   font: 600 10pt 'Lato';
   margin-block-start: 0px;
   margin-block-end: 0px;
@@ -87,7 +89,6 @@
 
 .user_achievement_card_text_container_unlocked h5 {
   font: 300 9pt 'LatoItalic';
-  color: rgba(100, 100, 100, 1);
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;

@@ -126,14 +126,11 @@ class VoteContainer extends React.Component {
         header = <VoteHeaderCentered header_text={ headerText } />
       }
 
-    console.log(this.props.voteProps)
-
       voteBlock =
         <div className={ this.props.staticUserProfile ? "vote_container_profile" : "vote_container"}>
           <div className={ this.props.staticUserProfile ? 'vote_wrapper_profile' : 'vote_wrapper' }>
             { header }
             <div className='divider_left' />
-            {/* { this.props.staticUserProfile &&  } */}
             <div className={ this.props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
               <div className={ this.props.staticUserProfile ? 'vote_totals_graph_wrapper_profile' : 'vote_totals_graph_wrapper' } >
                 <div className='vote_totals_graph_sub_header_container'>
@@ -179,11 +176,11 @@ class VoteContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const store = (store) => {
   return {
-    play: state.play,
-    questions: state.questions
+    play: store.play,
+    questions: store.questions
   }
 }
 
-export default connect(mapStateToProps)(VoteContainer)
+export default connect(store)(VoteContainer)

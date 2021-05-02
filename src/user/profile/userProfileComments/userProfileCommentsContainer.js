@@ -26,10 +26,10 @@ const UserProfileCommentsContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    profile: state.profile
+    profile: store.profile
   }
 }
 
-export default connect(mapStateToProps)(UserProfileCommentsContainer)
+export default connect(store)(UserProfileCommentsContainer)

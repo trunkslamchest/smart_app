@@ -40,9 +40,7 @@ const App = (props) => {
   const [basicModalContent, setBasicModalContent] = useState(null);
 
   const switchLoadingModalType = (modalType) => { setLoadingModalType(modalType) }
-
   const switchLoadingModalBarType = (barType) => { setLoadingModalBarType(barType) }
-
   const switchbasicModalContent = (content) => { setBasicModalContent(content) }
 
   return (

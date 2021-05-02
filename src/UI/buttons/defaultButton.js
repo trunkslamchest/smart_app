@@ -69,14 +69,6 @@ const DefaultButton = (props) =>  {
   let buttonClass
   let buttonIMG = props.image
 
-  // console.log(props.location === props.route)
-
-  // if( hoverState || menuState || props.location === props.route ){
-  //   buttonIMG = props.imageHover
-  // } else {
-  //   buttonIMG = props.image
-  // }
-
   if( (hoverState || menuState) || (props.location === props.route && !props.homeButton)){
     buttonIMG = props.imageHover
   }
@@ -118,44 +110,11 @@ const DefaultButton = (props) =>  {
         name={ props.name }
         onClick={ onClickFunction }
         params={ props.params }
-        to={ props.route }
+        exact to={ props.route }
         type={ props.type }
       >
         { buttonContent }
       </NavLink>
-  // } else if (props.buttonType === 'link') {
-    // let route = JSON.parse(props.params).route
-
-
-    // if (location.pathname !== route) {
-    //   buttonType =
-    //   <a
-    //     href={ route }
-    //     rel='noopener noreferrer'
-    //   >
-    //     <button
-    //       className={ buttonClass }
-    //       id={ props.id }
-    //       name={ props.name }
-    //       params={ props.params }
-    //       type={ props.buttonType }
-    //     >
-    //       { buttonContent }
-    //     </button>
-    //   </a>
-    // } else {
-    //   buttonType =
-    //     <button
-    //       className={ buttonClass }
-    //       id={ props.id }
-    //       name={ props.name }
-    //       onClick={ onClickFunction }
-    //       params={ props.params }
-    //       type={ props.buttonType }
-    //     >
-    //       { buttonContent }
-    //     </button>
-    // // }
   } else {
     buttonType =
       <button
@@ -169,8 +128,6 @@ const DefaultButton = (props) =>  {
         { buttonContent }
       </button>
   }
-
-  // console.log(props)
 
   return(
     <div
