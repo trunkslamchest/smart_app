@@ -15,6 +15,7 @@ const makeLoggedOutHeaderButtons = (iconsIndex, onLogIn, onSignUp, onPushLink, r
       tooltipText: [ 'Leaderboards' ]
     },
     {
+      buttonClass: 'header_button',
       buttonType: 'modal',
       id: 'header_login_button',
       image: iconsIndex.loginWhiteIcon,
@@ -24,6 +25,7 @@ const makeLoggedOutHeaderButtons = (iconsIndex, onLogIn, onSignUp, onPushLink, r
       tooltipText: [ 'Login' ]
     },
     {
+      buttonClass: 'header_button',
       buttonType: 'modal',
       id: 'header_sign_up_button',
       image: iconsIndex.signUpWhiteIcon,

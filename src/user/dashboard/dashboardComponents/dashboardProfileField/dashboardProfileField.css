@@ -6,6 +6,7 @@
   align-content: flex-start;
   align-items: flex-start;
   margin: 0px 0px 0px 0px;
+  /* padding: 0px 0px 0px 10px; */
   /* text-align: center; */
   /* width: 100%; */
   width: 100%;
@@ -30,7 +31,7 @@
   align-items: flex-start;
   /* text-align: center; */
   /* padding: 5px 0px 5px 5px; */
-  padding: 5px;
+  padding: 5px 5px 5px 15px;
   margin: 0px;
   /* margin-block-start: 0em;
   margin-block-end: 0em;
