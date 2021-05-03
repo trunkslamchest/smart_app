@@ -74,7 +74,7 @@ class DashboardSettingsContainer extends React.Component {
 
   onChecked = (event) => {
     event.preventDefault()
-    let flipSetting = !this.state.settings.privacy.profile[event.target.name]
+    let flipSetting = !this.state.settings.privacy.profile[event.target.attributes.name.value]
     this.setState({
       ...this.state,
       settings:{
@@ -83,7 +83,7 @@ class DashboardSettingsContainer extends React.Component {
           ...this.state.settings.privacy,
           profile: {
             ...this.state.settings.privacy.profile,
-            [event.target.name]: flipSetting
+            [event.target.attributes.name.value]: flipSetting
           }
         }
       }

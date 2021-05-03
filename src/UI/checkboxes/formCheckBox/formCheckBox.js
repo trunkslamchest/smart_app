@@ -1,6 +1,5 @@
 import React from 'react'
 
-import './formCheckBoxSettings.css'
 import './formCheckBoxTOS.css'
 
 class FormCheckBox extends React.Component {
@@ -12,8 +11,6 @@ class FormCheckBox extends React.Component {
   disabledClickFunctions = (event) => { event.preventDefault() }
 
   render() {
-
-    // console.log(this.props.disabled)
 
     let checkmark, xMark
 

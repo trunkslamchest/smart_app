@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { deleteProfile } from '../../../../../store/actions/actionIndex'
 
+import makeDashboardSettingsPrivacyFields from '../../../dashboardFunctions/makeDashboardSettingsPrivacyFields'
 import makeDashboardSettingsButtons from '../../../dashboardFunctions/makeDashboardSettingsButtons'
 
 import DashboardHeader from '../../../dashboardComponents/dashboardHeader/dashboardHeader'
@@ -13,72 +14,60 @@ import formGlyphIndex from '../../../../../assets/glyphs/formGlyphIndex'
 
 import './dashboardSettingsFormContainer.css'
 
-class DashboardSettingsFormContainer extends React.Component {
+const DashboardSettingsFormContainer = (props) => {
 
-  onSubmit = (event) => { this.props.onSubmit(event) }
+  const onSubmit = (event) => { props.onSubmit(event) }
 
-  onClickDelete = (event) => {
-    event.preventDefault()
-    this.props.onDeleteProfileModal(true)
-  }
+  const formButtons = makeDashboardSettingsButtons(onSubmit, props.onReset, props.onCancel, formGlyphIndex)
 
-  render(){
-    const privacyProfileSettings = [
-      { name: 'private', text: 'Set your public profile to private' },
-      { name: 'showAchievements', text: 'Display your Achievements' },
-      { name: 'showAge', text: 'Display your Age' },
-      { name: 'showAvatar', text: 'Display your Avatar' },
-      { name: 'showBio', text: 'Display your Biography' },
-      { name: 'showComments', text: 'Display your Comments' },
-      { name: 'showCountry', text: 'Display your Nationality' },
-      { name: 'showGender', text: 'Display your Gender' },
-      { name: 'showGenderPronouns', text: 'Display your Gender Pronouns' },
-      { name: 'showRealName', text: 'Display your Real Name' },
-      { name: 'showStats', text: 'Display your Statistics' },
-      { name: 'showVotes', text: 'Display your Votes' }
-    ]
+  const distribPrivacyProfileSettings = makeDashboardSettingsPrivacyFields().map((setting, index) => {
 
-    let formButtons = makeDashboardSettingsButtons(this.onSubmit, this.props.onReset, this.props.onCancel, formGlyphIndex)
+    let settingEnabled = true
 
-    const distribPrivacyProfileSettings = privacyProfileSettings.map((setting, index) => {
-      return (
-        <React.Fragment key={ index }>
+    if(props.private){
+      if(setting.name !== 'private') {
+        settingEnabled = false
+      }
+    }
+
+    return (
+      <React.Fragment key={ index }>
         <DashboardSettingsPrivacyProfileCard
+          enabled={ settingEnabled }
           setting={ setting }
-          status={ this.props[setting.name] }
-          onChecked={ this.props.onChecked }
+          status={ props[setting.name] }
+          onChecked={ props.onChecked }
         />
-        </React.Fragment>
-      )
-    })
-
-    return(
-      <div className="dashboard_settings_form_container">
-        <form
-          id='dashboard_settings_form'
-          name='dashboard_settings_form'
-          className='dashboard_settings_form'
-        >
-          <div className="dashboard_settings_privacy_container">
-            <DashboardHeader header_text={ "Settings" } />
-            <div className="dashboard_settings_privacy_profile_container">
-              <DashboardSubHeader header_text={ 'Privacy' } />
-              <div className='divider_medium' />
-              { distribPrivacyProfileSettings }
-            </div>
-          </div>
-          <div className='divider_medium' />
-          <DefaultButtonsContainer
-            buttons={ formButtons }
-            buttonRow={ true }
-            containerClass={ 'dashboard_form_buttons_container' }
-            enableButton={ this.props.enableButtons }
-            tooltipClass={ 'dashboard_form_button_tooltip' }
-          />
-        </form>
-      </div>
+      </React.Fragment>
     )
-  }
+  })
+
+  return(
+    <div className="dashboard_settings_form_container">
+      <form
+        id='dashboard_settings_form'
+        name='dashboard_settings_form'
+        className='dashboard_settings_form'
+      >
+        <div className="dashboard_settings_privacy_container">
+          <DashboardHeader header_text={ "Settings" } />
+          <div className="dashboard_settings_privacy_profile_container">
+            <DashboardSubHeader header_text={ 'Privacy' } />
+            <div className='divider_medium' />
+            { distribPrivacyProfileSettings }
+          </div>
+        </div>
+        <div className='divider_medium' />
+        <DefaultButtonsContainer
+          buttons={ formButtons }
+          buttonRow={ true }
+          containerClass={ 'dashboard_form_buttons_container' }
+          enableButton={ props.enableButtons }
+          tooltipClass={ 'dashboard_form_button_tooltip' }
+        />
+      </form>
+    </div>
+  )
 }
 
 const store = (store) => {
