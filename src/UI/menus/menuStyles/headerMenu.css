@@ -5,6 +5,7 @@
   align-self: flex-end;
   height: 0px;
   width: 0px;
+  z-index: 100;
 }
 
 .header_menu_wrapper {
