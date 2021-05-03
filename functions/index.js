@@ -795,7 +795,7 @@ exports.questionResults = functions
           allDiffTotalsObj = {},
           allCatTotalsObj = {}
 
-          if(achievementsObj.res.total > 1) userQuestionTemp.achievements = achievementsObj.res
+          if(achievementsObj.res.total >= 1) userQuestionTemp.achievements = achievementsObj.res
 
           userQuestionObj[userQuestionPath] = userQuestionTemp
           userXpObj[userXpPath] = {
@@ -832,7 +832,7 @@ exports.questionResults = functions
         performance: perfObj,
         experience: xpObj,
         achievements: {
-          user: achievementsObj.user,
+          user: achievementsObj.res,
           all: achievementsObj.all,
           totals: achievementsObj.totals
         },

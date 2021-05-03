@@ -94,14 +94,14 @@ const DefaultFormInput = (props) => {
             checkBoxButtonContainerClass={ props.checkBoxButtonContainerClass || 'default_check_box_button_container' }
             checkBoxImgClass={ props.checkBoxImgClass || 'default_check_box_img' }
             checkBoxDisabledClass={ props.checkBoxDisabledClass }
-            checkedImageHover={ formGlyphIndex.formBlackCheckMark }
+            checkedImageHover={ formGlyphIndex.formGreyCheckMark }
             checkedImage={ formGlyphIndex.formGreenCheckMark }
             checkedImageDisabled={ formGlyphIndex.formWhiteCheckMark }
             disabled={ !props.enableInput }
             id={ props.id }
             name={ props.name }
             onChecked={ props.onChange }
-            uncheckedImageHover={ formGlyphIndex.formBlackX }
+            uncheckedImageHover={ formGlyphIndex.formGreyX }
             uncheckedImage={ formGlyphIndex.formRedX }
             uncheckedImageDisabled={ formGlyphIndex.formWhiteX }
             status={ props.value ? props.value : false }

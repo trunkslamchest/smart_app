@@ -207,6 +207,7 @@ class PlayController extends React.Component {
     this.props.onUpdateUserQuestionTotalsFromPlayController(this.props.play.results.userTotals)
 
     this.props.onUpdateUserQuestionsFromPlayController(this.props.play.question.id, {
+        achievements: this.props.play.results.achievements,
         answer: this.props.play.answer.choice,
         category: this.props.play.question.category,
         correct_answer: this.props.play.results.correct_answer,

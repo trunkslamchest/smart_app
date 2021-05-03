@@ -24,9 +24,7 @@ const HomeLoggedOutContainer = (props) => {
       <DefaultCarouselContainer slides={ homeFeaturesCarousel(homeFeaturesIndex) } />
       <div className='divider_medium'></div>
       <HomeBottomBanner history={props.history} />
-      <div className='divider_medium'></div>
       <HomeSubBanner history={props.history} />
-      <div className='divider_medium'></div>
       <HomeTech history={ props.history } />
       <div className='divider_medium'></div>
     </div>

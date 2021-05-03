@@ -142,8 +142,7 @@ select:not(:-internal-list-box) {
 }
 
 .main_wrapper {
-  /* width: 100%; */
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
