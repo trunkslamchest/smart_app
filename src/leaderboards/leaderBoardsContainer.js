@@ -65,13 +65,13 @@ const LeaderBoardsContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    leaderBoards: state.leaderBoards
+    leaderBoards: store.leaderBoards
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const dispatch = (dispatch) => {
   return {
     onHelpModal: (bool) => dispatch(help(bool)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoardsContainer)
+export default connect(store, dispatch)(LeaderBoardsContainer)

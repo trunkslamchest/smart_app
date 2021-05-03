@@ -8,7 +8,6 @@ const LeaderBoardsCountriesContainer = (props) => {
 
   useEffect(() => { document.title = "SmartApp™ | Regional Leaderboards" }, [])
 
-
   return(
     <>
       <LeaderBoardsHeader header_text={ "Countries" } sub_text={ null } />
@@ -23,10 +22,10 @@ const LeaderBoardsCountriesContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    leaderBoards: state.leaderBoards
+    leaderBoards: store.leaderBoards
   }
 }
 
-export default connect(mapStateToProps)(LeaderBoardsCountriesContainer)
+export default connect(store)(LeaderBoardsCountriesContainer)

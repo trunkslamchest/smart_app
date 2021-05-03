@@ -1,80 +1,87 @@
 import React from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import DefaultButtonTooltip from '../../../UI/tooltips/defaultButtonTooltip'
 
-import cookieFunctions from '../../../utility/cookieFunctions'
+// import cookieFunctions from '../../../utility/cookieFunctions'
 
 import './leaderBoardsPageButton.css'
 
-class LeaderBoardsPageButton extends React.Component {
+const LeaderBoardsPageButton = (props) => {
 
-  state = { hover: false, showTooltip: false }
+  const [hoverState, setHoverState] = useState(false)
+  const [tooltipState, setTooltipState] = useState(false)
 
-  componentDidUpdate() {
-    if(!this.props.pageLimit && this.state.showTooltip) this.setState({ showTooltip: false })
-    if(!this.props.pageLimit && this.state.hover) this.setState({ hover: false })
+  const { pageLimit } = props
+
+  const timerRef = useRef(null);
+
+  const switchHoverState = (bool) => { setHoverState(bool) }
+  const switchTooltipState = (bool) => { setTooltipState(bool) }
+
+  useEffect(() => {
+    if(!pageLimit && hoverState) switchHoverState(false)
+    if(!pageLimit && tooltipState) switchTooltipState(false)
+
+    // return function cleanup(){
+      // switchHoverState(false)
+      // switchTooltipState(false)
+      // if(timerRef.current) clearTimeout(timerRef.current);
+    // }
+  }, [pageLimit, hoverState, tooltipState])
+
+  const onHover = () => {
+    switchHoverState(true)
+    timerRef.current = setTimeout(() => { switchTooltipState(true) }, 250);
   }
 
-  componentWillUnmount(){
-    this.setState({ hover: false, showTooltip: false })
-    clearTimeout(this.toolTipTimeout)
+  const offHover = () => {
+    switchHoverState(false)
+    switchTooltipState(false)
+    if(timerRef.current) clearTimeout(timerRef.current);
   }
 
-  onHover = () => {
-    this.setState({ hover: true })
-    this.toolTipTimeout = setTimeout(() => { this.setState({ showTooltip: true })}, 250)
+  const onClickFunction = (event) => {
+    // document.cookie = `${props.name}Clicked=true`
+    // cookieFunctions('delete', `${props.name}Clicked`)
+    if(props.pageLimit) props.onClickFunction(event.target.value || event.target.attributes.value.value)
+    if(props.tooltipText && timerRef.current) clearTimeout(timerRef.current);
   }
 
-  offHover = () => {
-    this.setState({ hover: false, showTooltip: false })
-    clearTimeout(this.toolTipTimeout)
-  }
+  // let checkLeaderBoardNavButtonClicked = cookieFunctions('getCookieValue', `${props.name}Clicked`) !== 'true'
 
-  onClickFunction = (event) => {
-    document.cookie = `${this.props.name}Clicked=true`
-    // cookieFunctions('delete', `${this.props.name}Clicked`)
-    if(this.props.pageLimit) this.props.onClickFunction(event.target.value || event.target.attributes.value.value)
-  }
-
-  render() {
-
-    let checkLeaderBoardNavButtonClicked = cookieFunctions('getCookieValue', `${this.props.name}Clicked`) !== 'true'
-
-    return(
-      <div className='leader_boards_buttons_row_button_container'
-        onMouseEnter={ this.props.pageLimit ? this.onHover : null }
-        onMouseLeave={ this.props.pageLimit ? this.offHover : null }
+  return(
+    <div className='leader_boards_buttons_row_button_container'
+      onMouseEnter={ props.pageLimit ? onHover : null }
+      onMouseLeave={ props.pageLimit ? offHover : null }
+    >
+      <button
+        className={ props.buttonClass }
+        id={ props.id }
+        name={ props.name }
+        onClick={ onClickFunction }
+        value={ props.value }
       >
-        <button
-          className={ this.props.buttonClass }
-          id={ this.props.id }
-          name={ this.props.name }
-          onClick={ this.onClickFunction }
-          value={ this.props.value }
-        >
-          <img
-            alt={ this.props.alt }
-            id={ this.props.id }
-            name={ this.props.name }
-            onClick={ this.onClickFunction }
-            src={ this.state.hover ? this.props.imageHover : this.props.image }
-            value={ this.props.value }
+        <img
+          alt={ props.alt }
+          id={ props.id }
+          name={ props.name }
+          onClick={ onClickFunction }
+          src={ hoverState ? props.imageHover : props.image }
+          value={ props.value }
+        />
+      </button>
+      {
+        props.tooltipText &&
+        hoverState &&
+        tooltipState &&
+          <DefaultButtonTooltip
+            tooltipText={ props.tooltipText }
+            tooltipClass={ props.tooltipClass }
           />
-        </button>
-        {
-          this.props.tooltipText &&
-          this.state.showTooltip &&
-          this.state.hover &&
-          checkLeaderBoardNavButtonClicked &&
-            <DefaultButtonTooltip
-              offHover={ this.offHover }
-              tooltipText={ this.props.tooltipText }
-              tooltipClass={ this.props.tooltipClass }
-            />
-        }
-      </div>
-    )
-  }
+      }
+    </div>
+  )
 }
 
 export default LeaderBoardsPageButton

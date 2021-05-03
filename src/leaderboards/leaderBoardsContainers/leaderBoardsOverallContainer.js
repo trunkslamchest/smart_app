@@ -22,10 +22,10 @@ const LeaderBoardsOverallContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const store = (store) => {
   return {
-    leaderBoards: state.leaderBoards
+    leaderBoards: store.leaderBoards
   }
 }
 
-export default connect(mapStateToProps)(LeaderBoardsOverallContainer)
+export default connect(store)(LeaderBoardsOverallContainer)

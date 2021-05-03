@@ -130,6 +130,7 @@ class LeaderBoardsScoresCard extends React.Component {
               onChangePage={ this.onChangePage }
               currentPage={ this.state.currentPage }
               maxPages={ this.state.leaderBoard.length }
+              tooltipClass={ 'leader_boards_nav_button_tooltip' }
             />
           }
         </div>

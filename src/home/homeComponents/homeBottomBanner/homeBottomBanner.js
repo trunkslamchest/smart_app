@@ -11,38 +11,35 @@ import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer
 
 import './homeBottomBanner.css'
 
-class HomeBottomBanner extends React.Component {
+const HomeBottomBanner = (props) => {
 
-  onHelp = () => {
-    this.props.onSetHelpHeader('Getting Started')
-    this.props.onSetHelpSections(makeHomeHelpSections)
-    this.props.onHelpModal(true)
+  const onHelp = () => {
+    props.onSetHelpHeader('Getting Started')
+    props.onSetHelpSections(makeHomeHelpSections)
+    props.onHelpModal(true)
   }
 
-  render(){
+  const helpButton = [
+    {
+      id: 'help_button',
+      name: 'HelpButton',
+      onClickFunction: onHelp,
+      text: 'Would You Like To Know More?',
+      tooltipText: [ 'Information on how to get started' ]
+    }
+  ]
 
-    const helpButton = [
-      {
-        id: 'help_button',
-        name: 'HelpButton',
-        onClickFunction: this.onHelp,
-        text: 'Would You Like To Know More?',
-        tooltipText: [ 'Information on how to get started' ]
-      }
-    ]
-
-    return(
-      <div className='home_logged_out_bottom_banner'>
-          <DefaultButtonsContainer
-            buttons={ helpButton }
-            buttonClass={ 'home_button' }
-            buttonContainerClass={ 'home_help_button_container' }
-            containerClass={ 'home_help_buttons_container' }
-            enableButton={ true }
-          />
-      </div>
-    )
-  }
+  return(
+    <div className='home_logged_out_bottom_banner'>
+      <DefaultButtonsContainer
+        buttons={ helpButton }
+        buttonClass={ 'home_button' }
+        buttonContainerClass={ 'home_help_button_container' }
+        containerClass={ 'home_help_buttons_container' }
+        enableButton={ true }
+      />
+    </div>
+  )
 }
 
 const dispatch = (dispatch) => {
