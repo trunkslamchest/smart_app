@@ -97,19 +97,6 @@ const makeDashboardEditProfileFormInputs = (
       {
         errorContainerClass: 'edit_profile_form_error_container',
         errorClass: 'edit_profile_form_error',
-        id: 'country',
-        inputSubContainerClass: 'edit_profile_input_sub_container',
-        label: 'Country',
-        name: 'country',
-        onChange: onChange,
-        options: flagIconIndex,
-        selectClass: 'edit_profile_select',
-        type: 'select',
-        val: country
-      },
-      {
-        errorContainerClass: 'edit_profile_form_error_container',
-        errorClass: 'edit_profile_form_error',
         id: 'bio',
         inputSubContainerClass: 'edit_profile_input_sub_container',
         inputClass: 'edit_profile_input',
@@ -122,6 +109,19 @@ const makeDashboardEditProfileFormInputs = (
         rows: 5,
         type: 'textarea',
         val: bio
+      },
+      {
+        errorContainerClass: 'edit_profile_form_error_container',
+        errorClass: 'edit_profile_form_error',
+        id: 'country',
+        inputSubContainerClass: 'edit_profile_input_sub_container',
+        label: 'Country',
+        name: 'country',
+        onChange: onChange,
+        options: flagIconIndex,
+        selectClass: 'edit_profile_select',
+        type: 'select',
+        val: country
       },
       [
         {

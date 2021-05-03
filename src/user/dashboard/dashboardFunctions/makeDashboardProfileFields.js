@@ -6,14 +6,14 @@ const makeDashboardProfileFields = (firstName, lastName, bio, country, gender, g
       errors: [ {error: firstName.error}, { error: lastName.error } ]
     },
     {
+      name: 'Biography',
+      data: bio.field,
+      errors: bio.error
+    },
+    {
       name: 'Country',
       data: country.field,
       errors: country.error
-    },
-    {
-      name: 'Bio',
-      data: bio.field,
-      errors: bio.error
     },
     {
       name: 'Gender',

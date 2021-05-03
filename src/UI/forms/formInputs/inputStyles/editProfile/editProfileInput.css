@@ -10,7 +10,7 @@
   border-radius: 5px;
   display: flex;
   font: 400 12px "Roboto", sans-serif;
-  margin: 5px 0px;
+  margin: 5px 0px 5px 15px;
   max-width: 350px;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;
@@ -22,7 +22,7 @@
   border-radius: 5px;
   display: flex;
   font: 400 12px "Roboto", sans-serif;
-  margin: 5px 0px;
+  margin: 5px 0px 5px 15px;
   max-width: 500px;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;

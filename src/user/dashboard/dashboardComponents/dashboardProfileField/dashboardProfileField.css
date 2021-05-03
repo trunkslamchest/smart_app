@@ -49,7 +49,7 @@
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  /* padding: 0px 25px; */
+  padding: 5px 0px 5px 0px;
   color: rgba(255, 255, 255, 1);
   font: 300 10pt 'Lato', sans-serif;
 }
@@ -58,6 +58,7 @@
   align-self: stretch;
   color: rgba(50, 50, 50, 1);
   font: 300 9pt "Roboto", sans-serif;
+  margin: 0px 0px 0px 17.5px;
 }
 
 .dashboard_profile_country_flag {
