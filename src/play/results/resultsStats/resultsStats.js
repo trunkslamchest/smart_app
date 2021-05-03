@@ -14,32 +14,6 @@ import './resultsStatsXP.css'
 
 const ResultsStats = (props) => {
 
-  // const xpBar = () => {
-  //   let currXP, prevLevelXP
-
-  //   if(!props.staticResults) {
-  //     currXP = props.user.experience.total
-  //     prevLevelXP = parseInt(levels[props.user.experience.level - 1])
-  //     if(props.user.experience.level === 1) return currXP
-  //     else return currXP - prevLevelXP
-  //   }
-
-  //   if(props.questions.staticUserResults) {
-  //     currXP = props.questions.staticUserResults.experience.newTotal
-  //     prevLevelXP = parseInt(levels[props.questions.staticUserResults.experience.level - 1])
-  //     if(props.questions.staticUserResults.experience.level === 1) return currXP
-  //     else return currXP - prevLevelXP
-  //   }
-  // }
-
-  // const xpBarClass = {
-  //   border: "0px solid rgba(200, 200, 200, 1)",
-  //   boxSizing: "border-box",
-  //   background: "green",
-  //   height: "10px",
-  //   width: `${ xpBar() }%`
-  // }
-
   const arrow_up = <img alt='Higher than global average' className='trend_arrow' src={ trendArrowIndex.greenArrowUp } />
   const arrow_down = <img alt='Lower than global average' className='trend_arrow' src={ trendArrowIndex.redArrowDown } />
 

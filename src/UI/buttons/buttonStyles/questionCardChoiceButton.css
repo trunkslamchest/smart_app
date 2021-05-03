@@ -104,6 +104,7 @@
 .question_card_choice_button span,
 .question_card_choice_button_active span {
   align-self: stretch;
+  white-space: nowrap;
 }
 
 .question_card_choice_button:active span,
@@ -116,4 +117,5 @@
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;
   outline: -webkit-focus-ring-color auto 0px;
+  white-space: nowrap;
 }

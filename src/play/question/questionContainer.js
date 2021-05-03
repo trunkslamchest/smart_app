@@ -71,7 +71,6 @@ class QuestionContainer extends React.Component{
     this.props.onSetAnswer({ choice: buttonParams.choice, time: parseFloat((10 - this.state.time).toFixed(2)) })
   }
 
-
   render(){
     return(
       <>
