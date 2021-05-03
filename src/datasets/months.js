@@ -1,5 +1,6 @@
 const months = [
-  'Select',
+  // 'Select',
+  'None',
   'January',
   'Februrary',
   'March',

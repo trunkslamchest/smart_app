@@ -246,7 +246,7 @@ import Zambia_flag from './Zambia.png'
 import Zimbabwe_flag from './Zimbabwe.png'
 
 const flagIconIndex = {
-  'Select': { image: "none" },
+  // 'Select': { image: "none" },
   'null': { image: null_flag },
   'Afghanistan': { image: Afghanistan_flag },
   'Aland Islands': { image: AlandIslands_flag },

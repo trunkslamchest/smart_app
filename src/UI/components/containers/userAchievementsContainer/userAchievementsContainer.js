@@ -39,7 +39,7 @@ class UserAchievementsContainer extends React.Component {
       if(this.props.from_dashboard){
         headerText = 'Unlocked'
         headerText2 = 'Locked'
-      if(this.props.user_achievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
+        if(this.props.user_achievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
         if(this.props.user_achievements.unlocked.length === this.props.all_achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
         else {
           let lockedAchievements = allAchievements.filter(achievement => !this.props.user_achievements.unlocked.includes(achievement[0]))
@@ -54,11 +54,7 @@ class UserAchievementsContainer extends React.Component {
             )
           })
         }
-      } else {
-
       }
-
-      // console.log(this.props)
 
       achievementsBlock =
       <div className='user_achievements_container'>

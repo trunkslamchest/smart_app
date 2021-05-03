@@ -1,5 +1,6 @@
 import React from 'react'
 
+import UserProfileHeader from './userProfileHeader/userProfileHeader'
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
 import UserProfileCommentsContainer from './userProfileComments/userProfileCommentsContainer'
 import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
@@ -20,11 +21,17 @@ const UserProfileContainer = (props) => {
   } else {
     userProfileBlock =
       <div className="user_profile_wrapper">
-          <UserProfileInfoContainer
+        <UserProfileHeader
           info={ props.userData.info }
           history={ props.history }
         />
         <div className='user_profile_body_wrapper'>
+          { props.userData.settings.privacy.profile.showBio &&
+            <UserProfileInfoContainer
+              bio={ props.userData.info.bio }
+              history={ props.history }
+            />
+          }
           { props.userData.settings.privacy.profile.showStats &&
             <UserStatsContainer
               from_dashboard={ false }
@@ -34,7 +41,8 @@ const UserProfileContainer = (props) => {
               history={ props.history }
             />
           }
-          { (props.userData.settings.privacy.profile.showAchievements && !!props.userData.achievements.total ) &&
+          { props.userData.settings.privacy.profile.showAchievements &&
+          // { (props.userData.settings.privacy.profile.showAchievements && !!props.userData.achievements.total ) &&
             <UserAchievementsContainer
               all_achievements={ props.achievements }
               from_dashboard={ false }

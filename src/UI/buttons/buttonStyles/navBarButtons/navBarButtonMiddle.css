@@ -5,9 +5,10 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  /* background: rgba(50, 50, 50, 1); */
-  /* background: rgba(50, 50, 50, 1); */
   background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));
+  /* background-image: linear-gradient(0deg, rgba(0, 0, 102, 1), rgba(0, 0, 51, 1)); */
+  /* background: rgba(0, 0, 102, 1); */
+
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);

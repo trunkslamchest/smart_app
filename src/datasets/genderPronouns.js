@@ -1,5 +1,6 @@
 const genderPronouns = [
-  "Select",
+  // "Select",
+  "None",
   "E/Ey / Em / Eir / Eirs / Eirself",
   "He / Him / His / Himself",
   "Per / Pers / Perself",

@@ -2,6 +2,8 @@
 .dashboard_settings_privacy_profile_card::-moz-selection { opacity: 0; }
 .dashboard_settings_privacy_profile_card_img_container img::selection { opacity: 0; }
 .dashboard_settings_privacy_profile_card_img_container img::-moz-selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card_img_container_active img::selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card_img_container_active img::-moz-selection { opacity: 0; }
 
 .dashboard_settings_privacy_profile_card {
   background-color: rgba(255, 255, 255, 1);

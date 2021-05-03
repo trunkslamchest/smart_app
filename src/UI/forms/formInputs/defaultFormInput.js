@@ -9,41 +9,46 @@ const DefaultFormInput = (props) => {
 
   if(!!props.options) {
     input =
-        <select
-          className={ props.selectClass || 'default_form_select' }
-          disabled={ !props.enableInput }
-          id={ props.id }
-          name={ props.name }
-          onChange={ props.onChange }
-          value={ props.value }
-        >
-        {/* { !!props.country && props.country !== 'null' &&
-          <img
-            alt={ props.country }
-            className='edit_div_flag_img'
-            src={ flagIconIndex[props.country].image }
-          />
-        } */}
-        { props.name !== "country" &&
-          props.options.map((option, index) =>
-            <option
-              className={ props.selectOptionClass || 'default_form_select_option' }
-              key={ index }
-              value={ option }
-            >
-              { option }
-            </option>
-        )}
-        { props.name === "country" && Object.entries(props.options).map((option, index) =>
-          <option
+      <select
+        className={ props.selectClass || 'default_form_select' }
+        disabled={ !props.enableInput }
+        id={ props.id }
+        name={ props.name }
+        onChange={ props.onChange }
+        value={ props.value }
+      >
+      {/* { !!props.country && props.country !== 'null' &&
+        <img
+          alt={ props.country }
+          className='edit_div_flag_img'
+          src={ flagIconIndex[props.country].image }
+        />
+      } */}
+      { props.name !== "country" &&
+        props.options.map((option, index) => {
+          let optionValue = option
+          if(option === 'None')  optionValue = 'null'
+          return <option
             className={ props.selectOptionClass || 'default_form_select_option' }
             key={ index }
-            value={ option[0] }
+            value={ optionValue }
           >
-            { option[0] }
+            { option }
           </option>
-        )}
-      </select>
+        }
+      )}
+      { props.name === "country" && Object.entries(props.options).map((option, index) => {
+        let country = option[0]
+        if(option[0] === 'null')  country = 'None'
+        return <option
+          className={ props.selectOptionClass || 'default_form_select_option' }
+          key={ index }
+          value={ option[0] }
+        >
+          { country }
+        </option>
+      })}
+    </select>
   } else {
     if(props.type === 'textarea') {
       input =
@@ -124,7 +129,6 @@ const DefaultFormInput = (props) => {
   return(
     <>
       { input }
-      {/* <div className='divider_medium' /> */}
     </>
   )
 }

@@ -33,12 +33,6 @@ const ContainerProfileHeader = (props) => {
             </div>
             { (!!props.gender || !!props.gender_pronouns || !!props.country || !!props.age) &&
               <div className='container_profile_header_top_left_text_bottom'>
-                { (!!props.gender || !!props.gender_pronouns) &&
-                  <div className='container_profile_header_top_left_text_sub_countainer'>
-                    { !!props.gender && <span>{ props.gender }</span> }
-                    { !!props.gender_pronouns && <span>({ props.gender_pronouns })</span> }
-                  </div>
-                }
                 { !!props.country &&
                   <div className="container_profile_header_top_left_text_sub_countainer">
                     <img
@@ -47,6 +41,12 @@ const ContainerProfileHeader = (props) => {
                       src={ flagIconIndex[props.country].image }
                     />
                     <span>{ props.country }</span>
+                  </div>
+                }
+                { (!!props.gender || !!props.gender_pronouns) &&
+                  <div className='container_profile_header_top_left_text_sub_countainer'>
+                    { !!props.gender && <span>{ props.gender }</span> }
+                    { !!props.gender_pronouns && <span>({ props.gender_pronouns })</span> }
                   </div>
                 }
                 { !!props.age &&
@@ -69,11 +69,11 @@ const ContainerProfileHeader = (props) => {
           { !!props.date_block && props.date_block }
         </div>
       </div>
-      { !!props.bio &&
+      {/* { !!props.bio &&
         <div className='container_profile_header_bottom'>
           <p>{ props.bio }</p>
         </div>
-      }
+      } */}
     </div>
   )
 }
