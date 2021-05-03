@@ -43,6 +43,7 @@
   align-content: center;
   align-items: center;
   width: 250px;
+  width: max-content;
 }
 
 .default_button_tooltip_wrapper span {
