@@ -1115,7 +1115,7 @@ exports.createKeys = functions
     setCORSbasic(req, res)
     var keys = []
 
-    for(i = 0; i < 500; i++){
+    for(i = 0; i < 100; i++){
       var createKey = firebase.database().ref().push().key
       keys.push(createKey)
     }
@@ -1680,6 +1680,152 @@ exports.createFakeUsers = functions
     // console.log(users)
     res.json(users)
 });
+
+const oldQuestionsTemp = {
+
+}
+
+exports.portOldQuestions = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+
+    let resObj = {}
+
+    for(let oldQ in oldQuestionsTemp) {
+      let cat = oldQ
+      let catQuestions = oldQuestionsTemp[oldQ]
+
+      for(let catQ in catQuestions){
+        let qid = catQ
+        let qData = catQuestions[qid]
+        resObj[qid] = {
+          ...qData,
+          "difficulty": "Hard",
+          "category": cat,
+          "answers": {
+            ...qData.answers,
+            "total_time": 0
+          },
+          "votes": {
+            "total": 0,
+            "FiveStars": 0,
+            "FourStars": 0,
+            "ThreeStars": 0,
+            "TwoStars": 0,
+            "OneStars": 0,
+            "ZeroStars": 0
+          },
+          "rating": {
+            "difficulty": parseInt((0.00).toFixed(2)),
+            "approval": parseInt((0.00).toFixed(2)),
+            "performance": parseInt((0.00).toFixed(2))
+          }
+        }
+      }
+    }
+
+    res.json(resObj).status(200);
+    // res.json({ message: 'done' }).status(200);
+});
+
+const newQuestionsTemp = [
+
+]
+
+exports.portNewQuestions = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+
+    let resObj = {}
+
+    for(let newQ in newQuestionsTemp) {
+
+      var qid = firebase.database().ref().push().key
+      let question = newQuestionsTemp[newQ]
+      let questionObj = {}
+
+      questionObj = {
+        "type": question.type,
+        "question": question.question,
+        "correct": question.correct_answer,
+        "choices": question.incorrect_answers,
+        "answers": {
+          "total": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "outta_time": 0,
+          "avg_time": 0,
+          "total_time": 0
+        },
+        "votes": {
+          "total": 0,
+          "FiveStars": 0,
+          "FourStars": 0,
+          "ThreeStars": 0,
+          "TwoStars": 0,
+          "OneStars": 0,
+          "ZeroStars": 0
+        },
+        "difficulty": (question.difficulty[0]).toUpperCase() + question.difficulty.slice(1, question.difficulty.length),
+        "category": question.category,
+        "rating": {
+          "difficulty": 0,
+          "approval": 0,
+          "performance": 0
+        }
+      }
+
+      resObj[qid] = questionObj
+    }
+
+    res.json(resObj).status(200);
+    // res.json({ message: 'done' }).status(200);
+});
+
+const countNewQuestionsTemp = {
+
+}
+
+exports.countNewQuestions = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+
+    let resObj = {}
+
+    for(let q in countNewQuestionsTemp) {
+      let qid = q
+      let question = countNewQuestionsTemp[qid]
+      let cat = question.category
+      let diff = question.difficulty
+      resObj['total'] = ++resObj['total'] || 1
+      if(!resObj['difficulty']) { resObj['difficulty'] = { [diff]: 1 }}
+      else resObj['difficulty'][diff] = ++resObj['difficulty'][diff] || 1
+      if(!resObj['category']) { resObj['category'] = { [cat]: 1 }}
+      else resObj['category'][cat] = ++resObj['category'][cat] || 1
+    }
+
+    res.json(resObj).status(200);
+    // res.json({ message: 'done' }).status(200);
+});
+
+exports.makeLevels = functions
+  .region('us-east1')
+  .https.onRequest((req, res) => {
+    setCORSbasic(req, res)
+
+    let resObj = {}
+
+    for(let i = 1; i <= 150; i++)
+
+    resObj[i] = (i * 100).toString()
+
+    res.json(resObj).status(200);
+    // res.json({ message: 'done' }).status(200);
+});
+
 
 var genRand = function(min, max, decimalPlaces) {
     var rand = Math.random() < 0.5 ? ((1-Math.random()) * (max-min) + min) : (Math.random() * (max-min) + min)
