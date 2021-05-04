@@ -81,9 +81,6 @@ const ResultsStats = (props) => {
                   { !props.staticResults && <h4>Level { props.user.experience.level }</h4> }
                   { props.questions.staticUserResults && <h4>Level { props.questions.staticUserResults.experience.level }</h4> }
                   <div className="results_xp_bar_sub_container">
-                    {/* <div className="results_xp_bar">
-                      <div style={ xpBarClass }></div>
-                    </div> */}
                   <XPBar
                       userXP={ !props.staticResults ? props.user.experience.total : props.questions.staticUserResults.experience.newTotal }
                       userLevel={ !props.staticResults ? props.user.experience.level : props.questions.staticUserResults.experience.level }
@@ -113,9 +110,9 @@ const ResultsStats = (props) => {
                 </div>
                 <div className='results_question_sub_wrapper_text_left'>
                     { !props.staticResults && <h6>{ props.play.question.difficulty }</h6> }
-                    <h6>{ props.questions.staticQuestion && props.questions.staticQuestion.difficulty }</h6>
+                    { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.difficulty }</h6> }
                     { !props.staticResults && <h6>{ props.play.question.diffRating }</h6> }
-                    <h6>{ props.questions.staticQuestion && props.questions.staticQuestion.rating.difficulty }</h6>
+                    { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.rating.difficulty }</h6> }
                 </div>
               </div>
               <div className='results_question_sub_wrapper_right'>
@@ -139,8 +136,8 @@ const ResultsStats = (props) => {
                     { !props.staticResults && <h6>{ props.play.question.answers.outta_time }</h6> }
                     { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.answers.outta_time }</h6> }
 
-                    { !props.staticResults && <h6>{ props.play.question.answers.avg_time }</h6> }
-                    { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.answers.avg_time }</h6> }
+                    { !props.staticResults && <h6>{ props.play.question.answers.avg_time } seconds</h6> }
+                    { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.answers.avg_time } seconds</h6> }
                 </div>
               </div>
             </div>
