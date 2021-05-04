@@ -48,8 +48,6 @@ const DefaultButton = (props) =>  {
       }
       if(props.buttonType === 'link'){
         let route = JSON.parse(props.params).route
-
-        console.log(props)
         document.body.scrollTop = 0
         if (location.pathname !== route) props.history.push( route )
       }
@@ -74,11 +72,8 @@ const DefaultButton = (props) =>  {
   }
 
   if(props.homeButton || props.headerButton) {
-    if(hoverState){
-      buttonIMG = props.imageHover
-    } else {
-      buttonIMG = props.image
-    }
+    if(hoverState) buttonIMG = props.imageHover
+    else buttonIMG = props.image
   }
 
   let buttonContent =
