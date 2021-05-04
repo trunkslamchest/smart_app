@@ -18,20 +18,6 @@ const UserStatsTotal = (props) => {
     return !!parseInt(a[ a.length - 1]) ? parseFloat(a.join('')) : Math.round(parseInt(num))
   }
 
-  // const xpBar = () => {
-  //   let currXP = props.user_experience.total, prevLevelXP = parseInt(levels[props.user_experience.level - 1])
-  //   if(props.user_experience.level === 1) return currXP
-  //   else return currXP - prevLevelXP
-  // }
-
-  // const xpBarClass = {
-  //   border: "0px solid rgba(200, 200, 200, 1)",
-  //   boxSizing: "border-box",
-  //   background: "green",
-  //   height: "10px",
-  //   width: `${ xpBar() }%`
-  // }
-
   const arrow_up =
     <img
       alt='Higher than global average'
@@ -46,9 +32,6 @@ const UserStatsTotal = (props) => {
       src={ trendArrowIndex.redArrowDown }
     />
 
-  // let rank = <span>NR</span>
-  // let rating = <span>NR</span>
-  // let header = <></>
   let totalStats
   let performance
   let totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
@@ -57,12 +40,8 @@ const UserStatsTotal = (props) => {
     totalQuestionsAnswered = ((props.user_questions.all.answered / props.question_totals.all.questions) * 100).toFixed(2)
     if(props.user_questions.all.answered > 0) totalQuestionsCorrect = ((props.user_questions.all.correct / props.user_questions.all.answered) * 100).toFixed(2)
     if(props.user_questions.all.answered >= 5) {
-      // header = <></>
-      // rank = props.user_questions.all.rank
-      // rating = props.user_questions.all.rating
       performance =
         <>
-          {/* { header } */}
           <div className="user_stats_performance_sub_container">
             <div className="user_stats_total_rank">
               <h2>SmartApp™ Rank</h2>
@@ -84,7 +63,6 @@ const UserStatsTotal = (props) => {
       } else {
         performance =
           <>
-            {/* { header } */}
             <div className="user_stats_performance_sub_container">
               <div className="user_stats_total_rank">
                 <h2>SmartApp™ Rank</h2>
@@ -124,9 +102,6 @@ const UserStatsTotal = (props) => {
           <div className="user_stats_experience_container">
             <h3>Level { props.user_experience.level }</h3>
             <div className="user_stats_experience_bar_container">
-              {/* <div className="user_stats_experience_bar"> */}
-                {/* <div style={ xpBarClass } /> */}
-              {/* </div> */}
               <XPBar
                 userXP={ props.user_experience.total }
                 userLevel={ props.user_experience.level }
