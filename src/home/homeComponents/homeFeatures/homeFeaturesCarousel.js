@@ -6,17 +6,11 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
       name: 'homeFeaturesQuestions',
       text: {
         desc: [
-          `The SmartApp™ Nexus stores and collects data for over 200+ questions from 16 different categories in 3 separate difficulty levels.`,
+          `The SmartApp™ Nexus stores and collects data for over 250+ questions from 20 different categories in 3 separate difficulty levels.`,
           `From general trends, to individual metrics, The SmartApp™ Nexus collects the data that lets you know how you stack up against yourself, and with your competition.`
         ],
         headline: 'Nexus',
-        highlights: [
-          // '200+ Questions',
-          // '16 Categories',
-          // '3 Difficulty Levels',
-          // 'Trend Tracking Capabilities',
-          // 'Approval/Comment Features'
-        ]
+        highlights: [ ]
       }
     },
     {
@@ -30,36 +24,9 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
           SmartApp™ Profiles makes it quick and easy to find yourself, or someone else.`
         ],
         headline: 'Profiles',
-        highlights: [
-          // 'User Generated Statistics',
-          // 'Custom Privacy Settings',
-          // 'Secured with Google Identity Toolkit',
-          // 'highlight4',
-          // 'highlight5',
-        ]
+        highlights: [ ]
       }
     },
-    // {
-    //   id: 'home_features_stats',
-    //   image: homeFeaturesIndex.temp,
-    //   // image: statsIMG,
-    //   name: 'homeFeaturesStats',
-    //   text: {
-    //     desc: [
-    //       `We know you want to know how well you're doing in your quest for absolute knowledge.
-    //       So we want to provide you with the information you need to succeed.`,
-    //       `From general trends, to individual metrics, SmartApp™ offers important data to let you know how you stack up with yourself, and with your competition.`
-    //     ],
-    //     headline: 'In Depth Statistics',
-    //     highlights: [
-    //       // 'Individual Performance Reports',
-    //       // 'Percentage Based User Comparisons',
-    //       // 'Dynamic Question Ratings',
-    //       // 'highlight4',
-    //       // 'highlight5',
-    //     ]
-    //   }
-    // },
     {
       id: 'home_features_xp',
       image: homeFeaturesIndex.xp,
@@ -71,13 +38,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
           The better you do, the more experience you gain, the higher your level becomes.`
         ],
         headline: 'Experience',
-        highlights: [
-          // 'highlight1',
-          // 'highlight2',
-          // 'highlight3',
-          // 'highlight4',
-          // 'highlight5',
-        ]
+        highlights: [ ]
       }
     },
     {
@@ -93,13 +54,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
           `No matter how you do, you will always know how well you do.`
         ],
         headline: 'Ratings',
-        highlights: [
-          // 'highlight1',
-          // 'highlight2',
-          // 'highlight3',
-          // 'highlight4',
-          // 'highlight5',
-        ]
+        highlights: [ ]
       }
     },
     {
@@ -112,13 +67,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
           `With over 25 achievements to unlock, SmartApp™ gives you plenty of reasons to grind for those lofty goals you forever hope to reach.`
         ],
         headline: 'Achievements',
-        highlights: [
-          // '25 Achievements',
-          // 'highlight2',
-          // 'highlight3',
-          // 'highlight4',
-          // 'highlight5',
-        ]
+        highlights: [ ]
       }
     },
     {
@@ -132,13 +81,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
           `It doesn't matter where you want to assert your trivia dominance, everyone will know how smart you are when you hit that #1 spot.`
         ],
         headline: 'Leaderboards',
-        highlights: [
-          // 'highlight1',
-          // 'highlight2',
-          // 'highlight3',
-          // 'highlight4',
-          // 'highlight5',
-        ]
+        highlights: [ ]
       }
     }
   ]
