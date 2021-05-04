@@ -49,8 +49,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
         desc: [
           `Along with gaining experience and leveling up,
           you will receive ranks and ratings for each question you answer based on how fast you, as well as others, have answered a question.`,
-          `Question ranks and ratings are then compiled to produce your overall SmartApp™ Rank and SmartApp™ Rating.
-          There are also ranks and ratings for how well you perform for individual categories and difficulties.`,
+          `Question ranks and ratings are then compiled to produce your overall SmartApp™ Rank and SmartApp™ Rating.`,
           `No matter how you do, you will always know how well you do.`
         ],
         headline: 'Ratings',
@@ -77,7 +76,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
       text: {
         desc: [
           `Wanna know how your trivia knowledge stacks up against everyone in your country? How 'bout the entire planet?`,
-          `SmartApp™'s Leaderboards have you covered.`,
+          `SmartApp™ Leaderboards have you covered.`,
           `It doesn't matter where you want to assert your trivia dominance, everyone will know how smart you are when you hit that #1 spot.`
         ],
         headline: 'Leaderboards',
