@@ -1,30 +1,29 @@
 import React from 'react'
+import { useState } from 'react'
 
-class FooterCreditLogo extends React.Component {
+const FooterCreditLogo = (props) => {
 
-  state={ hover: false }
+  const [hoverState, setHoverState] = useState(false)
 
-  onHover = () => { this.setState({ hover: true }) }
-  offHover = () => { this.setState({ hover: false }) }
+  const onHover = () => { setHoverState(true) }
+  const offHover = () => { setHoverState(false) }
 
-  render() {
-    return(
-      <a
-        href={ this.props.route }
-        rel='noopener noreferrer'
-        target='_blank'
-        onMouseEnter={ this.onHover }
-        onMouseLeave={ this.offHover }
-      >
-        <img
-          alt={ this.props.alt }
-          className='footer_credit_logo_rectangle'
-          name={ this.props.name }
-          src={ !this.state.hover ? this.props.image : this.props.imageHover }
-        />
-      </a>
-    )
-  }
+  return(
+    <a
+      href={ props.route }
+      rel='noopener noreferrer'
+      target='_blank'
+      onMouseEnter={ onHover }
+      onMouseLeave={ offHover }
+    >
+      <img
+        alt={ props.alt }
+        className='footer_credit_logo_rectangle'
+        name={ props.name }
+        src={ hoverState ? props.imageHover : props.image }
+      />
+    </a>
+  )
 }
 
 export default FooterCreditLogo

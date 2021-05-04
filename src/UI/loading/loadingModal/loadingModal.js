@@ -10,7 +10,7 @@ import SmallLoadingSpinner from '../smallLoadingSpinner/smallLoadingSpinner'
 import './loadingModal.css'
 import './loadingModalSpinner.css'
 
-class LoadingModal extends React.Component {
+const LoadingModal = (props) => {
 
   // shouldComponentUpdate(nextProps, nextState){
   //   if(!nextProps.modal.loading) return true
@@ -19,22 +19,19 @@ class LoadingModal extends React.Component {
 
   // componentWillUnmount(){ this.props.onLoadingModal(false) }
 
-  render(){
-
     // console.log(this.props)
 
-    return (
-      <Modal
-        modalClass={ 'loading_modal' }
-        showModal={ this.props.show }
-      >
-        <div className='loading_modal_wrapper'>
-          <SmallLoadingSpinner />
-          <BaseDynamicBar modalType={ this.props.modalType } barType={ this.props.barType } />
-        </div>
-      </Modal>
-    )
-  }
+  return (
+    <Modal
+      modalClass={ 'loading_modal' }
+      showModal={ props.show }
+    >
+      <div className='loading_modal_wrapper'>
+        <SmallLoadingSpinner />
+        <BaseDynamicBar modalType={ props.modalType } barType={ props.barType } />
+      </div>
+    </Modal>
+  )
 }
 
 const store = (store) => {

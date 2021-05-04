@@ -7,7 +7,7 @@ import { loadingBarTextSwitch } from './barFunctions/loadingBarTextSwitch'
 
 import './baseDynamicBar.css'
 
-class BaseDynamicBar extends React.Component {
+const BaseDynamicBar = (props) => {
 
   // shouldComponentUpdate(nextProps, nextState){
   //   if(
@@ -22,36 +22,33 @@ class BaseDynamicBar extends React.Component {
   //   else return false
   // }
 
-  render() {
-
   // console.log(this.props.modalType, this.props.barType)
   // console.log(this.props.modalType, this.props.leaderBoards.status)
   // console.log(this.props.barType, this.props.questions.commentStatus)
   // console.log('modalType', this.props.modalType)
 
-    let loadStatus
-    let barType = this.props.barType || this.props.auth.authType
+  let loadStatus
+  let barType = props.barType || props.auth.authType
 
-    if(this.props.modalType === 'auth') loadStatus = this.props.auth.status
-    if(this.props.modalType === 'play') loadStatus = this.props.play.status
-    if(this.props.modalType === 'leaderBoards') loadStatus = this.props.leaderBoards.status
-    if(this.props.modalType === 'userProfile') loadStatus = this.props.profile.status
+  if(props.modalType === 'auth') loadStatus = props.auth.status
+  if(props.modalType === 'play') loadStatus = props.play.status
+  if(props.modalType === 'leaderBoards') loadStatus = props.leaderBoards.status
+  if(props.modalType === 'userProfile') loadStatus = props.profile.status
 
 
-    if(this.props.modalType === 'questionVote') loadStatus = this.props.play.voteStatus
-    if(this.props.modalType === 'questionComment') loadStatus = this.props.play.commentStatus || this.props.questions.commentStatus
+  if(props.modalType === 'questionVote') loadStatus = props.play.voteStatus
+  if(props.modalType === 'questionComment') loadStatus = props.play.commentStatus || props.questions.commentStatus
 
-    return(
-      <div className="dyanmic_bar_container">
-        <div className="loading_bar_container">
-          <div className={ loadingBarClassSwitch(barType, loadStatus) }></div>
-        </div>
-        <div className="loading_text">
-          <p>{ loadingBarTextSwitch(barType, loadStatus) }</p>
-        </div>
+  return(
+    <div className="dyanmic_bar_container">
+      <div className="loading_bar_container">
+        <div className={ loadingBarClassSwitch(barType, loadStatus) }></div>
       </div>
-    )
-  }
+      <div className="loading_text">
+        <p>{ loadingBarTextSwitch(barType, loadStatus) }</p>
+      </div>
+    </div>
+  )
 }
 
 const store = store => {
