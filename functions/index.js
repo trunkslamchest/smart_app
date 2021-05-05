@@ -675,6 +675,7 @@ exports.questionResults = functions
         avg_time: reqData.userTotals.all.avg_time === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.all.avg_time) + reqData.time) / 2.00).toFixed(2)),
         correct: calcResult === 'Correct' ? reqData.userTotals.all.correct + 1 : reqData.userTotals.all.correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.all.incorrect + 1 : reqData.userTotals.all.incorrect,
+        one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.all.one_sec + 1 : reqData.userTotals.all.one_sec,
         outta_times: calcResult === 'Outta Time' ? reqData.userTotals.all.outta_times + 1 : reqData.userTotals.all.outta_times,
         rating: reqData.userTotals.all.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
         rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
@@ -685,6 +686,8 @@ exports.questionResults = functions
         avg_time: reqData.userTotals.difficulty[reqData.difficulty].avg_time === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].avg_time) + reqData.time) / 2.00).toFixed(2)),
         correct: calcResult === 'Correct' ? reqData.userTotals.difficulty[reqData.difficulty].correct + 1 : reqData.userTotals.difficulty[reqData.difficulty].correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.difficulty[reqData.difficulty].incorrect + 1 : reqData.userTotals.difficulty[reqData.difficulty].incorrect,
+        one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.difficulty[reqData.difficulty].one_sec + 1 : reqData.userTotals.difficulty[reqData.difficulty].one_sec,
+
         outta_times: calcResult === 'Outta Time' ? reqData.userTotals.difficulty[reqData.difficulty].outta_times + 1 : reqData.userTotals.difficulty[reqData.difficulty].outta_times,
         rating: reqData.userTotals.difficulty[reqData.difficulty].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
         rank: reqData.userTotals.difficulty[reqData.difficulty].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
@@ -695,6 +698,7 @@ exports.questionResults = functions
         avg_time: reqData.userTotals.category[reqData.category].avg_time === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].avg_time) + reqData.time) / 2.00).toFixed(2)),
         correct: calcResult === 'Correct' ? reqData.userTotals.category[reqData.category].correct + 1 : reqData.userTotals.category[reqData.category].correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.category[reqData.category].incorrect + 1 : reqData.userTotals.category[reqData.category].incorrect,
+        one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.category[reqData.category].one_sec + 1 : reqData.userTotals.category[reqData.category].one_sec,
         outta_times: calcResult === 'Outta Time' ? reqData.userTotals.category[reqData.category].outta_times + 1 : reqData.userTotals.category[reqData.category].outta_times,
         rating: reqData.userTotals.category[reqData.category].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
         rank: reqData.userTotals.category[reqData.category].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
@@ -760,7 +764,23 @@ exports.questionResults = functions
         rating: calcAllCatTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllCatTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
 
-      achievementsObj = calcAchievements(acheivements, acheivementsTotals, user.achievements, questionObj, calcUserTotalsObj, calcUserDiffTotalsObj, calcUserCatTotalsObj)
+      // achievementsObj = calcAchievements(acheivements, acheivementsTotals, user.achievements, questionObj, calcUserTotalsObj, calcUserCatTotalsObj, calcUserDiffTotalsObj)
+
+
+      achievementsObj = calcAchievements(
+        acheivements,
+        acheivementsTotals,
+        user.achievements,
+        questionObj,
+        {
+          all: calcUserTotalsObj,
+          [reqData.category]: calcUserCatTotalsObj,
+          [reqData.difficulty]: calcUserDiffTotalsObj
+        },
+        questionTotals,
+        reqData.category,
+        reqData.difficulty
+      )
 
       var userIdsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'ids',
           userAchievementsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'achievements',
@@ -1885,28 +1905,45 @@ var calcVoteAvg = function(voteObj) {
   return multiplyObj
 }
 
-var calcAchievements = function(achievements, achievementsTotals, userAchievements, questionResults, userTotals, userDiffTotals, userCatTotals) {
+var calcAchievements = function(achievements, achievementsTotals, userAchievements, questionResults, userTotals, questionTotals, cat, diff) {
 
   let unlockedAchievements = [],
       resAchievementsObj = {},
       userAchievementsObj = {},
-      totalsObj = {}
+      totalsObj = {},
+      allAnswered = userTotals.all.answered,
+      allCorrect = userTotals.all.correct,
+      diffCorrect = userTotals[diff].correct,
+      catCorrect = userTotals[cat].correct,
+      allOneSec = userTotals.all.one_sec
 
-  if(userTotals.answered === 1) {
-    unlockedAchievements.push("OneAnswer")
-    if(questionResults.result === "Correct"){
-      unlockedAchievements.push("OneAnswerOneCorrect")
-      if(questionResults.time < 1) unlockedAchievements.push("OneAnswerOneCorrectOneSec")
-    }
+  if(allAnswered === 1 && allCorrect === 1 && !userAchievements.unlocked.includes("1Answer1Correct")) unlockedAchievements.push("1Answer1Correct")
+
+  if(
+    (allAnswered === 1 && allCorrect === 1 && allOneSec === 1) ||
+    (allAnswered === 5 && allCorrect === 5 && allOneSec === 5) ||
+    (allAnswered === 10 && allCorrect === 10 && allOneSec === 10) ||
+    (allAnswered === 25 && allCorrect === 25 && allOneSec === 25) &&
+    !userAchievements.unlocked.includes(`${allAnswered}Answer${allCorrect}Correct1Sec`)
+  ) unlockedAchievements.push(`${allAnswered}Answer${allCorrect}Correct1Sec`)
+
+  if((allAnswered === 50 ||
+    allAnswered === 100 ||
+    allAnswered === 150 ||
+    allAnswered === 200 ||
+    allAnswered === 250) &&
+    !userAchievements.unlocked.includes(`${allAnswered}Answer`)
+  ) unlockedAchievements.push(`${allAnswered}Answer`)
+
+  if((diffCorrect === 4 || diffCorrect === 25 || diffCorrect === 50) &&
+  !userAchievements.unlocked.includes(`Answer${diffCorrect}${diff}Correct`)) {
+    unlockedAchievements.push(`Answer${diffCorrect}${diff}Correct`)
   }
 
-  if(questionResults.result === "Correct") {
-    if(userTotals.correct === 1 && !userAchievements.unlocked.includes("OneCorrect")) unlockedAchievements.push("OneCorrect")
-    if(userTotals.correct === 5 && !userAchievements.unlocked.includes("FiveCorrect")) unlockedAchievements.push("FiveCorrect")
-    if(questionResults.time < 1 && !userAchievements.unlocked.includes("OneCorrectOneSec")) unlockedAchievements.push("OneCorrectOneSec")
+  if((catCorrect === 10 || catCorrect === 25) &&
+  !userAchievements.unlocked.includes(`Answer${catCorrect}${cat.split(" ").join('')}Correct`)) {
+    unlockedAchievements.push(`Answer${catCorrect}${cat.split(" ").join('')}Correct`)
   }
-
-  if(userTotals.answered === 5) unlockedAchievements.push("FiveAnswer")
 
   if(unlockedAchievements.length === 0 && userAchievements[0] === "null") {
     resAchievementsObj = { total: 0, unlocked: [] }

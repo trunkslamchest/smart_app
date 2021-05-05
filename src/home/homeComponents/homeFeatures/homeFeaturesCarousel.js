@@ -6,7 +6,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
       name: 'homeFeaturesQuestions',
       text: {
         desc: [
-          `The SmartApp™ Nexus stores and collects data for over 250+ questions from 20 different categories in 3 separate difficulty levels.`,
+          `The SmartApp™ Nexus stores and collects data for over 250 questions from 20 different categories in 3 separate difficulty levels.`,
           `From general trends, to individual metrics, The SmartApp™ Nexus collects the data that lets you know how you stack up against yourself, and with your competition.`
         ],
         headline: 'Nexus',
@@ -63,7 +63,7 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
       text: {
         desc: [
           `Still haven't scratched that itch for meaningless progress?`,
-          `With over 25 achievements to unlock, SmartApp™ gives you plenty of reasons to grind for those lofty goals you forever hope to reach.`
+          `With over 50 achievements to unlock, SmartApp™ gives you plenty of reasons to grind for those lofty goals you forever hope to reach.`
         ],
         headline: 'Achievements',
         highlights: [ ]

@@ -39,6 +39,7 @@ const signUpObjTemplate = (email, user_name) => {
           },
           "correct": 0,
           "incorrect": 0,
+          "one_sec": 0,
           "outta_times": 0,
           "rank": "NR",
           "rating": 0,
@@ -58,6 +59,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -67,6 +69,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -76,6 +79,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -87,6 +91,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -96,6 +101,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -105,6 +111,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -114,6 +121,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -123,6 +131,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -132,6 +141,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -141,6 +151,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -150,6 +161,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -159,6 +171,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -168,6 +181,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -177,6 +191,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -186,6 +201,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -195,6 +211,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -204,6 +221,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -213,6 +231,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -222,6 +241,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -231,6 +251,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -240,6 +261,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -249,6 +271,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
@@ -258,6 +281,7 @@ const signUpObjTemplate = (email, user_name) => {
             "avg_time": 0,
             "correct": 0,
             "incorrect": 0,
+            "one_sec": 0,
             "outta_times": 0,
             "rank": "NR",
             "rating": 0
