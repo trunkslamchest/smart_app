@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px"
-	 height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-<g id="leaderboard_x5F_buttons">
-	<rect y="0.003" display="none" fill="#323232" width="20" height="19.997"/>
-	<polygon display="none" fill="#FFFFFF" points="5.002,0.003 5.002,19.998 15,10.001 	"/>
-	<polygon display="none" fill="#010101" points="5.002,0.004 5.002,19.999 15,10.002 	"/>
-	<polygon display="none" fill="#323232" points="5.002,0.004 5.002,19.999 15,10.002 	"/>
-	<polygon display="none" fill="#FFFFFF" points="0,0.003 0,19.998 20,10.001 	"/>
-	<polygon display="none" fill="#010101" points="0,0.004 0,19.999 20,10.002 	"/>
-	<polygon fill="#323232" points="0,0.004 0,19.999 20,10.002 	"/>
-</g>
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<polygon fill="#323232" points="0,0.004 0,19.999 20,10.002 "/>
 </svg>
