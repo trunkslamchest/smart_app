@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
+import { useEffect, useRef, useState } from 'react'
+
 import { NavLink } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
@@ -15,6 +17,8 @@ const DefaultButton = (props) =>  {
 
   const location = useLocation()
   const timerRef = useRef(null);
+
+  useEffect(() => { return () => { clearTimeout(timerRef.current) } }, [])
 
   const onHover = () => {
     setHoverState(true)
