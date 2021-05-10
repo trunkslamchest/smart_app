@@ -110,9 +110,9 @@ const ResultsStats = (props) => {
                 </div>
                 <div className='results_question_sub_wrapper_text_left'>
                     { !props.staticResults && <h6>{ props.play.question.difficulty }</h6> }
+                    { !props.staticResults && <h6>{ (props.play.question.diffRating).toFixed(2) }</h6> }
                     { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.difficulty }</h6> }
-                    { !props.staticResults && <h6>{ props.play.question.diffRating }</h6> }
-                    { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.rating.difficulty }</h6> }
+                    { props.questions.staticQuestion && <h6>{ (props.questions.staticQuestion.rating.difficulty).toFixed(2) }</h6> }
                 </div>
               </div>
               <div className='results_question_sub_wrapper_right'>
@@ -136,8 +136,8 @@ const ResultsStats = (props) => {
                     { !props.staticResults && <h6>{ props.play.question.answers.outta_time }</h6> }
                     { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.answers.outta_time }</h6> }
 
-                    { !props.staticResults && <h6>{ props.play.question.answers.avg_time } seconds</h6> }
-                    { props.questions.staticQuestion && <h6>{ props.questions.staticQuestion.answers.avg_time } seconds</h6> }
+                    { !props.staticResults && <h6>{ (props.play.question.answers.avg_time).toFixed(2) } seconds</h6> }
+                    { props.questions.staticQuestion && <h6>{ (props.questions.staticQuestion.answers.avg_time).toFixed(2) } seconds</h6> }
                 </div>
               </div>
             </div>

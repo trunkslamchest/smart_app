@@ -633,7 +633,7 @@ exports.questionResults = functions
       let aPerf = question.rating.performance === 0 ? qPerf.rating : ((qPerf.rating + question.rating.performance) / 2.00)
       let newXP = calcXP + reqData.experience
 
-      calcDiffRank = calcDiffRate(calcCorrect, calcIncorrect, calcOuttaTime, calcTotal)
+      calcDiffRank = calcDiffRate(calcCorrect, calcIncorrect, calcOuttaTime, calcAvgTime, calcTotal)
 
       perfObj = {
         qPerf: qPerf,
@@ -687,7 +687,6 @@ exports.questionResults = functions
         correct: calcResult === 'Correct' ? reqData.userTotals.difficulty[reqData.difficulty].correct + 1 : reqData.userTotals.difficulty[reqData.difficulty].correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.difficulty[reqData.difficulty].incorrect + 1 : reqData.userTotals.difficulty[reqData.difficulty].incorrect,
         one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.difficulty[reqData.difficulty].one_sec + 1 : reqData.userTotals.difficulty[reqData.difficulty].one_sec,
-
         outta_times: calcResult === 'Outta Time' ? reqData.userTotals.difficulty[reqData.difficulty].outta_times + 1 : reqData.userTotals.difficulty[reqData.difficulty].outta_times,
         rating: reqData.userTotals.difficulty[reqData.difficulty].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
         rank: reqData.userTotals.difficulty[reqData.difficulty].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
@@ -763,9 +762,6 @@ exports.questionResults = functions
         // rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
         rating: calcAllCatTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllCatTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
-
-      // achievementsObj = calcAchievements(acheivements, acheivementsTotals, user.achievements, questionObj, calcUserTotalsObj, calcUserCatTotalsObj, calcUserDiffTotalsObj)
-
 
       achievementsObj = calcAchievements(
         acheivements,
@@ -1949,7 +1945,6 @@ var calcAchievements = function(achievements, achievementsTotals, userAchievemen
     resAchievementsObj = { total: 0, unlocked: [] }
     userAchievementsObj = { total: 0, unlocked: [ "null" ] }
   } else {
-    console.log(unlockedAchievements)
     unlockedAchievements.forEach(achievement => achievements[achievement].total += 1)
     resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
     userAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }
@@ -2023,13 +2018,12 @@ var calcOperf = function(qRating, oRating) {
   return oPerfObj
 }
 
-var calcDiffRate = function(correct, incorrect, outta_time, total) {
-  if (correct !== 0) {
-    let diffRate, questionsCorrectDecimal = parseFloat((incorrect / total).toFixed(2))
-    if(outta_time > 0) diffRate = questionsCorrectDecimal + parseFloat((outta_time * 0.15).toFixed(2))
-    else diffRate = questionsCorrectDecimal
-    return diffRate
-  } else return 1.00
+var calcDiffRate = function(correct, incorrect, outta_time, avg_time, total) {
+  let questionsCorrectDecimal = parseFloat((incorrect / total).toFixed(2)),
+      outtaTimeRatio = parseFloat((outta_time * 0.2).toFixed(2)),
+      averageTimeRatio = parseFloat((avg_time * 0.15).toFixed(2))
+  if (correct !== 0) return questionsCorrectDecimal + outtaTimeRatio + averageTimeRatio
+  else return 1.00 - outtaTimeRatio - averageTimeRatio
 }
 
 var calcRating = function(stat) {
