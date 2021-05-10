@@ -1,4 +1,6 @@
 import React from 'react'
+import { useRef, useState } from 'react'
+import useOnMount from '../../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 
 import {
@@ -13,69 +15,70 @@ import ResultsAchievementsContainer from '../resultsAchievements/resultsAchievem
 
 import './resultsStatsContainer.css'
 
-class ResultsStatsContainer extends React.Component{
+const ResultsStatsContainer = (props) => {
 
-  state = {
-    showHeader: false,
-    showCorrectAnswer: false,
-    showAchievements: false,
-    showStats: false,
-  }
+  const [headerState, setHeaderState] = useState(false)
+  const [correctAnswerState, setCorrectAnswerState] = useState(false)
+  const [statsState, setStatsState] = useState(false)
+  const [achievementsState, setAchievementsState] = useState(false)
 
-  componentDidMount(){
-    if(!this.props.staticResults) {
-      this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 100)
-      if(this.props.play.results && this.props.play.results.result === "Incorrect") this.correctAnswerTimeout = setTimeout(() => { this.setState({ showCorrectAnswer: true })}, 1000)
-      this.statsTimeout = setTimeout(() => { this.setState({ showStats: true })}, 1250)
-      this.showAchievementsTimeout = setTimeout(() => { this.setState({ showAchievements: true })}, 1500)
+  const headerTimerRef = useRef(null)
+  const correctAnswerTimerRef = useRef(null)
+  const statsTimerRef = useRef(null)
+  const achievementsTimerRef = useRef(null)
+
+  const { staticResults, play, questions } = props
+
+  useOnMount(() => {
+    if(!staticResults) {
+      headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 100)
+      if(play.results && play.results.result === "Incorrect") correctAnswerTimerRef.current = setTimeout(() => { setCorrectAnswerState(true) }, 1000)
+      statsTimerRef.current = setTimeout(() => { setStatsState(true) }, 1250)
+      achievementsTimerRef.current = setTimeout(() => { setAchievementsState(true) }, 1500)
     } else {
-      this.setState({
-        showHeader: true,
-        showCorrectAnswer: this.props.questions.staticUserResults && this.props.questions.staticUserResults.result === "Incorrect",
-        showStats: true,
-        showAchievements: true
-      })
+      setHeaderState(true)
+      setCorrectAnswerState(questions.staticUserResults && questions.staticUserResults.result === "Incorrect")
+      setStatsState(true)
+      setAchievementsState(true)
     }
-  }
 
-  componentWillUnmount(){
-    if(!this.props.staticResults) {
-      clearTimeout(this.headerTimeout)
-      clearTimeout(this.correctAnswerTimeout)
-      clearTimeout(this.statsTimeout)
-      clearTimeout(this.showAchievementsTimeout)
+    return function cleanup() {
+      if(!staticResults) {
+        clearTimeout(headerTimerRef.current)
+        clearTimeout(correctAnswerTimerRef.current)
+        clearTimeout(statsTimerRef.current)
+        clearTimeout(achievementsTimerRef.current)
+      }
     }
-  }
 
-  render(){
+  }, [])
 
-    const resultsBlock =
-      <div className="results_stats_container">
-        <ResultsHeader
-          staticResults={ this.props.staticResults }
-          showHeader={ this.state.showHeader }
-        />
-        <ResultsAnswer
-          staticResults={ this.props.staticResults }
-          showCorrectAnswer={ this.state.showCorrectAnswer }
-        />
-        <ResultsStats
-          staticResults={ this.props.staticResults }
-          showStats={ this.state.showStats }
-        />
-        <ResultsAchievementsContainer
-          staticResults={ this.props.staticResults }
-          showAchievements={ this.state.showAchievements }
-        />
-      </div>
+  const resultsBlock =
+    <div className="results_stats_container">
+      <ResultsHeader
+        staticResults={ props.staticResults }
+        showHeader={ headerState }
+      />
+      <ResultsAnswer
+        staticResults={ props.staticResults }
+        showCorrectAnswer={ correctAnswerState }
+      />
+      <ResultsStats
+        staticResults={ props.staticResults }
+        showStats={ statsState }
+      />
+      <ResultsAchievementsContainer
+        staticResults={ props.staticResults }
+        showAchievements={ achievementsState }
+      />
+    </div>
 
-    return(
-      <>
-        { !this.props.staticResults && resultsBlock }
-        { this.props.questions.staticQuestion && this.props.questions.staticUserResults && resultsBlock }
-      </>
-    )
-  }
+  return(
+    <>
+      { !props.staticResults && resultsBlock }
+      { props.questions.staticQuestion && props.questions.staticUserResults && resultsBlock }
+    </>
+  )
 }
 
 const store = (store) => {
