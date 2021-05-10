@@ -1,80 +1,78 @@
 import React from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import CarouselSlideContainer from './carouselComponents/carouselSlide/carouselSlideContainer'
 import CarouselButtonContainer from './carouselComponents/carouselButton/carouselButtonContainer'
 
 import './defaultCarouselContainer.css'
 
-class DefaultCarouselContainer extends React.Component {
+const DefaultCarouselContainer = (props) => {
 
-  state = {
-    currentSlideState: "mount",
-    currentSlide: null,
-    currentPosition: 0
-  }
+  const [slideState, setSlideState] = useState("mount")
+  const [currentSlide, setCurrentSlide] = useState(null)
+  const [currentPosition, setCurrentPosition] = useState(0)
 
-  componentDidMount(){
-    this.setState({ currentSlide: this.props.slides[0] })
-    this.startSlideTimer = setInterval(this.slideTimer, 10000)
-    this.slideOutTimer = setInterval(this.slideOut, 9750)
-  }
+  const { slides } = props
 
-  switchPosition = (position) => {
-    clearInterval(this.startSlideTimer)
-    clearInterval(this.slideOutTimer)
+  const startSliderTimerRef = useRef(null)
+  const slideInTimerRef = useRef(null)
+  const slideOutTimerRef = useRef(null)
 
-    let slideIn = (position) => {
-      this.setState({
-        currentSlideState: "mount",
-        currentSlide: this.props.slides[position],
-        currentPosition: position
-      })
-      clearTimeout(this.slideInTimeout)
+  useEffect(() => {
+    setCurrentSlide(slides[currentPosition])
+
+    const slideOut = () => {
+      setSlideState("dismount")
+      clearInterval(slideOutTimerRef.current)
     }
 
-    this.slideInTimeout = setTimeout(function(){ slideIn(position) }, 250)
-    this.setState({ currentSlideState: "dismount" })
+    const slideTimer = () => {
+      slideOutTimerRef.current = setInterval(slideOut, 9750)
+      let nextPosition = currentPosition < slides.length ? currentPosition + 1 : 0
+
+      setSlideState("mount")
+      setCurrentSlide(slides[nextPosition])
+      setCurrentPosition(nextPosition)
+    }
+
+    startSliderTimerRef.current =  setInterval(slideTimer, 10000)
+    slideOutTimerRef.current = setInterval(slideOut, 9750)
+
+    return function cleanup() {
+      clearInterval(startSliderTimerRef.current)
+      clearTimeout(slideInTimerRef.current)
+      clearInterval(slideOutTimerRef.current)
+    }
+  }, [slides, currentPosition])
+
+  const switchPosition = (position) => {
+    clearInterval(startSliderTimerRef.current)
+    clearInterval(slideOutTimerRef.current)
+
+    let slideIn = (position) => {
+      setSlideState("mount")
+      setCurrentSlide(props.slides[position])
+      setCurrentPosition(position)
+      clearTimeout(slideInTimerRef.current)
+    }
+
+    slideInTimerRef.current = setTimeout(function(){ slideIn(position) }, 250)
+    setSlideState("dismount")
   }
 
-  slideOut = () => {
-    this.setState({ currentSlideState: "dismount" })
-    clearInterval(this.slideOutTimer)
-  }
-
-  slideTimer = () => {
-    this.slideOutTimer = setInterval(this.slideOut, 9750)
-    let nextPosition = this.state.currentPosition + 1
-
-    if(nextPosition >= this.props.slides.length) { nextPosition = 0 }
-
-    this.setState({
-      currentSlideState: "mount",
-      currentSlide: this.props.slides[nextPosition],
-      currentPosition: nextPosition
-    })
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.startSlideTimer)
-    clearInterval(this.slideOutTimer)
-    clearTimeout(this.slideInTimeout)
-  }
-
-  render(){
-    return(
-      <div className='default_carousel_container'>
-        <CarouselSlideContainer
-          currentSlideState={ this.state.currentSlideState }
-          currentSlide={ this.state.currentSlide }
-        />
-        <CarouselButtonContainer
-          buttonCount={ this.props.slides.length }
-          currentPosition={ this.state.currentPosition }
-          switchPosition ={ this.switchPosition }
-        />
-      </div>
-    )
-  }
+  return(
+    <div className='default_carousel_container'>
+      <CarouselSlideContainer
+        currentSlideState={ slideState }
+        currentSlide={ currentSlide }
+      />
+      <CarouselButtonContainer
+        buttonCount={ props.slides.length }
+        currentPosition={ currentPosition }
+        switchPosition={ switchPosition }
+      />
+    </div>
+  )
 }
 
 export default DefaultCarouselContainer
