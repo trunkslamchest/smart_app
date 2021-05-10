@@ -35,8 +35,6 @@ class LogIn extends React.Component {
   }
 
   componentDidUpdate() {
-    // if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    // if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
     if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
       let email = [], password = []
       if(this.props.auth.errors[0].code === 421) this.props.auth.errors.forEach(error => email.push(error) )

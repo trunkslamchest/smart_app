@@ -40,12 +40,11 @@ class SignUp extends React.Component {
   }
 
   componentDidUpdate() {
-    // if(this.props.auth.loading && this.state.enableButton) this.setState({ enableButton: false, enableInput: false })
-    // if(!this.props.auth.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
     if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
       let email = []
       if(this.props.auth.errors[0].code === 422) this.props.auth.errors.forEach(error => email.push(error) )
-      this.setState({ errors: { email: email } })
+      this.setState({ errors: { email: email }, validationLoading: false, enableButton: true, enableInput: true })
+      this.props.onClearAuthErrors()
       this.props.onClearAuthStatus()
     }
   }
@@ -71,7 +70,6 @@ class SignUp extends React.Component {
     this.setState({ form: authCheck })
     if(authCheck.valid) this.checkUserExists()
     else {
-      // console.log(authCheck)
       this.setState({
         validationLoading: false,
         enableButton: true,
