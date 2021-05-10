@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState } from 'react'
+import useOnMount from '../../../utility/hooks/useOnMount'
 
 import paginateLeaderBoard from '../../leaderBoardsFunctions/paginateLeaderBoard'
 import LeaderBoardsScoresRow from '../leaderBoardsScoresRow/leaderBoardsScoresRow'
@@ -8,61 +10,55 @@ import flagIconIndex from '../../../assets/flag_icons/flagIconIndex'
 
 import './leaderBoardsScoresContainer.css'
 
-class LeaderBoardScoresContainer extends React.Component {
+const LeaderBoardScoresContainer = (props) => {
 
-  state = {
-    currentPage: 0,
-    initPaginate: false,
-    leaderBoard: []
-  }
+  const [currentPage, setCurrentPage] = useState(0)
+  const [leaderBoard, setLeaderboard] = useState([])
 
-  componentDidMount() {
-    if(this.props.scores) {
-      let pagniatedLeaderBoard = paginateLeaderBoard(this.props.pageLimit, this.props.scores)
-      this.setState({ leaderBoard: pagniatedLeaderBoard })
-    }
-  }
+  const { scores, pageLimit } = props
 
-  onChangePage = (value) => {
-    let page = parseInt(this.state.currentPage)
+  let distribScores
+
+  useOnMount(() => {
+    let pagniatedLeaderBoard = paginateLeaderBoard(pageLimit, scores)
+    setLeaderboard(pagniatedLeaderBoard)
+  }, [scores, pageLimit, leaderBoard, paginateLeaderBoard])
+
+  const onChangePage = (value) => {
+    let page = parseInt(currentPage)
     page += parseInt(value)
     if(page < 0) page = 0
-    if(page > this.state.leaderBoard.length - 1) page = this.state.leaderBoard.length - 1
-    this.setState({ currentPage: page })
+    if(page > leaderBoard.length - 1) page = leaderBoard.length - 1
+    setCurrentPage(page)
   }
 
-  render() {
-
-    let distribScores
-
-    if(!!this.state.leaderBoard[this.state.currentPage]) {
-      distribScores = this.state.leaderBoard[this.state.currentPage].map((score, index) => {
-        return !!score ?
-          <LeaderBoardsScoresRow
-            countryFlag={ flagIconIndex[score.country] }
-            history={ this.props.history }
-            key={ score.uid }
-            score={ score }
-          />
-        :
-          <LeaderBoardsScoresRow countryFlag={ null } history={ null } key={ index } score={ null } />
-      })
-    }
-
-    return (
-      <div className="leader_board_scores_container">
-        <div className="leader_board_scores_row_container">
-          { distribScores }
-        </div>
-        <LeaderBoardsButtonsRow
-          onChangePage={ this.onChangePage }
-          currentPage={ this.state.currentPage }
-          maxPages={ this.state.leaderBoard.length }
-          tooltipClass={ 'leader_boards_nav_button_tooltip' }
+  if(!!leaderBoard[currentPage]) {
+    distribScores = leaderBoard[currentPage].map((score, index) => {
+      return !!score ?
+        <LeaderBoardsScoresRow
+          countryFlag={ flagIconIndex[score.country] }
+          history={ props.history }
+          key={ score.uid }
+          score={ score }
         />
-      </div>
-    )
+      :
+        <LeaderBoardsScoresRow countryFlag={ null } history={ null } key={ index } score={ null } />
+    })
   }
+
+  return (
+    <div className="leader_board_scores_container">
+      <div className="leader_board_scores_row_container">
+        { distribScores }
+      </div>
+      <LeaderBoardsButtonsRow
+        onChangePage={ onChangePage }
+        currentPage={ currentPage }
+        maxPages={ leaderBoard.length }
+        tooltipClass={ 'leader_boards_nav_button_tooltip' }
+      />
+    </div>
+  )
 }
 
 export default LeaderBoardScoresContainer

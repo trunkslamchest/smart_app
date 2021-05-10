@@ -161,17 +161,3 @@ export default DefaultButton
 //   tooltipClass={  }
 //   type={  }
 // />
-
-
-// this.props.enableButton
-// this.props.buttonClass
-// this.props.id
-// this.props.name
-// this.props.params
-// this.props.onClickFunction
-// this.props.type
-// this.props.text
-// this.props.image
-// this.props.imageHover
-// this.props.tooltipText
-// this.props.tooltipClass
