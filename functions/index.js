@@ -1935,7 +1935,7 @@ var calcAchievements = function(achievements, achievementsTotals, userAchievemen
     !userAchievements.unlocked.includes(`${allAnswered}Answer`)
   ) unlockedAchievements.push(`${allAnswered}Answer`)
 
-  if((diffCorrect === 4 || diffCorrect === 25 || diffCorrect === 50) &&
+  if(( diffCorrect === 25 || diffCorrect === 50) &&
   !userAchievements.unlocked.includes(`Answer${diffCorrect}${diff}Correct`)) {
     unlockedAchievements.push(`Answer${diffCorrect}${diff}Correct`)
   }
@@ -1949,6 +1949,7 @@ var calcAchievements = function(achievements, achievementsTotals, userAchievemen
     resAchievementsObj = { total: 0, unlocked: [] }
     userAchievementsObj = { total: 0, unlocked: [ "null" ] }
   } else {
+    console.log(unlockedAchievements)
     unlockedAchievements.forEach(achievement => achievements[achievement].total += 1)
     resAchievementsObj = { total: unlockedAchievements.length, unlocked: unlockedAchievements }
     userAchievementsObj = { total: userAchievements.total + unlockedAchievements.length, unlocked: unlockedAchievements }

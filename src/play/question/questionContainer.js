@@ -1,4 +1,6 @@
 import React from 'react'
+import { useEffect, useRef, useState } from 'react'
+import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 import { loading, setAnswer } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
@@ -7,89 +9,95 @@ import QuestionCard from './questionCard/questionCard'
 
 import './questionContainer.css'
 
-class QuestionContainer extends React.Component{
+const QuestionContainer = (props) => {
 
-  state = {
-    time: (10.00).toFixed(2),
-    showTimer: false,
-    startTimer: false,
-    enableQuestion: false,
-    showHeader: false,
-    showQuestion: false,
-    showChoices: false
-  }
+  const [time, setTime] = useState((10.00).toFixed(2))
+  const [timerState, setTimerState] = useState(false)
+  const [enableQuestion, setEnableQuestion] = useState(false)
+  const [headerState, setHeaderState] = useState(false)
+  const [questionState, setQuestionState] = useState(false)
+  const [choicesState, setChoicesState] = useState(false)
 
-  componentDidMount(){
+  const { play, history, onSetAnswer } = props
 
-    if(!this.props.play.gameMode || this.props.play.answer) this.props.history.push( routes.play )
+  const gameTimerRef = useRef(null)
+  const startTimerRef = useRef(null)
+  const headerTimerRef = useRef(null)
+  const questionTimerRef = useRef(null)
+  const choicesTimerRef = useRef(null)
+  const enableQuestionTimerRef = useRef(null)
+  const outtaTimeTimerRef = useRef(null)
+  const timerIntervalRef = useRef(null)
 
-    if((this.props.play.status === 'setGameModeSuccess') && this.props.play.gameMode !== 'quick_play') this.props.history.push( routes[this.props.play.gameMode] + '/select' )
-    if(this.props.play.gameState === 'completed') {
-      if(this.props.play.gameMode === 'quick_play') this.props.history.push( routes.play + '/completed' )
-      else this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+  useOnMount(() => {
+    if(!play.gameMode || play.answer) history.push( routes.play )
+
+    if((play.status === 'setGameModeSuccess') && play.gameMode !== 'quick_play') history.push( routes[play.gameMode] + '/select' )
+    if(play.gameState === 'completed') {
+      if(play.gameMode === 'quick_play') history.push( routes.play + '/completed' )
+      else history.push( routes[play.gameMode] + '/completed' )
     }
 
+    if(play.gameMode === 'quick_play') document.title = 'SmartApp™ | Play | Quick Play | Question'
+    if(play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Question'
+    if(play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Question'
 
-    if(this.props.play.gameMode === 'quick_play') document.title = 'SmartApp™ | Play | Quick Play | Question'
-    if(this.props.play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Question'
-    if(this.props.play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Question'
+    gameTimerRef.current = setTimeout(() => { setTimerState(true) }, 100)
+    headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 2000)
+    questionTimerRef.current = setTimeout(() => { setQuestionState(true) }, 3000)
+    choicesTimerRef.current = setTimeout(() => { setChoicesState(true) }, 4000)
+    enableQuestionTimerRef.current = setTimeout(() => { setEnableQuestion(true) }, 5000)
+    startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
 
-    this.timerTimeout = setTimeout(() => { this.setState({ showTimer: true })}, 100)
-    this.startTimer = setTimeout(() => { this.timerInterval = setInterval(this.timerFunctions, 10)}, 5000)
-    this.questionTimeout = setTimeout(() => { this.setState({ showQuestion: true })}, 3000)
-    this.choicesTimeout = setTimeout(() => { this.setState({ showChoices: true })}, 4000)
-    this.enableQuestionTimeout = setTimeout(() => { this.setState({ enableQuestion: true })}, 5000)
-    this.headerTimeout = setTimeout(() => { this.setState({ showHeader: true })}, 2000)
-  }
+    return function cleanup(){
+      clearTimers()
+      clearTimeout(outtaTimeTimerRef.current)
+    }
+  }, [play, history, routes])
 
-  componentWillUnmount(){
-    clearTimeout(this.headerTimeout)
-    clearTimeout(this.questionTimeout)
-    clearTimeout(this.choicesTimeout)
-    clearTimeout(this.timerTimeout)
-    clearTimeout(this.enableQuestionTimeout)
-    clearTimeout(this.outtaTimeTimeout)
-    clearTimeout(this.completedTimeout)
-    clearInterval(this.timerInterval)
-    clearInterval(this.startTimer)
-  }
+  useEffect(() => {
+    if (time <= 0) {
+      setTime((0.00).toFixed(2))
+      clearTimers()
+      outtaTimeTimerRef.current = setTimeout(() => { onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
+    }
+  }, [time, onSetAnswer])
 
-  timerFunctions = () => {
-    if (this.state.time <= 0) {
-      this.setState({ time: (0.00).toFixed(2)})
-      clearInterval(this.timerInterval)
-      this.outtaTimeTimeout = setTimeout(() => { this.props.onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
-    // }
-    } else this.setState({ time: (this.state.time - 0.01).toFixed(2) })
-  }
-
-  onClickFunction = (event) => {
+  const onClickFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    clearInterval(this.timerInterval)
-    this.props.onLoadingModal(true)
-    this.setState({ enableQuestion: false })
-    this.props.onSetAnswer({ choice: buttonParams.choice, time: parseFloat((10 - this.state.time).toFixed(2)) })
+    setEnableQuestion(false)
+    setTimerState(false)
+    props.onLoadingModal(true)
+    props.onSetAnswer({ choice: buttonParams.choice, time: parseFloat((10 - time).toFixed(2)) })
   }
 
-  render(){
-    return(
-      <>
-        { this.state.showTimer && this.props.play.question &&
-          <div className='question_wrapper'>
-            <QuestionCard
-              time={ this.state.time }
-              enableQuestion={ this.state.enableQuestion }
-              onClickFunction={ this.onClickFunction }
-              showTimer={ this.state.showTimer }
-              showHeader={ this.state.showHeader }
-              showQuestion={ this.state.showQuestion }
-              showChoices={ this.state.showChoices }
-            />
-          </div>
-        }
-      </>
-    )
+  const clearTimers = () => {
+    clearTimeout(gameTimerRef.current)
+    clearTimeout(headerTimerRef.current)
+    clearTimeout(questionTimerRef.current)
+    clearTimeout(choicesTimerRef.current)
+    clearTimeout(enableQuestionTimerRef.current)
+    clearTimeout(startTimerRef.current)
+    clearInterval(timerIntervalRef.current)
   }
+
+  return(
+    <>
+      { timerState && props.play.question &&
+        <div className='question_wrapper'>
+          <QuestionCard
+            time={ time }
+            enableQuestion={ enableQuestion }
+            onClickFunction={ onClickFunction }
+            showTimer={ timerState }
+            showHeader={ headerState }
+            showQuestion={ questionState }
+            showChoices={ choicesState }
+          />
+        </div>
+      }
+    </>
+  )
 }
 
 const store = (store) => {
