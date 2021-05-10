@@ -1,4 +1,6 @@
 import React from 'react'
+import { useRef, useState } from 'react'
+import useOnMount from '../../utility/hooks/useOnMount'
 import { Route, Switch } from 'react-router-dom'
 import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
@@ -32,146 +34,145 @@ import resultsNavBarIconIndex from '../../assets/nav_bar_icons/resultsNavBarIcon
 
 import './resultsContainer.css'
 
-class ResultsContainer extends React.Component{
+const ResultsContainer = (props) => {
 
-  state = {
-    enableNextQuestionButton: false,
-    showNextQuestionButton: false
-  }
+  const [showNextQuestionButton, setShowNextQuestionButton] = useState(false)
+  const [enableNextQuestionButton, setEnableNextQuestionButton] = useState(false)
 
-  componentDidMount(){
-    if(!this.props.staticResults) {
-      document.title = `SmartApp™ | Play | ${ this.props.play.gameMode } | Results`
-      this.startResultTimers()
+  const showNextQuestionButtonRef = useRef(null)
+  const enableNextQuestionButtonRef = useRef(null)
+
+  const { staticResults, play, history, onClearStaticQuestion, onClearStaticUserQuestion, onClearQuestionStatus, onClearStaticQuestionVoteStatus, onClearStaticUserVote } = props
+
+  useOnMount(() => {
+    const startResultsTimers = () => {
+      showNextQuestionButtonRef.current = setTimeout(() => { setShowNextQuestionButton(true) }, 2500)
+      enableNextQuestionButtonRef.current = setTimeout(() => { setEnableNextQuestionButton(true) }, 2750)
     }
 
-    if(!this.props.play.question && !this.props.staticResults) this.props.history.push( routes.play )
+    if(!staticResults) {
+      document.title = `SmartApp™ | Play | ${ play.gameMode } | Results`
+      startResultsTimers()
+    }
+
+    if(!play.question && !staticResults) history.push( routes.play )
+
+    return function cleanup(){
+      clearTimeout(showNextQuestionButtonRef.current)
+      clearTimeout(enableNextQuestionButtonRef.current)
+      onClearStaticQuestion()
+      onClearStaticUserQuestion()
+      onClearQuestionStatus()
+      onClearStaticQuestionVoteStatus()
+      onClearStaticUserVote()
+    }
+  }, [staticResults, play, history, routes, onClearStaticQuestion, onClearStaticUserQuestion, onClearQuestionStatus, onClearStaticQuestionVoteStatus, onClearStaticUserVote])
+
+  const onDisableNextQuestionButton = () => { setEnableNextQuestionButton(false) }
+
+  const onClickNextQuestionFunction = () => {
+    props.onSetGameState('reInit')
+    props.onUpdateGameStatus('reInitGame', true)
+    props.onLoadingModal(true)
+    onDisableNextQuestionButton()
+    if(play.question) props.onResetQuestion()
+    if(play.answer) props.onResetAnswer()
+    if(play.results) props.onResetResults()
+    if(play.voteStatus) props.onResetVote()
+    if(play.commentStatus) props.onResetComment()
   }
 
-  startResultTimers = () => {
-    this.nextQuestionButtonTimeout = setTimeout(() => { this.setState({ showNextQuestionButton: true })}, 2500)
-    this.enableNextQuestionButtonTimeout = setTimeout(() => { this.setState({ enableNextQuestionButton: true })}, 2750)
+  const onHelp = () => {
+    props.onSetHelpHeader('SmartApp™ Results')
+    props.onSetHelpSections(makeResultsHelpSections)
+    props.onHelpModal(true)
   }
 
-  componentWillUnmount(){
-    clearTimeout(this.nextQuestionButtonTimeout)
-    clearTimeout(this.enableNextQuestionTimeout)
-    this.props.onClearStaticQuestion()
-    this.props.onClearStaticUserQuestion()
-    this.props.onClearQuestionStatus()
-    this.props.onClearStaticQuestionVoteStatus()
-    this.props.onClearStaticUserVote()
-  }
-
-  onDisableNextQuestionButton = () => { this.setState({ enableNextQuestionButton: false }) }
-
-  onClickNextQuestionFunction = () => {
-    this.props.onSetGameState('reInit')
-    this.props.onUpdateGameStatus('reInitGame', true)
-    this.props.onLoadingModal(true)
-    this.onDisableNextQuestionButton()
-    if(this.props.play.question) this.props.onResetQuestion()
-    if(this.props.play.answer) this.props.onResetAnswer()
-    if(this.props.play.results) this.props.onResetResults()
-    if(this.props.play.voteStatus) this.props.onResetVote()
-    if(this.props.play.commentStatus) this.props.onResetComment()
-    // this.props.history.push(routes[this.props.gameMode] + '/question')
-  }
-
-  onHelp = () => {
-    this.props.onSetHelpHeader('SmartApp™ Results')
-    this.props.onSetHelpSections(makeResultsHelpSections)
-    this.props.onHelpModal(true)
-  }
-
-  onPushLink = (event) => {
+  const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    this.props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
-  render(){
+  const baseStaticRoute = routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid
 
-    const baseStaticRoute = routes.static_results + '/' + this.props.diff + '/' + this.props.cat + '/' + this.props.qid
+  let routeBoard
+  let statsRoute = staticResults ? baseStaticRoute + '/stats' : routes[play.gameMode] + '/results/stats'
+  let discussRoute = staticResults ? baseStaticRoute + '/discuss' : routes[play.gameMode] + '/results/discuss'
+  let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute })
 
-    let routeBoard
-    let statsRoute = this.props.staticResults ? baseStaticRoute + '/stats' : routes[this.props.play.gameMode] + '/results/stats'
-    let discussRoute = this.props.staticResults ? baseStaticRoute + '/discuss' : routes[this.props.play.gameMode] + '/results/discuss'
-    let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, this.onHelp, this.onPushLink, { stats: statsRoute, discuss: discussRoute })
-
-    const nextQuestionButton = [
-      {
-        buttonClass: 'next_question_button',
-        id: 'next_question_button',
-        name: 'nextQuestionButton',
-        enableButton: this.state.enableNextQuestionButton,
-        onClickFunction: this.onClickNextQuestionFunction,
-        text: "Next Question",
-        tooltipText: [ 'Answer another question' ],
-        tooltipClass: 'next_question_button_tooltip',
-        type: 'button'
-      }
-    ]
-
-    if(this.props.staticResults){
-      routeBoard =
-        <Switch>
-          <Route exact path={ baseStaticRoute + '/stats' }>
-            <ResultsStatsContainer
-              history={ this.props.history }
-              staticResults={ this.props.staticResults }
-            />
-          </Route>
-          <Route exact path={ baseStaticRoute + '/discuss' }>
-            <ResultsDiscussContainer
-              cat={ this.props.cat }
-              diff={ this.props.diff }
-              history={ this.props.history }
-              qid={ this.props.qid }
-              staticResults={ this.props.staticResults }
-            />
-          </Route>
-        </Switch>
-    } else {
-      routeBoard =
-        <Switch>
-          <Route exact path={ routes[this.props.play.gameMode] + '/results/stats' }>
-            <ResultsStatsContainer
-              history={ this.props.history }
-              staticResults={ this.props.staticResults }
-            />
-            { this.state.showNextQuestionButton &&
-              <DefaultButtonsContainer
-                buttons={ nextQuestionButton }
-                containerClass={ 'next_question_buttons_container' }
-                enableButton={ this.state.enableNextQuestionButton }
-              />
-            }
-          </Route>
-          <Route exact path={ routes[this.props.play.gameMode] + '/results/discuss' }>
-            <ResultsDiscussContainer
-              history={ this.props.history }
-              staticResults={ this.props.staticResults }
-            />
-          </Route>
-        </Switch>
+  const nextQuestionButton = [
+    {
+      buttonClass: 'next_question_button',
+      id: 'next_question_button',
+      name: 'nextQuestionButton',
+      enableButton: enableNextQuestionButton,
+      onClickFunction: onClickNextQuestionFunction,
+      text: "Next Question",
+      tooltipText: [ 'Answer another question' ],
+      tooltipClass: 'next_question_button_tooltip',
+      type: 'button'
     }
+  ]
 
-    return(
-      <>
-        <DefaultButtonsContainer
-          buttons={ navBarButtons }
-          buttonClass={ 'nav_bar_button' }
-          buttonRow={ true }
-          containerClass={ 'nav_bar_container' }
-          enableButton={ true }
-          tooltipClass={ 'nav_bar_tooltip' }
-        />
-        <div className='results_wrapper'>
-          { routeBoard }
-        </div>
-      </>
-    )
+  if(staticResults){
+    routeBoard =
+      <Switch>
+        <Route exact path={ baseStaticRoute + '/stats' }>
+          <ResultsStatsContainer
+            history={ history }
+            staticResults={ staticResults }
+          />
+        </Route>
+        <Route exact path={ baseStaticRoute + '/discuss' }>
+          <ResultsDiscussContainer
+            cat={ props.cat }
+            diff={ props.diff }
+            history={ history }
+            qid={ props.qid }
+            staticResults={ staticResults }
+          />
+        </Route>
+      </Switch>
+  } else {
+    routeBoard =
+      <Switch>
+        <Route exact path={ routes[play.gameMode] + '/results/stats' }>
+          <ResultsStatsContainer
+            history={ history }
+            staticResults={ staticResults }
+          />
+          { showNextQuestionButton &&
+            <DefaultButtonsContainer
+              buttons={ nextQuestionButton }
+              containerClass={ 'next_question_buttons_container' }
+              enableButton={ enableNextQuestionButton }
+            />
+          }
+        </Route>
+        <Route exact path={ routes[play.gameMode] + '/results/discuss' }>
+          <ResultsDiscussContainer
+            history={ history }
+            staticResults={ staticResults }
+          />
+        </Route>
+      </Switch>
   }
+
+  return(
+    <>
+      <DefaultButtonsContainer
+        buttons={ navBarButtons }
+        buttonClass={ 'nav_bar_button' }
+        buttonRow={ true }
+        containerClass={ 'nav_bar_container' }
+        enableButton={ true }
+        tooltipClass={ 'nav_bar_tooltip' }
+      />
+      <div className='results_wrapper'>
+        { routeBoard }
+      </div>
+    </>
+  )
 }
 
 const store = (store) => {
