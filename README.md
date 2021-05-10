@@ -5,11 +5,11 @@
 
 <p align="center">
   <img align="center" src="https://img.shields.io/badge/CSS-3.0-1572B6">
-  <img align="center" src="https://img.shields.io/badge/Firebase-7.15.5-F57C00">
+  <img align="center" src="https://img.shields.io/badge/Firebase-8.5.0-F57C00">
   <img align="center" src="https://img.shields.io/badge/HTML-5.2-E34F26">
   <img align="center" src="https://img.shields.io/badge/Javascript-1.8.5-F7DF1E">
-  <img align="center" src="https://img.shields.io/badge/React.JS-16.13.1-61DAFB">
-  <img align="center" src="https://img.shields.io/badge/Redux.JS-7.2.0-764ABC">
+  <img align="center" src="https://img.shields.io/badge/React.JS-17.0.2-61DAFB">
+  <img align="center" src="https://img.shields.io/badge/Redux.JS-4.1.0-764ABC">
   <img align="center" src="https://img.shields.io/badge/SCSS-4.14.1-c69">
 </p>
 
@@ -51,7 +51,7 @@
   - 20 categories
   - User profiles with personalization and privacy settings
   - In depth question based user statistics
-  - Unlockable Achievements
+  - 56 Unlockable Achievements
   - Performance based experience/leveling system
   - Statistically generated ranks/ratings
   - Interational/Regional/Category Specific Live Leaderboards
