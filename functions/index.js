@@ -900,7 +900,14 @@ exports.questionVote = functions
       });
 
     getRef.then((db) => {
-      let voteObj = {}, ratingObj = {}, voteTotalsObj = {}, userVoteObj = {}, userVoteTotalsObj = {},
+      let voteObj = {},
+          ratingObj = {},
+          voteTotalsObj = {},
+          voteDiffTotalsObj = {},
+          voteCatTotalsObj = {},
+
+          userVoteObj = {},
+          userVoteTotalsObj = {},
           voteTotalsBlankObj = { ZeroStars: 0, OneStars: 0, TwoStars: 0, ThreeStars: 0, FourStars: 0, FiveStars: 0, total: 0 }
 
       var question = db.questions.list[reqData.qid]
@@ -919,7 +926,23 @@ exports.questionVote = functions
       let voteRating = calcVoteRating(voteAvg)
       ratingObj = { ...question.rating, approval: voteRating }
 
-      voteTotalsObj = { ...questionTotals.all.votes, [reqData.vote]: questionTotals.all.votes[reqData.vote] + 1, total: questionTotals.all.votes.total + 1 }
+      voteTotalsObj = {
+        ...questionTotals.all.votes,
+        [reqData.vote]: questionTotals.all.votes[reqData.vote] + 1,
+        total: questionTotals.all.votes.total + 1
+      }
+
+      voteDiffTotalsObj = {
+        ...questionTotals.difficulty[question.difficulty].votes,
+         [reqData.vote]: questionTotals.difficulty[question.difficulty].votes[reqData.vote] + 1,
+        total: questionTotals.difficulty[question.difficulty].votes.total + 1
+      }
+
+      voteCatTotalsObj = {
+        ...questionTotals.category[question.category].votes,
+        [reqData.vote]: questionTotals.category[question.category].votes[reqData.vote] + 1,
+        total: questionTotals.category[question.category].votes.total + 1
+      }
 
       voteAveragesObj = {
         ...questionTotals.all.averages.votes,
@@ -934,6 +957,9 @@ exports.questionVote = functions
       firebase.database().ref('/questions/list/' + reqData.qid + '/votes').update(voteObj)
       firebase.database().ref('/questions/list/' + reqData.qid + '/rating').update(ratingObj)
       firebase.database().ref('/questions/totals/all/votes').update(voteTotalsObj)
+      firebase.database().ref(`/questions/totals/difficulty/${question.difficulty}/votes`).update(voteDiffTotalsObj)
+      firebase.database().ref(`/questions/totals/category/${question.category}/votes`).update(voteCatTotalsObj)
+
       firebase.database().ref('/questions/totals/all/averages/votes').update(voteAveragesObj)
 
       voteObj["vid"] = vid
@@ -946,8 +972,16 @@ exports.questionVote = functions
 
       userVoteObj[userVotePath] = { ...user.questions.list[reqData.qid].votes, [vid]: { vote: reqData.vote } }
 
-      if(user.questions.totals.all.votes) userVoteTotalsObj[userVoteTotalPath] = { ...voteTotalsBlankObj, [reqData.vote]: 1, total: 1 }
-      else userVoteTotalsObj[userVoteTotalPath] = { ...user.questions.totals.all.votes, [reqData.vote]: user.questions.totals.all.votes[reqData.vote] + 1, total: user.questions.totals.all.votes.total + 1 }
+      // if(user.questions.totals.all.votes) userVoteTotalsObj[userVoteTotalPath] = { ...voteTotalsBlankObj, [reqData.vote]: 1, total: 1 }
+      // else userVoteTotalsObj[userVoteTotalPath] = { ...user.questions.totals.all.votes, [reqData.vote]: user.questions.totals.all.votes[reqData.vote] + 1, total: user.questions.totals.all.votes.total + 1 }
+
+      userVoteTotalsObj[userVoteTotalPath] = {
+        ...user.questions.totals.all.votes,
+        [reqData.vote]: user.questions.totals.all.votes[reqData.vote] + 1,
+        total: user.questions.totals.all.votes.total + 1
+      }
+
+      console.log(userVoteTotalsObj)
 
       firebase.database().ref().update(userVoteObj);
       firebase.database().ref().update(userVoteTotalsObj);
@@ -972,16 +1006,26 @@ exports.questionComment = functions
 
     getRef.then((db) => {
 
-      let questionCommentsObj = {}, commentsTotalObj = {}, commentObj = {}, userCommentObj = {}, userCommentTotalsObj = {}, resObj = {}
+      let questionCommentsObj = {},
+          commentsTotalObj = {},
+          commentsDiffTotalObj = {},
+          commentsCatTotalObj = {},
+          commentObj = {},
+          userCommentObj = {},
+          userCommentTotalsObj = {},
+          resObj = {}
 
       var question = db.questions.list[reqData.qid]
           questionTotals = db.questions.totals,
           user = db.users.list[reqData.uid],
           userTotals = db.users.totals
 
-      var commentsTotalPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
-      var userCommentPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments'
-      var userCommentsTotalPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'all' + '/' + 'comments'
+      var commentsTotalPath = '/questions/totals/all/comments'
+      var commentsDiffTotalPath = '/questions/totals/difficulty/'+ question.difficulty + '/comments'
+      var commentsCatTotalPath = '/questions/totals/category/' + question.category + '/comments'
+
+      var userCommentPath = '/users/list/' + reqData.uid + '/questions/list/' + reqData.qid + '/comments'
+      var userCommentsTotalPath = '/users/list/' + reqData.uid + '/questions/totals/all/comments'
 
       var cid = firebase.database().ref().push().key
 
@@ -995,12 +1039,16 @@ exports.questionComment = functions
       }
 
       commentsTotalObj[commentsTotalPath] =  questionTotals.all.comments + 1
+      commentsDiffTotalObj[commentsDiffTotalPath] = questionTotals.difficulty[question.difficulty].comments + 1
+      commentsCatTotalObj[commentsCatTotalPath] = questionTotals.category[question.category].comments + 1
 
       if(!question.comments) questionCommentsObj = commentObj
       else questionCommentsObj = { ...question.comments, ...commentObj }
 
       firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'comments').update(questionCommentsObj)
       firebase.database().ref().update(commentsTotalObj)
+      firebase.database().ref().update(commentsDiffTotalObj)
+      firebase.database().ref().update(commentsCatTotalObj)
 
       if(!user.questions.list[reqData.qid].comments) userCommentObj[userCommentPath] = { [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
       else userCommentObj[userCommentPath] = { ...user.questions.list[reqData.qid].comments, [cid]: { comment: reqData.comment, timestamp: reqData.timestamp } }
@@ -1046,16 +1094,33 @@ exports.deleteQuestionComment = functions
 
     getRef.then((db) => {
 
-      let questionCommentTotalsObj = {}, userCommentTotalsObj = {}
+      let questionCommentTotalsObj = {},
+          questionCommentDiffTotalsObj = {},
+          questionCommentCatTotalsObj = {},
+          userCommentTotalsObj = {}
 
-      var questionTotals = db.questions.totals,
+      var question = db.questions.list[reqData.question.qid]
+          questionTotals = db.questions.totals,
           user = db.users.list[reqData.comment.uid],
           questionCommentTotalsPath = '/questions/totals/all',
+          questionCommentDiffTotalsPath = '/questions/totals/difficulty/' + question.difficulty,
+          questionCommentCatTotalsPath = '/questions/totals/category/' + question.category,
+
           userPath = `/users/list/${reqData.comment.uid}/questions/totals/all`
 
       questionCommentTotalsObj[questionCommentTotalsPath] = {
         ...questionTotals.all,
         comments: questionTotals.all.comments - 1
+      }
+
+      questionCommentDiffTotalsObj[questionCommentDiffTotalsPath] = {
+        ...questionTotals.difficulty[question.difficulty],
+        comments: questionTotals.difficulty[question.difficulty].comments - 1
+      }
+
+      questionCommentCatTotalsObj[questionCommentCatTotalsPath] = {
+        ...questionTotals.category[question.category],
+        comments: questionTotals.category[question.category].comments - 1
       }
 
       userCommentTotalsObj[userPath] = {
@@ -1064,6 +1129,8 @@ exports.deleteQuestionComment = functions
       }
 
       firebase.database().ref().update(questionCommentTotalsObj);
+      firebase.database().ref().update(questionCommentDiffTotalsObj);
+      firebase.database().ref().update(questionCommentCatTotalsObj);
       firebase.database().ref().update(userCommentTotalsObj);
 
       res.json(reqData).status(200)
