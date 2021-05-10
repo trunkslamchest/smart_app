@@ -16,40 +16,26 @@ const DefaultButton = (props) =>  {
   const location = useLocation()
   const timerRef = useRef(null);
 
-  const switchHoverState = (bool) => { setHoverState(bool) }
-  const switchTooltipState = (bool) => { setTooltipState(bool) }
-  // const switchMenuState = (bool) => { setMenuState(bool) }
-
-
   const onHover = () => {
-    switchHoverState(true)
-  // console.log(props, menuState)
-    if(props.tooltipText) {
-      timerRef.current = setTimeout(() => { switchTooltipState(true) }, 250);
-    }
+    setHoverState(true)
+    if(props.tooltipText) timerRef.current = setTimeout(() => { setTooltipState(true) }, 250)
   }
 
   const offHover = () => {
-    switchHoverState(false)
-    switchTooltipState(false)
-    if(timerRef.current) clearTimeout(timerRef.current);
+    setHoverState(false)
+    setTooltipState(false)
+    if(timerRef.current) clearTimeout(timerRef.current)
   }
 
-  console.log(props, menuState)
-
   const onClickFunction = (event) => {
-
-  console.log(props.buttonType )
-    // console.log(menuState)
     event.preventDefault()
     event.persist()
     if(props.enableButton){
       if(!!props.onSwitchMenu){
-        // props.offHover()
-        // props.onSwitchMenu()
+        props.offHover()
+        props.onSwitchMenu()
       }
       if(props.buttonType === 'menu'){
-        // onSwitchMenu()
         let switchMenuState = !menuState
         setMenuState(switchMenuState)
       }
@@ -62,7 +48,6 @@ const DefaultButton = (props) =>  {
     }
 
     if(props.tooltipText && timerRef.current) clearTimeout(timerRef.current);
-
   }
 
   const onSwitchMenu = () => {
