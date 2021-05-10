@@ -1,63 +1,61 @@
 import React from 'react'
+import { useState } from 'react'
 
 import './formCheckBoxTOS.css'
 
-class FormCheckBox extends React.Component {
+const FormCheckBox = (props) => {
 
-  state={ hover: false }
+  const [hoverState, setHoverState] = useState(false)
 
-  onHover = () => { this.setState({ hover: true }) }
-  offHover = () => { this.setState({ hover: false }) }
-  disabledClickFunctions = (event) => { event.preventDefault() }
+  const onHover = () => { setHoverState(true) }
+  const offHover = () => { setHoverState(false) }
+  const disabledClickFunctions = (event) => { event.preventDefault() }
 
-  render() {
+  let checkmark, xMark
 
-    let checkmark, xMark
-
-    if(this.props.disabled) {
-      checkmark = this.props.checkedImageDisabled
-      xMark = this.props.uncheckedImageDisabled
+  if(props.disabled) {
+    checkmark = props.checkedImageDisabled
+    xMark = props.uncheckedImageDisabled
+  } else {
+    if(hoverState) {
+      checkmark = props.checkedImageHover
+      xMark = props.uncheckedImageHover
     } else {
-      if(this.state.hover) {
-        checkmark = this.props.checkedImageHover
-        xMark = this.props.uncheckedImageHover
-      } else {
-        checkmark = this.props.checkedImage
-        xMark = this.props.uncheckedImage
-      }
+      checkmark = props.checkedImage
+      xMark = props.uncheckedImage
     }
-
-    return(
-      <div className={ this.props.checkBoxButtonContainerClass }>
-        <button
-          id={ this.props.id }
-          className={ this.props.disabled ? this.props.checkBoxDisabledClass : this.props.checkBoxClass }
-          name={ this.props.name }
-          onClick={ this.props.disabled ? this.disabledClickFunctions : this.props.onChecked }
-          onMouseEnter={ this.onHover }
-          onMouseLeave={ this.offHover }
-        >
-          { this.props.status ?
-            <img
-              alt={ 'checked' }
-              className={ this.props.checkBoxImgClass }
-              name={ this.props.name }
-              src={ checkmark }
-              title={ this.props.name }
-            />
-          :
-            <img
-              alt={ 'not checked' }
-              className={ this.props.checkBoxImgClass }
-              name={ this.props.name }
-              src={ xMark }
-              title={ this.props.name }
-            />
-          }
-        </button>
-      </div>
-    )
   }
+
+  return(
+    <div className={ props.checkBoxButtonContainerClass }>
+      <button
+        id={ props.id }
+        className={ props.disabled ? props.checkBoxDisabledClass : props.checkBoxClass }
+        name={ props.name }
+        onClick={ props.disabled ? disabledClickFunctions : props.onChecked }
+        onMouseEnter={ onHover }
+        onMouseLeave={ offHover }
+      >
+        { props.status ?
+          <img
+            alt={ 'checked' }
+            className={ props.checkBoxImgClass }
+            name={ props.name }
+            src={ checkmark }
+            title={ props.name }
+          />
+        :
+          <img
+            alt={ 'not checked' }
+            className={ props.checkBoxImgClass }
+            name={ props.name }
+            src={ xMark }
+            title={ props.name }
+          />
+        }
+      </button>
+    </div>
+  )
 }
 
 export default FormCheckBox
