@@ -48,7 +48,6 @@ const updateStaticQuestionVotes = (currentState, action) => {
 }
 
 const updateStaticQuestionComments = (currentState, action) => {
-  console.log(action)
   return {
     ...currentState,
     staticQuestion: {

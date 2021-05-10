@@ -15,7 +15,18 @@ class DefaultMenu extends React.Component {
   componentDidMount() { document.addEventListener('click', this.onMouseClick) }
   componentWillUnmount() { document.removeEventListener('click', this.onMouseClick) }
   setMenuRef(node){this.menuRef = node}
-  onMouseClick = (event) => { if(this.menuRef && !this.menuRef.contains(event.target)) this.props.onSwitchMenu() }
+  onMouseClick = (event) => { 
+    console.log(this.props)
+
+    // console.log(this.menuRef)
+    // console.log(event.target.name)
+    // console.log(!this.menuRef.contains(event.target))
+
+    // console.log(this.props.onSwitchMenu)
+
+
+    if(this.menuRef && !this.menuRef.contains(event.target)) this.props.onSwitchMenu() 
+  }
 
   render() {
     return(

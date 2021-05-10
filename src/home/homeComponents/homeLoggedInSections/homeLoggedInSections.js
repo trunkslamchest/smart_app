@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   help,
+  logout,
   setHelpHeader,
   setHelpSections,
   resetGameMode,
@@ -30,6 +31,11 @@ const HomeLoggedInSections = (props) => {
     props.onHelpModal(true)
   }
 
+  const onLogOut = (event) => {
+    event.persist()
+    props.onLogoutModal(true)
+  }
+
   const onPushLink = (event) => {
     if(!!props.play.status) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -47,7 +53,7 @@ const HomeLoggedInSections = (props) => {
     if(!!props.play.commented) props.onResetComment()
   }
 
-  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, routes, props.user.info.user_name)
+  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, onLogOut, routes, props.user.info.user_name)
 
   let homeButtonSections = homeButtons.map((button, index) => {
     return(
@@ -88,6 +94,7 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
+    onLogoutModal: (bool) => dispatch(logout(bool)),
     onHelpModal: (bool) => dispatch(help(bool)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
     onSetHelpSections: (sections) => dispatch(setHelpSections(sections)),

@@ -1,4 +1,4 @@
-const makeHomeLoggedInButtons = (onPushLink, onHelp, routes, user_name) => {
+const makeHomeLoggedInButtons = (onPushLink, onHelp, onLogOut, routes, user_name) => {
   return [
     {
       buttonType: 'NavLink',
@@ -47,7 +47,15 @@ const makeHomeLoggedInButtons = (onPushLink, onHelp, routes, user_name) => {
       name: 'HelpButton',
       onClickFunction: onHelp,
       text: 'Help'
-    }
+    },
+    {
+      buttonType: 'button',
+      desc: 'Log out of your SmartApp™ Account',
+      id: 'log_out_button',
+      name: 'logOutButton',
+      onClickFunction: onLogOut,
+      text: "Log Out",
+    },
   ]
 }
 
