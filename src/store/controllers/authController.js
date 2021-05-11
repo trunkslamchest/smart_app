@@ -30,6 +30,8 @@ import {
 import { routes } from '../../utility/paths'
 import getTime from '../../utility/getTime'
 
+// import init from '../../auth/init';
+
 class AuthController extends React.Component {
 
   state = {
@@ -54,6 +56,15 @@ class AuthController extends React.Component {
   }
 
   componentDidMount(){
+    // firebase.database().ref('/').get().then((snap) => {
+    //   return snap.val()
+    // }).catch((error) => {
+    //   console.error(error);
+    // }).then(db => {
+    //   console.log(db)
+    // })
+
+  // console.log(ref)
     if (!localStorage.token) this.clearLocalStorageModule()
     else {
       this.props.onLoadingModal(true)
@@ -68,7 +79,11 @@ class AuthController extends React.Component {
     if(this.props.auth.authType === 'refresh' && this.props.auth.errors.length) this.authFailRefreshModule()
 
     if(this.props.auth.authType === 'editProfile') {
+      if(this.props.auth.authType && !this.state.authGoogle) this.authGoogleModule()
       if(this.props.auth.status === 'updateUserSuccess' && !this.state.authSuccess) this.authSuccessModule()
+      // if(this.props.auth.status === 'updateAuthUserSuccess' && !this.state.authSuccess) this.authSuccessModule()
+      // if(this.props.auth.status === 'authSuccess' && !this.state.updateUserSuccess) this.updateUserModule()
+
       if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) this.authValidModule('editProfile')
     }
 
@@ -96,60 +111,6 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'authSuccess' && !this.props.modal.deleteProfile) this.authRedirectModule('deleteProfile')
     }
   }
-
-  // shouldComponentUpdate(nextProps, nextState){
-  //   // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
-
-  //   // console.log(
-  //   //   this.props.auth.authType, nextProps.auth.authType, "|",
-  //   //   this.props.auth.status, nextProps.auth.status, "|",
-  //   //   this.props.auth.loading, nextProps.auth.loading, "|",
-  //   //   this.props.modal.logout, nextProps.modal.logout, "|",
-  //   //   this.state.authCleanup, nextState.authCleanup, "|",
-  //   //   this.props.modal.login, nextProps.modal.logout
-  //   // )
-
-  //   console.log('this.props.modal:', this.props.modal)
-  //   console.log('nextProps.modal:', nextProps.modal)
-  //   console.log('this.props.auth:', this.props.auth)
-  //   console.log('nextProps.auth:', nextProps.auth)
-
-
-  //   let render = false
-
-  //   if(this.props.auth.status !== 'null') render = true
-
-
-  //   if(nextProps.modal.login) {
-  //     render = true
-  //   }
-
-  //   if(nextProps.modal.signup) {
-  //     render = true
-  //   }
-
-  //   if(nextProps.modal.logout) {
-  //     render = true
-  //   }
-
-  //   if(nextProps.modal.deleteProfile) {
-  //     render = true
-  //   }
-
-  //   return render
-
-  //   // if(this.props.auth.authType === 'refresh') {
-  //   //   render = true
-  //   // }
-
-  //   // if(this.props.auth.status === "authValid" || this.props.auth.status === "clearAuthCreds") {
-  //   //   if(this.props.modal.loading || nextProps.modal.loading ||this.props.auth.loading || nextProps.auth.loading) {
-  //   //     render = true
-  //   //   }
-  //   // }
-
-  // //   return true
-  // }
 
   componentWillUnmount(){
     clearTimeout(this.authWaitTimeoutQuarterSec)
@@ -400,3 +361,57 @@ const dispatch = dispatch => {
 }
 
 export default connect(store, dispatch)(AuthController)
+
+ // shouldComponentUpdate(nextProps, nextState){
+  //   // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
+
+  //   // console.log(
+  //   //   this.props.auth.authType, nextProps.auth.authType, "|",
+  //   //   this.props.auth.status, nextProps.auth.status, "|",
+  //   //   this.props.auth.loading, nextProps.auth.loading, "|",
+  //   //   this.props.modal.logout, nextProps.modal.logout, "|",
+  //   //   this.state.authCleanup, nextState.authCleanup, "|",
+  //   //   this.props.modal.login, nextProps.modal.logout
+  //   // )
+
+  //   console.log('this.props.modal:', this.props.modal)
+  //   console.log('nextProps.modal:', nextProps.modal)
+  //   console.log('this.props.auth:', this.props.auth)
+  //   console.log('nextProps.auth:', nextProps.auth)
+
+
+  //   let render = false
+
+  //   if(this.props.auth.status !== 'null') render = true
+
+
+  //   if(nextProps.modal.login) {
+  //     render = true
+  //   }
+
+  //   if(nextProps.modal.signup) {
+  //     render = true
+  //   }
+
+  //   if(nextProps.modal.logout) {
+  //     render = true
+  //   }
+
+  //   if(nextProps.modal.deleteProfile) {
+  //     render = true
+  //   }
+
+  //   return render
+
+  //   // if(this.props.auth.authType === 'refresh') {
+  //   //   render = true
+  //   // }
+
+  //   // if(this.props.auth.status === "authValid" || this.props.auth.status === "clearAuthCreds") {
+  //   //   if(this.props.modal.loading || nextProps.modal.loading ||this.props.auth.loading || nextProps.auth.loading) {
+  //   //     render = true
+  //   //   }
+  //   // }
+
+  // //   return true
+  // }

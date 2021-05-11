@@ -173,6 +173,10 @@ class DashboardEditProfile extends React.Component {
   onValidEditProfile = () => {
     if(!this.state.form.pending && this.state.enableButton){
       this.props.onAuthStart('editProfile', {
+        refresh: {
+          grant_type: 'refresh_token',
+          refresh_token: localStorage.refreshToken
+        },
         uid: localStorage.id,
         info: {
           avatar: this.state.avatar,

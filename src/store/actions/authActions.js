@@ -35,7 +35,7 @@ export const authStart = (authType, obj) => {
     if(authType === 'editProfile') {
       dispatch(initAuth(authType))
       dispatch(authUpdateStatus('initUserEdit', true))
-      dispatch(updateUserInfo(authType, obj))
+      dispatch(authRefreshEdit(authType, obj))
     }
     if(authType === 'deleteProfile') {
       dispatch(initAuth(authType))
@@ -105,7 +105,7 @@ const initAuthFail = (error) => {
   }
 }
 
-export const authSuccess = (authType, obj) => {
+export const authSuccess = (authType, obj, updateObj) => {
   return dispatch => {
     if(authType === 'logIn') {
       updateLocalStorage(obj)
@@ -118,6 +118,10 @@ export const authSuccess = (authType, obj) => {
     if(authType === 'refresh') {
       updateLocalStorage(obj)
       dispatch(authComplete(obj))
+    }
+    if(authType === 'editProfile') {
+      updateLocalStorage(obj)
+      dispatch(authEditUser(authType, obj, updateObj))
     }
     if(authType === 'deleteProfile') {
       dispatch(authDelete(obj))
@@ -136,10 +140,15 @@ const authComplete = (obj) => {
 
 const updateLocalStorage = (obj) => {
   localStorage.access = 'normal'
+  localStorage.access_token = obj.access_token
   localStorage.id = obj.id
   localStorage.refreshToken = obj.refresh
   localStorage.token = obj.token
   localStorage.expiration = obj.expires
+  localStorage.passwordHash = obj.passwordHash
+  localStorage.displayName = obj.displayName || obj.user
+  localStorage.email = obj.email
+
 }
 
 const createUser = (obj) => {
@@ -178,12 +187,32 @@ export const authRefresh = (authType, obj) => {
     authFunctions('refreshToken', auth.refreshToken, obj)
     .then(authRes => {
       if(!!authRes.error) dispatch(authFail(authRes.error))
-      else dispatch(authSuccess(authType, {
-        expires: authRes.expires_in,
-        id: authRes.user_id,
-        refresh: authRes.refresh_token,
-        token: authRes.id_token
-      }))
+      else {
+        let tempObj = {
+          "idToken": authRes.id_token,
+          "email": localStorage.email,
+          "displayName": localStorage.displayName,
+          "localId": authRes.user_id,
+          "validSince": 360000,
+          "returnSecureToken": true
+        }
+
+        authFunctions('refreshToken', auth.update, tempObj)
+        .then(updateRes => {
+          if(!!updateRes.error) dispatch(authFail(updateRes.error))
+          else {
+            dispatch(authSuccess(authType, {
+              displayName: updateRes.displayName,
+              email: updateRes.email,
+              expires: updateRes.expiresIn,
+              id: updateRes.localId,
+              refresh: updateRes.refreshToken,
+              token: updateRes.idToken,
+              passwordHash: updateRes.passwordHash
+            }))
+          }
+        })
+      }
     })
   }
 }
@@ -194,6 +223,7 @@ export const authSignUp = (authType, obj) => {
     .then(authRes => {
       if(!!authRes.error) dispatch(authFail(authRes.error))
       else dispatch(authSuccess(authType, {
+        access_token: authRes.access_token,
         email: authRes.email,
         expires: authRes.expiresIn,
         id: authRes.localId,
@@ -211,6 +241,7 @@ export const authLogIn = (authType, obj) => {
     .then(authRes => {
       if(!!authRes.error) dispatch(authFail(authRes.error))
       else dispatch(authSuccess(authType, {
+        access_token: authRes.access_token,
         email: authRes.email,
         expires: authRes.expiresIn,
         id: authRes.localId,
@@ -218,6 +249,61 @@ export const authLogIn = (authType, obj) => {
         token: authRes.idToken,
         user: authRes.displayName
       }))
+    })
+  }
+}
+
+export const authRefreshEdit = (authType, obj) => {
+  return dispatch => {
+    authFunctions('refreshToken', auth.refreshToken, obj.refresh)
+    .then(authRes => {
+      if(!!authRes.error) dispatch(authFail(authRes.error))
+      else {
+        let tempObj = {
+          "idToken": authRes.id_token,
+          "email": localStorage.email,
+          "displayName": localStorage.displayName,
+          "localId": authRes.user_id,
+          "validSince": 360000,
+          "returnSecureToken": true
+        }
+
+        authFunctions('refreshToken', auth.update, tempObj)
+        .then(updateRes => {
+          if(!!updateRes.error) dispatch(authFail(updateRes.error))
+          else {
+            dispatch(authSuccess(authType, {
+              displayName: updateRes.displayName,
+              email: updateRes.email,
+              expires: updateRes.expiresIn,
+              id: updateRes.localId,
+              refresh: updateRes.refreshToken,
+              token: updateRes.idToken,
+              passwordHash: updateRes.passwordHash,
+              newDisplayName: obj.info.user_name,
+              newEmail: obj.info.email
+            }, obj))
+          }
+        })
+      }
+    })
+  }
+}
+
+const authEditUser = (authType, obj, updateObj) => {
+ return dispatch => {
+    let authObj = {
+      "idToken": obj.token,
+      "localId": obj.id,
+      "displayName": obj.newDisplayName,
+      "email": obj.newEmail,
+      "validSince": localStorage.expiration,
+      "returnSecureToken": true
+    }
+
+    authFunctions('editUser', auth.update, authObj)
+    .then(updateRes => {
+      dispatch(updateUserInfo(authType, updateObj))
     })
   }
 }
