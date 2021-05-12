@@ -36,7 +36,7 @@ import { routes } from '../../utility/paths'
 import getTime from '../../utility/getTime'
 
 import init from '../../firebase/init'
-init.auth().useEmulator("http://localhost:8004")
+// init.auth().useEmulator("http://localhost:8004")
 
 class AuthController extends React.Component {
 
@@ -171,8 +171,9 @@ class AuthController extends React.Component {
   }
 
   authLogOutDeleteGroup = (authType) => {
+    if(authType === 'logOut' && this.props.user.info && !this.state.clearUserInfo) this.clearUserInfoModule()
     if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
-    if((this.props.user.info || this.props.auth.status === 'deleteLocalUserSuccess') && !this.state.clearUserInfo) this.clearUserInfoModule()
+    if(this.props.auth.status === 'deleteLocalUserSuccess' && this.props.user.info && !this.state.clearUserInfo) this.clearUserInfoModule()
 
     if(!this.props.user.info && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
     if(!this.props.user.questions && !this.state.clearUserSettings) this.clearUserSettingsModule()
