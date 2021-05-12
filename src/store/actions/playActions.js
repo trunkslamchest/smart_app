@@ -94,7 +94,6 @@ export const setVote = (obj) => {
           userVote = { vid: res.vid, vote: res.vote }
       if(obj.type === 'play') dispatch(updateVotes(voteTotals, userVote))
       if(obj.type === 'static') {
-        // delete voteTotals.rating
         dispatch(updateStaticQuestionVotes(voteTotals, userVote, res.rating))
       }
     })

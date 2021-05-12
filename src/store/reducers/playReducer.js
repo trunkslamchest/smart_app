@@ -16,40 +16,119 @@ const initialState = {
   commentLoading: false
 }
 
-const updateGameStatus = (currentState, action) => { return { ...currentState, status: action.status, loading: action.loading } }
+const updateGameStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    loading: action.loading
+  }
+}
 
-const setGameMode = (currentState, action) => { return { ...currentState, status: action.status, gameMode: action.gameMode } }
+const setGameMode = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    gameMode: action.gameMode
+  }
+}
 
-const resetGameMode = (currentState, action) => { return { ...currentState, gameMode: action.gameMode } }
+const resetGameMode = (currentState, action) => {
+  return {
+    ...currentState,
+    gameMode: action.gameMode
+  }
+}
 
-const setQuestion = (currentState, action) => { return {  ...currentState,  status: action.status,  question: action.question } }
+const setQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    question: action.question
+  }
+}
 
 const updateQuestion = (currentState, action) => {
   return {
     ...currentState, status: action.status,
-    question: { ...currentState.question, ...action.results }
+    question: {
+      ...currentState.question,
+      ...action.results
+    }
   }
 }
 
-const resetQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+const resetQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
 
-const setGameQset = (currentState, action) => { return { ...currentState, status: action.status, gameQset: action.gameQset } }
+const setGameQset = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    gameQset: action.gameQset
+  }
+}
 
-const resetGameQset = (currentState, action) => { return { ...currentState, gameQset: action.gameQset } }
+const resetGameQset = (currentState, action) => {
+  return {
+    ...currentState,
+    gameQset: action.gameQset
+  }
+}
 
-const setGameState = (currentState, action) => { return { ...currentState, gameState: action.gameState } }
+const setGameState = (currentState, action) => {
+  return {
+    ...currentState,
+    gameState: action.gameState
+  }
+}
 
-const resetGameState = (currentState, action) => { return { ...currentState, gameState: action.gameState } }
+const resetGameState = (currentState, action) => {
+  return {
+    ...currentState,
+    gameState: action.gameState
+  }
+}
 
-const setAnswer = (currentState, action) => { return { ...currentState, answer: action.answer } }
+const setAnswer = (currentState, action) => {
+  return {
+    ...currentState,
+    answer: action.answer
+  }
+}
 
-const resetAnswer = (currentState, action) => { return { ...currentState, answer: action.answer } }
+const resetAnswer = (currentState, action) => {
+  return {
+    ...currentState,
+    answer: action.answer
+  }
+}
 
-const getResults = (currentState, action) => { return { ...currentState, results: action.results } }
+const getResults = (currentState, action) => {
+  return {
+    ...currentState,
+    results: action.results
+  }
+}
 
-const setResults = (currentState, action) => { return { ...currentState, status: action.status, results: action.results, performance: action.performance } }
+const setResults = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status,
+    results: action.results,
+    performance: action.performance
+  }
+}
 
-const resetResults = (currentState, action) => { return { ...currentState, results: action.results } }
+const resetResults = (currentState, action) => {
+  return {
+    ...currentState,
+    results: action.results
+  }
+}
 
 const setVote = (currentState, action) => {
   return {
@@ -65,9 +144,21 @@ const setVote = (currentState, action) => {
   }
 }
 
-const updateVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus, voteLoading: action.voteLoading } }
+const updateVoteStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus,
+    voteLoading: action.voteLoading
+  }
+}
 
-const resetVote = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus, voteLoading: action.voteLoading } }
+const resetVote = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus,
+    voteLoading: action.voteLoading
+  }
+}
 
 const setComment = (currentState, action) => {
   return {
@@ -83,14 +174,17 @@ const setComment = (currentState, action) => {
   }
 }
 
-const updateCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus, commentLoading: action.commentLoading } }
+const updateCommentStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    commentStatus: action.commentStatus,
+    commentLoading: action.commentLoading
+  }
+}
 
 const resetComment = (currentState, action) => {
-
   let removedCommentResults = { ...currentState.results }
-
   delete removedCommentResults.comment
-
   return {
     ...currentState,
     commentStatus: action.commentStatus,

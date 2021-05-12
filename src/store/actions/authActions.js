@@ -1,15 +1,9 @@
 import * as actionTypes from './actionTypes'
 
 import {
-  fetch,
-  // auth
+  fetch
 } from '../../utility/paths'
 
-// import {
-//   updateUserInfo
-// } from './userActions'
-
-// import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
 
 import logIn from '../../firebase/functions/logIn'
@@ -168,15 +162,10 @@ const authComplete = (obj) => {
 
 const updateLocalStorage = (obj) => {
   localStorage.access = 'normal'
-  // localStorage.access_token = obj.access_token
   localStorage.id = obj.id
   localStorage.refreshToken = obj.refresh
   localStorage.token = obj.token
   localStorage.expiration = obj.expires
-  // localStorage.passwordHash = obj.passwordHash
-  // localStorage.displayName = obj.displayName || obj.user
-  // localStorage.email = obj.email
-
 }
 
 const createUser = (obj) => {

@@ -2,10 +2,6 @@ import * as actionTypes from './actionTypes'
 
 import { fetch } from '../../utility/paths'
 
-// import {
-//   authUpdateStatus
-// } from './authActions'
-
 import achievementFunctions from '../../utility/achievementFunctions'
 
 export const storeAchievements = () => {

@@ -2,7 +2,6 @@ import * as actionTypes from '../actions/actionTypes'
 
 import { userQuestionRating } from '../../utility/calculation/calcRating'
 import { userQuestionRank } from '../../utility/calculation/calcRank'
-// import { userQuestionAvgTime } from '../../utility/calculation/calcAvgTime'
 
 const initialState = {
   achievements: null,
@@ -12,23 +11,73 @@ const initialState = {
   questions: null,
 }
 
-const storeUserInfo = (currentState, action) => { return { ...currentState, info: action.info, experience: action.experience, achievements: action.achievements, settings: action.settings } }
+const storeUserInfo = (currentState, action) => {
+  return {
+    ...currentState,
+    info: action.info,
+    experience: action.experience,
+    achievements: action.achievements,
+    settings: action.settings
+  }
+}
 
-const updateUserInfo = (currentState, action) => { return{ ...currentState, info: action.info } }
+const updateUserInfo = (currentState, action) => {
+  return{
+    ...currentState,
+    info: action.info
+  }
+}
 
-const clearUserInfo = (currentState, action) => { return { ...currentState, info: action.info, experience: action.experience, achievements: action.achievements } }
+const clearUserInfo = (currentState, action) => {
+  return {
+    ...currentState,
+    info: action.info,
+    experience: action.experience,
+    achievements: action.achievements
+  }
+}
 
-const storeUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
+const storeUserSettings = (currentState, action) => {
+  return {
+    ...currentState,
+    settings: action.settings
+  }
+}
 
-const updateUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
+const updateUserSettings = (currentState, action) => {
+  return {
+    ...currentState,
+    settings: action.settings
+  }
+}
 
-const clearUserSettings = (currentState, action) => { return { ...currentState, settings: action.settings } }
+const clearUserSettings = (currentState, action) => {
+  return {
+    ...currentState,
+    settings: action.settings
+  }
+}
 
-const storeUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
+const storeUserQuestions = (currentState, action) => {
+  return {
+    ...currentState,
+    questions: action.questions
+  }
+}
 
-const updateUserQuestions = (currentState, action) => { return{ ...currentState, questions: action.questions } }
+const updateUserQuestions = (currentState, action) => {
+  return{
+    ...currentState,
+    questions: action.questions
+  }
+}
 
-const clearUserQuestions = (currentState, action) => { return { ...currentState, questions: action.questions } }
+const clearUserQuestions = (currentState, action) => {
+  return {
+      ...currentState,
+      questions: action.questions
+  }
+}
 
 const updateUserLoginTime = (currentState, action) => {
   return {
@@ -79,7 +128,12 @@ const updateUserPerformanceFromPlayController = (currentState, action) => {
   }
 }
 
-const updateUserExperienceFromPlayController = (currentState, action) => { return { ...currentState, experience: action.total } }
+const updateUserExperienceFromPlayController = (currentState, action) => {
+   return {
+    ...currentState,
+    experience: action.total
+  }
+}
 
 const updateUserAchievementsFromPlayController = (currentState, action) => {
   let unlockedArr = []
@@ -120,7 +174,13 @@ const updateUserQuestionsFromPlayController = (currentState, action) => {
 }
 
 const updateUserQuestionTotalsFromPlayController = (currentState, action) => {
-  return { ...currentState, questions: { ...currentState.questions, totals: action.userTotals } }
+  return {
+    ...currentState,
+    questions: {
+      ...currentState.questions,
+      totals: action.userTotals
+    }
+  }
 }
 
 const updateUserVotesFromPlayController = (currentState, action) => {
@@ -239,8 +299,13 @@ const deleteUserComment = (currentState, action) => {
   }
 }
 
-
-const deleteUser = (currentState, action) => { return { ...currentState, info: action.info, questions: action.questions } }
+const deleteUser = (currentState, action) => {
+  return {
+    ...currentState,
+    info: action.info,
+    questions: action.questions
+  }
+}
 
 const userReducer = (currentState = initialState, action) => {
   switch(action.type) {

@@ -8,23 +8,39 @@ const initialState = {
 }
 
 const getOverallLeaderBoards = (currentState, action) => {
-  return { ...currentState, overall: action.overall }
+  return {
+    ...currentState,
+    overall: action.overall
+  }
 }
 
 const getCatLeaderBoards = (currentState, action) => {
-  return { ...currentState, cat: action.cat }
+  return {
+    ...currentState,
+    cat: action.cat
+  }
 }
 
 const clearLeaderBoards = (currentState, action) => {
-  return { ...currentState, overall: action.overall, cat: action.cat }
+  return {
+    ...currentState,
+    overall: action.overall,
+    cat: action.cat
+  }
 }
 
 const updateLeaderBoardsStatus = (currentState, action) => {
-  return { ...currentState, status: action.status }
+  return {
+    ...currentState,
+    status: action.status
+  }
 }
 
 const updateLeaderBoardsLoadingStatus = (currentState, action) => {
-  return { ...currentState, loading: action.loading }
+  return {
+    ...currentState,
+    loading: action.loading
+  }
 }
 
 const leaderBoardsReducer = (currentState = initialState, action) => {

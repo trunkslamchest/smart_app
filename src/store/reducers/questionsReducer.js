@@ -15,23 +15,68 @@ const initialState = {
   voteStatus: null
 }
 
-const storeQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
+const storeQuestionTotals = (currentState, action) => {
+  return {
+    ...currentState,
+    totals: action.totals
+  }
+}
 
-const getQuestionTotals = (currentState, action) => { return { ...currentState, totals: null, } }
+const getQuestionTotals = (currentState, action) => {
+  return {
+    ...currentState,
+    totals: null
+  }
+}
 
-const getQuickQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+const getQuickQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
 
-const getDiffQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+const getDiffQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
 
-const getCatQuestion = (currentState, action) => { return { ...currentState, question: action.question } }
+const getCatQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    question: action.question
+  }
+}
 
-const getStaticQuestion = (currentState, action) => { return { ...currentState, staticQuestion: action.res } }
+const getStaticQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticQuestion: action.res
+  }
+}
 
-const updateQuestionTotalsFromPlayController = (currentState, action) => { return { ...currentState, totals: action.totals } }
+const updateQuestionTotalsFromPlayController = (currentState, action) => {
+  return {
+    ...currentState,
+    totals: action.totals
+  }
+}
 
-const updateQuestionStatus = (currentState, action) => { return { ...currentState, status: action.status } }
+const updateQuestionStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status
+  }
+}
 
-const updateQuestionLoadingStatus = (currentState, action) => { return { ...currentState, loading: action.loading } }
+const updateQuestionLoadingStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    loading: action.loading
+  }
+}
 
 const updateStaticQuestionVotes = (currentState, action) => {
   return {
@@ -58,11 +103,26 @@ const updateStaticQuestionComments = (currentState, action) => {
   }
 }
 
-const updateStaticQuestionVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus } }
+const updateStaticQuestionVoteStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus
+  }
+}
 
-const updateStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }
+const updateStaticQuestionCommentStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    commentStatus: action.commentStatus
+  }
+}
 
-const setStaticUserQuestion = (currentState, action) => { return { ...currentState, staticUserResults: action.res } }
+const setStaticUserQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticUserResults: action.res
+  }
+}
 
 const updateStaticUserVote = (currentState, action) => {
   return {
@@ -75,13 +135,47 @@ const updateStaticUserVote = (currentState, action) => {
   }
 }
 
-const voteLoading = (currentState, action) => { return { ...currentState, voteLoading: action.status } }
-const commentLoading = (currentState, action) => { return { ...currentState, commentLoading: action.status } }
+const voteLoading = (currentState, action) => {
+  return {
+    ...currentState,
+    voteLoading: action.status
+  }
+}
 
-const clearQuestionTotals = (currentState, action) => { return { ...currentState, totals: action.totals, } }
-const clearQuestionStatus = (currentState, action) => { return { ...currentState, status: action.status } }
-const clearStaticQuestion = (currentState, action) => { return {...currentState, staticQuestion: action.res } }
-const clearStaticUserComment = (currentState, action) => { return {...currentState, comment: action.comment } }
+const commentLoading = (currentState, action) => {
+  return {
+    ...currentState,
+    commentLoading: action.status
+  }
+}
+
+const clearQuestionTotals = (currentState, action) => {
+  return {
+    ...currentState,
+    totals: action.totals
+  }
+}
+
+const clearQuestionStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    status: action.status
+  }
+}
+
+const clearStaticQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticQuestion: action.res
+  }
+}
+
+const clearStaticUserComment = (currentState, action) => {
+  return {
+    ...currentState,
+    comment: action.comment
+  }
+}
 
 const editStaticQuestionComment = (currentState, action) => {
   return {
@@ -111,11 +205,33 @@ const deleteStaticQuestionComment = (currentState, action) => {
   }
 }
 
-const clearStaticQuestionVoteStatus = (currentState, action) => { return { ...currentState, voteStatus: action.voteStatus } }
-const clearStaticQuestionCommentStatus = (currentState, action) => { return { ...currentState, commentStatus: action.commentStatus } }
+const clearStaticQuestionVoteStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    voteStatus: action.voteStatus
+  }
+}
 
-const clearStaticUserQuestion = (currentState, action) => { return { ...currentState, staticUserResults: action.res } }
-const clearStaticUserVote = (currentState, action) => { return { ...currentState, vote: action.vote } }
+const clearStaticQuestionCommentStatus = (currentState, action) => {
+  return {
+    ...currentState,
+    commentStatus: action.commentStatus
+  }
+}
+
+const clearStaticUserQuestion = (currentState, action) => {
+  return {
+    ...currentState,
+    staticUserResults: action.res
+  }
+}
+
+const clearStaticUserVote = (currentState, action) => {
+  return {
+    ...currentState,
+    vote: action.vote
+  }
+}
 
 export const questionsReducer = (currentState = initialState, action) => {
   switch(action.type) {

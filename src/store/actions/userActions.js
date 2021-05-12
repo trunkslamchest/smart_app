@@ -18,7 +18,14 @@ import {
 import userFunctions from '../../utility/userFunctions'
 import questionsFunctions from '../../utility/questionsFunctions'
 
-export const storeUserInfo = (info, experience, achievements, settings) => { return { type: actionTypes.STORE_USER_INFO, info: info, experience: experience, achievements: achievements, settings: settings } }
+export const storeUserInfo = (info, experience, achievements, settings) => {
+  return {
+    type: actionTypes.STORE_USER_INFO,
+    info: info, experience: experience,
+    achievements: achievements,
+    settings: settings
+  }
+}
 
 export const updateUserInfo = (authType, obj) => {
   return dispatch => {
@@ -30,13 +37,35 @@ export const updateUserInfo = (authType, obj) => {
   }
 }
 
-const initUpdateUserInfo = (info) => { return { type: actionTypes.UPDATE_USER_INFO, info: info } }
+const initUpdateUserInfo = (info) => {
+  return {
+    type: actionTypes.UPDATE_USER_INFO,
+    info: info
+  }
+}
 
-export const clearUserInfo = () => { return { type: actionTypes.CLEAR_USER_INFO, info: null, experience: null, achievements: null } }
+export const clearUserInfo = () => {
+  return {
+    type: actionTypes.CLEAR_USER_INFO,
+    info: null,
+    experience: null,
+    achievements: null
+  }
+}
 
-export const storeUserQuestions = (questions) => { return { type: actionTypes.STORE_USER_QUESTIONS, questions: questions } }
+export const storeUserQuestions = (questions) => {
+  return {
+    type: actionTypes.STORE_USER_QUESTIONS,
+    questions: questions
+  }
+}
 
-export const storeUserSettings = (settings) => { return { type: actionTypes.STORE_USER_SETTINGS, settings: settings } }
+export const storeUserSettings = (settings) => {
+  return {
+    type: actionTypes.STORE_USER_SETTINGS,
+    settings: settings
+  }
+}
 
 export const updateUserSettings = (obj) => {
   return dispatch => {
@@ -47,7 +76,12 @@ export const updateUserSettings = (obj) => {
   }
 }
 
-export const clearUserSettings = () => { return { type: actionTypes.CLEAR_USER_SETTINGS, settings: null } }
+export const clearUserSettings = () => {
+  return {
+    type: actionTypes.CLEAR_USER_SETTINGS,
+    settings: null
+  }
+}
 
 export const updateUserQuestions = () => {
   return dispatch => {
@@ -60,7 +94,12 @@ export const updateUserQuestions = () => {
   }
 }
 
-export const clearUserQuestions = () => { return { type: actionTypes.CLEAR_USER_QUESTIONS, questions: null } }
+export const clearUserQuestions = () => {
+  return {
+    type: actionTypes.CLEAR_USER_QUESTIONS,
+    questions: null
+  }
+}
 
 export const deleteUser = (id) => {
   return dispatch => {
@@ -76,7 +115,11 @@ export const updateUserLoginTime = (obj) => {
   return dispatch => {
     userFunctions('patchUserLoginTime', fetch.patch.userLoginTime, obj)
     .then(res => {
-      dispatch(initUpdateUserLoginTime({ time: res.time, day: res.day, month: res.month, year: res.year }))
+      dispatch(initUpdateUserLoginTime({
+        time: res.time,
+        day: res.day,
+        month: res.month, year: res.year
+      }))
     })
   }
 }
@@ -109,7 +152,12 @@ export const updateUserAchievementsFromPlayController = (achievements) => {
   }
 }
 
-export const updateUserQuestionIdsFromPlayController = (ids) => { return { type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER, ids: ids } }
+export const updateUserQuestionIdsFromPlayController = (ids) => {
+  return {
+    type: actionTypes.UPDATE_USER_QUESTIONIDS_FROM_PLAY_CONTROLLER,
+    ids: ids
+  }
+}
 
 export const updateUserQuestionsFromPlayController = (qid, question) => {
   return {
@@ -119,7 +167,12 @@ export const updateUserQuestionsFromPlayController = (qid, question) => {
   }
 }
 
-export const updateUserQuestionTotalsFromPlayController = (userTotals) => { return { type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER, userTotals: userTotals } }
+export const updateUserQuestionTotalsFromPlayController = (userTotals) => {
+  return {
+    type: actionTypes.UPDATE_USER_QUESTION_TOTALS_FROM_PLAY_CONTROLLER,
+    userTotals: userTotals
+  }
+}
 
 export const updateUserVotesFromPlayController = (vote) => {
   return dispatch => {
@@ -160,7 +213,13 @@ export const editUserComment = (obj) => {
   }
 }
 
-const initEditUserComment = (res) => { return { type: actionTypes.EDIT_USER_COMMENT, question: res.question, comment: res.comment } }
+const initEditUserComment = (res) => {
+  return {
+    type: actionTypes.EDIT_USER_COMMENT,
+    question: res.question,
+    comment: res.comment
+  }
+}
 
 export const deleteUserComment = (obj) => {
   return dispatch => {
@@ -171,4 +230,10 @@ export const deleteUserComment = (obj) => {
   }
 }
 
-const initDeleteUserComment = (res) => { return { type: actionTypes.DELETE_USER_COMMENT, question: res.question, comment: res.comment } }
+const initDeleteUserComment = (res) => {
+  return {
+    type: actionTypes.DELETE_USER_COMMENT,
+    question: res.question,
+    comment: res.comment
+  }
+}
