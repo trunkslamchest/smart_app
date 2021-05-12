@@ -24,20 +24,22 @@ class ResultsDiscussContainer extends React.Component {
     comment: '',
     commentForm: { valid: true },
     showCommentButton: false,
-    showComments: true,
+    showComments: false,
     showVoteButtons: false,
     showVoteStats: false,
     enableCommentButton: false,
-    enableAddCommentButton: true,
+    enableAddCommentButton: false,
     enableVoteButtons: false
   }
 
   componentDidMount() {
     if(!this.props.staticResults) {
-      this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true, showVoteButtons: true })}, 500)
+      this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true, showVoteButtons: true })}, 250)
+      this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true, showComments: true })}, 500)
+
     }
     else {
-      this.setState({ enableVoteButtons: true, showVoteButtons: true })
+      this.setState({ enableVoteButtons: true, showVoteButtons: true, enableCommentButton: true, showComments: true })
     }
   }
 
@@ -131,9 +133,7 @@ class ResultsDiscussContainer extends React.Component {
 
   render(){
 
-    // console.log(this.state)
-
-    let voteProps, voteBlock
+    let voteProps, voteBlock, commentBlock
 
     if(this.props.play.question) voteProps = this.props.play.question.votes
     if(this.props.questions.staticQuestion) voteProps = this.props.questions.staticQuestion.votes
@@ -147,11 +147,7 @@ class ResultsDiscussContainer extends React.Component {
           showVoteStats={ this.state.showVoteStats }
           voteProps={ voteProps }
         />
-    }
-
-    return(
-      <div className='results_discuss_container'>
-        { voteBlock }
+      commentBlock =
         <div className='results_comment_container'>
           <ResultsComment
             comment={ this.state.comment }
@@ -165,6 +161,12 @@ class ResultsDiscussContainer extends React.Component {
             staticResults={ this.props.staticResults }
           />
         </div>
+    }
+
+    return(
+      <div className='results_discuss_container'>
+        { voteBlock }
+        { commentBlock }
       </div>
     )
   }

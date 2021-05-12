@@ -71,8 +71,7 @@ class LogIn extends React.Component {
     if(!this.state.form.pending) {
       this.props.onAuthStart('logIn', {
         email: this.state.email,
-        password: this.state.password,
-        // returnSecureToken: true
+        password: this.state.password
       })
     }
   }
