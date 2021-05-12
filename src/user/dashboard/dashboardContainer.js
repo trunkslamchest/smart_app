@@ -3,8 +3,6 @@ import { Route, Switch } from 'react-router-dom'
 import { routes } from '../../utility/paths.js'
 import { connect } from 'react-redux'
 import {
-  getQuestionTotals,
-  updateUserQuestions,
   help,
   setHelpHeader,
   setHelpSections
@@ -116,8 +114,6 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
-    onGetQuestionTotals: () => dispatch(getQuestionTotals()),
-    onUpdateUserQuestions: () => dispatch(updateUserQuestions()),
     onHelpModal: (bool) => dispatch(help(bool)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
     onSetHelpSections: (sections) => dispatch(setHelpSections(sections))

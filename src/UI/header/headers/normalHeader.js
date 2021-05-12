@@ -12,8 +12,7 @@ import {
   resetVote,
   resetComment,
   setGameMode,
-  setGameState,
-  updateGameStatus
+  setGameState
 } from '../../../store/actions/actionIndex'
 
 import makeLoggedInHeaderButtons from '../headerFunctions/makeLoggedInHeaderButtons'
@@ -84,7 +83,6 @@ const NormalHeader = (props) => {
 
 const store = (store) => {
   return {
-    auth: store.auth,
     play: store.play,
     user: store.user
   }
@@ -103,8 +101,6 @@ const dispatch = (dispatch) => {
     onResetComment: (obj) => dispatch(resetComment(obj)),
     onSetGameMode: (mode) => dispatch(setGameMode(mode)),
     onSetGameState: (state) => dispatch(setGameState(state)),
-    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading)),
-
   }
 }
 

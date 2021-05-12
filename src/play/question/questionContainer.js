@@ -102,7 +102,6 @@ const QuestionContainer = (props) => {
 
 const store = (store) => {
   return {
-    modal: store.modal,
     play: store.play
   }
 }

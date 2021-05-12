@@ -27,7 +27,6 @@ class LogOut extends React.Component {
 
   componentDidUpdate() {
     if((this.props.auth.loading || this.props.modal.logout) && this.state.enableButton) this.setState({ enableButton: false })
-    // if(!this.props.auth.loading && !this.state.enableButton) this.setState({ enableButton: true })
   }
 
   onConfirm = () => {
@@ -45,8 +44,6 @@ class LogOut extends React.Component {
     this.props.onClearAuthErrors()
   }
 
-  // onHideModal = () => { this.props.onLogOutModal(false) }
-
   render(){
 
     const loading =
@@ -60,7 +57,6 @@ class LogOut extends React.Component {
     return(
       <Modal
         modalClass={ 'log_out_modal' }
-        // onHideModal={ this.onHideModal }
         showModal={ this.props.modal.logout }
       >
         <div className='log_out_wrapper'>
@@ -68,9 +64,7 @@ class LogOut extends React.Component {
           { this.props.auth.loading && loading }
           <DefaultButtonsContainer
             buttons={ logOutButtons }
-            // buttonClass={ 'modal_button' }
             buttonRow={ true }
-            // containerClass={ 'modal_button_container' }
             enableButton={ this.state.enableButton }
             tooltipClass={ 'modal_button_tooltip' }
           />
@@ -78,7 +72,6 @@ class LogOut extends React.Component {
       </Modal>
     )
   }
-
 }
 
 const store = (store) => {

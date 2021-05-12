@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   editProfile,
-  reAuthWithCreds,
   authStart,
   authUpdateStatus,
   clearAuthStatus,
@@ -138,7 +137,6 @@ const store = (store) => {
 const dispatch = (dispatch) => {
   return {
     onEditProfileModal: (bool) => dispatch(editProfile(bool)),
-    onReAuthWithCreds: (authType, obj) => dispatch(reAuthWithCreds(authType, obj)),
     onAuthStart: (type, obj, props) => dispatch(authStart(type, obj, props)),
     onAuthUpdateStatus: (status, loading) => dispatch(authUpdateStatus(status, loading)),
     onClearAuthStatus: () => dispatch(clearAuthStatus()),

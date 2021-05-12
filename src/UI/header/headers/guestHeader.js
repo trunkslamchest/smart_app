@@ -36,7 +36,6 @@ const GuestHeader = (props) => {
     <div className='header_nav_links'>
       <DefaultButtonsContainer
         buttons={ headerButtons }
-        // buttonClass={ 'header_button' }
         buttonContainerClass={ 'header_button_container' }
         containerClass={ 'header_buttons_container' }
         enableButton={ true }

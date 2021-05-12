@@ -51,17 +51,10 @@ class LeaderBoardsScoresCard extends React.Component {
   setRowsRef(node){ this.rowsRef = node }
 
   onClickListen = (event) => {
-    // console.log(event.target.parentNode.className)
-
     if(
       (!!this.rowsRef && !this.rowsRef.contains(event.target)) &&
       (!!this.buttonRef && !this.buttonRef.contains(event.target)) &&
       (event.target.className !== "main_container" && event.target.className !== "header" && event.target.className !== "footer")
-      // (!!event.target.parentNode.className && (event.target.parentNode.className.split("_")[0] !== 'header' && event.target.parentNode.className.split("_")[0] !== 'footer'))
-
-      // (event.target.nodeName === "DIV" || event.target.nodeName === "H3" || event.target.nodeName === "H4" || event.target.nodeName === "IMG") &&
-      // event.target.className !== "main_container" &&
-      // event.target.parentNode.className.split("_")[0] === 'leader'
     ) this.setState({ showScores: false })
   }
 

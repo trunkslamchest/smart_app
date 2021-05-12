@@ -59,7 +59,6 @@ const ResultsAchievementContainer = (props) => {
 
 const store = store => {
   return{
-    achievements: store.achievements,
     play: store.play,
     questions: store.questions
   }

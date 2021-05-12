@@ -50,7 +50,6 @@ const ResultsStatsContainer = (props) => {
         clearTimeout(achievementsTimerRef.current)
       }
     }
-
   }, [])
 
   const resultsBlock =

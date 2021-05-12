@@ -69,11 +69,6 @@ const ContainerProfileHeader = (props) => {
           { !!props.date_block && props.date_block }
         </div>
       </div>
-      {/* { !!props.bio &&
-        <div className='container_profile_header_bottom'>
-          <p>{ props.bio }</p>
-        </div>
-      } */}
     </div>
   )
 }

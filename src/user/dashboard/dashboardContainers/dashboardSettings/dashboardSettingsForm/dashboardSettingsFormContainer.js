@@ -1,6 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { deleteProfile } from '../../../../../store/actions/actionIndex'
 
 import makeDashboardSettingsPrivacyFields from '../../../dashboardFunctions/makeDashboardSettingsPrivacyFields'
 import makeDashboardSettingsButtons from '../../../dashboardFunctions/makeDashboardSettingsButtons'
@@ -70,17 +68,4 @@ const DashboardSettingsFormContainer = (props) => {
   )
 }
 
-const store = (store) => {
-  return {
-    modal: store.modal,
-    user: store.user
-  }
-}
-
-const dispatch = (dispatch) => {
-  return {
-    onDeleteProfileModal: (bool) => (dispatch(deleteProfile(bool)))
-  }
-}
-
-export default connect(store, dispatch)(DashboardSettingsFormContainer)
+export default DashboardSettingsFormContainer

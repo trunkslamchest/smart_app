@@ -1,4 +1,4 @@
-const homeFeaturesCarousel = (homeFeaturesIndex) => {
+const makeHomeFeaturesCarousel = (homeFeaturesIndex) => {
   return [
     {
       id: 'home_features_questions',
@@ -86,4 +86,4 @@ const homeFeaturesCarousel = (homeFeaturesIndex) => {
   ]
 }
 
-export default homeFeaturesCarousel
+export default makeHomeFeaturesCarousel

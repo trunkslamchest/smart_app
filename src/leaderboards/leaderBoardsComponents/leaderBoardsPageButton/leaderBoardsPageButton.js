@@ -22,12 +22,6 @@ const LeaderBoardsPageButton = (props) => {
   useEffect(() => {
     if(!pageLimit && hoverState) switchHoverState(false)
     if(!pageLimit && tooltipState) switchTooltipState(false)
-
-    // return function cleanup(){
-      // switchHoverState(false)
-      // switchTooltipState(false)
-      // if(timerRef.current) clearTimeout(timerRef.current);
-    // }
   }, [pageLimit, hoverState, tooltipState])
 
   const onHover = () => {

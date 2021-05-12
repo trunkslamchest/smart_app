@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   authStart,
-  clearAuthStatus,
   clearAuthErrors,
   authUpdateStatus,
   deleteProfile
@@ -42,12 +41,7 @@ class DeleteProfile extends React.Component {
   }
 
   componentDidUpdate() {
-    // if(this.state.showForm && this.state.enableConfirmButton) this.setState({ enableConfirmButton: false })
-    // if(!this.state.showForm && !this.state.enableConfirmButton) this.setState({ enableConfirmButton: true })
-    // if(this.props.auth.loading && this.state.enableSubmitButton) this.setState({ enableSubmitButton: false, enableInput: false })
-    // if(!this.props.auth.loading && (!this.state.enableSubmitButton || !this.state.enableInput)) this.setState({ enableSubmitButton: true, enableInput: true })
     if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
-      // this.props.onClearAuthStatus()
       let password = []
       this.props.auth.errors.forEach(error => password.push(error) )
       this.setState({ errors: { password: password }, validationLoading: false, enableSubmitButton: true, enableInput: true })
@@ -76,13 +70,11 @@ class DeleteProfile extends React.Component {
   }
 
   onValidateDeleteProfile = () => {
-    // this.props.onClearAuthStatus()
     if(!this.state.form.pending) {
       this.props.onAuthStart('deleteProfile', {
         id: this.props.auth.id,
         email: this.props.user.info.email,
-        password: this.state.password,
-        // returnSecureToken: true
+        password: this.state.password
       })
     }
     this.props.history.push( routes.home )
@@ -158,7 +150,6 @@ const dispatch = (dispatch) => {
     onDeleteProfileModal: (bool) => (dispatch(deleteProfile(bool))),
     onAuthStart: (type, obj) => dispatch(authStart(type, obj)),
     onAuthUpdateStatus: (status, loading) => dispatch(authUpdateStatus(status, loading)),
-    onClearAuthStatus: () => dispatch(clearAuthStatus()),
     onClearAuthErrors: () => dispatch(clearAuthErrors())
   }
 }

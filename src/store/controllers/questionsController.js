@@ -3,13 +3,22 @@ import { connect } from 'react-redux'
 import {
   getStaticQuestion,
   clearStaticQuestion,
+  clearQuestionStatus,
   setStaticUserQuestion,
+  clearStaticUserQuestion,
+  clearStaticQuestionVoteStatus,
+  clearStaticUserVote,
   loading,
   updateQuestionStatus,
   updateQuestionLoadingStatus,
   updateUserVotesFromPlayController,
   updateUserCommentsFromPlayController,
-  updateStaticQuestionCommentStatus
+  updateStaticQuestionVoteStatus,
+  updateStaticQuestionCommentStatus,
+  voteLoading,
+  commentLoading,
+  clearStaticQuestionCommentStatus,
+  clearStaticUserComment
 } from '../../store/actions/actionIndex'
 
 import ResultsContainer from '../../play/results/resultsContainer'
@@ -125,6 +134,7 @@ class QuestionsController extends React.Component {
   }
 
   successModule = (type) => {
+    console.log(type)
     this.props[`onClearStaticUser${type}`]()
     this.props[`onClearStaticQuestion${type}Status`]()
     this.props[`on${type}Loading`](false)
@@ -163,13 +173,22 @@ const dispatch = (dispatch) => {
   return {
     onGetStaticQuestion: (obj) => dispatch(getStaticQuestion(obj)),
     onSetStaticUserQuestion: (obj) => dispatch(setStaticUserQuestion(obj)),
+    onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
     onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
+    onClearQuestionStatus: () => dispatch(clearQuestionStatus()),
+    onClearStaticQuestionVoteStatus: () => dispatch(clearStaticQuestionVoteStatus()),
+    onClearStaticUserVote: () => dispatch(clearStaticUserVote()),
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onUpdateQuestionStatus: (status) => dispatch(updateQuestionStatus(status)),
     onUpdateQuestionLoadingStatus: (bool) => dispatch(updateQuestionLoadingStatus(bool)),
     onUpdateUserVotesFromPlayController: (obj) => dispatch(updateUserVotesFromPlayController(obj)),
     onUpdateUserCommentsFromPlayController: (obj) => dispatch(updateUserCommentsFromPlayController(obj)),
+    onUpdateStaticQuestionVoteStatus: (status) => dispatch(updateStaticQuestionVoteStatus(status)),
     onUpdateStaticQuestionCommentStatus: (status) => dispatch(updateStaticQuestionCommentStatus(status)),
+    onVoteLoading: (bool) => dispatch(voteLoading(bool)),
+    onCommentLoading: (bool) => dispatch(commentLoading(bool)),
+    onClearStaticQuestionCommentStatus: () => dispatch(clearStaticQuestionCommentStatus()),
+    onClearStaticUserComment: () => dispatch(clearStaticUserComment())
   }
 }
 

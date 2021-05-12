@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { routes } from '../../../../utility/paths'
 
@@ -41,10 +40,4 @@ const FooterLogo = (props) => {
   )
 }
 
-const store = (store) => {
-  return {
-    auth: store.auth
-  }
-}
-
-export default connect(store)(FooterLogo)
+export default FooterLogo

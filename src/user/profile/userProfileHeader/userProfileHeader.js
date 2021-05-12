@@ -1,7 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-// import checkBlank from '../../../utility/forms/checkBlank'
 import formatMonth from '../../../utility/forms/formatMonth'
 import formatDay from '../../../utility/forms/formatDay'
 
@@ -53,10 +51,4 @@ const UserProfileHeader = (props) => {
   )
 }
 
-const store = (store) => {
-  return {
-    profile: store.profile
-  }
-}
-
-export default connect(store)(UserProfileHeader)
+export default UserProfileHeader

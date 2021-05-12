@@ -7,7 +7,7 @@ import HomeBottomBanner from '../../homeComponents/homeBottomBanner/homeBottomBa
 import HomeTech from '../../homeComponents/homeTech/homeTech'
 
 import homeFeaturesIndex from '../../../assets/home_features/homeFeaturesIndex'
-import homeFeaturesCarousel from '../../homeComponents/homeFeatures/homeFeaturesCarousel'
+import makeHomeFeaturesCarousel from '../../homeFunctions/makeHomeFeaturesCarousel'
 
 import DefaultCarouselContainer from '../../../UI/carousel/defaultCarouselContainer'
 
@@ -21,7 +21,7 @@ const HomeLoggedOutContainer = (props) => {
       <div className='divider_medium'></div>
       <HomeButtonBanner history={ props.history } />
       <div className='divider_medium'></div>
-      <DefaultCarouselContainer slides={ homeFeaturesCarousel(homeFeaturesIndex) } />
+      <DefaultCarouselContainer slides={ makeHomeFeaturesCarousel(homeFeaturesIndex) } />
       <div className='divider_medium'></div>
       <HomeBottomBanner history={props.history} />
       <HomeSubBanner history={props.history} />

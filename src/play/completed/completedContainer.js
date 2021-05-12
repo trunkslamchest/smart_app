@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import {
   setGameMode,
   setGameState,
-  resetGameState,
   resetGameQset,
   resetQuestion,
   resetAnswer,
@@ -84,7 +83,6 @@ const dispatch = (dispatch) => {
   return {
     onSetGameMode: (mode) => dispatch(setGameMode(mode)),
     onSetGameState: (state) => dispatch(setGameState(state)),
-    onResetGameState: () => dispatch(resetGameState()),
     onResetGameQset: (set) => dispatch(resetGameQset(set)),
     onResetQuestion: () => dispatch(resetQuestion()),
     onResetAnswer: () => dispatch(resetAnswer()),

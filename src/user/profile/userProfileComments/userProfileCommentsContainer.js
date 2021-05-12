@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import ContainerHeader from '../../../UI/components/headers/containerHeader/containerHeader'
 import UserProfileQuestionCard from './userProfileQuestionCard/userProfileQuestionCard'
@@ -26,10 +25,4 @@ const UserProfileCommentsContainer = (props) => {
   )
 }
 
-const store = (store) => {
-  return {
-    profile: store.profile
-  }
-}
-
-export default connect(store)(UserProfileCommentsContainer)
+export default UserProfileCommentsContainer

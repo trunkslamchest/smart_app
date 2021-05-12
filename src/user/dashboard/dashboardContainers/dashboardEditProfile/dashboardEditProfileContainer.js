@@ -6,7 +6,6 @@ import {
   loading,
   authStart,
   cacheUser,
-  updateUserInfo,
   clearAuthErrors,
   clearAuthStatus
 } from '../../../../store/actions/actionIndex'
@@ -306,7 +305,6 @@ const dispatch = (dispatch) => {
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onCacheUser: (obj) => dispatch(cacheUser(obj)),
     onAuthStart: (authType, obj, props) => dispatch(authStart(authType, obj, props)),
-    onUpdateUserInfo: (obj, props) => dispatch(updateUserInfo(obj, props)),
     onClearAuthStatus: () => dispatch(clearAuthStatus()),
     onClearAuthErrors: () => dispatch(clearAuthErrors())
   }

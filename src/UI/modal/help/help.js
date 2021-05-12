@@ -62,7 +62,6 @@ const Help = (props) => {
           buttons={ helpButtons }
           buttonClass={ 'modal_help_button' }
           buttonContainerClass={ 'modal_help_button_container' }
-          // containerClass={ 'modal_help_buttons_container' }
           enableButton={ true }
         />
     </Modal>

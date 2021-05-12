@@ -1,7 +1,5 @@
 import React from 'react'
 
-// import { useEffect } from 'react'
-
 import './E404.scss'
 
 const E404 = (props) => {
