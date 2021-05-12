@@ -28,7 +28,7 @@ const DefaultCarouselContainer = (props) => {
 
     const slideTimer = () => {
       slideOutTimerRef.current = setInterval(slideOut, 9750)
-      let nextPosition = currentPosition < slides.length ? currentPosition + 1 : 0
+      let nextPosition = currentPosition < slides.length - 1 ? currentPosition + 1 : 0
 
       setSlideState("mount")
       setCurrentSlide(slides[nextPosition])
