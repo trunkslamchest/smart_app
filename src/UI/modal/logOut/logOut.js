@@ -12,7 +12,8 @@ import makeLogOutButtons from './logOutFunctions/makeLogOutButtons'
 import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import ModalHeaderCentered from '../../components/headers/modalHeaderCentered/modalHeaderCentered'
+
 import Modal from '../../modal/modal'
 import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 
@@ -63,7 +64,7 @@ class LogOut extends React.Component {
         showModal={ this.props.modal.logout }
       >
         <div className='log_out_wrapper'>
-          <ModalHeader header_text='Are you sure you want to log out?' />
+          <ModalHeaderCentered header_text='Are you sure you want to log out?' />
           { this.props.auth.loading && loading }
           <DefaultButtonsContainer
             buttons={ logOutButtons }

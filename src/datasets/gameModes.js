@@ -4,7 +4,7 @@ const gameModes = [
     val: 'quick_play',
     description: [
       `Questions are randomly selected from all available questions in the SmartApp™ Nexus.`,
-      `You given 4 choices, and must select the correct answer within 10 seconds.`,
+      `You are given 4 choices, and must select the correct answer within 10 seconds.`,
       `You cannot answer the same question twice.` ]
   },
   {
@@ -13,7 +13,7 @@ const gameModes = [
     description: [
       `Select a specific difficulty to answer questions from.`,
       `Questions are randomly selected from all available questions from the difficulty you have selected.`,
-      `You given 4 choices, and must select the correct answer within 10 seconds.`,
+      `You are given 4 choices, and must select the correct answer within 10 seconds.`,
       `You cannot answer the same question twice.` ]
   },
   {
@@ -22,7 +22,7 @@ const gameModes = [
     description: [
       `Select a specific category to answer questions from.`,
       `Questions are randomly selected from all available questions from the category you have selected.`,
-      `You given 4 choices, and must select the correct answer within 10 seconds.`,
+      `You are given 4 choices, and must select the correct answer within 10 seconds.`,
       `You cannot answer the same question twice.` ]
   }
 ]

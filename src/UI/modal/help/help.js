@@ -8,7 +8,7 @@ import {
 
 import makeHelpButton from './helpFunctions/makeHelpButton'
 
-import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import ModalHeaderCentered from '../../components/headers/modalHeaderCentered/modalHeaderCentered'
 import Modal from '../../modal/modal'
 
 import DocsSubHeader from '../../docs/headers/docsSubHeader/docsSubHeader'
@@ -52,7 +52,7 @@ const Help = (props) => {
         modalClass={ 'help_modal' }
         showModal={ props.modal.help }
       >
-      <ModalHeader header_text={ props.headerText } />
+      <ModalHeaderCentered header_text={ props.headerText } />
       <div
         className='help_wrapper'
       >

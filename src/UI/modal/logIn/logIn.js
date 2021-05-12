@@ -14,7 +14,7 @@ import validateLogIn from '../../../utility/validation/validateLogIn'
 import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import ModalHeaderCentered from '../../components/headers/modalHeaderCentered/modalHeaderCentered'
 import Modal from '../../modal/modal'
 import DefaultForm from '../../forms/defaultForm'
 
@@ -110,7 +110,7 @@ class LogIn extends React.Component {
         showModal={ this.props.modal.login }
       >
         <div className='log_in_wrapper'>
-          <ModalHeader header_text='Log In' />
+          <ModalHeaderCentered header_text='Log In' />
             { (this.props.auth.loading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }

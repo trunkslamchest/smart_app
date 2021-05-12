@@ -4,20 +4,22 @@ const firebase = require("firebase")
 const admin = require('firebase-admin')
 
 const url = {
-  database: env.parsed.LOCAL_DB,
-  // database: env.parsed.DEPLOY_DB_ROOT,
+  database: env.parsed.FIREBASE_LOCAL_DB,
+  // database: env.parsed.FIREBASE_DEPLOY_DB_ROOT,
 
-  rootSecured: env.parsed.LOCAL_SECURED,
-  rootUnsecured: env.parsed.LOCAL_UNSECURED
-  // rootSecured: env.parsed.DEPLOY_SECURED,
-  // rootUnsecured: env.parsed.DEPLOY_UNSECURED
+  rootSecured: env.parsed.FIREBASE_LOCAL_SECURED,
+  rootUnsecured: env.parsed.FIREBASE_LOCAL_UNSECURED
+  // rootSecured: env.parsed.FIREBASE_DEPLOY_SECURED,
+  // rootUnsecured: env.parsed.FIREBASE_DEPLOY_UNSECURED
 }
 
 var firebaseConfig = {
-  // databaseURL: env.parsed.LOCAL_DB,
-  databaseURL: url.database,
   apiKey: env.parsed.FIREBASE_API_KEY,
+  appId: process.env.FIREBASE_APP_ID,
   authDomain: env.parsed.FIREBASE_AUTH_DOMAIN,
+  databaseURL: url.database,
+  // databaseURL: env.parsed.LOCAL_DB,
+  messagingSenderId:  process.env.FIREBASE_MESSANGER_SENDER_ID,
   projectId: env.parsed.FIREBASE_PROJECT_ID,
   storageBucket: env.parsed.FIREBASE_STORAGE_BUCKET
 }

@@ -33,7 +33,7 @@ export const authStart = (authType, obj) => {
       dispatch(authSignUp(authType, obj))
     }
     if(authType === 'refresh') {
-      console.log("stop")
+      console.log("stop. get some help.")
       dispatch(initAuth(authType))
       dispatch(authRefresh(authType, obj))
     }

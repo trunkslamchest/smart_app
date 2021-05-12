@@ -2,7 +2,7 @@ const makeHomeLoggedInButtons = (onPushLink, onHelp, onLogOut, routes, user_name
   return [
     {
       buttonType: 'NavLink',
-      desc: 'Select a game mode and start answering questions from the SmartApp™ Nexus',
+      desc: 'Select a game mode and start answering questions',
       id: 'play_button',
       name: 'playButton',
       onClickFunction: onPushLink,
@@ -12,7 +12,7 @@ const makeHomeLoggedInButtons = (onPushLink, onHelp, onLogOut, routes, user_name
     },
     {
       buttonType: 'NavLink',
-      desc: 'View the dashboard for your SmartApp™ Profile',
+      desc: 'View the dashboard for your Profile',
       id: 'profile_button',
       name: 'profileButton',
       onClickFunction: onPushLink,

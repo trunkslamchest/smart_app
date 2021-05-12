@@ -33,6 +33,7 @@ const DashboardSettingsPrivacyProfileCard = (props) => {
       onMouseLeave={ offHover }
     >
       <span
+        name={ props.setting.name }
         style={ props.enabled && hoverState ? { font: '600 10pt "Lato", sans-serif' } : {} }
       >
         { props.setting.text }

@@ -22,6 +22,7 @@ const DashboardSettingsCheckBox = (props) => {
 
   return(
     <div
+      name={ props.name }
       className={ props.status ? 'dashboard_settings_privacy_profile_card_img_container_active' : 'dashboard_settings_privacy_profile_card_img_container' }
       style={ checkBoxStyle }
     >

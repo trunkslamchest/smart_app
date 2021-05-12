@@ -17,7 +17,7 @@ import makeEditProfileButtons from './editProfileFunctions/makeEditProfileButton
 
 import validateEditProfileModal from '../../../utility/validation/validateEditProfileModal'
 
-import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import ModalHeaderCentered from '../../components/headers/modalHeaderCentered/modalHeaderCentered'
 import Modal from '../../modal/modal'
 import DefaultForm from '../../forms/defaultForm'
 
@@ -99,7 +99,7 @@ class EditProfile extends React.Component {
     if(!this.props.modal.loading && !this.props.auth.loading)
       modalBlock =
         <div className='edit_profile_wrapper'>
-          <ModalHeader header_text='Confirm Email Update' />
+          <ModalHeaderCentered header_text='Confirm Email Update' />
           <DefaultForm
             buttonRow={ true }
             inputFields={ editProfileFormInputs }

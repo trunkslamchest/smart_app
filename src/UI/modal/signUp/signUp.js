@@ -17,7 +17,7 @@ import validateSignUp from '../../../utility/validation/validateSignUp'
 import BaseDynamicBar from '../../loading/dynamicBar/baseDynamicBar/baseDynamicBar'
 import SmallLoadingSpinner from '../../loading/smallLoadingSpinner/smallLoadingSpinner'
 
-import ModalHeader from '../../components/headers/modalHeader/modalHeader'
+import ModalHeaderCentered from '../../components/headers/modalHeaderCentered/modalHeaderCentered'
 import Modal from '../../modal/modal'
 import DefaultForm from '../../forms/defaultForm'
 
@@ -157,7 +157,7 @@ class SignUp extends React.Component {
         showModal={ this.props.modal.signup }
       >
         <div className='sign_up_wrapper'>
-          <ModalHeader header_text='Create New Account' />
+          <ModalHeaderCentered header_text='Create New Account' />
           { (this.props.auth.loading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }
