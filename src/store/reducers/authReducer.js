@@ -104,17 +104,6 @@ const authDelete = (currentState, action) => {
   }
 }
 
-const authCert = (currentState, action) => {
-  return {
-    ...currentState,
-    cert: action.cert,
-    fail: action.fail,
-    loading: action.loading,
-    start: action.start,
-    success: action.success
-  }
-}
-
 const authValid = (currentState, action) => {
   return {
     ...currentState,
@@ -129,13 +118,6 @@ const clearAuthCreds = (currentState, action) => {
     id: action.id,
     refreshToken: action.refreshToken,
     token: action.token
-  }
-}
-
-const setAuthType = (currentState, action) => {
-  return {
-    ...currentState,
-    authType: action.authType
   }
 }
 
@@ -203,7 +185,6 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.AUTH_REFRESH: return authRefresh(currentState, action)
     case actionTypes.AUTH_USER: return authUser(currentState, action)
     case actionTypes.AUTH_DELETE: return authDelete(currentState, action)
-    case actionTypes.AUTH_CERT: return authCert(currentState, action)
     case actionTypes.AUTH_VALID: return authValid(currentState, action)
     case actionTypes.AUTH_CLEAR_STATE: return authClearState(currentState, action)
     case actionTypes.CLEAR_AUTH_CREDS: return clearAuthCreds(currentState, action)
@@ -211,7 +192,6 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_AUTH_STATUS: return clearAuthStatus(currentState, action)
     case actionTypes.CLEAR_AUTH_STATUS2: return clearAuthStatus2(currentState, action)
     case actionTypes.CLEAR_AUTH_ERRORS: return clearAuthErrors(currentState, action)
-    case actionTypes.SET_AUTH_TYPE: return setAuthType(currentState, action)
     case actionTypes.CLEAR_USER_CACHE: return clearUserCache(currentState, action)
     default: return currentState
   }

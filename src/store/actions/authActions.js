@@ -168,14 +168,14 @@ const authComplete = (obj) => {
 
 const updateLocalStorage = (obj) => {
   localStorage.access = 'normal'
-  localStorage.access_token = obj.access_token
+  // localStorage.access_token = obj.access_token
   localStorage.id = obj.id
   localStorage.refreshToken = obj.refresh
   localStorage.token = obj.token
   localStorage.expiration = obj.expires
-  localStorage.passwordHash = obj.passwordHash
-  localStorage.displayName = obj.displayName || obj.user
-  localStorage.email = obj.email
+  // localStorage.passwordHash = obj.passwordHash
+  // localStorage.displayName = obj.displayName || obj.user
+  // localStorage.email = obj.email
 
 }
 
@@ -357,13 +357,6 @@ const localLogOut = () => {
   }
 }
 
-export const setAuthType = (authType) => {
-  return {
-    type: actionTypes.SET_AUTH_TYPE,
-    authType: authType
-  }
-}
-
 export const clearAuthType = () => {
   return {
     type: actionTypes.CLEAR_AUTH_TYPE,
@@ -400,17 +393,6 @@ export const clearAuthErrors = () => {
   return {
     type: actionTypes.CLEAR_AUTH_ERRORS,
     errors: []
-  }
-}
-
-export const authCert = (bool) => {
-  return {
-    type: actionTypes.AUTH_CERT,
-    fail: false,
-    loading: true,
-    start: false,
-    success: false,
-    cert: bool
   }
 }
 

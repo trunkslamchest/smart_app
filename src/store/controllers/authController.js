@@ -90,8 +90,8 @@ class AuthController extends React.Component {
   }
 
   componentDidUpdate(){
+    if(this.props.auth.status === 'fail' && this.props.auth.loading) this.authFailModule()
     if(this.props.auth.authType === 'signUp') {
-      if(this.props.auth.status === 'fail' && this.props.auth.loading) this.authFailModule()
       if(this.props.auth.status === 'updateAuthDisplayNameSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
       if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
       if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
@@ -103,7 +103,6 @@ class AuthController extends React.Component {
     }
 
     if(this.props.auth.authType === 'logIn') {
-      if(this.props.auth.status === 'fail' && this.props.auth.loading) this.authFailModule()
       if(this.props.auth.status === 'authLogInSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
       if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
       if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
@@ -115,7 +114,6 @@ class AuthController extends React.Component {
     }
 
     if(this.props.auth.authType === 'refresh') {
-      if(this.props.auth.status === 'fail' && this.props.auth.loading) this.authFailModule()
       if(this.props.auth.status === 'authRefreshSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
       if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
       if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)

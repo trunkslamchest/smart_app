@@ -31,7 +31,6 @@ export {
   authRefresh,
   authDelete,
   authTimeout,
-  authCert,
   authValid,
   authClearState,
   clearAuthCreds,
@@ -39,11 +38,8 @@ export {
   clearAuthStatus,
   clearAuthStatus2,
   clearAuthErrors,
-  setAuthType,
   clearUserCache
   // setAuthRedirectPath,
-  // checkAuthState,
-  // checkAuthTimeout,
 } from './authActions'
 
 export {
