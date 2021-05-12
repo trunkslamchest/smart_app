@@ -92,7 +92,7 @@ export const authFail = (error) => {
     if(error.code === 'auth/user-not-found') {
       newCode = 421
       newMessage = 'Email does not exist'
-    } else if(error.message === 'EMAIL_EXISTS') {
+    } else if(error.code === 'auth/email-already-in-use') {
       newCode = 422
       newMessage = 'Email already exists'
     } else if(error.code === 'auth/wrong-password') {
