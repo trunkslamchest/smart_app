@@ -72,7 +72,7 @@ class LogIn extends React.Component {
       this.props.onAuthStart('logIn', {
         email: this.state.email,
         password: this.state.password,
-        returnSecureToken: true
+        // returnSecureToken: true
       })
     }
   }

@@ -4,6 +4,7 @@ export {
   login,
   logout,
   signup,
+  editProfile,
   deleteProfile,
   help,
   showModal,
@@ -14,9 +15,13 @@ export {
 } from './modalActions'
 
 export {
+  cacheUser,
+  reAuthWithCreds,
   authUpdateLoadingStatus,
   authUpdateStatus,
+  authUpdateStatus2,
   authUser,
+  authEditUser,
   authStart,
   authSuccess,
   authFail,
@@ -32,6 +37,7 @@ export {
   clearAuthCreds,
   clearAuthType,
   clearAuthStatus,
+  clearAuthStatus2,
   clearAuthErrors,
   setAuthType,
   clearUserCache

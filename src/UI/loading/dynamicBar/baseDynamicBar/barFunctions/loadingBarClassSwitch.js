@@ -5,18 +5,31 @@ export var loadingBarClassSwitch = function(barType, status) {
   // console.log('status', status)
 
   if(!status) barClass = 'loading_bar_0'
-  if(status === 'authGoogle') barClass = 'loading_bar_1'
-  if(status === 'authUser') barClass = 'loading_bar_3'
-  if(status === 'storeUserInfo') barClass = 'loading_bar_5'
-  if(status === 'storeUserQuestions') barClass = 'loading_bar_7'
-  if(status === 'storeAchievements') barClass = 'loading_bar_9'
-  if(status === 'storeQuestionTotals') barClass = 'loading_bar_11'
-  if(status === 'authSuccess') barClass = 'loading_bar_13'
-  if(status === 'authValid') barClass = 'loading_bar_final'
+  if(status === 'initAuth') barClass = 'loading_bar_1'
+  if(status === 'authLogInSuccess') barClass = 'loading_bar_3'
+  if(status === 'createAuthUserSuccess') barClass = 'loading_bar_3'
+  if(status === 'updateAuthDisplayNameSuccess') barClass = 'loading_bar_3'
+  if(status === 'authRefreshSuccess') barClass = 'loading_bar_3'
+  if(status === 'authUser') barClass = 'loading_bar_6'
+  if(status === 'storeUserInfo') barClass = 'loading_bar_7'
+  if(status === 'storeUserQuestions') barClass = 'loading_bar_9'
+  if(status === 'storeAchievements') barClass = 'loading_bar_11'
+  if(status === 'storeQuestionTotals') barClass = 'loading_bar_13'
+  if(status === 'authSuccess') barClass = 'loading_bar_15'
+  if(status === 'skipAuthUpdate') barClass = 'loading_bar_2'
+  if(status === 'reAuthWithCredsSuccess') barClass = 'loading_bar_4'
+  if(status === 'authEditUser') barClass = 'loading_bar_6'
+  if(status === 'updateAuthEmailSuccess') barClass = 'loading_bar_8'
+  if(status === 'updateAuthDisplayNameSuccess' && barType === 'editProfile') barClass = 'loading_bar_8'
+
+  if(status === 'updateUser') barClass = 'loading_bar_14'
+
   if(status === 'initUserEdit') barClass = 'loading_bar_1'
   if(status === 'updateUserSuccess') barClass = 'loading_bar_5'
   if(status === 'deleteAuthUserSuccess') barClass = 'loading_bar_3'
   if(status === 'deleteLocalUserSuccess') barClass = 'loading_bar_5'
+  if(status === 'authSuccess') barClass = 'loading_bar_17'
+  if(status === 'authValid') barClass = 'loading_bar_final'
   if(status === 'clearUserInfo') barClass = 'loading_bar_7'
   if(status === 'clearUserQuestions') barClass = 'loading_bar_9'
   if(status === 'clearUserSettings') barClass = 'loading_bar_11'
@@ -24,10 +37,6 @@ export var loadingBarClassSwitch = function(barType, status) {
   if(status === 'clearAchievements') barClass = 'loading_bar_15'
   if(status === 'clearAuthCreds') barClass = 'loading_bar_10'
   if(status === 'clearLocalStorage') barClass = 'loading_bar_final'
-
-  if(barType === 'authLogOut'|| barType === 'deleteProfile') {
-    if(status === 'authSuccess') barClass = 'loading_bar_final'
-  }
 
   if(barType === 'leaderBoards') {
     if(status === 'initLeaderBoards') barClass = 'loading_bar_1'

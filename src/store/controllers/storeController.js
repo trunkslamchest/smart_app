@@ -9,55 +9,62 @@ import {
   showModal
 } from '../actions/actionIndex'
 
+// import getAll from '../../firebase/functions/getAll'
+
 import AuthController from './authController'
 
 class StoreController extends React.Component {
 
   state = {
+    db: {}
   }
 
   componentDidMount(){
-
+    // getAll.then((resObj) => {
+    //   this.setState({ db: resObj })
+    //   // console.log(resObj)
+    //   // return resObj
+    // })
   }
 
   componentDidUpdate(){
 
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(
-      // this.props.auth, nextProps.auth, "|",
-      // this.props.modal, nextProps.modal, "|",
-      // this.props.modal.loading, nextProps.modal.loading, "|",
-      // !!nextProps.leaderBoards.status, "|",
-      // nextProps.leaderBoards.loading
-      // this.props.leaderBoards, "|",
-      // nextProps.leaderBoards, "|",
-      // this.props.questions.status, "|",
-      // nextProps.questions.status
-    )
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   // console.log(
+  //     // this.props.auth, nextProps.auth, "|",
+  //     // this.props.modal, nextProps.modal, "|",
+  //     // this.props.modal.loading, nextProps.modal.loading, "|",
+  //     // !!nextProps.leaderBoards.status, "|",
+  //     // nextProps.leaderBoards.loading
+  //     // this.props.leaderBoards, "|",
+  //     // nextProps.leaderBoards, "|",
+  //     // this.props.questions.status, "|",
+  //     // nextProps.questions.status
+  //   // )
 
-    let render = false
+  //   let render = false
 
-    if(
-      !!this.props.auth.status||
-      !!this.props.authType ||
-      nextProps.leaderBoards.status ||
-      nextProps.profile.status ||
-      nextProps.questions.status ||
-      nextProps.questions.commentStatus ||
-      nextProps.questions.voteStatus
+  //   if(
+  //     !!this.props.auth.status||
+  //     !!this.props.authType ||
+  //     nextProps.leaderBoards.status ||
+  //     nextProps.profile.status ||
+  //     nextProps.questions.status ||
+  //     nextProps.questions.commentStatus ||
+  //     nextProps.questions.voteStatus
 
-      // nextProps.leaderBoards.loading
-      // !!nextProps.authType ||
-    ) {
-      render = true
-    }
+  //     // nextProps.leaderBoards.loading
+  //     // !!nextProps.authType ||
+  //   ) {
+  //     render = true
+  //   }
 
-    if(nextProps.modal.loading || nextProps.modal.login || nextProps.modal.signup || nextProps.modal.help) render = true
+  //   if(nextProps.modal.loading || nextProps.modal.login || nextProps.modal.signup || nextProps.modal.help) render = true
 
-    return render
-  }
+  //   return render
+  // }
 
   componentWillUnmount(){
     this.props.showModal(false)
@@ -73,9 +80,11 @@ class StoreController extends React.Component {
   }
 
   render(){
+    // console.log(this.state)
+
     return(
       <AuthController onRedirect={ this.onRedirect } history={ this.props.history }>
-          { this.props.children }
+        { this.props.children }
       </AuthController>
     )
   }

@@ -103,9 +103,17 @@ class SignUp extends React.Component {
         displayName: this.state.user_name,
         email: this.state.email,
         password: this.state.password,
-        returnSecureToken: true
+        // returnSecureToken: true
       })
     }
+    // if(!this.state.form.pending) {
+    //   this.props.onAuthStart('signUp', {
+    //     displayName: this.state.user_name,
+    //     email: this.state.email,
+    //     password: this.state.password,
+    //     returnSecureToken: true
+    //   })
+    // }
   }
 
   onReset = () => {

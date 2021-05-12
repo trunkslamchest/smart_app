@@ -12,15 +12,15 @@ const HomeContainer = (props) => {
 
   let homePage
 
-  if(!props.auth.loading) {
+  // if(!props.auth.loading || !props.modal.loading) {
     if(props.auth.status === 'authValid') {
       homePage = <HomeLoggedInContainer history={ props.history } user_name={ props.user.info.user_name } />
     } else {
       homePage = <HomeLoggedOutContainer history={ props.history } />
     }
-  }
+  // }
 
-  return(<>{ homePage }</>)
+  return(<>{ (!props.auth.loading && !props.modal.loading) && homePage }</>)
 }
 
 const store = (store) => {

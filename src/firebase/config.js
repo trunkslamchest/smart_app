@@ -6,7 +6,6 @@ const config = {
   messagingSenderId:  process.env.REACT_APP_FIREBASE_MESSANGER_SENDER_ID,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket:  process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-};
-
+}
 
 export default config

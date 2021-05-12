@@ -42,6 +42,13 @@ export const signup = (bool) => {
   }
 }
 
+export const editProfile = (bool) => {
+  return {
+    type: actionTypes.EDITPROFILEMODAL,
+    editProfile: bool
+  }
+}
+
 export const deleteProfile = (bool) => {
   return {
     type: actionTypes.DELETEPROFILEMODAL,

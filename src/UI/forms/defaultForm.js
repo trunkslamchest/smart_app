@@ -6,6 +6,7 @@ import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/de
 
 import './formStyles/defaultForm.css'
 import './formStyles/editProfileForm.css'
+import './formStyles/editProfileModalForm.css'
 import './formStyles/logInForm.css'
 import './formStyles/signUpForm.css'
 import './formStyles/deleteProfileForm.css'

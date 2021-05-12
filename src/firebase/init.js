@@ -5,7 +5,7 @@ import 'firebase/app'
 // import firebase from "firebase/app";
 // import "firebase/auth";
 
-firebase.initializeApp(config);
-firebase.auth()
+firebase.initializeApp(config)
+// firebase.auth()
 
-export default firebase;
+export default firebase

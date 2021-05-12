@@ -17,7 +17,6 @@ const Header = (props) => {
   let header
 
   const onPushLink = (event) => {
-    // console.log(event.target.attributes)
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     props.history.push(buttonParams.route)
   }

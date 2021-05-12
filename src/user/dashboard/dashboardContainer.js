@@ -99,7 +99,7 @@ const Dashboard = (props) => {
 
   return(
     <>
-      { dashboardBlock }
+      { (!props.modal.loading || !props.auth.loading) && dashboardBlock }
     </>
   )
 }
@@ -108,6 +108,7 @@ const store = (store) => {
   return {
     achievements: store.achievements,
     auth: store.auth,
+    modal: store.modal,
     questions: store.questions,
     user: store.user
   }

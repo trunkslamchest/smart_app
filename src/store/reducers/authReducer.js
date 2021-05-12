@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   authType: null,
   status: null,
+  status2: null,
   loading: false,
   errors: [],
   id: null,
@@ -18,6 +19,13 @@ const authUpdateStatus = (currentState, action) => {
   }
 }
 
+const authUpdateStatus2 = (currentState, action) => {
+  return {
+    ...currentState,
+    status2: action.status2
+  }
+}
+
 const authUpdateLoadingStatus = (currentState, action) => {
   return {
     ...currentState,
@@ -28,6 +36,7 @@ const authUpdateLoadingStatus = (currentState, action) => {
 const authStart = (currentState, action) => {
   return {
     ...currentState,
+    status: action.status,
     errors: [],
     authType: action.authType,
     loading: true
@@ -145,6 +154,14 @@ const clearAuthStatus = (currentState, action) => {
   }
 }
 
+const clearAuthStatus2 = (currentState, action) => {
+  return {
+    ...currentState,
+    errors: action.errors,
+    status2: action.status2
+  }
+}
+
 const authClearState = (currentState, action) => {
   return {
     ...currentState,
@@ -176,6 +193,7 @@ const authReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case actionTypes.AUTH_UPDATE_LOADING_STATUS: return authUpdateLoadingStatus(currentState, action)
     case actionTypes.AUTH_UPDATE_STATUS: return authUpdateStatus(currentState, action)
+    case actionTypes.AUTH_UPDATE_STATUS2: return authUpdateStatus2(currentState, action)
     case actionTypes.AUTH_START: return authStart(currentState, action)
     case actionTypes.AUTH_SUCCESS: return authSuccess(currentState, action)
     case actionTypes.AUTH_FAIL: return authFail(currentState, action)
@@ -191,6 +209,7 @@ const authReducer = (currentState = initialState, action) => {
     case actionTypes.CLEAR_AUTH_CREDS: return clearAuthCreds(currentState, action)
     case actionTypes.CLEAR_AUTH_TYPE: return clearAuthType(currentState, action)
     case actionTypes.CLEAR_AUTH_STATUS: return clearAuthStatus(currentState, action)
+    case actionTypes.CLEAR_AUTH_STATUS2: return clearAuthStatus2(currentState, action)
     case actionTypes.CLEAR_AUTH_ERRORS: return clearAuthErrors(currentState, action)
     case actionTypes.SET_AUTH_TYPE: return setAuthType(currentState, action)
     case actionTypes.CLEAR_USER_CACHE: return clearUserCache(currentState, action)

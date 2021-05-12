@@ -7,6 +7,7 @@ const initialState = {
   login: false,
   logout: false,
   signup: false,
+  editProfile: false,
   deleteProfile: false,
   help: false,
   helpHeader: null,
@@ -52,6 +53,13 @@ const signupModal = (currentState, action) => {
   return {
     ...currentState,
     signup: action.signup
+  }
+}
+
+const editProfileModal = (currentState, action) => {
+  return {
+    ...currentState,
+    editProfile: action.editProfile
   }
 }
 
@@ -105,6 +113,7 @@ const modalReducer = (currentState = initialState, action) => {
     case actionTypes.LOGINMODAL: return loginModal(currentState, action)
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)
     case actionTypes.SIGNUPMODAL: return signupModal(currentState, action)
+    case actionTypes.EDITPROFILEMODAL: return editProfileModal(currentState, action)
     case actionTypes.DELETEPROFILEMODAL: return deleteProfileModal(currentState, action)
     case actionTypes.HELPMODAL: return helpModal(currentState, action)
     case actionTypes.SET_HELP_HEADER: return setHelpHeader(currentState, action)

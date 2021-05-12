@@ -79,9 +79,10 @@ class DeleteProfile extends React.Component {
     // this.props.onClearAuthStatus()
     if(!this.state.form.pending) {
       this.props.onAuthStart('deleteProfile', {
+        id: this.props.auth.id,
         email: this.props.user.info.email,
         password: this.state.password,
-        returnSecureToken: true
+        // returnSecureToken: true
       })
     }
     this.props.history.push( routes.home )

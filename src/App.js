@@ -18,6 +18,8 @@ import LogIn from './UI/modal/logIn/logIn'
 import SignUp from './UI/modal/signUp/signUp'
 import LogOut from './UI/modal/logOut/logOut'
 import DeleteProfile from './UI/modal/deleteProfile/deleteProfile'
+import EditProfile from './UI/modal/editProfile/editProfile'
+
 import Help from './UI/modal/help/help'
 import LoadingModal from './UI/loading/loadingModal/loadingModal'
 
@@ -49,6 +51,7 @@ const App = (props) => {
       { props.modal.login && <LogIn history={ props.history } /> }
       { props.modal.logout && <LogOut history={ props.history } /> }
       { props.modal.signup && <SignUp history={ props.history } /> }
+      { props.modal.editProfile && <EditProfile history={ props.history } /> }
       { props.modal.deleteProfile && <DeleteProfile history={ props.history } /> }
       { props.modal.help && <Help headerText={ props.modal.helpHeader } helpSections = { props.modal.helpSections } history={ props.history } /> }
       <Header history={ props.history } />

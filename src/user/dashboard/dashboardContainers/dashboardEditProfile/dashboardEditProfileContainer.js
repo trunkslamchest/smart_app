@@ -2,8 +2,10 @@ import React from 'react'
 import { routes } from '../../../../utility/paths.js'
 import { connect } from 'react-redux'
 import {
+  editProfile,
   loading,
   authStart,
+  cacheUser,
   updateUserInfo,
   clearAuthErrors,
   clearAuthStatus
@@ -55,7 +57,7 @@ class DashboardEditProfile extends React.Component {
   componentDidMount(){ if(this.props.user.info) this.pulledStore() }
 
   componentDidUpdate() {
-    if(this.props.user.info && !this.state.pulledStore)this.pulledStore()
+    if(this.props.user.info && !this.state.pulledStore) this.pulledStore()
     if(!this.props.modal.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
   }
 
@@ -137,9 +139,11 @@ class DashboardEditProfile extends React.Component {
   onSubmit = (event) => {
     event.persist()
     event.preventDefault()
-    this.props.onClearAuthStatus()
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
-    this.props.onLoadingModal(true)
+    this.onValidateEditProfile()
+  }
+
+
+  onValidateEditProfile = () => {
     this.setState({ form: { valid: false, pending: true } })
 
     let formCheck = validateEditProfile(
@@ -155,29 +159,53 @@ class DashboardEditProfile extends React.Component {
     )
 
     this.setState({ form: formCheck })
-    if(formCheck.valid) this.checkUserExists()
+    if(formCheck.valid) {
+      if(this.state.email !== this.props.user.info.email) {
+        this.props.onEditProfileModal(true)
+        this.props.onCacheUser({
+          uid: this.props.auth.id,
+          old_email: this.props.user.info.email,
+          info: {
+            avatar: this.state.avatar,
+            bio: this.state.bio,
+            country: this.state.country,
+            dob: this.state.dob,
+            email: this.state.email,
+            first_name: this.state.first_name,
+            gender: this.state.gender,
+            gender_pronouns: this.state.gender_pronouns,
+            last_name: this.state.last_name,
+            user_name: this.state.user_name,
+            join_date: this.props.user.info.join_date,
+            last_login: this.props.user.info.last_login
+          }
+        })
+      } else {
+        // this.props.onClearAuthStatus()
+        if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+        this.props.onLoadingModal(true)
+        this.checkUserExists()
+      }
+    }
     else this.props.onLoadingModal(false)
   }
 
   checkUserExists = () => {
     checkFunctions('checkUserName', check.user_name, { old_user_name: this.props.user.info.user_name, new_user_name: this.state.user_name, type: 'editProfile' })
-    .then(userNameRes => {
-      if(!userNameRes.valid) {
+    .then(resObj => {
+      if(!resObj.valid) {
         this.props.onLoadingModal(false)
-        this.setState({ form: { valid: false, user_name: { valid: userNameRes.valid, errors: [ userNameRes.errors ] }, pending: false  } })
+        this.setState({ form: { valid: false, user_name: { valid: resObj.valid, errors: [ resObj.errors ] }, pending: false  } })
       }
-      else this.onValidEditProfile()
+      else this.onValidation()
     })
   }
 
-  onValidEditProfile = () => {
+  onValidation = () => {
     if(!this.state.form.pending && this.state.enableButton){
       this.props.onAuthStart('editProfile', {
-        refresh: {
-          grant_type: 'refresh_token',
-          refresh_token: localStorage.refreshToken
-        },
-        uid: localStorage.id,
+        uid: this.props.auth.id,
+        old_user_name: this.props.user.info.user_name,
         info: {
           avatar: this.state.avatar,
           bio: this.state.bio,
@@ -245,7 +273,6 @@ class DashboardEditProfile extends React.Component {
       <>
         <DashboardHeader header_text={ 'Edit Your Profile' } />
         <DefaultForm
-          // buttonClass={ 'edit_profile_button' }
           buttonContainerClass={ 'dashboard_form_buttons_container' }
           buttonRow={ true }
           dividers={ true }
@@ -275,7 +302,9 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
+    onEditProfileModal: (bool) => dispatch(editProfile(bool)),
     onLoadingModal: (bool) => dispatch(loading(bool)),
+    onCacheUser: (obj) => dispatch(cacheUser(obj)),
     onAuthStart: (authType, obj, props) => dispatch(authStart(authType, obj, props)),
     onUpdateUserInfo: (obj, props) => dispatch(updateUserInfo(obj, props)),
     onClearAuthStatus: () => dispatch(clearAuthStatus()),

@@ -2,15 +2,23 @@ import * as actionTypes from './actionTypes'
 
 import {
   fetch,
-  auth
+  // auth
 } from '../../utility/paths'
 
-import {
-  updateUserInfo
-} from './userActions'
+// import {
+//   updateUserInfo
+// } from './userActions'
 
-import authFunctions from '../../utility/authFunctions'
+// import authFunctions from '../../utility/authFunctions'
 import userFunctions from '../../utility/userFunctions'
+
+import logIn from '../../firebase/functions/logIn'
+import signUp from '../../firebase/functions/signUp'
+import updateDisplayName from '../../firebase/functions/updateDisplayName'
+import updateEmail from '../../firebase/functions/updateEmail'
+import logOut from '../../firebase/functions/logOut'
+import reAuth from '../../firebase/functions/reAuth'
+import deleteUser from '../../firebase/functions/deleteUser'
 
 import signUpObjTemplate from '../../templates/signUpObjTemplate'
 
@@ -25,6 +33,7 @@ export const authStart = (authType, obj) => {
       dispatch(authSignUp(authType, obj))
     }
     if(authType === 'refresh') {
+      console.log("stop")
       dispatch(initAuth(authType))
       dispatch(authRefresh(authType, obj))
     }
@@ -32,14 +41,21 @@ export const authStart = (authType, obj) => {
       dispatch(initAuth(authType))
       dispatch(authLogOut(authType, obj))
     }
+    if(authType === 'editProfileModal') {
+      dispatch(initAuth(authType))
+      dispatch(reAuthWithCreds(authType, obj))
+    }
     if(authType === 'editProfile') {
       dispatch(initAuth(authType))
-      dispatch(authUpdateStatus('initUserEdit', true))
-      dispatch(authRefreshEdit(authType, obj))
+      let cacheObj = { uid: obj.uid, info: obj.info }
+      if(obj.old_user_name) cacheObj = { ...cacheObj, old_user_name: obj.old_user_name }
+      if(obj.old_user_name !== obj.info.user_name) dispatch(authUpdateDisplayName(obj.info.user_name))
+      else dispatch(authUpdateStatus('skipAuthUpdate'))
+      dispatch(cacheUser(cacheObj))
     }
     if(authType === 'deleteProfile') {
       dispatch(initAuth(authType))
-      dispatch(authLogIn(authType, obj))
+      dispatch(reAuthWithCreds(authType, obj))
     }
   }
 }
@@ -47,6 +63,7 @@ export const authStart = (authType, obj) => {
 const initAuth = (authType) => {
   return {
     type: actionTypes.AUTH_START,
+    status: 'initAuth',
     error: null,
     authType: authType,
     loading: true
@@ -60,10 +77,17 @@ export const authUpdateLoadingStatus = (bool) => {
   }
 }
 
-export const authUpdateStatus = (status, loading) => {
+export const authUpdateStatus = (status) => {
   return {
     type: actionTypes.AUTH_UPDATE_STATUS,
     status: status
+  }
+}
+
+export const authUpdateStatus2 = (status2) => {
+  return {
+    type: actionTypes.AUTH_UPDATE_STATUS2,
+    status2: status2
   }
 }
 
@@ -71,17 +95,16 @@ export const authFail = (error) => {
   return dispatch => {
     let newMessage = '', newCode = 0
 
-    if(error.message === 'EMAIL_NOT_FOUND') {
+    if(error.code === 'auth/user-not-found') {
       newCode = 421
       newMessage = 'Email does not exist'
     } else if(error.message === 'EMAIL_EXISTS') {
       newCode = 422
       newMessage = 'Email already exists'
-    } else if(error.message === 'INVALID_PASSWORD') {
+    } else if(error.code === 'auth/wrong-password') {
       newCode = 423
       newMessage = 'Incorrect Password'
-    } else if(error.message === 'USER_NOT_FOUND') {
-      console.log(error)
+    } else if(error.code === 'auth/user-not-found') {
       newCode = 424
       newMessage = 'User does not exist'
     } else if(error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.'){
@@ -113,17 +136,22 @@ export const authSuccess = (authType, obj, updateObj) => {
     }
     if(authType === 'signUp') {
       updateLocalStorage(obj)
+      dispatch(authUpdateDisplayName(obj.displayName))
       dispatch(createUser(obj))
     }
     if(authType === 'refresh') {
       updateLocalStorage(obj)
       dispatch(authComplete(obj))
     }
+    if(authType === 'editProfileModal') {
+      updateLocalStorage(obj)
+    }
     if(authType === 'editProfile') {
       updateLocalStorage(obj)
       dispatch(authEditUser(authType, obj, updateObj))
     }
     if(authType === 'deleteProfile') {
+      updateLocalStorage(obj)
       dispatch(authDelete(obj))
     }
   }
@@ -154,7 +182,7 @@ const updateLocalStorage = (obj) => {
 const createUser = (obj) => {
   return dispatch => {
     let id = obj.id, userObj = {}
-    userObj[id] = signUpObjTemplate(obj.email, obj.user)
+    userObj[id] = signUpObjTemplate(obj.email, obj.displayName)
     userFunctions('post', fetch.post.user, userObj)
     .then(() => {
       dispatch(authComplete(obj))
@@ -165,169 +193,169 @@ const createUser = (obj) => {
 export const authUser = () => {
   return dispatch => {
     userFunctions('getUser', fetch.get.user, localStorage.id)
-    .then(userRes => {
-      if(userRes === null) localStorage.clear()
-      // if(!!userRes.error) dispatch(authFail(userRes.error))
+    .then(resObj => {
+      if(resObj === null) localStorage.clear()
+      if(resObj.error) dispatch(authFail(resObj))
       else {
-        dispatch(cacheUser(userRes))
+        dispatch(cacheUser(resObj))
       }
     })
   }
 }
 
-const cacheUser = (user) => {
+export const cacheUser = (user) => {
   return {
     type: actionTypes.AUTH_USER,
     userCache: user
   }
 }
 
-export const authRefresh = (authType, obj) => {
+export const authSignUp = (authType, obj) => {
   return dispatch => {
-    authFunctions('refreshToken', auth.refreshToken, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else {
-        let tempObj = {
-          "idToken": authRes.id_token,
-          "email": localStorage.email,
-          "displayName": localStorage.displayName,
-          "localId": authRes.user_id,
-          "validSince": 360000,
-          "returnSecureToken": true
+    signUp(obj.email, obj.password)
+    .then((resObj) => {
+      if(resObj.error) {
+        dispatch(authFail(resObj))
+      } else {
+        let userObj = {
+          displayName: obj.displayName,
+          id: resObj.uid,
+          email: resObj.email,
+          refresh: resObj.refreshToken,
+          token: resObj.za,
+          creationTime: resObj.metadata.creationTime,
+          lastSignInTime: resObj.metadata.lastSignInTime,
+          expires: "360000"
         }
-
-        authFunctions('refreshToken', auth.update, tempObj)
-        .then(updateRes => {
-          if(!!updateRes.error) dispatch(authFail(updateRes.error))
-          else {
-            dispatch(authSuccess(authType, {
-              displayName: updateRes.displayName,
-              email: updateRes.email,
-              expires: updateRes.expiresIn,
-              id: updateRes.localId,
-              refresh: updateRes.refreshToken,
-              token: updateRes.idToken,
-              passwordHash: updateRes.passwordHash
-            }))
-          }
-        })
+        dispatch(authSuccess(authType, userObj))
+      dispatch(authUpdateStatus('createAuthUserSuccess'))
       }
     })
   }
 }
 
-export const authSignUp = (authType, obj) => {
+const authUpdateDisplayName = (displayName) => {
   return dispatch => {
-    authFunctions('signUp', auth.signUp, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else dispatch(authSuccess(authType, {
-        access_token: authRes.access_token,
-        email: authRes.email,
-        expires: authRes.expiresIn,
-        id: authRes.localId,
-        refresh: authRes.refreshToken,
-        token: authRes.idToken,
-        user: authRes.displayName
-      }))
+    updateDisplayName(displayName)
+    .then((resObj) => {
+      if(resObj.error) {
+        dispatch(authFail(resObj))
+      } else {
+        dispatch(authUpdateStatus('updateAuthDisplayNameSuccess'))
+      }
     })
   }
 }
 
 export const authLogIn = (authType, obj) => {
- return dispatch => {
-    authFunctions('logIn', auth.signIn, obj)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else dispatch(authSuccess(authType, {
-        access_token: authRes.access_token,
-        email: authRes.email,
-        expires: authRes.expiresIn,
-        id: authRes.localId,
-        refresh: authRes.refreshToken,
-        token: authRes.idToken,
-        user: authRes.displayName
-      }))
-    })
-  }
-}
-
-export const authRefreshEdit = (authType, obj) => {
   return dispatch => {
-    authFunctions('refreshToken', auth.refreshToken, obj.refresh)
-    .then(authRes => {
-      if(!!authRes.error) dispatch(authFail(authRes.error))
-      else {
-        let tempObj = {
-          "idToken": authRes.id_token,
-          "email": localStorage.email,
-          "displayName": localStorage.displayName,
-          "localId": authRes.user_id,
-          "validSince": 360000,
-          "returnSecureToken": true
+    logIn(obj.email, obj.password)
+    .then((resObj) => {
+      if(resObj.error) {
+        dispatch(authFail(resObj))
+      } else {
+        let userObj = {
+          displayName: obj.displayName,
+          id: resObj.uid,
+          email: resObj.email,
+          refresh: resObj.refreshToken,
+          token: resObj.za,
+          creationTime: resObj.metadata.creationTime,
+          lastSignInTime: resObj.metadata.lastSignInTime,
+          expires: "360000"
         }
-
-        authFunctions('refreshToken', auth.update, tempObj)
-        .then(updateRes => {
-          if(!!updateRes.error) dispatch(authFail(updateRes.error))
-          else {
-            dispatch(authSuccess(authType, {
-              displayName: updateRes.displayName,
-              email: updateRes.email,
-              expires: updateRes.expiresIn,
-              id: updateRes.localId,
-              refresh: updateRes.refreshToken,
-              token: updateRes.idToken,
-              passwordHash: updateRes.passwordHash,
-              newDisplayName: obj.info.user_name,
-              newEmail: obj.info.email
-            }, obj))
-          }
-        })
+        dispatch(authSuccess(authType, userObj))
+      dispatch(authUpdateStatus('authLogInSuccess'))
       }
     })
   }
 }
 
-const authEditUser = (authType, obj, updateObj) => {
- return dispatch => {
-    let authObj = {
-      "idToken": obj.token,
-      "localId": obj.id,
-      "displayName": obj.newDisplayName,
-      "email": obj.newEmail,
-      "validSince": localStorage.expiration,
-      "returnSecureToken": true
-    }
-
-    authFunctions('editUser', auth.update, authObj)
-    .then(updateRes => {
-      dispatch(updateUserInfo(authType, updateObj))
-    })
-  }
-}
-
-export const authDelete = (obj) => {
+export const authRefresh = (authType, obj) => {
   return dispatch => {
-    const delObj = {
-      displayName: obj.user,
-      email: obj.email,
-      expiresIn: obj.expires,
-      localId: obj.id,
-      idToken: obj.token,
-      refreshToken: obj.refresh
-    }
+    dispatch(authSuccess(authType, obj))
+    dispatch(authUpdateStatus('authRefreshSuccess'))
+  }
+}
 
-    authFunctions('delete', auth.delete, delObj)
-    .then(authRes => {
-        if(!!authRes.error) dispatch(authFail(authRes.error))
-        else dispatch(authUpdateStatus('deleteAuthUserSuccess', true))
+export const authEditUser = (authType, obj) => {
+ return dispatch => {
+    if(obj.old_user_name !== obj.info.user_name){
+      updateDisplayName(obj.info.user_name)
+      .then((resObj) => {
+        if(resObj.error) {
+          dispatch(authFail(resObj))
+        } else {
+          dispatch(authUpdateStatus('updateAuthDisplayNameSuccess'))
+        }
+      })
+    }
+    if(obj.old_email !== obj.info.email){
+      updateEmail(obj.info.email)
+      .then((resObj) => {
+        if(resObj.error) {
+          dispatch(authFail(resObj))
+        } else {
+          dispatch(authUpdateStatus2('updateAuthEmailSuccess'))
+        }
+      })
+    }
+  }
+}
+
+export const reAuthWithCreds = (authType, obj) => {
+  return dispatch => {
+    reAuth(obj.email, obj.password)
+    .then((resObj) => {
+      if(resObj.error) {
+        dispatch(authFail(resObj))
+      } else {
+        let userObj = {
+          displayName: obj.displayName,
+          id: resObj.user.uid,
+          email: resObj.user.email,
+          refresh: resObj.user.refreshToken,
+          token: resObj.user.za,
+          creationTime: resObj.user.metadata.creationTime,
+          lastSignInTime: resObj.user.metadata.lastSignInTime,
+          expires: "360000"
+        }
+        dispatch(authSuccess(authType, userObj))
+        dispatch(authUpdateStatus('reAuthWithCredsSuccess'))
+
+      }
     })
   }
 }
 
-export const authLogOut = () => { return { type: actionTypes.AUTH_LOGOUT, loading: true } }
+export const authDelete = () => {
+  return dispatch => {
+    deleteUser()
+    .then((resObj) => {
+      if(resObj.error) {
+        dispatch(authFail(resObj))
+      } else {
+        dispatch(authUpdateStatus('deleteAuthUserSuccess', true))
+      }
+    })
+  }
+}
+
+export const authLogOut = () => {
+  return dispatch => {
+    logOut()
+    .then(() => {
+      dispatch(localLogOut)
+    })
+  }
+}
+
+const localLogOut = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+    loading: true
+  }
+}
 
 export const setAuthType = (authType) => {
   return {
@@ -348,6 +376,14 @@ export const clearAuthStatus = () => {
     type: actionTypes.CLEAR_AUTH_STATUS,
     errors: [],
     status: null
+  }
+}
+
+export const clearAuthStatus2 = () => {
+  return {
+    type: actionTypes.CLEAR_AUTH_STATUS2,
+    errors: [],
+    status2: null
   }
 }
 
