@@ -1,25 +1,15 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 import {
   getStaticQuestion,
   clearStaticQuestion,
-  clearQuestionStatus,
   setStaticUserQuestion,
-  clearStaticUserQuestion,
-  clearStaticQuestionVoteStatus,
-  clearStaticUserVote,
   loading,
   updateQuestionStatus,
   updateQuestionLoadingStatus,
   updateUserVotesFromPlayController,
   updateUserCommentsFromPlayController,
-  updateStaticQuestionVoteStatus,
-  updateStaticQuestionCommentStatus,
-  voteLoading,
-  commentLoading,
-  clearStaticQuestionCommentStatus,
-  clearStaticUserComment
+  updateStaticQuestionCommentStatus
 } from '../../store/actions/actionIndex'
 
 import ResultsContainer from '../../play/results/resultsContainer'
@@ -37,38 +27,27 @@ class QuestionsController extends React.Component {
 
   componentDidMount(){
     let parseLocation = this.props.history.location.pathname.split("/")
-
     if(parseLocation[parseLocation.length - 1] === 'stats' || parseLocation[parseLocation.length - 1] === 'discuss' ) parseLocation.pop()
-
     let qid = parseLocation[parseLocation.length - 1],
         cat = parseLocation[parseLocation.length - 2],
         diff = parseLocation[parseLocation.length - 3]
-
     document.title = `SmartApp™ | Results | ${ qid }`
     this.setState({ cat: cat, diff: diff, qid: qid })
-
   }
 
   componentDidUpdate(){
     if(this.props.auth.status === 'authValid' && !this.props.auth.loading && !this.props.questions.status) this.initQuestionModule()
-
     if(this.props.questions.status === 'initStaticQuestion' && !this.state.initStaticResults) this.getStaticQuestionModule()
-
     if(this.props.questions.status === 'getStaticQuestion' && !this.state.initStaticUserResults && this.props.user.questions) this.setStaticUserResultsModule()
-
     if(this.props.questions.status === 'setStaticUserResults' && !this.state.displayStaticResults) this.displayStaticQuestionModule()
-
     if(this.props.questions.status === 'displayStaticQuestion' && this.props.questions.staticQuestion && this.props.questions.loading) this.cleanupStaticQuestionModule()
-
     if(this.props.questions.status === 'displayStaticQuestion') {
       if(this.props.questions.voteStatus === 'updateStaticUserVote' && this.props.questions.vote) this.updateStaticUserVoteModule()
       if(this.props.questions.commentStatus === 'updateStaticQuestionComment' && this.props.questions.comment) this.updateStaticUserCommentModule()
       if(this.props.questions.commentStatus === 'editStaticQuestionComment' && this.props.questions.comment) this.props.onUpdateStaticQuestionCommentStatus('commentSuccess')
-
       if(this.props.questions.voteStatus === 'voteSuccess' && this.props.questions.voteLoading) this.successModule("Vote")
       if(this.props.questions.commentStatus === 'commentSuccess' && this.props.questions.commentLoading) this.successModule("Comment")
     }
-
   }
 
   // shouldComponentUpdate(nextProps, nextState){
@@ -175,7 +154,6 @@ const store = (store) => {
   return {
     modal: store.modal,
     auth: store.auth,
-    play: store.play,
     user: store.user,
     questions: store.questions
   }
@@ -185,22 +163,13 @@ const dispatch = (dispatch) => {
   return {
     onGetStaticQuestion: (obj) => dispatch(getStaticQuestion(obj)),
     onSetStaticUserQuestion: (obj) => dispatch(setStaticUserQuestion(obj)),
-    onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
     onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
-    onClearQuestionStatus: () => dispatch(clearQuestionStatus()),
-    onClearStaticQuestionVoteStatus: () => dispatch(clearStaticQuestionVoteStatus()),
-    onClearStaticUserVote: () => dispatch(clearStaticUserVote()),
     onLoadingModal: (bool) => dispatch(loading(bool)),
     onUpdateQuestionStatus: (status) => dispatch(updateQuestionStatus(status)),
     onUpdateQuestionLoadingStatus: (bool) => dispatch(updateQuestionLoadingStatus(bool)),
     onUpdateUserVotesFromPlayController: (obj) => dispatch(updateUserVotesFromPlayController(obj)),
     onUpdateUserCommentsFromPlayController: (obj) => dispatch(updateUserCommentsFromPlayController(obj)),
-    onUpdateStaticQuestionVoteStatus: (status) => dispatch(updateStaticQuestionVoteStatus(status)),
     onUpdateStaticQuestionCommentStatus: (status) => dispatch(updateStaticQuestionCommentStatus(status)),
-    onVoteLoading: (bool) => dispatch(voteLoading(bool)),
-    onCommentLoading: (bool) => dispatch(commentLoading(bool)),
-    onClearStaticQuestionCommentStatus: () => dispatch(clearStaticQuestionCommentStatus()),
-    onClearStaticUserComment: () => dispatch(clearStaticUserComment())
   }
 }
 

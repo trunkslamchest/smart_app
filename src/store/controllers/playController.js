@@ -2,14 +2,41 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/actionIndex'
+import {
+  loading,
+  updateGameStatus,
+  updateVoteStatus,
+  updateCommentStatus,
+  resetGameMode,
+  setGameMode,
+  setGameState,
+  resetGameState,
+  resetGameQset,
+  getQuickQuestion,
+  getDiffQuestion,
+  getCatQuestion,
+  resetQuestion,
+  resetAnswer,
+  getResults,
+  resetResults,
+  resetVote,
+  resetComment,
+  updateUserPerformanceFromPlayController,
+  updateUserExperienceFromPlayController,
+  updateUserAchievementsFromPlayController,
+  updateQuestionTotalsFromPlayController,
+  updateUserQuestionIdsFromPlayController,
+  updateUserQuestionsFromPlayController,
+  updateUserQuestionTotalsFromPlayController,
+  updateUserVotesFromPlayController,
+  updateUserCommentsFromPlayController
+} from '../actions/actionIndex'
 
 import SelectionContainer from '../../play/selection/selectionContainer'
 import QuestionContainer from '../../play/question/questionContainer'
 import ResultsContainer from '../../play/results/resultsContainer'
 import CompletedContainer from '../../play/completed/completedContainer'
 
-// import Wrapper from '../../UI/wrapper/wrapper'
 import LoadingModal from '../../UI/loading/loadingModal/loadingModal'
 
 class PlayController extends React.Component {
@@ -29,9 +56,7 @@ class PlayController extends React.Component {
       if(this.props.play.gameMode === 'quick_play' && this.props.play.gameState === 'select') this.mountGameModeModule('setQuickPlay')
       if(this.props.play.gameMode === 'by_diff' && this.props.play.gameQset && this.props.play.gameState === 'select') this.mountGameModeModule('setByDiff')
       if(this.props.play.gameMode === 'by_cat' && this.props.play.gameQset && this.props.play.gameState === 'select') this.mountGameModeModule('setByCat')
-
       if(this.props.play.gameState === 'mount' && this.props.play.status === 'setQuestionSuccess') this.displayQuestionModule()
-
       if(this.props.play.gameState === 'question' && this.props.play.answer) this.setAnsweredModule()
       if(this.props.play.gameState === 'answered' && !this.props.play.results) this.getResultsModule()
       if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionSuccess' && this.props.play.results) this.updateQuestionTotalsModule()
@@ -313,7 +338,6 @@ class PlayController extends React.Component {
       <>
         { loadingModal }
         { routeBoard }
-
       </>
     )
   }
@@ -324,41 +348,39 @@ const store = (store) => {
     modal: store.modal,
     auth: store.auth,
     play: store.play,
-    user: store.user,
-    questions: store.questions
+    user: store.user
   }
 }
 
 const dispatch = (dispatch) => {
   return {
-    onLoadingModal: (bool) => dispatch(actions.loading(bool)),
-    onUpdateGameStatus: (status, loading) => dispatch(actions.updateGameStatus(status, loading)),
-    onUpdateVoteStatus: (status, loading) => dispatch(actions.updateVoteStatus(status, loading)),
-    onUpdateCommentStatus: (status, loading) => dispatch(actions.updateCommentStatus(status, loading)),
-    onResetGameMode: () => dispatch(actions.resetGameMode()),
-    onSetGameMode: (mode) => dispatch(actions.setGameMode(mode)),
-    onSetGameState: (state) => dispatch(actions.setGameState(state)),
-    onResetGameState: () => dispatch(actions.resetGameState()),
-    onResetGameQset: (set) => dispatch(actions.resetGameQset(set)),
-    onGetQuickQuestion: (obj) => dispatch(actions.getQuickQuestion(obj)),
-    onGetDiffQuestion: (obj) => dispatch(actions.getDiffQuestion(obj)),
-    onGetCatQuestion: (obj) => dispatch(actions.getCatQuestion(obj)),
-    onResetQuestion: () => dispatch(actions.resetQuestion()),
-    onResetAnswer: () => dispatch(actions.resetAnswer()),
-    onGetResults: (obj) => dispatch(actions.getResults(obj)),
-    onResetResults: () => dispatch(actions.resetResults()),
-    onResetVote: () => dispatch(actions.resetVote()),
-    onResetComment: () => dispatch(actions.resetComment()),
-    onUpdateUserPerformanceFromPlayController: (obj) => dispatch(actions.updateUserPerformanceFromPlayController(obj)),
-    onUpdateUserExperienceFromPlayController: (obj) => dispatch(actions.updateUserExperienceFromPlayController(obj)),
-    onUpdateUserAchievementsFromPlayController: (obj) => dispatch(actions.updateUserAchievementsFromPlayController(obj)),
-    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateQuestionTotalsFromPlayController(obj)),
-    onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(actions.updateUserQuestionIdsFromPlayController(id)),
-    onUpdateUserQuestionsFromPlayController: (id, obj) => dispatch(actions.updateUserQuestionsFromPlayController(id, obj)),
-    onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(actions.updateUserQuestionTotalsFromPlayController(obj)),
-    onUpdateUserVotesFromPlayController: (id, obj) => dispatch(actions.updateUserVotesFromPlayController(id, obj)),
-    onUpdateUserCommentsFromPlayController: (id, obj) => dispatch(actions.updateUserCommentsFromPlayController(id, obj)),
-    onUpdateStaticQuestionVoteStatus: (status) => dispatch(actions.updateStaticQuestionVoteStatus(status))
+    onLoadingModal: (bool) => dispatch(loading(bool)),
+    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading)),
+    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
+    onUpdateCommentStatus: (status, loading) => dispatch(updateCommentStatus(status, loading)),
+    onResetGameMode: () => dispatch(resetGameMode()),
+    onSetGameMode: (mode) => dispatch(setGameMode(mode)),
+    onSetGameState: (state) => dispatch(setGameState(state)),
+    onResetGameState: () => dispatch(resetGameState()),
+    onResetGameQset: (set) => dispatch(resetGameQset(set)),
+    onGetQuickQuestion: (obj) => dispatch(getQuickQuestion(obj)),
+    onGetDiffQuestion: (obj) => dispatch(getDiffQuestion(obj)),
+    onGetCatQuestion: (obj) => dispatch(getCatQuestion(obj)),
+    onResetQuestion: () => dispatch(resetQuestion()),
+    onResetAnswer: () => dispatch(resetAnswer()),
+    onGetResults: (obj) => dispatch(getResults(obj)),
+    onResetResults: () => dispatch(resetResults()),
+    onResetVote: () => dispatch(resetVote()),
+    onResetComment: () => dispatch(resetComment()),
+    onUpdateUserPerformanceFromPlayController: (obj) => dispatch(updateUserPerformanceFromPlayController(obj)),
+    onUpdateUserExperienceFromPlayController: (obj) => dispatch(updateUserExperienceFromPlayController(obj)),
+    onUpdateUserAchievementsFromPlayController: (obj) => dispatch(updateUserAchievementsFromPlayController(obj)),
+    onUpdateQuestionTotalsFromPlayController: (obj) => dispatch(updateQuestionTotalsFromPlayController(obj)),
+    onUpdateUserQuestionIdsFromPlayController: (id) => dispatch(updateUserQuestionIdsFromPlayController(id)),
+    onUpdateUserQuestionsFromPlayController: (id, obj) => dispatch(updateUserQuestionsFromPlayController(id, obj)),
+    onUpdateUserQuestionTotalsFromPlayController: (obj) => dispatch(updateUserQuestionTotalsFromPlayController(obj)),
+    onUpdateUserVotesFromPlayController: (id, obj) => dispatch(updateUserVotesFromPlayController(id, obj)),
+    onUpdateUserCommentsFromPlayController: (id, obj) => dispatch(updateUserCommentsFromPlayController(id, obj))
   }
 }
 

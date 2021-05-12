@@ -5,8 +5,7 @@ import { routes } from '../../utility/paths'
 import {
   authUpdateLoadingStatus,
   clearAuthStatus,
-  clearAuthType,
-  showModal
+  clearAuthType
 } from '../actions/actionIndex'
 
 // import getAll from '../../firebase/functions/getAll'
@@ -80,8 +79,6 @@ class StoreController extends React.Component {
   }
 
   render(){
-    // console.log(this.state)
-
     return(
       <AuthController onRedirect={ this.onRedirect } history={ this.props.history }>
         { this.props.children }
@@ -104,7 +101,6 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
-    onShowModal: (bool) => dispatch(showModal(bool)),
     onClearAuthStatus: () => dispatch(clearAuthStatus()),
     onClearAuthType: () => dispatch(clearAuthType()),
     onAuthUpdateLoadingStatus: (bool) => dispatch(authUpdateLoadingStatus(bool))

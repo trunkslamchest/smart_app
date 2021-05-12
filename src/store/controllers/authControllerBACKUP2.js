@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {
   authUpdateLoadingStatus,
   authUpdateStatus,
+  authUpdateStatus2,
   authStart,
   authUser,
   authEditUser,
@@ -65,6 +66,7 @@ class AuthController extends React.Component {
   componentDidMount(){
     // if(!this.props.modal.signup || !this.props.modal.login) {
     if(!!localStorage.id) {
+
       this.props.onLoadingModal(true)
       init.auth().onAuthStateChanged((obj) => {
         if (obj && !!localStorage.id) {
@@ -79,7 +81,7 @@ class AuthController extends React.Component {
             expires: "360000"
           })
         } else {
-          if(this.props.modal.loading) this.props.onLoadingModal(false)
+          this.props.onLoadingModal(false)
           this.clearLocalStorageModule()
           return "temp error 0293"
         }
@@ -93,6 +95,47 @@ class AuthController extends React.Component {
     if(this.props.auth.authType === 'signUp' ||
        this.props.auth.authType === 'logIn' ||
        this.props.auth.authType === 'refresh') this.authSignUpLogInRefreshGroup()
+
+    if(this.props.auth.authType === 'signUp') {
+      // if(this.props.auth.status === 'updateAuthDisplayNameSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authSignUpLogInRefreshGroup()
+
+      // if(this.props.auth.status === 'updateAuthDisplayNameSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
+      // if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
+      // if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
+      // if(this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule()
+      // if(this.props.achievements.all && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule()
+      // if(this.props.user.info && this.props.questions.totals && !this.state.authSuccess) this.authSuccessModule()
+      // if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
+      // if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
+    }
+
+    if(this.props.auth.authType === 'logIn') {
+      // if(this.props.auth.status === 'authLogInSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authSignUpLogInRefreshGroup()
+
+
+      // if(this.props.auth.status === 'authLogInSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
+      // if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
+      // if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
+      // if(this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule()
+      // if(this.props.achievements.all && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule()
+      // if(this.props.user.info && this.props.questions.totals && !this.state.authSuccess) this.authSuccessModule()
+      // if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
+      // if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
+    }
+
+    if(this.props.auth.authType === 'refresh') {
+      // if(this.props.auth.status === 'authRefreshSuccess' && this.props.auth.id && localStorage.id && !this.state.authUser) this.authSignUpLogInRefreshGroup()
+
+
+      // if(this.props.auth.status === 'authRefreshSuccess' && this.props.auth.id && localStorage.id &&!this.state.authUser) this.authUserModule()
+      // if(this.props.auth.userCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.userCache)
+      // if(this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.userCache.questions)
+      // if(this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule()
+      // if(this.props.achievements.all && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule()
+      // if(this.props.user.info && this.props.questions.totals && !this.state.authSuccess) this.authSuccessModule()
+      // if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
+      // if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
+    }
 
     if(this.props.auth.authType === 'editProfileModal') {
       if(this.props.auth.status === 'reAuthWithCredsSuccess' && this.props.auth.userCache.info.email && !this.state.authEditUser) this.authEditUserModule()
@@ -110,7 +153,39 @@ class AuthController extends React.Component {
       if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) this.authValidModule()
     }
 
+
     if(this.props.auth.authType === 'logOut' || this.props.auth.authType === 'deleteProfile') this.authLogOutDeleteGroup(this.props.auth.authType)
+
+  //   if(this.props.auth.authType === 'logOut') {
+  //     if(this.props.user.info && !this.state.clearUserInfo) this.authLogOutDeleteGroup("logOut")
+
+
+
+  //     // if(this.props.user.info && !this.state.clearUserInfo) this.clearUserInfoModule()
+  //     // if(!this.props.user.info && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
+  //     // if(!this.props.user.questions && !this.state.clearUserSettings) this.clearUserSettingsModule()
+  //     // if(!this.props.user.settings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
+  //     // if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
+  //     // if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
+  //     // if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
+  //     // if(this.props.auth.status === 'authSuccess' && !this.props.modal.logout) this.authRedirectModule('logOut')
+  //   }
+
+  //   if(this.props.auth.authType === 'deleteProfile') {
+  //     // if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
+  //     if(this.props.auth.status === 'deleteLocalUserSuccess' && !this.state.clearUserInfo) this.authLogOutDeleteGroup("deleteProfile")
+
+
+  //     // if(this.props.auth.status === 'deleteLocalUserSuccess' && !this.state.clearUserInfo) this.clearUserInfoModule()
+  //     // if(!this.props.user.info && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
+  //     // if(!this.props.user.questions && !this.state.clearUserSettings) this.clearUserSettingsModule()
+  //     // if(!this.props.user.settings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
+  //     // if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
+  //     // if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
+  //     // if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
+  //     // if(this.props.auth.status === 'authSuccess' && !this.props.modal.deleteProfile) this.authRedirectModule('deleteProfile')
+  //   }
+
   }
 
   componentWillUnmount(){
@@ -243,6 +318,8 @@ class AuthController extends React.Component {
 
   authValidModule = () => {
     this.props.onAuthUpdateStatus('authValid')
+    this.props.onClearAuthErrors()
+
     this.setState({ authValid: true })
 
     if(
@@ -259,14 +336,14 @@ class AuthController extends React.Component {
       if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
       if(!!this.props.modal.editProfile) this.props.onEditProfileModal(false)
 
+
       this.props.onAuthUpdateLoadingStatus(false)
     }, 250)
 
     localStorage.authValid = true
-    if(this.props.auth.errors.length) this.props.onClearAuthErrors()
-    if(this.props.auth.status2) this.props.onClearAuthStatus2()
-    if(this.props.auth.userCache) this.props.onClearUserCache()
-    if(this.props.auth.authType) this.props.onClearAuthType()
+    this.props.onClearAuthStatus2()
+    this.props.onClearUserCache()
+    this.props.onClearAuthType()
     this.clearLocalStateModule()
   }
 
@@ -346,6 +423,7 @@ const dispatch = dispatch => {
   return {
     onAuthUpdateLoadingStatus: (bool) => dispatch(authUpdateLoadingStatus(bool)),
     onAuthUpdateStatus: (status) => dispatch(authUpdateStatus(status)),
+    onAuthUpdateStatus2: (status2) => dispatch(authUpdateStatus2(status2)),
     onAuthStart: (authType, obj, props) => dispatch(authStart(authType, obj, props)),
     onAuthUser: (token, refreshToken, id, expires) => dispatch(authUser(token, refreshToken, id, expires)),
     onAuthEditUser: (authType, obj) => dispatch(authEditUser(authType, obj)),

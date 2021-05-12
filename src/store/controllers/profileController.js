@@ -29,19 +29,9 @@ class ProfileController extends React.Component {
 
   componentDidUpdate() {
     if(this.props.profile.status === 'initUserProfile' && !this.props.profile.userData) this.getProfileModule()
-// if(this.props.profile.userData && !this.state.displayProfile) this.displayProfileModule()
-    // if(typeof this.props.profile.userData !== 'string') {
-      if((this.props.profile.userData && this.props.profile.status === 'getUserProfile' && !this.props.questions.totals)) this.getQuestionTotalsModule()
-      if((this.props.questions.totals && this.props.profile.status === 'getQuestionTotals' && !this.props.achievements.all)) this.getAchievementsModule()
-
-      // if(this.props.profile.userData && this.props.profile.userData.settings.privacy.profile.showStats && this.props.profile.userData.questions && this.props.questions.totals && !this.state.displayProfile) this.displayProfileModule()
-    //   if(this.props.profile.userData && !this.props.profile.userData.settings.privacy.profile.showStats && !this.state.displayProfile) this.displayProfileModule()
-    // } else {
-
-      // console.log(this.props.achievements)
-
-      if(this.props.profile.userData && this.props.questions.totals && this.props.achievements.all && !this.state.displayProfile) this.displayProfileModule()
-    // }
+    if((this.props.profile.userData && this.props.profile.status === 'getUserProfile' && !this.props.questions.totals)) this.getQuestionTotalsModule()
+    if((this.props.questions.totals && this.props.profile.status === 'getQuestionTotals' && !this.props.achievements.all)) this.getAchievementsModule()
+    if(this.props.profile.userData && this.props.questions.totals && this.props.achievements.all && !this.state.displayProfile) this.displayProfileModule()
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -100,12 +90,6 @@ class ProfileController extends React.Component {
   }
 
   render(){
-
-    // if(this.props.profile.status === 'displayProfile'){
-
-      // console.log(this.props.achievements)
-    // }
-
     return(
       <>
         {
@@ -128,7 +112,6 @@ class ProfileController extends React.Component {
 const store = (store) => {
   return {
     achievements: store.achievements,
-    auth: store.auth,
     modal: store.modal,
     questions: store.questions,
     profile: store.profile

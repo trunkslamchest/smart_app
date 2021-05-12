@@ -110,7 +110,6 @@ class LeaderBoardsController extends React.Component {
 const store = (store) => {
   return {
     modal: store.modal,
-    auth: store.auth,
     leaderBoards: store.leaderBoards
   }
 }
