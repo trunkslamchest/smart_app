@@ -21,7 +21,7 @@ const Header = (props) => {
     props.history.push(buttonParams.route)
   }
 
-  if(localStorage.access === 'guest') header = <GuestHeader history={ props.history } />
+  if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader history={ props.history } />
 
   if(props.auth.status === 'authValid') {
     header =

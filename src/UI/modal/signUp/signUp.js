@@ -102,18 +102,9 @@ class SignUp extends React.Component {
       this.props.onAuthStart('signUp', {
         displayName: this.state.user_name,
         email: this.state.email,
-        password: this.state.password,
-        // returnSecureToken: true
+        password: this.state.password
       })
     }
-    // if(!this.state.form.pending) {
-    //   this.props.onAuthStart('signUp', {
-    //     displayName: this.state.user_name,
-    //     email: this.state.email,
-    //     password: this.state.password,
-    //     returnSecureToken: true
-    //   })
-    // }
   }
 
   onReset = () => {
@@ -128,9 +119,6 @@ class SignUp extends React.Component {
   }
 
   render(){
-
-    console.log(this.state.errors)
-
     const loading =
       <div className='loading_wrapper'>
         <SmallLoadingSpinner />

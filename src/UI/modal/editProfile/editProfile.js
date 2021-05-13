@@ -105,8 +105,8 @@ class EditProfile extends React.Component {
             inputContainerClass={ 'edit_profile_modal_input_container' }
             formButtons={ editProfileButtons }
             formClass={ 'edit_profile_modal_form' }
-            formId={ 'edit_profile_form' }
-            formName={ 'editProfileForm' }
+            formId={ 'edit_profile_modal_form' }
+            formName={ 'editProfileModalForm' }
             formSubHeaderText={ 'Please enter your password to confirm your new email address' }
             enableButton={ this.state.enableButton }
             enableInput={ this.state.enableInput }

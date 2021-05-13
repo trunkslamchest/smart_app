@@ -1,11 +1,10 @@
-import firebase from 'firebase'
+// import firebase from 'firebase'
 import config from './config'
-import 'firebase/auth'
-import 'firebase/app'
-// import firebase from "firebase/app";
-// import "firebase/auth";
+// eslint-disable-next-line
+import auth from 'firebase/auth'
+import firebase from 'firebase/app'
 
 firebase.initializeApp(config)
-// firebase.auth()
+firebase.auth()
 
 export default firebase

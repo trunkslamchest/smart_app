@@ -36,6 +36,7 @@ import { routes } from '../../utility/paths'
 import getTime from '../../utility/getTime'
 
 import init from '../../firebase/init'
+// import auth from 'firebase/auth'
 // init.auth().useEmulator("http://localhost:8004")
 
 class AuthController extends React.Component {
@@ -63,7 +64,6 @@ class AuthController extends React.Component {
   }
 
   componentDidMount(){
-    // if(!this.props.modal.signup || !this.props.modal.login) {
     if(!!localStorage.id) {
       this.props.onLoadingModal(true)
       init.auth().onAuthStateChanged((obj) => {
@@ -151,8 +151,8 @@ class AuthController extends React.Component {
   authFailModule = () => {
     this.props.onAuthUpdateLoadingStatus(false)
     // this.props.onClearAuthStatus()
-    this.clearLocalStorageModule()
     // this.props.onClearAuthType()
+    this.clearLocalStorageModule()
   }
 
   authSignUpLogInRefreshGroup = () => {
