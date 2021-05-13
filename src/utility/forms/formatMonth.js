@@ -1,5 +1,5 @@
 import months from '../../datasets/months'
 
-const formatMonth = (month) => { return months[month - 1] }
+const formatMonth = (month) => { return months[month] }
 
 export default formatMonth
