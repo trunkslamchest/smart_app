@@ -9,6 +9,7 @@ import makeHomeLoggedOutButtons from '../../homeFunctions/makeHomeLoggedOutButto
 import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './homeButtonBanner.css'
+import './homeButtonBannerResponse.css'
 
 const HomeButtonBanner = (props) => {
 

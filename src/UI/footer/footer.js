@@ -10,6 +10,7 @@ import FooterLogo from './footerComponents/footerLogo/footerLogo'
 import footerLogosIndex from '../../assets/logos/footerLogosIndex'
 
 import './footer.css'
+import './footerResponse.css'
 
 const Footer = (props) => {
   return(

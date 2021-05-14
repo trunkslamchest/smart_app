@@ -25,6 +25,8 @@
   cursor: pointer;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
+  min-width: 75px;
+  max-width: 250px;
   margin: 0px;
   padding: 5px;
   outline: -webkit-focus-ring-color auto 0px;
@@ -77,6 +79,8 @@
   cursor: default;
   font: 100 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
+  min-width: 75px;
+  max-width: 250px;
   margin: 0px;
   opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;

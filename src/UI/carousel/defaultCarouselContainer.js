@@ -5,6 +5,8 @@ import CarouselSlideContainer from './carouselComponents/carouselSlide/carouselS
 import CarouselButtonContainer from './carouselComponents/carouselButton/carouselButtonContainer'
 
 import './defaultCarouselContainer.css'
+import './defaultCarouselContainerResponse.css'
+
 
 const DefaultCarouselContainer = (props) => {
 

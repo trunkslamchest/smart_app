@@ -3,6 +3,8 @@ import React from 'react'
 import whiteHomeSubBannerLogo from '../../../assets/home_sub_banner/white_home_sub_banner_logo.svg'
 
 import './homeSubBanner.css'
+import './homeSubBannerResponse.css'
+
 
 const HomeSubBanner = (props) => {
 

@@ -3,6 +3,7 @@ import React from 'react'
 import MakeHomeLoggedOutTechIcons from '../../homeFunctions/makeHomeLoggedOutTechIcons'
 
 import './homeTech.css'
+import './homeTechResponse.css'
 
 const HomeTech = (props) => {
   return(

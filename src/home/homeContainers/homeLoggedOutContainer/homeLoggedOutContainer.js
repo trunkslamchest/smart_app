@@ -26,7 +26,7 @@ const HomeLoggedOutContainer = (props) => {
       <HomeBottomBanner history={props.history} />
       <HomeSubBanner history={props.history} />
       <HomeTech history={ props.history } />
-      <div className='divider_medium'></div>
+      {/* <div className='divider_medium'></div> */}
     </div>
   )
 }

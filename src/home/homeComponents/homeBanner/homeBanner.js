@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import HomeLogoContainer from '../../homeContainers/homeLogoContainer/homeLogoContainer'
 
 import './homeBanner.css'
+import './homeBannerResponse.css'
 
 const HomeBanner = (props) => {
 
