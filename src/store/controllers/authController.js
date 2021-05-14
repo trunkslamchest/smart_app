@@ -37,7 +37,7 @@ import getTime from '../../utility/getTime'
 
 import init from '../../firebase/init'
 // import auth from 'firebase/auth'
-// init.auth().useEmulator("http://localhost:8004")
+init.auth().useEmulator("http://localhost:8004")
 
 class AuthController extends React.Component {
 
