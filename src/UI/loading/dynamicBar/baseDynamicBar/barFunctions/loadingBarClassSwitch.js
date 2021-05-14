@@ -41,27 +41,28 @@ export var loadingBarClassSwitch = function(barType, status) {
   if(barType === 'leaderBoards') {
     if(status === 'initLeaderBoards') barClass = 'loading_bar_1'
     if(status === 'getOverallLeaderBoards') barClass = 'loading_bar_5'
-    if(status === 'getCatLeaderBoards') barClass = 'loading_bar_final'
-    // if(status === 'getCatLeaderBoards') barClass = 'loading_bar_10'
-    // if(status === 'displayLeaderBoards') barClass = 'loading_bar_final'
+    if(status === 'getCatLeaderBoards') barClass = 'loading_bar_10'
+    if(status === 'displayLeaderBoards') barClass = 'loading_bar_final'
   }
 
   if(barType === 'userProfile') {
     if(status === 'initUserProfile') barClass = 'loading_bar_1'
     if(status === 'getUserProfile') barClass = 'loading_bar_5'
-    if(status === 'getQuestionTotals') barClass = 'loading_bar_final'
-    // if(status === 'displayProfile') barClass = 'SmartApp™ Profile Mounted'
-    // if(status === 'displayLeaderBoards') barClass = 'SmartApp™ Leaderboards Mounted'
+    if(status === 'getQuestionTotals') barClass = 'loading_bar_10'
+    if(status === 'getAchievements') barClass = 'loading_bar_15'
+    if(status === 'displayProfile') barClass = 'loading_bar_final'
   }
 
   if(barType === 'loadQuestion'){
-    if(status === 'initGame') barClass = 'loading_bar_5'
-    if(status === 'setGameModeSuccess') barClass = 'loading_bar_10'
-    if(status === 'setQuickPlay') barClass = 'loading_bar_12'
-    if(status === 'setQset') barClass = 'loading_bar_14'
-    if(status === 'setQuestionSuccess') barClass = 'loading_bar_final'
-    // if(status === 'setQuestionSuccess') barClass = 'loading_bar_16'
-    // if(status === 'displayQuestion') barClass = 'loading_bar_final'
+    if(status === 'initGame') barClass = 'loading_bar_3'
+    if(status === 'selectGameMode') barClass = 'loading_bar_5'
+    if(status === 'setGameModeSuccess') barClass = 'loading_bar_7'
+    if(status === 'setQuickPlay') barClass = 'loading_bar_9'
+    if(status === 'setQsetSuccess') barClass = 'loading_bar_11'
+    if(status === 'setByDiff') barClass = 'loading_bar_13'
+    if(status === 'setByCat') barClass = 'loading_bar_15'
+    if(status === 'setQuestionSuccess') barClass = 'loading_bar_17'
+    if(status === 'displayQuestion') barClass = 'loading_bar_final'
   }
 
   if(barType === 'loadResults'){

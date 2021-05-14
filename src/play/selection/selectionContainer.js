@@ -3,7 +3,7 @@ import { useEffect }  from 'react'
 // import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { setGameMode, setGameQset } from '../../store/actions/actionIndex'
+import { loading, setGameMode, setGameQset } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
 
 import gameModes from '../../datasets/gameModes'
@@ -24,26 +24,27 @@ const SelectionContainer = (props) => {
   const location = useLocation()
 
   useEffect(() => {
-    if(location.pathname === routes.play) {
-      if(props.play.gameMode) props.reSelectGameMode()
-    }
+    if(props.auth.status === 'authValid') {
+      if(location.pathname === routes.play) {
+        if(props.play.gameMode) props.reSelectGameMode()
+      }
 
-    if(location.pathname === routes.by_diff_select) {
-      if(!props.play.gameMode) props.setGameMode('by_diff')
-      if(props.play.gameState !== 'select')  props.setGameState('select')
-      if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
-      if(props.play.question) props.resetQuestion()
-      if(props.play.gameQset) props.resetGameQset()
-    }
+      if(location.pathname === routes.by_diff_select) {
+        if(props.play.gameMode !== 'by_diff') props.setGameMode('by_diff')
+        if(props.play.gameState !== 'select') props.setGameState('select')
+        if(props.play.question) props.resetQuestion()
+        if(props.play.gameQset) props.resetGameQset()
+        // if(props.modal.loading) props.onLoadingModal(false)
+      }
 
-    if(location.pathname === routes.by_cat_select) {
-      if(!props.play.gameMode) props.setGameMode('by_cat')
-      if(props.play.gameState !== 'select')  props.setGameState('select')
-      if(props.play.status !== 'setGameModeSuccess') props.updateGameStatus('setGameModeSuccess', false)
-      if(props.play.question) props.resetQuestion()
-      if(props.play.gameQset) props.resetGameQset()
+      if(location.pathname === routes.by_cat_select) {
+        if(props.play.gameMode !== 'by_cat') props.setGameMode('by_cat')
+        if(props.play.gameState !== 'select') props.setGameState('select')
+        if(props.play.question) props.resetQuestion()
+        if(props.play.gameQset) props.resetGameQset()
+        // if(props.modal.loading) props.onLoadingModal(false)
+      }
     }
-
   }, [location, props])
 
   const onClickGameModeFunction = (event) => {
@@ -51,12 +52,15 @@ const SelectionContainer = (props) => {
     localStorage.gameMode = buttonParams.gameMode
     props.onSetGameMode(buttonParams.gameMode)
     props.history.push( buttonParams.route )
+    // props.onLoadingModal(true)
+
   }
 
   const onClickQsetFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     props.onSetGameQset(buttonParams.qSet)
     props.history.push( buttonParams.route )
+    // props.onLoadingModal(true)
   }
 
   let selectionButtons = makeSelectionButtons(gameModes, routes, onClickGameModeFunction)
@@ -106,6 +110,7 @@ const SelectionContainer = (props) => {
 
 const store = (store) => {
   return {
+    auth: store.auth,
     modal: store.modal,
     play: store.play
   }
@@ -113,6 +118,7 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
+    onLoadingModal: (bool) => dispatch(loading(bool)),
     onSetGameMode: (mode) => dispatch(setGameMode(mode)),
     onSetGameQset: (set) => dispatch(setGameQset(set))
   }

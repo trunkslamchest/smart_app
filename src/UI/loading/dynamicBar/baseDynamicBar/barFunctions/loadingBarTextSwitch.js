@@ -42,27 +42,28 @@ export var loadingBarTextSwitch = function(barType, status) {
   if(barType === 'leaderBoards') {
     if(status === 'initLeaderBoards') barText = 'Initializing SmartApp™ Leaderboards'
     if(status === 'getOverallLeaderBoards') barText = 'Fetching International Leaderboards'
-    if(status === 'getCatLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
-    // if(status === 'getCatLeaderBoards') barText = 'Fetching Category Leaderboards'
-    // if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
+    if(status === 'getCatLeaderBoards') barText = 'Fetching Category Leaderboards'
+    if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
   }
 
   if(barType === 'userProfile') {
     if(status === 'initUserProfile') barText = 'Initializing SmartApp™ Profile'
-    if(status === 'getUserProfile') barText = 'Fetching SmartApp™ Question Totals'
-    if(status === 'getQuestionTotals') barText = 'SmartApp™ Profile Mounted'
-    // if(status === 'displayProfile') barText = 'SmartApp™ Profile Mounted'
-    // if(status === 'displayLeaderBoards') barText = 'SmartApp™ Leaderboards Mounted'
+    if(status === 'getUserProfile') barText = 'Requesting User Data'
+    if(status === 'getQuestionTotals') barText = 'Fetching SmartApp™ Question Totals'
+    if(status === 'getAchievements') barText = 'Parsing User Achievements'
+    if(status === 'displayProfile') barText = 'SmartApp™ Profile Mounted'
   }
 
   if(barType === 'loadQuestion'){
     if(status === 'initGame') barText = 'Initialzing Game Sequence'
-    if(status === 'setGameModeSuccess') barText = 'Setting Game Mode'
-    if(status === 'setQuickPlay') barText = 'Initializing Quick Play'
-    if(status === 'setQset') barText = 'Retrieving Question Set'
+    if(status === 'selectGameMode') barText = 'Setting Game Mode'
+    if(status === 'setGameModeSuccess') barText = 'Routing Question Functions'
+    if(status === 'setQuickPlay') barText = 'Starting Quick Play'
+    if(status === 'setQsetSuccess') barText = 'Retrieving Question Set'
+    if(status === 'setByDiff') barText = 'Starting Diff Question Set'
+    if(status === 'setByCat') barText = 'Starting Cat Question Set'
     if(status === 'setQuestionSuccess') barText = 'Question Load Complete'
-    // if(status === 'setQuestionSuccess') barText = 'Setting Question'
-    // if(status === 'displayQuestion') barText = 'Question Load Complete'
+    if(status === 'displayQuestion') barText = 'Asking Question'
 
   }
 

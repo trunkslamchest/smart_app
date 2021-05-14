@@ -79,10 +79,10 @@ class PlayController extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  // shouldComponentUpdate(nextProps, nextState){
 
-    return true
-  }
+  //   return true
+  // }
 
   componentWillUnmount(){
     localStorage.removeItem('gameMode')
@@ -128,9 +128,9 @@ class PlayController extends React.Component {
   }
 
   reSelectGameModeModule = () => {
-    this.props.onLoadingModal(false)
+    if(this.props.modal.loading) this.props.onLoadingModal(false)
     this.props.onUpdateGameStatus('selectGameMode', false)
-    this.props.onSetGameState('select')
+    if(!this.props.play.gameState) this.props.onSetGameState('select')
     if(this.props.play.question) this.props.onResetQuestion()
     if(this.props.play.gameMode) this.props.onResetGameMode()
     if(this.props.play.gameQset) this.props.onResetGameQset()
@@ -143,17 +143,15 @@ class PlayController extends React.Component {
   setGameCompletedModule = () => {
     this.props.onUpdateGameStatus('displayQuestion', false)
 
-    if (this.props.play.gameMode === 'quick_play') {
-      this.props.history.push( routes.play + '/completed' )
-    } else {
-      this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
-    }
+    if (this.props.play.gameMode === 'quick_play') this.props.history.push( routes.play + '/completed' )
+    else this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
 
     this.props.onSetGameState('completed')
     this.props.onLoadingModal(false)
   }
 
   mountGameModeModule = (gameMode) => {
+    this.props.onLoadingModal(true)
     this.props.onUpdateGameStatus(gameMode, true)
     let questionObj = { answeredIds: [] }
 
@@ -301,7 +299,7 @@ class PlayController extends React.Component {
     if(this.props.play.gameMode === 'quick_play' || localStorage.gameMode === 'quick_play') completedPath = routes.play + '/completed'
     else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed'
 
-    if(this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
+    if(this.props.play.gameState === 'select' || this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
       loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } history={ this.props.history } />
     }
 

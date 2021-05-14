@@ -47,7 +47,7 @@ const QuestionContainer = (props) => {
     questionTimerRef.current = setTimeout(() => { setQuestionState(true) }, 3000)
     choicesTimerRef.current = setTimeout(() => { setChoicesState(true) }, 4000)
     enableQuestionTimerRef.current = setTimeout(() => { setEnableQuestion(true) }, 5000)
-    startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
+    // startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
 
     return function cleanup(){
       clearTimers()
