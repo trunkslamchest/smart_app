@@ -11,7 +11,7 @@
 
 .home_logged_out_banner_right_container {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   /* width: 50%; */
   margin-left: calc(8px + (10 — 8) * ((100vw — 769px) / (1280 — 769)));
 }

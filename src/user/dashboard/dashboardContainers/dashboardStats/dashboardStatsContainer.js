@@ -7,6 +7,7 @@ import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardS
 import UserStatsContainer from '../../../../UI/components/containers/userStatsContainer/userStatsContainer'
 
 import './dashboardStats.css'
+import './dashboardStatsResponse.css'
 
 const DashboardStatsContainer = (props) => {
 

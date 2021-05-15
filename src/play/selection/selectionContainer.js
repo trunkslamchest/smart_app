@@ -18,6 +18,7 @@ import PlayHeaderCentered from '../playComponents/playHeaderCentered/playHeaderC
 import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './selectionContainer.css'
+import './selectionResponse.css'
 
 const SelectionContainer = (props) => {
 

@@ -88,17 +88,14 @@ const DashboardStatsAnswerCard = (props) => {
           />
       </div>
       {/* <div className='divider_medium' /> */}
-       <div className="dashboard_stats_answer_card_sub_container">
-        <div className="dashboard_stats_answer_card_left_container">
-          <div className="dashboard_stats_answer_card_left_sub_container">
+      <div className="dashboard_stats_answer_card_sub_container">
+        <div className="dashboard_stats_answer_card_sub_container_group">
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
             { resultGlyph }
-
           </div>
-        </div>
-        <div className="dashboard_stats_answer_card_right_container">
-          <div className="dashboard_stats_answer_card_right_sub_container">
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
             { answer.vote &&
-              <div className="dashboard_stats_answer_card_right_sub_wrapper">
+              <>
                 <h4>Your Vote</h4>
                   <img
                     alt={ 'Your Rating' }
@@ -106,41 +103,33 @@ const DashboardStatsAnswerCard = (props) => {
                     src={ voteStars }
                     title={ 'Your Rating' }
                   />
-              </div>
+              </>
             }
           </div>
-          <div className="dashboard_stats_answer_card_right_sub_container">
-            <div className="dashboard_stats_answer_card_right_sub_wrapper">
-              <h4>Rank</h4>
-              <span>{ props.answer.performance.rank }</span>
-            </div>
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+            <h4>Rank</h4>
+            <span>{ props.answer.performance.rank }</span>
           </div>
-          <div className="dashboard_stats_answer_card_right_sub_container">
-            <div className="dashboard_stats_answer_card_right_sub_wrapper">
-              <h4>Rating</h4>
-              <span>{ props.answer.performance.rating }</span>
-            </div>
-          </div>
-          <div className="dashboard_stats_answer_card_right_sub_container">
-            <div className="dashboard_stats_answer_card_right_sub_wrapper">
-              <h4>Your Time</h4>
-              <span>{ props.answer.time } seconds</span>
-            </div>
-          </div>
-          <div className="dashboard_stats_answer_card_right_sub_container">
-            <div className="dashboard_stats_answer_card_right_sub_wrapper">
-              <h4>Your Answer</h4>
-              <span>{ props.answer.answer }</span>
-            </div>
-          </div>
-          <div className="dashboard_stats_answer_card_right_sub_container">
-            <div className="dashboard_stats_answer_card_right_sub_wrapper">
-              <h4>Correct Answer</h4>
-              <span>{ props.answer.correct_answer }</span>
-            </div>
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+            <h4>Rating</h4>
+            <span>{ props.answer.performance.rating }</span>
           </div>
         </div>
+        <div className="dashboard_stats_answer_card_sub_container_group">
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+            <h4>Your Time</h4>
+            <span>{ props.answer.time } seconds</span>
+          </div>
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+            <h4>Your Answer</h4>
+            <span>{ props.answer.answer }</span>
+          </div>
+          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+            <h4>Correct Answer</h4>
+            <span>{ props.answer.correct_answer }</span>
+          </div>
         </div>
+      </div>
       {/* <div className="dashboard_stats_answer_card_comment_container">
         { distribComments }
       </div> */}

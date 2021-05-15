@@ -13,6 +13,7 @@
   cursor: pointer;
   font: 300 10pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
+  min-width: 125px;
   margin: 0px;
   padding: 5px 10px;
   outline: -webkit-focus-ring-color auto 0px;
@@ -40,6 +41,7 @@
   cursor: pointer;
   font: 300 10pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
+  min-width: 125px;
   margin: 0px;
   padding: 5px 10px;
   outline: -webkit-focus-ring-color auto 0px;

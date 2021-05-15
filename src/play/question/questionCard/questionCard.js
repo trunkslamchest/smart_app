@@ -16,6 +16,8 @@ const QuestionCard = (props) => {
     return(
       <DefaultButton
         buttonClass="question_card_choice_button"
+        buttonContainerClass="question_card_choice_button_container"
+
         enableButton={ props.enableQuestion }
         id="answer_button"
         key={ index }
@@ -52,11 +54,11 @@ const QuestionCard = (props) => {
       { props.showChoices &&
         <div className="question_card_choices_container">
           <div className="question_card_choices_sub_container">
-            <div className='div1'>
+            <div className='question_card_choices_sub_wrapper'>
               { choices[0] }
               { choices[1] }
             </div>
-            <div className='div2'>
+            <div className='question_card_choices_sub_wrapper'>
               { choices[2] }
               { choices[3] }
             </div>

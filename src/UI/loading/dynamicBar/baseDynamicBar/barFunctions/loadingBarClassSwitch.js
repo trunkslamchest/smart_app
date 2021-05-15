@@ -58,6 +58,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'selectGameMode') barClass = 'loading_bar_5'
     if(status === 'setGameModeSuccess') barClass = 'loading_bar_7'
     if(status === 'setQuickPlay') barClass = 'loading_bar_9'
+    if(status === 'setQset') barClass = 'loading_bar_10'
     if(status === 'setQsetSuccess') barClass = 'loading_bar_11'
     if(status === 'setByDiff') barClass = 'loading_bar_13'
     if(status === 'setByCat') barClass = 'loading_bar_15'

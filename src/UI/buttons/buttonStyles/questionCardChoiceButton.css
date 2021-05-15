@@ -1,3 +1,17 @@
+.question_card_choice_button_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+  margin: 5px;
+  height: 100%;
+  /* width: 50%; */
+}
+
 .question_card_choice_button {
   animation: fade_in .5s ease-in-out 1;
   -webkit-appearance: none;
@@ -14,7 +28,6 @@
   cursor: pointer;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
-  margin: 5px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
@@ -23,7 +36,8 @@
   text-rendering: auto;
   text-shadow: none;
   text-transform: none;
-  width: 350px;
+  /* width: 350px; */
+  width: 100%;
   word-spacing: normal;
 }
 
@@ -42,7 +56,6 @@
   cursor: pointer;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
-  margin: 5px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
@@ -51,7 +64,8 @@
   text-rendering: auto;
   text-shadow: none;
   text-transform: none;
-  width: 350px;
+  /* width: 350px; */
+  width: 100%;
   word-spacing: normal;
 }
 
@@ -69,7 +83,6 @@
   cursor: default;
   font: 300 12pt 'PoppinsLight', sans-serif;
   letter-spacing: normal;
-  margin: 5px;
   opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px 20px;
@@ -80,7 +93,8 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
-  width: 350px;
+  /* width: 350px; */
+  width: 100%;
 }
 
 .question_card_choice_button:hover,
@@ -90,7 +104,6 @@
   border: 0px solid black;
   box-sizing: border-box;
   font: 600 12pt 'PoppinsLight', sans-serif;
-  margin: 5px;
   padding: 10px 20px;
   transition: background-color .2s ease-in-out 0s;
 }

@@ -38,7 +38,7 @@
 
   .container_profile_header_top_left_text_top {
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .container_profile_header_top_left_text_top h3 {

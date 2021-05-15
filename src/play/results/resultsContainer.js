@@ -33,6 +33,7 @@ import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/de
 import resultsNavBarIconIndex from '../../assets/nav_bar_icons/resultsNavBarIconIndex'
 
 import './resultsContainer.css'
+import './resultsResponse.css'
 
 const ResultsContainer = (props) => {
 
@@ -163,6 +164,7 @@ const ResultsContainer = (props) => {
       <DefaultButtonsContainer
         buttons={ navBarButtons }
         buttonClass={ 'nav_bar_button' }
+        buttonContainerClass={ 'nav_bar_button_container' }
         buttonRow={ true }
         containerClass={ 'nav_bar_container' }
         enableButton={ true }

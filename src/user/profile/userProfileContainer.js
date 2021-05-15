@@ -8,6 +8,7 @@ import UserStatsContainer from '../../UI/components/containers/userStatsContaine
 import VoteContainer from '../../UI/components/containers/voteContainer/voteContainer'
 
 import './userProfileContainer.css'
+import './userProfileResponse.css'
 
 const UserProfileContainer = (props) => {
 

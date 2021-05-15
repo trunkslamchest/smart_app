@@ -10,6 +10,7 @@ import trendArrowIndex from '../../../../assets/trend_arrows/trendArrowIndex'
 import './userStatsTotal.css'
 import './userStatsXP.css'
 import './userStatsPerformance.css'
+import './userStatsResponse.css'
 
 const UserStatsTotal = (props) => {
 
@@ -85,19 +86,24 @@ const UserStatsTotal = (props) => {
 
     totalStats =
       <div className="user_stats_total">
-        <ul>
-          <li>{ props.user_questions.all.answered }/{ props.question_totals.all.questions } answered ({ totalQuestionsAnswered }%)</li>
-          <li>
+        <div className='user_stats_total_sub_container'>
+        <div className='user_stats_total_sub_wrapper'>
+
+          <div className='user_stats_total_sub_row'>{ props.user_questions.all.answered }/{ props.question_totals.all.questions } answered ({ totalQuestionsAnswered }%)</div>
+          <div className='user_stats_total_sub_row'>
             { props.user_questions.all.correct }/{ props.user_questions.all.answered } correct ({ totalQuestionsCorrect }%)
             { totalQuestionsCorrect > props.question_totals.all.averages.correct ? arrow_up : arrow_down }
-          </li>
-          <br />
-          <li>
+          </div>
+        </div>
+          <div className='user_stats_total_sub_wrapper'>
+
+          <div className='user_stats_total_sub_row'>
             Average Time: { props.user_questions.all.avg_time } seconds
             { props.user_questions.all.avg_time < props.question_totals.all.averages.avgTime ? arrow_up : arrow_down }
-          </li>
-          <li>Outta Times: { props.user_questions.all.outta_times }</li>
-        </ul>
+          </div>
+          <div className='user_stats_total_sub_row'>Outta Times: { props.user_questions.all.outta_times }</div>
+          </div>
+        </div>
         <div className="user_stats_xp_perf_container">
           <div className="user_stats_experience_container">
             <h3>Level { props.user_experience.level }</h3>

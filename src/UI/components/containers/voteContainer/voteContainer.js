@@ -26,6 +26,7 @@ import voteStarsSelectIndex from '../../../../assets/vote_stars/voteStarsSelectI
 import './voteGraph.css'
 import './voteContainer.css'
 import './voteButtons.css'
+import './voteResponse.css'
 
 const VoteContainer = (props) => {
 

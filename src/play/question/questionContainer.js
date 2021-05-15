@@ -8,6 +8,8 @@ import { routes } from '../../utility/paths'
 import QuestionCard from './questionCard/questionCard'
 
 import './questionContainer.css'
+import './questionResponse.css'
+
 
 const QuestionContainer = (props) => {
 
