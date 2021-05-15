@@ -20,6 +20,8 @@ import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defau
 import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './logOut.css'
+import './logOutResponse.css'
+
 
 class LogOut extends React.Component {
 

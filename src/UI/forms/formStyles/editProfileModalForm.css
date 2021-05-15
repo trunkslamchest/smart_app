@@ -2,35 +2,3 @@
   /* margin: 0px 10px 0px 10px; */
   width: 100%;
 }
-
-.edit_profile_modal_input_container {
-  width: 100%;
-  padding: 0px 0px 10px 0px;
-}
-
-.edit_profile_modal_input_sub_container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-}
-
-.edit_profile_modal_input_sub_container h3,
-.edit_profile_modal_image_sub_container h3 {
-  color: rgba(255, 255, 255, 1);
-  font: 300 12pt 'PoppinsLight', sans-serif;
-  text-align: center;
-}
-
-.edit_profile_modal_image_sub_container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: center;
-  padding: 2.5px 0px;
-  width: 100%;
-}

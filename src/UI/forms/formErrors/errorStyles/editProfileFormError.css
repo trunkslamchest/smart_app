@@ -1,23 +1,22 @@
 .edit_profile_form_error_container {
-  padding: 2.5px 10px 10px 0px;
+  /* margin: 0px auto !important; */
+  padding: 2.5px 0px 5px 0px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
   width: 100%;
 }
 
 .edit_profile_form_error {
   /* background-color: rgba(168, 62, 50, 0.2); */
-  /* background-color: rgba(255, 204, 204, 1); */
-  /* border: 1px solid rgb(168, 62, 50, 0.4); */
-  border-radius: 5px;
-  margin: 1px 0px;
-  padding: 5px 0px 5px 0px;
-  /* width: 40%; */
+  background-color: rgba(255, 204, 204, 1);
+  border: 1px solid rgb(168, 62, 50, 0.4);
+  border-radius: 2.5px;
+  margin: 1px auto !important;
+  padding: 5px 10px;
+  width: 400px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .edit_profile_form_error_exclamation {
@@ -31,8 +30,8 @@
 
 .edit_profile_form_error span {
   align-self: center;
-  /* color: rgba(0, 0, 0, 1); */
-  color: rgba(50, 50, 50, 1);
-
-  font: 300 9pt "Roboto", sans-serif;
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Roboto';
+  font-size: 9pt;
+  font-weight: 300;
 }

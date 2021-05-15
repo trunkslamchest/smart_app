@@ -10,6 +10,7 @@ import './formStyles/editProfileModalForm.css'
 import './formStyles/logInForm.css'
 import './formStyles/signUpForm.css'
 import './formStyles/deleteProfileForm.css'
+import './defaultFormResponse.css'
 
 const DefaultForm = (props) => {
 

@@ -23,6 +23,7 @@ import DefaultForm from '../../forms/defaultForm'
 import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './editProfile.css'
+import './editProfileResponse.css'
 
 class EditProfile extends React.Component {
 

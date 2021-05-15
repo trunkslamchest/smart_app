@@ -23,6 +23,7 @@ import DefaultButtonsContainer from '../../UI/buttons/defaultButtonsContainer/de
 import dashboardNavBarIconIndex from '../../assets/nav_bar_icons/dashboardNavBarIconIndex'
 
 import './dashboardContainer.css'
+import './dashboardResponse.css'
 
 const Dashboard = (props) => {
 
@@ -52,6 +53,7 @@ const Dashboard = (props) => {
         <DefaultButtonsContainer
           buttons={ navBarButtons }
           buttonClass={ 'nav_bar_button' }
+          buttonContainerClass={ 'nav_bar_button_container' }
           buttonRow={ true }
           containerClass={ 'nav_bar_container' }
           enableButton={ true }

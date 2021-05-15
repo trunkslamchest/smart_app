@@ -29,7 +29,9 @@
 
 .modal_header_centered_top h3 {
   text-align: center;
-  font: 300 15pt "PoppinsLight";
+  font-family: 'PoppinsLight';
+  font-size: 15pt;
+  font-weight: 300;
 }
 
 .modal_header_centered_bottom {

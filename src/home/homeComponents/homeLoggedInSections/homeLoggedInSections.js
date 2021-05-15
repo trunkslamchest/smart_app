@@ -22,6 +22,7 @@ import makeHomeLoggedInButtons from '../../homeFunctions/makeHomeLoggedInButtons
 import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './homeLoggedInSections.css'
+import './homeLoggedInSectionsResponse.css'
 
 const HomeLoggedInSections = (props) => {
 
@@ -64,6 +65,8 @@ const HomeLoggedInSections = (props) => {
               <DefaultButtonsContainer
                 buttons={ [ button ] }
                 buttonClass={ 'home_logged_in_button' }
+                buttonContainerClass={ 'home_logged_in_button_container' }
+
                 containerClass={ 'home_logged_in_buttons_container' }
                 enableButton={ true }
               />

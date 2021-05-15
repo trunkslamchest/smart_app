@@ -12,7 +12,7 @@
 .home_button_section_container {
   /* border: 1px solid rgba(200, 200, 200, 1); */
   margin: 0px;
-  width: 75%;
+  width: 90%;
 }
 
 .home_button_section_wrapper {
@@ -32,8 +32,8 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-content: center;
-  align-items: center;
-  margin: 15px 0px;
+  align-items: flex-end;
+  margin: 15px 30px 15px 0px;
   width: 50%;
 }
 
@@ -43,7 +43,9 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin: 15px 0px 15px 30px;
+
   width: 50%;
 }
 

@@ -26,6 +26,7 @@ import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defau
 import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './deleteProfile.css'
+import './deleteProfileResponse.css'
 
 class DeleteProfile extends React.Component {
 

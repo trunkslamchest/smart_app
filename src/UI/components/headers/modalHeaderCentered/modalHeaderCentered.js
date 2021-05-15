@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './modalHeaderCentered.css'
+import './modalHeaderCenteredResponse.css'
 
 const ModalHeaderCentered = (props) => {
 
