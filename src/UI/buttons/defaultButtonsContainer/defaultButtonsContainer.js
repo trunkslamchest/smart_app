@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import DefaultButton from '../defaultButton'
 
 import './defaultButtonsContainer.css'
+import './defaultButtonsContainerResponse.css'
 
 const DefaultButtonContainer = (props) => {
 

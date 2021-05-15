@@ -18,6 +18,7 @@ import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defau
 import leaderBoardNavBarIconIndex from '../assets/nav_bar_icons/leaderBoardNavBarIconIndex'
 
 import './leaderBoardsContainer.css'
+import './leaderBoardsResponse.css'
 
 const LeaderBoardsContainer = (props) => {
 

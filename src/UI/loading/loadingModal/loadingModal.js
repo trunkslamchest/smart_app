@@ -6,6 +6,7 @@ import SmallLoadingSpinner from '../smallLoadingSpinner/smallLoadingSpinner'
 
 import './loadingModal.css'
 import './loadingModalSpinner.css'
+import './loadingModalResponse.css'
 
 const LoadingModal = (props) => {
   return (
