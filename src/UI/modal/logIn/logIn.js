@@ -21,6 +21,7 @@ import DefaultForm from '../../forms/defaultForm'
 import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './logIn.css'
+import './logInResponse.css'
 
 class LogIn extends React.Component {
 

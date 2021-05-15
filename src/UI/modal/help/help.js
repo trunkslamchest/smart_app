@@ -19,6 +19,7 @@ import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defau
 import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './help.css'
+import './helpResponse.css'
 
 const Help = (props) => {
 
@@ -62,6 +63,8 @@ const Help = (props) => {
           buttons={ helpButtons }
           buttonClass={ 'modal_help_button' }
           buttonContainerClass={ 'modal_help_button_container' }
+          containerClass={ 'modal_help_buttons_container' }
+
           enableButton={ true }
         />
     </Modal>

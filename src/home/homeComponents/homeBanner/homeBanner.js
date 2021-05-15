@@ -25,7 +25,9 @@ const HomeBanner = (props) => {
               <span>SmartApp</span>™ is for people who love trivia.
             </h1>
             <h2>
-              Whether you are newbie or a mastermind know-it-all, <span>SmartApp</span>™ is made to help you expand your mind.
+              Whether you are newbie or a mastermind know-it-all,
+              <br />
+              <span>SmartApp</span>™ is made to help you expand your mind.
             </h2>
             <h3>
               <span>Login</span> or <span>Sign Up</span> and get smart today.

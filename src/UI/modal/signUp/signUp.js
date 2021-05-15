@@ -24,6 +24,7 @@ import DefaultForm from '../../forms/defaultForm'
 import glyphIndex from '../../../assets/glyphs/glyphIndex'
 
 import './signUp.css'
+import './signUpResponse.css'
 
 class SignUp extends React.Component {
 
@@ -147,8 +148,8 @@ class SignUp extends React.Component {
         modalClass={ 'sign_up_modal' }
         showModal={ this.props.modal.signup }
       >
+        <ModalHeaderCentered header_text='Create New Account' />
         <div className='sign_up_wrapper'>
-          <ModalHeaderCentered header_text='Create New Account' />
           { (this.props.auth.loading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }

@@ -1,12 +1,12 @@
 @import url('./UI/fonts.css');
 @import url('./UI/Animation.css');
 @import url('./UI/loading.css');
-@import url('./UI/response.css');
+/* @import url('./UI/response.css'); */
 
 * {
   margin: 0;
   text-rendering: optimizeLegibility;
-  /* border: 1px solid rgba(200, 200, 200, 1); */
+  border: 1px solid rgba(200, 200, 200, 1);
   box-sizing: border-box;
 }
 
