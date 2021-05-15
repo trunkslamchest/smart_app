@@ -7,8 +7,8 @@
   align-content: center;
   width: 100%;
   border: 0px;
-  padding: 5px 10px;
-  height: 35px;
+  padding: 5px 10px 5px 10px;
+  /* height: 35px; */
 }
 
 .docs_header_left {
@@ -19,7 +19,9 @@
 .docs_header_left h1 {
   align-self: center;
   display: flex;
-  font: 300 15pt "PoppinsLight";
+  font-family: 'PoppinsLight';
+  font-size: calc(18px + (8 — 8) * ((100vw — 769px) / (1920 — 769)));
+  font-weight: 300;
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-inline-start: 0em;

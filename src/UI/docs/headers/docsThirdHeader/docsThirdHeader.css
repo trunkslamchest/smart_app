@@ -8,6 +8,7 @@
   width: 100%;
   border: 0px;
   padding: 5px 10px 5px 0px;
+  margin-left: -5px;
 }
 
 .docs_third_header_left {
@@ -23,7 +24,9 @@
   margin-inline-start: 0em;
   margin-inline-end: 0em;
   /* font: 600 10pt "LatoLight"; */
-  font: 300 14pt "PoppinsLight";
+  font-family: 'PoppinsLight';
+  font-size: calc(10px + (8 — 8) * ((100vw — 769px) / (1920 — 769)));
+  font-weight: 300;
 }
 
 .docs_third_header_right {
