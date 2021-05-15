@@ -6,7 +6,7 @@
   flex-wrap: nowrap; */
   margin: 0px 0px 20px 0px;
   padding: 0px;
-  width: 75%;
+  width: calc(400px + (800 — 400) * ((100vw — 769px) / (1920 — 769)));
 }
 
 .dashboard_wrapper > * {

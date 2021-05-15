@@ -5,6 +5,7 @@ import DefaultButtonsContainer from '../../../buttons/defaultButtonsContainer/de
 import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
 
 import './containerProfileHeader.css'
+import './containerProfileHeaderResponse.css'
 
 const ContainerProfileHeader = (props) => {
 

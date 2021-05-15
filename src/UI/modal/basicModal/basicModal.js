@@ -5,6 +5,7 @@ import { basic } from '../../../store/actions/actionIndex'
 import Modal from '../modal'
 
 import './basicModal.css'
+import './basicModalResponse.css'
 
 const BasicModal = (props) => {
 

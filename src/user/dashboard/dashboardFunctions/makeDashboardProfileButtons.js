@@ -20,7 +20,9 @@ const makeDashboardProfileHeaderButtons = (onClickButtonFunction, onDelete, user
       params: JSON.stringify({ route: routes.dashboard_profile_edit }),
       route: routes.dashboard_profile_edit,
       target: '_blank',
-      text: 'Edit Profile'
+      text: 'Edit Profile',
+      tooltipText: [ 'Edit Your Profile' ]
+
     },
     {
       buttonType: 'NavLink',
@@ -30,7 +32,9 @@ const makeDashboardProfileHeaderButtons = (onClickButtonFunction, onDelete, user
       params: JSON.stringify({ route: routes.user_profile + '/' + user_name }),
       route: routes.user_profile + '/' + user_name,
       target: '_blank',
-      text: 'View Public Profile'
+      text: 'View Public Profile',
+      tooltipText: [ 'View Your Public Profile' ]
+
     },
     {
       buttonType: 'button',
@@ -38,7 +42,9 @@ const makeDashboardProfileHeaderButtons = (onClickButtonFunction, onDelete, user
       name: 'deleteProfileButton',
       onClickFunction: onDelete,
       target: '_blank',
-      text: 'Delete Profile'
+      text: 'Delete Profile',
+      tooltipText: [ 'Delete Your Profile' ]
+
     }
   ]
 }
