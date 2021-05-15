@@ -1,13 +1,27 @@
+.sign_up_input_container {
+  width: 100%;
+  padding: 0px 0px 10px 0px;
+}
+
+.sign_up_input_sub_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
 .sign_up_input_sub_container input {
   border: 1px solid rgba(150, 150, 150, 1);
   border-radius: 5px;
   display: flex;
   font: 400 12px "Lato", sans-serif;
-  max-width: 350px;
+  /* max-width: 350px; */
   margin: 0px;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;
-  width: 60%;
+  width: 400px;
 }
 
 .sign_up_input_sub_container input::placeholder {
@@ -15,16 +29,77 @@
 }
 
 .sign_up_input_sub_container input:disabled {
-  border: 0px solid rgba(100, 100, 100, 1);
+  border: 0px solid rgba(200, 200, 200, 1);
   border-radius: 5px;
   display: flex;
   color: rgba(255, 255, 255, 1);
   cursor: not-allowed;
-  background-color: rgba(200, 200, 200, 1);
+  background-color: rgba(150, 150, 150, 1);
   font: 400 12px "Lato", sans-serif;
-  max-width: 350px;
+  /* max-width: 350px; */
   margin: 0px;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px;
-  width: 60%;
+  width: 400px;
+}
+
+.sign_up_input_sub_container h3,
+.sign_up_image_sub_container h3 {
+  color: rgba(255, 255, 255, 1);
+  font: 300 12pt 'PoppinsLight', sans-serif;
+  text-align: center;
+}
+
+.sign_up_image_sub_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  padding: 2.5px 0px;
+  width: 100%;
+}
+
+.sign_up_tos_container {
+  padding: 0px 0px 10px 0px;
+  width: 100%;
+}
+
+.sign_up_tos_sub_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.sign_up_tos_sub_container a,
+.sign_up_tos_sub_container_disabled a {
+  color: rgba(4, 108, 196, 1);
+  margin: 0px;
+  text-decoration: none;
+}
+
+.sign_up_tos_sub_container a:active,
+.sign_up_tos_sub_container a:hover,
+.sign_up_tos_sub_container a:visited,
+.sign_up_tos_sub_container_disabled a:active,
+.sign_up_tos_sub_container_disabled a:hover,
+.sign_up_tos_sub_container_disabled a:visited {
+  color: rgba(244, 166, 66, 1);
+  margin: 0px;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: .1s, .1s;
+  transition-timing-function: ease-in-out;
+}
+
+.sign_up_tos_sub_container p {
+  font-family: 'Lato';
+  font-size: calc(7px + (7 — 7) * ((100vw — 769px) / (1920 — 769)));
+  font-weight: 300;
+  text-align: justify;
+  width: 75%;
 }

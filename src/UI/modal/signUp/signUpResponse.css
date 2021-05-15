@@ -16,30 +16,8 @@
 
 @media only screen and (max-width: 768px) {
 
-}
-
-@media only screen and (max-width: 640px) {
-
-}
-
-@media only screen and (max-width: 360px) {
-
-
-
   .sign_up_modal {
-    /* animation: fade_in .2s ease-in-out 1;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    left: 50%;
-    max-width: 75%;
-    min-width: 50%;
-    position: fixed;
-    top: 10%;
-    transform: translateX(-50%);
-    z-index: 500; */
-    max-width: 95%;
-    width: 100%;
+    width: calc(150px + (400 — 150) * ((100vw — 360px) / (769 — 360)));
   }
 
   .sign_up_wrapper {
@@ -53,34 +31,35 @@
   }
 
   .sign_up_input_sub_container input {
-    padding: 15px;
-    width: 85%;
-  }
-
-  .sign_up_tos_sub_container {
-    width: 100%;
-
-  }
-
-  .tos_check_box_container {
-    width: 85%;
-  }
-
-  .sign_up_tos_sub_container p {
-    font: 300 8pt 'Lato';
-  }
-
-  .sign_up_form_error_container {
-
+    width: calc(150px + (300 — 150) * ((100vw — 360px) / (769 — 360)));
   }
 
   .sign_up_form_error {
-    padding: 5px 10px;
-    width: 95%;
+    width: calc(150px + (300 — 150) * ((100vw — 360px) / (769 — 360)));
   }
 
   .sign_up_form_error span {
-    font: 300 8pt "Roboto", sans-serif;
+    font-family: 'Roboto';
+    font-size: calc(6.45px + (6.45 — 6.45) * ((100vw — 360px) / (769 — 360)));
+    font-weight: 300;
   }
+
+  .tos_check_box_container {
+    width: calc(150px + (300 — 150) * ((100vw — 360px) / (769 — 360)));
+  }
+
+  .sign_up_tos_sub_container p {
+    font-family: 'Lato';
+    font-size: calc(6.45px + (6.45 — 6.45) * ((100vw — 360px) / (769 — 360)));
+    font-weight: 300;
+  }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+}
+
+@media only screen and (max-width: 360px) {
 
 }

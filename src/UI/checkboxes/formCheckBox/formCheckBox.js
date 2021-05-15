@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-import './formCheckBoxTOS.css'
+// import './formCheckBoxTOS.css'
 
 const FormCheckBox = (props) => {
 

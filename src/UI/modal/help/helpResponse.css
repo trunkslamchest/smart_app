@@ -8,19 +8,9 @@
 
 @media only screen and (max-width: 1280px) {
 
-  .help_modal {
-    top: 5%;
-  }
-
 }
 
 @media only screen and (max-width: 1024px) {
-
-  .help_modal {
-    max-width: 85%;
-    width: 100%;
-    top: 5%;
-  }
 
 }
 
@@ -29,55 +19,28 @@
   .help_modal {
     max-width: 95%;
     width: 100%;
-    top: 5%;
+    top: 2.5%;
+  }
+
+  .help_wrapper {
+    max-height: 66vh;
+  }
+
+  .modal_help_button_container {
+    width: 100%;
+  }
+
+  .modal_help_buttons_container {
+    margin: 0px 0px 0px 0px;
+    padding: 15px 0px 0px 0px;
   }
 
 }
 
 @media only screen and (max-width: 640px) {
 
-  .help_modal {
-    
-    max-width: 95%;
-    width: 100%;
-    top: 2.5%;
-  }
-
-  .help_wrapper {
-    max-height: 66vh;
-
-  }
-
-  .modal_help_button_container {
-    width: 100%;
-  }
-
-  .modal_help_buttons_container {
-    margin: 0px 0px 0px 0px;
-    padding: 15px 0px 0px 0px;
-  }
-
 }
 
 @media only screen and (max-width: 360px) {
-
-  .help_modal {
-    max-width: 95%;
-    width: 100%;
-    top: 2.5%;
-  }
-
-  .help_wrapper {
-    padding: 10px 0px 0px 0px;
-  }
-
-  .modal_help_button_container {
-    width: 100%;
-  }
-
-  .modal_help_buttons_container {
-    margin: 0px 0px 0px 0px;
-    padding: 15px 0px 0px 0px;
-  }
 
 }

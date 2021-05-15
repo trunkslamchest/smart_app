@@ -8,6 +8,7 @@
   flex-wrap: nowrap;
   justify-content: space-evenly;
   padding: 10px 0px;
+  width: 400px;
 }
 
 .tos_check_box_button_container {
