@@ -1,0 +1,46 @@
+@media only screen and (max-width: 2560px) {
+
+}
+
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1280px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  .delete_profile_modal {
+    width: calc(150px + (400 - 150) * ((100vw - 360px) / (769 - 360)));
+  }
+
+  .delete_profile_input_sub_container input {
+    width: calc(150px + (300 - 150) * ((100vw - 360px) / (769 - 360)));
+  }
+
+  .delete_profile_form_error {
+    width: calc(150px + (300 - 150) * ((100vw - 360px) / (769 - 360)));
+  }
+
+  .delete_profile_form_error span {
+    font-family: 'Roboto';
+    font-size: calc(6.45px + (6.45 - 6.45) * ((100vw - 360px) / (769 - 360)));
+    font-weight: 300;
+  }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+
+}
+
+@media only screen and (max-width: 360px) {
+
+}

@@ -1,0 +1,91 @@
+.container_profile_header_button {
+  -webkit-appearance: none;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  text-rendering: auto;
+  color: rgb(225, 225, 225, 1);
+  background: rgba(50, 50, 50, 0);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-decoration: none;
+  text-align: center;
+  align-self: stretch;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0px 0px 0px 0px;
+  font: 300 10pt 'Poppins', sans-serif;
+  padding: 5px 25px 5px 10px;
+  border: 0px;
+  box-sizing: border-box;
+  width: 100%;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.container_profile_header_button_active {
+  -webkit-appearance: none;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  text-rendering: auto;
+  color: rgba(50, 50, 50, 1);
+  background: rgba(244, 166, 66, 1);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-decoration: none;
+  text-align: center;
+  align-self: stretch;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0px 0px 0px 0px;
+  font: 300 10pt 'Poppins', sans-serif;
+  padding: 5px 25px 5px 10px;
+  border: 0px;
+  box-sizing: border-box;
+  width: 100%;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.container_profile_header_button_disabled {
+  -webkit-appearance: none;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background: rgba(175, 175, 175, 0);
+  border: 0px;
+  box-sizing: border-box;
+  color: rgb(225, 225, 225, 0.5);
+  cursor: not-allowed;
+  font: 400 15px Roboto;
+  letter-spacing: normal;
+  margin: 0px;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+}
+
+.container_profile_header_button:hover,
+.container_profile_header_button_active:hover {
+  font: 300 10pt 'Poppins', sans-serif;
+  color: rgba(50, 50, 50, 1);
+  background: rgba(244, 166, 66, 1);
+}
+

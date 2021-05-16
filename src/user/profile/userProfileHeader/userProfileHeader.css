@@ -1,0 +1,32 @@
+.user_profile_header_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: rgb(255, 255, 255, 1);
+  /* margin: 0px 0px 5px 0px; */
+}
+
+.user_profile_header_date_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.user_profile_header_date_sub_container {
+  margin: 5px 0px;
+}
+
+.user_profile_header_date_sub_container h4 {
+  font: 300 10pt 'Lato';
+}
+
+.user_profile_header_date_sub_container h5 {
+  font: 300 9pt 'LatoLightItalic';
+}

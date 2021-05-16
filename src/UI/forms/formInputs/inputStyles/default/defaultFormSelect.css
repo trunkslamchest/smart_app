@@ -1,0 +1,13 @@
+.default_form_select {
+  border: 0px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  font: 400 12px "Helvetica", sans-serif;
+  max-width: 350px;
+  isolation: isolate;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px 5px;
+  position: relative;
+  width: 100%;
+}

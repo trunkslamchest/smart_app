@@ -1,0 +1,117 @@
+.modal_wrapper {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(50, 50, 50, 1);
+  left: 50%;
+  max-width: 75%;
+  min-width: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.basic_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 20%;
+  transform: translateX(-50%);
+  width: 500px;
+  z-index: 500;
+}
+
+.loading_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  width: 500px;
+  z-index: 500;
+}
+
+.help_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  width: 75%;
+  max-width: 1000px;
+  min-width: 300px;
+  position: fixed;
+  top: 7.5%;
+  transform: translateX(-50%);
+  z-index: 500;
+}
+
+.log_in_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  width: 500px;
+  z-index: 500;
+}
+
+.sign_up_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  width: 500px;
+  z-index: 500;
+}
+
+.log_out_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  width: 500px;
+  z-index: 500;
+}
+
+.edit_profile_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+  width: 500px;
+}
+
+.delete_profile_modal {
+  animation: fade_in .2s ease-in-out 1;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  position: fixed;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 500;
+  width: 500px;
+}

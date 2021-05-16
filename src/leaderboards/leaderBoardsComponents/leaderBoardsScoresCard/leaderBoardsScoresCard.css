@@ -1,0 +1,15 @@
+.leader_boards_scores_card_container {
+  margin: 0px auto;
+}
+
+.leader_boards_scores_card_wrapper {
+  padding: 0px 0px 0px 0px;
+}
+
+.leader_boards_row_ref {
+  border: 1px solid rgba(175, 175, 175, 1);
+}
+
+.leader_boards_row_ref_hidden {
+
+}

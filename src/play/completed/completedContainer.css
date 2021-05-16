@@ -1,0 +1,11 @@
+.blank {
+  opacity: 0;
+}
+
+.completed_wrapper {
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
+  border-radius: 5px;
+  margin: 30px 0px 20px 0px;
+  width: 75%;
+  padding: 0px 0px 20px 0px;
+}

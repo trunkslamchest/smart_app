@@ -1,0 +1,35 @@
+.edit_profile_avatar_img {
+  border-radius: 10px;
+  height: 100px;
+  margin-right: 10px;
+  width: 100px;
+}
+
+.edit_profile_input_sub_container input {
+  border: 1px solid rgba(150, 150, 150, 1);
+  border-radius: 5px;
+  display: flex;
+  font: 400 12px "Roboto", sans-serif;
+  margin: 5px 0px 5px 15px;
+  max-width: 350px;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px;
+  width: 50%;
+}
+
+.edit_profile_input_sub_container textarea {
+  border: 1px solid rgba(150, 150, 150, 1);
+  border-radius: 5px;
+  display: flex;
+  font: 400 12px "Roboto", sans-serif;
+  margin: 5px 0px 5px 15px;
+  max-width: 500px;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px;
+  width: 75%;
+}
+
+.edit_profile_input_sub_container input::placeholder,
+.edit_profile_input_sub_container textarea::placeholder {
+  color: rgba(150, 150, 150, 1);
+}

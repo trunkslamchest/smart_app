@@ -1,0 +1,14 @@
+.edit_profile_select {
+  border: 1px solid rgba(150, 150, 150, 1);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  font: 400 12px "Helvetica", sans-serif;
+  margin: 5px 0px 5px 15px;
+  max-width: 350px;
+  isolation: isolate;
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 10px 5px;
+  position: relative;
+  width: 100%;
+}

@@ -1,0 +1,116 @@
+.tos_check_box_container {
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(150, 150, 150, 1);
+  border-radius: 5px;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  padding: 10px 0px;
+  width: 400px;
+}
+
+.tos_check_box_button_container {
+  border: 1px solid rgba(50, 50, 50, 1);
+  border-radius: 2.5px;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.tos_check_box_button_container:hover {
+  cursor: pointer;
+  background-color: rgba(244, 166, 66, 1);
+}
+
+.tos_check_box {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 1);
+  border: 0px solid rgba(0, 0, 0, 1);
+  font: 100 0px 'Lato';
+  padding: 2.5px;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: transform .25s ease-in-out;
+}
+
+.tos_check_box:active {
+  transform: rotate(-180deg);
+  transition: transform .25s ease-in-out;
+}
+
+.tos_check_box_img {
+  width: 20px;
+  height: 20px;
+  transform: rotate(360deg);
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_img:hover {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_img:active {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box:disabled {
+  background: rgba(150, 150, 150, 1);
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
+  border: 0px solid rgba(0, 0, 0, 1);
+  font: 100 0px 'Lato';
+  padding: 2.5px;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: transform .25s ease-in-out;
+}
+
+.tos_check_box:disabled img {
+  width: 20px;
+  height: 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box:disabled img:hover {
+  cursor: default;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box:disabled img:active {
+  cursor: default;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_disabled {
+  background: rgba(150, 150, 150, 1);
+  color: rgba(255, 255, 255, 1);
+  cursor: not-allowed;
+  border: 0px solid rgba(0, 0, 0, 1);
+  font: 100 0px 'Lato';
+  padding: 2.5px;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: transform .25s ease-in-out;
+}
+
+.tos_check_box_disabled img {
+  filter: grayscale(1.0);
+  width: 20px;
+  height: 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_disabled img:hover {
+  filter: grayscale(1.0);
+  cursor: not-allowed;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_check_box_disabled img:active {
+  filter: grayscale(1.0);
+  cursor: not-allowed;
+  outline: -webkit-focus-ring-color auto 0px;
+}

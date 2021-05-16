@@ -1,0 +1,39 @@
+.dashboard_settings_privacy_profile_card::selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card::-moz-selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card_img_container img::selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card_img_container img::-moz-selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card_img_container_active img::selection { opacity: 0; }
+.dashboard_settings_privacy_profile_card_img_container_active img::-moz-selection { opacity: 0; }
+
+.dashboard_settings_privacy_profile_card {
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 5px 25px 5px 15px;
+  margin: 0px;
+}
+
+.dashboard_settings_privacy_profile_card span {
+  color: rgba(50, 50, 50, 1);
+  font: 300 10pt 'Lato', sans-serif;
+}
+
+.dashboard_settings_privacy_profile_card_img_container {
+  transform: rotate(360deg);
+  transition: transform .25s ease-in-out;
+}
+
+.dashboard_settings_privacy_profile_card_img_container_active {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+  transform: rotate(0deg);
+  transition: transform .25s ease-in-out;
+}
+
+.dashboard_settings_privacy_profile_card_check {
+  align-self: center;
+}

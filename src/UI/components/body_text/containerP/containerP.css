@@ -1,0 +1,22 @@
+.container_p {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center; */
+  width: 100%;
+  /* background: rgba(51, 51, 51, 1); */
+  padding: 0px 20px 10px 30px
+}
+
+.container_p p {
+  background: rgba(51, 51, 51, 1);
+  color: rgba(255, 255, 255, 1);
+  font: 300 9pt "Lato";
+  display: block;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}

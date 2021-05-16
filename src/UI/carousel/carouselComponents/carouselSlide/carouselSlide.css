@@ -1,0 +1,176 @@
+.default_carousel_slide_container {
+  /* background-color: #FFF; */
+  /* background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(125, 125, 125, 0.1)); */
+
+  /* border-width: 1px; */
+  /* border-style: solid; */
+  /* border-image: linear-gradient(to right, red , yellow); */
+  /* border: 1px solid rgba(200, 200, 200, 1); */
+  /* border-radius: 10px; */
+
+  /* box-shadow: 0 0 5px 0 rgba(51, 51, 51, 1); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 0px 0px 0px 0px;
+  opacity: 1;
+  padding: 40px 0px 20px 0px;
+  width: 90%;
+  animation: onmount_default_carousel_slide .5s ease-in-out 1;
+}
+
+.dismount_default_carousel_slide_container {
+  /* background-color: #FFF; */
+  /* background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(125, 125, 125, 0.1)); */
+
+  /* border-width: 1px; */
+  /* border-style: solid; */
+  /* border-image: linear-gradient(to right, red , yellow); */
+  /* border: 1px solid rgba(200, 200, 200, 1); */
+  /* border-radius: 10px; */
+
+  /* box-shadow: 0 0 5px 0 rgba(51, 51, 51, 1); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 0px 0px 0px 0px;
+  opacity: 1;
+  /* padding: 40px 20% 20px 20%; */
+  padding: 40px 0px 20px 0px;
+
+  width: 90%;
+  animation: dismount_default_carousel_slide .5s ease-in-out 1;
+
+}
+
+@keyframes onmount_default_carousel_slide
+  {
+    25% {
+      opacity: 0;
+    }
+    0% {
+      transform: translateX(-2000px);
+    }
+  }
+
+@keyframes dismount_default_carousel_slide
+  {
+    25% {
+      opacity: 0;
+    }
+    75% {
+      transform: translateX(2000px);
+    }
+  }
+
+.default_carousel_slide_img_container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  /* max-width: 700px; */
+  width: 50%;
+  justify-content: flex-end;
+  margin-right: calc(8px + (10 - 8) * ((100vw - 769px) / (1280 - 769)));
+  /* width: 50%; */
+}
+
+.default_carousel_slide_img_container img {
+  height: auto;
+  /* min-width: 350px; */
+  max-width: 600px;
+  min-width: 300px;
+  width: 100%;
+}
+
+.default_carousel_slide_desc_container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: calc(8px + (10 - 8) * ((100vw - 769px) / (1280 - 769)));
+
+  width: 50%;
+  /* max-width: 500px; */
+  /* min-width: 275px; */
+}
+
+.default_carousel_slide_desc_wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  max-width: 500px;
+  /* width: 50%; */
+}
+
+.default_carousel_slide_desc_headline_container {
+  /* background-image: linear-gradient(90deg, rgba(100, 100, 100, 0), rgba(75, 75, 75, 1), rgba(50, 50, 50, 1), rgba(25, 25, 25, 1) ); */
+  /* border-radius: 0px 10px 0px 0px; */
+  /* width: 100%; */
+}
+
+.default_carousel_slide_desc_headline_container h2 {
+  color: rgba(75, 75, 75, 1);
+  font-family: 'Baloo';
+  font-size: calc(20px + (24 - 20) * ((100vw - 769px) / (1920 - 769)));
+  font-weight: 600;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 5px 0px;
+  text-align: center;
+}
+
+.default_carousel_slide_desc_headline_container h2 span {
+  color: rgba(0, 0, 102, 1);
+  font-family: 'Baloo';
+  font-size: calc(20px + (24 - 20) * ((100vw - 769px) / (1920 - 769)));
+  font-weight: 600;
+  margin: 0px 0px 10px 0px;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.default_carousel_slide_desc_headline_container h2 span span {
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Baloo';
+  font-size: calc(20px + (24 - 20) * ((100vw - 769px) / (1920 - 769)));
+  font-weight: 600;
+  margin: 0px 0px 10px 0px;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.default_carousel_slide_desc_text_container {
+  padding: 0px 10px;
+  /* width: 100%; */
+  max-width: 500px;
+}
+
+.default_carousel_slide_desc_text_container p {
+  font-family: 'Lato';
+  font-size: calc(12px + (14 - 12) * ((100vw - 769px) / (1920 - 769)));
+  font-weight: 300;
+  margin: 0px 0px 5px 0px;
+}
+
+.default_carousel_slide_desc_highlights_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.default_carousel_slide_desc_highlights_container p {
+  font: 300 10pt 'Lato';
+  margin: 0px 0px 5px 10px;
+  /* width: 40%; */
+}

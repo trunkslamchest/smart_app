@@ -1,0 +1,3 @@
+select:not(:-internal-list-box) {
+  overflow: hidden !important;
+}

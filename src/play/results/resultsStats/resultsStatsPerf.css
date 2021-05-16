@@ -1,0 +1,70 @@
+.results_perf_container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.results_perf_container h3 {
+  font: 600 15pt "LatoThin";
+}
+
+.results_perf_sub_container {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5px 0px 0px 0px;
+  /* width: calc(100% - 1px); */
+  width: 100%;
+
+}
+
+.results_perf_sub_wrapper {
+  align-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 1);
+  /* border: 1px solid rgba(200, 200, 200, 1); */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 0px 1px 1px 1px;
+  padding: 5px 0px 15px 0px;
+  width: calc((100% / 3) - 2px);
+  /* width: calc(100% / 3); */
+
+}
+
+.results_perf_sub_wrapper_header {
+  /* background-color: rgba(0, 0, 51, 1); */
+  border-radius: 5px 5px 0px 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.results_perf_sub_wrapper_header h4 {
+  /* font: 300 14pt 'Poppins'; */
+  font: 600 12pt 'LatoLight';
+  margin: 0px 0px 5px 0px;
+}
+
+
+.results_perf_sub_wrapper_text {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.results_perf_sub_wrapper_text h5 {
+  font: 300 12pt 'Lato';
+}
+

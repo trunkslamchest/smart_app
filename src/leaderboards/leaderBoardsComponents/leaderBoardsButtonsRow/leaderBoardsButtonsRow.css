@@ -1,0 +1,11 @@
+.leader_boards_buttons_row_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  border: 0px;
+  padding: 10px 0px;
+}

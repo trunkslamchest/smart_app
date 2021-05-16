@@ -1,0 +1,60 @@
+.icon_button_tooltip_container {
+  position: absolute;
+  align-items: flex-end;
+  align-self: flex-end;
+  display: flex;
+  top: 55px;
+  animation: icon_button_tooltip_fade_in .2s ease-in-out 0s 1;
+  z-index: 10;
+
+}
+
+@keyframes icon_button_tooltip_fade_in {
+  0% {
+    opacity: 0;
+  };
+  50% {
+    opacity: 0;
+  };
+  100% {
+    opacity: 1;
+  };
+}
+
+.icon_button_tooltip_container_hide {
+  position: absolute;
+  align-items: flex-end;
+  align-self: flex-end;
+  display: flex;
+  top: 55px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.icon_button_tooltip_wrapper {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.icon_button_tooltip_arrow {
+  align-self: flex-end;
+  margin-right: 10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgba(244, 166, 66, 1);
+  height: 10px;
+  width: 10px;
+}
+
+.icon_button_tooltip_wrapper span {
+  align-self: center;
+  color: rgba(40, 44, 52, 1);
+  background: rgba(244, 166, 66, 1);
+  font: 600 10pt 'Poppins', 'sans-serif';
+  padding: 2.5px 5px;
+}

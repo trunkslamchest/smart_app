@@ -1,0 +1,34 @@
+.results_edit_comment_text {
+  animation: fade_in .3s ease-in-out 1;
+  width: 100%;
+}
+
+.results_edit_comment_form {
+  animation: fade_in .25s ease-in-out 1;
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 5px 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.results_edit_comment_form textarea {
+  animation: fade_in .25s ease-in-out 1;
+  font: 300 10pt 'Lato', sans-serif;
+  width: 100%;
+  /* height: 50px; */
+  outline: -webkit-focus-ring-color auto 0px;
+  padding: 2.5px 5px;
+}
+
+.results_all_comments_comment_header_left {
+  align-content: center;
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,0 +1,114 @@
+.leader_boards_sub_header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  color: rgba(100, 100, 100, 1);
+  background: rgba(255, 255, 255, 1);
+  border: 0px;
+  padding: 2.5px 0px 2.5px 5px;
+}
+
+.leader_boards_sub_header:hover {
+  color: rgba(50, 50, 50, 1);
+  border-radius: 5px;
+  transition: width .1s ease-in-out;
+  background: rgba(244, 166, 66, 1);
+  width: 99%;
+  opacity: 1;
+  margin: 0px auto;
+  cursor: pointer;
+}
+
+.leader_boards_sub_header:hover h3 {
+  color: rgba(50, 50, 50, 1);
+  font: 600 12pt "Lato";
+}
+
+.leader_boards_sub_header h3 {
+  padding: 2.5px 0px 2.5px 5px;
+  text-align: center;
+  font: 600 12pt "LatoLight";
+}
+
+.leader_boards_sub_header_right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.leader_boards_sub_header_right h4 {
+  font: 300 9pt "LatoItalic";
+  opacity: 0;
+  text-align: center;
+}
+
+.leader_boards_sub_header_right img {
+  padding: 0px 15px;
+}
+
+.header_button_menu_arrow {
+
+}
+
+.leader_boards_sub_header_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin: 0px auto;
+  background-color: rgba(244, 166, 66, 1);
+  border: 0px;
+  padding: 2.5px 0px 2.5px 5px;
+  color: rgba(50, 50, 50, 1);
+  font: 600 10pt "Lato";
+  border-radius: 5px 5px 0px 0px;
+}
+
+.leader_boards_sub_header_active h3 {
+  padding: 2.5px 0px 2.5px 5px;
+  text-align: center;
+  font: 600 12pt "Lato";
+}
+
+.leader_boards_sub_header_right_active {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.leader_boards_sub_header_right_active h4 {
+  font: 300 9pt "LatoItalic";
+  text-align: center;
+}
+
+.leader_boards_sub_header_right_active img {
+  padding: 0px 15px;
+}
+
+.leader_boards_sub_header_active:hover {
+  color: rgba(50, 50, 50, 1);
+  border-radius: 5px;
+  width: 99%;
+  transition: width .1s ease-in-out;
+  background: rgba(244, 166, 66, 1);
+  margin: 0px auto;
+  cursor: pointer;
+}
+
+.leader_boards_sub_header_active:hover h3 {
+  color: rgba(50, 50, 50, 1);
+  font: 600 12pt "Lato";
+}

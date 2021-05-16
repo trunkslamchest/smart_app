@@ -1,0 +1,35 @@
+.results_correct_answer {
+  animation: fade_in .25s ease-in-out 1;
+  background: rgba(255, 255, 255, 1);
+  /* border-radius: 5px 5px 0px 0px; */
+  color: rgba(50, 50, 50, 1);
+  /* background: rgba(50, 50, 50, 1); */
+  margin: 0px 1px 0px 1px;
+  padding: 15px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.results_correct_answer h3 {
+  animation: fade_in .25s ease-in-out 1;
+  font: 300 10pt 'LatoItalic', sans-serif;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.results_correct_answer h4 {
+  animation: fade_in .25s ease-in-out 1;
+  font: 600 20pt 'LatoLight', sans-serif;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding: 0px 0px 15px 0px;
+}

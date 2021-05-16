@@ -1,0 +1,26 @@
+.leader_boards_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 5px 5px 0px 0px;
+  background-color: rgba(0, 0, 51, 1);
+  padding: 5px 30px 5px 10px;
+}
+
+.leader_boards_header h3 {
+  font: 300 15pt "PoppinsLight";
+  text-align: center;
+}
+
+.leader_boards_header h4 {
+  font: 300 9pt "LatoItalic";
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  text-align: center;
+}

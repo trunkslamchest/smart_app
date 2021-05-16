@@ -1,0 +1,25 @@
+.docs_ul {
+  width: 100%;
+  padding: 0px 20px 0px 10px
+}
+
+.docs_ul span {
+  font: 300 9pt "Roboto";
+  display: block;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.docs_ul ul {
+  padding-inline-start: 10px;
+  font: 300 9pt 'Roboto', sans-serif;
+  margin: 5px 5px 5px 5px;
+  list-style: none;
+}
+
+.docs_ul li {
+  font: 300 9pt 'Roboto', sans-serif;
+  margin: 0px 0px 2px 0px;
+}

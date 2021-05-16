@@ -1,0 +1,17 @@
+@import url('./defaultButtonLeft.css');
+@import url('./defaultButtonRight.css');
+@import url('./defaultButtonMiddle.css');
+@import url('./defaultButtonDisabled.css');
+
+
+.default_button_container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+  height: 100%;
+}

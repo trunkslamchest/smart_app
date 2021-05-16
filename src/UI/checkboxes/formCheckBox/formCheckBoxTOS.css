@@ -1,0 +1,65 @@
+.tos_form_check_box_button {
+  background: rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 1);
+  border: 0px solid rgba(0, 0, 0, 1);
+  font: 100 0px 'Lato';
+  padding: 1px;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: transform .25s ease-in-out;
+}
+
+.tos_form_check_box_button img {
+  width: 20px;
+  height: 20px;
+  transform: rotate(360deg);
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_form_check_box_button img:hover {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_form_check_box_button img:active {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_form_check_box_button:hover {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_form_check_box_button:active {
+  cursor: pointer;
+  outline: -webkit-focus-ring-color auto 0px;
+  transform: rotate(-180deg);
+  transition: transform .25s ease-in-out;
+}
+
+.tos_form_check_box_button_disabled {
+  background: rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
+  border: 0px solid rgba(0, 0, 0, 1);
+  font: 100 0px 'Lato';
+  padding: 1px;
+  outline: -webkit-focus-ring-color auto 0px;
+  transition: transform .25s ease-in-out;
+}
+
+.tos_form_check_box_button_disabled img {
+  width: 20px;
+  height: 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_form_check_box_button_disabled img:hover {
+  cursor: default;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.tos_form_check_box_button_disabled img:active {
+  cursor: default;
+  outline: -webkit-focus-ring-color auto 0px;
+}

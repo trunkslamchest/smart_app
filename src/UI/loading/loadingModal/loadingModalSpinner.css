@@ -1,0 +1,137 @@
+.spinner_container {
+  height: 45px;
+  padding: 0px 30px 0px 0px;
+}
+
+.spinner_header {
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  animation: loading_pulse 2s linear infinite;
+  z-index:8;
+}
+
+.spinner_header h3 {
+  font: 300 25pt 'Lato', sans-serif !important;
+}
+
+.spinner_animation_container {
+  margin: 2.5px auto 2.5px auto !important;
+  display: inline-block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.roller {
+  width: 25px;
+  height: 25px;
+  transform: scale(1.0, 1.0);
+}
+
+.roller div {
+  animation: roller 0.5s linear infinite;
+  transform-origin: 12.5px 12.5px;
+}
+
+@keyframes roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  transform: rotate(45deg);
+}
+
+.roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+
+.roller div:nth-child(1):after {
+  background: rgba(0, 0, 0, 0);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+
+.roller div:nth-child(2):after {
+  opacity: 0.1;
+  background: rgba(0, 0, 25, 0.1);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+
+.roller div:nth-child(3):after {
+  background: rgba(0, 0, 50, 0.3);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+
+.roller div:nth-child(4):after {
+  background: rgba(0, 0, 75, 0.6);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+
+.roller div:nth-child(5):after {
+  background: rgba(0, 0, 100, 0.7);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+
+.roller div:nth-child(6):after {
+  background: rgba(0, 0, 125, 0.8);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+
+.roller div:nth-child(7):after {
+  background: rgba(0, 0, 150, 0.9);
+  top: 0px;
+  left: 0px;
+}
+
+.roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+
+.roller div:nth-child(8):after {
+  background: rgba(0, 0, 175, 1);
+  top: 0px;
+  left: 0px;
+}

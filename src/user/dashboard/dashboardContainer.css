@@ -1,0 +1,45 @@
+.dashboard_wrapper {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+  width: calc(400px + (800 - 400) * ((100vw - 769px) / (1920 - 769)));
+}
+
+/* .dashboard_wrapper > * {
+  padding-inline-start: 0px;
+} */
+
+.dashboard_wrapper hr {
+  margin: 0px;
+}
+
+.dashboard_alt_header {
+  width: 100%;
+  padding: 15px 0px 15px 0px;
+  z-index:8;
+}
+
+.dashboard_alt_header > * {
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  margin: 0px auto 0px auto;
+}
+
+.dashboard_alt_header h1 {
+  font: 400 20pt 'Lato', sans-serif;
+}
+
+.dashboard_alt_header h2 {
+  font: 400 18pt 'Lato', sans-serif;
+}
+
+.dashboard_alt_header h3 {
+  font: 300 16pt 'Lato', sans-serif;
+}
+
+.dashboard_alt_header h4 {
+  font: 300 14pt 'Lato', sans-serif;
+}
+
+.dashboard_alt_header h5 {
+  font: 300 12pt 'Lato', sans-serif;
+}

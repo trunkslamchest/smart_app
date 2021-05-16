@@ -1,0 +1,59 @@
+@media only screen and (max-width: 2560px) {
+
+}
+
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1280px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  .home_buttons_container {
+    flex-direction: column;
+    width: calc(50px + (400 - 50) * ((100vw - 360px) / (769 - 360)));
+  }
+
+  .home_button_container {
+    width: 100%;
+  }
+
+  .home_help_buttons_container {
+    width: calc(100px + (400 - 100) * ((100vw - 360px) / (769 - 360)));
+  }
+
+  .home_button span,
+  .home_button:active span,
+  .home_button:hover span,
+  .home_button_active span,
+  .home_button_active:hover span {
+    font-family: 'PoppinsLight';
+    font-size: calc(8px + (15 - 8) * ((100vw - 360px) / (769 - 360)));
+    font-weight: 300;
+  }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+}
+
+@media only screen and (max-width: 500px) {
+
+}
+
+@media only screen and (max-width: 360px) {
+
+  .home_buttons_container {
+    flex-direction: column;
+    max-width: 360px;
+  }
+
+}

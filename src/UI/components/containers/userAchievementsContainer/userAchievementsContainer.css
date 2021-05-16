@@ -1,0 +1,74 @@
+.user_achievements_container {
+  animation: fade_in .25s ease-in-out 1;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1), rgba(255, 255, 255, 1));
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0px 1px 0px 1px;
+  /* width: 100%; */
+}
+
+.user_achievements_wrapper {
+  /* background-color: rgba(255, 255, 255, 1); */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  /* align-content: center; */
+  padding: 0px;
+  /* margin: 0px -1px; */
+  width: 100%;
+}
+
+.user_achievements_sub_container {
+  /* background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1)); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  padding: 0px 0px;
+  width: 100%;
+}
+
+.user_achievements_sub_container h3 {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(100, 100, 100, 1);
+  font: 300 12pt 'LatoLightItalic', sans-serif;
+  align-self: center;
+  text-align: left;
+  margin: 0px 1px 0px 1px;
+
+  padding: 15px 0px 15px 30px;
+  width: 100%;
+}
+.user_achievements_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  /* background: rgba(50, 50, 50, 1); */
+  border: 0px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.user_achievements_header h3 {
+  font: 600 15pt "LatoThin";
+  padding: 5px 0px 5px 10px;
+  text-align: center;
+}
+
+.user_achievements_header span {
+  font: 300 9pt 'LatoItalic';
+  padding: 5px 10px 5px 0px;
+  text-align: center;
+}
+

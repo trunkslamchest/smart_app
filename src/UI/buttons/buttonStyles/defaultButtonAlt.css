@@ -1,0 +1,97 @@
+.default_button_alt {
+  -webkit-appearance: none;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));
+  border: 0px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: rgba(235, 235, 235, 1);
+  cursor: pointer;
+  font: 300 10pt 'PoppinsLight', sans-serif;
+  letter-spacing: normal;
+  margin: 0px;
+  padding: 10px 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+}
+
+.default_button_alt_active {
+  -webkit-appearance: none;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
+  border: 0px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: rgba(50, 50, 50, 1);
+  cursor: pointer;
+  font: 300 10pt 'PoppinsLight', sans-serif;
+  letter-spacing: normal;
+  margin: 0px;
+  padding: 10px 20px;
+  outline: -webkit-focus-ring-color auto 0px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  text-rendering: auto;
+  text-shadow: none;
+  text-transform: none;
+  word-spacing: normal;
+}
+
+.default_button_alt:hover,
+.default_button_alt_active:hover {
+  color: rgba(50, 50, 50, 1);
+  background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
+  border: 0px solid black;
+  box-sizing: border-box;
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  transition: background-color, border-radius .2s ease-in-out 0s;
+}
+
+.default_button_alt img,
+.default_button_alt_active img {
+  width: 20px;
+  height: 20px;
+}
+
+.default_button_alt span,
+.default_button_alt_active span {
+  align-self: stretch;
+}
+
+.default_button_alt:active span,
+.default_button_alt_active:active span {
+  color: rgba(50, 50, 50, 1);
+  display: block;
+  opacity: 0;
+  font: 600 10pt 'PoppinsLight', sans-serif;
+  transform: translate(0px, 15px);
+  transition: all .15s ease-in-out 0s;
+  transition-property: opacity, transform;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.default_button_alt:active img,
+.default_button_alt_active:active img {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: translate(0px, 15px);
+  transition: all .15s ease-in-out 0s;
+  transition-property: opacity, transform;
+  outline: -webkit-focus-ring-color auto 0px;
+}
