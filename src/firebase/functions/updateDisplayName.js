@@ -1,5 +1,5 @@
 import init from '../../firebase/init';
-// init.auth().useEmulator("http://localhost:8004")
+init.auth().useEmulator("http://localhost:8004")
 
 async function updateDisplayName(displayName){
   let user = init.auth().currentUser
@@ -8,12 +8,10 @@ async function updateDisplayName(displayName){
     displayName: displayName
   })
   .then(() => {
-    // console.log(user)
     return user
   })
   .catch(function(error) {
     var errorObj = { error: true, code: error.code, message: error.message }
-    // console.log(errorObj)
     return errorObj
   })
 }

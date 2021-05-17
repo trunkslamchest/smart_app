@@ -1,5 +1,5 @@
 import init from '../../firebase/init';
-// init.auth().useEmulator("http://localhost:8004")
+init.auth().useEmulator("http://localhost:8004")
 
 async function reAuth(email, password){
 
@@ -12,9 +12,8 @@ async function reAuth(email, password){
   return await user.reauthenticateWithCredential(credentials).then(function(resObj) {
     return resObj
   }).catch(function(error) {
-      var errorObj = { error: true, code: error.code, message: error.message }
-      // console.log(errorObj)
-      return errorObj
+    var errorObj = { error: true, code: error.code, message: error.message }
+    return errorObj
   });
 }
 

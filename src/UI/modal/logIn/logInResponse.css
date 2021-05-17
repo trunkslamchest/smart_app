@@ -20,7 +20,8 @@
     width: calc(300px + (500 - 300) * ((100vw - 360px) / (769 - 360)));
   }
 
-  .log_in_input_sub_container input {
+  .log_in_input_sub_container input,
+  .log_in_input_sub_container input:disabled {
     width: calc(250px + (400 - 250) * ((100vw - 360px) / (769 - 360)));
   }
 

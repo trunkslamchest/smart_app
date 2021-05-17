@@ -20,7 +20,8 @@
     width: calc(300px + (500 - 300) * ((100vw - 360px) / (769 - 360)));
   }
 
-  .edit_profile_modal_input_sub_container input {
+  .edit_profile_modal_input_sub_container input,
+  .edit_profile_modal_input_sub_container input:disabled {
     width: calc(250px + (400 - 250) * ((100vw - 360px) / (769 - 360)));
   }
 
