@@ -72,7 +72,6 @@ const UserAchievementsContainer = (props) => {
               { distribLockedAchievements }
             </div>
           </div>
-          <div className='divider_left' />
         </>
       }
     </div>

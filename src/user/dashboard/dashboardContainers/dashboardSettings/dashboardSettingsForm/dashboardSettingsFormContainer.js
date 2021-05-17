@@ -55,7 +55,6 @@ const DashboardSettingsFormContainer = (props) => {
             { distribPrivacyProfileSettings }
           </div>
         </div>
-        <div className='divider_medium' />
         <DefaultButtonsContainer
           buttons={ formButtons }
           buttonRow={ true }

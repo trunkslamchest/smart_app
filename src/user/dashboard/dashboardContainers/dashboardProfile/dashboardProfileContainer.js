@@ -58,7 +58,7 @@ const DashboardProfileContainer = (props) => {
           field={ field }
           fieldClass={ 'dashboard_profile_field' }
         />
-        <div className='divider_medium'/>
+        { index < profileFields.length - 1 && <div className='divider_medium'/> }
       </React.Fragment>
     )
   })

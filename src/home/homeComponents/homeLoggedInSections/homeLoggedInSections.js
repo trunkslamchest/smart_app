@@ -76,7 +76,7 @@ const HomeLoggedInSections = (props) => {
             </div>
           </div>
         </div>
-        <div className='divider_small'></div>
+        { index < homeButtons.length - 1 && <div className='divider_small'></div> }
       </React.Fragment>
     )
   })

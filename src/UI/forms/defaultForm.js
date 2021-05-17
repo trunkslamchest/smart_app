@@ -20,13 +20,13 @@ const DefaultForm = (props) => {
       input =
         <div className={ props.inputContainerClass || 'default_input_container' } key={ index + field[0].label }>
           { field.map((nField, nIndex) => distribFormInputs(props.formValid, props.errors, props.enableInput, nField, nIndex)) }
-          { props.dividers && <div className='divider_medium' /> }
+          { props.dividers && index < props.inputFields.length - 1 && <div className='divider_medium' /> }
         </div>
     } else {
       input =
         <div className={ props.inputContainerClass || 'default_input_container' } key={ index + field.id }>
           { distribFormInputs(props.formValid, props.errors, props.enableInput, field, index) }
-          { props.dividers && <div className='divider_medium' /> }
+          { props.dividers && index < props.inputFields.length - 1 && <div className='divider_medium' /> }
         </div>
     }
     return input
