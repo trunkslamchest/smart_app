@@ -6,6 +6,7 @@ import {
   setHelpSections
 } from '../../../store/actions/actionIndex'
 
+import makeHomeHelpButton from '../../homeFunctions/makeHomeHelpButton'
 import makeHomeHelpSections from '../../homeFunctions/makeHomeHelpSections'
 import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
@@ -19,15 +20,7 @@ const HomeBottomBanner = (props) => {
     props.onHelpModal(true)
   }
 
-  const helpButton = [
-    {
-      id: 'help_button',
-      name: 'HelpButton',
-      onClickFunction: onHelp,
-      text: 'Would You Like To Know More?',
-      tooltipText: [ 'Information on how to get started' ]
-    }
-  ]
+  const helpButton = makeHomeHelpButton(onHelp)
 
   return(
     <div className='home_logged_out_bottom_banner'>

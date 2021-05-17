@@ -1,5 +1,4 @@
 const homeTechIcons = (iconsIndex) => {
-
   return [
     {
       id: 'home_tech_css',

@@ -5,7 +5,7 @@ import MakeHomeLoggedOutTechIcons from '../../homeFunctions/makeHomeLoggedOutTec
 import './homeTech.css'
 import './homeTechResponse.css'
 
-const HomeTech = (props) => {
+const HomeTech = () => {
   return(
     <div className='home_logged_out_tech_container'>
       <MakeHomeLoggedOutTechIcons />

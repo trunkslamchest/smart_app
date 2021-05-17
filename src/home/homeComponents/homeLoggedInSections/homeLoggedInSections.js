@@ -66,7 +66,6 @@ const HomeLoggedInSections = (props) => {
                 buttons={ [ button ] }
                 buttonClass={ 'home_logged_in_button' }
                 buttonContainerClass={ 'home_logged_in_button_container' }
-
                 containerClass={ 'home_logged_in_buttons_container' }
                 enableButton={ true }
               />

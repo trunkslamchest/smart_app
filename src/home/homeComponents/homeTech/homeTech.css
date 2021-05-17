@@ -30,10 +30,6 @@
   width: 100%;
 }
 
-.home_logged_out_tech_icon_img_container {
-
-}
-
 .home_logged_out_tech_icon_img_container img {
   height: auto;
   width: 75px;
@@ -43,11 +39,6 @@
   height: 0px;
   width: 0px;
   text-decoration: none;
-}
-
-
-.home_logged_out_tech_icon_text_container {
-
 }
 
 .home_logged_out_tech_icon_text_container span {

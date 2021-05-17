@@ -23,18 +23,6 @@
   align-items: center;
 }
 
-/* .home_logged_out_banner_text_container p {
-  font-family: 'Lato';
-  font-size: 16pt;
-  font-weight: 600;
-} */
-
-/* .home_logged_out_banner_text_container p span {
-  font-family: 'Lato';
-  font-size: 16pt;
-  font-weight: 600;
-} */
-
 .home_logged_out_banner_text_container h1 {
   font-family: 'Lato';
   font-size: calc(16px + (24 - 16) * ((100vw - 769px) / (1920 - 769)));

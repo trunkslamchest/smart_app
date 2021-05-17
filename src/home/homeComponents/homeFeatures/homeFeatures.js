@@ -4,7 +4,7 @@ import MakeHomeLoggedOutFeaturesList from '../../homeFunctions/makeHomeLoggedOut
 
 import './homeFeatures.css'
 
-const HomeFeatures = (props) => {
+const HomeFeatures = () => {
   return(
     <div className='home_logged_out_features_container'>
       <MakeHomeLoggedOutFeaturesList />
