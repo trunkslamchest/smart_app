@@ -13,24 +13,12 @@
   flex-grow: 1;
   flex-shrink: 3;
   flex-basis: 200px;
-  /* width: calc((100% / 4) - 2px); */
-}
-
-.results_achievement_card_img_container {
-
 }
 
 .results_achievement_card_img_container img {
   padding: 5px 0px;
   border-radius: .5em;
   border: 1px solid rgba(255, 255, 255, 1);
-}
-
-.results_achievement_card_text_container {
-  /* width: 100%; */
-  /* max-width: 150px; */
-  /* width: 175px; */
-  /* min-width: 100px; */
 }
 
 .results_achievement_card_text_container h4 {

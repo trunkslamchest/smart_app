@@ -58,8 +58,6 @@
 }
 
 .results_xp_bar_container h4 {
-  /* font: 400 10pt "Lato"; */
-  /* font: 600 12pt 'LatoLight'; */
   font: 300 12pt 'Lato';
   margin: 0px 0px 2.5px 0px;
   align-self: center;
@@ -103,9 +101,7 @@
 }
 
 .results_xp_bar {
-  /* background-color: rgba(255, 255, 255, 1); */
   background-color: rgba(50, 50, 50, 1);
-
   border: 1px solid rgba(200, 200, 200, 1);
   box-sizing: border-box;
   width: 100%;

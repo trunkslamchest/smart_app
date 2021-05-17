@@ -1,8 +1,8 @@
 import React from 'react'
 
+import makeAddCommentButton from '../../resultsFunctions/makeAddCommentButton'
 import CommentFormErrorItem from '../commentFormErrorItem/commentFormErrorItem'
 import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
-
 
 import './commentForm.css'
 
@@ -21,19 +21,7 @@ const commentForm = (props) => {
     }
   }
 
-  const addCommentButtons = [
-    {
-      buttonClass: 'add_comment_button',
-      id: 'add_comment_button',
-      name: 'addCommentButton',
-      enableButton: props.enableAddCommentButton,
-      onClickFunction: props.onAddComment,
-      text: "Leave A Comment",
-      tooltipText: [ 'Discuss!' ],
-      tooltipClass: 'add_comment_button_tooltip',
-      type: 'submit'
-    }
-  ]
+  const addCommentButton = makeAddCommentButton(props.enableAddCommentButton, props.onAddComment)
 
   return(
     <form
@@ -50,7 +38,7 @@ const commentForm = (props) => {
         value={ props.comment }
       />
       <DefaultButtonsContainer
-        buttons={ addCommentButtons }
+        buttons={ addCommentButton }
         containerClass='add_comment_button_container'
         enableButton={ props.enableAddCommentButton }
       />

@@ -10,6 +10,9 @@ import {
 } from '../../../../store/actions/actionIndex'
 
 import makeCommentObject from '../../resultsFunctions/makeCommentObject'
+import makeCommentButtons from '../../resultsFunctions/makeCommentButtons'
+import makeCommentFormButtons from '../../resultsFunctions/makeCommentFormButtons'
+
 import validateComment from '../../../../utility/validation/validateComment'
 
 import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
@@ -61,66 +64,18 @@ class commentCard extends React.Component {
 
     if(this.props.comment.user === this.props.user.info.user_name){
 
-      const onDeleteCommentFunctions = () => {
+      const onDeleteComment = () => {
         let commentObj = makeCommentObject(this.props, this.state.editedComment)
         this.props.onDeleteUserComment(commentObj)
         this.props.onDeleteQuestionComment(commentObj)
       }
 
-      const onEditCommentFunctions = () => { this.setState({ showEditCommentForm: true }) }
-      const onCancelEditCommentFunctions = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: false }) }
+      const onEditComment = () => { this.setState({ showEditCommentForm: true }) }
+      const onCancelEditComment = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: false }) }
 
-      commentButtons = [
-        {
-          buttonClass: 'edit_comment_button',
-          id: 'edit_comment_button',
-          image: glyphIndex.whiteEdit,
-          imageHover: glyphIndex.blackEdit,
-          name: 'editCommentButton',
-          onClickFunction: onEditCommentFunctions,
-          // text: "Edit",
-          tooltipText: [ 'Edit Your Comment' ],
-          tooltipClass: 'edit_comment_button_tooltip',
-          type: 'button'
-        },
-        {
-          buttonClass: 'delete_comment_button',
-          id: 'delete_comment_button',
-          image: glyphIndex.whiteDelete,
-          imageHover: glyphIndex.blackDelete,
-          name: 'deleteCommentButton',
-          onClickFunction: onDeleteCommentFunctions,
-          // text: "Delete",
-          tooltipText: [ 'Delete Your Comment' ],
-          tooltipClass: 'edit_comment_button_tooltip',
-          type: 'button'
-        }
-      ]
+      commentButtons = makeCommentButtons(glyphIndex, onEditComment, onDeleteComment)
+      commentFormButtons = makeCommentFormButtons(glyphIndex, this.onAddEditedComment, onCancelEditComment)
 
-      commentFormButtons = [
-        {
-          id: 'edit_comment_button',
-          image: glyphIndex.formWhiteCheckMark,
-          imageHover: glyphIndex.formBlackCheckMark,
-          name: 'editCommentConfirmButton',
-          onClickFunction: this.onAddEditedComment,
-          // text: "Confirm",
-          tooltipText: [ 'Confirm' ],
-          tooltipClass: 'edit_comment_button_tooltip',
-          type: 'button'
-        },
-        {
-          id: 'edit_comment_button',
-      image: glyphIndex.formWhiteX,
-      imageHover: glyphIndex.formBlackX,
-          name: 'editCommentCancelButton',
-          onClickFunction: onCancelEditCommentFunctions,
-          // text: "Cancel",
-          tooltipText: [ 'Cancel' ],
-          tooltipClass: 'edit_comment_button_tooltip',
-          type: 'button'
-        },
-      ]
     } else commentUser = <Link to={ routes.user_profile + '/' + this.props.comment.user } target='_blank'>{ this.props.comment.user }</Link>
 
     if(!this.state.editCommentForm.valid) {
@@ -156,8 +111,11 @@ class commentCard extends React.Component {
                 value={ this.state.editedComment }
               />
             </form>
-            { !this.state.editCommentForm.valid && this.state.editCommentForm.errors.length && <div className='results_edit_comment_error_container'>{ distribEditCommentErrors }</div> }
-
+            { !this.state.editCommentForm.valid && this.state.editCommentForm.errors.length &&
+              <div className='results_edit_comment_error_container'>
+                { distribEditCommentErrors }
+              </div>
+            }
           </li>
           <DefaultButtonsContainer
             buttons={ commentFormButtons }

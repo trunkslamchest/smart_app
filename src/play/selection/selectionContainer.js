@@ -1,6 +1,5 @@
 import React from 'react'
 import { useEffect }  from 'react'
-// import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { loading, setGameMode, setGameQset } from '../../store/actions/actionIndex'
@@ -35,7 +34,6 @@ const SelectionContainer = (props) => {
         if(props.play.gameState !== 'select') props.setGameState('select')
         if(props.play.question) props.resetQuestion()
         if(props.play.gameQset) props.resetGameQset()
-        // if(props.modal.loading) props.onLoadingModal(false)
       }
 
       if(location.pathname === routes.by_cat_select) {
@@ -43,7 +41,6 @@ const SelectionContainer = (props) => {
         if(props.play.gameState !== 'select') props.setGameState('select')
         if(props.play.question) props.resetQuestion()
         if(props.play.gameQset) props.resetGameQset()
-        // if(props.modal.loading) props.onLoadingModal(false)
       }
     }
   }, [location, props])
@@ -53,15 +50,12 @@ const SelectionContainer = (props) => {
     localStorage.gameMode = buttonParams.gameMode
     props.onSetGameMode(buttonParams.gameMode)
     props.history.push( buttonParams.route )
-    // props.onLoadingModal(true)
-
   }
 
   const onClickQsetFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     props.onSetGameQset(buttonParams.qSet)
     props.history.push( buttonParams.route )
-    // props.onLoadingModal(true)
   }
 
   let selectionButtons = makeSelectionButtons(gameModes, routes, onClickGameModeFunction)

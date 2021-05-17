@@ -25,6 +25,7 @@ import {
 
 import makeResultsNavBarButtons from './resultsFunctions/makeResultsNavBarButtons'
 import makeResultsHelpSections from './resultsFunctions/makeResultsHelpSections'
+import makeNextQuestionButton from './resultsFunctions/makeNextQuestionButton'
 
 import ResultsStatsContainer from './resultsStats/resultsStatsContainer'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
@@ -100,20 +101,7 @@ const ResultsContainer = (props) => {
   let statsRoute = staticResults ? baseStaticRoute + '/stats' : routes[play.gameMode] + '/results/stats'
   let discussRoute = staticResults ? baseStaticRoute + '/discuss' : routes[play.gameMode] + '/results/discuss'
   let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute })
-
-  const nextQuestionButton = [
-    {
-      buttonClass: 'next_question_button',
-      id: 'next_question_button',
-      name: 'nextQuestionButton',
-      enableButton: enableNextQuestionButton,
-      onClickFunction: onClickNextQuestionFunction,
-      text: "Next Question",
-      tooltipText: [ 'Answer another question' ],
-      tooltipClass: 'next_question_button_tooltip',
-      type: 'button'
-    }
-  ]
+  let nextQuestionButton = makeNextQuestionButton(enableNextQuestionButton, onClickNextQuestionFunction)
 
   if(staticResults){
     routeBoard =

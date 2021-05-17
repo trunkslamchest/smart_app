@@ -1,9 +1,7 @@
 .results_correct_answer {
   animation: fade_in .25s ease-in-out 1;
   background: rgba(255, 255, 255, 1);
-  /* border-radius: 5px 5px 0px 0px; */
   color: rgba(50, 50, 50, 1);
-  /* background: rgba(50, 50, 50, 1); */
   margin: 0px 1px 0px 1px;
   padding: 15px 0px 0px 0px;
   display: flex;

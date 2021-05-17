@@ -13,6 +13,8 @@ import {
 import validateComment from '../../../utility/validation/validateComment'
 import getTime from '../../../utility/getTime'
 
+import makeVoteObject from '../resultsFunctions/makeVoteObject'
+
 import VoteContainer from '../../../UI/components/containers/voteContainer/voteContainer'
 import ResultsComment from '../resultsComment/resultsComment'
 
@@ -64,20 +66,10 @@ class ResultsDiscussContainer extends React.Component {
     let voteObj
 
     if(!this.props.staticResults){
-      voteObj = {
-        type: 'play',
-        qid: this.props.play.question.id,
-        difficulty: this.props.play.question.difficulty,
-        category: this.props.play.question.category
-      }
+      voteObj = makeVoteObject('play', this.props.play.question.id, this.props.play.question.difficulty, this.props.play.question.category)
       this.props.onUpdateVoteStatus('initVote', true)
     } else {
-      voteObj = {
-        type: 'static',
-        qid: this.props.qid,
-        difficulty: this.props.diff,
-        category: this.props.cat
-      }
+      voteObj = makeVoteObject('static', this.props.qid, this.props.diff, this.props.cat)
       this.props.onUpdateStaticQuestionVoteStatus('initVote')
       this.props.onVoteLoading(true)
     }
@@ -97,30 +89,21 @@ class ResultsDiscussContainer extends React.Component {
     event.persist()
     event.preventDefault()
 
-    let authCheck = validateComment(this.state.comment), commentObj = {}
+    let commentObj = {}, authCheck = validateComment(this.state.comment)
     this.setState({ commentForm: authCheck })
 
     if (authCheck.valid) {
       this.setState({ enableAddCommentButton: false })
-      if(!this.props.staticResults){
-        commentObj = {
-          type: 'play',
-          qid: this.props.play.question.id,
-          user_name: this.props.user.info.user_name,
-          difficulty: this.props.play.question.difficulty,
-          category: this.props.play.question.category,
-        }
-        this.props.onUpdateCommentStatus('initComment', true)
-      } else {
-        commentObj = {
-          type: 'static',
-          qid: this.props.questions.staticQuestion.qid,
-          user_name: this.props.user.info.user_name,
-          difficulty: this.props.questions.staticQuestion.difficulty,
-          category: this.props.questions.staticQuestion.category,
-        }
-        this.props.onUpdateStaticQuestionCommentStatus('initComment')
+      commentObj = {
+        type: !this.props.staticResults ? 'play' : 'static',
+        qid: !this.props.staticResults ? this.props.play.question.id : this.props.questions.staticQuestion.qid,
+        user_name: this.props.user.info.user_name,
+        difficulty: !this.props.staticResults ? this.props.play.question.difficulty : this.props.questions.staticQuestion.difficulty,
+        category: !this.props.staticResults ? this.props.play.question.category : this.props.questions.staticQuestion.category,
       }
+
+      if(!this.props.staticResults)this.props.onUpdateCommentStatus('initComment', true)
+      else  this.props.onUpdateStaticQuestionCommentStatus('initComment')
 
       commentObj['uid'] = localStorage.id
       commentObj['comment'] = this.state.comment
