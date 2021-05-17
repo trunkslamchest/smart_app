@@ -1,7 +1,7 @@
 export var loadingBarClassSwitch = function(barType, status) {
   let barClass = ''
 
-  console.log('barType', barType)
+  // console.log('barType', barType)
   // console.log('status', status)
 
   if(!status) barClass = 'loading_bar_0'
