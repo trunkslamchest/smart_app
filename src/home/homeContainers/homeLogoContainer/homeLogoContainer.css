@@ -5,8 +5,8 @@
   align-content: center;
   align-items: center;
   max-width: 750px;
-  width: 50%;
-  margin-right: calc(8px + (10 - 8) * ((100vw - 769px) / (1280 - 769)));
+  width: 45%;
+  margin-right: calc(8px + (20 - 8) * ((100vw - 769px) / (1920 - 769)));
 }
 
 .home_logo_container img{

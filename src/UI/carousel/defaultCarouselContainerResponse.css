@@ -12,27 +12,23 @@
 
 @media only screen and (max-width: 1024px) {
 
-  /* .default_carousel_slide_container {
-    padding: 10px 0px 0px 0px;
-  }
-
-  .dismount_default_carousel_slide_container {
-    padding: 10px 0px 0px 0px;
-  } */
-
 }
 
 @media only screen and (max-width: 768px) {
 
+  .default_carousel_container {
+    padding: 20px 0px 10px 0px;
+  }
+
   .default_carousel_slide_container {
     flex-direction: column;
-    padding: 20px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
     width: 100%;
   }
 
   .dismount_default_carousel_slide_container {
     flex-direction: column;
-    padding: 20px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
     width: 100%;
   }
 
@@ -44,32 +40,32 @@
 
   .default_carousel_slide_desc_container {
     justify-content: center;
-    margin: 0px;
+    margin: 10px 0px 10px 0px;
+    height: 125px;
     width: 90%;
   }
 
   .default_carousel_slide_desc_wrapper {
-    max-width: 90%;
-    width: 90%;
+    max-width: 100%;
+    width: 100%;
   }
-
 
   .default_carousel_slide_desc_headline_container h2 {
     font-family: 'Baloo';
-    font-size: calc(10px + (18 - 10) * ((100vw - 360px) / (768 - 360)));
+    font-size: calc(16px + (26 - 16) * ((100vw - 360px) / (768 - 360)));
     font-weight: 600;
     padding: 5px 0px 0px 0px;
   }
 
   .default_carousel_slide_desc_headline_container h2 span {
     font-family: 'Baloo';
-    font-size: calc(10px + (18 - 10) * ((100vw - 360px) / (768 - 360)));
+    font-size: calc(16px + (26 - 16) * ((100vw - 360px) / (768 - 360)));
     font-weight: 600;
   }
 
   .default_carousel_slide_desc_headline_container h2 span span {
     font-family: 'Baloo';
-    font-size: calc(10px + (18 - 10) * ((100vw - 360px) / (768 - 360)));
+    font-size: calc(16px + (26 - 16) * ((100vw - 360px) / (768 - 360)));
     font-weight: 600;
   }
 
@@ -80,53 +76,20 @@
 
   .default_carousel_slide_desc_text_container p {
     font-family: 'Lato';
-    font-size: calc(7px + (8 - 7) * ((100vw - 360px) / (768 - 360)));
+    font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (768 - 360)));
     font-weight: 300;
     margin: 0px 0px 5px 0px;
+  }
+
+  .carousel_button_container {
+    margin: 0px 0px 15px 0px;
   }
 }
 
 @media only screen and (max-width: 640px) {
 
-  /* .default_carousel_slide_img_container {
-    margin: 0px 1% 0px 0px;
-  }
-
-  .default_carousel_slide_desc_container {
-    margin: 0px 0px 0px 1%;
-  }
-
-  .default_carousel_slide_desc_headline_container h2,
-  .default_carousel_slide_desc_headline_container h2 span {
-    font: 600 16pt 'Baloo';
-  }
-
-  .default_carousel_slide_desc_text_container p {
-    font: 300 9pt 'Lato';
-  } */
-
 }
 
 @media only screen and (max-width: 360px) {
-
-  /* .default_carousel_slide_container {
-    flex-direction: column;
-    padding: 20px 0px 10px 0px;
-    width: 100%;
-  }
-
-  .dismount_default_carousel_slide_container {
-    flex-direction: column;
-    padding: 20px 0px 10px 0px;
-    width: 100%;
-  }
-
-  .default_carousel_slide_img_container {
-    width: 90%;
-  }
-
-  .default_carousel_slide_desc_container {
-    width: 90%;
-  } */
 
 }

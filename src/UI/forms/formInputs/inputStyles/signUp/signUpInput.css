@@ -98,7 +98,7 @@
 
 .sign_up_tos_sub_container p {
   font-family: 'Lato';
-  font-size: calc(7px + (7 - 7) * ((100vw - 769px) / (1920 - 769)));
+  font: 400 12px "Lato", sans-serif;
   font-weight: 300;
   text-align: justify;
   width: 75%;

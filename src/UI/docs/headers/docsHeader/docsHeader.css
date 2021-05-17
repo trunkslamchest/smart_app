@@ -20,7 +20,7 @@
   align-self: center;
   display: flex;
   font-family: 'PoppinsLight';
-  font-size: calc(18px + (8 - 8) * ((100vw - 769px) / (1920 - 769)));
+  font-size: calc(22px + (26 - 22) * ((100vw - 769px) / (1920 - 769)));
   font-weight: 300;
   margin-block-start: 0em;
   margin-block-end: 0em;

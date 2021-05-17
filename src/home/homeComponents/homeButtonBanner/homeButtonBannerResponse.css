@@ -18,7 +18,7 @@
 
   .home_buttons_container {
     flex-direction: column;
-    width: calc(50px + (400 - 50) * ((100vw - 360px) / (769 - 360)));
+    width: calc(200px + (400 - 200) * ((100vw - 360px) / (769 - 360)));
   }
 
   .home_button_container {
@@ -26,7 +26,7 @@
   }
 
   .home_help_buttons_container {
-    width: calc(100px + (400 - 100) * ((100vw - 360px) / (769 - 360)));
+    width: calc(250px + (400 - 250) * ((100vw - 360px) / (769 - 360)));
   }
 
   .home_button span,
@@ -35,7 +35,7 @@
   .home_button_active span,
   .home_button_active:hover span {
     font-family: 'PoppinsLight';
-    font-size: calc(8px + (15 - 8) * ((100vw - 360px) / (769 - 360)));
+    font-size: calc(12px + (16 - 12) * ((100vw - 360px) / (769 - 360)));
     font-weight: 300;
   }
 

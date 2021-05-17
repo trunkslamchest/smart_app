@@ -17,7 +17,7 @@
 @media only screen and (max-width: 768px) {
 
   .sign_up_modal {
-    width: calc(150px + (400 - 150) * ((100vw - 360px) / (769 - 360)));
+    width: calc(300px + (500 - 300) * ((100vw - 360px) / (769 - 360)));
   }
 
   .sign_up_wrapper {
@@ -31,26 +31,26 @@
   }
 
   .sign_up_input_sub_container input {
-    width: calc(150px + (300 - 150) * ((100vw - 360px) / (769 - 360)));
+    width: calc(250px + (400 - 250) * ((100vw - 360px) / (769 - 360)));
   }
 
   .sign_up_form_error {
-    width: calc(150px + (300 - 150) * ((100vw - 360px) / (769 - 360)));
+    width: calc(250px + (400 - 250) * ((100vw - 360px) / (769 - 360)));
   }
 
   .sign_up_form_error span {
     font-family: 'Roboto';
-    font-size: calc(6.45px + (6.45 - 6.45) * ((100vw - 360px) / (769 - 360)));
+    font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (769 - 360)));
     font-weight: 300;
   }
 
   .tos_check_box_container {
-    width: calc(150px + (300 - 150) * ((100vw - 360px) / (769 - 360)));
+    width: calc(250px + (400 - 250) * ((100vw - 360px) / (769 - 360)));
   }
 
   .sign_up_tos_sub_container p {
     font-family: 'Lato';
-    font-size: calc(6.45px + (6.45 - 6.45) * ((100vw - 360px) / (769 - 360)));
+    font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (769 - 360)));
     font-weight: 300;
   }
 

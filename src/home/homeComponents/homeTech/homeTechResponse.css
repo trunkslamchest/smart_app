@@ -12,16 +12,12 @@
 
 @media only screen and (max-width: 1024px) {
 
-  .home_logged_out_tech_container {
-    width: 85%;
-  }
-
 }
 
 @media only screen and (max-width: 768px) {
 
   .home_logged_out_tech_container {
-    width: 95%;
+    width: 90%;
   }
 
   .home_logged_out_tech_sub_container {

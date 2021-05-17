@@ -10,7 +10,7 @@ const License = () => {
   return(
     <DocsContainer
       sections={ licenseSections }
-      header_text={ 'License' }
+      header_text={ 'LICENSE' }
       sub_text={ 'Last Updated: 11/12/2020' }
     />
   )
