@@ -17,7 +17,6 @@ import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContai
 
 import glyphIndex from '../../../../assets/glyphs/glyphIndex'
 
-
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {

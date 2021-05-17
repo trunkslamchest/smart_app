@@ -6,18 +6,12 @@
   align-content: flex-start;
   align-items: flex-start;
   margin: 0px 0px 0px 0px;
-  /* padding: 0px 0px 0px 10px; */
-  /* text-align: center; */
-  /* width: 100%; */
   width: 100%;
 }
 
 .dashboard_profile_field h3 {
-  /* color: rgba(255, 255, 255, 1); */
   color: rgba(50, 50, 50, 1);
-
   font: 300 12pt 'PoppinsLight', sans-serif;
-  /* text-align: center; */
 }
 
 .dashboard_profile_field ul {
@@ -29,16 +23,9 @@
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  /* text-align: center; */
-  /* padding: 5px 0px 5px 5px; */
   padding: 5px 5px 5px 15px;
   margin: 0px;
-  /* margin-block-start: 0em;
-  margin-block-end: 0em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px; */
   min-width: 250px !important;
-  /* padding-inline-start: 0px; */
   width: 100%;
 }
 

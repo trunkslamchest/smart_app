@@ -17,7 +17,12 @@ import './dashboardStatsCard.css'
 
 class DashboardStatsCard extends React.Component {
 
-  state = { showStats: false, showAnswers: false, headerButtonHover: false, answersButtonHover: false }
+  state = {
+    showStats: false,
+    showAnswers: false,
+    headerButtonHover: false,
+    answersButtonHover: false
+  }
 
   constructor(props) {
     super(props)
@@ -85,10 +90,8 @@ class DashboardStatsCard extends React.Component {
   render(){
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
-    // const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
 
     let statsCardBlock
-    // let header_menu_arrow = arrow_white_left
     let header_menu_arrow = arrow_grey_left
     let header_menu_arrow_disabled = arrow_grey_left
 

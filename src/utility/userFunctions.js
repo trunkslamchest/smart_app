@@ -16,10 +16,8 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify({id})
         body: "data=" + encodeURIComponent(JSON.stringify({id}))
       })
       .then(res => res.json())
@@ -31,29 +29,21 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify({user_name})
         body: "data=" + encodeURIComponent(JSON.stringify({user_name}))
-
       })
       .then(res => res.json())
     },
 
     patchUserLoginTime: function(url, obj){
-
-      // console.log(obj)
-
       return fetch(url, {
         method: "POST",
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify(obj)
         body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
@@ -65,10 +55,8 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify(obj)
         body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
@@ -80,10 +68,8 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify(obj)
         body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
@@ -95,10 +81,8 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify(obj)
         body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
@@ -110,10 +94,8 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify(obj)
         body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())
@@ -125,10 +107,8 @@
         mode: 'cors',
         headers: {
           "Accept": ['application/json', 'application/x-www-form-urlencoded'],
-          // "Content-Type": 'application/json'
           "Content-Type": 'application/x-www-form-urlencoded'
         },
-        // body: JSON.stringify(obj)
         body: "data=" + encodeURIComponent(JSON.stringify(obj))
       })
       .then(res => res.json())

@@ -20,16 +20,12 @@
 }
 
 .stats_card_wrapper {
-  /* background: rgba(255, 255, 255, 1); */
-  /* background-color: rgba(211, 143, 57, 1); */
   background-color: rgba(0, 0, 51, 1);
-
   width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 0px 1px 1px 1px;
-  /* margin: 0px 0px 2.5px 0px; */
 }
 
 .stats_card_sub_wrapper {
@@ -62,10 +58,6 @@
   align-items: center;
   align-content: center;
   padding: 7.5px 15px 7.5px 10px;
-  /* margin: 0px 0px 0px 15px; */
-  /* width: calc(100% - 15px); */
-  padding: 7.5px 15px 7.5px 10px;
-  /* margin: 0px 0px 0px 15px; */
   width: 100%;
 }
 

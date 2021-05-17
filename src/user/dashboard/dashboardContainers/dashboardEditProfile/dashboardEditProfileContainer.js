@@ -180,7 +180,6 @@ class DashboardEditProfile extends React.Component {
           }
         })
       } else {
-        // this.props.onClearAuthStatus()
         if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
         this.props.onLoadingModal(true)
         this.checkUserExists()

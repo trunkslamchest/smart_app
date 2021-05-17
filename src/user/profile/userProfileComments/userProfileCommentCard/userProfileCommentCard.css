@@ -9,9 +9,6 @@
   padding: 5px 15px 5px 15px;
 }
 
-.user_profile_comment_card_container span {
-}
-
 .user_profile_comment_card_container span:nth-child(1) {
   align-self: flex-end;
   font: 300 10pt 'Lato';

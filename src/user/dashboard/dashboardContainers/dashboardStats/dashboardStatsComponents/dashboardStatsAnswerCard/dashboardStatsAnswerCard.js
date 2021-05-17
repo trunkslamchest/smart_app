@@ -4,6 +4,7 @@ import { routes } from '../../../../../../utility/paths'
 import { voteStarsDashboardRatingIndex } from '../../../../../../assets/vote_stars/voteStarsRatingIndex'
 import glyphIndex from '../../../../../../assets/glyphs/glyphIndex'
 
+import makeDashboardViewQuestionButton from '../../../../dashboardFunctions/makeDashboardViewQuestionButton'
 import DefaultButtonsContainer from '../../../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import './dashboardStatsAnswerCard.css'
@@ -24,19 +25,7 @@ const DashboardStatsAnswerCard = (props) => {
   const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
   const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
 
-  const viewQuestionButton = [
-    {
-      buttonType: 'NavLink',
-      id: 'dashboard_stats_view_question_button',
-      image: glyphIndex.whiteView,
-      imageHover: glyphIndex.blackView,
-      name: 'dashboardStatsViewQuestionButton',
-      onClickFunction: onPushLink,
-      params: JSON.stringify({ route: routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats' }),
-      route: routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid + '/stats',
-      tooltipText: [ 'View Results for this question' ]
-    }
-  ]
+  const viewQuestionButton = makeDashboardViewQuestionButton(glyphIndex, onPushLink, routes.static_results, props.diff, props.cat, props.qid)
 
   if(answer.vote) {
     vote = Object.values(answer.vote)[0].vote
@@ -71,8 +60,6 @@ const DashboardStatsAnswerCard = (props) => {
   //     </div>
   // }
 
-  // console.log(props)
-
   return(
     <div className="dashboard_stats_answer_card_container">
        <div className="dashboard_stats_answer_card_header">
@@ -82,10 +69,8 @@ const DashboardStatsAnswerCard = (props) => {
             containerClass={ 'dashboard_stats_view_question_button_container' }
             buttonClass={ 'dashboard_stats_view_question_button' }
             enableButton={ true }
-            // tooltipClass={ 'dashboard_stats_view_question_button_tooltip' }
           />
       </div>
-      {/* <div className='divider_medium' /> */}
       <div className="dashboard_stats_answer_card_sub_container">
         <div className="dashboard_stats_answer_card_sub_container_group">
           <div className="dashboard_stats_answer_card_bottom_card_wrapper">

@@ -10,8 +10,6 @@
 }
 
 .stats_card_header_card_container {
-  /* width: 16%; */
-  /* margin: 0px 0px 0px 1px; */
   padding: 1px;
 }
 
@@ -25,7 +23,6 @@
   align-content: center;
   margin: 0.5px;
   padding: 0.5px 0px 5px 0px;
-  /* padding: 5px; */
   width: calc(100% / 6);
 }
 
@@ -37,5 +34,4 @@
 
 .stats_card_header_card_wrapper span {
   font: 300 10pt "Lato";
-
 }

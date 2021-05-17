@@ -43,7 +43,6 @@ const UserProfileContainer = (props) => {
             />
           }
           { props.userData.settings.privacy.profile.showAchievements &&
-          // { (props.userData.settings.privacy.profile.showAchievements && !!props.userData.achievements.total ) &&
             <UserAchievementsContainer
               all_achievements={ props.achievements }
               from_dashboard={ false }

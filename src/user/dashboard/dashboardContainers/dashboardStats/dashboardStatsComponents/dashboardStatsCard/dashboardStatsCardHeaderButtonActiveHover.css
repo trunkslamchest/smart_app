@@ -4,7 +4,6 @@
   color: rgba(40, 44, 52, 1);
   cursor: pointer;
   padding: 7.5px 15px 7.5px 10px;
-  /* padding: 10px 15px 10px 15px; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

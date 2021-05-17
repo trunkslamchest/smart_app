@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import DashboardStatsCard from '../dashboardStatsComponents/dashboardStatsCard/dashboardStatsCard'
 
-import './dashboardStatsDifficulty.css'
-
 const DashboardStatsDifficultyContainer = (props) => {
 
     var distribAnswers

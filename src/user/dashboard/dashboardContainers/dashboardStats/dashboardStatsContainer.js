@@ -26,7 +26,6 @@ const DashboardStatsContainer = (props) => {
       <DashboardStatsDifficultyContainer history={ props.history } />
       <div className='divider_medium' />
       <DashboardStatsCategoryContainer history={ props.history } />
-      {/* <div className='divider_medium' /> */}
     </div>
   )
 }

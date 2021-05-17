@@ -4,10 +4,6 @@
   width: calc(700px + (1100 - 700) * ((100vw - 769px) / (1920 - 769)));
 }
 
-/* .dashboard_wrapper > * {
-  padding-inline-start: 0px;
-} */
-
 .dashboard_wrapper hr {
   margin: 0px;
 }
