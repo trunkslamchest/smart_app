@@ -80,7 +80,6 @@ class EditProfile extends React.Component {
   onCancel = () => {
     this.props.onEditProfileModal(false)
     this.props.onClearAuthErrors()
-    // this.props.onClearAuthStatus()
   }
 
   clearLocalState = () => { this.setState({ validationLoading: false, enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }

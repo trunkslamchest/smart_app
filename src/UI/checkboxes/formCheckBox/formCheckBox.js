@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 
-// import './formCheckBoxTOS.css'
-
 const FormCheckBox = (props) => {
 
   const [hoverState, setHoverState] = useState(false)

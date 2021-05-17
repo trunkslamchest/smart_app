@@ -3,13 +3,10 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  /* height: 33px; */
 }
 
 .footer_fine_print p {
   color: rgba(255, 255, 255, 1);
   font: 300 7pt 'Lato', 'sans-serif';
   margin: 10px 0px 10px 15px;
-  /* flex-wrap: nowrap; */
-  /* width: auto; */
 }

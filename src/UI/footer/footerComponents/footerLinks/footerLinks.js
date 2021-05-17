@@ -2,7 +2,7 @@ import React from 'react'
 
 import { routes } from '../../../../utility/paths.js'
 
-import makeFooterLinkButtons from '../footerFunctions/makeFooterLinkButtons'
+import makeFooterLinkButtons from '../../footerFunctions/makeFooterLinkButtons'
 
 import DefaultButtonsContainer from '../../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 

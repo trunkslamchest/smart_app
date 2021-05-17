@@ -1,5 +1,4 @@
 .edit_profile_form_error_container {
-  /* margin: 0px auto !important; */
   padding: 2.5px 0px 5px 0px;
   display: flex;
   flex-direction: column;
@@ -8,7 +7,6 @@
 }
 
 .edit_profile_form_error {
-  /* background-color: rgba(168, 62, 50, 0.2); */
   background-color: rgba(255, 204, 204, 1);
   border: 1px solid rgb(168, 62, 50, 0.4);
   border-radius: 2.5px;

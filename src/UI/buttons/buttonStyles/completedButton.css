@@ -104,8 +104,6 @@
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
-  /* margin: 5px;
-  padding: 10px 20px; */
   font: 600 12pt 'PoppinsLight', sans-serif;
   transform: translate(0px, 15px);
   transition: all .15s ease-in-out 0s;

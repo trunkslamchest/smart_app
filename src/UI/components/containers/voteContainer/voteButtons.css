@@ -6,10 +6,6 @@
   align-content: center;
 }
 
-.vote button {
-
-}
-
 .vote_star_enabled {
   background: rgba(0, 0, 0, 0);
   border: 0px solid;
@@ -55,7 +51,6 @@
   cursor: pointer;
   height: auto;
   outline: -webkit-focus-ring-color auto 0px;
-
 }
 
 .vote_star_disabled img {

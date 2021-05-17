@@ -17,7 +17,6 @@
   background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
   align-items: center;
   align-content: center;
-  /* border: 1px solid rgba(200, 200, 200, 1); */
   display: flex;
   flex-direction: column;
   font: 300 14pt 'Lato', sans-serif;
@@ -52,7 +51,6 @@
   font: 300 15pt 'Lato', sans-serif;
   justify-content: center;
   margin: 0px 0px 5px 0px;
-  /* padding: 5px 0px; */
   width: 100%;
 }
 
@@ -64,7 +62,6 @@
   justify-content: flex-end;
   margin: 1px 0px;
   padding: 5px 10px 10px 5px;
-  /* padding: 0px; */
 }
 
 .vote_totals_graph_sub_header_container_left img {
@@ -72,12 +69,10 @@
 }
 
 .vote_totals_graph_sub_header_container_left span {
-  /* color: rgba(255, 255, 255, 1); */
   color: rgba(50, 50, 50, 1);
   font: 300 10pt 'Lato', sans-serif;
   min-width: 65px;
   padding: 0px 5px 0px 0px;
-  /* text-align: center; */
 }
 
 .vote_totals_graph_sub_header_container_center {
@@ -91,7 +86,6 @@
   margin: 1px 0px;
   padding: 5px 10px 10px 5px;
   flex-grow: 2;
-  /* height: 100%; */
 }
 
 .vote_totals_graph_sub_header_container_center span {
@@ -124,7 +118,6 @@
 }
 
 .vote_totals_graph_sub_header_container_right span {
-  /* color: rgba(255, 255, 255, 1); */
   color: rgba(50, 50, 50, 1);
   font: 300 10pt 'Lato', sans-serif;
   min-width: 65px;
@@ -152,7 +145,6 @@
 }
 
 .vote_totals_graph_row_container_left img {
-  /* filter: grayscale(100%); */
   align-self: center;
 }
 
@@ -179,7 +171,6 @@
 }
 
 .vote_totals_graph_row_container_right span {
-  /* color: rgba(255, 255, 255, 1); */
   color: rgba(50, 50, 50, 1);
   font: 300 10pt 'LatoItalic', sans-serif;
   min-width: 65px;

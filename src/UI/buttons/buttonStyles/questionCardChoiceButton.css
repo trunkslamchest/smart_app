@@ -9,7 +9,6 @@
   box-sizing: border-box;
   margin: 5px;
   height: 100%;
-  /* width: 50%; */
 }
 
 .question_card_choice_button {
@@ -36,7 +35,6 @@
   text-rendering: auto;
   text-shadow: none;
   text-transform: none;
-  /* width: 350px; */
   width: 100%;
   word-spacing: normal;
 }
@@ -64,7 +62,6 @@
   text-rendering: auto;
   text-shadow: none;
   text-transform: none;
-  /* width: 350px; */
   width: 100%;
   word-spacing: normal;
 }
@@ -93,7 +90,6 @@
   text-shadow: none;
   text-transform: none;
   word-spacing: normal;
-  /* width: 350px; */
   width: 100%;
 }
 

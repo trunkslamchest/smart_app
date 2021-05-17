@@ -7,8 +7,6 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  /* align-items: flex-start; */
-  /* align-content: flex-start; */
   z-index: 0;
   height: 140px;
 }

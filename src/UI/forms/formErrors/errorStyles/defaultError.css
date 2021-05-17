@@ -1,6 +1,5 @@
 .default_error {
   background: rgba(255, 204, 204, 1);
-  /* background: green; */
   border: 1px solid rgba(168, 62, 50, 1);
   border-radius: 2.5px;
   box-sizing: border-box;
@@ -13,7 +12,6 @@
   font: 400 10px "Helvetica", sans-serif;
   margin: 1px 0px;
   padding: 5px 10px;
-  /* width: 30%; */
 }
 
 .default_error_exclamation {
@@ -27,7 +25,5 @@
 .default_error span {
   align-self: center;
   color: rgba(0, 0, 0, 1);
-  /* color: rgba(255, 204, 204, 1); */
-  /* color: rgba(255, 220, 21, 1); */
   font: 300 9pt "Roboto", sans-serif;
 }

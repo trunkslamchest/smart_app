@@ -50,8 +50,6 @@
   justify-content: center;
   padding: 0px;
   margin: 0px;
-  /* width: 50%; */
-  /* max-width: 400px; */
 }
 
 .home_help_buttons_container {
@@ -64,7 +62,6 @@
   padding: 0px;
   margin: 0px;
   width: calc(400px + (500 - 400) * ((100vw - 769px) / (1920 - 769)));
-  /* max-width: 400px; */
 }
 
 .footer_links_container {
@@ -86,7 +83,6 @@
 .modal_help_button_container {
   align-items: center;
   align-content: center;
-  /* background-color: rgba(50, 50, 50, 1); */
   border-radius: 0px 0px 5px 5px;
   display: flex;
   flex-wrap: wrap;
@@ -139,10 +135,6 @@
   align-items: center;
   margin: 0em auto;
   padding: 15px 0px;
-}
-
-.dashboard_stats_view_question_button_container {
-
 }
 
 .container_profile_header_buttons_container {
@@ -203,7 +195,6 @@
 }
 
 .game_modes_buttons_container {
-  /* background: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   display: flex;
   flex-direction: row;

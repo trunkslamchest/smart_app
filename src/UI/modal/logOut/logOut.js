@@ -34,7 +34,6 @@ class LogOut extends React.Component {
   onConfirm = () => {
     this.setState({ enableButton: false })
     if(this.state.enableButton) this.props.onAuthStart('logOut', {})
-    // this.props.onLoadingModal(true)
   }
 
   onCancel = () => {

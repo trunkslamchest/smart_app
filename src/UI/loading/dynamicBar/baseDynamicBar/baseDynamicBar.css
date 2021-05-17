@@ -1,5 +1,4 @@
 .dyanmic_bar_container {
-  /* height: 45px; */
   width: 75%;
 }
 
@@ -12,7 +11,6 @@
 .loading_bar_0 {
   height: 15px;
   width: 0%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: all .15s ease-in-out 0s;
   transition-property: width;
@@ -21,7 +19,6 @@
 .loading_bar_1 {
   height: 15px;
   width: 5%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: all .15s ease-in-out 0s;
   transition-property: width;
@@ -30,7 +27,6 @@
 .loading_bar_2 {
   height: 15px;
   width: 10%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: all .15s ease-in-out 0s;
   transition-property: width;
@@ -39,7 +35,6 @@
 .loading_bar_3 {
   height: 15px;
   width: 15%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: all .15s ease-in-out 0s;
   transition-property: width;
@@ -48,7 +43,6 @@
 .loading_bar_4 {
   height: 15px;
   width: 20%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: all .15s ease-in-out 0s;
   transition-property: width;
@@ -57,7 +51,6 @@
 .loading_bar_5 {
   height: 15px;
   width: 25%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: all .15s ease-in-out 0s;
   transition-property: width;
@@ -66,7 +59,6 @@
 .loading_bar_6 {
   height: 15px;
   width: 30%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -74,7 +66,6 @@
 .loading_bar_7 {
   height: 15px;
   width: 35%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -82,7 +73,6 @@
 .loading_bar_8 {
   height: 15px;
   width: 40%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -90,7 +80,6 @@
 .loading_bar_9 {
   height: 15px;
   width: 45%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -98,7 +87,6 @@
 .loading_bar_10 {
   height: 15px;
   width: 50%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -106,7 +94,6 @@
 .loading_bar_11 {
   height: 15px;
   width: 55%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -114,7 +101,6 @@
 .loading_bar_12 {
   height: 15px;
   width: 60%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -122,7 +108,6 @@
 .loading_bar_13 {
   height: 15px;
   width: 65%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -130,7 +115,6 @@
 .loading_bar_14 {
   height: 15px;
   width: 70%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -138,7 +122,6 @@
 .loading_bar_15 {
   height: 15px;
   width: 75%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -146,7 +129,6 @@
 .loading_bar_16 {
   height: 15px;
   width: 80%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -154,7 +136,6 @@
 .loading_bar_17 {
   height: 15px;
   width: 85%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -162,7 +143,6 @@
 .loading_bar_18 {
   height: 15px;
   width: 90%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -170,7 +150,6 @@
 .loading_bar_19 {
   height: 15px;
   width: 95%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }
@@ -178,7 +157,6 @@
 .loading_bar_final {
   height: 15px;
   width: 100%;
-  /* background-color: rgba(255, 255, 255, 1); */
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   transition: width .15s ease-in-out 0s;
 }

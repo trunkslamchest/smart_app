@@ -22,7 +22,6 @@
   margin-block-end: 0em;
   margin-inline-start: 0em;
   margin-inline-end: 0em;
-  /* font: 300 14pt "PoppinsLight"; */
   font-family: 'PoppinsLight';
   font-size: calc(16px + (20 - 16) * ((100vw - 769px) / (1920 - 769)));
   font-weight: 300;

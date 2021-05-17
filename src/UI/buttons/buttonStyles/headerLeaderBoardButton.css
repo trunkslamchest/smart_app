@@ -123,11 +123,6 @@
 
 }
 
-.header_leader_board_buttons_container a {
-  /* padding: 5px 0px; */
-
-}
-
 .header_leader_board_button img,
 .header_leader_board_button_active img {
   align-self: stretch;

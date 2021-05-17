@@ -35,7 +35,6 @@
   align-self: center;
   display: flex;
   text-align: center;
-  /* padding-right: 25px; */
   min-width: 65px;
   font: 300 20pt 'Lato';
 }

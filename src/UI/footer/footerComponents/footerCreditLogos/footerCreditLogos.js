@@ -1,19 +1,14 @@
 import React from 'react'
 
+import makeFooterCreditLogos from '../../footerFunctions/makeFooterCreditLogos'
 import FooterCreditLogo from './footerCreditLogo'
-
 import footerCreditLogosIndex from '../../../../assets/footer/footerCreditLogosIndex'
 
 import './footerCreditLogos.css'
 
-const FooterCreditLogos = (props) => {
+const FooterCreditLogos = () => {
 
-  const footerCreditLogos = [
-    { id: 'flatiron_logo_rectangle', name: 'Flatiron', alt: 'TheFlatironSchoolLogo', image: footerCreditLogosIndex.flatironLogoRectangle, imageHover: footerCreditLogosIndex.flatironLogoRectangleHover, route: 'https://flatironschool.com/' },
-    { id: 'github_logo_rectangle', name: 'Github', alt: 'GithubLogo', image: footerCreditLogosIndex.githubLogoRectangle, imageHover: footerCreditLogosIndex.githubLogoRectangleHover, route: 'https://github.com/trunkslamchest/smart_app' },
-    { id: 'hvh_logo_rectangle', name: 'HudsonValleyHost', alt: 'HudsonValleyHostLogo', image: footerCreditLogosIndex.hvhLogoRectangle, imageHover: footerCreditLogosIndex.hvhLogoRectangleHover, route: 'https://hudsonvalleyhost.com/' },
-    { id: 'otb_logo_rectangle', name: 'OpenTriviaDatabase', alt: 'OpenTriviaDatabaseLogo', image: footerCreditLogosIndex.otbLogoRectangle, imageHover: footerCreditLogosIndex.otbLogoRectangleHover, route: 'https://opentdb.com/' },
-  ]
+  const footerCreditLogos = makeFooterCreditLogos(footerCreditLogosIndex)
 
   const distribFooterCreditLogos = footerCreditLogos.map((logo, index) => {
     return(

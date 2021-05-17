@@ -1,15 +1,3 @@
-/* .footer_logo_button {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 0px 5px 0px;
-  padding: 0px 10px 0px 10px;
-} */
-
-
-
 .footer_logo_button {
   background: rgba(50, 50, 50, 1);
   color: rgba(235, 235, 235, 1);

@@ -153,14 +153,7 @@ const VoteContainer = (props) => {
 
   return(
     <>
-      {
-        (props.play.voteLoading) ||
-        (props.questions.voteLoading)
-      ?
-        loading
-      :
-        voteBlock
-      }
+      { props.play.voteLoading || props.questions.voteLoading ? loading : voteBlock }
     </>
   )
 }
