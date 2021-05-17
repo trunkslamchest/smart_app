@@ -17,7 +17,7 @@ const HomeLoggedOutContainer = (props) => {
 
   return(
     <div className='home_logged_out_wrapper'>
-      <HomeBanner history={ props.history } />
+      <HomeBanner logo_class={ 'home_logged_out_logo_container' } />
       <div className='divider_medium'></div>
       <HomeButtonBanner history={ props.history } />
       <div className='divider_medium'></div>

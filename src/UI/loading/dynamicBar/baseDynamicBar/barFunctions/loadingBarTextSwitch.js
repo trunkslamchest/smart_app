@@ -13,6 +13,7 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'authSignUpSuccess') barText = 'Authentication SignUp Success'
     if(status === 'createAuthUserSuccess') barText = 'Firebase Credentials Recorded'
     if(status === 'updateAuthDisplayNameSuccess') barText = 'Firebase DisplayName Update Success'
+    if(status === 'authEditUser') barText = 'Updating Firebase Auth Credentials'
     if(status === 'getSmarts') barText = 'Fetching SmartCache'
     if(status === 'storeUserInfo') barText = 'Distributing User Information'
     if(status === 'storeAchievements') barText = 'Unloading Achievements'

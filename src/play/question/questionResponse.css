@@ -17,17 +17,17 @@
 @media only screen and (max-width: 768px) {
 
   .question_wrapper {
-    width: calc(150px + (400 - 150) * ((100vw - 360px) / (769 - 360)));
+    width: calc(330px + (700 - 330) * ((100vw - 360px) / (769 - 360)));
   }
 
   .question_card_text {
-      padding: 10px 30px 0px 30px;
+      padding: 10px 15px 0px 15px;
   }
 
   .question_card_text span {
     text-align: center;
     font-family: 'Lato';
-    font-size: calc(10px + (10 - 10) * ((100vw - 360px) / (769 - 360)));
+    font-size: calc(14px + (16 - 14) * ((100vw - 360px) / (769 - 360)));
     font-weight: 300;
   }
 

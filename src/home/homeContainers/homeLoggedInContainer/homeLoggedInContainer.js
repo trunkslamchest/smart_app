@@ -11,7 +11,7 @@ import './homeLoggedInContainer.css'
 const HomeLoggedInContainer = (props) => {
   return(
     <div className='home_logged_in_wrapper'>
-      <HomeBanner />
+      <HomeBanner logo_class={ 'home_logged_in_logo_container' } />
       <div className='divider_medium' />
       <HomeGreeting user_name={ props.user_name } />
       <div className='divider_medium' />

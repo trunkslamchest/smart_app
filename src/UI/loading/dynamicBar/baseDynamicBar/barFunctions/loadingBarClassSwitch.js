@@ -13,6 +13,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'authSignUpSuccess') barClass = 'loading_bar_2'
     if(status === 'createAuthUserSuccess') barClass = 'loading_bar_3'
     if(status === 'updateAuthDisplayNameSuccess') barClass = 'loading_bar_5'
+    if(status === 'authEditUser') barClass = 'loading_bar_7'
     if(status === 'getSmarts') barClass = 'loading_bar_7'
     if(status === 'storeUserInfo') barClass = 'loading_bar_9'
     if(status === 'storeAchievements') barClass = 'loading_bar_11'
@@ -21,7 +22,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'authCleanup') barClass = 'loading_bar_17'
   }
 
-  if(barType === 'editProfile'){
+  if(barType === 'editProfile' || barType === 'editProfileModal'){
     if(status === 'initAuth') barClass = 'loading_bar_1'
     if(status === 'reAuthWithCredsSuccess') barClass = 'loading_bar_3'
     if(status === 'skipAuthUpdate') barClass = 'loading_bar_5'
@@ -35,16 +36,18 @@ export var loadingBarClassSwitch = function(barType, status) {
 
   if(barType === 'deleteProfile'){
     if(status === 'initAuth') barClass = 'loading_bar_1'
-    if(status === 'reAuthWithCredsSuccess') barClass = 'loading_bar_3'
-    if(status === 'deleteAuthUserSuccess') barClass = 'loading_bar_6'
-    if(status === 'deleteLocalUserSuccess') barClass = 'loading_bar_9'
-    if(status === 'clearUserInfo') barClass = 'loading_bar_11'
-    if(status === 'clearUserQuestions') barClass = 'loading_bar_12'
-    if(status === 'clearUserSettings') barClass = 'loading_bar_13'
-    if(status === 'clearQuestionTotals') barClass = 'loading_bar_14'
-    if(status === 'clearAchievements') barClass = 'loading_bar_15'
-    if(status === 'clearAuthCreds') barClass = 'loading_bar_16'
-    if(status === 'clearLocalStorage') barClass = 'loading_bar_17'
+    if(status === 'reAuthWithCredsSuccess') barClass = 'loading_bar_2'
+    if(status === 'deleteAuthUserSuccess') barClass = 'loading_bar_4'
+    if(status === 'deleteLocalUserSuccess') barClass = 'loading_bar_6'
+    if(status === 'clearUserInfo') barClass = 'loading_bar_8'
+    if(status === 'clearUserQuestions') barClass = 'loading_bar_9'
+    if(status === 'clearUserSettings') barClass = 'loading_bar_10'
+    if(status === 'clearQuestionTotals') barClass = 'loading_bar_11'
+    if(status === 'clearAchievements') barClass = 'loading_bar_12'
+    if(status === 'clearAuthCreds') barClass = 'loading_bar_13'
+    if(status === 'clearLocalStorage') barClass = 'loading_bar_14'
+    if(status === 'authSuccess') barClass = 'loading_bar_15'
+
   }
 
   if(barType === 'userProfile') {

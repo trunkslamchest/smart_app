@@ -6,7 +6,7 @@ import './homeLogoContainer.css'
 
 const HomeLogoContainer = (props) => {
   return(
-    <div className="home_logo_container">
+    <div className={ props.logo_class }>
       <img
         alt='home_log'
         id='home_logo'

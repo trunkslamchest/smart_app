@@ -19,8 +19,8 @@ import { useEffect } from 'react'
 // };
 
 
-
-const useOnMount = (f) => { return useEffect(f, [f]) }
+// eslint-disable-next-line
+const useOnMount = (f) => { return useEffect(f, []) }
 
  
 // function useOnMount() {

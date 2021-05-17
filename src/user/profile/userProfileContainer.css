@@ -1,9 +1,7 @@
 .user_profile_wrapper {
-  /* background-color: rgba(50, 50, 50, 1); */
-  /* border-radius: 5px; */
   margin: 30px 0px;
   padding: 0px;
-  width: calc(400px + (800 - 400) * ((100vw - 769px) / (1920 - 769)));
+  width: calc(700px + (1100 - 700) * ((100vw - 769px) / (1920 - 769)));
 }
 
 .user_profile_body_wrapper {

@@ -12,13 +12,11 @@ const HomeBanner = (props) => {
 
   if(localStorage.authValid === 'true' && props.auth.status === 'authValid'){
     homeBannerContent =
-      <>
-        <HomeLogoContainer />
-      </>
+      <HomeLogoContainer logo_class={ props.logo_class } />
   } else {
     homeBannerContent =
       <>
-        <HomeLogoContainer />
+        <HomeLogoContainer logo_class={ props.logo_class } />
         <div className='home_logged_out_banner_right_container'>
           <div className='home_logged_out_banner_text_container'>
             <h1>

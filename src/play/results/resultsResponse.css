@@ -17,7 +17,7 @@
 @media only screen and (max-width: 768px) {
 
   .results_wrapper {
-    width: calc(150px + (400 - 150) * ((100vw - 360px) / (769 - 360)));
+    width: calc(330px + (700 - 330) * ((100vw - 360px) / (769 - 360)));
   }
 
   .results_stats_container {
@@ -45,7 +45,7 @@
   }
 
   .results_question_sub_container h5 {
-    font-size: calc(6px + (8 - 6) * ((100vw - 360px) / (769 - 360)));
+    font-size: calc(11px + (15 - 11) * ((100vw - 360px) / (769 - 360)));
   }
 
   .results_discuss_container {
@@ -57,7 +57,7 @@
   }
 
   .results_comment_form textarea {
-    width: 80%;
+    width: 90%;
   }
 
 }
