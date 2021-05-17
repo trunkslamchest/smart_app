@@ -33,7 +33,12 @@ const LeaderBoardsContainer = (props) => {
     props.history.push(buttonParams.route)
   }
 
-  const navBarButtons = makeLeaderBoardsNavButtons(leaderBoardNavBarIconIndex, onHelp, onPushLink, { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute })
+  const navBarButtons = makeLeaderBoardsNavButtons(
+    leaderBoardNavBarIconIndex,
+    onHelp,
+    onPushLink,
+    { overall: props.overallRoute, countries: props.countriesRoute, categories: props.catRoute }
+  )
 
   const routeBoard =
     <div className="leader_boards_wrapper">
