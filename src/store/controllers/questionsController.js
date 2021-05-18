@@ -134,7 +134,6 @@ class QuestionsController extends React.Component {
   }
 
   successModule = (type) => {
-    console.log(type)
     this.props[`onClearStaticUser${type}`]()
     this.props[`onClearStaticQuestion${type}Status`]()
     this.props[`on${type}Loading`](false)
@@ -145,8 +144,6 @@ class QuestionsController extends React.Component {
       <>
         {
           this.props.questions.status === 'displayStaticQuestion' &&
-          // !this.props.questions.loading &&
-          // !this.props.modal.loading &&
             <ResultsContainer
               cat={ this.state.cat }
               diff={ this.state.diff }

@@ -10,11 +10,9 @@ import VoteContainer from '../../UI/components/containers/voteContainer/voteCont
 import './userProfileContainer.css'
 import './userProfileResponse.css'
 
-import RenderCount from '../../utility/RenderCount'
-
 const UserProfileContainer = (props) => {
 
-  let userProfileBlock
+  let userProfileBlock = <></>
 
   if(typeof props.userData === "string") {
     userProfileBlock =
@@ -71,12 +69,7 @@ const UserProfileContainer = (props) => {
       </div>
   }
 
-  return(
-    <>
-      { userProfileBlock }
-      <RenderCount componentName='UserProfileContainer' />
-    </>
-  )
+  return userProfileBlock
 }
 
 export default React.memo(UserProfileContainer, (prevProps, nextProps) => {

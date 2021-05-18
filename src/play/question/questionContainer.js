@@ -43,11 +43,6 @@ const QuestionContainer = (props) => {
     if(play.gameMode === 'by_diff') document.title = 'SmartApp™ | Play | Difficulty | Question'
     if(play.gameMode === 'by_cat') document.title = 'SmartApp™ | Play | Category | Question'
 
-    gameTimerRef.current = setTimeout(() => { setTimerState(true) }, 100)
-    headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 2000)
-    questionTimerRef.current = setTimeout(() => { setQuestionState(true) }, 3000)
-    choicesTimerRef.current = setTimeout(() => { setChoicesState(true) }, 4000)
-    enableQuestionTimerRef.current = setTimeout(() => { setEnableQuestion(true) }, 5000)
     // startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
 
     return function cleanup(){
@@ -57,7 +52,14 @@ const QuestionContainer = (props) => {
   }, [play, history, routes])
 
   useEffect(() => {
-    if(play.status === 'displayQuestion' && time === (10.00).toFixed(2)) startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
+    if(play.status === 'displayQuestion' && time === (10.00).toFixed(2)) {
+      gameTimerRef.current = setTimeout(() => { setTimerState(true) }, 100)
+      headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 2000)
+      questionTimerRef.current = setTimeout(() => { setQuestionState(true) }, 3000)
+      choicesTimerRef.current = setTimeout(() => { setChoicesState(true) }, 4000)
+      startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
+      enableQuestionTimerRef.current = setTimeout(() => { setEnableQuestion(true) }, 5000)
+    }
     if (time <= 0) {
       setTime((0.00).toFixed(2))
       clearTimers()
