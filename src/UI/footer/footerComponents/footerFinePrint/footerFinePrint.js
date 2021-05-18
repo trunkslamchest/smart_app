@@ -2,7 +2,7 @@ import React from 'react'
 
 import './footerFinePrint.css'
 
-const FooterFinePrint = (props) => {
+const FooterFinePrint = () => {
   return(
     <div className='footer_fine_print'>
       <p className='footer_fine_print_text'>
@@ -15,7 +15,7 @@ const FooterFinePrint = (props) => {
        All Rights Reserved
       </p>
       <p className='footer_fine_print_text'>
-        0.91 05.18.21
+        0.92 05.18.21
       </p>
     </div>
   )
