@@ -91,7 +91,7 @@ class DashboardStatsCard extends React.Component {
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
 
-    let statsCardBlock
+    let statsCardBlock = <></>
     let header_menu_arrow = arrow_grey_left
     let header_menu_arrow_disabled = arrow_grey_left
 
@@ -138,7 +138,7 @@ class DashboardStatsCard extends React.Component {
         </>
     }
 
-    return <>{ statsCardBlock }</>
+    return statsCardBlock
   }
 }
 

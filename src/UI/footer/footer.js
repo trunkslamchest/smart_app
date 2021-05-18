@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { routes } from '../../utility/paths'
 
 import FooterLinks from './footerComponents/footerLinks/footerLinks'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Backdrop from '../backdrop/backdrop'
 
@@ -17,11 +18,14 @@ const Modal = (props) => {
       </div>
     </>
 
-  return(
-    <>
-      { props.showModal && modal }
-    </>
-  )
+  return props.showModal && modal
 }
 
-export default Modal
+const store = (store) => {
+  return {
+    leaderBoards: store.leaderBoards,
+    modal: store.modal
+  }
+}
+
+export default connect(store)(Modal)

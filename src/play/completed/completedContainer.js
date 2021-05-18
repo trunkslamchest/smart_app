@@ -70,7 +70,7 @@ const CompletedContainer = (props) => {
     </div>
   }
 
-  return(<>{ compeletedWrapper }</>)
+  return compeletedWrapper
 }
 
 const store = (store) => {

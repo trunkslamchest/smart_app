@@ -7,7 +7,7 @@ const LeaderBoardsScoresRow = (props) => {
 
   const onClickRowFunctions = () => { props.history.push(routes.user_profile + '/' + props.score.user_name) }
 
-  let scoresRowBlock
+  let scoresRowBlock = <></>
 
   if(props.score) {
     scoresRowBlock =
@@ -57,11 +57,7 @@ const LeaderBoardsScoresRow = (props) => {
     </>
   }
 
-  return(
-    <>
-      { scoresRowBlock }
-    </>
-  )
+  return scoresRowBlock
 }
 
 export default LeaderBoardsScoresRow

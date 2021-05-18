@@ -54,7 +54,7 @@ const HomeLoggedInSections = (props) => {
     if(!!props.play.commented) props.onResetComment()
   }
 
-  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, onLogOut, routes, props.user.info.user_name)
+  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, onLogOut, routes, props.user.info ? props.user.info.user_name : " ")
 
   let homeButtonSections = homeButtons.map((button, index) => {
     return(

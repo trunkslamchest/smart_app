@@ -12,7 +12,7 @@ import ErrorExclamationIndex from '../../../assets/glyphs/errorExclamationIndex'
 
 const DefaultFormError = (props) => {
 
-  let errorBlock
+  let errorBlock = <></>
 
   if(typeof props.error === 'string')
     errorBlock =
@@ -42,9 +42,7 @@ const DefaultFormError = (props) => {
         <span>ERR_{ props.error.code }: { props.error.message }</span>
       </div>
 
-  return(
-    <>{ props.error && errorBlock }</>
-  )
+  return (props.error && errorBlock) || <></>
 }
 
 export default DefaultFormError

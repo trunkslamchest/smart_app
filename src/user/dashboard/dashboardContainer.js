@@ -45,9 +45,9 @@ const Dashboard = (props) => {
 
   const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, onPushLink, routes)
 
-  let dashboardBlock
+  let dashboardBlock = <></>
 
-  if(props.auth.status === 'authValid' || props.auth.authType === 'deleteProfile') {
+  if(props.auth.status === 'authValid') {
     dashboardBlock =
       <>
         <DefaultButtonsContainer
@@ -97,11 +97,7 @@ const Dashboard = (props) => {
       </>
     }
 
-  return(
-    <>
-      { (!props.modal.loading || !props.auth.loading) && dashboardBlock }
-    </>
-  )
+  return( (!props.modal.loading || !props.auth.loading) && dashboardBlock )
 }
 
 const store = (store) => {

@@ -29,7 +29,6 @@ const XPBar = (props) => {
   return(
     <div className='xp_bar_container'>
     <div className='xp_bar_background'>
-
         <div
           className='xp_bar'
           style={{

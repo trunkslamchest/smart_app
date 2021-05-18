@@ -70,6 +70,9 @@ class StoreController extends React.Component {
   }
 
   onRedirect = (authType) => {
+    if(authType === 'signUp') {
+      this.props.history.push( routes.home )
+    }
     if(authType === 'deleteProfile' || authType === 'logOut') {
       this.props.history.push( routes.home )
       this.props.onClearAuthStatus()

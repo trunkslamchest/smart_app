@@ -225,42 +225,37 @@ class AuthController extends React.Component {
     this.props.onAuthUpdateStatus('authValid')
     this.setState({ authValid: true })
 
-    if(
-      this.props.auth.authType === 'signUp' ||
-      this.props.auth.authType === 'logIn'
-    ) this.props.history.push( routes.home )
+    // if(
+    //   this.props.auth.authType === 'signUp' ||
+    //   this.props.auth.authType === 'logIn'
+    // ) this.props.history.push( routes.home )
 
     if(this.props.auth.authType === 'editProfile' || this.props.auth.authType === 'editProfileModal') this.props.history.push( routes.dashboard_profile )
 
-    this.authWaitTimeoutQuarterSec = setTimeout(() => {
-      if(!!this.props.modal.loading) this.props.onLoadingModal(false)
-      if(!!this.props.modal.login) this.props.onLogInModal(false)
-      if(!!this.props.modal.signup) this.props.onSignUpModal(false)
-      if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
-      if(!!this.props.modal.editProfile) this.props.onEditProfileModal(false)
+    if(!!this.props.modal.loading) this.props.onLoadingModal(false)
+    if(!!this.props.modal.login) this.props.onLogInModal(false)
+    if(!!this.props.modal.signup) this.props.onSignUpModal(false)
+    if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
+    if(!!this.props.modal.editProfile) this.props.onEditProfileModal(false)
 
-      this.props.onAuthUpdateLoadingStatus(false)
-    }, 250)
+    this.props.onAuthUpdateLoadingStatus(false)
 
     localStorage.authValid = true
     if(this.props.auth.errors.length) this.props.onClearAuthErrors()
     if(this.props.auth.status2) this.props.onClearAuthStatus2()
     if(this.props.auth.userCache) this.props.onClearUserCache()
     if(this.props.auth.smartCache) this.props.onClearSmartCache()
-
+    this.authRedirectModule(this.props.auth.authType)
     if(this.props.auth.authType) this.props.onClearAuthType()
-    this.clearLocalStateModule()
   }
 
   authFinalizeLogOutModule = () => {
     this.setState({ clearLocalStorage: true })
     this.props.onAuthUpdateStatus('authSuccess')
     this.clearLocalStorageModule()
-    this.authWaitTimeoutQuarterSec = setTimeout(() => {
-      if(!!this.props.modal.loading) this.props.onLoadingModal(false)
-      if(!!this.props.modal.logout) this.props.onLogOutModal(false)
-      if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
-    }, 250)
+    if(!!this.props.modal.loading) this.props.onLoadingModal(false)
+    if(!!this.props.modal.logout) this.props.onLogOutModal(false)
+    if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
   }
 
   authRedirectModule = (authType) => {

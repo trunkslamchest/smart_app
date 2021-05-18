@@ -74,7 +74,8 @@ const LeaderBoardsContainer = (props) => {
 
 const store = (store) => {
   return {
-    leaderBoards: store.leaderBoards
+    leaderBoards: store.leaderBoards,
+    modal: store.modal
   }
 }
 
@@ -86,4 +87,7 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(LeaderBoardsContainer)
+export default connect(store, dispatch)(React.memo(LeaderBoardsContainer, (prevProps, nextProps) => {
+  if(prevProps.modal.loading === nextProps.modal.loading) return true
+  else return false
+}))

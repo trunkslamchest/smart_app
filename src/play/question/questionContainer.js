@@ -48,7 +48,7 @@ const QuestionContainer = (props) => {
     questionTimerRef.current = setTimeout(() => { setQuestionState(true) }, 3000)
     choicesTimerRef.current = setTimeout(() => { setChoicesState(true) }, 4000)
     enableQuestionTimerRef.current = setTimeout(() => { setEnableQuestion(true) }, 5000)
-    startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
+    // startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
 
     return function cleanup(){
       clearTimers()
@@ -57,12 +57,13 @@ const QuestionContainer = (props) => {
   }, [play, history, routes])
 
   useEffect(() => {
+    if(play.status === 'displayQuestion' && time === (10.00).toFixed(2)) startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
     if (time <= 0) {
       setTime((0.00).toFixed(2))
       clearTimers()
       outtaTimeTimerRef.current = setTimeout(() => { onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
     }
-  }, [time, onSetAnswer])
+  }, [play, time, onSetAnswer])
 
   const onClickFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -83,21 +84,18 @@ const QuestionContainer = (props) => {
   }
 
   return(
-    <>
-      { timerState && props.play.question &&
-        <div className='question_wrapper'>
-          <QuestionCard
-            time={ time }
-            enableQuestion={ enableQuestion }
-            onClickFunction={ onClickFunction }
-            showTimer={ timerState }
-            showHeader={ headerState }
-            showQuestion={ questionState }
-            showChoices={ choicesState }
-          />
-        </div>
-      }
-    </>
+    timerState && props.play.question &&
+    <div className='question_wrapper'>
+      <QuestionCard
+        time={ time }
+        enableQuestion={ enableQuestion }
+        onClickFunction={ onClickFunction }
+        showTimer={ timerState }
+        showHeader={ headerState }
+        showQuestion={ questionState }
+        showChoices={ choicesState }
+      />
+    </div>
   )
 }
 

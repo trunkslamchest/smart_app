@@ -145,11 +145,9 @@ class commentCard extends React.Component {
     }
 
     return (
-      <>
-        <div className='comment_card_container'>
-          { commentCard }
-        </div>
-      </>
+      <div className='comment_card_container'>
+        { commentCard }
+      </div>
     )
   }
 }

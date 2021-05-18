@@ -19,21 +19,6 @@ const FooterLogo = (props) => {
 
   const footerLogoButton = makeFooterLogoButton(props.logo, props.logoHover, onClickFunctions, routes.home)
 
-  // let footerLogoButton = [
-  //   {
-  //     buttonClass: 'footer_logo_button',
-  //     buttonType: 'NavLink',
-  //     id: 'footer_logo_button',
-  //     image: props.logo,
-  //     imageHover: props.logoHover,
-  //     name: 'footerLogoButton',
-  //     homeButton: true,
-  //     onClickFunction: onClickFunctions,
-  //     params: JSON.stringify({ route: routes.home }),
-  //     route: routes.home
-  //   }
-  // ]
-
   return (
     <DefaultButtonsContainer
       buttons={ footerLogoButton }

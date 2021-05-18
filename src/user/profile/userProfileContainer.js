@@ -10,6 +10,8 @@ import VoteContainer from '../../UI/components/containers/voteContainer/voteCont
 import './userProfileContainer.css'
 import './userProfileResponse.css'
 
+import RenderCount from '../../utility/RenderCount'
+
 const UserProfileContainer = (props) => {
 
   let userProfileBlock
@@ -72,8 +74,14 @@ const UserProfileContainer = (props) => {
   return(
     <>
       { userProfileBlock }
+      <RenderCount componentName='UserProfileContainer' />
     </>
   )
 }
 
-export default UserProfileContainer
+export default React.memo(UserProfileContainer, (prevProps, nextProps) => {
+  if(prevProps.modal.loading === nextProps.modal.loading) {
+    return true
+  }
+  else return false
+})

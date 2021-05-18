@@ -10,6 +10,7 @@ export const showModal = (bool) => {
 export const basic = (bool) => {
   return {
     type: actionTypes.BASICMODAL,
+    showModal: bool,
     basic: bool
   }
 }
@@ -17,6 +18,7 @@ export const basic = (bool) => {
 export const loading = (bool) => {
   return {
     type: actionTypes.LOADINGMODAL,
+    showModal: bool,
     loading: bool
   }
 }
@@ -24,6 +26,7 @@ export const loading = (bool) => {
 export const login = (bool) => {
   return {
     type: actionTypes.LOGINMODAL,
+    showModal: bool,
     login: bool
   }
 }
@@ -31,6 +34,7 @@ export const login = (bool) => {
 export const logout = (bool) => {
   return {
     type: actionTypes.LOGOUTMODAL,
+    showModal: bool,
     logout: bool
   }
 }
@@ -38,6 +42,7 @@ export const logout = (bool) => {
 export const signup = (bool) => {
   return {
     type: actionTypes.SIGNUPMODAL,
+    showModal: bool,
     signup: bool
   }
 }
@@ -45,6 +50,7 @@ export const signup = (bool) => {
 export const editProfile = (bool) => {
   return {
     type: actionTypes.EDITPROFILEMODAL,
+    showModal: bool,
     editProfile: bool
   }
 }
@@ -52,6 +58,7 @@ export const editProfile = (bool) => {
 export const deleteProfile = (bool) => {
   return {
     type: actionTypes.DELETEPROFILEMODAL,
+    showModal: bool,
     deleteProfile: bool
   }
 }
@@ -59,6 +66,7 @@ export const deleteProfile = (bool) => {
 export const help = (bool) => {
   return {
     type: actionTypes.HELPMODAL,
+    showModal: bool,
     help: bool
   }
 }

@@ -24,6 +24,7 @@ const showModal = (currentState, action) => {
 const basicModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     basic: action.basic
   }
 }
@@ -31,6 +32,7 @@ const basicModal = (currentState, action) => {
 const loadingModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     loading: action.loading
   }
 }
@@ -38,6 +40,7 @@ const loadingModal = (currentState, action) => {
 const loginModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     login: action.login
   }
 }
@@ -45,6 +48,7 @@ const loginModal = (currentState, action) => {
 const logoutModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     logout: action.logout
   }
 }
@@ -52,6 +56,7 @@ const logoutModal = (currentState, action) => {
 const signupModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     signup: action.signup
   }
 }
@@ -59,6 +64,7 @@ const signupModal = (currentState, action) => {
 const editProfileModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     editProfile: action.editProfile
   }
 }
@@ -66,6 +72,7 @@ const editProfileModal = (currentState, action) => {
 const deleteProfileModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     deleteProfile: action.deleteProfile
   }
 }
@@ -73,6 +80,7 @@ const deleteProfileModal = (currentState, action) => {
 const helpModal = (currentState, action) => {
   return {
     ...currentState,
+    showModal: action.showModal,
     help: action.help
   }
 }

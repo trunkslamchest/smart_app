@@ -1,9 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  help
-} from '../../store/actions/actionIndex'
-
 
 import './backdrop.css'
 
@@ -13,20 +9,17 @@ const Backdrop = (props) => {
     !!props.onHideModal && props.onHideModal()
   }
 
-  return(
-    props.showModal &&
-    <div
-      className='backdrop'
-      onClick={ onClickFunction }
-    >
-    </div>
-  )
+  return( props.showModal && <div className='backdrop' onClick={ onClickFunction } /> )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const store = (store) => {
   return {
-    onHelpModal: (bool) => dispatch(help(bool))
+    modal: store.modal
   }
 }
 
-export default connect(null, mapDispatchToProps)(Backdrop)
+export default connect(store)(React.memo(Backdrop, (prevProps, nextProps) => {
+  let render = true
+  if(prevProps.showModal === nextProps.showModal) render = false
+  return render
+}))

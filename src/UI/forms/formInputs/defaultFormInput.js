@@ -126,11 +126,7 @@ const DefaultFormInput = (props) => {
     }
   }
 
-  return(
-    <>
-      { input }
-    </>
-  )
+  return input
 }
 
 export default DefaultFormInput
