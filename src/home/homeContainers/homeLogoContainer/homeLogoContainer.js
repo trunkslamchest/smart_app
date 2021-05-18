@@ -3,6 +3,7 @@ import React from 'react'
 import fullColorIndexLogo from '../../../assets/logos/indexLogos/full_color_index_logo.svg'
 
 import './homeLogoContainer.css'
+import './homeLogoResponse.css'
 
 const HomeLogoContainer = (props) => {
   return(

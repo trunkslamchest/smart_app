@@ -12,13 +12,13 @@ const HomeContainer = (props) => {
 
   let homePage
 
-  if(props.auth.status === 'authValid') {
+  if(props.auth.status === 'authValid' && !props.auth.loading && !props.modal.loading) {
     homePage = <HomeLoggedInContainer history={ props.history } user_name={ props.user.info.user_name } />
   } else {
     homePage = <HomeLoggedOutContainer history={ props.history } />
   }
 
-  return(<>{ (!props.auth.loading && !props.modal.loading) && homePage }</>)
+  return(<>{ homePage }</>)
 }
 
 const store = (store) => {
@@ -29,9 +29,13 @@ const store = (store) => {
   }
 }
 
-export default connect(store)(HomeContainer)
+// export default connect(store)(HomeContainer)
 
-// export default connect(mapStateToProps)(React.memo(HomeContainer, (props, nextProps) => {
-//   if(!nextProps.modal.loading) return true
-//   else return false
-// }))
+export default connect(store)(React.memo(HomeContainer, (props, nextProps) => {
+  // console.log(props, nextProps)
+  if(
+      props.modal.loading || !nextProps.modal.loading ||
+      props.auth.loading || !nextProps.auth.loading
+    ) return true
+  else return false
+}))

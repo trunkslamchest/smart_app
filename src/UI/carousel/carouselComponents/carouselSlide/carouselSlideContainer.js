@@ -29,7 +29,7 @@ const CarouselSlideContainer = (props) => {
                       </p>
                     )
                   }) }
-                { !!props.currentSlide.text.highlights.length &&
+                { props.currentSlide.text.highlights &&
                   <div className='default_carousel_slide_desc_highlights_container'>
                     { props.currentSlide.text.highlights.map((highlight, h_index) => {
                       return(
