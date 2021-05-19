@@ -24,8 +24,6 @@ const makeHomeHelpSections = [
         header: '',
         texts: [
           `You can create a new account by clicking the 'Sign Up' button located on the home page or header, and filling out the form.`,
-          // `The user name, email and password you provide is stored and verified with Google's Identity Toolkit.
-          // Your password is only stored on Google's servers. It is never stored locally in the SmartApp™ Nexus.`,
           `You can add more information like where you are from, your profile picture, or your birth date after you sign up.`,
           `By creating a new account, you must agree to the Terms Of Service, accept the Privacy Policy, and abide by the Disclaimer
           provided in the Documentation section of SmartApp™.`,
@@ -74,8 +72,9 @@ const makeHomeHelpSections = [
           `You can log in and out of your account anytime you'd like.`,
           `If you are logged out, you can log back in by clicking the 'Login' button on the homepage or on the header.`,
           `The email and password requirements for logging in are the same as creating a new account.`,
-          `Once you are logged in, you can begin answering questions by either clicking the 'Start' button on the home page,
-           or clicking the 'Play' button located on the header, and selecting a game mode from the drop down menu.`,
+          `Once you are logged in, you can begin answering questions by either clicking the 'Play' button on the home page,
+           or clicking the 'Play' button located on the header.`,
+          `Then select a game mode from either the drop down menu, or the selections presented on screen.`,
         ]
       }
     ]

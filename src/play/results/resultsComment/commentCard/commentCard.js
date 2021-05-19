@@ -60,9 +60,14 @@ class commentCard extends React.Component {
 
   render() {
 
-    let distribEditCommentErrors, commentButtons, commentFormButtons, commentCard, commentUser = this.props.comment.user
+    let distribEditCommentErrors,
+        commentButtons,
+        commentFormButtons,
+        commentCard,
+        commentUser = this.props.comment.user,
+        currentUser = this.props.user.info ? this.props.user.info.user_name : false
 
-    if(this.props.comment.user === this.props.user.info.user_name){
+    if(commentUser === currentUser){
 
       const onDeleteComment = () => {
         let commentObj = makeCommentObject(this.props, this.state.editedComment)

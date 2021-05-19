@@ -21,7 +21,10 @@ import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
 
-  useEffect(() => { document.title = "SmartApp™ | Dashboard | Profile" }, [])
+  useEffect(() => {
+    document.body.scrollTop = 0
+    document.title = "SmartApp™ | Dashboard | Profile"
+  }, [])
 
   let avatar = props.user.info.avatar
   let user_name = props.user.info.user_name

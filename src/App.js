@@ -43,9 +43,8 @@ const App = (props) => {
   const [loadingModalBarType, setLoadingModalBarType] = useState(props.auth.authType);
   const [basicModalContent, setBasicModalContent] = useState(null);
 
-  const switchLoadingModalType = (modalType) => { setLoadingModalType(modalType) }
-  const switchLoadingModalBarType = (barType) => { setLoadingModalBarType(barType) }
-
+  const switchLoadingModalType = useCallback((modalType) => { setLoadingModalType(modalType) }, [])
+  const switchLoadingModalBarType = useCallback((barType) => { setLoadingModalBarType(barType)}, [])
   const switchbasicModalContent = useCallback((content) => { setBasicModalContent(content)}, [])
 
   return (

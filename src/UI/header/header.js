@@ -60,16 +60,4 @@ const store = (store) => {
   }
 }
 
-// export default connect(store)(Header)
-
-export default connect(store)(React.memo(Header))
-
-// export default connect(store)(React.memo(Header, (prevProps, nextProps) => {
-//   // console.log(prevProps, nextProps)
-//   // console.log(prevProps.modal.loading, nextProps.modal.loading)
-
-//   if(prevProps.auth.loading === nextProps.auth.loading) {
-//     return true
-//   }
-//   else return false
-// }))
+export default connect(store)(Header)

@@ -17,6 +17,7 @@ const DashboardStatsAnswerCard = (props) => {
   }
 
   let answer = props.answer,
+      userAnswer = props.answer.answer,
       vote,
       voteStars,
       // distribComments,
@@ -35,6 +36,7 @@ const DashboardStatsAnswerCard = (props) => {
   if(answer.result === "Correct") resultGlyph = correct_glyph
   if(answer.result === "Incorrect") resultGlyph = incorrect_glyph
   if(answer.result === "Outta Time") resultGlyph = incorrect_glyph
+  if(userAnswer === 'outta_time' ) userAnswer = "Outta Time"
 
   // if(answer.comments){
   //   let comments = Object.entries(answer.comments)
@@ -105,7 +107,7 @@ const DashboardStatsAnswerCard = (props) => {
           </div>
           <div className="dashboard_stats_answer_card_bottom_card_wrapper">
             <h4>Your Answer</h4>
-            <span>{ props.answer.answer }</span>
+            <span>{ userAnswer }</span>
           </div>
           <div className="dashboard_stats_answer_card_bottom_card_wrapper">
             <h4>Correct Answer</h4>

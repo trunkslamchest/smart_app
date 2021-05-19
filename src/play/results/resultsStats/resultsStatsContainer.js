@@ -62,10 +62,12 @@ const ResultsStatsContainer = (props) => {
         staticResults={ props.staticResults }
         showCorrectAnswer={ correctAnswerState }
       />
-      <ResultsStats
-        staticResults={ props.staticResults }
-        showStats={ statsState }
-      />
+      { statsState && ( props.user || props.questions.staticUserResults) &&
+        <ResultsStats
+          staticResults={ props.staticResults }
+          showStats={ statsState }
+        />
+      }
       <ResultsAchievementsContainer
         staticResults={ props.staticResults }
         showAchievements={ achievementsState }
@@ -74,7 +76,7 @@ const ResultsStatsContainer = (props) => {
 
   return(
     <>
-      { !props.staticResults && resultsBlock }
+      { !props.staticResults && props.user.experience && resultsBlock }
       { props.questions.staticQuestion && props.questions.staticUserResults && resultsBlock }
     </>
   )

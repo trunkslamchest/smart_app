@@ -38,10 +38,7 @@ import {
 import { routes } from '../../utility/paths'
 import getTime from '../../utility/getTime'
 
-// import RenderCount from '../../utility/RenderCount'
-
 import init from '../../firebase/init'
-// import auth from 'firebase/auth'
 init.auth().useEmulator("http://localhost:8004")
 
 class AuthController extends React.Component {
@@ -120,36 +117,9 @@ class AuthController extends React.Component {
     }
   }
 
- shouldComponentUpdate(nextProps, nextState){
-    // console.log(!!this.props.auth.authType, nextProps.modal.loading, this.props.auth.status, nextProps.auth.status)
-
-    // console.log(
-    //   this.props.auth.authType, nextProps.auth.authType, "|",
-    //   this.props.auth.status, nextProps.auth.status, "|",
-    //   this.props.auth.loading, nextProps.auth.loading, "|",
-    //   this.props.modal.logout, nextProps.modal.logout, "|",
-    //   this.state.authCleanup, nextState.authCleanup, "|",
-    //   this.props.modal.login, nextProps.modal.logout
-    // )
-
-
-    // console.log(this.props.auth.loading, nextProps.auth.loading)
-    // console.log(this.props.modal.showModal, nextProps.modal.showModal)
-    // console.log(this.props.auth.loading, nextProps.auth.loading)
-
-    // console.log(this.props.children)
-
-    // console.log(nextProps.auth.loading)
-
-    // console.log(this.props)
-    // console.log(nextProps)
-    // console.log(this.state)
-    // console.log(nextState)
-
+  shouldComponentUpdate(nextProps){
     let render = false
-
     if(this.props.auth.loading || nextProps.auth.loading) render = true
-
     return render
   }
 
@@ -372,14 +342,7 @@ class AuthController extends React.Component {
     this.props.onAuthUpdateStatus('clearAuthCreds', true)
   }
 
-  render(){
-    return (
-      <>
-        {/* { this.props.children } */}
-        {/* <RenderCount componentName='authController' /> */}
-      </>
-    )
-  }
+  render(){ return <></> }
 }
 
 const store = store => {

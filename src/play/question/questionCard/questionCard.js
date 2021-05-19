@@ -35,7 +35,7 @@ const QuestionCard = (props) => {
       setTime((0.00).toFixed(2))
       clearTimeout(startTimerRef.current)
       clearInterval(timerIntervalRef.current)
-      outtaTimeTimerRef.current = setTimeout(() => { onSetAnswer({ choice: 'Outta Time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
+      outtaTimeTimerRef.current = setTimeout(() => { onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
     }
   }, [play, time, onSetAnswer])
 

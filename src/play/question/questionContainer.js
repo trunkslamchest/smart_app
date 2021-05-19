@@ -10,8 +10,6 @@ import QuestionCard from './questionCard/questionCard'
 import './questionContainer.css'
 import './questionResponse.css'
 
-import RenderCount from '../../utility/RenderCount'
-
 const QuestionContainer = (props) => {
 
   const [timerState, setTimerState] = useState(false)
@@ -86,8 +84,6 @@ const QuestionContainer = (props) => {
         showQuestion={ questionState }
         showChoices={ choicesState }
       />
-      <RenderCount componentName='questionContainer'/>
-
     </div>
   )
 }
@@ -106,10 +102,3 @@ const dispatch = (dispatch) => {
 }
 
 export default connect(store, dispatch)(React.memo(QuestionContainer))
-
-// export default connect(store, dispatch)(React.memo(QuestionContainer, (prevProps, nextProps) => {
-
-//   console.log(prevProps.time, nextProps.time)
-
-//   return true
-// }))
