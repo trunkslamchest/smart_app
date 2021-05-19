@@ -28,4 +28,4 @@ const store = (store) => {
   }
 }
 
-export default connect(store)(Modal)
+export default connect(store)(React.memo(Modal))

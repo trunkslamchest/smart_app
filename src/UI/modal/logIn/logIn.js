@@ -88,8 +88,8 @@ class LogIn extends React.Component {
   onCancel = () => {
     this.onReset()
     this.props.onLogInModal(false)
-    this.props.onClearAuthErrors()
-    this.props.onClearAuthStatus()
+    if(this.props.auth.errors.length) this.props.onClearAuthErrors()
+    if(this.props.auth.status) this.props.onClearAuthStatus()
   }
 
   clearLocalState = () => { this.setState({ email: '', validationLoading: false, enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }

@@ -83,9 +83,11 @@ class StoreController extends React.Component {
 
   render(){
     return(
-      <AuthController onRedirect={ this.onRedirect } history={ this.props.history }>
+      <>
+        <AuthController onRedirect={ this.onRedirect } history={ this.props.history } />
         { this.props.children }
-      </AuthController>
+      {/* </AuthController> */}
+      </>
     )
   }
 }

@@ -84,22 +84,19 @@ const SelectionContainer = (props) => {
   }
 
   return(
-    <>
-      { !props.modal.loading &&
-        <div className='selection_wrapper'>
-          <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
-          <div className='divider_medium' />
-          <DefaultButtonsContainer
-            buttons={ buttonGroup }
-            buttonClass={ 'game_modes_button' }
-            buttonContainerClass={ 'game_modes_button_container' }
-            containerClass={ 'game_modes_buttons_container' }
-            enableButton={ true }
-            tooltipClass={ 'game_modes_button_tooltip' }
-          />
-        </div>
-      }
-    </>
+    !props.modal.loading &&
+      <div className='selection_wrapper'>
+        <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
+        <div className='divider_medium' />
+        <DefaultButtonsContainer
+          buttons={ buttonGroup }
+          buttonClass={ 'game_modes_button' }
+          buttonContainerClass={ 'game_modes_button_container' }
+          containerClass={ 'game_modes_buttons_container' }
+          enableButton={ true }
+          tooltipClass={ 'game_modes_button_tooltip' }
+        />
+      </div>
   )
 }
 
@@ -119,4 +116,7 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(SelectionContainer)
+export default connect(store, dispatch)(React.memo(SelectionContainer, (prevProps, nextProps) => {
+  if(prevProps.play !== nextProps.play) return true
+  else return false
+}))

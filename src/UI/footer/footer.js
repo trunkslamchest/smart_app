@@ -31,4 +31,19 @@ const Footer = (props) => {
   )
 }
 
-export default Footer
+// export default Footer
+
+// export default React.memo(Footer, (prevProps, nextProps) => {
+//   // console.log(prevProps.auth.loading, nextProps.auth.loading, prevProps.auth.loading !== nextProps.auth.loading)
+
+//   console.log(prevProps.history.location.hash, nextProps.history.location.hash)
+
+//   if(prevProps.history.location.hash !== nextProps.history.location.hash) {
+//     return true
+//   }
+//   else return false
+
+//   // return true
+// })
+
+export default React.memo(Footer)

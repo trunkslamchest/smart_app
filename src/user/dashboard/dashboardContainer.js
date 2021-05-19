@@ -118,4 +118,7 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(Dashboard)
+export default connect(store, dispatch)(React.memo(Dashboard, (prevProps, nextProps) => {
+  if(prevProps.user === nextProps.user) return true
+  else return false
+}))

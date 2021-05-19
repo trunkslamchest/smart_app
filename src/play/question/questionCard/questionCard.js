@@ -1,70 +1,62 @@
 import React from 'react'
+import { useEffect, useRef, useState } from 'react'
+import useOnMount from '../../../utility/hooks/useOnMount'
+
 import { connect } from 'react-redux'
 
-import DefaultButton from '../../../UI/buttons/defaultButton'
+import QuestionCardTimer from './questionCardTimer'
+import QuestionCardHeader from './questionCardHeader'
+import QuestionCardText from './questionCardText'
+import QuestionCardChoices from './questionCardChoices'
 
 import './questionCard.css'
 
 const QuestionCard = (props) => {
 
-  const onClickFunction = (event) => {
-    event.persist()
-    props.onClickFunction(event)
-  }
+  const [time, setTime] = useState((10.00).toFixed(2))
+  const startTimerRef = useRef(null)
+  const timerIntervalRef = useRef(null)
+  const outtaTimeTimerRef = useRef(null)
 
-  const choices = props.play.question.choices.map((choice, index) => {
-    return(
-      <DefaultButton
-        buttonClass="question_card_choice_button"
-        buttonContainerClass="question_card_choice_button_container"
+  const { play, onSetAnswer } = props
 
-        enableButton={ props.enableQuestion }
-        id="answer_button"
-        key={ index }
-        name="AnswerButton"
-        onClickFunction={ onClickFunction }
-        params={ JSON.stringify({ choice: choice }) }
-        text={ choice }
-        type='button'
-      />
-    )
-  })
+  useOnMount(() => {
+    startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
+
+    return function cleanup(){
+      clearTimeout(startTimerRef.current)
+      clearInterval(timerIntervalRef.current)
+      clearTimeout(outtaTimeTimerRef.current)
+    }
+  }, [time])
+
+  useEffect(() => {
+    if (time <= 0 && !play.answer) {
+      setTime((0.00).toFixed(2))
+      clearTimeout(startTimerRef.current)
+      clearInterval(timerIntervalRef.current)
+      outtaTimeTimerRef.current = setTimeout(() => { onSetAnswer({ choice: 'Outta Time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
+    }
+  }, [play, time, onSetAnswer])
 
   return(
     <>
       { props.showTimer &&
-        <div className="question_card_timer">
-          <h2>Time Left</h2>
-          <h1>{ props.time }</h1>
-          <div className='divider_medium' />
-        </div>
+        <QuestionCardTimer
+            play={ props.answer }
+            onSetAnswer={ props.onSetAnswer }
+            time={ time }
+        />
       }
-      { props.showHeader &&
-        <div className="question_card_header">
-          <span>In { props.play.question.category }...</span>
-          <div className='divider_medium' />
-        </div>
-      }
-      { props.showQuestion &&
-      <div className="question_card_text">
-        <span>{ props.play.question.question }</span>
-        <div className='divider_medium' />
-      </div>
-      }
+      { props.showHeader && <QuestionCardHeader category={ props.question.category } /> }
+      { props.showQuestion && <QuestionCardText question={ props.question.question } /> }
       { props.showChoices &&
-        <div className="question_card_choices_container">
-          <div className="question_card_choices_sub_container">
-            <div className='question_card_choices_sub_wrapper'>
-              { choices[0] }
-              { choices[1] }
-            </div>
-            <div className='question_card_choices_sub_wrapper'>
-              { choices[2] }
-              { choices[3] }
-            </div>
-          </div>
-          <div className='divider_large' />
-        </div>
+        <QuestionCardChoices
+          enableQuestion={ props.enableQuestion }
+          choices={ props.question.choices }
+          onClickFunction={ props.onClickFunction }
+          time={ time }
+        />
       }
     </>
   )

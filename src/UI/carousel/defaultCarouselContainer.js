@@ -77,4 +77,4 @@ const DefaultCarouselContainer = (props) => {
   )
 }
 
-export default DefaultCarouselContainer
+export default React.memo(DefaultCarouselContainer)

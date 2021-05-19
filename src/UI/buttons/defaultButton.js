@@ -149,7 +149,7 @@ const DefaultButton = (props) =>  {
   )
 }
 
-export default DefaultButton
+export default React.memo(DefaultButton)
 
 // <DefaultButton
 //   enableButton={  }

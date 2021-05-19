@@ -48,4 +48,14 @@ const store = (store) => {
   }
 }
 
-export default connect(store)(HomeBanner)
+// export default connect(store)(HomeBanner)
+
+// export default connect(store)(React.memo(HomeBanner, (prevProps, nextProps) => {
+//   // console.log(prevProps.auth.loading, nextProps.auth.loading, prevProps.auth.loading !== nextProps.auth.loading)
+//   if(prevProps.auth.loading !== nextProps.auth.loading) {
+//     return true
+//   }
+//   else return false
+// }))
+
+export default connect(store)(React.memo(HomeBanner))

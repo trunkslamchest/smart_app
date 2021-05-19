@@ -60,7 +60,7 @@ const DefaultButtonContainer = (props) => {
   )
 }
 
-export default DefaultButtonContainer
+export default React.memo(DefaultButtonContainer)
 
 // {/* <DefaultButtonsContainer
 //   buttons={  }

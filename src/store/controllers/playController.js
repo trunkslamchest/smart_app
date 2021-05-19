@@ -79,10 +79,22 @@ class PlayController extends React.Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
+//  shouldComponentUpdate(nextProps, nextState){
 
-  //   return true
-  // }
+//     // console.log(this.props.play.loading, nextProps.play.loading)
+//     // console.log(this.props.play.status, nextProps.play.status)
+//     // console.log(this.props)
+//     // console.log(nextProps)
+//     // console.log(this.state)
+//     // console.log(nextState)
+
+//     // let render = false
+//     let render = true
+
+//     // if(this.props.play.status !== nextProps.play.status) render = true
+
+//     return render
+//   }
 
   componentWillUnmount(){
     localStorage.removeItem('gameMode')

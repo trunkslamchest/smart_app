@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { routes } from '../../utility/paths.js'
 
@@ -15,10 +16,11 @@ import './header.css'
 const Header = (props) => {
 
   let header
+  const location = useLocation()
 
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    if (location.pathname !== buttonParams.route) props.history.push(buttonParams.route)
   }
 
   if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader history={ props.history } />
@@ -60,12 +62,14 @@ const store = (store) => {
 
 // export default connect(store)(Header)
 
-export default connect(store)(React.memo(Header, (prevProps, nextProps) => {
-  // console.log(prevProps, nextProps)
-  // console.log(prevProps.modal.loading, nextProps.modal.loading)
+export default connect(store)(React.memo(Header))
 
-  if(prevProps.auth.loading === nextProps.auth.loading) {
-    return true
-  }
-  else return false
-}))
+// export default connect(store)(React.memo(Header, (prevProps, nextProps) => {
+//   // console.log(prevProps, nextProps)
+//   // console.log(prevProps.modal.loading, nextProps.modal.loading)
+
+//   if(prevProps.auth.loading === nextProps.auth.loading) {
+//     return true
+//   }
+//   else return false
+// }))

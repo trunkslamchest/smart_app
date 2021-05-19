@@ -34,7 +34,7 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'authSuccess') barText = 'This Was A Triumph'
   }
 
-  if(barType === 'deleteProfile'){
+  if(barType === 'deleteProfile' || barType === 'authLogOut'){
     if(status === 'initAuth') barText = 'Initializing Firebase Authentication'
     if(status === 'reAuthWithCredsSuccess') barText = 'Renewing Firebase Credentials'
     if(status === 'deleteAuthUserSuccess') barText = 'Revoking Firebase Authentication'

@@ -34,7 +34,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'authSuccess') barClass = 'loading_bar_17'
   }
 
-  if(barType === 'deleteProfile'){
+  if(barType === 'deleteProfile' || barType === 'authLogOut'){
     if(status === 'initAuth') barClass = 'loading_bar_1'
     if(status === 'reAuthWithCredsSuccess') barClass = 'loading_bar_2'
     if(status === 'deleteAuthUserSuccess') barClass = 'loading_bar_4'

@@ -32,4 +32,4 @@ const HomeLoggedOutContainer = (props) => {
   )
 }
 
-export default HomeLoggedOutContainer
+export default React.memo(HomeLoggedOutContainer)

@@ -194,4 +194,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(ResultsContainer)
+export default connect(store, dispatch)(React.memo(ResultsContainer))

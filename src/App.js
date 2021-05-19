@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import { loading } from './store/actions/actionIndex'
 import { Route, Switch } from 'react-router-dom'
 import { routes } from './utility/paths'
 
-import StoreController from './store/controllers/storeController'
+import AuthController from './store/controllers/authController'
+
 import LeaderBoardsController from './store/controllers/leaderBoardsController'
 import ProfileController from './store/controllers/profileController'
 import PlayController from './store/controllers/playController'
@@ -43,10 +45,12 @@ const App = (props) => {
 
   const switchLoadingModalType = (modalType) => { setLoadingModalType(modalType) }
   const switchLoadingModalBarType = (barType) => { setLoadingModalBarType(barType) }
-  const switchbasicModalContent = (content) => { setBasicModalContent(content) }
+
+  const switchbasicModalContent = useCallback((content) => { setBasicModalContent(content)}, [])
 
   return (
-    <StoreController history={ props.history }>
+    <>
+      <AuthController history={ props.history } />
       { props.modal.basic && <BasicModal content={ basicModalContent } history={ props.history } switchbasicModalContent={ switchbasicModalContent } /> }
       { props.modal.login && <LogIn history={ props.history } /> }
       { props.modal.logout && <LogOut history={ props.history } /> }
@@ -109,7 +113,7 @@ const App = (props) => {
         </div>
       </div>
       <Footer history={ props.history } />
-    </StoreController>
+    </>
   )
 }
 
