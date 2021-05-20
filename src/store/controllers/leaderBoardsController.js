@@ -25,26 +25,16 @@ class LeaderBoardsController extends React.Component {
   }
 
   componentDidUpdate(){
-      if(this.props.leaderBoards.status === 'initLeaderBoards' && !this.props.leaderBoards.overall) this.getOverallLeaderBoardsModule()
-      if(this.props.leaderBoards.overall && !this.state.storeCatLeaderBoards) this.getCatLeaderBoardsModule()
-      if(this.props.leaderBoards.overall && this.props.leaderBoards.cat && !this.state.displayLeaderBoards) this.displayLeaderBoardsModule()
-      if(this.props.leaderBoards.overall && this.props.leaderBoards.cat && !this.props.leaderBoards.loading) this.leaderBoardsCleanupModule()
+    if(this.props.leaderBoards.status === 'initLeaderBoards' && !this.props.leaderBoards.overall) this.getOverallLeaderBoardsModule()
+    if(this.props.leaderBoards.overall && !this.state.storeCatLeaderBoards) this.getCatLeaderBoardsModule()
+    if(this.props.leaderBoards.overall && this.props.leaderBoards.cat && !this.state.displayLeaderBoards) this.displayLeaderBoardsModule()
+    if(this.props.leaderBoards.overall && this.props.leaderBoards.cat && !this.props.leaderBoards.loading) this.leaderBoardsCleanupModule()
   }
 
   shouldComponentUpdate(nextProps, nextState){
     let render = false
-
-   if(this.props.modal.loading || nextProps.modal.loading) {
-      render = true
-    }
-
-    // console.log(
-    //   this.props.leaderBoards, nextProps.leaderBoards, "|",
-    //   this.props.modal.loading, nextProps.modal.loading
-    // )
-
+    if(this.props.modal.loading || nextProps.modal.loading) render = true
     return render
-    // return true
   }
 
   componentWillUnmount(){
@@ -95,7 +85,6 @@ class LeaderBoardsController extends React.Component {
           !this.props.leaderBoards.loading &&
           !this.props.modal.loading &&
             <LeaderBoardsContainer
-              history={ this.props.history }
               overallRoute={ routes.leader_boards + '/overall' }
               countriesRoute={ routes.leader_boards + '/countries' }
               catRoute={ routes.leader_boards + '/categories' }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { useState, useRef } from 'react'
 import useOnMount from '../../utility/hooks/useOnMount'
 import { routes } from '../../utility/paths'
@@ -25,10 +26,11 @@ import './completedContainer.css'
 
 const CompletedContainer = (props) => {
 
+  const history = useHistory()
+
   const [wrapperState, setWrapperState] = useState(false)
 
   const { gameMode } = props.play
-  const { history } = props
 
   const wrapperTimerRef = useRef(null);
 
@@ -48,7 +50,7 @@ const CompletedContainer = (props) => {
     props.onResetQuestion()
     props.onResetAnswer()
     props.onResetResults()
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   let compeletedWrapper = <LoadingSpinnerRoller />

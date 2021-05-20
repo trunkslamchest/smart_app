@@ -24,13 +24,11 @@ const UserProfileContainer = (props) => {
       <div className="user_profile_wrapper">
         <UserProfileHeader
           info={ props.userData.info }
-          history={ props.history }
         />
         <div className='user_profile_body_wrapper'>
           { props.userData.settings.privacy.profile.showBio &&
             <UserProfileInfoContainer
               bio={ props.userData.info.bio }
-              history={ props.history }
             />
           }
           { props.userData.settings.privacy.profile.showStats &&
@@ -39,14 +37,12 @@ const UserProfileContainer = (props) => {
               question_totals={ props.questionTotals }
               user_questions={ props.userData.questions }
               user_experience={ props.userData.experience }
-              history={ props.history }
             />
           }
           { props.userData.settings.privacy.profile.showAchievements &&
             <UserAchievementsContainer
               all_achievements={ props.achievements }
               from_dashboard={ false }
-              history={ props.history }
               user_name={ props.userData.info.user_name }
               user_achievements={ props.userData.achievements }
             />
@@ -63,7 +59,6 @@ const UserProfileContainer = (props) => {
           { (props.userData.settings.privacy.profile.showComments && !!props.userData.comments.length) &&
             <UserProfileCommentsContainer
               questions={ props.userData.comments }
-              history={ props.history }
             />}
         </div>
       </div>

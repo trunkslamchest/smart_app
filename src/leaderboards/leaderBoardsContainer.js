@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   help,
@@ -22,6 +23,8 @@ import './leaderBoardsResponse.css'
 
 const LeaderBoardsContainer = (props) => {
 
+  const history = useHistory()
+
   const onHelp = () => {
     props.onSetHelpHeader('SmartApp™ Leaderboards')
     props.onSetHelpSections(makeLeaderBoardsHelpSections)
@@ -30,7 +33,7 @@ const LeaderBoardsContainer = (props) => {
 
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   const navBarButtons = makeLeaderBoardsNavButtons(
@@ -44,13 +47,13 @@ const LeaderBoardsContainer = (props) => {
     <div className="leader_boards_wrapper">
       <Switch>
         <Route exact path={ props.overallRoute }>
-          <LeaderBoardsOverallContainer history={ props.history } />
+          <LeaderBoardsOverallContainer />
         </Route>
         <Route exact path={ props.countriesRoute }>
-          <LeaderBoardsCountriesContainer history={ props.history } />
+          <LeaderBoardsCountriesContainer />
         </Route>
         <Route exact path={ props.catRoute }>
-          <LeaderBoardsCatContainer history={ props.history } />
+          <LeaderBoardsCatContainer />
         </Route>
       </Switch>
     </div>
@@ -64,7 +67,6 @@ const LeaderBoardsContainer = (props) => {
         buttonRow={ true }
         containerClass={ 'nav_bar_container' }
         enableButton={ true }
-        history={ props.history }
         tooltipClass={ 'nav_bar_tooltip' }
       />
       { routeBoard }

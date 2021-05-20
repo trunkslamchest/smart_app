@@ -1,11 +1,14 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../../utility/paths'
 
 import './leaderBoardsScoresRow.css'
 
 const LeaderBoardsScoresRow = (props) => {
 
-  const onClickRowFunctions = () => { props.history.push(routes.user_profile + '/' + props.score.user_name) }
+  const history = useHistory()
+
+  const onClickRowFunctions = () => { history.push(routes.user_profile + '/' + props.score.user_name) }
 
   let scoresRowBlock = <></>
 

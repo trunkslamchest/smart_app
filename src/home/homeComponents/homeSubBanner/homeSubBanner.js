@@ -5,7 +5,7 @@ import whiteHomeSubBannerLogo from '../../../assets/home_sub_banner/white_home_s
 import './homeSubBanner.css'
 import './homeSubBannerResponse.css'
 
-const HomeSubBanner = (props) => {
+const HomeSubBanner = () => {
 
   return(
     <div className='home_logged_out_sub_banner'>

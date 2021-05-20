@@ -15,9 +15,9 @@ const HomeLoggedInContainer = (props) => {
       <div className='divider_medium' />
       <HomeGreeting user_name={ props.user_name } />
       <div className='divider_medium' />
-      <HomeLoggedInSections history={props.history} />
-      <HomeSubBanner history={props.history} />
-      <HomeTech history={ props.history } />
+      <HomeLoggedInSections />
+      <HomeSubBanner />
+      <HomeTech />
     </div>
   )
 }

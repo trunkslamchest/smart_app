@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 import {
   help,
@@ -26,6 +27,8 @@ import './homeLoggedInSectionsResponse.css'
 
 const HomeLoggedInSections = (props) => {
 
+  let history = useHistory()
+
   const onHelp = () => {
     props.onSetHelpHeader('Getting Started')
     props.onSetHelpSections(makeHomeHelpSections)
@@ -40,7 +43,7 @@ const HomeLoggedInSections = (props) => {
   const onPushLink = (event) => {
     if(!!props.play.status) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   const onClearGame = () => {

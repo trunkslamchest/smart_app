@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   getSmarts,
@@ -259,7 +260,6 @@ class AuthController extends React.Component {
   }
 
   authRedirectModule = (authType) => {
-    // this.props.onRedirect(authType)
     if(authType === 'signUp') {
       this.props.history.push( routes.home )
     }
@@ -392,4 +392,4 @@ const dispatch = dispatch => {
   }
 }
 
-export default connect(store, dispatch)(AuthController)
+export default withRouter(connect(store, dispatch)(AuthController))

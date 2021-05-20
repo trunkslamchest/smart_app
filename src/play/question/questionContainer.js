@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
@@ -12,13 +13,15 @@ import './questionResponse.css'
 
 const QuestionContainer = (props) => {
 
+  const history = useHistory()
+
   const [timerState, setTimerState] = useState(false)
   const [enableQuestion, setEnableQuestion] = useState(false)
   const [headerState, setHeaderState] = useState(false)
   const [questionState, setQuestionState] = useState(false)
   const [choicesState, setChoicesState] = useState(false)
 
-  const { play, history, onSetAnswer, onLoadingModal } = props
+  const { play, onSetAnswer, onLoadingModal } = props
 
   const gameTimerRef = useRef(null)
   const headerTimerRef = useRef(null)

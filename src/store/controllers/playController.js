@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
 import {
@@ -312,23 +312,23 @@ class PlayController extends React.Component {
     else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed'
 
     if(this.props.play.gameState === 'select' || this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
-      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } history={ this.props.history } />
+      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } />
     }
 
     if(this.props.play.gameState === 'answered' || this.props.play.gameState === 'results') {
-      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadResults' } history={ this.props.history } />
+      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadResults' } />
     }
 
     let routeBoard =
       <Switch>
         <Route exact path={ completedPath }>
-          <CompletedContainer history={ this.props.history } />
+          <CompletedContainer />
         </Route>
         <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.play.gameMode] + '/results' }>
-          <ResultsContainer staticResults={ false } history={ this.props.history } />
+          <ResultsContainer staticResults={ false } />
         </Route>
         <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.play.gameMode] + '/question' }>
-          <QuestionContainer history={ this.props.history } />
+          <QuestionContainer />
         </Route>
         <Route path={ routes.play || routes[this.props.play.gameMode] + '/select' }>
           <SelectionContainer
@@ -339,7 +339,6 @@ class PlayController extends React.Component {
             resetQuestion={ this.props.onResetQuestion }
             reSelectGameMode={ this.reSelectGameModeModule }
             onLoadingModal={ this.props.onLoadingModal }
-            history={ this.props.history }
           />
         </Route>
       </Switch>
@@ -394,4 +393,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(PlayController)
+export default withRouter(connect(store, dispatch)(PlayController))

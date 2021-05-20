@@ -85,12 +85,11 @@ class LeaderBoardsScoresCard extends React.Component {
             <LeaderBoardsScoresRow
               countryFlag={ flagIconIndex[score.country] }
               fromScoresCard={ true }
-              history={ this.props.history }
               key={ score.uid }
               score={ score }
             />
           :
-            <LeaderBoardsScoresRow countryFlag={ null } history={ null } key={ index } score={ null } />
+            <LeaderBoardsScoresRow countryFlag={ null } key={ index } score={ null } />
         })
       }
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../../../../../utility/paths'
 
 import { voteStarsDashboardRatingIndex } from '../../../../../../assets/vote_stars/voteStarsRatingIndex'
@@ -11,9 +12,11 @@ import './dashboardStatsAnswerCard.css'
 
 const DashboardStatsAnswerCard = (props) => {
 
+  const history = useHistory()
+
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   let answer = props.answer,

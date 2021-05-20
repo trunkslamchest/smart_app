@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   getStaticQuestion,
@@ -148,7 +149,6 @@ class QuestionsController extends React.Component {
               cat={ this.state.cat }
               diff={ this.state.diff }
               qid={ this.state.qid }
-              history={ this.props.history }
               staticResults={ true }
             />
         }
@@ -189,4 +189,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(QuestionsController)
+export default withRouter(connect(store, dispatch)(QuestionsController))

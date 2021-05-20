@@ -13,7 +13,6 @@ const LeaderBoardsCatContainer = (props) => {
       <LeaderBoardsHeader header_text={ "Categories" } sub_text={ null } />
       { props.leaderBoards.cat &&
         <LeaderBoardsSubContainer
-          history={ props.history }
           pageLimit={ 10 }
           scores={ props.leaderBoards.cat.international }
         />

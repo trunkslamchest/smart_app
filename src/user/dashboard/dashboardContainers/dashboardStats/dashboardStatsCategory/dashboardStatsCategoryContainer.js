@@ -21,7 +21,6 @@ const DashboardStatsCategoryContainer = (props) => {
           <div className='stats_card_button_wrapper' key={ index + 1 }>
             <DashboardStatsCard
               answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
-              history={ props.history }
               cat={ cat[0] }
               qSet={ 'category' }
               qSetTotals={ props.questions.totals.category[cat[0]] }

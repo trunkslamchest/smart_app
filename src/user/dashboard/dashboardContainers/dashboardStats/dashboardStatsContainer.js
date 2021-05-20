@@ -21,11 +21,10 @@ const DashboardStatsContainer = (props) => {
         question_totals={ props.question_totals }
         user_questions={ props.user_questions }
         user_experience={ props.user_experience }
-        history={ props.history }
       />
-      <DashboardStatsDifficultyContainer history={ props.history } />
+      <DashboardStatsDifficultyContainer />
       <div className='divider_medium' />
-      <DashboardStatsCategoryContainer history={ props.history } />
+      <DashboardStatsCategoryContainer />
     </div>
   )
 }

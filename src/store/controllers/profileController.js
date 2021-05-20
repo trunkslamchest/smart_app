@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   loading,
@@ -111,7 +112,6 @@ class ProfileController extends React.Component {
           !this.props.modal.loading &&
             <UserProfileContainer
               achievements={ this.props.achievements }
-              history={ this.props.history }
               questionTotals={ this.props.questions.totals }
               userData={ this.props.profile.userData }
             />
@@ -148,4 +148,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(ProfileController)
+export default withRouter(connect(store, dispatch)(ProfileController))

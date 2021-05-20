@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   updateUserSettings,
@@ -173,4 +174,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(React.memo(DashboardSettingsContainer))
+export default withRouter(connect(store, dispatch)(React.memo(DashboardSettingsContainer)))

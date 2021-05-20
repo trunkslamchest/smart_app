@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../../utility/paths'
 import { connect } from 'react-redux'
 import {
@@ -27,19 +28,21 @@ import '../header.css'
 
 const NormalHeader = (props) => {
 
+  const history = useHistory()
+
   const onInitGame = (event) => {
     if(!!props.play.status) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     localStorage.gameMode = buttonParams.gameMode
     props.onSetGameState('select')
     props.onSetGameMode(buttonParams.gameMode)
-    props.history.push( buttonParams.route )
+    history.push( buttonParams.route )
   }
 
   const onPushLink = (event) => {
     if(!!props.play.status) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   const onLogOut = (event) => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { routes } from '../../../../utility/paths.js'
 import { connect } from 'react-redux'
 import {
@@ -309,4 +310,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(DashboardEditProfile)
+export default withRouter(connect(store, dispatch)(DashboardEditProfile))

@@ -13,7 +13,6 @@ const LeaderBoardsOverallContainer = (props) => {
       <LeaderBoardsHeader header_text={ "International" } sub_text={ "Rating" } />
       { props.leaderBoards.overall &&
         <LeaderBoardsScoresContainer
-          history={ props.history }
           pageLimit={ 15 }
           scores={ props.leaderBoards.overall.international }
         />

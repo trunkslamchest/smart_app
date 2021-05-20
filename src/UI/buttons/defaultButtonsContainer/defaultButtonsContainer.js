@@ -1,5 +1,6 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
+import {  useLocation } from 'react-router-dom'
 
 import DefaultButton from '../defaultButton'
 
@@ -8,6 +9,7 @@ import './defaultButtonsContainerResponse.css'
 
 const DefaultButtonContainer = (props) => {
 
+  // const history = useHistory()
   const location = useLocation()
 
   const calcButtonClass = (buttonClass, buttons, index) => {
@@ -30,7 +32,7 @@ const DefaultButtonContainer = (props) => {
                 buttonClass={ props.buttonRow ? calcButtonClass(props.buttonClass || button.buttonClass || 'default_button', props.buttons.length, index) : props.buttonClass || button.buttonClass || 'default_button' }
                 buttonContainerClass={ props.buttonContainerClass || button.buttonContainerClass || 'default_button_container' }
                 buttonType={ button.buttonType }
-                history={ props.history }
+                // history={ props.history }
                 headerButton={ button.headerButton }
                 homeButton={ button.homeButton }
                 id={ button.id }
@@ -60,7 +62,22 @@ const DefaultButtonContainer = (props) => {
   )
 }
 
-export default React.memo(DefaultButtonContainer)
+// export default DefaultButtonContainer
+
+
+// export default React.memo(DefaultButtonContainer)
+
+
+export default React.memo(DefaultButtonContainer, (prevProps, nextProps) => {
+
+  // console.log(prevProps.buttons, nextProps.buttons)
+
+  // return true
+  if(prevProps.buttons !== nextProps.buttons) {
+    return true
+  }
+  else return false
+})
 
 // {/* <DefaultButtonsContainer
 //   buttons={  }

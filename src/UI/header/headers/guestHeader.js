@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../../utility/paths'
 import { connect } from 'react-redux'
 import {
@@ -15,6 +16,8 @@ import '../header.css'
 
 const GuestHeader = (props) => {
 
+  const history = useHistory()
+
   const onLogIn = (event) => {
     event.persist()
     props.onLoginModal(true)
@@ -27,7 +30,7 @@ const GuestHeader = (props) => {
 
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   let headerButtons = makeLoggedOutHeaderButtons(iconsIndex, onLogIn, onSignUp, onPushLink, routes)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect }  from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { loading, setGameMode, setGameQset } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
 
@@ -21,6 +21,7 @@ import './selectionResponse.css'
 
 const SelectionContainer = (props) => {
 
+  const history = useHistory()
   const location = useLocation()
 
   useEffect(() => {
@@ -49,13 +50,13 @@ const SelectionContainer = (props) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     localStorage.gameMode = buttonParams.gameMode
     props.onSetGameMode(buttonParams.gameMode)
-    props.history.push( buttonParams.route )
+    history.push( buttonParams.route )
   }
 
   const onClickQsetFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     props.onSetGameQset(buttonParams.qSet)
-    props.history.push( buttonParams.route )
+    history.push( buttonParams.route )
   }
 
   let selectionButtons = makeSelectionButtons(gameModes, routes, onClickGameModeFunction)

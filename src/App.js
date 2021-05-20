@@ -49,15 +49,21 @@ const App = (props) => {
 
   return (
     <>
-      <AuthController history={ props.history } />
-      { props.modal.basic && <BasicModal content={ basicModalContent } history={ props.history } switchbasicModalContent={ switchbasicModalContent } /> }
-      { props.modal.login && <LogIn history={ props.history } /> }
-      { props.modal.logout && <LogOut history={ props.history } /> }
-      { props.modal.signup && <SignUp history={ props.history } /> }
-      { props.modal.editProfile && <EditProfile history={ props.history } /> }
-      { props.modal.deleteProfile && <DeleteProfile history={ props.history } /> }
-      { props.modal.help && <Help headerText={ props.modal.helpHeader } helpSections = { props.modal.helpSections } history={ props.history } /> }
-      <Header history={ props.history } />
+      <AuthController />
+      { props.modal.basic && <BasicModal
+        content={ basicModalContent }
+        switchbasicModalContent={ switchbasicModalContent }
+      /> }
+      { props.modal.login && <LogIn /> }
+      { props.modal.logout && <LogOut /> }
+      { props.modal.signup && <SignUp /> }
+      { props.modal.editProfile && <EditProfile /> }
+      { props.modal.deleteProfile && <DeleteProfile /> }
+      { props.modal.help && <Help
+        headerText={ props.modal.helpHeader }
+        helpSections = { props.modal.helpSections }
+      /> }
+      <Header />
       <div className='main_container' name="main_container">
         {
           props.modal.loading &&
@@ -65,40 +71,40 @@ const App = (props) => {
             show={ props.modal.loading }
             modalType={ loadingModalType }
             barType={ loadingModalBarType }
-            history={ props.history }
           />
         }
         <div className='main_wrapper' name="main_wrapper">
           <Switch>
             <Route exact path={ routes.home }>
-              <HomeContainer history={ props.history } />
+              <HomeContainer
+                authStatus={ props.auth.status }
+                authLoading={ props.auth.loading }
+                modalLoading={ props.modal.loading }
+                userName={ props.user.info ? props.user.info.user_name : null }
+              />
             </Route>
             <Route path={ routes.dashboard }>
               <DashboardContainer
                 switchbasicModalContent={ switchbasicModalContent }
-                history={ props.history }
               />
             </Route>
             <Route path={ routes.user_profile }>
               <ProfileController
-                history={ props.history }
                 switchLoadingModalType={ switchLoadingModalType }
                 switchLoadingModalBarType={ switchLoadingModalBarType }
               />
             </Route>
             <Route path={ routes.static_results }>
               <QuestionsController
-                history={ props.history }
                 switchLoadingModalType={ switchLoadingModalType }
                 switchLoadingModalBarType={ switchLoadingModalBarType }
               />
             </Route>
             <Route path={ routes.play }>
-              <PlayController history={ props.history } />
+              <PlayController />
             </Route>
             <Route path={ routes.leader_boards }>
               <LeaderBoardsController
-                history={ props.history }
                 switchLoadingModalType={ switchLoadingModalType }
                 switchLoadingModalBarType={ switchLoadingModalBarType }
               />
@@ -111,7 +117,7 @@ const App = (props) => {
           </Switch>
         </div>
       </div>
-      <Footer history={ props.history } />
+      <Footer />
     </>
   )
 }
@@ -119,7 +125,8 @@ const App = (props) => {
 const store = store => {
   return {
     auth: store.auth,
-    modal: store.modal
+    modal: store.modal,
+    user: store.user
   }
 }
 

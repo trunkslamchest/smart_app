@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 import DefaultMenu from '../menus/defaultMenu'
 import DefaultButtonTooltip from '../tooltips/defaultButtonTooltip'
@@ -11,11 +11,13 @@ import './buttonStylesIndex.css'
 
 const DefaultButton = (props) =>  {
 
+  const history = useHistory()
+  const location = useLocation()
+
   const [hoverState, setHoverState] = useState(false)
   const [tooltipState, setTooltipState] = useState(false)
   const [menuState, setMenuState] = useState(false)
 
-  const location = useLocation()
   const timerRef = useRef(null);
 
   useEffect(() => { return () => { clearTimeout(timerRef.current) } }, [])
@@ -46,7 +48,7 @@ const DefaultButton = (props) =>  {
       if(props.buttonType === 'link'){
         let route = JSON.parse(props.params).route
         document.body.scrollTop = 0
-        if (location.pathname !== route) props.history.push( route )
+        if (location.pathname !== route) history.push( route )
       }
       if(!!props.onClickFunction){ props.onClickFunction(event) }
     }

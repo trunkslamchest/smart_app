@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRef, useState } from 'react'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import useOnMount from '../../utility/hooks/useOnMount'
-import { Route, Switch } from 'react-router-dom'
 import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
 import {
@@ -38,13 +38,15 @@ import './resultsResponse.css'
 
 const ResultsContainer = (props) => {
 
+  const history = useHistory()
+
   const [showNextQuestionButton, setShowNextQuestionButton] = useState(false)
   const [enableNextQuestionButton, setEnableNextQuestionButton] = useState(false)
 
   const showNextQuestionButtonRef = useRef(null)
   const enableNextQuestionButtonRef = useRef(null)
 
-  const { staticResults, play, history, onClearStaticQuestion, onClearStaticUserQuestion, onClearQuestionStatus, onClearStaticQuestionVoteStatus, onClearStaticUserVote } = props
+  const { staticResults, play, onClearStaticQuestion, onClearStaticUserQuestion, onClearQuestionStatus, onClearStaticQuestionVoteStatus, onClearStaticUserVote } = props
 
   useOnMount(() => {
     const startResultsTimers = () => {
@@ -107,16 +109,12 @@ const ResultsContainer = (props) => {
     routeBoard =
       <Switch>
         <Route exact path={ baseStaticRoute + '/stats' }>
-          <ResultsStatsContainer
-            history={ history }
-            staticResults={ staticResults }
-          />
+          <ResultsStatsContainer staticResults={ staticResults } />
         </Route>
         <Route exact path={ baseStaticRoute + '/discuss' }>
           <ResultsDiscussContainer
             cat={ props.cat }
             diff={ props.diff }
-            history={ history }
             qid={ props.qid }
             staticResults={ staticResults }
           />
@@ -126,10 +124,7 @@ const ResultsContainer = (props) => {
     routeBoard =
       <Switch>
         <Route exact path={ routes[play.gameMode] + '/results/stats' }>
-          <ResultsStatsContainer
-            history={ history }
-            staticResults={ staticResults }
-          />
+          <ResultsStatsContainer staticResults={ staticResults } />
           { showNextQuestionButton &&
             <DefaultButtonsContainer
               buttons={ nextQuestionButton }
@@ -139,10 +134,7 @@ const ResultsContainer = (props) => {
           }
         </Route>
         <Route exact path={ routes[play.gameMode] + '/results/discuss' }>
-          <ResultsDiscussContainer
-            history={ history }
-            staticResults={ staticResults }
-          />
+          <ResultsDiscussContainer staticResults={ staticResults } />
         </Route>
       </Switch>
   }

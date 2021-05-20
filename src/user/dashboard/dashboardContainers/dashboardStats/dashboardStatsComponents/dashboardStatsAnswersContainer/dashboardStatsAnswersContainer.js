@@ -14,7 +14,6 @@ const DashboardStatsAnswersContainer = (props) => {
         answer={ questions[1] }
         diff={ !!props.cat ? questions[1].difficulty : props.diff }
         cat={ !!props.diff ? questions[1].category : props.cat }
-        history={ props.history }
         key={ index }
         qid={ questions[0] }
       />

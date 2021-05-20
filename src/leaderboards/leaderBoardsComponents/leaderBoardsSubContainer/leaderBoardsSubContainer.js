@@ -13,7 +13,6 @@ const LeaderBoardsSubContainer = (props) => {
       <React.Fragment key={ index }>
         <div className='leader_boards_sub_wrapper'>
           <LeaderBoardsScoresCard
-            history={ props.history }
             pageLimit={ props.pageLimit }
             scoresSetName={ scores[0] }
             sub_text={ 'Rating' }

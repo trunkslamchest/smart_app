@@ -21,7 +21,6 @@ const DashboardStatsDifficultyContainer = (props) => {
           <div className='stats_card_button_wrapper' key={ index + 1 }>
             <DashboardStatsCard
               answers={ Object.values(sortAnswers).length !== 0 ? sortAnswers : 'null' }
-              history={ props.history }
               diff={ diff[0] }
               qSet={ 'difficulty' }
               qSetTotals={ props.questions.totals.difficulty[diff[0]] }
@@ -51,10 +50,4 @@ const store = (store) => {
   }
 }
 
-const dispatch = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(store, dispatch)(DashboardStatsDifficultyContainer)
+export default connect(store)(DashboardStatsDifficultyContainer)

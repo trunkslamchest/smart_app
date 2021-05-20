@@ -13,7 +13,6 @@ const makeHomeLoggedOutButtons = (onLogIn, onSignUp) => {
       onClickFunction: onSignUp,
       text: 'Sign Up',
       tooltipText: [ 'Create a new account' ]
-
     }
   ]
 }

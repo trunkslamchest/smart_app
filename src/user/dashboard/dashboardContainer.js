@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import { routes } from '../../utility/paths.js'
 import { connect } from 'react-redux'
 import {
@@ -27,10 +27,12 @@ import './dashboardResponse.css'
 
 const Dashboard = (props) => {
 
+  const history = useHistory()
+
   useEffect(() => {
     document.title = "SmartApp™ | Dashboard"
-    if(localStorage.authValid !== 'true') props.history.push( routes.home )
-  }, [props.history])
+    if(localStorage.authValid !== 'true') history.push( routes.home )
+  }, [history])
 
   const onHelp = () => {
     props.onSetHelpHeader('SmartApp™ Dashboards')
@@ -40,7 +42,7 @@ const Dashboard = (props) => {
 
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   const navBarButtons = makeDashboardNavButtons(dashboardNavBarIconIndex, onHelp, onPushLink, routes)
@@ -65,14 +67,13 @@ const Dashboard = (props) => {
               <DashboardIndex />
             </Route>
             <Route exact path={ routes.dashboard_profile }>
-              <DashboardProfileContainer history={ props.history } />
+              <DashboardProfileContainer />
             </Route>
             <Route path={ routes.dashboard_profile_edit }>
-              <DashboardEditProfileContainer history={ props.history } />
+              <DashboardEditProfileContainer />
             </Route>
             <Route exact path={ routes.dashboard_stats }>
               <DashboardStatsContainer
-                history={ props.history }
                 question_totals={ props.questions.totals }
                 user_questions={ props.user.questions.totals }
                 user_experience={ props.user.experience }
@@ -82,14 +83,12 @@ const Dashboard = (props) => {
               <UserAchievementsContainer
                 all_achievements={ props.achievements }
                 from_dashboard={ true }
-                history={ props.history }
                 user_achievements={ props.user.achievements }
               />
             </Route>
             <Route exact path={ routes.dashboard_settings }>
               <DashboardSettingsContainer
                 switchbasicModalContent={ props.switchbasicModalContent }
-                history={ props.history }
               />
             </Route>
           </Switch>

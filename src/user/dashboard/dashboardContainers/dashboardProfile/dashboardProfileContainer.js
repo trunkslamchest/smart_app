@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../../../utility/paths'
 import { connect } from 'react-redux'
 import { deleteProfile } from '../../../../store/actions/actionIndex'
@@ -20,6 +22,8 @@ import glyphIndex from '../../../../assets/glyphs/glyphIndex'
 import './dashboardProfileContainer.css'
 
 const DashboardProfileContainer = (props) => {
+
+  const history = useHistory()
 
   useEffect(() => {
     document.body.scrollTop = 0
@@ -44,7 +48,7 @@ const DashboardProfileContainer = (props) => {
 
   const onClickProfileButtonFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.history.push(buttonParams.route)
+    history.push(buttonParams.route)
   }
 
   const onClickDelete = () => { props.onDeleteProfileModal(true) }
@@ -89,7 +93,6 @@ const DashboardProfileContainer = (props) => {
         avatar={ avatar }
         containerClass={ 'dashboard_profile_header_buttons_container' }
         email={ email }
-        history={ props.history }
         user_name={ user_name }
         date_block={ date_block }
       />

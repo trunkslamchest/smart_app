@@ -37,12 +37,11 @@ const LeaderBoardScoresContainer = (props) => {
       return !!score ?
         <LeaderBoardsScoresRow
           countryFlag={ flagIconIndex[score.country] }
-          history={ props.history }
           key={ score.uid }
           score={ score }
         />
       :
-        <LeaderBoardsScoresRow countryFlag={ null } history={ null } key={ index } score={ null } />
+        <LeaderBoardsScoresRow countryFlag={ null } key={ index } score={ null } />
     })
   }
 

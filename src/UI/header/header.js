@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { routes } from '../../utility/paths.js'
 
@@ -15,20 +15,21 @@ import './header.css'
 
 const Header = (props) => {
 
-  let header
+  const history = useHistory()
   const location = useLocation()
+
+  let header
 
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    if (location.pathname !== buttonParams.route) props.history.push(buttonParams.route)
+    if (location.pathname !== buttonParams.route) history.push(buttonParams.route)
   }
 
-  if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader history={ props.history } />
+  if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader />
 
   if(props.auth.status === 'authValid') {
     header =
       <NormalHeader
-        history={ props.history }
         user_name={ props.user_name }
       />
   }

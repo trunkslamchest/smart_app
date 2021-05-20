@@ -128,7 +128,6 @@ class DashboardStatsCard extends React.Component {
               </div>
               <DashboardStatsAnswersContainer
                 answers={ this.props.answers }
-                history={ this.props.history }
                 diff={ this.props.diff ? this.props.diff : null }
                 cat={ this.props.cat ? this.props.cat : null }
                 qSet={ this.props.qSet }
