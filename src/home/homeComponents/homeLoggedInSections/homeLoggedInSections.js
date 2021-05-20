@@ -63,19 +63,17 @@ const HomeLoggedInSections = (props) => {
     return(
       <React.Fragment key={ index }>
         <div className='home_button_section_container' >
-          <div className='home_button_section_wrapper'>
-            <div className='home_button_section_left_container'>
-              <DefaultButtonsContainer
-                buttons={ [ button ] }
-                buttonClass={ 'home_logged_in_button' }
-                buttonContainerClass={ 'home_logged_in_button_container' }
-                containerClass={ 'home_logged_in_buttons_container' }
-                enableButton={ true }
-              />
-            </div>
-            <div className='home_button_section_right_container'>
-              <p>{ button.desc }</p>
-            </div>
+          <div className='home_button_section_left_container'>
+            <DefaultButtonsContainer
+              buttons={ [ button ] }
+              buttonClass={ 'home_logged_in_button' }
+              buttonContainerClass={ 'home_logged_in_button_container' }
+              containerClass={ 'home_logged_in_buttons_container' }
+              enableButton={ true }
+            />
+          </div>
+          <div className='home_button_section_right_container'>
+            <p>{ button.desc }</p>
           </div>
         </div>
         { index < homeButtons.length - 1 && <div className='divider_small'></div> }
