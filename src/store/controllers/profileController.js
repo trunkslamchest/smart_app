@@ -43,21 +43,11 @@ class ProfileController extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState){
     let render = false
-
-   if(this.props.modal.loading || this.props.profile.loading ||
-      nextProps.modal.loading || nextProps.profile.loading ) {
-      // console.log(this.props.modal.loading)
-
-      render = true
-    }
-
-    // console.log(
-    //   this.props.leaderBoards, nextProps.leaderBoards, "|",
-    //   this.props.modal.loading, nextProps.modal.loading
-    // )
-
+    if(this.props.modal.loading || this.props.profile.loading ||
+        nextProps.modal.loading || nextProps.profile.loading ) {
+        render = true
+      }
     return render
-    // return true
   }
 
   componentWillUnmount() {
@@ -71,7 +61,6 @@ class ProfileController extends React.Component {
   initProfileModule = () => {
     this.props.onLoadingModal(true)
     this.props.onSetLoadingModalType('userProfile', 'userProfile')
-    // this.props.switchLoadingModalBarType('userProfile')
     this.props.onUpdateUserProfileLoadingStatus(true)
     this.props.onUpdateUserProfileStatus('initUserProfile')
   }

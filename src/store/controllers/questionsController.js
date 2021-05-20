@@ -85,8 +85,6 @@ class QuestionsController extends React.Component {
     this.props.onLoadingModal(true)
     this.props.onUpdateQuestionLoadingStatus(true)
     this.props.onSetLoadingModalType('staticQuestion', 'staticQuestion')
-    // this.props.switchLoadingModalType('staticQuestion')
-    // this.props.switchLoadingModalBarType('staticQuestion')
     this.props.onUpdateQuestionStatus('initStaticQuestion')
   }
 

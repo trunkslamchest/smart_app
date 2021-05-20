@@ -284,7 +284,6 @@ class AuthController extends React.Component {
 
   clearLocalStateModule = () => {
     this.setState({
-      // error: {},
       authUser: false,
       authEditUser: false,
       updateUser: false,

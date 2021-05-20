@@ -100,7 +100,6 @@ class DashboardSettingsContainer extends React.Component {
     })
     this.setState({ enableButtons: false })
     this.props.onSetBasicModalContent("Your settings have been saved!")
-    // this.props.switchbasicModalContent("Your settings have been saved!")
     this.props.onBasicModal(true)
     this.enableButtonsTimeout = setTimeout(() => { this.enableButtons() }, 3000)
   }

@@ -50,9 +50,6 @@ class LeaderBoardsController extends React.Component {
   initLeaderBoardsModule = () => {
     this.props.onLoadingModal(true)
     this.props.onSetLoadingModalType('leaderBoards', 'leaderBoards')
-
-    // this.props.switchLoadingModalType('leaderBoards')
-    // this.props.switchLoadingModalBarType('leaderBoards')
     this.props.onUpdateLeaderBoardsLoadingStatus(true)
     this.props.onUpdateLeaderBoardsStatus('initLeaderBoards')
   }
