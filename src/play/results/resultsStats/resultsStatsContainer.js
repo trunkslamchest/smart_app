@@ -13,6 +13,10 @@ import ResultsAnswer from '../resultsAnswer/resultsAnswer'
 import ResultsStats from './resultsStats'
 import ResultsAchievementsContainer from '../resultsAchievements/resultsAchievementsContainer'
 
+import DefaultButtonsContainer from '../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
+
+import makeNextQuestionButton from '../resultsFunctions/makeNextQuestionButton'
+
 import './resultsStatsContainer.css'
 
 const ResultsStatsContainer = (props) => {
@@ -21,20 +25,30 @@ const ResultsStatsContainer = (props) => {
   const [correctAnswerState, setCorrectAnswerState] = useState(false)
   const [statsState, setStatsState] = useState(false)
   const [achievementsState, setAchievementsState] = useState(false)
+  const [showNextQuestionButton, setShowNextQuestionButton] = useState(false)
+  const [enableNextQuestionButton, setEnableNextQuestionButton] = useState(false)
 
   const headerTimerRef = useRef(null)
   const correctAnswerTimerRef = useRef(null)
   const statsTimerRef = useRef(null)
   const achievementsTimerRef = useRef(null)
+  const showNextQuestionButtonRef = useRef(null)
+  const enableNextQuestionButtonRef = useRef(null)
 
   const { staticResults, play, questions } = props
 
   useOnMount(() => {
-    if(!staticResults) {
+    const startResultsTimers = () => {
       headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 100)
       if(play.results && play.results.result === "Incorrect") correctAnswerTimerRef.current = setTimeout(() => { setCorrectAnswerState(true) }, 1000)
       statsTimerRef.current = setTimeout(() => { setStatsState(true) }, 1250)
       achievementsTimerRef.current = setTimeout(() => { setAchievementsState(true) }, 1500)
+      showNextQuestionButtonRef.current = setTimeout(() => { setShowNextQuestionButton(true) }, 2500)
+      enableNextQuestionButtonRef.current = setTimeout(() => { setEnableNextQuestionButton(true) }, 2750)
+    }
+
+    if(!staticResults) {
+      startResultsTimers()
     } else {
       setHeaderState(true)
       setCorrectAnswerState(questions.staticUserResults && questions.staticUserResults.result === "Incorrect")
@@ -44,6 +58,8 @@ const ResultsStatsContainer = (props) => {
 
     return function cleanup() {
       if(!staticResults) {
+        clearTimeout(showNextQuestionButtonRef.current)
+        clearTimeout(enableNextQuestionButtonRef.current)
         clearTimeout(headerTimerRef.current)
         clearTimeout(correctAnswerTimerRef.current)
         clearTimeout(statsTimerRef.current)
@@ -51,6 +67,15 @@ const ResultsStatsContainer = (props) => {
       }
     }
   }, [])
+
+  const onClickNextQuestionFunction = (event) => {
+    event.persist()
+    setEnableNextQuestionButton(false)
+    props.onClickNextQuestionFunction(event)
+  }
+
+  let nextQuestionButton = makeNextQuestionButton(enableNextQuestionButton, onClickNextQuestionFunction)
+
 
   const resultsBlock =
     <div className="results_stats_container">
@@ -72,6 +97,13 @@ const ResultsStatsContainer = (props) => {
         staticResults={ props.staticResults }
         showAchievements={ achievementsState }
       />
+      { showNextQuestionButton &&
+        <DefaultButtonsContainer
+          buttons={ nextQuestionButton }
+          containerClass={ 'next_question_buttons_container' }
+          enableButton={ enableNextQuestionButton }
+        />
+      }
     </div>
 
   return(

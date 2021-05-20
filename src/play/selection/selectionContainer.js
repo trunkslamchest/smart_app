@@ -117,7 +117,9 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(React.memo(SelectionContainer, (prevProps, nextProps) => {
-  if(prevProps.play !== nextProps.play) return true
-  else return false
-}))
+export default connect(store, dispatch)(SelectionContainer)
+
+// export default connect(store, dispatch)(React.memo(SelectionContainer, (prevProps, nextProps) => {
+//   if(prevProps.play !== nextProps.play) return true
+//   else return false
+// }))

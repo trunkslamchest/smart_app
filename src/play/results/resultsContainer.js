@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRef, useState } from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import useOnMount from '../../utility/hooks/useOnMount'
 import { routes } from '../../utility/paths'
@@ -25,7 +24,6 @@ import {
 
 import makeResultsNavBarButtons from './resultsFunctions/makeResultsNavBarButtons'
 import makeResultsHelpSections from './resultsFunctions/makeResultsHelpSections'
-import makeNextQuestionButton from './resultsFunctions/makeNextQuestionButton'
 
 import ResultsStatsContainer from './resultsStats/resultsStatsContainer'
 import ResultsDiscussContainer from './resultsDiscuss/resultsDiscussContainer'
@@ -40,45 +38,44 @@ const ResultsContainer = (props) => {
 
   const history = useHistory()
 
-  const [showNextQuestionButton, setShowNextQuestionButton] = useState(false)
-  const [enableNextQuestionButton, setEnableNextQuestionButton] = useState(false)
-
-  const showNextQuestionButtonRef = useRef(null)
-  const enableNextQuestionButtonRef = useRef(null)
-
-  const { staticResults, play, onClearStaticQuestion, onClearStaticUserQuestion, onClearQuestionStatus, onClearStaticQuestionVoteStatus, onClearStaticUserVote } = props
+  const {
+    staticResults,
+    play,
+    onClearStaticQuestion,
+    onClearStaticUserQuestion,
+    onClearQuestionStatus,
+    onClearStaticQuestionVoteStatus,
+    onClearStaticUserVote
+  } = props
 
   useOnMount(() => {
-    const startResultsTimers = () => {
-      showNextQuestionButtonRef.current = setTimeout(() => { setShowNextQuestionButton(true) }, 2500)
-      enableNextQuestionButtonRef.current = setTimeout(() => { setEnableNextQuestionButton(true) }, 2750)
-    }
-
-    if(!staticResults) {
-      document.title = `SmartApp™ | Play | ${ play.gameMode } | Results`
-      startResultsTimers()
-    }
-
+    if(!staticResults)  document.title = `SmartApp™ | Play | ${ play.gameMode } | Results`
     if(!play.question && !staticResults) history.push( routes.play )
 
     return function cleanup(){
-      clearTimeout(showNextQuestionButtonRef.current)
-      clearTimeout(enableNextQuestionButtonRef.current)
       onClearStaticQuestion()
       onClearStaticUserQuestion()
       onClearQuestionStatus()
       onClearStaticQuestionVoteStatus()
       onClearStaticUserVote()
     }
-  }, [staticResults, play, history, routes, onClearStaticQuestion, onClearStaticUserQuestion, onClearQuestionStatus, onClearStaticQuestionVoteStatus, onClearStaticUserVote])
-
-  const onDisableNextQuestionButton = () => { setEnableNextQuestionButton(false) }
+  }, [
+      staticResults,
+      play,
+      history,
+      routes,
+      onClearStaticQuestion,
+      onClearStaticUserQuestion,
+      onClearQuestionStatus,
+      onClearStaticQuestionVoteStatus,
+      onClearStaticUserVote
+    ]
+  )
 
   const onClickNextQuestionFunction = () => {
     props.onSetGameState('reInit')
     props.onUpdateGameStatus('reInitGame', true)
     props.onLoadingModal(true)
-    onDisableNextQuestionButton()
     if(play.question) props.onResetQuestion()
     if(play.answer) props.onResetAnswer()
     if(play.results) props.onResetResults()
@@ -97,21 +94,22 @@ const ResultsContainer = (props) => {
     history.push(buttonParams.route)
   }
 
-  const baseStaticRoute = routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid
-
   let routeBoard
-  let statsRoute = staticResults ? baseStaticRoute + '/stats' : routes[play.gameMode] + '/results/stats'
-  let discussRoute = staticResults ? baseStaticRoute + '/discuss' : routes[play.gameMode] + '/results/discuss'
-  let navBarButtons = makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute })
-  let nextQuestionButton = makeNextQuestionButton(enableNextQuestionButton, onClickNextQuestionFunction)
+  let statsRoute = routes[play.gameMode] + '/results/stats'
+  let discussRoute = routes[play.gameMode] + '/results/discuss'
 
   if(staticResults){
+    const baseStaticRoute = routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid
+    statsRoute = baseStaticRoute + '/stats'
+    discussRoute = baseStaticRoute + '/discuss'
     routeBoard =
       <Switch>
-        <Route exact path={ baseStaticRoute + '/stats' }>
-          <ResultsStatsContainer staticResults={ staticResults } />
+        <Route exact path={ statsRoute }>
+          <ResultsStatsContainer
+            staticResults={ staticResults }
+          />
         </Route>
-        <Route exact path={ baseStaticRoute + '/discuss' }>
+        <Route exact path={ discussRoute }>
           <ResultsDiscussContainer
             cat={ props.cat }
             diff={ props.diff }
@@ -123,26 +121,26 @@ const ResultsContainer = (props) => {
   } else {
     routeBoard =
       <Switch>
-        <Route exact path={ routes[play.gameMode] + '/results/stats' }>
-          <ResultsStatsContainer staticResults={ staticResults } />
-          { showNextQuestionButton &&
-            <DefaultButtonsContainer
-              buttons={ nextQuestionButton }
-              containerClass={ 'next_question_buttons_container' }
-              enableButton={ enableNextQuestionButton }
-            />
-          }
+        <Route exact path={ statsRoute }>
+          <ResultsStatsContainer
+            onClickNextQuestionFunction={ onClickNextQuestionFunction }
+            staticResults={ staticResults }
+          />
         </Route>
-        <Route exact path={ routes[play.gameMode] + '/results/discuss' }>
-          <ResultsDiscussContainer staticResults={ staticResults } />
+        <Route exact path={ discussRoute }>
+          <ResultsDiscussContainer
+            staticResults={ staticResults }
+          />
         </Route>
       </Switch>
   }
 
+  console.log(props)
+
   return(
     <>
       <DefaultButtonsContainer
-        buttons={ navBarButtons }
+        buttons={ makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute }) }
         buttonClass={ 'nav_bar_button' }
         buttonContainerClass={ 'nav_bar_button_container' }
         buttonRow={ true }
@@ -160,8 +158,7 @@ const ResultsContainer = (props) => {
 const store = (store) => {
   return {
     play: store.play,
-    user: store.user,
-    questions: store.questions
+    user: store.user
   }
 }
 
