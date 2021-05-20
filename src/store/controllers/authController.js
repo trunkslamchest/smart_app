@@ -68,8 +68,8 @@ class AuthController extends React.Component {
 
   componentDidMount(){
     if(!!localStorage.id) {
-      init.auth().onAuthStateChanged((obj) => {
       this.props.onLoadingModal(true)
+      init.auth().onAuthStateChanged((obj) => {
         if (obj && !!localStorage.id) {
           this.props.onAuthStart('refresh', {
             displayName: obj.displayName,

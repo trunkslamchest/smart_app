@@ -24,7 +24,6 @@ const HomeLoggedOutContainer = () => {
       <HomeButtonBanner />
       <div className='divider_medium'></div>
       <DefaultCarouselContainer slides={ makeHomeCarouselSlides(homeCarouselIndex) } />
-      <div className='divider_medium'></div>
       <HomeBottomBanner />
       <HomeSubBanner />
       <HomeTech />

@@ -35,22 +35,16 @@
   }
 
   .default_carousel_slide_desc_headline_container h2 {
-    font-family: 'Baloo';
     font-size: calc(16px + (26 - 16) * ((100vw - 360px) / (768 - 360)));
-    font-weight: 600;
     padding: 5px 0px 0px 0px;
   }
 
   .default_carousel_slide_desc_headline_container h2 span {
-    font-family: 'Baloo';
     font-size: calc(16px + (26 - 16) * ((100vw - 360px) / (768 - 360)));
-    font-weight: 600;
   }
 
   .default_carousel_slide_desc_headline_container h2 span span {
-    font-family: 'Baloo';
     font-size: calc(16px + (26 - 16) * ((100vw - 360px) / (768 - 360)));
-    font-weight: 600;
   }
 
   .default_carousel_slide_desc_text_container {
@@ -59,9 +53,7 @@
   }
 
   .default_carousel_slide_desc_text_container p {
-    font-family: 'Lato';
     font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (768 - 360)));
-    font-weight: 300;
     margin: 0px 0px 5px 0px;
   }
 

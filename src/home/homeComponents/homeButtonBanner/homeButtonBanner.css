@@ -2,9 +2,5 @@
   width: 100%;
   padding: 10px 0px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: center;
-  align-content: center;
-  align-items: center;
 }
