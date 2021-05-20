@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
+  loading,
+  setLoadingModalType,
   getStaticQuestion,
   clearStaticQuestion,
   clearQuestionStatus,
@@ -9,7 +11,6 @@ import {
   clearStaticUserQuestion,
   clearStaticQuestionVoteStatus,
   clearStaticUserVote,
-  loading,
   updateQuestionStatus,
   updateQuestionLoadingStatus,
   updateUserVotesFromPlayController,
@@ -83,8 +84,9 @@ class QuestionsController extends React.Component {
   initQuestionModule = () => {
     this.props.onLoadingModal(true)
     this.props.onUpdateQuestionLoadingStatus(true)
-    this.props.switchLoadingModalType('staticQuestion')
-    this.props.switchLoadingModalBarType('staticQuestion')
+    this.props.onSetLoadingModalType('staticQuestion', 'staticQuestion')
+    // this.props.switchLoadingModalType('staticQuestion')
+    // this.props.switchLoadingModalBarType('staticQuestion')
     this.props.onUpdateQuestionStatus('initStaticQuestion')
   }
 
@@ -168,6 +170,7 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
+    onSetLoadingModalType: (modalType, barType) => dispatch(setLoadingModalType(modalType, barType)),
     onGetStaticQuestion: (obj) => dispatch(getStaticQuestion(obj)),
     onSetStaticUserQuestion: (obj) => dispatch(setStaticUserQuestion(obj)),
     onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),

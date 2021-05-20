@@ -13,4 +13,6 @@ const HomeTech = () => {
   )
 }
 
-export default React.memo(HomeTech)
+export default HomeTech
+
+// export default React.memo(HomeTech)

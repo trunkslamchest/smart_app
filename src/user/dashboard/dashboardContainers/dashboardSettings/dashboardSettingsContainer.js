@@ -2,8 +2,9 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
-  updateUserSettings,
-  basic
+  basic,
+  setBasicModalContent,
+  updateUserSettings
 } from '../../../../store/actions/actionIndex'
 
 import { routes } from '../../../../utility/paths'
@@ -98,7 +99,8 @@ class DashboardSettingsContainer extends React.Component {
       settings: this.state.settings
     })
     this.setState({ enableButtons: false })
-    this.props.switchbasicModalContent("Your settings have been saved!")
+    this.props.onSetBasicModalContent("Your settings have been saved!")
+    // this.props.switchbasicModalContent("Your settings have been saved!")
     this.props.onBasicModal(true)
     this.enableButtonsTimeout = setTimeout(() => { this.enableButtons() }, 3000)
   }
@@ -169,8 +171,9 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
-    onUpdateUserSettings: (settings) => dispatch(updateUserSettings(settings)),
-    onBasicModal: (bool) => dispatch(basic(bool))
+    onBasicModal: (bool) => dispatch(basic(bool)),
+    onSetBasicModalContent: (string) => dispatch(setBasicModalContent(string)),
+    onUpdateUserSettings: (settings) => dispatch(updateUserSettings(settings))
   }
 }
 

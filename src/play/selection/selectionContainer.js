@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect }  from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loading, setGameMode, setGameQset } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
@@ -22,29 +22,28 @@ import './selectionResponse.css'
 const SelectionContainer = (props) => {
 
   const history = useHistory()
-  const location = useLocation()
 
   useEffect(() => {
     if(props.auth.status === 'authValid') {
-      if(location.pathname === routes.play) {
+      if(history.location.pathname === routes.play) {
         if(props.play.gameMode) props.reSelectGameMode()
       }
 
-      if(location.pathname === routes.by_diff_select) {
+      if(history.location.pathname === routes.by_diff_select) {
         if(props.play.gameMode !== 'by_diff') props.setGameMode('by_diff')
         if(props.play.gameState !== 'select') props.setGameState('select')
         if(props.play.question) props.resetQuestion()
         if(props.play.gameQset) props.resetGameQset()
       }
 
-      if(location.pathname === routes.by_cat_select) {
+      if(history.location.pathname === routes.by_cat_select) {
         if(props.play.gameMode !== 'by_cat') props.setGameMode('by_cat')
         if(props.play.gameState !== 'select') props.setGameState('select')
         if(props.play.question) props.resetQuestion()
         if(props.play.gameQset) props.resetGameQset()
       }
     }
-  }, [location, props])
+  }, [history, props])
 
   const onClickGameModeFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -66,19 +65,19 @@ const SelectionContainer = (props) => {
   let headerText
   let buttonGroup
 
-  if(location.pathname === routes.play) {
+  if(history.location.pathname === routes.play) {
     document.title = "SmartApp™ | Play | Select"
     headerText = 'Game Mode'
     buttonGroup = selectionButtons
   }
 
-  if(location.pathname === routes.by_diff_select) {
+  if(history.location.pathname === routes.by_diff_select) {
     document.title = "SmartApp™ | Play | Difficulty | Select"
     headerText = 'Difficulty'
     buttonGroup = difficultyButtons
   }
 
-  if(location.pathname === routes.by_cat_select) {
+  if(history.location.pathname === routes.by_cat_select) {
     document.title = "SmartApp™ | Play | Category | Select"
     headerText = 'Category'
     buttonGroup = categoryButtons

@@ -13,7 +13,7 @@ import DefaultCarouselContainer from '../../../UI/carousel/defaultCarouselContai
 
 import './homeLoggedOutContainer.css'
 
-const HomeLoggedOutContainer = (props) => {
+const HomeLoggedOutContainer = () => {
 
   useEffect(() => { document.body.scrollTop = 0 }, [])
 
@@ -21,15 +21,17 @@ const HomeLoggedOutContainer = (props) => {
     <div className='home_logged_out_wrapper'>
       <HomeBanner logo_class={ 'home_logged_out_logo_container' } />
       <div className='divider_medium'></div>
-      <HomeButtonBanner history={ props.history } />
+      <HomeButtonBanner />
       <div className='divider_medium'></div>
       <DefaultCarouselContainer slides={ makeHomeCarouselSlides(homeCarouselIndex) } />
       <div className='divider_medium'></div>
-      <HomeBottomBanner history={props.history} />
-      <HomeSubBanner history={props.history} />
-      <HomeTech history={ props.history } />
+      <HomeBottomBanner />
+      <HomeSubBanner />
+      <HomeTech />
     </div>
   )
 }
 
-export default React.memo(HomeLoggedOutContainer)
+export default HomeLoggedOutContainer
+
+// export default React.memo(HomeLoggedOutContainer)

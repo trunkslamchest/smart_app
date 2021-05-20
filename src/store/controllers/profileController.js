@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   loading,
+  setLoadingModalType,
   getSmarts,
   storeUserProfile,
   storeQuestionTotals,
@@ -69,8 +70,8 @@ class ProfileController extends React.Component {
 
   initProfileModule = () => {
     this.props.onLoadingModal(true)
-    this.props.switchLoadingModalType('userProfile')
-    this.props.switchLoadingModalBarType('userProfile')
+    this.props.onSetLoadingModalType('userProfile', 'userProfile')
+    // this.props.switchLoadingModalBarType('userProfile')
     this.props.onUpdateUserProfileLoadingStatus(true)
     this.props.onUpdateUserProfileStatus('initUserProfile')
   }
@@ -135,6 +136,7 @@ const store = (store) => {
 const dispatch = (dispatch) => {
   return {
     onLoadingModal: (bool) => dispatch(loading(bool)),
+    onSetLoadingModalType: (modalType, barType) => dispatch(setLoadingModalType(modalType, barType)),
     onGetSmarts: (user_name) => dispatch(getSmarts(user_name)),
     onStoreUserProfile: (userData) => dispatch(storeUserProfile(userData)),
     onStoreQuestionTotals: (totals) => dispatch(storeQuestionTotals(totals)),

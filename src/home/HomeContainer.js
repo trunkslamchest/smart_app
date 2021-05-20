@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 import HomeLoggedInContainer from './homeContainers/homeLoggedInContainer/homeLoggedInContainer'
 import HomeLoggedOutContainer from './homeContainers/homeLoggedOutContainer/homeLoggedOutContainer'
@@ -15,31 +15,41 @@ const HomeContainer = (props) => {
 
   let homePage
 
-  if(props.authStatus === 'authValid') {
-    homePage = <HomeLoggedInContainer user_name={ props.userName } />
+  if(props.auth.status === 'authValid') {
+    homePage = <HomeLoggedInContainer user_name={ !!props.user.info ? props.user.info.user_name : null } />
   } else {
     homePage = <HomeLoggedOutContainer />
   }
 
-  return <>{ (!props.authLoading && !props.modalLoading) && homePage }</>
+
+  return <>{ (!props.auth.loading && !props.modal.loading) && homePage }</>
+  // return <HomeLoggedOutContainer />
 }
 
-// const store = (store) => {
-//   return {
-//     auth: store.auth,
-//     modal: store.modal,
-//     user: store.user
-//   }
-// }
+const store = store => {
+  return {
+    auth: store.auth,
+    modal: store.modal,
+    user: store.user
+  }
+}
 
 // export default HomeContainer
 
-export default React.memo(HomeContainer, (prevProps, nextProps) => {
-  if(prevProps.authLoading !== nextProps.authLoading) {
-    return true
-  }
-  else return false
-})
+// export default React.memo(HomeContainer)
+
+// export default connect(store)(HomeContainer)
+
+export default React.memo(connect(store)(HomeContainer))
+
+
+// export default React.memo(HomeContainer, (prevProps, nextProps) => {
+//   // console.log(prevProps)
+//   if(prevProps.authLoading !== nextProps.authLoading) {
+//     return true
+//   }
+//   else return false
+// })
 
 // export default connect(store)(React.memo(HomeContainer, (prevProps, nextProps) => {
 //   if(prevProps.authLoading !== nextProps.authLoading) {

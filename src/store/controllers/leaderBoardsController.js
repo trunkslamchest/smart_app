@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { routes } from '../../utility/paths'
 import {
   loading,
+  setLoadingModalType,
   getOverallLeaderBoards,
   getCatLeaderBoards,
   clearLeaderBoards,
@@ -48,8 +49,10 @@ class LeaderBoardsController extends React.Component {
 
   initLeaderBoardsModule = () => {
     this.props.onLoadingModal(true)
-    this.props.switchLoadingModalType('leaderBoards')
-    this.props.switchLoadingModalBarType('leaderBoards')
+    this.props.onSetLoadingModalType('leaderBoards', 'leaderBoards')
+
+    // this.props.switchLoadingModalType('leaderBoards')
+    // this.props.switchLoadingModalBarType('leaderBoards')
     this.props.onUpdateLeaderBoardsLoadingStatus(true)
     this.props.onUpdateLeaderBoardsStatus('initLeaderBoards')
   }
@@ -105,12 +108,13 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
+    onLoadingModal: (bool) => dispatch(loading(bool)),
+    onSetLoadingModalType: (modalType, barType) => dispatch(setLoadingModalType(modalType, barType)),
     onGetOverallLeaderBoards: () => dispatch(getOverallLeaderBoards()),
     onGetCatLeaderBoards: () => dispatch(getCatLeaderBoards()),
     onClearLeaderBoards: () => dispatch(clearLeaderBoards()),
     onUpdateLeaderBoardsStatus: (status) => dispatch(updateLeaderBoardsStatus(status)),
-    onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status)),
-    onLoadingModal: (bool) => dispatch(loading(bool))
+    onUpdateLeaderBoardsLoadingStatus: (status) => dispatch(updateLeaderBoardsLoadingStatus(status))
   }
 }
 

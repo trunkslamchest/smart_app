@@ -1,5 +1,6 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { routes } from '../../utility/paths.js'
 
@@ -16,14 +17,13 @@ import './header.css'
 const Header = (props) => {
 
   const history = useHistory()
-  const location = useLocation()
 
   let header
 
-  const onPushLink = (event) => {
+  const onPushLink = useCallback((event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    if (location.pathname !== buttonParams.route) history.push(buttonParams.route)
-  }
+    if (history.location.pathname !== buttonParams.route) history.push(buttonParams.route)
+  }, [ history ])
 
   if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader />
 
@@ -44,7 +44,6 @@ const Header = (props) => {
             buttonContainerClass={ 'header_button_container' }
             containerClass={ 'header_buttons_container' }
             enableButton={ true }
-            history={ props.history }
           />
         </div>
         <div className='header_right'>
@@ -56,7 +55,6 @@ const Header = (props) => {
 
 const store = (store) => {
   return {
-    modal: store.modal,
     auth: store.auth
   }
 }

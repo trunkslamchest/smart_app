@@ -1,5 +1,5 @@
 import React from 'react'
-import {  useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import DefaultButton from '../defaultButton'
 
@@ -61,22 +61,23 @@ const DefaultButtonContainer = (props) => {
   )
 }
 
-// export default DefaultButtonContainer
+export default DefaultButtonContainer
 // 
 // export default React.memo(DefaultButtonContainer)
 
-export default React.memo(DefaultButtonContainer, (prevProps, nextProps) => {
-  console.log(prevProps.enableButton, nextProps.enableButton, prevProps.enableButton !== nextProps.enableButton)
-  if(prevProps.enableButton !== nextProps.enableButton) {
-  // if(prevProps.buttons !== nextProps.buttons) {
-    return true
-  }
-  else return false
+// export default React.memo(DefaultButtonContainer, (prevProps, nextProps) => {
+//   // if(prevProps.enableButton !== nextProps.enableButton) {
+//   // if(prevProps.buttons !== nextProps.buttons) {
+//   if(prevProps.buttons[0].onClickFunction !== nextProps.buttons[0].onClickFunction) {
+//   console.log(prevProps.buttons[0].onClickFunction, nextProps.buttons[0].onClickFunction, prevProps.buttons[0].onClickFunction !== nextProps.buttons[0].onClickFunction)
+//     return true
+//   } else
+//     return false
 
-  // console.log(prevProps.buttons, nextProps.buttons)
+//   // console.log(prevProps.buttons, nextProps.buttons)
 
-  // return true
-})
+//   // return true
+// })
 
 // {/* <DefaultButtonsContainer
 //   buttons={  }

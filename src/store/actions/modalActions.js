@@ -15,11 +15,26 @@ export const basic = (bool) => {
   }
 }
 
+export const setBasicModalContent = (content) => {
+  return {
+    type: actionTypes.SET_BASIC_MODAL_CONTENT,
+    basicModalContent: content
+  }
+}
+
 export const loading = (bool) => {
   return {
     type: actionTypes.LOADINGMODAL,
     showModal: bool,
     loading: bool
+  }
+}
+
+export const setLoadingModalType = (modalType, barType) => {
+  return {
+    type: actionTypes.SET_LOADING_MODAL_TYPE,
+    loadingModalType: modalType,
+    loadingModalBarType: barType
   }
 }
 

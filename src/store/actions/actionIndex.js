@@ -1,6 +1,8 @@
 export {
   basic,
+  setBasicModalContent,
   loading,
+  setLoadingModalType,
   login,
   logout,
   signup,

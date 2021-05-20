@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useEffect } from 'react'
 
 import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'

@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import React from 'react'
+import { useEffect } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../utility/paths.js'
 import { connect } from 'react-redux'
 import {
@@ -88,7 +90,7 @@ const Dashboard = (props) => {
             </Route>
             <Route exact path={ routes.dashboard_settings }>
               <DashboardSettingsContainer
-                switchbasicModalContent={ props.switchbasicModalContent }
+                // switchbasicModalContent={ props.switchbasicModalContent }
               />
             </Route>
           </Switch>

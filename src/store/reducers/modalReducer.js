@@ -3,7 +3,10 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   showModal: false,
   basic: false,
+  basicModalContent: null,
   loading: false,
+  loadingModalType: 'auth',
+  loadingModalBarType: null,
   login: false,
   logout: false,
   signup: false,
@@ -29,11 +32,26 @@ const basicModal = (currentState, action) => {
   }
 }
 
+const setBasicModalContent = (currentState, action) => {
+  return {
+    ...currentState,
+    basicModalContent: action.basicModalContent
+  }
+}
+
 const loadingModal = (currentState, action) => {
   return {
     ...currentState,
     showModal: action.showModal,
     loading: action.loading
+  }
+}
+
+const setLoadingModalType = (currentState, action) => {
+  return {
+    ...currentState,
+    loadingModalType: action.loadingModalType,
+    loadingModalBarType: action.loadingModalBarType
   }
 }
 
@@ -117,7 +135,9 @@ const modalReducer = (currentState = initialState, action) => {
   switch(action.type){
     case actionTypes.SHOWMODAL: return showModal(currentState, action)
     case actionTypes.BASICMODAL: return basicModal(currentState, action)
+    case actionTypes.SET_BASIC_MODAL_CONTENT: return setBasicModalContent(currentState, action)
     case actionTypes.LOADINGMODAL: return loadingModal(currentState, action)
+    case actionTypes.SET_LOADING_MODAL_TYPE: return setLoadingModalType(currentState, action)
     case actionTypes.LOGINMODAL: return loginModal(currentState, action)
     case actionTypes.LOGOUTMODAL: return logoutModal(currentState, action)
     case actionTypes.SIGNUPMODAL: return signupModal(currentState, action)

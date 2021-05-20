@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { routes } from '../../../../utility/paths'
 
 import makeFooterLogoButton from '../../footerFunctions/makeFooterLogoButton'
@@ -13,11 +13,10 @@ import './footerLogo.css'
 const FooterLogo = () => {
 
   const history = useHistory()
-  const location = useLocation()
 
   const onClickFunctions = () => {
     document.body.scrollTop = 0
-    if (location.pathname !== routes.home) history.push( routes.home )
+    if (history.location.pathname !== routes.home) history.push( routes.home )
   }
 
   const footerLogoButton = makeFooterLogoButton(footerLogosIndex, onClickFunctions, routes.home)

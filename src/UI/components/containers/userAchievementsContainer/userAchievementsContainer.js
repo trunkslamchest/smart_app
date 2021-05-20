@@ -2,7 +2,6 @@ import React from 'react'
 
 import DashboardHeader from '../../../../user/dashboard/dashboardComponents/dashboardHeader/dashboardHeader'
 import ContainerHeader from '../../headers/containerHeader/containerHeader'
-
 import UserAchievementCard from './userAchievementCard/userAchievementCard'
 
 import './userAchievementsContainer.css'
