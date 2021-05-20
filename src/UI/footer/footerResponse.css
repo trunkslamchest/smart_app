@@ -2,67 +2,14 @@
 
   .footer {
     padding: 0px 15px 0px 15px;
-    z-index: 0;
-    height: 140px;
   }
 
-  .footer_right {
-    flex-grow: 1;
-    width: auto;
-  }
-
-  .footer_links_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .footer_link_container {
-    width: calc(100% / 4);
-  }
-
-  .footer_link,
-  .footer_link_active {
-    padding: 10px 0px;
-    width: 100%;
-  }
-
-  .footer_link span {
-    word-spacing: normal;
-
-  }
-
-  .footer_credit_logos {
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .footer_fine_print {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .footer_fine_print p {
-    font: 300 7pt 'Lato', 'sans-serif';
-    margin: 10px 0px 10px 0px;
-  }
 }
 
 @media only screen and (max-width: 768px) {
 
   .footer {
-    display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
     height: auto;
     padding: 0px 5px;
   }
@@ -78,12 +25,7 @@
   }
 
   .footer_links_container {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
     margin: 5px 0px;
     width: 100%;
   }
@@ -97,18 +39,13 @@
   }
 
   .footer_credit_logos {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-evenly;
     margin: 0px 0px 10px 0px;
-    width: 100%;
   }
 
   .footer_credit_logos a {
     width: 25%;
+    margin-right: 0px;
   }
 
   .footer_credit_logo_rectangle {
@@ -116,13 +53,7 @@
   }
 
   .footer_fine_print {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
-    width: 100%;
     margin: 5px 0px;
   }
 
@@ -131,7 +62,6 @@
     margin: 0px 0px 0px 0px;
     text-align: center;
     width: 100%;
-
   }
 
 }

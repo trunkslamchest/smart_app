@@ -1,8 +1,5 @@
 .footer_fine_print {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
 }
 
 .footer_fine_print p {
