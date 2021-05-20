@@ -1,11 +1,7 @@
 .leader_boards_scores_row {
   position: relative;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
   align-items: center;
-  align-content: center;
   width: 100%;
   font-family: 'LatoLight';
   font-size: 10pt;
@@ -20,22 +16,13 @@
 }
 
 @keyframes leaderboard_row_fade_in {
-  0% {
-    opacity: 0;
-  };
-  100% {
-    opacity: 1;
-  };
+  0% { opacity: 0; };
+  100% { opacity: 1; };
 }
-
 
 .leader_boards_scores_row_blank {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
   align-items: center;
-  align-content: center;
   width: 100%;
   font-family: 'LatoLight';
   font-size: 10pt;
@@ -49,11 +36,6 @@
 .leader_boards_scores_row_sub_blank {
   flex-grow: 2;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  align-content: center;
-  justify-content: flex-start;
 }
 
 .leader_boards_scores_row_sub_blank_span {
@@ -76,18 +58,9 @@
   cursor: pointer;
 }
 
-.leader_boards_scores_row:active {
-
-}
-
 .leader_boards_scores_row_left {
   flex-grow: 2;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  align-content: center;
-  justify-content: flex-start;
 }
 
 .leader_boards_scores_row_left span {
@@ -96,12 +69,8 @@
 }
 
 @keyframes leaderboard_row_left_slide_in {
-  0% {
-    transform: translateX(-20px);
-  };
-  100% {
-    transform: translateX(0px);
-  };
+  0% { transform: translateX(-20px); };
+  100% { transform: translateX(0px); };
 }
 
 .leader_boards_scores_row_img_flag {
@@ -127,7 +96,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  align-content: center;
   min-width: 50px;
   width: 1.5%;
   margin: 0em 1%;
@@ -141,32 +109,11 @@
   flex-grow: 2;
 }
 
-.leader_boards_scores_row_right {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-
 .leader_boards_scores_row_right span {
   text-align: center;
 }
 
 @keyframes leaderboard_row_right_slide_in {
-  0% {
-    transform: translateX(25px);
-  };
-  100% {
-    transform: translateX(0px);
-  };
-}
-
-.leader_boards_scores_row_span {
-
-}
-
-.leader_boards_scores_row_country_span {
-
+  0% { transform: translateX(25px); };
+  100% { transform: translateX(0px); };
 }

@@ -22,8 +22,8 @@ class LeaderBoardsScoresCard extends React.Component {
 
   constructor(props) {
     super(props)
-    this.setButtonRef = this.setButtonRef.bind(this)
-    this.setRowsRef = this.setRowsRef.bind(this)
+    this.buttonRef = React.createRef()
+    this.rowsRef = React.createRef()
   }
 
   componentDidMount() {
@@ -47,15 +47,14 @@ class LeaderBoardsScoresCard extends React.Component {
     this.setState({ headerButtonHover: false })
   }
 
-  setButtonRef(node){ this.buttonRef = node }
-  setRowsRef(node){ this.rowsRef = node }
-
   onClickListen = (event) => {
     if(
-      (!!this.rowsRef && !this.rowsRef.contains(event.target)) &&
-      (!!this.buttonRef && !this.buttonRef.contains(event.target)) &&
+      (!!this.rowsRef.current && !this.rowsRef.current.contains(event.target)) &&
+      (!!this.buttonRef.current && !this.buttonRef.current.contains(event.target)) &&
       (event.target.className !== "main_container" && event.target.className !== "header" && event.target.className !== "footer")
-    ) this.setState({ showScores: false })
+    ) {
+      this.setState({ showScores: false })
+    }
   }
 
   onChangePage = (value) => {
@@ -69,7 +68,13 @@ class LeaderBoardsScoresCard extends React.Component {
   onScoresHover = (event) => { event.target.attributes.hover_trigger && this.setState({ [event.target.attributes.hover_trigger.value]: true }) }
   offScoresHover = (event) => { event.target.attributes.hover_trigger && this.setState({ [event.target.attributes.hover_trigger.value]: false }) }
 
-  onDropDown = () => {
+  scrollToSection = () => {
+    this.buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
+  onDropDown = (event) => {
+    if(this.state.showScores) document.body.scrollTop = 0
+    else this.scrollToSection()
     let switchScores = !this.state.showScores
     this.setState({ showScores: switchScores })
   }
@@ -101,7 +106,9 @@ class LeaderBoardsScoresCard extends React.Component {
           onClick={ this.onDropDown }
           onMouseEnter={ this.onScoresHover }
           onMouseLeave={ this.offScoresHover }
-          ref={ this.setButtonRef }
+          // ref={ this.setButtonRef }
+          ref={ this.buttonRef }
+
         >
           <LeaderBoardsSubHeader
             scoresSetName={ this.props.scoresSetName }
@@ -112,8 +119,8 @@ class LeaderBoardsScoresCard extends React.Component {
           />
         </div>
         { this.state.showScores &&
-
-        <div className={ this.state.showScores ? 'leader_boards_row_ref' : 'leader_boards_row_ref_hidden' } ref={ this.setRowsRef }>
+        // <div className={ this.state.showScores ? 'leader_boards_row_ref' : 'leader_boards_row_ref_hidden' } ref={ this.setRowsRef }>
+        <div className={ this.state.showScores ? 'leader_boards_row_ref' : 'leader_boards_row_ref_hidden' } ref={ this.rowsRef }>
           <div className='leader_boards_scores_card_wrapper'>
             { distribScores }
           </div>

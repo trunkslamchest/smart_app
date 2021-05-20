@@ -1,15 +1,10 @@
 .leader_boards_sub_header {
-  position: relative;
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: center;
-  align-content: center;
   width: 100%;
   color: rgba(100, 100, 100, 1);
   background: rgba(255, 255, 255, 1);
-  border: 0px;
   padding: 2.5px 0px 2.5px 5px;
 }
 
@@ -37,11 +32,8 @@
 
 .leader_boards_sub_header_right {
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-end;
   align-items: center;
-  align-content: center;
 }
 
 .leader_boards_sub_header_right h4 {

@@ -5,11 +5,8 @@
 
 .leader_boards_buttons_row_button_container {
   align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: column;
-  justify-content: center;
   border: 0px solid black;
   box-sizing: border-box;
 }
