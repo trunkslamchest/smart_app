@@ -15,6 +15,7 @@ const QuestionContainer = (props) => {
 
   const history = useHistory()
 
+  const [answerState, setAnswerState] = useState(false)
   const [timerState, setTimerState] = useState(false)
   const [enableQuestion, setEnableQuestion] = useState(false)
   const [headerState, setHeaderState] = useState(false)
@@ -44,23 +45,24 @@ const QuestionContainer = (props) => {
 
     return function cleanup(){
       clearTimers()
+      setAnswerState(false)
     }
   }, [play, history, routes])
 
   useEffect(() => {
-    if(play.status === 'displayQuestion' && !timerState) {
+    if(play.status === 'displayQuestion' && !answerState) {
       gameTimerRef.current = setTimeout(() => { setTimerState(true) }, 100)
       headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 2000)
       questionTimerRef.current = setTimeout(() => { setQuestionState(true) }, 3000)
       choicesTimerRef.current = setTimeout(() => { setChoicesState(true) }, 4000)
       enableQuestionTimerRef.current = setTimeout(() => { setEnableQuestion(true) }, 5000)
     }
-  }, [play, timerState, onSetAnswer])
+  }, [play, answerState, onSetAnswer])
 
   const onClickFunction = useCallback((event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     setEnableQuestion(false)
-    setTimerState(false)
+    setAnswerState(true)
     onLoadingModal(true)
     onSetAnswer({ choice: buttonParams.choice, time: parseFloat((10 - buttonParams.time).toFixed(2)) })
   }, [onLoadingModal, onSetAnswer])
@@ -74,7 +76,7 @@ const QuestionContainer = (props) => {
   }
 
   return(
-    timerState && props.play.question &&
+    !answerState && props.play.question &&
     <div className='question_wrapper'>
       <QuestionCard
         answer={ props.play.answer }

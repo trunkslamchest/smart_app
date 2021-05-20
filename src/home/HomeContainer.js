@@ -13,7 +13,7 @@ const HomeContainer = (props) => {
     document.title = "SmartApp™ | Get Your Smart On"
   }, [])
 
-  let homePage
+  let homePage = <></>
 
   if(props.auth.status === 'authValid') {
     homePage = <HomeLoggedInContainer user_name={ !!props.user.info ? props.user.info.user_name : null } />
@@ -21,21 +21,15 @@ const HomeContainer = (props) => {
     homePage = <HomeLoggedOutContainer />
   }
 
-  // return <>{ (!props.auth.loading && !props.modal.loading) && homePage }</>
-  return <>{ !props.auth.loading && homePage }</>
+  return <>{ (!props.auth.loading && !props.modal.loading) && homePage }</>
 }
 
 const store = store => {
   return {
     auth: store.auth,
-    // modal: store.modal,
+    modal: store.modal,
     user: store.user
   }
 }
 
-export default connect(store)(React.memo(HomeContainer, (prevProps, nextProps) => {
-  if(prevProps.auth.loading !== nextProps.auth.loading) {
-    return true
-  }
-  else return false
-}))
+export default connect(store)(HomeContainer)

@@ -136,8 +136,6 @@ const ResultsContainer = (props) => {
       </Switch>
   }
 
-  console.log(props)
-
   return(
     <>
       <DefaultButtonsContainer

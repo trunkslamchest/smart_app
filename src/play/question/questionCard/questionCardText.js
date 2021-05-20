@@ -9,4 +9,4 @@ const QuestionCardText = (props) => {
   )
 }
 
-export default React.memo(QuestionCardText)
+export default QuestionCardText

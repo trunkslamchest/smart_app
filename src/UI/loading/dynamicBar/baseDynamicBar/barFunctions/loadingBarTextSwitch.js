@@ -89,7 +89,9 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'updateQuestionSuccess') barText = 'Updated Question Results'
     if(status === 'updateQuestionTotalsSuccess') barText = 'Updating Question Totals'
     if(status === 'updateUserQuestionsSuccess') barText = 'Revising User Question Totals'
-    if(status === 'setAllResultsSuccess') barText = 'Question Results Validated'
+    if(status === 'setAllResultsSuccess') barText = 'Finalizing Question Results'
+    if(status === 'displayResults') barText = 'Question Results Finalized'
+
   }
 
   if(barType === 'questionVote'){

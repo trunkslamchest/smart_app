@@ -89,7 +89,9 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'updateQuestionSuccess') barClass = 'loading_bar_9'
     if(status === 'updateQuestionTotalsSuccess') barClass = 'loading_bar_12'
     if(status === 'updateUserQuestionsSuccess') barClass = 'loading_bar_15'
-    if(status === 'setAllResultsSuccess') barClass = 'loading_bar_final'
+    if(status === 'setAllResultsSuccess') barClass = 'loading_bar_17'
+    if(status === 'displayResults') barClass = 'loading_bar_final'
+
   }
 
   if(barType === 'questionVote'){

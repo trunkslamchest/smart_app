@@ -38,4 +38,4 @@ const QuestionCardChoices = (props) => {
   )
 }
 
-export default React.memo(QuestionCardChoices)
+export default QuestionCardChoices

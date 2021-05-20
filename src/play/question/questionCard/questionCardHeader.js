@@ -9,4 +9,4 @@ const QuestionCardHeader = (props) => {
   )
 }
 
-export default React.memo(QuestionCardHeader)
+export default QuestionCardHeader

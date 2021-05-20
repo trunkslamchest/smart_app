@@ -10,4 +10,5 @@ const QuestionCardTimer = (props) => {
   )
 }
 
-export default React.memo(QuestionCardTimer)
+export default QuestionCardTimer
+
