@@ -32,6 +32,3 @@ const HomeSubBanner = () => {
 }
 
 export default HomeSubBanner
-
-
-// export default React.memo(HomeSubBanner)

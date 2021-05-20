@@ -33,5 +33,3 @@ const HomeLoggedOutContainer = () => {
 }
 
 export default HomeLoggedOutContainer
-
-// export default React.memo(HomeLoggedOutContainer)

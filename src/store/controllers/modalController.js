@@ -13,15 +13,12 @@ import Help from '../../UI/modal/help/help'
 class ModalController extends React.Component {
 
   state = {
-
   }
 
   componentDidMount(){
-
   }
 
   componentDidUpdate(){
-
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -30,7 +27,6 @@ class ModalController extends React.Component {
   }
 
   componentWillUnmount(){
-
   }
 
   render(){
@@ -64,7 +60,6 @@ class ModalController extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
     modal: store.modal
   }
 }

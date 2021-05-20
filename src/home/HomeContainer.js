@@ -21,39 +21,21 @@ const HomeContainer = (props) => {
     homePage = <HomeLoggedOutContainer />
   }
 
-
-  return <>{ (!props.auth.loading && !props.modal.loading) && homePage }</>
-  // return <HomeLoggedOutContainer />
+  // return <>{ (!props.auth.loading && !props.modal.loading) && homePage }</>
+  return <>{ !props.auth.loading && homePage }</>
 }
 
 const store = store => {
   return {
     auth: store.auth,
-    modal: store.modal,
+    // modal: store.modal,
     user: store.user
   }
 }
 
-// export default HomeContainer
-
-// export default React.memo(HomeContainer)
-
-// export default connect(store)(HomeContainer)
-
-export default React.memo(connect(store)(HomeContainer))
-
-
-// export default React.memo(HomeContainer, (prevProps, nextProps) => {
-//   // console.log(prevProps)
-//   if(prevProps.authLoading !== nextProps.authLoading) {
-//     return true
-//   }
-//   else return false
-// })
-
-// export default connect(store)(React.memo(HomeContainer, (prevProps, nextProps) => {
-//   if(prevProps.authLoading !== nextProps.authLoading) {
-//     return true
-//   }
-//   else return false
-// }))
+export default connect(store)(React.memo(HomeContainer, (prevProps, nextProps) => {
+  if(prevProps.auth.loading !== nextProps.auth.loading) {
+    return true
+  }
+  else return false
+}))

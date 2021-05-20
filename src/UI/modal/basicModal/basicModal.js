@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { basic } from '../../../store/actions/actionIndex'
+import {
+  basic,
+  setBasicModalContent
+} from '../../../store/actions/actionIndex'
 
 import Modal from '../modal'
 
@@ -14,7 +17,7 @@ const BasicModal = (props) => {
 
     return () => {
       clearTimeout(hideModalTimeout)
-      props.switchbasicModalContent(null)
+      props.onSetBasicModalContent(null)
     }
   }, [props])
 
@@ -38,7 +41,8 @@ const store = (store) => {
 
 const dispatch = (dispatch) => {
   return {
-    onBasicModal: (bool) => dispatch(basic(bool))
+    onBasicModal: (bool) => dispatch(basic(bool)),
+    onSetBasicModalContent: (string) => dispatch(setBasicModalContent(string))
   }
 }
 
