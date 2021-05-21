@@ -29,9 +29,6 @@ const DashboardStatsSubContainer = (props) => {
       )
     })
 
-    console.log(distribAnswers)
-
-
     if(!distribAnswers.length)
       statsBlock =
         <>
