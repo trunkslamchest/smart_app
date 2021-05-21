@@ -5,11 +5,7 @@
 
 .edit_profile_modal_input_sub_container {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: center;
-  align-content: center;
-  align-items: center;
 }
 
 .edit_profile_modal_input_sub_container input {

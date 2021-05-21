@@ -9,13 +9,8 @@
 
 .edit_profile_input_sub_container {
   background-color: rgba(255, 255, 255, 1);
-  /* border-radius: 5px 5px 0px 0px; */
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
   padding: 5px 15px;
   width: 100%;
 }
@@ -31,11 +26,7 @@
 .edit_profile_image_sub_container {
   background-color: rgba(255, 255, 255, 1);
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: flex-start;
   align-items: center;
-  padding: 5px 0px;
+  padding: 5px 0px 5px 15px;
   width: 100%;
 }

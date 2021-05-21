@@ -1,13 +1,6 @@
 .dashboard_sub_header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
   width: 100%;
   background-color: rgba(255, 255, 255, 1);
-  border: 0px;
   color: rgba(50, 50, 50, 1);
   padding: 5px;
 }

@@ -1,14 +1,3 @@
-.dashboard_profile_field {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
-  margin: 0px 0px 0px 0px;
-  width: 100%;
-}
-
 .dashboard_profile_field h3 {
   color: rgba(50, 50, 50, 1);
   font: 300 12pt 'PoppinsLight', sans-serif;
@@ -19,9 +8,6 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: flex-start;
   align-items: flex-start;
   padding: 5px 5px 5px 15px;
   margin: 0px;
@@ -31,25 +17,19 @@
 
 .dashboard_profile_field li {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
   padding: 5px 0px 5px 0px;
   color: rgba(255, 255, 255, 1);
   font: 300 10pt 'Lato', sans-serif;
 }
 
 .dashboard_profile_field li span {
-  align-self: stretch;
   color: rgba(50, 50, 50, 1);
   font: 300 9pt "Roboto", sans-serif;
   margin: 0px 0px 0px 17.5px;
 }
 
 .dashboard_profile_country_flag {
-  margin-right: 5px;
+  margin-right: -10px;
   align-self: center;
   height: 11px;
   width: 16px;

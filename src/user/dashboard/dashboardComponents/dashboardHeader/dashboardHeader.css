@@ -1,11 +1,4 @@
 .dashboard_header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
-  width: 100%;
   border: 0px;
   color: rgba(255, 255, 255, 1);
   border-radius: 5px 5px 0px 0px;

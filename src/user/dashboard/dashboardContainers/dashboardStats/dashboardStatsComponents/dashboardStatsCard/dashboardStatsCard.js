@@ -26,19 +26,16 @@ class DashboardStatsCard extends React.Component {
 
   constructor(props) {
     super(props)
-    this.setButtonRef = this.setButtonRef.bind(this)
-    this.setStatsRef = this.setStatsRef.bind(this)
+    this.buttonRef = React.createRef()
+    this.statsRef = React.createRef()
   }
 
   componentDidMount() { document.addEventListener('click', this.onClickListen) }
   componentWillUnmount() { document.removeEventListener('click', this.onClickListen) }
 
-  setButtonRef(node){ this.buttonRef = node }
-  setStatsRef(node){ this.statsRef = node }
-
   onClickListen = (event) => {
-    if((!!this.statsRef && !this.statsRef.contains(event.target)) &&
-      (!!this.buttonRef && !this.buttonRef.contains(event.target)) &&
+    if((!!this.statsRef.current && !this.statsRef.current.contains(event.target)) &&
+      (!!this.buttonRef.current && !this.buttonRef.current.contains(event.target)) &&
       (event.target.nodeName === "BUTTON" || event.target.nodeName === "IMG" || event.target.nodeName === "SPAN" || event.target.nodeName === "H3" || event.target.nodeName === "DIV") &&
       event.target.className !== "main_container" &&
       event.target.parentNode.className.split("_")[0] === 'stats'
@@ -48,7 +45,11 @@ class DashboardStatsCard extends React.Component {
   onStatHover = (event) => { event.target.attributes.hover_trigger && this.setState({ [event.target.attributes.hover_trigger.value]: true }) }
   offStatHover = (event) => { event.target.attributes.hover_trigger && this.setState({ [event.target.attributes.hover_trigger.value]: false }) }
 
+  scrollToSection = () => { this.buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' }) }
+
   onDropDown = () => {
+    if(this.state.showStats) document.body.scrollTop = 0
+    else this.scrollToSection()
     let switchStats = !this.state.showStats
     this.setState({ showStats: switchStats })
   }
@@ -113,7 +114,7 @@ class DashboardStatsCard extends React.Component {
           <button
             className={ this.state.showStats ? "stats_card_header_button_active" : "stats_card_header_button" }
             hover_trigger="headerButtonHover"
-            ref={ this.setButtonRef }
+            ref={ this.buttonRef }
             onClick={ this.onDropDown }
             onMouseEnter={ this.onStatHover }
             onMouseLeave={ this.offStatHover }
@@ -122,7 +123,7 @@ class DashboardStatsCard extends React.Component {
             { header_menu_arrow }
           </button>
           { this.state.showStats &&
-            <div className="stats_card_wrapper" ref={ this.setStatsRef }>
+            <div className="stats_card_wrapper" ref={ this.statsRef }>
               <div className='stats_card_header'>
                 { this.headerCards() }
               </div>
