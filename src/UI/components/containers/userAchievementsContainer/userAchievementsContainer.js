@@ -11,15 +11,15 @@ const UserAchievementsContainer = (props) => {
 
   let distribUnlockedAchievements, distribLockedAchievements, achievementsBlock, headerText, headerText2
 
-  if(props.achievements.totals.all && props.user.achievements){
+  if(props.achievements.totals.all && props.userAchievements){
 
     let allAchievements = Object.entries(props.achievements.all)
 
     headerText = 'Achievements'
 
-    if(props.user.achievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>{ props.user.info.user_name } hasn't unlocked any achievements yet</h3>
+    if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>{ props.userName } hasn't unlocked any achievements yet</h3>
     else {
-      let unlockedAchievements = allAchievements.filter(achievement => props.user.achievements.unlocked.includes(achievement[0]))
+      let unlockedAchievements = allAchievements.filter(achievement => props.userAchievements.unlocked.includes(achievement[0]))
       distribUnlockedAchievements = unlockedAchievements.map((achievement, index) => {
         return (
           <UserAchievementCard
@@ -35,10 +35,10 @@ const UserAchievementsContainer = (props) => {
     if(props.from_dashboard){
       headerText = 'Unlocked'
       headerText2 = 'Locked'
-      if(props.user.achievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
-      if(props.user.achievements.unlocked.length === props.achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
+      if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
+      if(props.userAchievements.unlocked.length === props.achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
       else {
-        let lockedAchievements = allAchievements.filter(achievement => !props.user.achievements.unlocked.includes(achievement[0]))
+        let lockedAchievements = allAchievements.filter(achievement => !props.userAchievements.unlocked.includes(achievement[0]))
         distribLockedAchievements = lockedAchievements.map((achievement, index) => {
           return (
             <UserAchievementCard
@@ -55,8 +55,8 @@ const UserAchievementsContainer = (props) => {
     achievementsBlock =
     <div className='user_achievements_container'>
       <div className='user_achievements_wrapper'>
-        { props.from_dashboard && <ContainerHeader header_text={ headerText } sub_text={ `${props.user.achievements.total}/${props.achievements.totals.all}` } /> }
-        { !props.from_dashboard && <ContainerHeader header_text={ headerText } sub_text={ `${props.user.achievements.total}/${props.achievements.totals.all}` } /> }
+        { props.from_dashboard && <ContainerHeader header_text={ headerText } sub_text={ `${props.userAchievements.total}/${props.achievements.totals.all}` } /> }
+        { !props.from_dashboard && <ContainerHeader header_text={ headerText } sub_text={ `${props.userAchievements.total}/${props.achievements.totals.all}` } /> }
         <div className='divider_left' />
         <div className='user_achievements_sub_container'>
           { distribUnlockedAchievements }
@@ -66,7 +66,7 @@ const UserAchievementsContainer = (props) => {
       { props.from_dashboard &&
         <>
           <div className='user_achievements_wrapper'>
-            <ContainerHeader header_text={ headerText2 } sub_text={ `${props.achievements.totals.all - props.user.achievements.total}/${props.achievements.totals.all}` } />
+            <ContainerHeader header_text={ headerText2 } sub_text={ `${props.achievements.totals.all - props.userAchievements.total}/${props.achievements.totals.all}` } />
             <div className='divider_left' />
             <div className='user_achievements_sub_container'>
               { distribLockedAchievements }
@@ -88,7 +88,8 @@ const UserAchievementsContainer = (props) => {
 const store = (store) => {
   return {
     achievements: store.achievements,
-    user: store.user
+    userAchievements: store.profile.userData ? store.profile.userData.achievements : store.user.achievements,
+    userName: store.profile.userData ? store.profile.userData.info.user_name : store.user.info.user_name,
   }
 }
 

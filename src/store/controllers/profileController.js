@@ -30,21 +30,21 @@ class ProfileController extends React.Component {
     let user_name = parseLocation[parseLocation.length - 1]
     document.title = `SmartApp™ | ${ user_name }'s Profile`
     this.setState({ user_name: user_name })
-    if(!this.props.profile.status && !this.props.profile.userData) this.initProfileModule()
+    if(!this.props.profileStatus && !this.props.profileData) this.initProfileModule()
   }
 
   componentDidUpdate() {
-    if(this.props.profile.status === 'initUserProfile' && !this.props.profile.userData) this.getSmartsModule()
-    if(this.props.auth.smartCache && this.props.profile.status === 'getSmarts' && !this.props.profile.userData) this.storeUserProfileModule(this.props.auth.smartCache.user)
-    if(this.props.auth.smartCache && this.props.profile.status === 'storeUserData' && !this.props.questions.totals) this.storeQuestionTotalsModule(this.props.auth.smartCache.questionTotals)
-    if(this.props.auth.smartCache && this.props.profile.status === 'storeQuestionTotals' && this.props.questions.totals && !this.props.achievements.all) this.storeAchievementsModule(this.props.auth.smartCache.achievements)
-    if(this.props.auth.smartCache && this.props.profile.userData && this.props.questions.totals && this.props.achievements.all && !this.state.displayProfile) this.displayProfileModule()
+    if(this.props.profileStatus === 'initUserProfile' && !this.props.profileData) this.getSmartsModule()
+    if(this.props.smartCache && this.props.profileStatus === 'getSmarts' && !this.props.profileData) this.storeUserProfileModule(this.props.smartCache.user)
+    if(this.props.smartCache && this.props.profileStatus === 'storeUserData' && !this.props.questionTotals) this.storeQuestionTotalsModule(this.props.smartCache.questionTotals)
+    if(this.props.smartCache && this.props.profileStatus === 'storeQuestionTotals' && this.props.questionTotals && !this.props.achievements) this.storeAchievementsModule(this.props.smartCache.achievements)
+    if(this.props.smartCache && this.props.profileData && this.props.questionTotals && this.props.achievements && !this.state.displayProfile) this.displayProfileModule()
   }
 
   shouldComponentUpdate(nextProps, nextState){
     let render = false
-    if(this.props.modal.loading || this.props.profile.loading ||
-        nextProps.modal.loading || nextProps.profile.loading ) {
+    if(this.props.loadingModal || this.props.profileLoading ||
+        nextProps.loadingModal || nextProps.profileLoading ) {
         render = true
       }
     return render
@@ -97,12 +97,10 @@ class ProfileController extends React.Component {
     return(
       <>
         {
-          this.props.profile.status === 'displayProfile' &&
-          !this.props.profile.loading &&
-          !this.props.modal.loading &&
-            <UserProfileContainer
-              userData={ this.props.profile.userData }
-            />
+          this.props.profileStatus === 'displayProfile' &&
+          !this.props.profileLoading &&
+          !this.props.loadingModal &&
+          <UserProfileContainer userData={ this.props.profileData } />
         }
       </>
     )
@@ -112,11 +110,13 @@ class ProfileController extends React.Component {
 
 const store = (store) => {
   return {
-    achievements: store.achievements,
-    auth: store.auth,
-    modal: store.modal,
-    questions: store.questions,
-    profile: store.profile
+    achievements: store.achievements.all,
+    smartCache: store.auth.smartCache,
+    loadingModal: store.modal.loading,
+    questionTotals: store.questions.totals,
+    profileData: store.profile.userData,
+    profileStatus: store.profile.status,
+    profileLoading: store.profile.loading
   }
 }
 
