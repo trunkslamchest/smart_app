@@ -25,15 +25,7 @@
 }
 
 .results_all_comments {
-  align-content: center;
-  align-items: baseline;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0px auto;
   padding: 15px 0px 0px 0px;
-  width: 100%;
 }
 
 .results_all_comments h3 {
@@ -76,11 +68,8 @@
 }
 
 .results_all_comments_comment_header {
-  align-content: center;
   align-items: flex-end;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: space-between;
   min-width: 100%;
   max-width: 100%;

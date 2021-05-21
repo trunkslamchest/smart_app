@@ -1,10 +1,17 @@
+.completed_button_container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+  margin: 5px;
+  height: 100%;
+  min-width: 250px;
+}
+
 .completed_button {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));
   border: 0px solid black;
   border-radius: 5px;
@@ -12,68 +19,52 @@
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
   font: 300 12pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
-  margin: 5px;
+  margin: 0px;
+  min-width: 150px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
+  width: 100%;
 }
 
 .completed_button_active {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   border: 0px solid black;
   border-radius: 5px;
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  font: 600 12pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
-  margin: 5px;
+  font: 300 12pt 'PoppinsLight', sans-serif;
+  margin: 0px;
+  min-width: 150px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
+  width: 100%;
 }
 
 .completed_button_disabled {
-  -webkit-appearance: none;
-  align-items: center;
   background: rgba(174,174,174, 0);
-  border: 0px solid black;
-  box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
-  cursor: default;
-  display: flex;
-  font: 600 12pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
-  margin: 5px;
+  -webkit-appearance: none;
+  border: 0px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font: 300 12pt 'PoppinsLight', sans-serif;
+  margin: 0px;
+  min-width: 150px;
   padding: 10px 20px;
-  opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
+  width: 100%;
 }
 
 .completed_button:hover,
@@ -83,7 +74,7 @@
   border: 0px solid black;
   box-sizing: border-box;
   font: 600 12pt 'PoppinsLight', sans-serif;
-  margin: 5px;
+  min-width: 150px;
   transition: background-color, border-radius .2s ease-in-out 0s;
 }
 
@@ -96,7 +87,6 @@
 .completed_button span,
 .completed_button_active span {
   align-self: stretch;
-  text-align: center;
 }
 
 .completed_button:active span,

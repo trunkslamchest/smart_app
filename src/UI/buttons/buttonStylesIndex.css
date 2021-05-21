@@ -1,17 +1,10 @@
 @import url('./buttonStyles/addCommentButton.css');
-@import url('./buttonStyles/catButton.css');
 @import url('./buttonStyles/completedButton.css');
-@import url('./buttonStyles/containerProfileHeaderButton.css');
-@import url('./buttonStyles/dashboardFormButton.css');
-@import url('./buttonStyles/dashboardProfileHeaderButton.css');
 @import url('./buttonStyles/dashboardStatsViewQuestionButton.css');
 @import url('./buttonStyles/defaultButtons/defaultButtons.css');
 @import url('./buttonStyles/defaultButton.css');
 @import url('./buttonStyles/defaultButtonAlt.css');
-@import url('./buttonStyles/diffButton.css');
 @import url('./buttonStyles/editCommentButton.css');
-@import url('./buttonStyles/editCommentFormButton.css');
-@import url('./buttonStyles/editProfileButton.css');
 @import url('./buttonStyles/footerLogoButton.css');
 @import url('./buttonStyles/footerLink.css');
 @import url('./buttonStyles/gameModesButton.css');
@@ -22,7 +15,6 @@
 @import url('./buttonStyles/headerProfileButton.css');
 @import url('./buttonStyles/homeButton.css');
 @import url('./buttonStyles/homeLoggedInButton.css');
-@import url('./buttonStyles/homeStartButton.css');
 @import url('./buttonStyles/menuButton.css');
 @import url('./buttonStyles/modalButton.css');
 @import url('./buttonStyles/modalHelpButton.css');

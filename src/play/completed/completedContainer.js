@@ -66,6 +66,7 @@ const CompletedContainer = (props) => {
       <div className='divider_medium' />
       <DefaultButtonsContainer
         buttons={ completedButtons }
+        buttonContainerClass={ 'completed_button_container' }
         containerClass={ 'completed_buttons_container' }
         enableButton={ true }
       />

@@ -1,10 +1,4 @@
 .footer_link_container {
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: center;
   border: 0px solid black;
   box-sizing: border-box;
   height: 100%;
@@ -12,37 +6,24 @@
 
 .footer_link {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   background: rgba(50, 50, 50, 1);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgba(235, 235, 235, 1);
   cursor: pointer;
   font: 300 9pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
   margin: 0px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
 }
 
 .footer_link_active {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
   border-radius: 5px;
@@ -50,43 +31,29 @@
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
   font: 300 9pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
   margin: 0px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
   text-align: center;
   text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
 }
 
 .footer_link_disabled {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   background: rgba(174,174,174, 0);
   border: 0px solid black;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
   font: 100 9pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
   margin: 0px;
   opacity: 0;
   outline: -webkit-focus-ring-color auto 0px;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
 }
 

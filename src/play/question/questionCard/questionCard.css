@@ -7,10 +7,7 @@
   padding: 15px 0px 0px 0px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
-  align-content: center;
 }
 
 .question_card_timer h2 {
@@ -38,10 +35,7 @@
   padding: 10px 0px 0px 0px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
-  align-content: center;
 }
 
 .question_card_header span {
@@ -56,10 +50,6 @@
   padding: 10px 15px 0px 15px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 .question_card_text span {
   font-family: 'Lato';
@@ -75,10 +65,7 @@
   margin: 0px 1px 0px 1px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  align-content: center;
   padding: 15px 0px 0px 0px;
 }
 
@@ -87,9 +74,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  align-content: center;
   padding: 15px 0px 20px 0px;
   width: 75%;
 }

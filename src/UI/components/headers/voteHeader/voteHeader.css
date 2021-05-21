@@ -1,10 +1,6 @@
 .vote_buttons_header {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
   background: rgba(0, 0, 51, 1);
   border: 0px;
   border-radius: 5px 5px 0px 0px;
@@ -15,11 +11,7 @@
 
 .vote_stats_header {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
   background: rgba(0, 0, 51, 1);
   border: 0px;
   border-radius: 5px 5px 0px 0px;
@@ -30,11 +22,6 @@
 
 .vote_header_wrapper {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
   width: 80%;
 }
 
@@ -55,12 +42,6 @@
 }
 
 .vote_header_right {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
-  align-content: center;
   flex-shrink: 1;
 }
 

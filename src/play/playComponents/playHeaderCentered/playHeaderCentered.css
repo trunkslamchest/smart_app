@@ -10,16 +10,15 @@
 .play_header_centered_text_container {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  text-align: center;
 }
 
 .play_header_centered_text_container h1 {
   align-self: center;
   display: flex;
-  font: 300 18pt "PoppinsLight";
+  font-family: 'PoppinsLight';
+  font-size: 18pt;
+  font-weight: 300;
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-inline-start: 0em;

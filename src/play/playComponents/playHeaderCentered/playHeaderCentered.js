@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './playHeaderCentered.css'
+import './playHeaderCenteredResponse.css'
 
 const PlayHeaderCentered = (props) => {
 
