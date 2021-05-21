@@ -20,8 +20,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
-  align-content: center;
   padding: 0px 0px;
   width: 100%;
 }
@@ -37,27 +35,3 @@
   padding: 15px 0px 15px 30px;
   width: 100%;
 }
-.user_achievements_header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  width: 100%;
-  border: 0px;
-  color: rgba(255, 255, 255, 1);
-}
-
-.user_achievements_header h3 {
-  font: 600 15pt "LatoThin";
-  padding: 5px 0px 5px 10px;
-  text-align: center;
-}
-
-.user_achievements_header span {
-  font: 300 9pt 'LatoItalic';
-  padding: 5px 10px 5px 0px;
-  text-align: center;
-}
-

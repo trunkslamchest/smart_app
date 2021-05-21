@@ -9,7 +9,7 @@
   .user_stats_total_sub_container {
     order: 2;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: inherit;
     width: 100%;
   }
 

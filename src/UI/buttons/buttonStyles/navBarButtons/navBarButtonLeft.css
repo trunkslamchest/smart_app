@@ -1,52 +1,30 @@
 .nav_bar_button_left {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
   background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));
   border: 0px solid black;
   border-radius: 5px 0px 0px 0px;
   box-sizing: border-box;
-  color: rgba(235, 235, 235, 1);
   cursor: pointer;
-  letter-spacing: normal;
   margin: 0px;
   padding: 10px 30px;
   outline: -webkit-focus-ring-color auto 0px;
-  text-align: center;
-  text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
 }
 
 .nav_bar_button_left_active {
   -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
   background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
   border: 0px solid black;
   border-radius: 5px 0px 0px 0px;
   box-sizing: border-box;
-  color: rgba(50, 50, 50, 1);
   cursor: pointer;
-  letter-spacing: normal;
   margin: 0px;
   padding: 10px 30px;
   outline: -webkit-focus-ring-color auto 0px;
-  text-align: center;
-  text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
   word-spacing: normal;
 }
 

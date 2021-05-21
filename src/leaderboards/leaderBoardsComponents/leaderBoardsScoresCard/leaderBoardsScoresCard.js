@@ -68,11 +68,9 @@ class LeaderBoardsScoresCard extends React.Component {
   onScoresHover = (event) => { event.target.attributes.hover_trigger && this.setState({ [event.target.attributes.hover_trigger.value]: true }) }
   offScoresHover = (event) => { event.target.attributes.hover_trigger && this.setState({ [event.target.attributes.hover_trigger.value]: false }) }
 
-  scrollToSection = () => {
-    this.buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
+  scrollToSection = () => { this.buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' }) }
 
-  onDropDown = (event) => {
+  onDropDown = () => {
     if(this.state.showScores) document.body.scrollTop = 0
     else this.scrollToSection()
     let switchScores = !this.state.showScores

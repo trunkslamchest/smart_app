@@ -35,19 +35,17 @@ const UserProfileHeader = (props) => {
     </div>
 
   return(
-    <div className="user_profile_header_container">
-      <ContainerProfileHeader
-        avatar={ !!props.info.avatar && props.info.avatar }
-        user_name={ props.info.user_name }
-        first_name={ first_name }
-        last_name={ last_name }
-        country={ country }
-        gender={ gender }
-        gender_pronouns={ gender_pronouns }
-        age={ age }
-        date_block={ date_block }
-      />
-    </div>
+    <ContainerProfileHeader
+      avatar={ !!props.info.avatar && props.info.avatar }
+      user_name={ props.info.user_name }
+      first_name={ first_name }
+      last_name={ last_name }
+      country={ country }
+      gender={ gender }
+      gender_pronouns={ gender_pronouns }
+      age={ age }
+      date_block={ date_block }
+    />
   )
 }
 
