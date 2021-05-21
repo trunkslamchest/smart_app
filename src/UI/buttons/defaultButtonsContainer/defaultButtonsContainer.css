@@ -38,12 +38,6 @@
 }
 
 .home_logged_in_buttons_container {
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: center;
   padding: 0px;
   margin: 0px;
 }
@@ -56,36 +50,8 @@
   display: flex;
 }
 
-.modal_button_container {
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0px;
-  margin: 0px;
-}
-
-.modal_help_button_container {
-  align-items: center;
-  align-content: center;
-  border-radius: 0px 0px 5px 5px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0px;
-  margin: 0px;
-  width: 50%;
-}
-
 .modal_help_buttons_container {
-  align-items: center;
-  align-content: center;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
   justify-content: center;
   margin: 10px 0px 10px 0px;
 }
@@ -114,17 +80,6 @@
   padding: 15px 0px;
 }
 
-.container_profile_header_buttons_container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  margin: 0em auto;
-  padding: 0em;
-}
-
 .completed_buttons_container {
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   align-items: center;
@@ -151,7 +106,6 @@
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   margin: 0px 1px 0px 1px;
   padding: 15px 0px 15px 0px;
-
 }
 
 .game_modes_buttons_container {
