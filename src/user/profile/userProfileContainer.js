@@ -22,31 +22,11 @@ const UserProfileContainer = (props) => {
   } else {
     userProfileBlock =
       <div className="user_profile_wrapper">
-        <UserProfileHeader
-          info={ props.userData.info }
-        />
+        <UserProfileHeader info={ props.userData.info } />
         <div className='user_profile_body_wrapper'>
-          { props.userData.settings.privacy.profile.showBio &&
-            <UserProfileInfoContainer
-              bio={ props.userData.info.bio }
-            />
-          }
-          { props.userData.settings.privacy.profile.showStats &&
-            <UserStatsContainer
-              from_dashboard={ false }
-              question_totals={ props.questionTotals }
-              user_questions={ props.userData.questions }
-              user_experience={ props.userData.experience }
-            />
-          }
-          { props.userData.settings.privacy.profile.showAchievements &&
-            <UserAchievementsContainer
-              all_achievements={ props.achievements }
-              from_dashboard={ false }
-              user_name={ props.userData.info.user_name }
-              user_achievements={ props.userData.achievements }
-            />
-          }
+          { props.userData.settings.privacy.profile.showBio && <UserProfileInfoContainer bio={ props.userData.info.bio } /> }
+          { props.userData.settings.privacy.profile.showStats && <UserStatsContainer from_dashboard={ false } /> }
+          { props.userData.settings.privacy.profile.showAchievements && <UserAchievementsContainer from_dashboard={ false } /> }
           { (props.userData.settings.privacy.profile.showVotes && !!props.userData.votes.total ) &&
             <VoteContainer
               enableVoteButtons={ false }
@@ -56,10 +36,7 @@ const UserProfileContainer = (props) => {
               voteProps={ props.userData.votes }
             />
           }
-          { (props.userData.settings.privacy.profile.showComments && !!props.userData.comments.length) &&
-            <UserProfileCommentsContainer
-              questions={ props.userData.comments }
-            />}
+          { (props.userData.settings.privacy.profile.showComments && !!props.userData.comments.length) && <UserProfileCommentsContainer questions={ props.userData.comments } />}
         </div>
       </div>
   }
@@ -68,8 +45,6 @@ const UserProfileContainer = (props) => {
 }
 
 export default React.memo(UserProfileContainer, (prevProps, nextProps) => {
-  if(prevProps.modal.loading === nextProps.modal.loading) {
-    return true
-  }
+  if(prevProps.modal.loading === nextProps.modal.loading)  return true
   else return false
 })

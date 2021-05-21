@@ -101,8 +101,6 @@ class ProfileController extends React.Component {
           !this.props.profile.loading &&
           !this.props.modal.loading &&
             <UserProfileContainer
-              achievements={ this.props.achievements }
-              questionTotals={ this.props.questions.totals }
               userData={ this.props.profile.userData }
             />
         }

@@ -75,23 +75,13 @@ const Dashboard = (props) => {
               <DashboardEditProfileContainer />
             </Route>
             <Route exact path={ routes.dashboard_stats }>
-              <DashboardStatsContainer
-                question_totals={ props.questions.totals }
-                user_questions={ props.user.questions.totals }
-                user_experience={ props.user.experience }
-              />
+              <DashboardStatsContainer />
             </Route>
             <Route exact path={ routes.dashboard_achievements }>
-              <UserAchievementsContainer
-                all_achievements={ props.achievements }
-                from_dashboard={ true }
-                user_achievements={ props.user.achievements }
-              />
+              <UserAchievementsContainer from_dashboard={ true } />
             </Route>
             <Route exact path={ routes.dashboard_settings }>
-              <DashboardSettingsContainer
-                // switchbasicModalContent={ props.switchbasicModalContent }
-              />
+              <DashboardSettingsContainer />
             </Route>
           </Switch>
         </div>
@@ -103,11 +93,8 @@ const Dashboard = (props) => {
 
 const store = (store) => {
   return {
-    achievements: store.achievements,
     auth: store.auth,
-    modal: store.modal,
-    questions: store.questions,
-    user: store.user
+    modal: store.modal
   }
 }
 
@@ -119,7 +106,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(React.memo(Dashboard, (prevProps, nextProps) => {
-  if(prevProps.user === nextProps.user) return true
-  else return false
-}))
+export default connect(store, dispatch)(Dashboard)
