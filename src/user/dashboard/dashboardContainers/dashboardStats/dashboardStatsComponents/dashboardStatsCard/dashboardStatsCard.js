@@ -48,8 +48,9 @@ class DashboardStatsCard extends React.Component {
   scrollToSection = () => { this.buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' }) }
 
   onDropDown = () => {
-    if(this.state.showStats) document.body.scrollTop = 0
-    else this.scrollToSection()
+    // if(this.state.showStats) document.body.scrollTop = 0
+    // else this.scrollToSection()
+    this.scrollToSection()
     let switchStats = !this.state.showStats
     this.setState({ showStats: switchStats })
   }
@@ -89,6 +90,7 @@ class DashboardStatsCard extends React.Component {
   }
 
   render(){
+
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
 
@@ -99,7 +101,7 @@ class DashboardStatsCard extends React.Component {
     if(typeof this.props.answers === 'string') {
       statsCardBlock =
         <div className="stats_card_no_answers_container">
-          <h3>{ this.props.cat || this.props.diff }</h3>
+          <h3>{ this.props.qSubSet }</h3>
           <div className="stats_card_no_answers_left_container">
             { header_menu_arrow_disabled }
           </div>
@@ -119,7 +121,7 @@ class DashboardStatsCard extends React.Component {
             onMouseEnter={ this.onStatHover }
             onMouseLeave={ this.offStatHover }
           >
-            <h3>{ this.props.cat || this.props.diff }</h3>
+            <h3>{ this.props.qSubSet }</h3>
             { header_menu_arrow }
           </button>
           { this.state.showStats &&
@@ -129,9 +131,8 @@ class DashboardStatsCard extends React.Component {
               </div>
               <DashboardStatsAnswersContainer
                 answers={ this.props.answers }
-                diff={ this.props.diff ? this.props.diff : null }
-                cat={ this.props.cat ? this.props.cat : null }
                 qSet={ this.props.qSet }
+                qSubSet={ this.props.qSubSet }
               />
             </div>
           }

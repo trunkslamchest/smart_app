@@ -93,7 +93,7 @@ const makeDashboardHelpSections = [
           `If you have answered questions for a specific difficulty or category,
            you can click on it and view information on each question you have answered.
            If you have not answered questions for a specific difficulty or category,
-           it will be greyed out and you will not be able to click on it.`,
+           it will not be displayed until you have answered a question from that difficulty or category.`,
           `You can only view questions you have answered, so the more questions you answer, the more questions you can view.`,
           `You can also click on the 'View Question' button for each question you have answered to view even more detailed statistics for each question,
            or to go back and vote/comment on a question you might have missed.`,

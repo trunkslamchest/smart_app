@@ -8,14 +8,14 @@ const DashboardStatsAnswersContainer = (props) => {
 
   let answers = Object.entries(props.answers)
 
-  let distribAnswers = answers.map((questions, index) => {
+  let distribAnswers = answers.map((question, index) => {
     return(
       <DashboardStatsAnswerCard
-        answer={ questions[1] }
-        diff={ !!props.cat ? questions[1].difficulty : props.diff }
-        cat={ !!props.diff ? questions[1].category : props.cat }
+        answer={ question[1] }
+        diff={ question[1].difficulty.toLowerCase() }
+        cat={ question[1].category.toLowerCase() }
         key={ index }
-        qid={ questions[0] }
+        qid={ question[0] }
       />
     )
   })

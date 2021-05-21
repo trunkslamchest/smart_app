@@ -17,7 +17,7 @@ const UserAchievementsContainer = (props) => {
 
     headerText = 'Achievements'
 
-    if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>{ props.userName } hasn't unlocked any achievements yet</h3>
+    if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>{ props.userName } has not unlocked any achievements yet</h3>
     else {
       let unlockedAchievements = allAchievements.filter(achievement => props.userAchievements.unlocked.includes(achievement[0]))
       distribUnlockedAchievements = unlockedAchievements.map((achievement, index) => {
@@ -35,7 +35,7 @@ const UserAchievementsContainer = (props) => {
     if(props.from_dashboard){
       headerText = 'Unlocked'
       headerText2 = 'Locked'
-      if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You haven't unlocked any achievements yet</h3>
+      if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You have not unlocked any achievements yet</h3>
       if(props.userAchievements.unlocked.length === props.achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
       else {
         let lockedAchievements = allAchievements.filter(achievement => !props.userAchievements.unlocked.includes(achievement[0]))

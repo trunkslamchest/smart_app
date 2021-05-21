@@ -2,9 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 
 import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
-import DashboardStatsDifficultyContainer from './dashboardStatsDifficulty/dashboardStatsDifficultyContainer'
-import DashboardStatsCategoryContainer from './dashboardStatsCategory/dashboardStatsCategoryContainer'
-
+import DashboardStatsSubContainer from './dashboardStatsSubContainer/dashboardStatsSubContainer'
 import UserStatsContainer from '../../../../UI/components/containers/userStatsContainer/userStatsContainer'
 
 import './dashboardStats.css'
@@ -18,9 +16,9 @@ const DashboardStatsContainer = () => {
     <div className='dashboard_stats_container'>
       <DashboardHeader header_text={ 'Statistics' } />
       <UserStatsContainer from_dashboard={ true } />
-      <DashboardStatsDifficultyContainer />
+      <DashboardStatsSubContainer qSet='difficulty' headerText='Difficulties' />
       <div className='divider_medium' />
-      <DashboardStatsCategoryContainer />
+      <DashboardStatsSubContainer qSet='category' headerText='Categories' />
     </div>
   )
 }
