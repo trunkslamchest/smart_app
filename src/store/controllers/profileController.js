@@ -53,7 +53,6 @@ class ProfileController extends React.Component {
   componentWillUnmount() {
     this.props.onUpdateUserProfileStatus(null)
     this.props.onClearUserProfile()
-    this.props.onClearAchievements()
     this.setState({ user_name: '' })
   }
 
