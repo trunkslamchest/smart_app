@@ -204,6 +204,7 @@ exports.getSmarts = functions
         questionTotals: db.questions.totals
       }
 
+      // setTimeout(() => { res.json(resObj).status(200) }, 5000)
       res.json(resObj).status(200)
     });
 });
@@ -404,7 +405,9 @@ exports.getOverallLeaderBoards = functions
 
     firebase.database().ref('/users/list').orderByChild('/questions/totals/all/rating').once('value', function(){})
     .then((resObj) => {
+
       resObj.forEach(function(snap) {
+        // console.log(snap.val())
         var uid = snap.key, userData = snap.val()
         // if(userData.questions.totals.all.answered >= 5 && userData.questions.totals.all.rating > 0.5) {
         if(userData.questions.totals.all.answered >= 0) {
@@ -537,7 +540,7 @@ exports.quickQuestion = functions
         }
       }
       // }
-
+      // setTimeout(() => { res.json(question).status(200) }, 5000)
       res.json(question).status(200)
       // res.json({ message: 'done' }).status(200);
     })
@@ -746,35 +749,61 @@ exports.questionResults = functions
       calcUserTotalsObj = {
         ...reqData.userTotals.all,
         answered: reqData.userTotals.all.answered + 1,
-        avg_time: reqData.userTotals.all.avg_time === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.all.avg_time) + reqData.time) / 2.00).toFixed(2)),
         correct: calcResult === 'Correct' ? reqData.userTotals.all.correct + 1 : reqData.userTotals.all.correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.all.incorrect + 1 : reqData.userTotals.all.incorrect,
         one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.all.one_sec + 1 : reqData.userTotals.all.one_sec,
-        outta_times: calcResult === 'Outta Time' ? reqData.userTotals.all.outta_times + 1 : reqData.userTotals.all.outta_times,
-        rating: reqData.userTotals.all.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
-        rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
+        outta_time: calcResult === 'Outta Time' ? reqData.userTotals.all.outta_time + 1 : reqData.userTotals.all.outta_time,
+        rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))),
+        rating: reqData.userTotals.all.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
+      }
+
+      calcUserTotalsObj.averages = {
+        ...reqData.userTotals.all.averages,
+        avgTime: reqData.userTotals.all.averages.avgTime === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.all.averages.avgTime) + reqData.time) / 2.00).toFixed(2)),
+        correct: parseFloat(((parseFloat(calcUserTotalsObj.correct) / calcUserTotalsObj.answered) * 100).toFixed(2)),
+        incorrect: parseFloat(((parseFloat(calcUserTotalsObj.incorrect) / calcUserTotalsObj.answered) * 100).toFixed(2)),
+        outta_time: parseFloat(((parseFloat(calcUserTotalsObj.outta_time) / calcUserTotalsObj.answered) * 100).toFixed(2)),
+        rating: parseFloat(((parseFloat(calcUserTotalsObj.rating) / calcUserTotalsObj.answered)).toFixed(2))
       }
 
       calcUserDiffTotalsObj = {
+        ...reqData.userTotals.difficulty[reqData.difficulty],
         answered: reqData.userTotals.difficulty[reqData.difficulty].answered + 1,
-        avg_time: reqData.userTotals.difficulty[reqData.difficulty].avg_time === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].avg_time) + reqData.time) / 2.00).toFixed(2)),
         correct: calcResult === 'Correct' ? reqData.userTotals.difficulty[reqData.difficulty].correct + 1 : reqData.userTotals.difficulty[reqData.difficulty].correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.difficulty[reqData.difficulty].incorrect + 1 : reqData.userTotals.difficulty[reqData.difficulty].incorrect,
         one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.difficulty[reqData.difficulty].one_sec + 1 : reqData.userTotals.difficulty[reqData.difficulty].one_sec,
-        outta_times: calcResult === 'Outta Time' ? reqData.userTotals.difficulty[reqData.difficulty].outta_times + 1 : reqData.userTotals.difficulty[reqData.difficulty].outta_times,
-        rating: reqData.userTotals.difficulty[reqData.difficulty].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
-        rank: reqData.userTotals.difficulty[reqData.difficulty].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
+        outta_time: calcResult === 'Outta Time' ? reqData.userTotals.difficulty[reqData.difficulty].outta_time + 1 : reqData.userTotals.difficulty[reqData.difficulty].outta_time,
+        rank: reqData.userTotals.difficulty[reqData.difficulty].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))),
+        rating: reqData.userTotals.difficulty[reqData.difficulty].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
+      }
+
+      calcUserDiffTotalsObj.averages = {
+        ...reqData.userTotals.difficulty[reqData.difficulty].averages,
+        avgTime: reqData.userTotals.difficulty[reqData.difficulty].averages.avgTime === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.difficulty[reqData.difficulty].averages.avgTime) + reqData.time) / 2.00).toFixed(2)),
+        correct: parseFloat(((parseFloat(calcUserDiffTotalsObj.correct) / calcUserDiffTotalsObj.answered) * 100).toFixed(2)),
+        incorrect: parseFloat(((parseFloat(calcUserDiffTotalsObj.incorrect) / calcUserDiffTotalsObj.answered) * 100).toFixed(2)),
+        outta_time: parseFloat(((parseFloat(calcUserDiffTotalsObj.outta_time) / calcUserDiffTotalsObj.answered) * 100).toFixed(2)),
+        rating: parseFloat(((parseFloat(calcUserDiffTotalsObj.rating) / calcUserDiffTotalsObj.answered)).toFixed(2))
       }
 
       calcUserCatTotalsObj = {
+        ...reqData.userTotals.category[reqData.category],
         answered: reqData.userTotals.category[reqData.category].answered + 1,
-        avg_time: reqData.userTotals.category[reqData.category].avg_time === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].avg_time) + reqData.time) / 2.00).toFixed(2)),
         correct: calcResult === 'Correct' ? reqData.userTotals.category[reqData.category].correct + 1 : reqData.userTotals.category[reqData.category].correct,
         incorrect: calcResult === 'Incorrect' ? reqData.userTotals.category[reqData.category].incorrect + 1 : reqData.userTotals.category[reqData.category].incorrect,
         one_sec: calcResult === 'Correct' && reqData.time < 1 ? reqData.userTotals.category[reqData.category].one_sec + 1 : reqData.userTotals.category[reqData.category].one_sec,
-        outta_times: calcResult === 'Outta Time' ? reqData.userTotals.category[reqData.category].outta_times + 1 : reqData.userTotals.category[reqData.category].outta_times,
-        rating: reqData.userTotals.category[reqData.category].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)),
-        rank: reqData.userTotals.category[reqData.category].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
+        outta_time: calcResult === 'Outta Time' ? reqData.userTotals.category[reqData.category].outta_time + 1 : reqData.userTotals.category[reqData.category].outta_time,
+        rank: reqData.userTotals.category[reqData.category].rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))),
+        rating: reqData.userTotals.category[reqData.category].rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
+      }
+
+      calcUserCatTotalsObj.averages = {
+        ...reqData.userTotals.category[reqData.category].averages,
+        avgTime: reqData.userTotals.category[reqData.category].averages.avgTime === 0 ? reqData.time : parseFloat(((parseFloat(reqData.userTotals.category[reqData.category].averages.avgTime) + reqData.time) / 2.00).toFixed(2)),
+        correct: parseFloat(((parseFloat(calcUserCatTotalsObj.correct) / calcUserCatTotalsObj.answered) * 100).toFixed(2)),
+        incorrect: parseFloat(((parseFloat(calcUserCatTotalsObj.incorrect) / calcUserCatTotalsObj.answered) * 100).toFixed(2)),
+        outta_time: parseFloat(((parseFloat(calcUserCatTotalsObj.outta_time) / calcUserCatTotalsObj.answered) * 100).toFixed(2)),
+        rating: parseFloat(((parseFloat(calcUserCatTotalsObj.rating) / calcUserCatTotalsObj.answered)).toFixed(2))
       }
 
       calcAllTotalsObj = {
@@ -793,7 +822,6 @@ exports.questionResults = functions
         correct: parseFloat(((parseFloat(calcAllTotalsObj.correct) / calcAllTotalsObj.answers) * 100).toFixed(2)),
         incorrect: parseFloat(((parseFloat(calcAllTotalsObj.incorrect) / calcAllTotalsObj.answers) * 100).toFixed(2)),
         outta_time: parseFloat(((parseFloat(calcAllTotalsObj.outta_time) / calcAllTotalsObj.answers) * 100).toFixed(2)),
-        // rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
         rating: calcAllTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
 
@@ -813,7 +841,6 @@ exports.questionResults = functions
         correct: parseFloat(((parseFloat(calcAllDiffTotalsObj.correct) / calcAllDiffTotalsObj.answers) * 100).toFixed(2)),
         incorrect: parseFloat(((parseFloat(calcAllDiffTotalsObj.incorrect) / calcAllDiffTotalsObj.answers) * 100).toFixed(2)),
         outta_time: parseFloat(((parseFloat(calcAllDiffTotalsObj.outta_time) / calcAllDiffTotalsObj.answers) * 100).toFixed(2)),
-        // rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
         rating: calcAllDiffTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllDiffTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
 
@@ -833,7 +860,6 @@ exports.questionResults = functions
         correct: parseFloat(((parseFloat(calcAllCatTotalsObj.correct) / calcAllCatTotalsObj.answers) * 100).toFixed(2)),
         incorrect: parseFloat(((parseFloat(calcAllCatTotalsObj.incorrect) / calcAllCatTotalsObj.answers) * 100).toFixed(2)),
         outta_time: parseFloat(((parseFloat(calcAllCatTotalsObj.outta_time) / calcAllCatTotalsObj.answers) * 100).toFixed(2)),
-        // rank: reqData.userTotals.all.rank === 'NR' ? perfObj.qPerf.rank : calcRating(parseFloat(((parseFloat(reqData.userTotals.all.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2)))
         rating: calcAllCatTotalsObj.averages.rating === 0 ? perfObj.qPerf.rating : parseFloat(((parseFloat(calcAllCatTotalsObj.averages.rating) + perfObj.qPerf.rating) / 2.00).toFixed(2))
       }
 
@@ -852,16 +878,16 @@ exports.questionResults = functions
         reqData.difficulty
       )
 
-      var userIdsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'ids',
-          userAchievementsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'achievements',
-          userQuestionPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'list' + '/' + reqData.qid,
-          userXpPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'experience'
-          userTotalsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'all'
-          userDiffTotalsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'difficulty' + '/' + reqData.difficulty
-          userCatTotalsPath = '/' + 'users' + '/' + 'list' + '/' + reqData.uid + '/' + 'questions' + '/' + 'totals' + '/' + 'category' + '/' + reqData.category
-          allTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'all'
-          allDiffTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'difficulty' + '/' + reqData.difficulty
-          allCatTotalsPath = '/' + 'questions' + '/' + 'totals' + '/' + 'category' + '/' + reqData.category
+      var userIdsPath = '/users/list/' + reqData.uid + '/questions/ids',
+          userAchievementsPath = '/users/list/' + reqData.uid + '/achievements',
+          userQuestionPath = '/users/list/' + reqData.uid + '/questions/list/' + reqData.qid,
+          userXpPath = '/users/list/' + reqData.uid + '/experience'
+          userTotalsPath = '/users/list/' + reqData.uid + '/questions/totals/all'
+          userDiffTotalsPath = '/users/list/' + reqData.uid + '/questions/totals/difficulty/' + reqData.difficulty
+          userCatTotalsPath = '/users/list/' + reqData.uid + '/questions/totals/category/' + reqData.category
+          allTotalsPath = '/questions/totals/all'
+          allDiffTotalsPath = '/questions/totals/difficulty/' + reqData.difficulty
+          allCatTotalsPath = '/questions/totals/category/' + reqData.category
 
       var userIdsObj = {},
           userAchievementsObj = {},
@@ -938,11 +964,11 @@ exports.questionResults = functions
         }
       }
 
-      firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'answers').update(calcObj)
-      firebase.database().ref('/' + 'questions' + '/' + 'list' + '/' + reqData.qid + '/' + 'rating').update(ratingObj)
+      firebase.database().ref('/questions/list/' + reqData.qid + '/answers').update(calcObj)
+      firebase.database().ref('/questions/list/' + reqData.qid + '/rating').update(ratingObj)
 
-      firebase.database().ref('/' + 'achievements' + '/' + 'list' + '/').update(achievementsObj.all);
-      firebase.database().ref('/' + 'achievements' + '/' + 'totals' + '/').update(achievementsObj.totals);
+      firebase.database().ref('/achievements/list/').update(achievementsObj.all);
+      firebase.database().ref('/achievements/totals/').update(achievementsObj.totals);
 
       firebase.database().ref().update(userIdsObj)
       firebase.database().ref().update(userQuestionObj)
@@ -956,7 +982,8 @@ exports.questionResults = functions
       firebase.database().ref().update(allDiffTotalsObj)
       firebase.database().ref().update(allCatTotalsObj)
 
-      res.json(resObj).status(200);
+      // setTimeout(() => { res.json(resObj).status(200) }, 5000)
+      res.json(resObj).status(200)
     })
 });
 

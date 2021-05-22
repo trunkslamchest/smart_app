@@ -33,14 +33,21 @@ const signUpObjTemplate = (email, user_name) => {
       "totals": {
         "all": {
           "answered": 0,
-          "avg_time": 0,
+          "averages": {
+            "avgTime": 0,
+            "correct": 0,
+            "incorrect": 0,
+            "outta_time": 0,
+            "rank": 0,
+            "rating": 0
+          },
           "comments": {
             "total": 0
           },
           "correct": 0,
           "incorrect": 0,
           "one_sec": 0,
-          "outta_times": 0,
+          "outta_time": 0,
           "rank": "NR",
           "rating": 0,
           "votes": {
@@ -56,31 +63,52 @@ const signUpObjTemplate = (email, user_name) => {
         "difficulty": {
           "Easy": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Medium": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Hard": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           }
@@ -88,201 +116,341 @@ const signUpObjTemplate = (email, user_name) => {
         "category": {
           "Anime": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Art": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Books": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Celebrities": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Computers": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Film": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "General": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Geography": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "History": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Mathematics": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Music": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Mythology": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Nature": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Politics": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Science": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Sports": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Television": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Theatre": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Vehicles": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           },
           "Video Games": {
             "answered": 0,
-            "avg_time": 0,
+            "averages": {
+              "avgTime": 0,
+              "correct": 0,
+              "incorrect": 0,
+              "outta_time": 0,
+              "rank": 0,
+              "rating": 0
+            },
             "correct": 0,
             "incorrect": 0,
             "one_sec": 0,
-            "outta_times": 0,
+            "outta_time": 0,
             "rank": "NR",
             "rating": 0
           }

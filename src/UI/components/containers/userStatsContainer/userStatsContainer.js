@@ -22,38 +22,39 @@ const UserStatsTotal = (props) => {
   }
 
   let trendArrows = makeUserStatsTrendArrows(
-    trendArrowIndex,
-    props.userQuestions.rating,
+    props.userQuestionTotals.rating,
     props.questionTotals.averages.rating,
-    props.userQuestions.answered,
+    props.userQuestionTotals.answered,
     props.questionTotals.averages.answers,
-    props.userQuestions.correct,
+    props.userQuestionTotals.averages.correct,
     props.questionTotals.averages.correct,
-    props.userQuestions.avg_time,
+    props.userQuestionTotals.averages.avgTime,
     props.questionTotals.averages.avgTime,
-    props.userQuestions.outta_times,
-    props.questionTotals.averages.outta_time
+    props.userQuestionTotals.averages.outta_time,
+    props.questionTotals.averages.outta_time,
+    trendArrowIndex
   )
 
   let totalStats
   let performance
-  let totalQuestionsAnswered = (0).toFixed(2), totalQuestionsCorrect = (0).toFixed(2)
+  let totalQuestionsAnswered = (0).toFixed(2)
+  // let totalQuestionsCorrect = (0).toFixed(2)
 
-  if(props.userQuestions && props.questionTotals){
-    totalQuestionsAnswered = ((props.userQuestions.answered / props.questionTotals.questions) * 100).toFixed(2)
-    if(props.userQuestions.answered > 0) totalQuestionsCorrect = ((props.userQuestions.correct / props.userQuestions.answered) * 100).toFixed(2)
-    if(props.userQuestions.answered >= 5) {
+  if(props.userQuestionTotals && props.questionTotals){
+    totalQuestionsAnswered = ((props.userQuestionTotals.answered / props.questionTotals.questions) * 100).toFixed(2)
+    // if(props.userQuestionTotals.answered > 0) totalQuestionsCorrect = (props.userQuestionTotals.averages.correct).toFixed(2)
+    if(props.userQuestionTotals.answered >= 5) {
       performance =
         <>
           <div className="user_stats_performance_sub_container">
             <div className="user_stats_total_rank">
               <h2>SmartApp™ Rank</h2>
-              <h1>{ props.userQuestions.rank }</h1>
+              <h1>{ props.userQuestionTotals.rank }</h1>
             </div>
             <div className="user_stats_total_rating">
               <h2>SmartApp™ Rating</h2>
               <div className="user_stats_total_rating_sub_container">
-                <h1>{ (props.userQuestions.rating * 10).toFixed(2) }</h1>
+                <h1>{ (props.userQuestionTotals.rating * 10).toFixed(2) }</h1>
                 { trendArrows.rating }
               </div>
             </div>
@@ -61,7 +62,7 @@ const UserStatsTotal = (props) => {
         </>
     } else {
       if(props.from_dashboard){
-        performance = <p>Answer <span>{ 5 - props.userQuestions.answered }</span> more questions to receive a rank & rating!</p>
+        performance = <p>Answer <span>{ 5 - props.userQuestionTotals.answered }</span> more questions to receive a rank & rating!</p>
       } else {
         performance =
           <>
@@ -83,30 +84,32 @@ const UserStatsTotal = (props) => {
     }
 
     totalQuestionsAnswered = numZero(totalQuestionsAnswered)
-    totalQuestionsCorrect = numZero(totalQuestionsCorrect)
+    // totalQuestionsCorrect = numZero(totalQuestionsCorrect)
 
     totalStats =
       <div className="user_stats_total">
         <div className='user_stats_total_sub_container'>
         <div className='user_stats_total_sub_wrapper'>
           <div className='user_stats_total_sub_row'>
-            { props.userQuestions.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)
+            { props.userQuestionTotals.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)
             { trendArrows.answered }
 
           </div>
           <div className='user_stats_total_sub_row'>
-            { props.userQuestions.correct }/{ props.userQuestions.answered } correct ({ totalQuestionsCorrect }%)
+            {/* { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ totalQuestionsCorrect }%) */}
+            { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ props.userQuestionTotals.averages.correct }%)
+
             { trendArrows.correct }
           </div>
         </div>
         <div className='user_stats_total_sub_wrapper'>
           <div className='user_stats_total_sub_row'>
-            Average Time: { props.userQuestions.avg_time } seconds
+            Average Time: { props.userQuestionTotals.averages.avgTime } seconds
             { trendArrows.averageTime }
           </div>
           <div className='user_stats_total_sub_row'>
-            Outta Times: { props.userQuestions.outta_times }
-            { trendArrows.outtaTimes }
+            Outta Times: { props.userQuestionTotals.outta_time }
+            { trendArrows.outtaTime }
           </div>
         </div>
         </div>
@@ -141,7 +144,7 @@ const UserStatsTotal = (props) => {
 
 const store = (store) => {
   return {
-    userQuestions: store.profile.userData ? store.profile.userData.questions.all : store.user.questions.totals.all,
+    userQuestionTotals: store.profile.userData ? store.profile.userData.questions.all : store.user.questions.totals.all,
     userExperience: store.profile.userData ? store.profile.userData.experience : store.user.experience,
     questionTotals: store.questions.totals.all
   }

@@ -1,14 +1,7 @@
-const makeUserStatsTrendArrows = (
-  userRating,
-  averageRating,
-  userAnswered,
-  averageAnswered,
-  userCorrect,
-  averageCorrect,
-  userTime,
-  averageTime,
-  userOuttaTime,
-  averageOuttaTime,
+const makeResultsTrendArrows = (
+  userStat,
+  questionStat,
+  statType,
   trendArrowIndex
 ) => {
 
@@ -45,13 +38,7 @@ const makeUserStatsTrendArrows = (
     return arrow
   }
 
-  return {
-    rating: calcTrend(userRating, averageRating, 'percentage', arrows),
-    answered: calcTrend(userAnswered, averageAnswered, 'percentage', arrows),
-    correct: calcTrend(userCorrect, averageCorrect, 'percentage', arrows),
-    averageTime: calcTrend(userTime, averageTime, 'time', arrows),
-    outtaTime: calcTrend(userOuttaTime, averageOuttaTime, 'percentage', arrows)
-  }
+  return calcTrend(userStat, questionStat, statType, arrows)
 }
 
-export default makeUserStatsTrendArrows
+export default makeResultsTrendArrows

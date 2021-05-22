@@ -61,19 +61,14 @@ class DashboardStatsCard extends React.Component {
   }
 
   headerCards = () => {
-    let questionsCorrect = "0",
-        questionsAnswered = this.numZero(((this.props.userTotals.answered / this.props.qSetTotals.questions) * 100).toFixed(2)),
-        arrow_up,
-        arrow_down
+    let questionsAnswered = this.numZero(((this.props.userTotals.answered / this.props.qSetTotals.questions) * 100).toFixed(2))
 
-    if(this.props.userTotals.rating !== 0) {
-      arrow_up = <img alt='Higher than global average' className='header_button_trend_arrow' src={ trendArrowIndex.greenArrowUp } />
-      arrow_down = <img alt='Lower than global average' className='header_button_trend_arrow' src={ trendArrowIndex.redArrowDown } />
-    }
-
-    if(this.props.userTotals.answered > 0) questionsCorrect = this.numZero(((this.props.userTotals.correct / this.props.userTotals.answered) * 100).toFixed(2))
-
-    let makeHeaderCards = makeDashboardStatsCardHeaderCards(this.props.userTotals, this.props.qSetTotals, questionsAnswered, questionsCorrect, arrow_up, arrow_down)
+    let makeHeaderCards = makeDashboardStatsCardHeaderCards(
+      this.props.userTotals,
+      this.props.qSetTotals,
+      questionsAnswered,
+      trendArrowIndex
+    )
 
     let headerCards = makeHeaderCards.map((card, index) => {
       return(
@@ -107,10 +102,8 @@ class DashboardStatsCard extends React.Component {
           </div>
         </div>
     } else {
-
       if(this.state.headerButtonHover) header_menu_arrow = arrow_grey_left
       if(this.state.showStats) header_menu_arrow = arrow_grey_down
-
       statsCardBlock =
         <>
           <button

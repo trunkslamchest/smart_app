@@ -10,7 +10,9 @@ const DashboardStatsSubContainer = (props) => {
     let sortAnswers = {}, statsBlock = <></>
 
     for(let answer in props.userQuestions) {
-      sortAnswers[props.userQuestions[answer][props.qSet]] = { ...sortAnswers[props.userQuestions[answer][props.qSet]], [answer]: props.userQuestions[answer] }
+      sortAnswers[props.userQuestions[answer][props.qSet]] = {
+        ...sortAnswers[props.userQuestions[answer][props.qSet]], [answer]: props.userQuestions[answer]
+      }
     }
 
     const qSortSet = Object.entries(sortAnswers)
@@ -29,7 +31,7 @@ const DashboardStatsSubContainer = (props) => {
       )
     })
 
-    if(!distribAnswers.length)
+    if(!distribAnswers.length && props.qSet === 'category')
       statsBlock =
         <>
           <div className="stats_sub_header">

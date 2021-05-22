@@ -19,12 +19,12 @@ const DashboardStatsAnswerCard = (props) => {
     history.push(buttonParams.route)
   }
 
-  let answer = props.answer,
-      userAnswer = props.answer.answer,
-      vote,
-      voteStars,
-      // distribComments,
-      resultGlyph
+  let answer = props.answer
+  let userAnswer = props.answer.answer
+  let vote
+  let voteStars
+  // let distribComments
+  let resultGlyph
 
   const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
   const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
