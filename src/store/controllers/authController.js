@@ -82,7 +82,7 @@ class AuthController extends React.Component {
             expires: "360000"
           })
         } else {
-          if(this.props.modal.loading) this.props.onLoadingModal(false)
+          if(this.props.modalLoading) this.props.onLoadingModal(false)
           this.clearLocalStorageModule()
           return "temp error 0293"
         }
@@ -138,24 +138,24 @@ class AuthController extends React.Component {
       && this.props.auth.id && localStorage.id &&!this.state.authUser) this.getSmartsModule()
 
     if(this.props.auth.smartCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.smartCache.user)
-    if(this.props.auth.smartCache && this.props.user.info && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.smartCache.user.questions)
-    if(this.props.auth.smartCache && this.props.user.questions && !this.state.storeAchievements) this.storeAchievementsModule(this.props.auth.smartCache.achievements)
-    if(this.props.auth.smartCache && this.props.achievements.all && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule(this.props.auth.smartCache.questionTotals)
-    if(this.props.user.info && this.props.questions.totals && this.props.achievements.all && !this.state.authSuccess) this.authSuccessModule()
+    if(this.props.auth.smartCache && this.props.userInfo && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.smartCache.user.questions)
+    if(this.props.auth.smartCache && this.props.userQuestions && !this.state.storeAchievements) this.storeAchievementsModule(this.props.auth.smartCache.achievements)
+    if(this.props.auth.smartCache && this.props.allAchievements && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule(this.props.auth.smartCache.questionTotals)
+    if(this.props.userInfo && this.props.questionTotals && this.props.allAchievements && !this.state.authSuccess) this.authSuccessModule()
     if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
     if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
   }
 
   authLogOutDeleteGroup = (authType) => {
-    if(authType === 'logOut' && this.props.user.info && !this.state.clearUserInfo) this.clearUserInfoModule()
+    if(authType === 'logOut' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
     if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
-    if(this.props.auth.status === 'deleteLocalUserSuccess' && this.props.user.info && !this.state.clearUserInfo) this.clearUserInfoModule()
+    if(this.props.auth.status === 'deleteLocalUserSuccess' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
 
-    if(!this.props.user.info && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
-    if(!this.props.user.questions && !this.state.clearUserSettings) this.clearUserSettingsModule()
-    if(!this.props.user.settings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
-    if(!this.props.questions.totals && !this.state.clearAchievements) this.clearAchievementsModule()
-    if(!this.props.achievements.all && !this.state.clearAuthCreds) this.clearAuthCredsModule()
+    if(!this.props.userInfo && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
+    if(!this.props.userQuestions && !this.state.clearUserSettings) this.clearUserSettingsModule()
+    if(!this.props.userSettings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
+    if(!this.props.questionTotals && !this.state.clearAchievements) this.clearAchievementsModule()
+    if(!this.props.allAchievements && !this.state.clearAuthCreds) this.clearAuthCredsModule()
     if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
     if(this.props.auth.status === 'authSuccess' && !this.props.modal[`${authType}`]) this.authRedirectModule(authType)
   }
@@ -235,11 +235,11 @@ class AuthController extends React.Component {
     localStorage.authValid = true
 
     if(this.props.auth.authType === 'editProfile' || this.props.auth.authType === 'editProfileModal') this.props.history.push( routes.dashboard_profile )
-    if(!!this.props.modal.loading) this.props.onLoadingModal(false)
-    if(!!this.props.modal.login) this.props.onLogInModal(false)
-    if(!!this.props.modal.signup) this.props.onSignUpModal(false)
-    if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
-    if(!!this.props.modal.editProfile) this.props.onEditProfileModal(false)
+    if(!!this.props.modalLoading) this.props.onLoadingModal(false)
+    if(!!this.props.modalLogIn) this.props.onLogInModal(false)
+    if(!!this.props.modalSignUp) this.props.onSignUpModal(false)
+    if(!!this.props.modalDeleteProfile) this.props.onDeleteProfileModal(false)
+    if(!!this.props.modalEditProfile) this.props.onEditProfileModal(false)
     this.props.onAuthUpdateLoadingStatus(false)
 
     if(this.props.auth.errors.length) this.props.onClearAuthErrors()
@@ -254,9 +254,9 @@ class AuthController extends React.Component {
     this.setState({ clearLocalStorage: true })
     this.props.onAuthUpdateStatus('authSuccess')
     this.clearLocalStorageModule()
-    if(!!this.props.modal.loading) this.props.onLoadingModal(false)
-    if(!!this.props.modal.logout) this.props.onLogOutModal(false)
-    if(!!this.props.modal.deleteProfile) this.props.onDeleteProfileModal(false)
+    if(!!this.props.modalLoading) this.props.onLoadingModal(false)
+    if(!!this.props.modalLogOut) this.props.onLogOutModal(false)
+    if(!!this.props.modalDeleteProfile) this.props.onDeleteProfileModal(false)
   }
 
   authRedirectModule = (authType) => {
@@ -347,10 +347,17 @@ class AuthController extends React.Component {
 const store = store => {
   return{
     auth: store.auth,
-    modal: store.modal,
-    achievements: store.achievements,
-    questions: store.questions,
-    user: store.user
+    modalLoading: store.modal.loading,
+    modalLogIn: store.modal.login,
+    modalLogOut: store.modal.logout,
+    modalSignUp: store.modal.signup,
+    modalDeleteProfile: store.modal.deleteProfile,
+    modalEditProfile: store.modal.editProfile,
+    allAchievements: store.achievements.all,
+    questionTotals: store.questions.totals,
+    userInfo: store.user.info,
+    userQuestions: store.user.questions,
+    userSettings: store.user.settings,
   }
 }
 
