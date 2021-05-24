@@ -10,8 +10,7 @@ const ResultsHeader = (props) => {
       { props.showHeader &&
         <div className="results_answer_header">
           <h3>
-            { !props.staticResults && `${ props.play.results.result }!` }
-            { props.questions.staticUserResults && `${ props.questions.staticUserResults.result }!` }
+            { props.results }
           </h3>
           <div className='divider_medium' />
         </div>
@@ -22,8 +21,7 @@ const ResultsHeader = (props) => {
 
 const store = (store) => {
   return {
-    play: store.play,
-    questions: store.questions
+    results: store.play.results ? store.play.results.result : store.questions.staticUserResults.result
   }
 }
 

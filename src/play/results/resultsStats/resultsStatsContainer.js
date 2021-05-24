@@ -35,29 +35,27 @@ const ResultsStatsContainer = (props) => {
   const showNextQuestionButtonRef = useRef(null)
   const enableNextQuestionButtonRef = useRef(null)
 
-  const { staticResults, play, questions } = props
-
   useOnMount(() => {
     const startResultsTimers = () => {
       headerTimerRef.current = setTimeout(() => { setHeaderState(true) }, 100)
-      if(play.results && play.results.result === "Incorrect") correctAnswerTimerRef.current = setTimeout(() => { setCorrectAnswerState(true) }, 1000)
+      if(props.results && props.result === "Incorrect") correctAnswerTimerRef.current = setTimeout(() => { setCorrectAnswerState(true) }, 1000)
       statsTimerRef.current = setTimeout(() => { setStatsState(true) }, 1250)
       achievementsTimerRef.current = setTimeout(() => { setAchievementsState(true) }, 1500)
       showNextQuestionButtonRef.current = setTimeout(() => { setShowNextQuestionButton(true) }, 2500)
       enableNextQuestionButtonRef.current = setTimeout(() => { setEnableNextQuestionButton(true) }, 2750)
     }
 
-    if(!staticResults) {
+    if(!props.staticResults) {
       startResultsTimers()
     } else {
       setHeaderState(true)
-      setCorrectAnswerState(questions.staticUserResults && questions.staticUserResults.result === "Incorrect")
+      setCorrectAnswerState(props.results && props.result === "Incorrect")
       setStatsState(true)
       setAchievementsState(true)
     }
 
     return function cleanup() {
-      if(!staticResults) {
+      if(!props.staticResults) {
         clearTimeout(showNextQuestionButtonRef.current)
         clearTimeout(enableNextQuestionButtonRef.current)
         clearTimeout(headerTimerRef.current)
@@ -79,7 +77,7 @@ const ResultsStatsContainer = (props) => {
   let resultsBlock = <></>
 
   if(typeof props.userAnswered === 'boolean' && !props.userAnswered)
-    resultsBlock = <h5>You Have Not Answered This Question</h5>
+    resultsBlock = <h6 className='results_not_answered'>You Have Not Answered This Question</h6>
   else
     resultsBlock =
       <div className="results_stats_container">
@@ -91,7 +89,7 @@ const ResultsStatsContainer = (props) => {
           staticResults={ props.staticResults }
           showCorrectAnswer={ correctAnswerState }
         />
-        { statsState && ( props.user || props.questions.staticUserResults) &&
+        { statsState && ( props.userXP || props.results) &&
           <ResultsStats
             staticResults={ props.staticResults }
             showStats={ statsState }
@@ -112,18 +110,19 @@ const ResultsStatsContainer = (props) => {
 
   return(
     <>
-      { !props.staticResults && props.user.experience && resultsBlock }
-      { props.questions.staticQuestion && resultsBlock }
+      { !props.staticResults && props.userXP && resultsBlock }
+      { props.staticQuestion && resultsBlock }
     </>
   )
 }
 
 const store = (store) => {
   return {
-    play: store.play,
-    user: store.user,
-    achievements: store.achievements,
     questions: store.questions,
+    userXP: store.user.experience,
+    staticQuestion: !!store.questions.staticQuestion,
+    results: !!store.play.results || !!store.questions.staticUserResults,
+    result: store.play.results ? store.play.results.result : store.questions.staticUserResults ? store.questions.staticUserResults.result : null,
   }
 }
 

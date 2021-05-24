@@ -16,7 +16,7 @@
   padding: 0px 0px 20px 0px;
 }
 
-.results_wrapper h5 {
+.results_not_answered {
   background: rgba(255, 255, 255, 1);
   font: 300 12pt 'LatoLight', sans-serif;
   margin: 1px;

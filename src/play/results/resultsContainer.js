@@ -41,7 +41,8 @@ const ResultsContainer = (props) => {
 
   const {
     staticResults,
-    play,
+    playGameMode,
+    playQuestion,
     onClearStaticQuestion,
     onClearStaticUserQuestion,
     onClearQuestionStatus,
@@ -50,8 +51,8 @@ const ResultsContainer = (props) => {
   } = props
 
   useOnMount(() => {
-    if(!staticResults)  document.title = `SmartApp™ | Play | ${ play.gameMode } | Results`
-    if(!play.question && !staticResults) history.push( routes.play )
+    if(!staticResults)  document.title = `SmartApp™ | Play | ${ playGameMode } | Results`
+    if(!playQuestion && !staticResults) history.push( routes.play )
 
     return function cleanup(){
       onClearStaticQuestion()
@@ -62,7 +63,8 @@ const ResultsContainer = (props) => {
     }
   }, [
       staticResults,
-      play,
+      playGameMode,
+      playQuestion,
       history,
       routes,
       onClearStaticQuestion,
@@ -77,11 +79,11 @@ const ResultsContainer = (props) => {
     props.onSetGameState('reInit')
     props.onUpdateGameStatus('reInitGame', true)
     props.onLoadingModal(true)
-    if(play.question) props.onResetQuestion()
-    if(play.answer) props.onResetAnswer()
-    if(play.results) props.onResetResults()
-    if(play.voteStatus) props.onResetVote()
-    if(play.commentStatus) props.onResetComment()
+    if(props.playQuestion) props.onResetQuestion()
+    if(props.playAnswer) props.onResetAnswer()
+    if(props.playResults) props.onResetResults()
+    if(props.playVoteStatus) props.onResetVote()
+    if(props.playCommentStatus) props.onResetComment()
   }
 
   const onHelp = () => {
@@ -96,8 +98,8 @@ const ResultsContainer = (props) => {
   }
 
   let routeBoard
-  let statsRoute = routes[play.gameMode] + '/results/stats'
-  let discussRoute = routes[play.gameMode] + '/results/discuss'
+  let statsRoute = routes[playGameMode] + '/results/stats'
+  let discussRoute = routes[playGameMode] + '/results/discuss'
 
   if(staticResults){
     const baseStaticRoute = routes.static_results + '/' + props.diff + '/' + props.cat + '/' + props.qid
@@ -160,10 +162,13 @@ const ResultsContainer = (props) => {
 
 const store = (store) => {
   return {
-    play: store.play,
-    user: store.user,
+    playGameMode: store.play.gameMode,
+    playQuestion: store.play.question,
+    playAnswer: store.play.answer,
+    playResults: store.play.results,
+    playVoteStatus: store.play.voteStatus,
+    playCommentStatus: store.play.commentStatus,
     userAnswered: store.play.question ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
-
   }
 }
 

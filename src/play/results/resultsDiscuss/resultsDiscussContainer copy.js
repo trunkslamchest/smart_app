@@ -38,6 +38,7 @@ class ResultsDiscussContainer extends React.Component {
     if(!this.props.staticResults) {
       this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true, showVoteButtons: true })}, 250)
       this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true, showComments: true })}, 500)
+
     }
     else {
       this.setState({ enableVoteButtons: true, showVoteButtons: true, enableCommentButton: true, showComments: true })
@@ -45,9 +46,11 @@ class ResultsDiscussContainer extends React.Component {
   }
 
   componentDidUpdate(){
-    if((this.props.results && this.props.resultsVotes) && this.state.showVoteButtons) this.setState({ showVoteButtons: false, showVoteStats: true })
-    if(this.props.commentLoading && this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: false })
-    if(!this.props.commentLoading && !this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: true })
+    if(((this.props.play.results && this.props.play.results.vote) ||
+      (this.props.questions.staticUserResults && this.props.questions.staticUserResults.vote)) && this.state.showVoteButtons) this.setState({ showVoteButtons: false, showVoteStats: true })
+
+    if(this.props.play.commentLoading && this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: false })
+    if(!this.props.play.commentLoading && !this.state.enableAddCommentButton) this.setState({ enableAddCommentButton: true })
   }
 
   componentWillUnmount(){
@@ -63,7 +66,7 @@ class ResultsDiscussContainer extends React.Component {
     let voteObj
 
     if(!this.props.staticResults){
-      voteObj = makeVoteObject('play', this.props.questionId, this.props.questionDifficulty, this.props.questionCategory)
+      voteObj = makeVoteObject('play', this.props.play.question.id, this.props.play.question.difficulty, this.props.play.question.category)
       this.props.onUpdateVoteStatus('initVote', true)
     } else {
       voteObj = makeVoteObject('static', this.props.qid, this.props.diff, this.props.cat)
@@ -93,10 +96,10 @@ class ResultsDiscussContainer extends React.Component {
       this.setState({ enableAddCommentButton: false })
       commentObj = {
         type: !this.props.staticResults ? 'play' : 'static',
-        qid: this.props.questionId,
-        user_name: this.props.userName,
-        difficulty: this.props.questionDifficulty,
-        category: this.props.questionCategory,
+        qid: !this.props.staticResults ? this.props.play.question.id : this.props.questions.staticQuestion.qid,
+        user_name: this.props.user.info.user_name,
+        difficulty: !this.props.staticResults ? this.props.play.question.difficulty : this.props.questions.staticQuestion.difficulty,
+        category: !this.props.staticResults ? this.props.play.question.category : this.props.questions.staticQuestion.category,
       }
 
       if(!this.props.staticResults)this.props.onUpdateCommentStatus('initComment', true)
@@ -113,46 +116,42 @@ class ResultsDiscussContainer extends React.Component {
 
   render(){
 
-    let voteProps, voteBlock, commentBlock, discussBlock
+    let voteProps, voteBlock, commentBlock
 
-    if(!this.props.userAnswered)
-      discussBlock = <h6 className='results_not_answered'>You cannot comment or vote on this question without answering it.</h6>
-    else {
-      voteProps = this.props.questionVotes
-      if(this.props.question) {
-        voteBlock =
-          <VoteContainer
-            enableVoteButtons={ this.state.enableVoteButtons }
-            onClickVoteFunctions={ this.onClickVoteFunctions }
-            showVoteButtons={ this.state.showVoteButtons }
-            showVoteStats={ this.state.showVoteStats }
-            voteProps={ voteProps }
+    if(this.props.play.question) voteProps = this.props.play.question.votes
+    if(this.props.questions.staticQuestion) voteProps = this.props.questions.staticQuestion.votes
+
+    if(this.props.play.question || this.props.questions.staticQuestion) {
+      voteBlock =
+        <VoteContainer
+          enableVoteButtons={ this.state.enableVoteButtons }
+          onClickVoteFunctions={ this.onClickVoteFunctions }
+          showVoteButtons={ this.state.showVoteButtons }
+          showVoteStats={ this.state.showVoteStats }
+          voteProps={ voteProps }
+        />
+      commentBlock =
+        <div className='results_comment_container'>
+          <ResultsComment
+            comment={ this.state.comment }
+            commentForm={ this.state.commentForm }
+            enableCommentButton={ this.state.enableCommentButton }
+            enableAddCommentButton={ this.state.enableAddCommentButton }
+            onAddComment={ this.onAddComment }
+            onChangeComment={ this.onChangeComment }
+            onClickCommentFunctions={ this.onClickCommentFunctions }
+            showComments={ this.state.showComments }
+            staticResults={ this.props.staticResults }
           />
-        commentBlock =
-          <div className='results_comment_container'>
-            <ResultsComment
-              comment={ this.state.comment }
-              commentForm={ this.state.commentForm }
-              enableCommentButton={ this.state.enableCommentButton }
-              enableAddCommentButton={ this.state.enableAddCommentButton }
-              onAddComment={ this.onAddComment }
-              onChangeComment={ this.onChangeComment }
-              onClickCommentFunctions={ this.onClickCommentFunctions }
-              showComments={ this.state.showComments }
-              staticResults={ this.props.staticResults }
-              userAnswered={ this.props.userAnswered }
-            />
-          </div>
-      }
-
-      discussBlock =
-        <div className='results_discuss_container'>
-          { voteBlock }
-          { commentBlock }
         </div>
     }
 
-    return discussBlock
+    return(
+      <div className='results_discuss_container'>
+        { voteBlock }
+        { commentBlock }
+      </div>
+    )
   }
 }
 
@@ -160,16 +159,7 @@ const store = (store) => {
   return {
     play: store.play,
     user: store.user,
-    questions: store.questions,
-    commentLoading: store.play.commentLoading,
-    userName: store.user.info.user_name,
-    question: store.play.question ? !!store.play.question : !!store.questions.staticQuestion,
-    questionId: store.play.question ? store.play.question.id : store.questions.staticQuestion ? store.questions.staticQuestion.qid : null,
-    questionDifficulty: store.play.question ? store.play.question.difficulty : store.questions.question.difficulty,
-    questionCategory: store.play.question ? store.play.question.category : store.questions.question.category,
-    questionVotes: store.play.question ? store.play.question.votes : store.questions.staticQuestion ? store.questions.staticQuestion.votes : null,
-    results: store.play.results ? !!store.play.results : !!store.questions.staticUserResults,
-    resultsVotes: store.play.results ? store.play.results.vote : store.questions.staticUserResults ? store.questions.staticUserResults.vote : null
+    questions: store.questions
   }
 }
 

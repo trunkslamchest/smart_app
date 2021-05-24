@@ -68,8 +68,7 @@ const store = store => {
   return {
     comments: store.play.question ? store.play.question.comments : store.questions.staticQuestion.comments,
     commentLoading: store.play.commentLoading || store.questions.commentLoading,
-    status: store.play.status || store.questions.status,
-    userAnswered: store.play.question ? store.user.questions.ids.includes(store.play.question.id) : store.user.questions.ids.includes(store.questions.staticQuestion.qid)
+    status: store.play.status || store.questions.status
   }
 }
 

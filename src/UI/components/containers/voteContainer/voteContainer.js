@@ -151,6 +151,8 @@ const VoteContainer = (props) => {
       </div>
   }
 
+  console.log(props.voteProps)
+
   return <>{ props.play.voteLoading || props.questions.voteLoading ? loading : voteBlock }</>
 }
 
