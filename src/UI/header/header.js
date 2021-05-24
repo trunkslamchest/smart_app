@@ -27,7 +27,7 @@ const Header = (props) => {
 
   if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader />
 
-  if(props.auth.status === 'authValid') {
+  if(props.authStatus === 'authValid') {
     header =
       <NormalHeader
         user_name={ props.user_name }
@@ -55,7 +55,7 @@ const Header = (props) => {
 
 const store = (store) => {
   return {
-    auth: store.auth
+    authStatus: store.auth.status
   }
 }
 

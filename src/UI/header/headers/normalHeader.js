@@ -31,7 +31,7 @@ const NormalHeader = (props) => {
   const history = useHistory()
 
   const onInitGame = (event) => {
-    if(!!props.play.status) onClearGame()
+    if(!!props.playStatus) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     localStorage.gameMode = buttonParams.gameMode
     props.onSetGameState('select')
@@ -40,7 +40,7 @@ const NormalHeader = (props) => {
   }
 
   const onPushLink = (event) => {
-    if(!!props.play.status) onClearGame()
+    if(!!props.playStatus) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     history.push(buttonParams.route)
   }
@@ -51,14 +51,14 @@ const NormalHeader = (props) => {
   }
 
   const onClearGame = () => {
-    if(!!props.play.gameMode) props.onResetGameMode()
-    if(!!props.play.gameState) props.onResetGameState()
-    if(!!props.play.gameQset) props.onResetGameQset()
-    if(!!props.play.question) props.onResetQuestion()
-    if(!!props.play.answer) props.onResetAnswer()
-    if(!!props.play.results) props.onResetResults()
-    if(!!props.play.voted) props.onResetVote()
-    if(!!props.play.commented) props.onResetComment()
+    if(!!props.playGameMode) props.onResetGameMode()
+    if(!!props.playState) props.onResetGameState()
+    if(!!props.playQset) props.onResetGameQset()
+    if(!!props.playQuestion) props.onResetQuestion()
+    if(!!props.playAnswer) props.onResetAnswer()
+    if(!!props.playResults) props.onResetResults()
+    if(!!props.playVote) props.onResetVote()
+    if(!!props.playComment) props.onResetComment()
   }
 
   const playMenuButtons = makePlayMenuButtons(onInitGame, routes)
@@ -66,8 +66,8 @@ const NormalHeader = (props) => {
 
   let headerButtons
 
-  if(props.user.info) {
-    headerButtons = makeLoggedInHeaderButtons(iconsIndex, onPushLink, playMenuButtons, profileMenuButtons, props.user.info.avatar, routes)
+  if(props.userInfo) {
+    headerButtons = makeLoggedInHeaderButtons(iconsIndex, onPushLink, playMenuButtons, profileMenuButtons, props.userInfo.avatar, routes)
   }
 
   return(
@@ -86,8 +86,16 @@ const NormalHeader = (props) => {
 
 const store = (store) => {
   return {
-    play: store.play,
-    user: store.user
+    playStatus: store.play.status,
+    playGameMode: store.play.gameMode,
+    playState: store.play.state,
+    playQset: store.play.qSet,
+    playQuestion: store.play.question,
+    playAnswer: store.play.answer,
+    playResults: store.play.results,
+    playVote: store.play.voted,
+    playComment: store.play.comment,
+    userInfo: store.user.info
   }
 }
 

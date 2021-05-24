@@ -147,17 +147,18 @@ class AuthController extends React.Component {
   }
 
   authLogOutDeleteGroup = (authType) => {
+    const formatAuthType = 'modal' + authType[0].toUpperCase() + authType.slice(1, authType.length)
     if(authType === 'logOut' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
     if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
     if(this.props.auth.status === 'deleteLocalUserSuccess' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
-
     if(!this.props.userInfo && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
     if(!this.props.userQuestions && !this.state.clearUserSettings) this.clearUserSettingsModule()
     if(!this.props.userSettings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
     if(!this.props.questionTotals && !this.state.clearAchievements) this.clearAchievementsModule()
     if(!this.props.allAchievements && !this.state.clearAuthCreds) this.clearAuthCredsModule()
     if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
-    if(this.props.auth.status === 'authSuccess' && !this.props.modal[`${authType}`]) this.authRedirectModule(authType)
+    if(this.props.auth.status === 'authSuccess' && !this.props[formatAuthType]) this.authRedirectModule(authType)
+
   }
 
   authFailModule = () => {
