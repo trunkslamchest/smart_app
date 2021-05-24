@@ -12,8 +12,8 @@ import makeLeaderBoardsNavButtons from './leaderBoardsFunctions/makeLeaderBoards
 import makeLeaderBoardsHelpSections from './leaderBoardsFunctions/makeLeaderBoardsHelpSections'
 
 import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverallContainer'
-import LeaderBoardsCountriesContainer from './leaderBoardsContainers/leaderBoardsCountriesContainer'
-import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
+import LeaderBoardsSubContainer from './leaderBoardsContainers/leaderBoardsSubContainer/leaderBoardsSubContainer'
+
 import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
 import leaderBoardNavBarIconIndex from '../assets/nav_bar_icons/leaderBoardNavBarIconIndex'
@@ -50,10 +50,20 @@ const LeaderBoardsContainer = (props) => {
           <LeaderBoardsOverallContainer />
         </Route>
         <Route exact path={ props.countriesRoute }>
-          <LeaderBoardsCountriesContainer />
+          <LeaderBoardsSubContainer
+            documentTitle='Regional'
+            headerText='Countries'
+            pageLimit={ 5 }
+            scores={ props.countryLeaderBoards }
+          />
         </Route>
         <Route exact path={ props.catRoute }>
-          <LeaderBoardsCatContainer />
+          <LeaderBoardsSubContainer
+            documentTitle='Category'
+            headerText='Categories'
+            pageLimit={ 10 }
+            scores={ props.catLeaderBoards }
+          />
         </Route>
       </Switch>
     </div>
@@ -76,8 +86,9 @@ const LeaderBoardsContainer = (props) => {
 
 const store = (store) => {
   return {
-    leaderBoards: store.leaderBoards,
-    modal: store.modal
+    catLeaderBoards: store.leaderBoards.cat.international,
+    countryLeaderBoards: store.leaderBoards.overall.regional,
+    modalLoading: store.modal.loading
   }
 }
 
@@ -90,6 +101,6 @@ const dispatch = (dispatch) => {
 }
 
 export default connect(store, dispatch)(React.memo(LeaderBoardsContainer, (prevProps, nextProps) => {
-  if(prevProps.modal.loading === nextProps.modal.loading) return true
+  if(prevProps.modalLoading === nextProps.modalLoading) return true
   else return false
 }))

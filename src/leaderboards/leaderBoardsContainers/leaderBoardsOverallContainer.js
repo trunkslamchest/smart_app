@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import LeaderBoardsHeader from '../leaderBoardsComponents/leaderBoardsHeader/leaderBoardsHeader'
-import LeaderBoardsScoresContainer from '../leaderBoardsComponents/leaderBoardsScoresContainer/leaderBoardsScoresContainer'
+import LeaderBoardsScoresContainer from '../leaderBoardsContainers/leaderBoardsScoresContainer/leaderBoardsScoresContainer'
 
 const LeaderBoardsOverallContainer = (props) => {
 
@@ -11,10 +12,10 @@ const LeaderBoardsOverallContainer = (props) => {
   return(
     <>
       <LeaderBoardsHeader header_text={ "International" } sub_text={ "Rating" } />
-      { props.leaderBoards.overall &&
+      { props.overallLeaderBoards &&
         <LeaderBoardsScoresContainer
           pageLimit={ 15 }
-          scores={ props.leaderBoards.overall.international }
+          scores={ props.overallLeaderBoards.international }
         />
       }
     </>
@@ -23,7 +24,7 @@ const LeaderBoardsOverallContainer = (props) => {
 
 const store = (store) => {
   return {
-    leaderBoards: store.leaderBoards
+    overallLeaderBoards: store.leaderBoards.overall
   }
 }
 

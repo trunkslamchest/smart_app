@@ -104,9 +104,7 @@ class LeaderBoardsScoresCard extends React.Component {
           onClick={ this.onDropDown }
           onMouseEnter={ this.onScoresHover }
           onMouseLeave={ this.offScoresHover }
-          // ref={ this.setButtonRef }
           ref={ this.buttonRef }
-
         >
           <LeaderBoardsSubHeader
             scoresSetName={ this.props.scoresSetName }
@@ -117,7 +115,6 @@ class LeaderBoardsScoresCard extends React.Component {
           />
         </div>
         { this.state.showScores &&
-        // <div className={ this.state.showScores ? 'leader_boards_row_ref' : 'leader_boards_row_ref_hidden' } ref={ this.setRowsRef }>
         <div className={ this.state.showScores ? 'leader_boards_row_ref' : 'leader_boards_row_ref_hidden' } ref={ this.rowsRef }>
           <div className='leader_boards_scores_card_wrapper'>
             { distribScores }

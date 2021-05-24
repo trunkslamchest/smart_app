@@ -3,8 +3,8 @@ import { useState } from 'react'
 import useOnMount from '../../../utility/hooks/useOnMount'
 
 import paginateLeaderBoard from '../../leaderBoardsFunctions/paginateLeaderBoard'
-import LeaderBoardsScoresRow from '../leaderBoardsScoresRow/leaderBoardsScoresRow'
-import LeaderBoardsButtonsRow from '../leaderBoardsButtonsRow/leaderBoardsButtonsRow'
+import LeaderBoardsScoresRow from '../../leaderBoardsComponents/leaderBoardsScoresRow/leaderBoardsScoresRow'
+import LeaderBoardsButtonsRow from '../../leaderBoardsComponents/leaderBoardsButtonsRow/leaderBoardsButtonsRow'
 
 import flagIconIndex from '../../../assets/flag_icons/flagIconIndex'
 
