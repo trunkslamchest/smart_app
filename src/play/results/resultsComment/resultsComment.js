@@ -19,13 +19,9 @@ const ResultsComment = (props) => {
       <BaseDynamicBar modalType={ 'questionComment' } barType={ 'questionComment' } />
     </div>
 
-  if(props.staticResults) {
-    if (!!props.questions.staticQuestion && !!props.questions.staticQuestion.comments) allComments = Object.entries(props.questions.staticQuestion.comments)
-  } else {
-    if(props.play.results && props.play.question.comments) allComments = Object.entries(props.play.question.comments)
-  }
+  if (!!props.comments) allComments = Object.entries(props.comments)
 
-  if(allComments && (props.play.status === 'displayResults' || props.questions.status === 'displayStaticQuestion')){
+  if(allComments && (props.status === 'displayResults' || props.status === 'displayStaticQuestion')){
     distribComments = allComments.map(comment =>
       <CommentCard
         comment={ comment[1] }
@@ -38,7 +34,8 @@ const ResultsComment = (props) => {
     )
   }
 
-  if(props.play.commentLoading || props.questions.commentLoading ) commentForm = loading
+  if(props.commentLoading) commentForm = loading
+  else if(!props.userAnswered) commentForm = <h3>You cannot comment on this question without answering it.</h3>
   else {
     commentForm =
       <CommentForm
@@ -69,8 +66,10 @@ const ResultsComment = (props) => {
 
 const store = store => {
   return {
-    play: store.play,
-    questions: store.questions
+    comments: store.play.question ? store.play.question.comments : store.questions.staticQuestion.comments,
+    commentLoading: store.play.commentLoading || store.questions.commentLoading,
+    status: store.play.status || store.questions.status,
+    userAnswered: store.play.question ? store.user.questions.ids.includes(store.play.question.id) : store.user.questions.ids.includes(store.questions.staticQuestion.qid)
   }
 }
 

@@ -116,42 +116,48 @@ class ResultsDiscussContainer extends React.Component {
 
   render(){
 
-    let voteProps, voteBlock, commentBlock
+    let voteProps, voteBlock, commentBlock, discussBlock
 
-    if(this.props.play.question) voteProps = this.props.play.question.votes
-    if(this.props.questions.staticQuestion) voteProps = this.props.questions.staticQuestion.votes
+    if(!this.props.userAnswered)
+      discussBlock = <h5>You cannot comment or vote on this question without answering it.</h5>
+    else {
+      if(this.props.play.question) voteProps = this.props.play.question.votes
+      if(this.props.questions.staticQuestion) voteProps = this.props.questions.staticQuestion.votes
 
-    if(this.props.play.question || this.props.questions.staticQuestion) {
-      voteBlock =
-        <VoteContainer
-          enableVoteButtons={ this.state.enableVoteButtons }
-          onClickVoteFunctions={ this.onClickVoteFunctions }
-          showVoteButtons={ this.state.showVoteButtons }
-          showVoteStats={ this.state.showVoteStats }
-          voteProps={ voteProps }
-        />
-      commentBlock =
-        <div className='results_comment_container'>
-          <ResultsComment
-            comment={ this.state.comment }
-            commentForm={ this.state.commentForm }
-            enableCommentButton={ this.state.enableCommentButton }
-            enableAddCommentButton={ this.state.enableAddCommentButton }
-            onAddComment={ this.onAddComment }
-            onChangeComment={ this.onChangeComment }
-            onClickCommentFunctions={ this.onClickCommentFunctions }
-            showComments={ this.state.showComments }
-            staticResults={ this.props.staticResults }
+      if(this.props.play.question || this.props.questions.staticQuestion) {
+        voteBlock =
+          <VoteContainer
+            enableVoteButtons={ this.state.enableVoteButtons }
+            onClickVoteFunctions={ this.onClickVoteFunctions }
+            showVoteButtons={ this.state.showVoteButtons }
+            showVoteStats={ this.state.showVoteStats }
+            voteProps={ voteProps }
           />
+        commentBlock =
+          <div className='results_comment_container'>
+            <ResultsComment
+              comment={ this.state.comment }
+              commentForm={ this.state.commentForm }
+              enableCommentButton={ this.state.enableCommentButton }
+              enableAddCommentButton={ this.state.enableAddCommentButton }
+              onAddComment={ this.onAddComment }
+              onChangeComment={ this.onChangeComment }
+              onClickCommentFunctions={ this.onClickCommentFunctions }
+              showComments={ this.state.showComments }
+              staticResults={ this.props.staticResults }
+              userAnswered={ this.props.userAnswered }
+            />
+          </div>
+      }
+
+      discussBlock =
+        <div className='results_discuss_container'>
+          { voteBlock }
+          { commentBlock }
         </div>
     }
 
-    return(
-      <div className='results_discuss_container'>
-        { voteBlock }
-        { commentBlock }
-      </div>
-    )
+    return discussBlock
   }
 }
 

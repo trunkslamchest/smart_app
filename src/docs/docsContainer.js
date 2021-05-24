@@ -3,7 +3,6 @@ import React from 'react'
 import DocsHeader from '../UI/docs/headers/docsHeader/docsHeader'
 import DocsSubHeader from '../UI/docs/headers/docsSubHeader/docsSubHeader'
 import DocsP from '../UI/docs/body_text/docsP/docsP'
-// import DocsSpan from '../UI/docs/body_text/docsSpan/docsSpan'
 import DocsUL from '../UI/docs/body_text/docsUL/docsUL'
 
 import './docs.css'

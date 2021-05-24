@@ -37,8 +37,8 @@ class commentCard extends React.Component {
   componentDidMount(){ this.setState({ editedComment: this.props.comment.comment }) }
 
   componentDidUpdate(){
-    if(this.props.play.commentLoading && this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: false })
-    if(!this.props.play.commentLoading && !this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: true })
+    if(this.props.playCommentLoading && this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: false })
+    if(!this.props.playCommentLoading && !this.state.enableEditCommentButton) this.setState({ enableEditCommentButton: true })
   }
 
   onEditComment = (event) => { this.setState({ editedComment: event.target.value }) }
@@ -65,7 +65,7 @@ class commentCard extends React.Component {
         commentFormButtons,
         commentCard,
         commentUser = this.props.comment.user,
-        currentUser = this.props.user.info ? this.props.user.info.user_name : false
+        currentUser = this.props.currentUserName
 
     if(commentUser === currentUser){
 
@@ -161,7 +161,10 @@ const store = store => {
   return {
     play: store.play,
     questions: store.questions,
-    user: store.user
+    user: store.user,
+
+    playCommentLoading: store.play.commentLoading,
+    currentUserName: store.user.info ? store.user.info.user_name : false
   }
 }
 

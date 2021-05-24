@@ -76,40 +76,44 @@ const ResultsStatsContainer = (props) => {
 
   let nextQuestionButton = makeNextQuestionButton(enableNextQuestionButton, onClickNextQuestionFunction)
 
+  let resultsBlock = <></>
 
-  const resultsBlock =
-    <div className="results_stats_container">
-      <ResultsHeader
-        staticResults={ props.staticResults }
-        showHeader={ headerState }
-      />
-      <ResultsAnswer
-        staticResults={ props.staticResults }
-        showCorrectAnswer={ correctAnswerState }
-      />
-      { statsState && ( props.user || props.questions.staticUserResults) &&
-        <ResultsStats
+  if(typeof props.userAnswered === 'boolean' && !props.userAnswered)
+    resultsBlock = <h5>You Have Not Answered This Question</h5>
+  else
+    resultsBlock =
+      <div className="results_stats_container">
+        <ResultsHeader
           staticResults={ props.staticResults }
-          showStats={ statsState }
+          showHeader={ headerState }
         />
-      }
-      <ResultsAchievementsContainer
-        staticResults={ props.staticResults }
-        showAchievements={ achievementsState }
-      />
-      { showNextQuestionButton &&
-        <DefaultButtonsContainer
-          buttons={ nextQuestionButton }
-          containerClass={ 'next_question_buttons_container' }
-          enableButton={ enableNextQuestionButton }
+        <ResultsAnswer
+          staticResults={ props.staticResults }
+          showCorrectAnswer={ correctAnswerState }
         />
-      }
-    </div>
+        { statsState && ( props.user || props.questions.staticUserResults) &&
+          <ResultsStats
+            staticResults={ props.staticResults }
+            showStats={ statsState }
+          />
+        }
+        <ResultsAchievementsContainer
+          staticResults={ props.staticResults }
+          showAchievements={ achievementsState }
+        />
+        { showNextQuestionButton &&
+          <DefaultButtonsContainer
+            buttons={ nextQuestionButton }
+            containerClass={ 'next_question_buttons_container' }
+            enableButton={ enableNextQuestionButton }
+          />
+        }
+      </div>
 
   return(
     <>
       { !props.staticResults && props.user.experience && resultsBlock }
-      { props.questions.staticQuestion && props.questions.staticUserResults && resultsBlock }
+      { props.questions.staticQuestion && resultsBlock }
     </>
   )
 }
@@ -119,7 +123,7 @@ const store = (store) => {
     play: store.play,
     user: store.user,
     achievements: store.achievements,
-    questions: store.questions
+    questions: store.questions,
   }
 }
 

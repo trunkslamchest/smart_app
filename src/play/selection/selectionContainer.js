@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect }  from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loading, setGameMode, setGameQset } from '../../store/actions/actionIndex'
 import { routes } from '../../utility/paths'
@@ -22,25 +22,26 @@ import './selectionResponse.css'
 const SelectionContainer = (props) => {
 
   const history = useHistory()
+  const location= useLocation()
 
   useEffect(() => {
-    if(props.auth.status === 'authValid') {
+    if(props.authStatus === 'authValid') {
       if(history.location.pathname === routes.play) {
-        if(props.play.gameMode) props.reSelectGameMode()
+        if(props.playGameMode) props.reSelectGameMode()
       }
 
       if(history.location.pathname === routes.by_diff_select) {
-        if(props.play.gameMode !== 'by_diff') props.setGameMode('by_diff')
-        if(props.play.gameState !== 'select') props.setGameState('select')
-        if(props.play.question) props.resetQuestion()
-        if(props.play.gameQset) props.resetGameQset()
+        if(props.playGameMode !== 'by_diff') props.setGameMode('by_diff')
+        if(props.playGameState !== 'select') props.setGameState('select')
+        if(props.playGameQset) props.resetGameQset()
+        if(props.playQuestion) props.resetQuestion()
       }
 
       if(history.location.pathname === routes.by_cat_select) {
-        if(props.play.gameMode !== 'by_cat') props.setGameMode('by_cat')
-        if(props.play.gameState !== 'select') props.setGameState('select')
-        if(props.play.question) props.resetQuestion()
-        if(props.play.gameQset) props.resetGameQset()
+        if(props.playGameMode !== 'by_cat') props.setGameMode('by_cat')
+        if(props.playGameState !== 'select') props.setGameState('select')
+        if(props.playGameQset) props.resetGameQset()
+        if(props.playQuestion) props.resetQuestion()
       }
     }
   }, [history, props])
@@ -65,28 +66,28 @@ const SelectionContainer = (props) => {
   let headerText
   let buttonGroup
 
-  if(history.location.pathname === routes.play) {
+  if(location.pathname === routes.play) {
     document.title = "SmartApp™ | Play | Select"
     headerText = 'Game Mode'
     buttonGroup = selectionButtons
   }
 
-  if(history.location.pathname === routes.by_diff_select) {
+  if(location.pathname === routes.by_diff_select) {
     document.title = "SmartApp™ | Play | Difficulty | Select"
     headerText = 'Difficulty'
     buttonGroup = difficultyButtons
   }
 
-  if(history.location.pathname === routes.by_cat_select) {
+  if(location.pathname === routes.by_cat_select) {
     document.title = "SmartApp™ | Play | Category | Select"
     headerText = 'Category'
     buttonGroup = categoryButtons
   }
 
   return(
-    !props.modal.loading &&
+    !props.modalLoading &&
       <div className='selection_wrapper'>
-        <PlayHeaderCentered header_text={ `Select A ${headerText}` } />
+        <PlayHeaderCentered header_text={ `Select A ${ headerText }` } />
         <div className='divider_medium' />
         <DefaultButtonsContainer
           buttons={ buttonGroup }
@@ -102,9 +103,12 @@ const SelectionContainer = (props) => {
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    modal: store.modal,
-    play: store.play
+    authStatus: store.auth.status,
+    modalLoading: store.modal.loading,
+    playGameMode: store.play.gameMode,
+    playGameState: store.play.gameState,
+    playGameQset: store.play.gameQset,
+    playQuestion: store.play.question
   }
 }
 
@@ -117,8 +121,3 @@ const dispatch = (dispatch) => {
 }
 
 export default connect(store, dispatch)(SelectionContainer)
-
-// export default connect(store, dispatch)(React.memo(SelectionContainer, (prevProps, nextProps) => {
-//   if(prevProps.play !== nextProps.play) return true
-//   else return false
-// }))

@@ -108,6 +108,7 @@ const ResultsContainer = (props) => {
         <Route exact path={ statsRoute }>
           <ResultsStatsContainer
             staticResults={ staticResults }
+            userAnswered={ props.userAnswered }
           />
         </Route>
         <Route exact path={ discussRoute }>
@@ -116,6 +117,7 @@ const ResultsContainer = (props) => {
             diff={ props.diff }
             qid={ props.qid }
             staticResults={ staticResults }
+            userAnswered={ props.userAnswered }
           />
         </Route>
       </Switch>
@@ -126,11 +128,13 @@ const ResultsContainer = (props) => {
           <ResultsStatsContainer
             onClickNextQuestionFunction={ onClickNextQuestionFunction }
             staticResults={ staticResults }
+            userAnswered={ props.userAnswered }
           />
         </Route>
         <Route exact path={ discussRoute }>
           <ResultsDiscussContainer
             staticResults={ staticResults }
+            userAnswered={ props.userAnswered }
           />
         </Route>
       </Switch>
@@ -157,7 +161,9 @@ const ResultsContainer = (props) => {
 const store = (store) => {
   return {
     play: store.play,
-    user: store.user
+    user: store.user,
+    userAnswered: store.play.question ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
+
   }
 }
 

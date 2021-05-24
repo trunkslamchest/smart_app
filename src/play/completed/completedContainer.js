@@ -30,7 +30,7 @@ const CompletedContainer = (props) => {
 
   const [wrapperState, setWrapperState] = useState(false)
 
-  const { gameMode } = props.play
+  const { gameMode } = props.playGameMode
 
   const wrapperTimerRef = useRef(null);
 
@@ -60,9 +60,9 @@ const CompletedContainer = (props) => {
   if(wrapperState) {
     compeletedWrapper =
     <div className='completed_wrapper'>
-      <PlayHeaderCentered header_text={ props.play.question.msg1 } />
+      <PlayHeaderCentered header_text={ props.playQuestionMsg1 } />
       <div className='divider_medium' />
-      <PlaySubHeaderCentered header_text={ props.play.question.msg2 } />
+      <PlaySubHeaderCentered header_text={ props.playQuestionMsg2 } />
       <div className='divider_medium' />
       <DefaultButtonsContainer
         buttons={ completedButtons }
@@ -78,7 +78,9 @@ const CompletedContainer = (props) => {
 
 const store = (store) => {
   return {
-    play: store.play
+    playGameMode: store.play.gameMode,
+    playQuestionMsg1: store.play.question.msg1,
+    playQuestionMsg2: store.play.question.msg2
   }
 }
 

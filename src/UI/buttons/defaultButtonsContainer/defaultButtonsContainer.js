@@ -20,8 +20,6 @@ const DefaultButtonContainer = (props) => {
     }
   }
 
-  // console.log(props.enableButton)
-
   return(
     <>
       { !!props.buttons &&

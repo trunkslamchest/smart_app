@@ -10,33 +10,31 @@ const ResultsAchievementContainer = (props) => {
     let distribAchievements, achievementHeader
 
     if(!props.staticResults) {
-      if(props.play.results.achievements.unlocked && props.showAchievements){
-        distribAchievements = props.play.results.achievements.unlocked.map(achievement => {
+      if(props.unlockedAchievements && props.showAchievements){
+        distribAchievements = props.unlockedAchievements.map(achievement => {
           return (
             <ResultsAchievementCard
-              key={ props.play.results.achievements.unlocked.indexOf(achievement) }
+              key={ props.unlockedAchievements.indexOf(achievement) }
               achievement={ achievement }
             />
           )
         })
-        if(props.play.results.achievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
-        else if(props.play.results.achievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
+        if(props.unlockedAchievements.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
+        else if(props.unlockedAchievements.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
         else achievementHeader = <></>
       }
-    }
-
-    if(props.questions.staticUserResults) {
-      if(props.questions.staticUserResults.achievements && props.showAchievements){
-        distribAchievements = props.questions.staticUserResults.achievements.unlocked.map(achievement => {
+    } else {
+      if(props.staticUserAchievements && props.showAchievements){
+        distribAchievements = props.staticUserAchievements.unlocked.map(achievement => {
           return (
             <ResultsAchievementCard
-              key={ props.questions.staticUserResults.achievements.unlocked.indexOf(achievement) }
+              key={ props.staticUserAchievements.unlocked.indexOf(achievement) }
               achievement={ achievement }
             />
           )
         })
-        if(props.questions.staticUserResults.achievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
-        else if(props.questions.staticUserResults.achievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
+        if(props.staticUserAchievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
+        else if(props.staticUserAchievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
         else achievementHeader = <></>
       }
     }
@@ -59,8 +57,8 @@ const ResultsAchievementContainer = (props) => {
 
 const store = store => {
   return{
-    play: store.play,
-    questions: store.questions
+    unlockedAchievements: store.play.results ? store.play.results.achievements.unlocked : null,
+    staticUserAchievements: store.questions.staticUserResults ? store.questions.staticUserResults.achievements : null,
   }
 }
 

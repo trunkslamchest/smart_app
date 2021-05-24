@@ -2,7 +2,7 @@ import React from 'react'
 
 import './E404.css'
 
-const E404 = (props) => {
+const E404 = () => {
   return(
     <div className='alt_container'>
       <div className='alt_wrapper'>

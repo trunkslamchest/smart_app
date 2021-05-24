@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useEffect } from 'react'
 
 import licenseSections from './licenseSections'
 import DocsContainer from '../docsContainer'

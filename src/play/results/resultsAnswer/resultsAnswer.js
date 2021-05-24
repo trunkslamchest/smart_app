@@ -11,8 +11,7 @@ const ResultsAnswer = (props) => {
         <div className="results_correct_answer">
           <h3>The correct answer was</h3>
           <h4>
-            { !props.staticResults && `${ props.play.results.correct_answer }` }
-            { props.questions.staticUserResults && `${ props.questions.staticUserResults.correct_answer }` }
+            { !props.staticResults ? `${ props.playCorrectAnswer }` : `${ props.staticCorrectAnswer }` }
           </h4>
           <div className='divider_medium' />
         </div>
@@ -23,8 +22,8 @@ const ResultsAnswer = (props) => {
 
 const store = (store) => {
   return{
-    play: store.play,
-    questions: store.questions
+    playCorrectAnswer: store.play.results ? store.play.results.correct_answer : null,
+    staticCorrectAnswer: store.questions.staticUserResults ? store.questions.staticUserResults.correct_answer : null
   }
 }
 

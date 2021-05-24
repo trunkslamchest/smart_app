@@ -6,17 +6,17 @@ import './resultsAchievementCard.css'
 const ResultsAchievementCard = (props) => {
   return(
     <>
-      { props.achievements.all &&
+      { props.allAchievements &&
         <div className="results_achievement_card">
           <div className="results_achievement_card_img_container">
             <img
-              alt={ props.achievements.all[props.achievement].text }
-              src={ props.achievements.all[props.achievement].img }
+              alt={ props.allAchievements[props.achievement].text }
+              src={ props.allAchievements[props.achievement].img }
             />
           </div>
           <div className="results_achievement_card_text_container">
-            <h4>{ props.achievements.all[props.achievement].title }</h4>
-            <h5>{ props.achievements.all[props.achievement].text }</h5>
+            <h4>{ props.allAchievements[props.achievement].title }</h4>
+            <h5>{ props.allAchievements[props.achievement].text }</h5>
           </div>
         </div>
       }
@@ -26,7 +26,7 @@ const ResultsAchievementCard = (props) => {
 
 const store = store => {
   return {
-    achievements: store.achievements
+    allAchievements: store.achievements.all
   }
 }
 
