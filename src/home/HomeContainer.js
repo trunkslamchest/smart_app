@@ -13,20 +13,21 @@ const HomeContainer = (props) => {
 
   let homePage = <></>
 
-  if(props.auth.status === 'authValid') {
-    homePage = <HomeLoggedInContainer user_name={ !!props.user.info ? props.user.info.user_name : null } />
+  if(props.authStatus === 'authValid') {
+    homePage = <HomeLoggedInContainer user_name={ props.userName } />
   } else {
     homePage = <HomeLoggedOutContainer />
   }
 
-  return <>{ (!props.auth.loading && !props.modal.loading) && homePage }</>
+  return <>{ (!props.authLoading && !props.modalLoading) && homePage }</>
 }
 
 const store = store => {
   return {
-    auth: store.auth,
-    modal: store.modal,
-    user: store.user
+    authStatus: store.auth.status,
+    authLoading: store.auth.loading,
+    modalLoading: store.modal.loading,
+    userName: store.user.info ? store.user.info.user_name : null
   }
 }
 

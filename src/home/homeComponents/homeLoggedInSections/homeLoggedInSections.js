@@ -41,23 +41,23 @@ const HomeLoggedInSections = (props) => {
   }
 
   const onPushLink = (event) => {
-    if(!!props.play.status) onClearGame()
+    if(!!props.playStatus) onClearGame()
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     history.push(buttonParams.route)
   }
 
   const onClearGame = () => {
-    if(!!props.play.gameMode) props.onResetGameMode()
-    if(!!props.play.gameState) props.onResetGameState()
-    if(!!props.play.gameQset) props.onResetGameQset()
-    if(!!props.play.question) props.onResetQuestion()
-    if(!!props.play.answer) props.onResetAnswer()
-    if(!!props.play.results) props.onResetResults()
-    if(!!props.play.voted) props.onResetVote()
-    if(!!props.play.commented) props.onResetComment()
+    if(!!props.playGameMode) props.onResetGameMode()
+    if(!!props.playState) props.onResetGameState()
+    if(!!props.playQset) props.onResetGameQset()
+    if(!!props.playQuestion) props.onResetQuestion()
+    if(!!props.playAnswer) props.onResetAnswer()
+    if(!!props.playResults) props.onResetResults()
+    if(!!props.playVote) props.onResetVote()
+    if(!!props.playComment) props.onResetComment()
   }
 
-  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, onLogOut, routes, props.user.info ? props.user.info.user_name : " ")
+  let homeButtons = makeHomeLoggedInButtons(onPushLink, onHelp, onLogOut, routes, props.userName)
 
   let homeButtonSections = homeButtons.map((button, index) => {
     return(
@@ -90,8 +90,17 @@ const HomeLoggedInSections = (props) => {
 
 const store = (store) => {
   return {
-    play: store.play,
-    user: store.user
+    playStatus: store.play.status,
+    playGameMode: store.play.gameMode,
+    playState: store.play.gameState,
+    playQset: store.play.gameQset,
+    playQuestion: store.play.question,
+    playAnswer: store.play.answer,
+    playResults: store.play.results,
+    playVote: store.play.voted,
+    playComment: store.play.commented,
+    userName: store.user.info ? store.user.info.user_name : null
+
   }
 }
 

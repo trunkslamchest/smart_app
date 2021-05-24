@@ -88,13 +88,13 @@ const store = (store) => {
   return {
     playStatus: store.play.status,
     playGameMode: store.play.gameMode,
-    playState: store.play.state,
-    playQset: store.play.qSet,
+    playState: store.play.gameState,
+    playQset: store.play.gameQset,
     playQuestion: store.play.question,
     playAnswer: store.play.answer,
     playResults: store.play.results,
     playVote: store.play.voted,
-    playComment: store.play.comment,
+    playComment: store.play.commented,
     userInfo: store.user.info
   }
 }

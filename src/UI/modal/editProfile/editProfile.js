@@ -37,12 +37,12 @@ class EditProfile extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.modal.editProfile && this.props.auth.status === 'reAuthWithCredsSuccess'){
+    if(this.props.modalEditProfile && this.props.authStatus === 'reAuthWithCredsSuccess'){
       this.props.onEditProfileModal(false)
     }
-    if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
+    if(this.props.authStatus === 'fail' && !!this.props.authErrors.length && !Object.values(this.state.errors).length){
       let password = []
-      this.props.auth.errors.forEach(error => password.push(error) )
+      this.props.authErrors.forEach(error => password.push(error) )
       this.setState({ errors: { password: password }, validationLoading: false, enableSubmitButton: true, enableInput: true })
       this.props.onAuthUpdateStatus('authValid', false)
     }
@@ -54,7 +54,7 @@ class EditProfile extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    if(!!this.props.authErrors.length) this.props.onClearAuthErrors()
     this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableSubmitButton: false, enableInput: false })
     let authCheck = validateEditProfileModal(this.state.password)
     this.setState({ form: authCheck })
@@ -71,7 +71,7 @@ class EditProfile extends React.Component {
   onValidateEditProfileModal = () => {
     if(!this.state.form.pending) {
       this.props.onAuthStart('editProfileModal', {
-        email: this.props.user.info.email,
+        email: this.props.userEmail,
         password: this.state.password,
       })
     }
@@ -82,7 +82,16 @@ class EditProfile extends React.Component {
     this.props.onClearAuthErrors()
   }
 
-  clearLocalState = () => { this.setState({ validationLoading: false, enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
+  clearLocalState = () => {
+    this.setState({
+      validationLoading: false,
+      enableButton: true,
+      enableInput: true,
+      errors: {},
+      form: { valid: false, pending: false },
+      password: ''
+    })
+  }
 
   render(){
 
@@ -95,7 +104,7 @@ class EditProfile extends React.Component {
     const editProfileFormInputs = makeEditProfileFormInputs(this.onChange, this.state.password)
     const editProfileButtons = makeEditProfileButtons(glyphIndex, this.onSubmit, this.onCancel)
 
-    if(!this.props.modal.loading && !this.props.auth.loading)
+    if(!this.props.modalLoading && !this.props.authLoading)
       modalBlock =
         <div className='edit_profile_wrapper'>
           <ModalHeaderCentered header_text='Confirm Email Update' />
@@ -118,7 +127,7 @@ class EditProfile extends React.Component {
     return (
       <Modal
         modalClass={ 'edit_profile_modal' }
-        showModal={ this.props.modal.editProfile }
+        showModal={ this.props.modalEditProfile }
       >
         { modalBlock }
       </Modal>
@@ -128,9 +137,12 @@ class EditProfile extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    modal: store.modal,
-    user: store.user
+    authErrors: store.auth.errors,
+    authLoading: store.auth.loading,
+    authStatus: store.auth.status,
+    modalEditProfile: store.modal.editProfile,
+    modalLoading: store.modal.loading,
+    userEmail: store.user.info.email
   }
 }
 

@@ -41,16 +41,26 @@ class SignUp extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
+    if(this.props.authStatus === 'fail' && !!this.props.authErrors.length && !Object.values(this.state.errors).length){
       let email = []
-      if(this.props.auth.errors.length) this.props.auth.errors.forEach(error => email.push(error) )
+      if(this.props.authErrors.length) this.props.authErrors.forEach(error => email.push(error) )
       this.setState({ errors: { email: email }, validationLoading: false, enableButton: true, enableInput: true })
       this.props.onClearAuthErrors()
       this.props.onClearAuthStatus()
     }
   }
 
-  componentWillUnmount(){ this.setState({ email: '', enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' }) }
+  componentWillUnmount(){
+    this.setState({
+      email: '',
+      enableButton: true,
+      enableInput: true,
+      errors: {},
+      form: { valid: false, pending: false },
+      password: '',
+      tos: false, user_name: ''
+    })
+  }
 
   onChange = (event) => {
     event.preventDefault()
@@ -65,7 +75,7 @@ class SignUp extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    if(!!this.props.authErrors.length) this.props.onClearAuthErrors()
     this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableButton: false, enableInput: false })
     let authCheck = validateSignUp(this.state.user_name, this.state.email, this.state.password, this.state.tos)
     this.setState({ form: authCheck })
@@ -109,14 +119,28 @@ class SignUp extends React.Component {
   }
 
   onReset = () => {
-    this.setState({ email: '', enableButton: true, enableInput: true, form: { valid: false, pending: false }, password: '', tos: false, user_name: '' })
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
-    if(this.props.auth.status) this.props.onClearAuthStatus()
+    if(this.state.email.length || this.state.password.length || this.state.user_name.length ||
+       this.state.form.email || this.state.form.password || this.state.form.user_name || this.state.form.tos)
+    this.clearLocalState()
+    if(!!this.props.authErrors.length) this.props.onClearAuthErrors()
+    if(this.props.authStatus) this.props.onClearAuthStatus()
   }
 
   onCancel = () => {
     this.onReset()
     this.props.onSignUpModal(false)
+  }
+
+  clearLocalState = () => {
+    this.setState({
+      email: '',
+      enableButton: true,
+      enableInput: true,
+      form: { valid: false, pending: false },
+      password: '',
+      tos: false,
+      user_name: ''
+    })
   }
 
   render(){
@@ -146,11 +170,11 @@ class SignUp extends React.Component {
     return (
       <Modal
         modalClass={ 'sign_up_modal' }
-        showModal={ this.props.modal.signup }
+        showModal={ this.props.modalSignUp }
       >
         <ModalHeaderCentered header_text='Create New Account' />
         <div className='sign_up_wrapper'>
-          { (this.props.auth.loading || this.state.validationLoading) && loading }
+          { (this.props.authLoading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }
               inputFields={ signUpFormInputs }
@@ -172,8 +196,11 @@ class SignUp extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    modal: store.modal,
+    authErrors: store.auth.errors,
+    authLoading: store.auth.loading,
+    authStatus: store.auth.status,
+    modalSignUp: store.modal.signup,
+
     user: store.user
   }
 }

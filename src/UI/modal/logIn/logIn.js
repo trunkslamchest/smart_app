@@ -36,11 +36,11 @@ class LogIn extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
+    if(this.props.authStatus === 'fail' && !!this.props.authErrors.length && !Object.values(this.state.errors).length){
       let email = [], password = []
-      if(this.props.auth.errors[0].code === 421) this.props.auth.errors.forEach(error => email.push(error) )
-      else if(this.props.auth.errors[0].code === 423) this.props.auth.errors.forEach(error => password.push(error) )
-      else this.props.auth.errors.forEach(error => password.push(error) )
+      if(this.props.authErrors[0].code === 421) this.props.authErrors.forEach(error => email.push(error) )
+      else if(this.props.authErrors[0].code === 423) this.props.authErrors.forEach(error => password.push(error) )
+      else this.props.authErrors.forEach(error => password.push(error) )
       this.setState({ errors: { email: email, password: password, }, validationLoading: false, enableButton: true, enableInput: true })
       this.props.onClearAuthErrors()
       this.props.onClearAuthStatus()
@@ -53,7 +53,7 @@ class LogIn extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    if(!!this.props.authErrors.length) this.props.onClearAuthErrors()
     this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableButton: false, enableInput: false })
     let authCheck = validateLogIn(this.state.email, this.state.password)
     this.setState({ form: authCheck })
@@ -78,8 +78,8 @@ class LogIn extends React.Component {
   }
 
   onReset = () => {
-    this.clearLocalState()
-    if(!!this.props.auth.errors.length) {
+    if(this.state.email.length || this.state.password.length || this.state.form.email || this.state.form.password) this.clearLocalState()
+    if(!!this.props.authErrors.length) {
       this.props.onClearAuthErrors()
       this.props.onClearAuthStatus()
     }
@@ -88,11 +88,21 @@ class LogIn extends React.Component {
   onCancel = () => {
     this.onReset()
     this.props.onLogInModal(false)
-    if(this.props.auth.errors.length) this.props.onClearAuthErrors()
-    if(this.props.auth.status) this.props.onClearAuthStatus()
+    if(this.props.authErrors.length) this.props.onClearAuthErrors()
+    if(this.props.authStatus) this.props.onClearAuthStatus()
   }
 
-  clearLocalState = () => { this.setState({ email: '', validationLoading: false, enableButton: true, enableInput: true, errors: {}, form: { valid: false, pending: false }, password: '' }) }
+  clearLocalState = () => {
+    this.setState({
+      email: '',
+      validationLoading: false,
+      enableButton: true,
+      enableInput: true,
+      errors: {},
+      form: { valid: false, pending: false },
+      password: ''
+    })
+  }
 
   render(){
     const loading =
@@ -107,11 +117,11 @@ class LogIn extends React.Component {
     return (
       <Modal
         modalClass={ 'log_in_modal' }
-        showModal={ this.props.modal.login }
+        showModal={ this.props.modalLogIn }
       >
         <div className='log_in_wrapper'>
           <ModalHeaderCentered header_text='Log In' />
-            { (this.props.auth.loading || this.state.validationLoading) && loading }
+            { (this.props.authLoading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }
               inputFields={ logInFormInputs }
@@ -133,8 +143,10 @@ class LogIn extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    modal: store.modal
+    authErrors: store.auth.errors,
+    authLoading: store.auth.loading,
+    authStatus: store.auth.status,
+    modalLogIn: store.modal.login,
   }
 }
 

@@ -10,7 +10,7 @@ const HomeBanner = (props) => {
 
   let homeBannerContent
 
-  if(localStorage.authValid === 'true' && props.auth.status === 'authValid'){
+  if(localStorage.authValid === 'true' && props.authStatus === 'authValid'){
     homeBannerContent =
       <HomeLogoContainer logo_class={ props.logo_class } />
   } else {
@@ -44,7 +44,7 @@ const HomeBanner = (props) => {
 
 const store = (store) => {
   return {
-    auth: store.auth
+    authStatus: store.auth.status
   }
 }
 

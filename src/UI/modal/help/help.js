@@ -31,8 +31,8 @@ const Help = (props) => {
 
   let distribHelpSections
 
-  if(!!props.modal.helpHeader && !!props.modal.helpSections) {
-    distribHelpSections = props.modal.helpSections.map((section, s_index) => {
+  if(!!props.modalHelpHeader && !!props.modalHelpSections) {
+    distribHelpSections = props.modalHelpSections.map((section, s_index) => {
       return(
         <div className='docs_sub_container' key={ s_index }>
           <div className='docs_sub_wrapper'>
@@ -51,7 +51,7 @@ const Help = (props) => {
   return (
       <Modal
         modalClass={ 'help_modal' }
-        showModal={ props.modal.help }
+        showModal={ props.modalHelp }
       >
       <ModalHeaderCentered header_text={ props.headerText } />
       <div
@@ -73,7 +73,9 @@ const Help = (props) => {
 
 const store = (store) => {
   return {
-    modal: store.modal
+    modalHelp: store.modal.help,
+    modalHelpHeader: store.modal.helpHeader,
+    modalHelpSections: store.modal.helpSections
   }
 }
 

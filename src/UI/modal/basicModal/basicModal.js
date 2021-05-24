@@ -24,7 +24,7 @@ const BasicModal = (props) => {
     return(
       <Modal
         modalClass={ 'basic_modal' }
-        showModal={ props.modal.basic }
+        showModal={ props.modalBasic }
       >
         <div className='basic_modal_wrapper'>
           <span>{ props.content }</span>
@@ -35,7 +35,7 @@ const BasicModal = (props) => {
 
 const store = (store) => {
   return {
-    modal: store.modal
+    modalBasic: store.modal.basic
   }
 }
 

@@ -14,12 +14,8 @@ const Backdrop = (props) => {
 
 const store = (store) => {
   return {
-    modal: store.modal
+    showModal: store.modal.showModal
   }
 }
 
-export default connect(store)(React.memo(Backdrop, (prevProps, nextProps) => {
-  let render = true
-  if(prevProps.showModal === nextProps.showModal) render = false
-  return render
-}))
+export default connect(store)(Backdrop)

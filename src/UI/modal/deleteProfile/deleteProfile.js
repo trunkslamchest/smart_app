@@ -40,9 +40,9 @@ class DeleteProfile extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.auth.status === 'fail' && !!this.props.auth.errors.length && !Object.values(this.state.errors).length){
+    if(this.props.authStatus === 'fail' && !!this.props.authErrors.length && !Object.values(this.state.errors).length){
       let password = []
-      this.props.auth.errors.forEach(error => password.push(error) )
+      this.props.authErrors.forEach(error => password.push(error) )
       this.setState({ errors: { password: password }, validationLoading: false, enableSubmitButton: true, enableInput: true })
       this.props.onAuthUpdateStatus('authValid')
     }
@@ -54,7 +54,7 @@ class DeleteProfile extends React.Component {
 
   onSubmitConfirm = (event) => {
     event.preventDefault()
-    if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+    if(!!this.props.authErrors.length) this.props.onClearAuthErrors()
     this.setState({ errors: {}, form: { valid: false, pending: true }, validationLoading: true, enableSubmitButton: false, enableInput: false })
     let authCheck = validateDeleteProfile(this.state.password)
     this.setState({ form: authCheck })
@@ -71,8 +71,8 @@ class DeleteProfile extends React.Component {
   onValidateDeleteProfile = () => {
     if(!this.state.form.pending) {
       this.props.onAuthStart('deleteProfile', {
-        id: this.props.auth.id,
-        email: this.props.user.info.email,
+        id: this.props.authId,
+        email: this.props.userEmail,
         password: this.state.password
       })
     }
@@ -99,11 +99,11 @@ class DeleteProfile extends React.Component {
     return(
       <Modal
         modalClass={ 'delete_profile_modal' }
-        showModal={ this.props.modal.deleteProfile }
+        showModal={ this.props.modalDeleteProfile }
       >
         <div className='delete_profile_wrapper'>
           <ModalHeaderCentered header_text='Are you sure you want to delete your profile?' />
-          { (this.props.auth.loading || this.state.validationLoading) && loading }
+          { (this.props.authLoading || this.state.validationLoading) && loading }
           { this.state.enableConfirmButton &&
             <DefaultButtonsContainer
               buttons={ deleteProfileButtons }
@@ -138,8 +138,12 @@ class DeleteProfile extends React.Component {
 const store = (store) => {
   return {
     auth: store.auth,
-    user: store.user,
-    modal: store.modal
+    authErrors: store.auth.errors,
+    authId: store.auth.id,
+    authLoading: store.auth.loading,
+    authStatus: store.auth.status,
+    userEmail: store.user.info.email,
+    modalDeleteProfile: store.modal.deleteProfile
   }
 }
 
