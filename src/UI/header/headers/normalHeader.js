@@ -13,7 +13,8 @@ import {
   resetVote,
   resetComment,
   setGameMode,
-  setGameState
+  setGameState,
+  updateGameStatus
 } from '../../../store/actions/actionIndex'
 
 import makeLoggedInHeaderButtons from '../headerFunctions/makeLoggedInHeaderButtons'
@@ -51,6 +52,7 @@ const NormalHeader = (props) => {
   }
 
   const onClearGame = () => {
+    if(!!props.playStatus) props.onUpdateGameStatus(null, false)
     if(!!props.playGameMode) props.onResetGameMode()
     if(!!props.playState) props.onResetGameState()
     if(!!props.playQset) props.onResetGameQset()
@@ -112,6 +114,7 @@ const dispatch = (dispatch) => {
     onResetComment: (obj) => dispatch(resetComment(obj)),
     onSetGameMode: (mode) => dispatch(setGameMode(mode)),
     onSetGameState: (state) => dispatch(setGameState(state)),
+    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading))
   }
 }
 
