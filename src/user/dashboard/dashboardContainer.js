@@ -13,7 +13,6 @@ import {
 import makeDashboardNavButtons from './dashboardFunctions/makeDashboardNavButtons'
 import makeDashboardHelpSections from './dashboardFunctions/makeDashboardHelpSections'
 
-import DashboardIndex from './dashboardContainers/dashboardIndex/dashboardIndex'
 import DashboardProfileContainer from './dashboardContainers/dashboardProfile/dashboardProfileContainer'
 import DashboardStatsContainer from './dashboardContainers/dashboardStats/dashboardStatsContainer'
 import DashboardSettingsContainer from './dashboardContainers/dashboardSettings/dashboardSettingsContainer'
@@ -65,9 +64,6 @@ const Dashboard = (props) => {
         />
         <div className='dashboard_wrapper'>
           <Switch>
-            <Route exact path={ routes.dashboard }>
-              <DashboardIndex />
-            </Route>
             <Route exact path={ routes.dashboard_profile }>
               <DashboardProfileContainer />
             </Route>

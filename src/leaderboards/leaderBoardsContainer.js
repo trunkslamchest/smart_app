@@ -87,8 +87,7 @@ const LeaderBoardsContainer = (props) => {
 const store = (store) => {
   return {
     catLeaderBoards: store.leaderBoards.cat.international,
-    countryLeaderBoards: store.leaderBoards.overall.regional,
-    modalLoading: store.modal.loading
+    countryLeaderBoards: store.leaderBoards.overall.regional
   }
 }
 
@@ -100,7 +99,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default connect(store, dispatch)(React.memo(LeaderBoardsContainer, (prevProps, nextProps) => {
-  if(prevProps.modalLoading === nextProps.modalLoading) return true
-  else return false
-}))
+export default connect(store, dispatch)(LeaderBoardsContainer)

@@ -23,8 +23,6 @@ const ContainerProfileHeader = (props) => {
           }
           <div className='container_profile_header_top_left_text'>
             <div className='container_profile_header_top_left_text_top'>
-              <h3>{ props.user_name }</h3>
-              { !!props.email && <span>{ props.email }</span> }
               { (!!props.first_name || !!props.last_name) &&
                 <div className='container_profile_header_top_left_text_sub_countainer'>
                   { !!props.first_name && <span>{ props.first_name }</span> }

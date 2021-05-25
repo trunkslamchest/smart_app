@@ -37,7 +37,6 @@ const UserProfileHeader = (props) => {
   return(
     <ContainerProfileHeader
       avatar={ !!props.info.avatar && props.info.avatar }
-      user_name={ props.info.user_name }
       first_name={ first_name }
       last_name={ last_name }
       country={ country }

@@ -12,17 +12,34 @@
   }
 
   .container_profile_header_top_left {
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
+.container_profile_header_top_left_img {
+  margin: 0px 0px 0px 0px;
+}
 
   .container_profile_header_top_left_text {
     justify-content: center;
-    padding: 5px 0px 5px 15px;
+    padding: 5px 0px 5px 0px;
+  }
+
+  .container_profile_header_top_left_text_sub_countainer {
+    display: block;
   }
 
   .container_profile_header_top_left_text_top {
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    align-self: center;
+  }
+
+  .container_profile_header_top_left_text_bottom {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
   }
 
   .container_profile_header_top_left_text_top h3 {

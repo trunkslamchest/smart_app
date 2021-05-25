@@ -121,7 +121,7 @@ class DashboardEditProfile extends React.Component {
         img.onload = () => {
           var imgErrors = []
           if(img.width !== 150 || img.height !== 150) imgErrors.push("Profile Pictures must be 150x150 in dimension")
-          // if(imgSize > 2000000) imgErrors.push("Profile Pictures must less than 2mb in size")
+          // if(imgSize > 3000000) imgErrors.push("Profile Pictures must less than 3mb in size")
           if(imgSize > 5000) imgErrors.push("Profile Pictures must less than 5kb in size")
           if(imgErrors.length > 0) this.setState({ errors:  { ...this.state.errors, avatar: imgErrors } })
           else {
@@ -202,6 +202,7 @@ class DashboardEditProfile extends React.Component {
 
   onValidation = () => {
     if(!this.state.form.pending && this.state.enableButton){
+      this.props.onLoadingModal(true)
       this.props.onAuthStart('editProfile', {
         uid: this.props.authId,
         old_user_name: this.props.userInfo.user_name,

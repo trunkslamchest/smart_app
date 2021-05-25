@@ -1,9 +1,14 @@
-const makeDashboardProfileFields = (firstName, lastName, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date) => {
+const makeDashboardProfileFields = (firstName, lastName, email, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date) => {
   return [
     {
       name: 'Name',
       data: `${firstName.field} ${lastName.field}`,
       errors: [ {error: firstName.error}, { error: lastName.error } ]
+    },
+    {
+      name: 'Email',
+      data: email,
+      errors: email.error
     },
     {
       name: 'Biography',

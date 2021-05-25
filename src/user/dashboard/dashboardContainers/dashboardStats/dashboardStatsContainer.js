@@ -13,13 +13,15 @@ const DashboardStatsContainer = () => {
   useEffect(() => { document.title = "SmartApp™ | Dashboard | Stats" }, [])
 
   return(
-    <div className='dashboard_stats_container'>
+    <>
       <DashboardHeader header_text={ 'Statistics' } />
+    <div className='dashboard_stats_container'>
       <UserStatsContainer from_dashboard={ true } />
       <DashboardStatsSubContainer qSet='difficulty' headerText='Difficulties' />
       <div className='divider_medium' />
       <DashboardStatsSubContainer qSet='category' headerText='Categories' />
     </div>
+    </>
   )
 }
 

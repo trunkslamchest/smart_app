@@ -6,6 +6,9 @@ import'./userProfileQuestionCard.css'
 
 const UserProfileQuestionCard = (props) => {
 
+  console.log(props)
+
+
   const distribComments = Object.values(props.question.comments).map((comment, index) => {
     return(
       <UserProfileCommentCard

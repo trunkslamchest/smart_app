@@ -5,7 +5,6 @@ import DefaultButtonsContainer from '../../../../UI/buttons/defaultButtonsContai
 import './dashboardHeader.css'
 
 const DashboardHeader = (props) => {
-
   return(
     <div className='dashboard_header'>
       <div className='dashboard_header_left'>

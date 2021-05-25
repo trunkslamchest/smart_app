@@ -12,6 +12,7 @@ import formatDay from '../../../../utility/forms/formatDay'
 import makeDashboardProfileButtons from '../../dashboardFunctions/makeDashboardProfileButtons'
 import makeDashboardProfileFields from '../../dashboardFunctions/makeDashboardProfileFields'
 
+import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import ContainerProfileHeader from '../../../../UI/components/headers/containerProfileHeader/containerProfileHeader'
 import DashboardProfileField from '../../dashboardComponents/dashboardProfileField/dashboardProfileField'
 
@@ -53,7 +54,7 @@ const DashboardProfileContainer = (props) => {
 
   const onClickDelete = () => { props.onDeleteProfileModal(true) }
 
-  const profileFields = makeDashboardProfileFields(firstName, lastName, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date)
+  const profileFields = makeDashboardProfileFields(firstName, lastName, email, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date)
 
   const profileButtons = makeDashboardProfileButtons(glyphIndex, onClickProfileButtonFunction, onClickDelete, user_name, routes)
 
@@ -89,14 +90,16 @@ const DashboardProfileContainer = (props) => {
 
   return(
     <>
-      <ContainerProfileHeader
-        avatar={ avatar }
-        containerClass={ 'dashboard_profile_header_buttons_container' }
-        email={ email }
-        user_name={ user_name }
-        date_block={ date_block }
-      />
+      <DashboardHeader header_text={ 'Your Profile' } />
       <div className='dashboard_profile_body'>
+        <ContainerProfileHeader
+          avatar={ avatar }
+          containerClass={ 'dashboard_profile_header_buttons_container' }
+          email={ email }
+          user_name={ user_name }
+          date_block={ date_block }
+        />
+        <div className='divider_medium' />
         <div className='dashboard_profile_fields_container'>
           { distribProfileFields }
         </div>

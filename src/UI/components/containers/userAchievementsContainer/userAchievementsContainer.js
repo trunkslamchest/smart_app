@@ -67,7 +67,6 @@ const UserAchievementsContainer = (props) => {
         <>
           <div className='user_achievements_wrapper'>
             <ContainerHeader header_text={ headerText2 } sub_text={ `${props.achievements.totals.all - props.userAchievements.total}/${props.achievements.totals.all}` } />
-            <div className='divider_left' />
             <div className='user_achievements_sub_container'>
               { distribLockedAchievements }
             </div>
