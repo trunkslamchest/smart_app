@@ -158,8 +158,6 @@ class ResultsDiscussContainer extends React.Component {
 
 const store = (store) => {
   return {
-    play: store.play,
-    user: store.user,
     questions: store.questions,
     commentLoading: store.play.commentLoading,
     userName: store.user.info.user_name,

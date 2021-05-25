@@ -51,7 +51,15 @@ class commentCard extends React.Component {
     this.setState({ editCommentForm: authCheck })
 
     if (authCheck.valid) {
-      let commentObj = makeCommentObject(this.props, this.state.editedComment)
+      let commentObj = makeCommentObject(
+        this.props.staticResults,
+        this.props.questionId,
+        this.props.questionDifficulty,
+        this.props.questionCategory,
+        this.props.comment,
+        this.props.userName,
+        this.state.editedComment
+      )
       this.props.onEditUserComment(commentObj)
       this.props.onEditQuestionComment(commentObj)
       this.setState({ enableEditCommentButton: false, showEditCommentForm: false })
@@ -59,7 +67,6 @@ class commentCard extends React.Component {
   }
 
   render() {
-
     let distribEditCommentErrors,
         commentButtons,
         commentFormButtons,
@@ -70,7 +77,15 @@ class commentCard extends React.Component {
     if(commentUser === currentUser){
 
       const onDeleteComment = () => {
-        let commentObj = makeCommentObject(this.props, this.state.editedComment)
+        let commentObj = makeCommentObject(
+          this.props.staticResults,
+          this.props.questionId,
+          this.props.questionDifficulty,
+          this.props.questionCategory,
+          this.props.comment,
+          this.props.userName,
+          this.state.editedComment
+        )
         this.props.onDeleteUserComment(commentObj)
         this.props.onDeleteQuestionComment(commentObj)
       }
@@ -149,6 +164,7 @@ class commentCard extends React.Component {
         </ul>
     }
 
+
     return (
       <div className='comment_card_container'>
         { commentCard }
@@ -159,10 +175,10 @@ class commentCard extends React.Component {
 
 const store = store => {
   return {
-    play: store.play,
-    questions: store.questions,
-    user: store.user,
-
+    userName: store.user.info.user_name,
+    questionId: store.questions.staticQuestion ? store.questions.staticQuestion.qid : store.play.question.id,
+    questionCategory: store.questions.staticQuestion ? store.questions.staticQuestion.category : store.play.question.category,
+    questionDifficulty: store.questions.staticQuestion ? store.questions.staticQuestion.difficulty : store.play.question.difficulty,
     playCommentLoading: store.play.commentLoading,
     currentUserName: store.user.info ? store.user.info.user_name : false
   }

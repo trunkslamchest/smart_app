@@ -51,6 +51,7 @@ const ResultsContainer = (props) => {
   } = props
 
   useOnMount(() => {
+    document.body.scrollTop = 0
     if(!staticResults)  document.title = `SmartApp™ | Play | ${ playGameMode } | Results`
     if(!playQuestion && !staticResults) history.push( routes.play )
 

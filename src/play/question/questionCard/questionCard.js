@@ -18,7 +18,7 @@ const QuestionCard = (props) => {
   const timerIntervalRef = useRef(null)
   const outtaTimeTimerRef = useRef(null)
 
-  const { play, onSetAnswer } = props
+  const { playAnswer, onSetAnswer } = props
 
   useOnMount(() => {
     startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
@@ -31,13 +31,13 @@ const QuestionCard = (props) => {
   }, [time])
 
   useEffect(() => {
-    if (time <= 0 && !play.answer) {
+    if (time <= 0 && !playAnswer) {
       setTime((0.00).toFixed(2))
       clearTimeout(startTimerRef.current)
       clearInterval(timerIntervalRef.current)
       outtaTimeTimerRef.current = setTimeout(() => { onSetAnswer({ choice: 'outta_time', time: parseFloat((10.00).toFixed(2)) }) }, 500)
     }
-  }, [play, time, onSetAnswer])
+  }, [playAnswer, time, onSetAnswer])
 
   return(
     <>
@@ -64,7 +64,7 @@ const QuestionCard = (props) => {
 
 const store = store => {
   return{
-    play: store.play
+    playAnswer: store.play.answer
   }
 }
 

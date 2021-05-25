@@ -85,7 +85,7 @@ const ResultsStats = (props) => {
                     <h5>Rating</h5>
                 </div>
                 <div className='results_question_sub_wrapper_text_left'>
-                    <h6>{ props.questionDiff }</h6>
+                    <h6>{ props.questionDiff[0].toUpperCase() + props.questionDiff.slice(1, props.questionDiff.length)}</h6>
                     <h6>{ props.questionDiffRating }</h6>
                 </div>
               </div>
