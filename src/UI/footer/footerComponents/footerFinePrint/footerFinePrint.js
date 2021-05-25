@@ -15,7 +15,7 @@ const FooterFinePrint = () => {
        All Rights Reserved
       </p>
       <p className='footer_fine_print_text'>
-        0.95.05.25.21
+        0.96.05.25.21
       </p>
     </div>
   )
