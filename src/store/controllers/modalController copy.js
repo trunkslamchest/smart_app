@@ -10,31 +10,52 @@ import DeleteProfile from '../../UI/modal/deleteProfile/deleteProfile'
 import EditProfile from '../../UI/modal/editProfile/editProfile'
 import Help from '../../UI/modal/help/help'
 
-const ModalController = (props) => {
-  return(
-    <>
-      { props.basicModal && <BasicModal content={ props.basicModalContent } /> }
-      { props.logInModal && <LogIn /> }
-      { props.logOutModal && <LogOut /> }
-      { props.signUpModal && <SignUp /> }
-      { props.editProfileModal && <EditProfile /> }
-      { props.deleteProfileModal && <DeleteProfile /> }
-      { props.helpModal &&
-        <Help
-          headerText={ props.helpModalHeader }
-          helpSections = { props.helpModalSections }
-        />
-      }
-      {
-        props.loadingModal &&
-        <LoadingModal
-          show={ props.loadingModal }
-          modalType={ props.loadingModalType }
-          barType={ props.loadingModalBarType }
-        />
-      }
-    </>
-  )
+class ModalController extends React.Component {
+
+  state = {
+  }
+
+  componentDidMount(){
+  }
+
+  componentDidUpdate(){
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if(this.props.showModal !== nextProps.showModal) return true
+    else return false
+  }
+
+  componentWillUnmount(){
+  }
+
+  render(){
+    return(
+      <>
+        { this.props.basicModal && <BasicModal content={ this.props.basicModalContent } /> }
+        { this.props.logInModal && <LogIn /> }
+        { this.props.logOutModal && <LogOut /> }
+        { this.props.signUpModal && <SignUp /> }
+        { this.props.editProfileModal && <EditProfile /> }
+        { this.props.deleteProfileModal && <DeleteProfile /> }
+        { this.props.helpModal &&
+          <Help
+            headerText={ this.props.helpModalHeader }
+            helpSections = { this.props.helpModalSections }
+          />
+        }
+        {
+          this.props.loadingModal &&
+          <LoadingModal
+            show={ this.props.loadingModal }
+            modalType={ this.props.loadingModalType }
+            barType={ this.props.loadingModalBarType }
+          />
+        }
+      </>
+    )
+  }
+
 }
 
 const store = (store) => {

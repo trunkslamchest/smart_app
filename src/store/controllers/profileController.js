@@ -44,16 +44,19 @@ class ProfileController extends React.Component {
   shouldComponentUpdate(nextProps, nextState){
     let render = false
     if(this.props.loadingModal || this.props.profileLoading ||
-        nextProps.loadingModal || nextProps.profileLoading ) {
-        render = true
-      }
+      nextProps.loadingModal || nextProps.profileLoading ) {
+      render = true
+    }
+    // if(nextState.displayProfile) {
+    //   render = true
+    // }
     return render
   }
 
   componentWillUnmount() {
     this.props.onUpdateUserProfileStatus(null)
     this.props.onClearUserProfile()
-    this.setState({ user_name: '' })
+    this.setState({ user_name: '', displayProfile: false })
   }
 
   initProfileModule = () => {
@@ -92,6 +95,8 @@ class ProfileController extends React.Component {
   }
 
   render(){
+
+
     return(
       <>
         {

@@ -31,33 +31,31 @@ const App = () => {
       <ModalController />
       <Header />
       <div className='main_container' name="main_container">
-        <div className='main_wrapper' name="main_wrapper">
-          <Switch>
-            <Route exact path={ routes.home }>
-             <HomeContainer />
-            </Route>
-            <Route path={ routes.dashboard }>
-              <DashboardContainer />
-            </Route>
-            <Route path={ routes.user_profile }>
-              <ProfileController />
-            </Route>
-            <Route path={ routes.static_results }>
-              <QuestionsController />
-            </Route>
-            <Route path={ routes.play }>
-              <PlayController />
-            </Route>
-            <Route path={ routes.leader_boards }>
-              <LeaderBoardsController />
-            </Route>
-            <Route exact path={ routes.tos }><TermsOfService /></Route>
-            <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>
-            <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
-            <Route exact path={ routes.license }><License /></Route>
-            <Route><E404 /></Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={ routes.home }>
+            <HomeContainer />
+          </Route>
+          <Route path={ routes.dashboard }>
+            <DashboardContainer />
+          </Route>
+          <Route path={ routes.user_profile }>
+            <ProfileController />
+          </Route>
+          <Route path={ routes.static_results }>
+            <QuestionsController />
+          </Route>
+          <Route path={ routes.play }>
+            <PlayController />
+          </Route>
+          <Route path={ routes.leader_boards }>
+            <LeaderBoardsController />
+          </Route>
+          <Route exact path={ routes.tos }><TermsOfService /></Route>
+          <Route exact path={ routes.privacy }><PrivacyPolicy /></Route>
+          <Route exact path={ routes.disclaimer }><Disclaimer /></Route>
+          <Route exact path={ routes.license }><License /></Route>
+          <Route><E404 /></Route>
+        </Switch>
       </div>
       <Footer />
     </>
