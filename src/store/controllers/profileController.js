@@ -47,9 +47,6 @@ class ProfileController extends React.Component {
       nextProps.loadingModal || nextProps.profileLoading ) {
       render = true
     }
-    // if(nextState.displayProfile) {
-    //   render = true
-    // }
     return render
   }
 

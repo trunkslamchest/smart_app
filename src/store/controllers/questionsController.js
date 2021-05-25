@@ -61,22 +61,6 @@ class QuestionsController extends React.Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   let render = false
-
-  //   if(this.props.modal.loading || nextProps.modal.loading) {
-  //       render = true
-  //     }
-
-  //   // console.log(
-  //   //   this.props.leaderBoards, nextProps.leaderBoards, "|",
-  //   //   this.props.modal.loading, nextProps.modal.loading
-  //   // )
-
-  //   return render
-  //   // return true
-  // }
-
   componentWillUnmount(){
     this.setState({ displayStaticResults: false, initStaticResults: false, initStaticUserResults: false })
   }

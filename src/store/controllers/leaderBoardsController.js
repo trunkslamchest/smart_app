@@ -1,4 +1,6 @@
 import React from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 import { routes } from '../../utility/paths'
 import {
@@ -13,87 +15,127 @@ import {
 
 import LeaderBoardsContainer from '../../leaderboards/leaderBoardsContainer'
 
-class LeaderBoardsController extends React.Component {
+const LeaderBoardsController = (props) => {
 
-  state = {
-    storeOverallLeaderBoards: false,
-    storeCatLeaderBoards: false,
-    displayLeaderBoards: false,
+  const [overallLeaderBoards, setOverallLeaderBoards] = useState(false)
+  const [catLeaderBoards, setCatLeaderBoards] = useState(false)
+  const [displayLeaderBoards, setDisplayLeaderBoards] = useState(false)
+
+  const {
+    leaderBoardCategories,
+    leaderBoardLoading,
+    leaderBoardOverall,
+    leaderBoardStatus,
+    onLoadingModal,
+    onClearLeaderBoards,
+    onGetCatLeaderBoards,
+    onGetOverallLeaderBoards,
+    onSetLoadingModalType,
+    onUpdateLeaderBoardsLoadingStatus,
+    onUpdateLeaderBoardsStatus
+  } = props
+
+  let propsRef = useRef()
+
+  propsRef.current = {
+    leaderBoardCategories: leaderBoardCategories,
+    leaderBoardOverall: leaderBoardOverall,
+    leaderBoardLoading: leaderBoardLoading,
+    leaderBoardStatus: leaderBoardStatus,
   }
 
-  componentDidMount(){
-    if(!this.props.leaderBoardStatus && !this.props.leaderBoardOverall) this.initLeaderBoardsModule()
+  const initLeaderBoardsModule = useCallback(() => {
+    onLoadingModal(true)
+    onSetLoadingModalType('leaderBoards', 'leaderBoards')
+    onUpdateLeaderBoardsLoadingStatus(true)
+    onUpdateLeaderBoardsStatus('initLeaderBoards')
+  }, [
+    onLoadingModal,
+    onSetLoadingModalType,
+    onUpdateLeaderBoardsLoadingStatus,
+    onUpdateLeaderBoardsStatus
+  ])
+
+  const getOverallLeaderBoardsModule = useCallback(() => {
+    onUpdateLeaderBoardsStatus('getOverallLeaderBoards')
+    setOverallLeaderBoards(true)
+    onGetOverallLeaderBoards()
+  }, [ onGetOverallLeaderBoards, onUpdateLeaderBoardsStatus])
+
+  const getCatLeaderBoardsModule = useCallback(() => {
+    onUpdateLeaderBoardsStatus('getCatLeaderBoards')
+    setCatLeaderBoards(true)
+    onGetCatLeaderBoards()
+  }, [
+    onGetCatLeaderBoards,
+    onUpdateLeaderBoardsStatus
+  ])
+
+  const displayLeaderBoardsModule = useCallback(() => {
+    onUpdateLeaderBoardsStatus('displayLeaderBoards')
+    setDisplayLeaderBoards(true)
+    onUpdateLeaderBoardsLoadingStatus(false)
+    onLoadingModal(false)
+  }, [
+    onUpdateLeaderBoardsStatus,
+    onUpdateLeaderBoardsLoadingStatus,
+    onLoadingModal
+  ])
+
+  const leaderBoardsCleanupModule = () => {
+    setOverallLeaderBoards(false)
+    setCatLeaderBoards(false)
   }
 
-  componentDidUpdate(){
-    if(this.props.leaderBoardStatus === 'initLeaderBoards' && !this.props.leaderBoardOverall) this.getOverallLeaderBoardsModule()
-    if(this.props.leaderBoardOverall && !this.state.storeCatLeaderBoards) this.getCatLeaderBoardsModule()
-    if(this.props.leaderBoardOverall && this.props.leaderBoardCategories && !this.state.displayLeaderBoards) this.displayLeaderBoardsModule()
-    if(this.props.leaderBoardOverall && this.props.leaderBoardCategories && !this.props.leaderBoardLoading) this.leaderBoardsCleanupModule()
+  useOnMount(() => {
+    if(!leaderBoardStatus && !leaderBoardOverall) initLeaderBoardsModule()
+    return () => reset()
+  }, [
+    leaderBoardOverall,
+    leaderBoardStatus
+  ])
+
+  const reset = () => {
+    setOverallLeaderBoards(false)
+    setCatLeaderBoards(false)
+    setDisplayLeaderBoards(false)
+    if(propsRef.current.leaderBoardOverall && propsRef.current.leaderBoardCategories) onClearLeaderBoards()
+    if(propsRef.current.leaderBoardStatus) onUpdateLeaderBoardsStatus(null)
+    if(propsRef.current.leaderBoardLoading) onUpdateLeaderBoardsLoadingStatus(false)
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    let render = false
-    if(this.props.modalLoading || nextProps.modalLoading) render = true
-    return render
-  }
+  useEffect(() => {
+    if(leaderBoardStatus === 'initLeaderBoards' && !overallLeaderBoards) getOverallLeaderBoardsModule()
+    if(leaderBoardStatus === 'getOverallLeaderBoards' && leaderBoardOverall && !catLeaderBoards) getCatLeaderBoardsModule()
+    if(leaderBoardStatus === 'getCatLeaderBoards' && leaderBoardOverall && leaderBoardCategories && !displayLeaderBoards) displayLeaderBoardsModule()
+    if(leaderBoardOverall && leaderBoardCategories && !leaderBoardLoading) leaderBoardsCleanupModule()
+  }, [
+    catLeaderBoards,
+    displayLeaderBoards,
+    leaderBoardCategories,
+    leaderBoardLoading,
+    leaderBoardOverall,
+    leaderBoardStatus,
+    overallLeaderBoards,
+    getOverallLeaderBoardsModule,
+    getCatLeaderBoardsModule,
+    displayLeaderBoardsModule,
+  ])
 
-  componentWillUnmount(){
-    if(this.props.leaderBoardOverall && this.props.leaderBoardCategories) this.props.onClearLeaderBoards()
-    if(this.props.leaderBoardStatus)this.props.onUpdateLeaderBoardsStatus(null)
-    if(this.props.leaderBoardLoading)this.props.onUpdateLeaderBoardsLoadingStatus(false)
-    clearTimeout(this.authWaitTimeoutQuarterSec)
-    clearTimeout(this.authWaitTimeoutHalfSec)
-    clearTimeout(this.authWaitTimeoutOneSec)
-  }
-
-  initLeaderBoardsModule = () => {
-    this.props.onLoadingModal(true)
-    this.props.onSetLoadingModalType('leaderBoards', 'leaderBoards')
-    this.props.onUpdateLeaderBoardsLoadingStatus(true)
-    this.props.onUpdateLeaderBoardsStatus('initLeaderBoards')
-  }
-
-  getOverallLeaderBoardsModule = () => {
-    this.props.onUpdateLeaderBoardsStatus('getOverallLeaderBoards')
-    this.setState({ storeOverallLeaderBoards: true })
-    this.props.onGetOverallLeaderBoards()
-  }
-
-  getCatLeaderBoardsModule = () => {
-    this.props.onUpdateLeaderBoardsStatus('getCatLeaderBoards')
-    this.setState({ storeCatLeaderBoards: true })
-    this.props.onGetCatLeaderBoards()
-  }
-
-  displayLeaderBoardsModule = () => {
-    this.props.onUpdateLeaderBoardsStatus('displayLeaderBoards')
-    this.setState({ displayLeaderBoards: true })
-    this.props.onUpdateLeaderBoardsLoadingStatus(false)
-    this.props.onLoadingModal(false)
-  }
-
-  leaderBoardsCleanupModule = () => {
-    this.setState({ storeOverallLeaderBoards: false, storeCatLeaderBoards: false })
-  }
-
-  render(){
-    return(
-      <>
-        {
-          this.props.leaderBoardStatus === 'displayLeaderBoards' &&
-          !this.props.leaderBoardLoading &&
-          !this.props.modalLoading &&
-            <LeaderBoardsContainer
-              overallRoute={ routes.leader_boards + '/overall' }
-              countriesRoute={ routes.leader_boards + '/countries' }
-              catRoute={ routes.leader_boards + '/categories' }
-            />
-        }
-      </>
-    )
-  }
-
+  return(
+    <>
+      {
+        props.leaderBoardStatus === 'displayLeaderBoards' &&
+        !props.leaderBoardLoading &&
+        !props.modalLoading &&
+          <LeaderBoardsContainer
+            overallRoute={ routes.leader_boards + '/overall' }
+            countriesRoute={ routes.leader_boards + '/countries' }
+            catRoute={ routes.leader_boards + '/categories' }
+          />
+      }
+    </>
+  )
 }
 
 const store = (store) => {
@@ -103,7 +145,6 @@ const store = (store) => {
     leaderBoardLoading: store.leaderBoards.loading,
     leaderBoardOverall: store.leaderBoards.overall,
     leaderBoardCategories: store.leaderBoards.cat
-
   }
 }
 
