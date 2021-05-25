@@ -22,7 +22,7 @@ class ModalController extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(this.props.modal.showModal !== nextProps.modal.showModal) return true
+    if(this.props.showModal !== nextProps.showModal) return true
     else return false
   }
 
@@ -32,24 +32,24 @@ class ModalController extends React.Component {
   render(){
     return(
       <>
-        { this.props.modal.basic && <BasicModal content={ this.props.modal.basicModalContent } /> }
-        { this.props.modal.login && <LogIn /> }
-        { this.props.modal.logout && <LogOut /> }
-        { this.props.modal.signup && <SignUp /> }
-        { this.props.modal.editProfile && <EditProfile /> }
-        { this.props.modal.deleteProfile && <DeleteProfile /> }
-        { this.props.modal.help &&
+        { this.props.basicModal && <BasicModal content={ this.props.basicModalContent } /> }
+        { this.props.logInModal && <LogIn /> }
+        { this.props.logOutModal && <LogOut /> }
+        { this.props.signUpModal && <SignUp /> }
+        { this.props.editProfileModal && <EditProfile /> }
+        { this.props.deleteProfileModal && <DeleteProfile /> }
+        { this.props.helpModal &&
           <Help
-            headerText={ this.props.modal.helpHeader }
-            helpSections = { this.props.modal.helpSections }
+            headerText={ this.props.helpModalHeader }
+            helpSections = { this.props.helpModalSections }
           />
         }
         {
-          this.props.modal.loading &&
+          this.props.loadingModal &&
           <LoadingModal
-            show={ this.props.modal.loading }
-            modalType={ this.props.modal.loadingModalType }
-            barType={ this.props.modal.loadingModalBarType }
+            show={ this.props.loadingModal }
+            modalType={ this.props.loadingModalType }
+            barType={ this.props.loadingModalBarType }
           />
         }
       </>
@@ -60,7 +60,20 @@ class ModalController extends React.Component {
 
 const store = (store) => {
   return {
-    modal: store.modal
+    showModal: store.modal.showModal,
+    basicModal: store.modal.basic,
+    basicModalContent: store.modal.basicModalContent,
+    loadingModal: store.modal.loading,
+    loadingModalType: store.modal.loadingModalType,
+    loadingModalBarType: store.modal.loadingModalBarType,
+    logInModal: store.modal.login,
+    logOutModal: store.modal.logout,
+    signUpModal: store.modal.signup,
+    editProfileModal: store.modal.editProfile,
+    deleteProfileModal: store.modal.deleteProfile,
+    helpModal: store.modal.help,
+    helpModalHeader: store.modal.helpHeader,
+    helpModalSections: store.modal.helpSections,
   }
 }
 

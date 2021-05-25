@@ -47,17 +47,17 @@ class QuestionsController extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.auth.status === 'authValid' && !this.props.auth.loading && !this.props.questions.status) this.initQuestionModule()
-    if(this.props.questions.status === 'initStaticQuestion' && !this.state.initStaticResults) this.getStaticQuestionModule()
-    if(this.props.questions.status === 'getStaticQuestion' && !this.state.initStaticUserResults && this.props.user.questions) this.setStaticUserResultsModule()
-    if(this.props.questions.status === 'setStaticUserResults' && !this.state.displayStaticResults) this.displayStaticQuestionModule()
-    if(this.props.questions.status === 'displayStaticQuestion' && this.props.questions.staticQuestion && this.props.questions.loading) this.cleanupStaticQuestionModule()
-    if(this.props.questions.status === 'displayStaticQuestion') {
-      if(this.props.questions.voteStatus === 'updateStaticUserVote' && this.props.questions.vote) this.updateStaticUserVoteModule()
-      if(this.props.questions.commentStatus === 'updateStaticQuestionComment' && this.props.questions.comment) this.updateStaticUserCommentModule()
-      if(this.props.questions.commentStatus === 'editStaticQuestionComment' && this.props.questions.comment) this.props.onUpdateStaticQuestionCommentStatus('commentSuccess')
-      if(this.props.questions.voteStatus === 'voteSuccess' && this.props.questions.voteLoading) this.successModule("Vote")
-      if(this.props.questions.commentStatus === 'commentSuccess' && this.props.questions.commentLoading) this.successModule("Comment")
+    if(this.props.authStatus === 'authValid' && !this.props.authLoading && !this.props.questionStatus) this.initQuestionModule()
+    if(this.props.questionStatus === 'initStaticQuestion' && !this.state.initStaticResults) this.getStaticQuestionModule()
+    if(this.props.questionStatus === 'getStaticQuestion' && !this.state.initStaticUserResults && this.props.userQuestions) this.setStaticUserResultsModule()
+    if(this.props.questionStatus === 'setStaticUserResults' && !this.state.displayStaticResults) this.displayStaticQuestionModule()
+    if(this.props.questionStatus === 'displayStaticQuestion' && this.props.staticQuestion && this.props.questionLoading) this.cleanupStaticQuestionModule()
+    if(this.props.questionStatus === 'displayStaticQuestion') {
+      if(this.props.voteStatus === 'updateStaticUserVote' && this.props.questionVote) this.updateStaticUserVoteModule()
+      if(this.props.commentStatus === 'updateStaticQuestionComment' && this.props.questionComment) this.updateStaticUserCommentModule()
+      if(this.props.commentStatus === 'editStaticQuestionComment' && this.props.questionComment) this.props.onUpdateStaticQuestionCommentStatus('commentSuccess')
+      if(this.props.voteStatus === 'voteSuccess' && this.props.voteLoading) this.successModule("Vote")
+      if(this.props.commentStatus === 'commentSuccess' && this.props.commentLoading) this.successModule("Comment")
     }
   }
 
@@ -96,7 +96,7 @@ class QuestionsController extends React.Component {
 
   setStaticUserResultsModule = () => {
     this.props.onUpdateQuestionStatus('setStaticUserResults')
-    this.props.onSetStaticUserQuestion(this.props.user.questions.list[this.state.qid])
+    this.props.onSetStaticUserQuestion(this.props.userQuestions.list[this.state.qid])
     this.setState({ initStaticUserResults: true })
   }
 
@@ -114,23 +114,23 @@ class QuestionsController extends React.Component {
   updateStaticUserVoteModule = () => {
     this.props.onUpdateUserVotesFromPlayController({
       type: 'static',
-      vid: this.props.questions.vote.vid,
-      qid: this.props.questions.staticQuestion.qid,
-      difficulty: this.props.questions.staticQuestion.difficulty,
-      category: this.props.questions.staticQuestion.category,
-      vote: this.props.questions.vote.vote
+      vid: this.props.questionVote.vid,
+      qid: this.props.staticQuestion.qid,
+      difficulty: this.props.staticQuestion.difficulty,
+      category: this.props.staticQuestion.category,
+      vote: this.props.questionVote.vote
     })
   }
 
   updateStaticUserCommentModule = () => {
     this.props.onUpdateUserCommentsFromPlayController({
       type: 'static',
-      cid: this.props.questions.comment.cid,
-      qid: this.props.questions.staticQuestion.qid,
-      category: this.props.questions.staticQuestion.category,
-      comment: this.props.questions.comment.comment,
-      difficulty: this.props.questions.staticQuestion.difficulty,
-      timestamp: this.props.questions.comment.timestamp
+      cid: this.props.questionComment.cid,
+      qid: this.props.staticQuestion.qid,
+      category: this.props.staticQuestion.category,
+      comment: this.props.questionComment.comment,
+      difficulty: this.props.staticQuestion.difficulty,
+      timestamp: this.props.questionComment.timestamp
     })
   }
 
@@ -144,7 +144,7 @@ class QuestionsController extends React.Component {
     return(
       <>
         {
-          this.props.questions.status === 'displayStaticQuestion' &&
+          this.props.questionStatus === 'displayStaticQuestion' &&
             <ResultsContainer
               cat={ this.state.cat }
               diff={ this.state.diff }
@@ -159,10 +159,18 @@ class QuestionsController extends React.Component {
 
 const store = (store) => {
   return {
-    modal: store.modal,
-    auth: store.auth,
-    user: store.user,
-    questions: store.questions
+    authStatus: store.auth.status,
+    authLoading: store.auth.loading,
+    userQuestions: store.user.questions,
+    questionStatus: store.questions.status,
+    questionLoading: store.questions.loading,
+    staticQuestion: store.questions.staticQuestion,
+    questionVote: store.questions.vote,
+    questionComment: store.questions.comment,
+    voteStatus: store.questions.voteStatus,
+    voteLoading: store.questions.voteLoading,
+    commentStatus: store.questions.commentStatus,
+    commentLoading: store.questions.commentLoading
   }
 }
 

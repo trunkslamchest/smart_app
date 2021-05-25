@@ -22,26 +22,26 @@ class LeaderBoardsController extends React.Component {
   }
 
   componentDidMount(){
-    if(!this.props.leaderBoards.status && !this.props.leaderBoards.overall) this.initLeaderBoardsModule()
+    if(!this.props.leaderBoardStatus && !this.props.leaderBoardOverall) this.initLeaderBoardsModule()
   }
 
   componentDidUpdate(){
-    if(this.props.leaderBoards.status === 'initLeaderBoards' && !this.props.leaderBoards.overall) this.getOverallLeaderBoardsModule()
-    if(this.props.leaderBoards.overall && !this.state.storeCatLeaderBoards) this.getCatLeaderBoardsModule()
-    if(this.props.leaderBoards.overall && this.props.leaderBoards.cat && !this.state.displayLeaderBoards) this.displayLeaderBoardsModule()
-    if(this.props.leaderBoards.overall && this.props.leaderBoards.cat && !this.props.leaderBoards.loading) this.leaderBoardsCleanupModule()
+    if(this.props.leaderBoardStatus === 'initLeaderBoards' && !this.props.leaderBoardOverall) this.getOverallLeaderBoardsModule()
+    if(this.props.leaderBoardOverall && !this.state.storeCatLeaderBoards) this.getCatLeaderBoardsModule()
+    if(this.props.leaderBoardOverall && this.props.leaderBoardCategories && !this.state.displayLeaderBoards) this.displayLeaderBoardsModule()
+    if(this.props.leaderBoardOverall && this.props.leaderBoardCategories && !this.props.leaderBoardLoading) this.leaderBoardsCleanupModule()
   }
 
   shouldComponentUpdate(nextProps, nextState){
     let render = false
-    if(this.props.modal.loading || nextProps.modal.loading) render = true
+    if(this.props.modalLoading || nextProps.modalLoading) render = true
     return render
   }
 
   componentWillUnmount(){
-    if(this.props.leaderBoards.overall && this.props.leaderBoards.cat) this.props.onClearLeaderBoards()
-    if(this.props.leaderBoards.status)this.props.onUpdateLeaderBoardsStatus(null)
-    if(this.props.leaderBoards.loading)this.props.onUpdateLeaderBoardsLoadingStatus(false)
+    if(this.props.leaderBoardOverall && this.props.leaderBoardCategories) this.props.onClearLeaderBoards()
+    if(this.props.leaderBoardStatus)this.props.onUpdateLeaderBoardsStatus(null)
+    if(this.props.leaderBoardLoading)this.props.onUpdateLeaderBoardsLoadingStatus(false)
     clearTimeout(this.authWaitTimeoutQuarterSec)
     clearTimeout(this.authWaitTimeoutHalfSec)
     clearTimeout(this.authWaitTimeoutOneSec)
@@ -81,9 +81,9 @@ class LeaderBoardsController extends React.Component {
     return(
       <>
         {
-          this.props.leaderBoards.status === 'displayLeaderBoards' &&
-          !this.props.leaderBoards.loading &&
-          !this.props.modal.loading &&
+          this.props.leaderBoardStatus === 'displayLeaderBoards' &&
+          !this.props.leaderBoardLoading &&
+          !this.props.modalLoading &&
             <LeaderBoardsContainer
               overallRoute={ routes.leader_boards + '/overall' }
               countriesRoute={ routes.leader_boards + '/countries' }
@@ -98,8 +98,12 @@ class LeaderBoardsController extends React.Component {
 
 const store = (store) => {
   return {
-    modal: store.modal,
-    leaderBoards: store.leaderBoards
+    modalLoading: store.modal.loading,
+    leaderBoardStatus: store.leaderBoards.status,
+    leaderBoardLoading: store.leaderBoards.loading,
+    leaderBoardOverall: store.leaderBoards.overall,
+    leaderBoardCategories: store.leaderBoards.cat
+
   }
 }
 

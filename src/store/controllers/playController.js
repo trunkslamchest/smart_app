@@ -42,39 +42,38 @@ import LoadingModal from '../../UI/loading/loadingModal/loadingModal'
 class PlayController extends React.Component {
 
   componentDidMount(){
-    if(this.props.auth.status === 'authValid'&& !this.props.play.gameState) this.initGameModule()
-    if(this.props.play.gameMode === 'quick_play' && this.props.play.gameState === 'select') this.mountGameModeModule('setQuickPlay')
+    if(this.props.authStatus === 'authValid'&& !this.props.playGameState) this.initGameModule()
+    if(this.props.playGameMode === 'quick_play' && this.props.playGameState === 'select') this.mountGameModeModule('setQuickPlay')
   }
 
   componentDidUpdate(){
-    if(this.props.auth.status === 'authValid' && !this.props.auth.loading) {
+    if(this.props.authStatus === 'authValid' && !this.props.authLoading) {
+      if(!this.props.playGameState) this.initGameModule()
+      if(this.props.playGameState === 'init' && !this.props.playGameMode) this.selectGameModeModule()
+      if(this.props.playGameState === 'reInit' && !this.props.playQuestion) this.reInitGameModule()
+      if(this.props.playGameState === 'select' && this.props.playStatus === 'selectQset') this.selectQsetModule()
+      if(this.props.playGameMode === 'quick_play' && this.props.playGameState === 'select') this.mountGameModeModule('setQuickPlay')
+      if(this.props.playGameMode === 'by_diff' && this.props.playQset && this.props.playGameState === 'select') this.mountGameModeModule('setByDiff')
+      if(this.props.playGameMode === 'by_cat' && this.props.playQset && this.props.playGameState === 'select') this.mountGameModeModule('setByCat')
+      if(this.props.playGameState === 'mount' && this.props.playStatus === 'setQuestionSuccess') this.displayQuestionModule()
+      if(this.props.playGameState === 'question' && this.props.playAnswer) this.setAnsweredModule()
+      if(this.props.playGameState === 'answered' && !this.props.playResults) this.getResultsModule()
+      if(this.props.playGameState === 'answered' && this.props.playStatus === 'updateQuestionSuccess' && this.props.playResults) this.updateQuestionTotalsModule()
+      if(this.props.playGameState === 'answered' && this.props.playStatus === 'updateQuestionTotalsSuccess' && this.props.playQuestionAnswer) this.updateUserQuestionsModule()
+      if(this.props.playGameState === 'answered' && this.props.playStatus === 'updateUserQuestionsSuccess') this.setResultsModule()
+      if(this.props.playGameState === 'results' && this.props.playStatus === 'setAllResultsSuccess') this.displayResultsModule()
+      if(this.props.playGameState === 'results' && this.props.voteStatus === 'initVote' && this.props.playResults.vote) this.updateUserVotesModule()
 
-      if(!this.props.play.gameState) this.initGameModule()
-      if(this.props.play.gameState === 'init' && !this.props.play.gameMode) this.selectGameModeModule()
-      if(this.props.play.gameState === 'reInit' && !this.props.play.question) this.reInitGameModule()
-      if(this.props.play.gameState === 'select' && this.props.play.status === 'selectQset') this.selectQsetModule()
-      if(this.props.play.gameMode === 'quick_play' && this.props.play.gameState === 'select') this.mountGameModeModule('setQuickPlay')
-      if(this.props.play.gameMode === 'by_diff' && this.props.play.gameQset && this.props.play.gameState === 'select') this.mountGameModeModule('setByDiff')
-      if(this.props.play.gameMode === 'by_cat' && this.props.play.gameQset && this.props.play.gameState === 'select') this.mountGameModeModule('setByCat')
-      if(this.props.play.gameState === 'mount' && this.props.play.status === 'setQuestionSuccess') this.displayQuestionModule()
-      if(this.props.play.gameState === 'question' && this.props.play.answer) this.setAnsweredModule()
-      if(this.props.play.gameState === 'answered' && !this.props.play.results) this.getResultsModule()
-      if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionSuccess' && this.props.play.results) this.updateQuestionTotalsModule()
-      if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateQuestionTotalsSuccess' && this.props.play.question.answers) this.updateUserQuestionsModule()
-      if(this.props.play.gameState === 'answered' && this.props.play.status === 'updateUserQuestionsSuccess') this.setResultsModule()
-      if(this.props.play.gameState === 'results' && this.props.play.status === 'setAllResultsSuccess') this.displayResultsModule()
-      if(this.props.play.gameState === 'results' && this.props.play.voteStatus === 'initVote' && this.props.play.results.vote) this.updateUserVotesModule()
-
-      if(this.props.play.gameState === 'results'
-         && this.props.play.voteStatus === 'voteSuccess'
-         && this.props.user.questions.list[this.props.play.question.id].vote)
+      if(this.props.playGameState === 'results'
+         && this.props.voteStatus === 'voteSuccess'
+         && this.props.userQuestions.list[this.props.playQuestionId].vote)
          this.displayVotesModule()
 
-      if(this.props.play.gameState === 'results' && this.props.play.commentStatus === 'initComment' && this.props.play.results.comment) this.updateUserCommentsModule()
+      if(this.props.playGameState === 'results' && this.props.commentStatus === 'initComment' && this.props.playResults.comment) this.updateUserCommentsModule()
 
-      if(this.props.play.gameState === 'results' &&
-         this.props.play.commentStatus === 'commentSuccess' &&
-        this.props.user.questions.list[this.props.play.question.id].comments[this.props.play.results.comment.cid])
+      if(this.props.playGameState === 'results' &&
+         this.props.commentStatus === 'commentSuccess' &&
+        this.props.userQuestions.list[this.props.playQuestionId].comments[this.props.playResults.comment.cid])
         this.displayCommentsModule()
     }
   }
@@ -82,7 +81,7 @@ class PlayController extends React.Component {
 //  shouldComponentUpdate(nextProps, nextState){
 
 //     // console.log(this.props.play.loading, nextProps.play.loading)
-//     // console.log(this.props.play.status, nextProps.play.status)
+//     // console.log(this.props.playStatus, nextProps.playStatus)
 //     // console.log(this.props)
 //     // console.log(nextProps)
 //     // console.log(this.state)
@@ -91,22 +90,22 @@ class PlayController extends React.Component {
 //     // let render = false
 //     let render = true
 
-//     // if(this.props.play.status !== nextProps.play.status) render = true
+//     // if(this.props.playStatus !== nextProps.playStatus) render = true
 
 //     return render
 //   }
 
   componentWillUnmount(){
     localStorage.removeItem('gameMode')
-    if(this.props.play.status) this.props.onUpdateGameStatus(null, false)
-    if(this.props.play.gameMode) this.props.onResetGameMode()
-    if(this.props.play.gameState)  this.props.onResetGameState()
-    if(this.props.play.gameQset) this.props.onResetGameQset()
-    if(this.props.play.question) this.props.onResetQuestion()
-    if(this.props.play.answer) this.props.onResetAnswer()
-    if(this.props.play.results) this.props.onResetResults()
-    if(this.props.play.voteStatus) this.props.onResetVote()
-    if(this.props.play.commentStatus) this.props.onResetComment()
+    if(this.props.playStatus) this.props.onUpdateGameStatus(null, false)
+    if(this.props.playGameMode) this.props.onResetGameMode()
+    if(this.props.playGameState)  this.props.onResetGameState()
+    if(this.props.playQset) this.props.onResetGameQset()
+    if(this.props.playQuestionQuestion) this.props.onResetQuestion()
+    if(this.props.playAnswer) this.props.onResetAnswer()
+    if(this.props.playResults) this.props.onResetResults()
+    if(this.props.voteStatus) this.props.onResetVote()
+    if(this.props.commentStatus) this.props.onResetComment()
   }
 
   initGameModule = () => {
@@ -116,21 +115,21 @@ class PlayController extends React.Component {
   }
 
   reInitGameModule = () => {
-    if (this.props.play.gameMode === 'quick_play') {
+    if (this.props.playGameMode === 'quick_play') {
       this.props.onUpdateGameStatus('setQuickPlay', true)
       let questionObj = { answeredIds: [] }
-      if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
+      if(this.props.userQuestions.ids) questionObj['answeredIds'] = this.props.userQuestions.ids
       this.props.onGetQuickQuestion(questionObj)
       this.props.onSetGameState('mount')
     } else {
       this.props.onUpdateGameStatus('setQset', true)
-      let questionObj = { answeredIds: [], qSet: this.props.play.gameQset }
-      if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-      if(this.props.play.gameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
-      if(this.props.play.gameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
+      let questionObj = { answeredIds: [], qSet: this.props.playQset }
+      if(this.props.userQuestions.ids) questionObj['answeredIds'] = this.props.userQuestions.ids
+      if(this.props.playGameMode === 'by_diff') this.props.onGetDiffQuestion(questionObj)
+      if(this.props.playGameMode === 'by_cat') this.props.onGetCatQuestion(questionObj)
       this.props.onSetGameState('mount')
     }
-    this.props.history.push(routes[this.props.play.gameMode] + '/question')
+    this.props.history.push(routes[this.props.playGameMode] + '/question')
   }
 
   selectGameModeModule = () => {
@@ -140,23 +139,23 @@ class PlayController extends React.Component {
   }
 
   reSelectGameModeModule = () => {
-    if(this.props.modal.loading) this.props.onLoadingModal(false)
+    if(this.props.modalLoading) this.props.onLoadingModal(false)
     this.props.onUpdateGameStatus('selectGameMode', false)
-    if(!this.props.play.gameState) this.props.onSetGameState('select')
-    if(this.props.play.question) this.props.onResetQuestion()
-    if(this.props.play.gameMode) this.props.onResetGameMode()
-    if(this.props.play.gameQset) this.props.onResetGameQset()
-    if(this.props.play.answer) this.props.onResetAnswer()
-    if(this.props.play.results) this.props.onResetResults()
-    if(this.props.play.voteStatus) this.props.onResetVote()
-    if(this.props.play.commentStatus) this.props.onResetComment()
+    if(!this.props.playGameState) this.props.onSetGameState('select')
+    if(this.props.playQuestion) this.props.onResetQuestion()
+    if(this.props.playGameMode) this.props.onResetGameMode()
+    if(this.props.playQset) this.props.onResetGameQset()
+    if(this.props.playAnswer) this.props.onResetAnswer()
+    if(this.props.playResults) this.props.onResetResults()
+    if(this.props.voteStatus) this.props.onResetVote()
+    if(this.props.commentStatus) this.props.onResetComment()
   }
 
   setGameCompletedModule = () => {
     this.props.onUpdateGameStatus('displayQuestion', false)
 
-    if (this.props.play.gameMode === 'quick_play') this.props.history.push( routes.play + '/completed' )
-    else this.props.history.push( routes[this.props.play.gameMode] + '/completed' )
+    if (this.props.playGameMode === 'quick_play') this.props.history.push( routes.play + '/completed' )
+    else this.props.history.push( routes[this.props.playGameMode] + '/completed' )
 
     this.props.onSetGameState('completed')
     this.props.onLoadingModal(false)
@@ -167,8 +166,8 @@ class PlayController extends React.Component {
     this.props.onUpdateGameStatus(gameMode, true)
     let questionObj = { answeredIds: [] }
 
-    if(this.props.user.questions.ids) questionObj['answeredIds'] = this.props.user.questions.ids
-    if(this.props.play.gameQset) questionObj.qSet = this.props.play.gameQset
+    if(this.props.userQuestions.ids) questionObj['answeredIds'] = this.props.userQuestions.ids
+    if(this.props.playQset) questionObj.qSet = this.props.playQset
 
     if(gameMode === 'setQuickPlay') this.props.onGetQuickQuestion(questionObj)
     if(gameMode === 'setByDiff') this.props.onGetDiffQuestion(questionObj)
@@ -178,7 +177,7 @@ class PlayController extends React.Component {
   }
 
   displayQuestionModule = () => {
-     if(this.props.play.question.completed && this.props.play.gameState === 'mount') {
+     if(this.props.playQuestionsCompleted && this.props.playGameState === 'mount') {
       this.setGameCompletedModule()
     } else {
       this.props.onUpdateGameStatus('displayQuestion', false)
@@ -193,65 +192,65 @@ class PlayController extends React.Component {
   }
 
   getResultsModule = () => {
-    let Easy = this.props.user.questions.Easy
-    let Medium = this.props.user.questions.Medium
-    let Hard = this.props.user.questions.Hard
+    let Easy = this.props.userQuestions.Easy
+    let Medium = this.props.userQuestions.Medium
+    let Hard = this.props.userQuestions.Hard
 
     this.props.onGetResults({
       uid: localStorage.id,
-      qid: this.props.play.question.id,
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      answer: this.props.play.answer.choice,
-      time: this.props.play.answer.time,
-      rating: this.props.user.questions.totals.all.rating,
-      rank: this.props.user.questions.totals.all.rank,
-      experience: this.props.user.experience.total,
-      achievements: this.props.user.achievements,
+      qid: this.props.playQuestionId,
+      difficulty: this.props.playQuestionDifficulty,
+      category: this.props.playQuestionCategory,
+      answer: this.props.playAnswer.choice,
+      time: this.props.playAnswer.time,
+      rating: this.props.userQuestions.totals.all.rating,
+      rank: this.props.userQuestions.totals.all.rank,
+      experience: this.props.userXP.total,
+      achievements: this.props.userAchievements,
       userQuestions: { Easy, Medium, Hard },
-      userTotals: this.props.user.questions.totals
+      userTotals: this.props.userQuestions.totals
     })
   }
 
   updateQuestionTotalsModule = () => {
-    this.props.onUpdateQuestionTotalsFromPlayController(this.props.play.results.questionTotals)
+    this.props.onUpdateQuestionTotalsFromPlayController(this.props.playResults.questionTotals)
     this.props.onUpdateGameStatus('updateQuestionTotalsSuccess', true)
   }
 
   updateUserQuestionsModule = () => {
     this.props.onUpdateUserPerformanceFromPlayController({
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      dRating: this.props.user.questions.totals.difficulty[this.props.play.question.difficulty].rating,
-      cRating: this.props.user.questions.totals.category[this.props.play.question.category].rating,
-      oPerf: this.props.play.results.performance.oPerf,
-      qPerf: this.props.play.results.performance.qPerf
+      difficulty: this.props.playQuestionDifficulty,
+      category: this.props.playQuestionCategory,
+      dRating: this.props.userQuestions.totals.difficulty[this.props.playQuestionDifficulty].rating,
+      cRating: this.props.userQuestions.totals.category[this.props.playQuestionCategory].rating,
+      oPerf: this.props.playResults.performance.oPerf,
+      qPerf: this.props.playResults.performance.qPerf
     })
 
     this.props.onUpdateUserExperienceFromPlayController({
-      level: this.props.play.results.experience.level,
-      total: this.props.play.results.experience.newTotal
+      level: this.props.playResults.experience.level,
+      total: this.props.playResults.experience.newTotal
     })
 
-    if(this.props.play.results.achievements.total > 0){
-      this.props.onUpdateUserAchievementsFromPlayController(this.props.play.results.achievements)
+    if(this.props.playResults.achievements.total > 0){
+      this.props.onUpdateUserAchievementsFromPlayController(this.props.playResults.achievements)
     }
 
-    this.props.onUpdateUserQuestionIdsFromPlayController(this.props.play.question.id)
+    this.props.onUpdateUserQuestionIdsFromPlayController(this.props.playQuestionId)
 
-    this.props.onUpdateUserQuestionTotalsFromPlayController(this.props.play.results.userTotals)
+    this.props.onUpdateUserQuestionTotalsFromPlayController(this.props.playResults.userTotals)
 
-    this.props.onUpdateUserQuestionsFromPlayController(this.props.play.question.id, {
-        achievements: this.props.play.results.achievements,
-        answer: this.props.play.answer.choice,
-        category: this.props.play.question.category,
-        correct_answer: this.props.play.results.correct_answer,
-        difficulty: this.props.play.question.difficulty,
-        experience: this.props.play.results.experience,
-        performance: this.props.play.results.performance.qPerf,
-        question: this.props.play.question.question,
-        result: this.props.play.results.result,
-        time: this.props.play.answer.time
+    this.props.onUpdateUserQuestionsFromPlayController(this.props.playQuestionId, {
+        achievements: this.props.playResults.achievements,
+        answer: this.props.playAnswer.choice,
+        category: this.props.playQuestionCategory,
+        correct_answer: this.props.playResults.correct_answer,
+        difficulty: this.props.playQuestionDifficulty,
+        experience: this.props.playResults.experience,
+        performance: this.props.playResults.performance.qPerf,
+        question: this.props.playQuestionQuestion,
+        result: this.props.playResults.result,
+        time: this.props.playAnswer.time
       })
 
     this.props.onUpdateGameStatus('updateUserQuestionsSuccess', true)
@@ -264,7 +263,7 @@ class PlayController extends React.Component {
 
   displayResultsModule = () => {
     this.props.onUpdateGameStatus('displayResults', false)
-    this.props.history.push( routes[this.props.play.gameMode] + '/results/stats' )
+    this.props.history.push( routes[this.props.playGameMode] + '/results/stats' )
     this.props.onLoadingModal(false)
   }
 
@@ -272,11 +271,11 @@ class PlayController extends React.Component {
     this.props.onUpdateVoteStatus('sentVote', true)
     this.props.onUpdateUserVotesFromPlayController({
       type: 'play',
-      vid: this.props.play.results.vote.vid,
-      qid: this.props.play.question.id,
-      difficulty: this.props.play.question.difficulty,
-      category: this.props.play.question.category,
-      vote: this.props.play.results.vote.vote
+      vid: this.props.playResults.vote.vid,
+      qid: this.props.playQuestionId,
+      difficulty: this.props.playQuestionDifficulty,
+      category: this.props.playQuestionCategory,
+      vote: this.props.playResults.vote.vote
     })
   }
 
@@ -284,12 +283,12 @@ class PlayController extends React.Component {
     this.props.onUpdateCommentStatus('sentComment', true)
     this.props.onUpdateUserCommentsFromPlayController({
       type: 'play',
-      cid: this.props.play.results.comment.cid,
-      qid: this.props.play.question.id,
-      category: this.props.play.question.category,
-      comment: this.props.play.results.comment.comment,
-      difficulty: this.props.play.question.difficulty,
-      timestamp: this.props.play.results.comment.timestamp
+      cid: this.props.playResults.comment.cid,
+      qid: this.props.playQuestionId,
+      category: this.props.playQuestionCategory,
+      comment: this.props.playResults.comment.comment,
+      difficulty: this.props.playQuestionDifficulty,
+      timestamp: this.props.playResults.comment.timestamp
     })
   }
 
@@ -308,15 +307,15 @@ class PlayController extends React.Component {
     let loadingModal,
         completedPath
 
-    if(this.props.play.gameMode === 'quick_play' || localStorage.gameMode === 'quick_play') completedPath = routes.play + '/completed'
-    else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.play.gameMode] + '/completed'
+    if(this.props.playGameMode === 'quick_play' || localStorage.gameMode === 'quick_play') completedPath = routes.play + '/completed'
+    else completedPath = routes[localStorage.gameMode] + '/completed' || routes[this.props.playGameMode] + '/completed'
 
-    if(this.props.play.gameState === 'select' || this.props.play.gameState === 'mount' || this.props.play.gameState === 'question') {
-      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadQuestion' } />
+    if(this.props.playGameState === 'select' || this.props.playGameState === 'mount' || this.props.playGameState === 'question') {
+      loadingModal = <LoadingModal show={ this.props.modalLoading } modalType={ 'play' } barType={ 'loadQuestion' } />
     }
 
-    if(this.props.play.gameState === 'answered' || this.props.play.gameState === 'results') {
-      loadingModal = <LoadingModal show={ this.props.modal.loading } modalType={ 'play' } barType={ 'loadResults' } />
+    if(this.props.playGameState === 'answered' || this.props.playGameState === 'results') {
+      loadingModal = <LoadingModal show={ this.props.modalLoading } modalType={ 'play' } barType={ 'loadResults' } />
     }
 
     let routeBoard =
@@ -324,13 +323,13 @@ class PlayController extends React.Component {
         <Route exact path={ completedPath }>
           <CompletedContainer />
         </Route>
-        <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.play.gameMode] + '/results' }>
+        <Route path={ routes[localStorage.gameMode] + '/results' || routes[this.props.playGameMode] + '/results' }>
           <ResultsContainer staticResults={ false } />
         </Route>
-        <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.play.gameMode] + '/question' }>
+        <Route exact path={ routes[localStorage.gameMode] + '/question' || routes[this.props.playGameMode] + '/question' }>
           <QuestionContainer />
         </Route>
-        <Route path={ routes.play || routes[this.props.play.gameMode] + '/select' }>
+        <Route path={ routes.play || routes[this.props.playGameMode] + '/select' }>
           <SelectionContainer
             setGameMode={ this.props.onSetGameMode }
             setGameState={ this.props.onSetGameState }
@@ -354,10 +353,27 @@ class PlayController extends React.Component {
 
 const store = (store) => {
   return {
-    modal: store.modal,
-    auth: store.auth,
-    play: store.play,
-    user: store.user
+    modalLoading: store.modal.loading,
+    authStatus: store.auth.status,
+    authLoading: store.auth.loading,
+    playGameState: store.play.gameState,
+    playGameMode: store.play.gameMode,
+    playQuestion: !!store.play.question,
+    playQuestionId: store.play.question ? store.play.question.id : null,
+    playQuestionQuestion: store.play.question ? store.play.question.question : null,
+    playQuestionDifficulty: store.play.question ? store.play.question.difficulty : null,
+    playQuestionCategory: store.play.question ? store.play.question.category : null,
+    playQuestionsCompleted: store.play.question ? store.play.question.completed : null,
+    playStatus: store.play.status,
+    playQset: store.play.gameQset,
+    playAnswer: store.play.answer,
+    playResults: store.play.results,
+    playQuestionAnswer: store.play.question ? store.play.question.answers : null,
+    voteStatus: store.play.voteStatus,
+    commentStatus: store.play.commentStatus,
+    userQuestions: store.user.questions,
+    userXP: store.user.experience,
+    userAchievements: store.user.achievements
   }
 }
 
