@@ -30,21 +30,21 @@ const DashboardProfileContainer = (props) => {
     document.title = "SmartApp™ | Dashboard | Profile"
   }, [])
 
-  let avatar = props.user.info.avatar
-  let user_name = props.user.info.user_name
-  let email = props.user.info.email
-  let bio = checkBlankString(props.user.info.bio, 'Update your profile to add a Bio')
-  let country = checkBlankString(props.user.info.country, 'Update your profile to add your Country')
-  let firstName = checkBlankString(props.user.info.first_name, 'Update your profile to add your First Name')
-  let lastName = checkBlankString(props.user.info.last_name, 'Update your profile to add your Last Name')
-  let gender = checkBlankString(props.user.info.gender, 'Update your profile to add your Gender')
-  let genderPronouns = checkBlankString(props.user.info.gender_pronouns, 'Update your profile to add your Gender Pronouns')
-  let dobDay = checkBlankInt(props.user.info.dob.day, 'Update your profile to add your Birth Day')
-  let dobMonth = checkBlankString(props.user.info.dob.month, 'Update your profile to add your Birth Month')
-  let dobYear = checkBlankInt(props.user.info.dob.year, 'Update your profile to add your Birth Year')
+  let avatar = props.userInfo.avatar
+  let user_name = props.userInfo.user_name
+  let email = props.userInfo.email
+  let bio = checkBlankString(props.userInfo.bio, 'Update your profile to add a Bio')
+  let country = checkBlankString(props.userInfo.country, 'Update your profile to add your Country')
+  let firstName = checkBlankString(props.userInfo.first_name, 'Update your profile to add your First Name')
+  let lastName = checkBlankString(props.userInfo.last_name, 'Update your profile to add your Last Name')
+  let gender = checkBlankString(props.userInfo.gender, 'Update your profile to add your Gender')
+  let genderPronouns = checkBlankString(props.userInfo.gender_pronouns, 'Update your profile to add your Gender Pronouns')
+  let dobDay = checkBlankInt(props.userInfo.dob.day, 'Update your profile to add your Birth Day')
+  let dobMonth = checkBlankString(props.userInfo.dob.month, 'Update your profile to add your Birth Month')
+  let dobYear = checkBlankInt(props.userInfo.dob.year, 'Update your profile to add your Birth Year')
   let fullDOB = dobYear.field === 0 ? `${ dobMonth.field } ${ formatDay(dobDay.field) }` : `${ dobMonth.field } ${ formatDay(dobDay.field) }, ${ dobYear.field }`
-  let last_login = `${ props.user.info.last_login.time } ${ formatMonth(props.user.info.last_login.month) } ${ formatDay(props.user.info.last_login.day) }, ${ props.user.info.last_login.year }`
-  let join_date = `${ formatMonth(props.user.info.join_date.month) } ${ formatDay(props.user.info.join_date.day) }, ${ props.user.info.join_date.year }`
+  let last_login = `${ props.userInfo.last_login.time } ${ formatMonth(props.userInfo.last_login.month) } ${ formatDay(props.userInfo.last_login.day) }, ${ props.userInfo.last_login.year }`
+  let join_date = `${ formatMonth(props.userInfo.join_date.month) } ${ formatDay(props.userInfo.join_date.day) }, ${ props.userInfo.join_date.year }`
 
   const onClickProfileButtonFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -113,7 +113,7 @@ const DashboardProfileContainer = (props) => {
 
 const store = (store) => {
   return {
-    user: store.user
+    userInfo: store.user.info
   }
 }
 

@@ -40,10 +40,10 @@ class DashboardSettingsContainer extends React.Component {
 
   componentDidMount(){
     document.title = "SmartApp™ | Dashboard | Settings"
-    if(this.props.user.settings) this.pulledStore()
+    if(this.props.userSettings) this.pulledStore()
   }
 
-  componentDidUpdate(){ if(this.props.user.settings && !this.state.pulledStore) this.pulledStore() }
+  componentDidUpdate(){ if(this.props.userSettings && !this.state.pulledStore) this.pulledStore() }
 
   componentWillUnmount(){ clearTimeout(this.enableButtonsTimeout) }
 
@@ -56,18 +56,18 @@ class DashboardSettingsContainer extends React.Component {
         privacy: {
           ...this.state.settings.privacy,
           profile: {
-            private: this.props.user.settings.privacy.profile.private,
-            showAchievements: this.props.user.settings.privacy.profile.showAchievements,
-            showAge: this.props.user.settings.privacy.profile.showAge,
-            showAvatar: this.props.user.settings.privacy.profile.showAvatar,
-            showBio: this.props.user.settings.privacy.profile.showBio,
-            showComments: this.props.user.settings.privacy.profile.showComments,
-            showCountry: this.props.user.settings.privacy.profile.showCountry,
-            showGender: this.props.user.settings.privacy.profile.showGender,
-            showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
-            showRealName: this.props.user.settings.privacy.profile.showRealName,
-            showStats: this.props.user.settings.privacy.profile.showStats,
-            showVotes: this.props.user.settings.privacy.profile.showVotes
+            private: this.props.userSettings.privacy.profile.private,
+            showAchievements: this.props.userSettings.privacy.profile.showAchievements,
+            showAge: this.props.userSettings.privacy.profile.showAge,
+            showAvatar: this.props.userSettings.privacy.profile.showAvatar,
+            showBio: this.props.userSettings.privacy.profile.showBio,
+            showComments: this.props.userSettings.privacy.profile.showComments,
+            showCountry: this.props.userSettings.privacy.profile.showCountry,
+            showGender: this.props.userSettings.privacy.profile.showGender,
+            showGenderPronouns: this.props.userSettings.privacy.profile.showGenderPronouns,
+            showRealName: this.props.userSettings.privacy.profile.showRealName,
+            showStats: this.props.userSettings.privacy.profile.showStats,
+            showVotes: this.props.userSettings.privacy.profile.showVotes
           }
         }
       }
@@ -95,7 +95,7 @@ class DashboardSettingsContainer extends React.Component {
   onSubmit = (event) => {
     event.preventDefault()
     this.props.onUpdateUserSettings({
-      uid: this.props.auth.id,
+      uid: this.props.authId,
       settings: this.state.settings
     })
     this.setState({ enableButtons: false })
@@ -114,18 +114,18 @@ class DashboardSettingsContainer extends React.Component {
         privacy: {
           ...this.state.settings.privacy,
           profile: {
-            private: this.props.user.settings.privacy.profile.private,
-            showAchievements: this.props.user.settings.privacy.profile.showAchievements,
-            showAge: this.props.user.settings.privacy.profile.showAge,
-            showAvatar: this.props.user.settings.privacy.profile.showAvatar,
-            showBio: this.props.user.settings.privacy.profile.showBio,
-            showComments: this.props.user.settings.privacy.profile.showComments,
-            showCountry: this.props.user.settings.privacy.profile.showCountry,
-            showGender: this.props.user.settings.privacy.profile.showGender,
-            showGenderPronouns: this.props.user.settings.privacy.profile.showGenderPronouns,
-            showRealName: this.props.user.settings.privacy.profile.showRealName,
-            showStats: this.props.user.settings.privacy.profile.showStats,
-            showVotes: this.props.user.settings.privacy.profile.showVotes
+            private: this.props.userSettings.privacy.profile.private,
+            showAchievements: this.props.userSettings.privacy.profile.showAchievements,
+            showAge: this.props.userSettings.privacy.profile.showAge,
+            showAvatar: this.props.userSettings.privacy.profile.showAvatar,
+            showBio: this.props.userSettings.privacy.profile.showBio,
+            showComments: this.props.userSettings.privacy.profile.showComments,
+            showCountry: this.props.userSettings.privacy.profile.showCountry,
+            showGender: this.props.userSettings.privacy.profile.showGender,
+            showGenderPronouns: this.props.userSettings.privacy.profile.showGenderPronouns,
+            showRealName: this.props.userSettings.privacy.profile.showRealName,
+            showStats: this.props.userSettings.privacy.profile.showStats,
+            showVotes: this.props.userSettings.privacy.profile.showVotes
           }
         }
       }
@@ -163,8 +163,10 @@ class DashboardSettingsContainer extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    user: store.user
+    user: store.user,
+
+    authId: store.auth.id,
+    userSettings: store.user.settings
   }
 }
 

@@ -8,7 +8,7 @@ const DashboardIndex = (props) => {
   return(
     <div className='dashboard_index'>
       <div className='dashboard_index_header'>
-        <h3>{`Welcome, ${props.user.info.user_name}!`}</h3>
+        <h3>{`Welcome, ${props.userName}!`}</h3>
       </div>
     </div>
   )
@@ -16,7 +16,7 @@ const DashboardIndex = (props) => {
 
 const store = (store) => {
   return {
-    user: store.user
+    userName: store.user.info.user_name
   }
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import DashboardStatsAnswersContainer from '../dashboardStatsAnswersContainer/dashboardStatsAnswersContainer'
 import DashboardStatsCardHeader from '../dashboardStatsCardHeader/dashboardStatsCardHeader'
@@ -136,11 +135,4 @@ class DashboardStatsCard extends React.Component {
   }
 }
 
-const store = (store) => {
-  return {
-    user: store.user,
-    questions: store.questions
-  }
-}
-
-export default connect(store)(DashboardStatsCard)
+export default DashboardStatsCard

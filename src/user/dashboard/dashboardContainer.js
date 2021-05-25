@@ -51,7 +51,7 @@ const Dashboard = (props) => {
 
   let dashboardBlock = <></>
 
-  if(props.auth.status === 'authValid') {
+  if(props.authStatus === 'authValid') {
     dashboardBlock =
       <>
         <DefaultButtonsContainer
@@ -88,13 +88,14 @@ const Dashboard = (props) => {
       </>
     }
 
-  return( (!props.modal.loading || !props.auth.loading) && dashboardBlock )
+  return( (!props.modalLoading || !props.authLoading) && dashboardBlock )
 }
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    modal: store.modal
+    authStatus: store.auth.status,
+    authLoading: store.auth.loading,
+    modalLoading: store.modal.loading
   }
 }
 

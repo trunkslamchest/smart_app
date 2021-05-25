@@ -54,11 +54,11 @@ class DashboardEditProfile extends React.Component {
     enableInput: true
   }
 
-  componentDidMount(){ if(this.props.user.info) this.pulledStore() }
+  componentDidMount(){ if(this.props.userInfo) this.pulledStore() }
 
   componentDidUpdate() {
-    if(this.props.user.info && !this.state.pulledStore) this.pulledStore()
-    if(!this.props.modal.loading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
+    if(this.props.userInfo && !this.state.pulledStore) this.pulledStore()
+    if(!this.props.modalLoading && (!this.state.enableButton || !this.state.enableInput)) this.setState({ enableButton: true, enableInput: true })
   }
 
   componentWillUnmount(){
@@ -87,16 +87,16 @@ class DashboardEditProfile extends React.Component {
 
   pulledStore = () => {
     this.setState({
-      avatar: this.props.user.info.avatar,
-      bio: this.props.user.info.bio,
-      country: this.props.user.info.country,
-      dob: this.props.user.info.dob,
-      email: this.props.user.info.email,
-      first_name: this.props.user.info.first_name,
-      gender: this.props.user.info.gender,
-      gender_pronouns: this.props.user.info.gender_pronouns,
-      last_name: this.props.user.info.last_name,
-      user_name: this.props.user.info.user_name,
+      avatar: this.props.userInfo.avatar,
+      bio: this.props.userInfo.bio,
+      country: this.props.userInfo.country,
+      dob: this.props.userInfo.dob,
+      email: this.props.userInfo.email,
+      first_name: this.props.userInfo.first_name,
+      gender: this.props.userInfo.gender,
+      gender_pronouns: this.props.userInfo.gender_pronouns,
+      last_name: this.props.userInfo.last_name,
+      user_name: this.props.userInfo.user_name,
       pulledStore: true
     })
   }
@@ -160,11 +160,11 @@ class DashboardEditProfile extends React.Component {
 
     this.setState({ form: formCheck })
     if(formCheck.valid) {
-      if(this.state.email !== this.props.user.info.email) {
+      if(this.state.email !== this.props.userInfo.email) {
         this.props.onEditProfileModal(true)
         this.props.onCacheUser({
-          uid: this.props.auth.id,
-          old_email: this.props.user.info.email,
+          uid: this.props.authId,
+          old_email: this.props.userInfo.email,
           info: {
             avatar: this.state.avatar,
             bio: this.state.bio,
@@ -176,12 +176,12 @@ class DashboardEditProfile extends React.Component {
             gender_pronouns: this.state.gender_pronouns,
             last_name: this.state.last_name,
             user_name: this.state.user_name,
-            join_date: this.props.user.info.join_date,
-            last_login: this.props.user.info.last_login
+            join_date: this.props.userInfo.join_date,
+            last_login: this.props.userInfo.last_login
           }
         })
       } else {
-        if(!!this.props.auth.errors.length) this.props.onClearAuthErrors()
+        if(!!this.props.authErrors.length) this.props.onClearAuthErrors()
         this.props.onLoadingModal(true)
         this.checkUserExists()
       }
@@ -190,7 +190,7 @@ class DashboardEditProfile extends React.Component {
   }
 
   checkUserExists = () => {
-    checkFunctions('checkUserName', check.user_name, { old_user_name: this.props.user.info.user_name, new_user_name: this.state.user_name, type: 'editProfile' })
+    checkFunctions('checkUserName', check.user_name, { old_user_name: this.props.userInfo.user_name, new_user_name: this.state.user_name, type: 'editProfile' })
     .then(resObj => {
       if(!resObj.valid) {
         this.props.onLoadingModal(false)
@@ -203,8 +203,8 @@ class DashboardEditProfile extends React.Component {
   onValidation = () => {
     if(!this.state.form.pending && this.state.enableButton){
       this.props.onAuthStart('editProfile', {
-        uid: this.props.auth.id,
-        old_user_name: this.props.user.info.user_name,
+        uid: this.props.authId,
+        old_user_name: this.props.userInfo.user_name,
         info: {
           avatar: this.state.avatar,
           bio: this.state.bio,
@@ -216,8 +216,8 @@ class DashboardEditProfile extends React.Component {
           gender_pronouns: this.state.gender_pronouns,
           last_name: this.state.last_name,
           user_name: this.state.user_name,
-          join_date: this.props.user.info.join_date,
-          last_login: this.props.user.info.last_login
+          join_date: this.props.userInfo.join_date,
+          last_login: this.props.userInfo.last_login
         }
       })
     }
@@ -225,16 +225,16 @@ class DashboardEditProfile extends React.Component {
 
   onReset = () => {
     this.setState({
-      avatar: this.props.user.info.avatar,
-      bio: this.props.user.info.bio,
-      country: this.props.user.info.country,
-      dob: this.props.user.info.dob,
-      email: this.props.user.info.email,
-      first_name: this.props.user.info.first_name,
-      gender: this.props.user.info.gender,
-      gender_pronouns: this.props.user.info.gender_pronouns,
-      last_name: this.props.user.info.last_name,
-      user_name: this.props.user.info.user_name,
+      avatar: this.props.userInfo.avatar,
+      bio: this.props.userInfo.bio,
+      country: this.props.userInfo.country,
+      dob: this.props.userInfo.dob,
+      email: this.props.userInfo.email,
+      first_name: this.props.userInfo.first_name,
+      gender: this.props.userInfo.gender,
+      gender_pronouns: this.props.userInfo.gender_pronouns,
+      last_name: this.props.userInfo.last_name,
+      user_name: this.props.userInfo.user_name,
       errors: {},
       form: { valid: false, pending: false },
       enableButton: true,
@@ -293,9 +293,10 @@ class DashboardEditProfile extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
-    modal: store.modal,
-    user: store.user
+    authErrors: store.auth.errors,
+    authId: store.auth.id,
+    modalLoading: store.modal.loading,
+    userInfo: store.user.info
   }
 }
 
