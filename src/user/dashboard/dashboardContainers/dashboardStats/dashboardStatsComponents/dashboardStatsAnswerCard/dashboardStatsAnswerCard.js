@@ -26,8 +26,8 @@ const DashboardStatsAnswerCard = (props) => {
   // let distribComments
   let resultGlyph
 
-  const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title={ 'You answered this question correctly' } />
-  const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title={ 'You answered this question incorrectly' } />
+  const correct_glyph = <img alt='Correct' className='result_glyph' src={ glyphIndex.greenCheckMark } title='You answered this question correctly' />
+  const incorrect_glyph = <img alt='Incorrect' className='result_glyph' src={ glyphIndex.redX } title='You answered this question incorrectly' />
 
   const viewQuestionButton = makeDashboardViewQuestionButton(glyphIndex, onPushLink, routes.static_results, props.diff, props.cat, props.qid)
 
@@ -71,9 +71,10 @@ const DashboardStatsAnswerCard = (props) => {
         <h5>{ answer.question }</h5>
           <DefaultButtonsContainer
             buttons={ viewQuestionButton }
-            containerClass={ 'dashboard_stats_view_question_button_container' }
-            buttonClass={ 'dashboard_stats_view_question_button' }
+            containerClass='dashboard_stats_view_question_button_container'
+            buttonClass='dashboard_stats_view_question_button'
             enableButton={ true }
+            tooltipClass='dashboard_stats_view_question_button_tooltip'
           />
       </div>
       <div className="dashboard_stats_answer_card_sub_container">
@@ -86,10 +87,10 @@ const DashboardStatsAnswerCard = (props) => {
               <>
                 <h4>Your Vote</h4>
                   <img
-                    alt={ 'Your Rating' }
+                    alt='Your Rating'
                     name={ vote }
                     src={ voteStars }
-                    title={ 'Your Rating' }
+                    title='Your Rating'
                   />
               </>
             }

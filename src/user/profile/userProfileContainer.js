@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react'
 
 import DashboardHeader from '../../user/dashboard/dashboardComponents/dashboardHeader/dashboardHeader'
 import UserProfileHeader from './userProfileHeader/userProfileHeader'
@@ -12,6 +13,8 @@ import './userProfileContainer.css'
 import './userProfileResponse.css'
 
 const UserProfileContainer = (props) => {
+
+  useEffect(() => { document.body.scrollTop = 0 }, [])
 
   let userProfileBlock = <></>
 

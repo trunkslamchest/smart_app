@@ -63,7 +63,7 @@ const DashboardProfileContainer = (props) => {
       <React.Fragment key={ index + field.name }>
         <DashboardProfileField
           field={ field }
-          fieldClass={ 'dashboard_profile_field' }
+          fieldClass='dashboard_profile_field'
         />
         { index < profileFields.length - 1 && <div className='divider_medium'/> }
       </React.Fragment>
@@ -90,11 +90,11 @@ const DashboardProfileContainer = (props) => {
 
   return(
     <>
-      <DashboardHeader header_text={ 'Your Profile' } />
+      <DashboardHeader header_text='Your Profile' />
       <div className='dashboard_profile_body'>
         <ContainerProfileHeader
           avatar={ avatar }
-          containerClass={ 'dashboard_profile_header_buttons_container' }
+          containerClass='dashboard_profile_header_buttons_container'
           email={ email }
           user_name={ user_name }
           date_block={ date_block }
@@ -106,8 +106,9 @@ const DashboardProfileContainer = (props) => {
         <DefaultButtonsContainer
           buttons={ profileButtons }
           buttonRow={ true }
-          containerClass={ 'dashboard_profile_buttons_container' }
+          containerClass='dashboard_profile_buttons_container'
           enableButton={ true }
+          tooltipClass='dashboard_form_button_tooltip'
         />
       </div>
     </>

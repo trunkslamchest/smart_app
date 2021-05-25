@@ -28,4 +28,8 @@
     width: 100%;
   }
 
+  .vote_header_text_sub_container h3 {
+    font: 600 12pt "LatoThin";
+  }
+
 }

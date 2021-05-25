@@ -30,9 +30,10 @@
 .dashboard_form_button_tooltip_arrow {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid rgba(244, 166, 66, 1);
+  border-bottom: 10px solid rgba(50, 50, 50, 1);
   height: 10px;
   width: 10px;
+  z-index: 4;
 }
 
 .dashboard_form_button_tooltip_text {
@@ -43,12 +44,13 @@
   align-content: center;
   align-items: center;
   width: max-content;
+  background: rgba(50, 50, 50, 1);
+  border-radius: 5px;
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
 }
 
 .dashboard_form_button_tooltip_wrapper span {
-  background: rgba(244, 166, 66, 1);
-  border-radius: 2.5px;
-  color: rgba(40, 44, 52, 1);
-  font: 600 10pt 'Poppins', 'sans-serif';
-  padding: 2.5px 5px;
+  color: rgba(225, 225, 225, 1);
+  font: 300 9pt 'PoppinsLight', 'sans-serif';
+  padding: 5px;
 }

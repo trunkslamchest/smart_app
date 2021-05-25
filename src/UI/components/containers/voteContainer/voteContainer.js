@@ -156,12 +156,8 @@ const VoteContainer = (props) => {
 
 const store = (store) => {
   return {
-    // play: store.play,
-    questions: store.questions,
-
     playResults: !!store.play.results,
     staticUserResults: !!store.questions.staticUserResults,
-
     playVoteLoading: store.play.voteLoading,
     staticVoteLoading: store.questions.voteLoading
   }

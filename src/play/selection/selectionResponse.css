@@ -9,3 +9,11 @@
   }
 
 }
+
+@media only screen and (max-width: 550px) {
+  .game_modes_buttons_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+}

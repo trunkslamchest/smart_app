@@ -38,11 +38,9 @@ const UserStatsTotal = (props) => {
   let totalStats
   let performance
   let totalQuestionsAnswered = (0).toFixed(2)
-  // let totalQuestionsCorrect = (0).toFixed(2)
 
   if(props.userQuestionTotals && props.questionTotals){
     totalQuestionsAnswered = ((props.userQuestionTotals.answered / props.questionTotals.questions) * 100).toFixed(2)
-    // if(props.userQuestionTotals.answered > 0) totalQuestionsCorrect = (props.userQuestionTotals.averages.correct).toFixed(2)
     if(props.userQuestionTotals.answered >= 5) {
       performance =
         <>
@@ -84,7 +82,6 @@ const UserStatsTotal = (props) => {
     }
 
     totalQuestionsAnswered = numZero(totalQuestionsAnswered)
-    // totalQuestionsCorrect = numZero(totalQuestionsCorrect)
 
     totalStats =
       <div className="user_stats_total">
@@ -93,12 +90,9 @@ const UserStatsTotal = (props) => {
           <div className='user_stats_total_sub_row'>
             { props.userQuestionTotals.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)
             { trendArrows.answered }
-
           </div>
           <div className='user_stats_total_sub_row'>
-            {/* { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ totalQuestionsCorrect }%) */}
             { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ props.userQuestionTotals.averages.correct }%)
-
             { trendArrows.correct }
           </div>
         </div>

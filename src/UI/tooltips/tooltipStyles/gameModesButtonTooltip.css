@@ -31,9 +31,10 @@
 .game_modes_button_tooltip_arrow {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid rgba(244, 166, 66, 1);
+  border-bottom: 10px solid rgba(50, 50, 50, 1);
   height: 10px;
   width: 10px;
+  z-index: 4;
 }
 
 .game_modes_button_tooltip_text {
@@ -44,13 +45,16 @@
   align-content: center;
   align-items: center;
   width: max-content;
-
+  max-width: 350px;
+  background: rgba(50, 50, 50, 1);
+  border-radius: 5px;
+  box-shadow: 0 0 2.5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
 }
 
 .game_modes_button_tooltip_wrapper span {
-  color: rgba(40, 44, 52, 1);
-  background: rgba(244, 166, 66, 1);
-  font: 600 9pt 'Poppins', 'sans-serif';
+  color: rgba(200, 200, 200, 1);
+  font: 300 10pt 'PoppinsLight', 'sans-serif';
   padding: 2.5px 5px;
+  text-align: center;
   width: 100%;
 }
