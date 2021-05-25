@@ -199,9 +199,7 @@ const store = (store) => {
     authErrors: store.auth.errors,
     authLoading: store.auth.loading,
     authStatus: store.auth.status,
-    modalSignUp: store.modal.signup,
-
-    user: store.user
+    modalSignUp: store.modal.signup
   }
 }
 

@@ -104,7 +104,7 @@ const VoteContainer = (props) => {
   }
 
   if(props.showVoteStats) {
-    if(!!props.play.results || !!props.questions.staticUserResults) {
+    if(props.playResults || props.staticUserResults) {
       headerText = <div className='vote_header_text_sub_container'><h3>Approval Rating</h3></div>
       headerSubText = <div className='vote_header_sub_text_sub_container'><h4>{ props.voteProps.rating }</h4></div>
       header = <VoteHeader header_text={ headerText } sub_text={ headerSubText } headerClass='vote_stats_header' />
@@ -151,15 +151,19 @@ const VoteContainer = (props) => {
       </div>
   }
 
-  console.log(props.voteProps)
-
-  return <>{ props.play.voteLoading || props.questions.voteLoading ? loading : voteBlock }</>
+  return <>{ props.playVoteLoading || props.staticVoteLoading ? loading : voteBlock }</>
 }
 
 const store = (store) => {
   return {
-    play: store.play,
-    questions: store.questions
+    // play: store.play,
+    questions: store.questions,
+
+    playResults: !!store.play.results,
+    staticUserResults: !!store.questions.staticUserResults,
+
+    playVoteLoading: store.play.voteLoading,
+    staticVoteLoading: store.questions.voteLoading
   }
 }
 

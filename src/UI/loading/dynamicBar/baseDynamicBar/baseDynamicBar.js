@@ -8,36 +8,17 @@ import { loadingBarTextSwitch } from './barFunctions/loadingBarTextSwitch'
 import './baseDynamicBar.css'
 
 const BaseDynamicBar = (props) => {
-
-  // shouldComponentUpdate(nextProps, nextState){
-  //   if(
-  //     (!!this.props.barType || !!this.props.auth.authType) &&
-  //     (!!nextProps.barType || !!nextProps.auth.authType)
-
-  //   ) {
-  //     // console.log(this.props.barType, nextProps.auth.authType)
-
-  //     return true
-  //   }
-  //   else return false
-  // }
-
-  // console.log(this.props.modalType, this.props.barType)
-  // console.log(this.props.modalType, this.props.leaderBoards.status)
-  // console.log(this.props.barType, this.props.questions.commentStatus)
-  // console.log('modalType', this.props.modalType)
-
   let loadStatus
-  let barType = props.barType || props.auth.authType
+  let barType = props.barType || props.authType
 
-  if(props.modalType === 'auth') loadStatus = props.auth.status
-  if(props.modalType === 'play') loadStatus = props.play.status
-  if(props.modalType === 'leaderBoards') loadStatus = props.leaderBoards.status
-  if(props.modalType === 'userProfile') loadStatus = props.profile.status
+  if(props.modalType === 'auth') loadStatus = props.authStatus
+  if(props.modalType === 'play') loadStatus = props.playStatus
+  if(props.modalType === 'leaderBoards') loadStatus = props.leaderboardStatus
+  if(props.modalType === 'userProfile') loadStatus = props.profileStatus
 
 
-  if(props.modalType === 'questionVote') loadStatus = props.play.voteStatus
-  if(props.modalType === 'questionComment') loadStatus = props.play.commentStatus || props.questions.commentStatus
+  if(props.modalType === 'questionVote') loadStatus = props.voteStatus
+  if(props.modalType === 'questionComment') loadStatus = props.commentStatus || props.staticCommentStatus
 
   return(
     <div className="dyanmic_bar_container">
@@ -53,11 +34,14 @@ const BaseDynamicBar = (props) => {
 
 const store = store => {
   return {
-    auth: store.auth,
-    leaderBoards: store.leaderBoards,
-    play: store.play,
-    profile: store.profile,
-    questions: store.questions
+    authType: store.auth.authType,
+    authStatus: store.auth.status,
+    leaderboardStatus: store.leaderBoards.status,
+    playStatus: store.play.status,
+    voteStatus: store.play.voteStatus,
+    commentStatus: store.play.commentStatus,
+    staticCommentStatus: store.questions.commentStatus,
+    profileStatus: store.profile.status
   }
 }
 

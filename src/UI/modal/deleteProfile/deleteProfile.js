@@ -137,7 +137,6 @@ class DeleteProfile extends React.Component {
 
 const store = (store) => {
   return {
-    auth: store.auth,
     authErrors: store.auth.errors,
     authId: store.auth.id,
     authLoading: store.auth.loading,
