@@ -1,5 +1,7 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { useCallback, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import useOnMount from '../../utility/hooks/useOnMount'
 import { connect } from 'react-redux'
 import {
   loading,
@@ -18,94 +20,138 @@ import {
 
 import UserProfileContainer from '../../user/profile/userProfileContainer'
 
-class ProfileController extends React.Component {
+const ProfileController = (props) => {
 
-  state = {
-    user_name: '',
-    displayProfile: false
+  const history = useHistory()
+
+  const [userName, setUserName] = useState('')
+  const [displayProfile, setDisplayProfile] = useState(false)
+
+  const {
+    achievements,
+    questionTotals,
+    profileData,
+    profileStatus,
+    smartCache,
+    onClearSmartCache,
+    onClearUserProfile,
+    onGetSmarts,
+    onLoadingModal,
+    onSetLoadingModalType,
+    onStoreAchievements,
+    onStoreQuestionTotals,
+    onStoreUserProfile,
+    onUpdateUserProfileLoadingStatus,
+    onUpdateUserProfileStatus
+  } = props
+
+  const initProfileModule = useCallback(() => {
+    onLoadingModal(true)
+    onSetLoadingModalType('userProfile', 'userProfile')
+    onUpdateUserProfileLoadingStatus(true)
+    onUpdateUserProfileStatus('initUserProfile')
+  }, [
+    onLoadingModal,
+    onSetLoadingModalType,
+    onUpdateUserProfileLoadingStatus,
+    onUpdateUserProfileStatus
+  ])
+
+  const getSmartsModule = useCallback(() => {
+    onUpdateUserProfileStatus('getSmarts')
+    onGetSmarts(userName)
+  }, [
+    onGetSmarts,
+    onUpdateUserProfileStatus,
+    userName
+  ])
+
+  const storeUserProfileModule = useCallback((userData) => {
+    onUpdateUserProfileStatus('storeUserData')
+    onStoreUserProfile(userData)
+  }, [
+    onUpdateUserProfileStatus,
+    onStoreUserProfile
+  ])
+
+  const storeQuestionTotalsModule = useCallback((questionTotals) => {
+    onUpdateUserProfileStatus('storeQuestionTotals')
+    onStoreQuestionTotals(questionTotals)
+  }, [
+    onStoreQuestionTotals,
+    onUpdateUserProfileStatus
+  ])
+
+  const storeAchievementsModule = useCallback((achievements) => {
+    onUpdateUserProfileStatus('storeAchievements')
+    onStoreAchievements(achievements)
+  }, [
+    onStoreAchievements,
+    onUpdateUserProfileStatus
+  ])
+
+  const displayProfileModule = useCallback(() => {
+    onUpdateUserProfileStatus('displayProfile')
+    setDisplayProfile(true)
+    onUpdateUserProfileLoadingStatus(false)
+    onLoadingModal(false)
+    onClearSmartCache()
+  }, [
+    onUpdateUserProfileStatus,
+    onUpdateUserProfileLoadingStatus,
+    onLoadingModal,
+    onClearSmartCache
+  ])
+
+  useOnMount(() => {
+    let parseLocation = history.location.pathname.split("/")
+    let userName = parseLocation[parseLocation.length - 1]
+    document.title = `SmartApp™ | ${ userName }'s Profile`
+    setUserName(userName)
+    if(!profileStatus && !profileData) initProfileModule()
+    return () => reset()
+  }, [
+    history,
+    profileData,
+    profileStatus
+  ])
+
+  const reset = () => {
+    onUpdateUserProfileStatus(null)
+    onClearUserProfile()
+    setUserName('')
+    setDisplayProfile(false)
   }
 
-  componentDidMount() {
-    let parseLocation = this.props.history.location.pathname.split("/")
-    let user_name = parseLocation[parseLocation.length - 1]
-    document.title = `SmartApp™ | ${ user_name }'s Profile`
-    this.setState({ user_name: user_name })
-    if(!this.props.profileStatus && !this.props.profileData) this.initProfileModule()
-  }
+  useEffect(() => {
+    if(profileStatus === 'initUserProfile' && !profileData) getSmartsModule()
+    if(smartCache && profileStatus === 'getSmarts' && !profileData) storeUserProfileModule(smartCache.user)
+    if(smartCache && profileStatus === 'storeUserData' && !questionTotals) storeQuestionTotalsModule(smartCache.questionTotals)
+    if(smartCache && profileStatus === 'storeQuestionTotals' && questionTotals && !achievements) storeAchievementsModule(smartCache.achievements)
+    if(smartCache && profileData && questionTotals && achievements && !displayProfile) displayProfileModule()
+  }, [
+    achievements,
+    displayProfile,
+    profileStatus,
+    profileData,
+    questionTotals,
+    smartCache,
+    displayProfileModule,
+    getSmartsModule,
+    storeAchievementsModule,
+    storeQuestionTotalsModule,
+    storeUserProfileModule
+  ])
 
-  componentDidUpdate() {
-    if(this.props.profileStatus === 'initUserProfile' && !this.props.profileData) this.getSmartsModule()
-    if(this.props.smartCache && this.props.profileStatus === 'getSmarts' && !this.props.profileData) this.storeUserProfileModule(this.props.smartCache.user)
-    if(this.props.smartCache && this.props.profileStatus === 'storeUserData' && !this.props.questionTotals) this.storeQuestionTotalsModule(this.props.smartCache.questionTotals)
-    if(this.props.smartCache && this.props.profileStatus === 'storeQuestionTotals' && this.props.questionTotals && !this.props.achievements) this.storeAchievementsModule(this.props.smartCache.achievements)
-    if(this.props.smartCache && this.props.profileData && this.props.questionTotals && this.props.achievements && !this.state.displayProfile) this.displayProfileModule()
-  }
-
-  shouldComponentUpdate(nextProps, nextState){
-    let render = false
-    if(this.props.loadingModal || this.props.profileLoading ||
-      nextProps.loadingModal || nextProps.profileLoading ) {
-      render = true
-    }
-    return render
-  }
-
-  componentWillUnmount() {
-    this.props.onUpdateUserProfileStatus(null)
-    this.props.onClearUserProfile()
-    this.setState({ user_name: '', displayProfile: false })
-  }
-
-  initProfileModule = () => {
-    this.props.onLoadingModal(true)
-    this.props.onSetLoadingModalType('userProfile', 'userProfile')
-    this.props.onUpdateUserProfileLoadingStatus(true)
-    this.props.onUpdateUserProfileStatus('initUserProfile')
-  }
-
-  getSmartsModule = () => {
-    this.props.onUpdateUserProfileStatus('getSmarts')
-    this.props.onGetSmarts(this.state.user_name)
-  }
-
-  storeUserProfileModule = (userData) => {
-    this.props.onUpdateUserProfileStatus('storeUserData')
-    this.props.onStoreUserProfile(userData)
-  }
-
-  storeQuestionTotalsModule = (questionTotals) => {
-    this.props.onUpdateUserProfileStatus('storeQuestionTotals')
-    this.props.onStoreQuestionTotals(questionTotals)
-  }
-
-  storeAchievementsModule = (achievements) => {
-    this.props.onUpdateUserProfileStatus('storeAchievements')
-    this.props.onStoreAchievements(achievements)
-  }
-
-  displayProfileModule = () => {
-    this.props.onUpdateUserProfileStatus('displayProfile')
-    this.setState({ displayProfile: true })
-    this.props.onUpdateUserProfileLoadingStatus(false)
-    this.props.onLoadingModal(false)
-    this.props.onClearSmartCache()
-  }
-
-  render(){
-
-
-    return(
-      <>
-        {
-          this.props.profileStatus === 'displayProfile' &&
-          !this.props.profileLoading &&
-          !this.props.loadingModal &&
-          <UserProfileContainer userData={ this.props.profileData } />
-        }
-      </>
-    )
-  }
-
+  return(
+    <>
+      {
+        props.profileStatus === 'displayProfile' &&
+        !props.loadingModal &&
+        <UserProfileContainer userData={ props.profileData } />
+      }
+    </>
+  )
 }
 
 const store = (store) => {
@@ -115,8 +161,7 @@ const store = (store) => {
     loadingModal: store.modal.loading,
     questionTotals: store.questions.totals,
     profileData: store.profile.userData,
-    profileStatus: store.profile.status,
-    profileLoading: store.profile.loading
+    profileStatus: store.profile.status
   }
 }
 
@@ -137,4 +182,4 @@ const dispatch = (dispatch) => {
   }
 }
 
-export default withRouter(connect(store, dispatch)(ProfileController))
+export default connect(store, dispatch)(ProfileController)

@@ -44,7 +44,4 @@ const UserProfileContainer = (props) => {
   return userProfileBlock
 }
 
-export default React.memo(UserProfileContainer, (prevProps, nextProps) => {
-  if(prevProps.modal.loading === nextProps.modal.loading)  return true
-  else return false
-})
+export default UserProfileContainer
