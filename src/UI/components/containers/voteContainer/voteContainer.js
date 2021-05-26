@@ -118,36 +118,33 @@ const VoteContainer = (props) => {
 
     voteBlock =
       <div className={ props.staticUserProfile ? "vote_container_profile" : "vote_container"}>
+        { header }
         <div className={ props.staticUserProfile ? 'vote_wrapper_profile' : 'vote_wrapper' }>
-          { header }
-          <div className='divider_left' />
           <div className={ props.staticUserProfile ? 'vote_totals_profile_graph_container' : 'vote_totals_graph_container'}>
-            <div className={ props.staticUserProfile ? 'vote_totals_graph_wrapper_profile' : 'vote_totals_graph_wrapper' } >
-              <div className='vote_totals_graph_sub_header_container'>
-                <div className='vote_totals_graph_sub_header_container_left'>
-                  <div className='vote_average_vote_img_container'>
-                    <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
-                      style={{
-                        alignSelf: 'stretch',
-                        backgroundImage: `url(${voteStarsRatingIndex.AverageStars})`,
-                        backgroundRepeat: 'no-repeat',
-                        width: `${ roundVoteAverageForStarRating(voteAvg.total) }%`
-                      }}
-                    />
-                  </div>
-                  <span>{ roundVoteAverage(voteAvg.total) } { props.voteProps.average === 1 ? 'Star' : 'Stars' }</span>
+            <div className='vote_totals_graph_sub_header_container'>
+              <div className='vote_totals_graph_sub_header_container_left'>
+                <div className='vote_average_vote_img_container'>
+                  <div alt='avg_user_rating' name='avg_user_rating' title='Average User Rating'
+                    style={{
+                      alignSelf: 'stretch',
+                      backgroundImage: `url(${voteStarsRatingIndex.AverageStars})`,
+                      backgroundRepeat: 'no-repeat',
+                      width: `${ roundVoteAverageForStarRating(voteAvg.total) }%`
+                    }}
+                  />
                 </div>
-                <div className='vote_totals_graph_sub_header_container_center'><span>|</span></div>
-                <div className='vote_totals_graph_sub_header_container_right'>
-                  <span>{ props.voteProps.total } total { props.voteProps.total === 1 ? 'vote' : 'votes'}</span>
-                </div>
+                <span>{ roundVoteAverage(voteAvg.total) } { props.voteProps.average === 1 ? 'Star' : 'Stars' }</span>
               </div>
+              <div className='vote_totals_graph_sub_header_container_center'><span>|</span></div>
+              <div className='vote_totals_graph_sub_header_container_right'>
+                <span>{ props.voteProps.total } total { props.voteProps.total === 1 ? 'vote' : 'votes'}</span>
+              </div>
+            </div>
+            <div className={ props.staticUserProfile ? 'vote_totals_graph_wrapper_profile' : 'vote_totals_graph_wrapper' } >
               { distribVoteTotals }
             </div>
-            <div className='divider_medium' />
           </div>
         </div>
-        { props.staticUserProfile && <div className='divider_left' /> }
       </div>
   }
 

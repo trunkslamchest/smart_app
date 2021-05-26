@@ -22,25 +22,21 @@
 
 .vote_wrapper {
   background: rgba(255, 255, 255, 1);
-  border-radius: 5px;
-  margin: -1px 0px 0px 0px;
 }
 
 .vote_wrapper_profile {
   background: rgba(255, 255, 255, 1);
-  margin: 1px 1px 1px 1px;
 }
 
 .vote_container_profile {
   animation: fade_in .25s ease-in-out 1;
-  background: rgba(255, 255, 255, 1);
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-content: center;
   min-height: 75px;
-  margin: 0px 2px;
   padding: 0px 0px 0px 0px;
 }
 

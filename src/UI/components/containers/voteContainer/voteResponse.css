@@ -24,7 +24,21 @@
     width: 100%;
   }
 
+  .vote_totals_graph_wrapper {
+    margin: 1px 0px;
+    width: 100%;
+  }
+
+  .vote_totals_graph_sub_header_container {
+    padding: 0px;
+  }
+
   .vote_totals_profile_graph_container {
+    width: 100%;
+  }
+
+  .vote_totals_graph_wrapper_profile {
+    margin: 1px 0px;
     width: 100%;
   }
 

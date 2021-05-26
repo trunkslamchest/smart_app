@@ -129,9 +129,8 @@ const UserStatsTotal = (props) => {
   return(
     <>
       { !props.from_dashboard && <ContainerHeader header_text={ 'Statistics' } /> }
-      <div className='divider_small' />
       { totalStats }
-      <div className='divider_medium' />
+      { props.from_dashboard && <div className='divider_medium' /> }
     </>
   )
 }

@@ -6,9 +6,6 @@ import'./userProfileQuestionCard.css'
 
 const UserProfileQuestionCard = (props) => {
 
-  console.log(props)
-
-
   const distribComments = Object.values(props.question.comments).map((comment, index) => {
     return(
       <UserProfileCommentCard
@@ -19,13 +16,12 @@ const UserProfileQuestionCard = (props) => {
   })
 
   return(
-    <>
-      <div className='user_profile_question_card_container'>
+    <div className='user_profile_question_card_container'>
+      <div className='user_profile_question_card_wrapper'>
         <span>{ props.question.question }</span>
         { distribComments }
       </div>
-      <div className='divider_left' />
-    </>
+    </div>
   )
 }
 

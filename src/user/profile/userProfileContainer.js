@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import DashboardHeader from '../../user/dashboard/dashboardComponents/dashboardHeader/dashboardHeader'
 import UserProfileHeader from './userProfileHeader/userProfileHeader'
 import UserProfileInfoContainer from './userProfileInfo/userProfileInfoContainer'
-// import UserProfileCommentsContainer from './userProfileComments/userProfileCommentsContainer'
+import UserProfileCommentsContainer from './userProfileComments/userProfileCommentsContainer'
 import UserAchievementsContainer from '../../UI/components/containers/userAchievementsContainer/userAchievementsContainer'
 import UserStatsContainer from '../../UI/components/containers/userStatsContainer/userStatsContainer'
 import VoteContainer from '../../UI/components/containers/voteContainer/voteContainer'
@@ -41,7 +41,7 @@ const UserProfileContainer = (props) => {
               voteProps={ props.userData.votes }
             />
           }
-          {/* { (props.userData.settings.privacy.profile.showComments && !!props.userData.comments.length) && <UserProfileCommentsContainer questions={ props.userData.comments } />} */}
+          { (props.userData.settings.privacy.profile.showComments && !!props.userData.comments.length) && <UserProfileCommentsContainer questions={ props.userData.comments } />}
         </div>
       </div>
   }
