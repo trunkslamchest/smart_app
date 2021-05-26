@@ -12,6 +12,10 @@
     border-radius: 0px;
   }
 
+.results_perf_sub_container {
+  margin: 5px 1px 0px 1px;
+}
+
   .results_question_sub_container {
     flex-direction: column;
   }

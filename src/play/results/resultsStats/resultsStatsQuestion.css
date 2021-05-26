@@ -40,8 +40,8 @@
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1), rgba(255, 255, 255, 1));
   display: flex;
   flex-direction: column;
-  margin: 0px 1px 0px 1px;
   width: 35%;
+  margin: 0px;
 }
 
 .results_question_sub_wrapper_header_left {
@@ -76,7 +76,7 @@
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(225, 225, 225, 1), rgba(255, 255, 255, 1));
   display: flex;
   flex-direction: column;
-  margin: 0px 1px 0px 1px;
+  margin: 0px 0px 0px 0px;
   width: 65%;
 }
 

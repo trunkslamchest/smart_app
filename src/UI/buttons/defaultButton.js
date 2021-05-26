@@ -63,6 +63,7 @@ const DefaultButton = (props) =>  {
   let buttonType
   let buttonClass
   let buttonIMG = props.image
+  let buttonText = <span params={ props.params }>{ props.text }</span>
 
   if( (hoverState || menuState) || (props.location === props.route && (!props.homeButton || !props.headerButton))){
     buttonIMG = props.imageHover
@@ -75,7 +76,7 @@ const DefaultButton = (props) =>  {
 
   let buttonContent =
     <>
-      { !!props.text && <span params={ props.params }>{ props.text }</span> }
+      { !!props.text && buttonText }
       { !!props.imageHover &&
         <img
           alt={ props.id }

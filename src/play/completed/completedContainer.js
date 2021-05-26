@@ -30,15 +30,15 @@ const CompletedContainer = (props) => {
 
   const [wrapperState, setWrapperState] = useState(false)
 
-  const { gameMode } = props.playGameMode
+  const { playGameMode } = props
 
   const wrapperTimerRef = useRef(null);
 
   useOnMount(() => {
     wrapperTimerRef.current = setTimeout(() => { setWrapperState(true) }, 250);
-    if(!gameMode) history.push( routes.play )
+    if(!playGameMode) history.push( routes.play )
     return function cleanup() { if(wrapperTimerRef.current) clearTimeout(wrapperTimerRef.current); }
-  }, [gameMode, history])
+  }, [playGameMode, history])
 
   const onClickFunctions = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -78,6 +78,7 @@ const CompletedContainer = (props) => {
 
 const store = (store) => {
   return {
+    play: store.play,
     playGameMode: store.play.gameMode,
     playQuestionMsg1: store.play.question.msg1,
     playQuestionMsg2: store.play.question.msg2

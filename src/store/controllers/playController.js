@@ -172,7 +172,6 @@ const PlayController = (props) => {
 
   const setGameCompletedModule = useCallback(() => {
     onUpdateGameStatus('displayQuestion', false)
-
     if (playGameMode === 'quick_play') history.push( routes.play + '/completed' )
     else history.push( routes[playGameMode] + '/completed' )
 
