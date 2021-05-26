@@ -345,19 +345,27 @@ exports.updateUserLoginTime = functions
 
     const reqData = JSON.parse(req.body.data)
 
-    var updatedTime = {};
+    var updatedTime = {}, resObj = {}
 
-    updatedTime['/users/list' + '/' + reqData.uid + '/' + 'info/last_login'] = {
-      time: reqData.time,
-      day: reqData.day,
-      month: reqData.month,
-      year: reqData.year
-    };
+    var getRef = firebase.database().ref('/users/list').get().then((snap) => {
+        return snap.val()
+      }).catch((error) => {
+        console.error(error)
+      });
 
-    firebase.database().ref().update(updatedTime);
-
-    res.json(reqData).status(200);
-    // res.json({ message: 'done' }).status(200);
+    getRef.then((db) => {
+      if(!!db[reqData.uid]) {
+        updatedTime['/users/list' + '/' + reqData.uid + '/' + 'info/last_login'] = {
+          time: reqData.time,
+          day: reqData.day,
+          month: reqData.month,
+          year: reqData.year
+        }
+        resObj = reqData
+        firebase.database().ref().update(updatedTime);
+      } else resObj = { error: 'Could Not Update UserLogInTime: This User Does Not Exist' }
+      res.json(resObj).status(200)
+    })
 });
 
 exports.deleteUser = functions
@@ -390,7 +398,6 @@ exports.deleteUser = functions
 
       firebase.database().ref().update(userTotalsObj)
     })
-
 
     res.json({msg: 'Your Profile has been removed.'}).status(200)
     // res.json({ message: 'done' }).status(200);

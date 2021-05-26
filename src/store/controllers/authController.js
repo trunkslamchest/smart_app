@@ -223,7 +223,7 @@ class AuthController extends React.Component {
     if(
       (this.props.authType === 'signUp' ||
       this.props.authType === 'logIn' ||
-      this.props.authType === 'refresh') && localStorage.id
+      this.props.authType === 'refresh')
     ) this.props.onUpdateUserLoginTime({ uid: this.props.authId, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
   }
 

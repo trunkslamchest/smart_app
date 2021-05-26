@@ -115,11 +115,14 @@ export const updateUserLoginTime = (obj) => {
   return dispatch => {
     userFunctions('patchUserLoginTime', fetch.patch.userLoginTime, obj)
     .then(res => {
-      dispatch(initUpdateUserLoginTime({
-        time: res.time,
-        day: res.day,
-        month: res.month, year: res.year
-      }))
+      if(!!res.error) console.log(res.error)
+      else {
+        dispatch(initUpdateUserLoginTime({
+          time: res.time,
+          day: res.day,
+          month: res.month, year: res.year
+        }))
+      }
     })
   }
 }
