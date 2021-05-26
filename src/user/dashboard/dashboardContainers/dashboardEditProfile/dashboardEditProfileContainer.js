@@ -120,16 +120,14 @@ class DashboardEditProfile extends React.Component {
         img.src = reader.result
         img.onload = () => {
           var imgErrors = []
-          if(img.width !== 150 || img.height !== 150) imgErrors.push("Profile Pictures must be 150x150 in dimension")
-          // if(imgSize > 3000000) imgErrors.push("Profile Pictures must less than 3mb in size")
-          if(imgSize > 5000) imgErrors.push("Profile Pictures must less than 5kb in size")
+          console.log(imgSize)
+          // if(img.width !== 150 || img.height !== 150) imgErrors.push("Profile Pictures must be 150x150 in dimension")
+          // if(imgSize > 5000) imgErrors.push("Profile Pictures must less than 5kb in size")
+          if(img.height > 200) imgErrors.push("Profile Pictures cannot be larger than 200 pixels in height")
+          if(img.width > 200) imgErrors.push("Profile Pictures cannot be larger than 200 pixels in width")
+          if(imgSize > 3072000) imgErrors.push("Profile Pictures cannot be larger than 3mb in size")
           if(imgErrors.length > 0) this.setState({ errors:  { ...this.state.errors, avatar: imgErrors } })
-          else {
-            this.setState({ avatar: reader.result })
-            // reader = null
-            // img = null
-            // imgSize = null
-          }
+          else this.setState({ avatar: reader.result })
         }
       }
     }
