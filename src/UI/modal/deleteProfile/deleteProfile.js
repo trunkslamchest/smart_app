@@ -141,7 +141,7 @@ const store = (store) => {
     authId: store.auth.id,
     authLoading: store.auth.loading,
     authStatus: store.auth.status,
-    userEmail: store.user.info.email,
+    userEmail: store.user.info ? store.user.info.email : null,
     modalDeleteProfile: store.modal.deleteProfile
   }
 }

@@ -92,72 +92,69 @@ class AuthController extends React.Component {
 
   componentDidUpdate(){
 
-    if(this.props.auth.status === 'fail' && this.props.auth.loading)
+    if(this.props.authStatus === 'fail' && this.props.authLoading)
     this.authFailModule()
 
-    if(this.props.auth.authType === 'signUp' || this.props.auth.authType === 'logIn' ||this.props.auth.authType === 'refresh')
+    if(this.props.authType === 'signUp' || this.props.authType === 'logIn' ||this.props.authType === 'refresh')
     this.authSignUpLogInRefreshGroup()
 
-    if(this.props.auth.authType === 'logOut' || this.props.auth.authType === 'deleteProfile')
-    this.authLogOutDeleteGroup(this.props.auth.authType)
+    if(this.props.authType === 'logOut' || this.props.authType === 'deleteProfile')
+    this.authLogOutDeleteGroup(this.props.authType)
 
-    if(this.props.auth.authType === 'editProfileModal') {
-      if(this.props.auth.status === 'reAuthWithCredsSuccess' && this.props.auth.userCache.info.email && !this.state.authEditUser) this.authEditUserModule()
-      if((this.props.auth.status === 'updateAuthDisplayNameSuccess' && this.props.auth.userCache.old_user_name && !this.props.auth.userCache.old_email) && !this.state.updateUser) this.updateUserModule()
-      if((this.props.auth.status === 'updateAuthEmailSuccess' && this.props.auth.userCache.old_email && !this.props.auth.userCache.old_user_name) && !this.state.updateUser) this.updateUserModule()
-      if((this.props.auth.status === 'updateAuthDisplayNameSuccess' && this.props.auth.status2 === 'updateAuthEmailSuccess') && !this.state.updateUser) this.updateUserModule()
-      if(this.props.auth.status === 'updateUserSuccess' && !this.state.updateUserSuccess) this.authSuccessModule()
-      if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) this.authValidModule()
+    if(this.props.authType === 'editProfileModal') {
+      if(this.props.authStatus === 'reAuthWithCredsSuccess' && this.props.authUserCache.info.email && !this.state.authEditUser) this.authEditUserModule()
+      if((this.props.authStatus === 'updateAuthDisplayNameSuccess' && this.props.authUserCache.old_user_name && !this.props.authUserCache.old_email) && !this.state.updateUser) this.updateUserModule()
+      if((this.props.authStatus === 'updateAuthEmailSuccess' && this.props.authUserCache.old_email && !this.props.authUserCache.old_user_name) && !this.state.updateUser) this.updateUserModule()
+      if((this.props.authStatus === 'updateAuthDisplayNameSuccess' && this.props.authStatus2 === 'updateAuthEmailSuccess') && !this.state.updateUser) this.updateUserModule()
+      if(this.props.authStatus === 'updateUserSuccess' && !this.state.updateUserSuccess) this.authSuccessModule()
+      if(this.props.authStatus === 'authSuccess' && this.state.authSuccess) this.authValidModule()
     }
 
-    if(this.props.auth.authType === 'editProfile') {
-      if(this.props.auth.status === 'updateAuthDisplayNameSuccess' && this.props.auth.userCache.old_user_name && !this.state.updateUser) this.updateUserModule()
-      if(this.props.auth.status === 'skipAuthUpdate' && this.props.auth.userCache && !this.state.updateUser) this.updateUserModule()
-      if(this.props.auth.status === 'updateUserSuccess' && !this.state.updateUserSuccess) this.authSuccessModule()
-      if(this.props.auth.status === 'authSuccess' && this.state.authSuccess) this.authValidModule()
+    if(this.props.authType === 'editProfile') {
+      if(this.props.authStatus === 'updateAuthDisplayNameSuccess' && this.props.authUserCache.old_user_name && !this.state.updateUser) this.updateUserModule()
+      if(this.props.authStatus === 'skipAuthUpdate' && this.props.authUserCache && !this.state.updateUser) this.updateUserModule()
+      if(this.props.authStatus === 'updateUserSuccess' && !this.state.updateUserSuccess) this.authSuccessModule()
+      if(this.props.authStatus === 'authSuccess' && this.state.authSuccess) this.authValidModule()
     }
   }
 
   shouldComponentUpdate(nextProps){
     let render = false
-    if(this.props.auth.loading || nextProps.auth.loading) render = true
+    if(this.props.authLoading || nextProps.authLoading) render = true
     return render
   }
 
   componentWillUnmount(){
     this.props.onShowModal(false)
-    clearTimeout(this.authWaitTimeoutQuarterSec)
-    clearTimeout(this.authWaitTimeoutHalfSec)
-    clearTimeout(this.authWaitTimeoutOneSec)
   }
 
   authSignUpLogInRefreshGroup = () => {
-    if((this.props.auth.status === 'updateAuthDisplayNameSuccess' ||
-        this.props.auth.status === 'authLogInSuccess' ||
-        this.props.auth.status === 'authRefreshSuccess')
-      && this.props.auth.id && localStorage.id &&!this.state.authUser) this.getSmartsModule()
+    if((this.props.authStatus === 'updateAuthDisplayNameSuccess' ||
+        this.props.authStatus === 'authLogInSuccess' ||
+        this.props.authStatus === 'authRefreshSuccess')
+      && this.props.authId && localStorage.id &&!this.state.authUser) this.getSmartsModule()
 
-    if(this.props.auth.smartCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.auth.smartCache.user)
-    if(this.props.auth.smartCache && this.props.userInfo && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.auth.smartCache.user.questions)
-    if(this.props.auth.smartCache && this.props.userQuestions && !this.state.storeAchievements) this.storeAchievementsModule(this.props.auth.smartCache.achievements)
-    if(this.props.auth.smartCache && this.props.allAchievements && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule(this.props.auth.smartCache.questionTotals)
+    if(this.props.authSmartCache && !this.state.storeUserInfo) this.storeUserInfoModule(this.props.authSmartCache.user)
+    if(this.props.authSmartCache && this.props.userInfo && !this.state.storeUserQuestions) this.storeUserQuestionsModule(this.props.authSmartCache.user.questions)
+    if(this.props.authSmartCache && this.props.userQuestions && !this.state.storeAchievements) this.storeAchievementsModule(this.props.authSmartCache.achievements)
+    if(this.props.authSmartCache && this.props.allAchievements && !this.state.storeQuestionTotals) this.storeQuestionTotalsModule(this.props.authSmartCache.questionTotals)
     if(this.props.userInfo && this.props.questionTotals && this.props.allAchievements && !this.state.authSuccess) this.authSuccessModule()
-    if(this.props.auth.status === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
-    if(this.props.auth.status === 'authCleanup' && !this.state.authValid) this.authValidModule()
+    if(this.props.authStatus === 'authSuccess' && !this.state.authCleanup) this.authCleanupModule()
+    if(this.props.authStatus === 'authCleanup' && !this.state.authValid) this.authValidModule()
   }
 
   authLogOutDeleteGroup = (authType) => {
     const formatAuthType = 'modal' + authType[0].toUpperCase() + authType.slice(1, authType.length)
     if(authType === 'logOut' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
-    if(this.props.auth.status === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
-    if(this.props.auth.status === 'deleteLocalUserSuccess' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
+    if(this.props.authStatus === 'deleteAuthUserSuccess' && !this.state.deleteUser) this.authDeleteUserModule()
+    if(this.props.authStatus === 'deleteLocalUserSuccess' && this.props.userInfo && !this.state.clearUserInfo) this.clearUserInfoModule()
     if(!this.props.userInfo && !this.state.clearUserQuestions) this.clearUserQuestionsModule()
     if(!this.props.userQuestions && !this.state.clearUserSettings) this.clearUserSettingsModule()
     if(!this.props.userSettings && !this.state.clearQuestionTotals) this.clearQuestionTotalsModule()
     if(!this.props.questionTotals && !this.state.clearAchievements) this.clearAchievementsModule()
     if(!this.props.allAchievements && !this.state.clearAuthCreds) this.clearAuthCredsModule()
-    if(!this.props.auth.id && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
-    if(this.props.auth.status === 'authSuccess' && !this.props[formatAuthType]) this.authRedirectModule(authType)
+    if(!this.props.authId && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
+    if(this.props.authStatus === 'authSuccess' && !this.props[formatAuthType]) this.authRedirectModule(authType)
 
   }
 
@@ -181,13 +178,13 @@ class AuthController extends React.Component {
   authEditUserModule = () => {
     this.props.onAuthUpdateStatus('authEditUser')
     this.setState({ authEditUser: true })
-    this.props.onAuthEditUser('authEditUser', this.props.auth.userCache)
+    this.props.onAuthEditUser('authEditUser', this.props.authUserCache)
   }
 
   updateUserModule = () => {
     this.props.onAuthUpdateStatus('updateUser')
     this.setState({ updateUser: true })
-    this.props.onUpdateUserInfo('editProfile', this.props.auth.userCache)
+    this.props.onUpdateUserInfo('editProfile', this.props.authUserCache)
   }
 
   storeUserInfoModule = (cache) => {
@@ -224,10 +221,10 @@ class AuthController extends React.Component {
     this.setState({ authCleanup: true })
 
     if(
-      (this.props.auth.authType === 'signUp' ||
-      this.props.auth.authType === 'logIn' ||
-      this.props.auth.authType === 'refresh') && localStorage.id
-    ) this.props.onUpdateUserLoginTime({ uid: this.props.auth.id, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
+      (this.props.authType === 'signUp' ||
+      this.props.authType === 'logIn' ||
+      this.props.authType === 'refresh') && localStorage.id
+    ) this.props.onUpdateUserLoginTime({ uid: this.props.authId, time: getTime('now'), day: getTime('day'), month: getTime('month'), year: getTime('year') })
   }
 
   authValidModule = () => {
@@ -235,7 +232,7 @@ class AuthController extends React.Component {
     this.setState({ authValid: true })
     localStorage.authValid = true
 
-    if(this.props.auth.authType === 'editProfile' || this.props.auth.authType === 'editProfileModal') this.props.history.push( routes.dashboard_profile )
+    if(this.props.authType === 'editProfile' || this.props.authType === 'editProfileModal') this.props.history.push( routes.dashboard_profile )
     if(!!this.props.modalLoading) this.props.onLoadingModal(false)
     if(!!this.props.modalLogIn) this.props.onLogInModal(false)
     if(!!this.props.modalSignUp) this.props.onSignUpModal(false)
@@ -243,12 +240,12 @@ class AuthController extends React.Component {
     if(!!this.props.modalEditProfile) this.props.onEditProfileModal(false)
     this.props.onAuthUpdateLoadingStatus(false)
 
-    if(this.props.auth.errors.length) this.props.onClearAuthErrors()
-    if(this.props.auth.status2) this.props.onClearAuthStatus2()
-    if(this.props.auth.userCache) this.props.onClearUserCache()
-    if(this.props.auth.smartCache) this.props.onClearSmartCache()
-    this.authRedirectModule(this.props.auth.authType)
-    if(this.props.auth.authType) this.props.onClearAuthType()
+    if(this.props.authErrors.length) this.props.onClearAuthErrors()
+    if(this.props.authStatus2) this.props.onClearAuthStatus2()
+    if(this.props.authUserCache) this.props.onClearUserCache()
+    if(this.props.authSmartCache) this.props.onClearSmartCache()
+    this.authRedirectModule(this.props.authType)
+    if(this.props.authType) this.props.onClearAuthType()
   }
 
   authFinalizeLogOutModule = () => {
@@ -275,7 +272,7 @@ class AuthController extends React.Component {
 
   authDeleteUserModule = () => {
     this.setState({ deleteUser: true })
-    this.props.onDeleteUser(this.props.auth.id)
+    this.props.onDeleteUser(this.props.authId)
   }
 
   clearLocalStorageModule = () => {
@@ -347,7 +344,14 @@ class AuthController extends React.Component {
 
 const store = store => {
   return{
-    auth: store.auth,
+    authErrors: store.auth.errors,
+    authId: store.auth.id,
+    authLoading: store.auth.loading,
+    authSmartCache: store.auth.smartCache,
+    authStatus: store.auth.status,
+    authStatus2: store.auth.status2,
+    authUserCache: store.auth.userCache,
+    authType: store.auth.authType,
     modalLoading: store.modal.loading,
     modalLogIn: store.modal.login,
     modalLogOut: store.modal.logout,
