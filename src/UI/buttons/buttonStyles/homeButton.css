@@ -21,13 +21,16 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));
+  /* background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1)); */
+  /* background-image: linear-gradient(0deg, rgba(0, 0, 102, 1), rgba(18, 18, 179, 1)); */
+  /* backface-visibility: hidden; */
+  background: rgba(0, 0, 102, 1);
   border: 0px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   box-sizing: border-box;
-  color: rgba(235, 235, 235, 1);
+  color: rgba(255, 255, 255, 1);
   cursor: pointer;
-  font: 300 14pt 'PoppinsLight', sans-serif;
+  font: 300 14pt 'PoppinsLight';
   margin: 0px;
   padding: 10px 20px;
   outline: -webkit-focus-ring-color auto 0px;
@@ -40,8 +43,10 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
+  /* background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1)); */
+  background: rgba(244, 166, 66, 1);
   border: 0px solid black;
+  border-radius: 5px;
   box-sizing: border-box;
   color: rgba(50, 50, 50, 1);
   cursor: pointer;
@@ -60,6 +65,7 @@
   justify-content: center;
   background: rgba(174,174,174, 0);
   border: 0px solid black;
+  border-radius: 5px;
   box-sizing: border-box;
   color: rgb(235, 235, 235, 0);
   cursor: default;
@@ -77,10 +83,10 @@
   color: rgba(50, 50, 50, 1);
   background-color: rgba(244, 166, 66, 1);
   border: 0px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   box-sizing: border-box;
   font: 600 14pt 'PoppinsLight', sans-serif;
-  transition: color, background-color .2s ease-in-out 0s;
+  /* transition: background-color .2s ease-in-out 0s; */
   width: 100%;
 }
 

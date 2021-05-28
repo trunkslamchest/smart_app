@@ -1,7 +1,10 @@
 .default_carousel_container {
+  background: rgba(246, 246, 250, 1);
+  padding: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
+  z-index: 3;
 }

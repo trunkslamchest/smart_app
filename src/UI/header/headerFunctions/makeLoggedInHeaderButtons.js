@@ -6,7 +6,7 @@ const makeLoggedInHeaderButtons = (iconsIndex, onPushLink, playMenuButtons, prof
       id: 'header_leader_board_button',
       headerButton: true,
       image: iconsIndex.leaderboardWhiteIcon,
-      imageHover: iconsIndex.leaderboardBlackIcon,
+      imageHover: iconsIndex.leaderboardGreyIcon,
       name: 'LeaderboardsButton',
       navButton: false,
       onClickFunction: onPushLink,
@@ -19,7 +19,7 @@ const makeLoggedInHeaderButtons = (iconsIndex, onPushLink, playMenuButtons, prof
       buttonType: 'menu',
       id: 'header_play_button',
       image: iconsIndex.playWhiteIcon,
-      imageHover: iconsIndex.playBlackIcon,
+      imageHover: iconsIndex.playGreyIcon,
       name: 'PlayButton',
       menuButtons: playMenuButtons,
       tooltipText: [ 'Play' ]

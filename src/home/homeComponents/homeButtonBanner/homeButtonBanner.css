@@ -1,6 +1,7 @@
 .home_logged_out_button_banner {
   width: 100%;
-  padding: 10px 0px;
+  margin: 15px 0px -30px 0px;
   display: flex;
   justify-content: center;
+  z-index: 4;
 }

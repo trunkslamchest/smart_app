@@ -5,29 +5,48 @@ WHITE:
 OFF WHITE:
   #fffdf7
 
+------------------------------
+
+LIGHTEST ORANGE:
+  rgba(251, 223, 187, 1)
+LIGHTER ORANGE:
+  rgba(248, 198, 134, 1)
 LIGHT ORANGE:
   rgba(244, 166, 66, 1)
-
 DARK ORANGE:
   rgba(211, 143, 57, 1)
+DARKER ORANGE:
+  rgba(158, 107, 43, 1)
 
+------------------------------
+
+WHITE BLUE:
+  rgba(246, 246, 250, 1)
+LIGHTER BLUE:
+  rgba(102, 102, 163, 1)
+LIGHTER BLUE:
+  rgba(0, 0, 208, 1)
 LIGHT BLUE:
   rgba(0, 0, 102, 1)
-
 DARK BLUE:
   rgba(0, 0, 51, 1)
+DARKER BLUE:
+  rgba(0, 0, 25, 1)
+
+------------------------------
 
 LIGHT GREY:
-  rgba(100, 100, 100, 1)
-
+  rgba(200, 200, 200, 1)
+GREY:
+  rgba(150, 150, 150, 1)
 DARK GREY:
+  rgba(100, 100, 100, 1)
+DARKER GREY:
   rgba(50, 50, 50, 1)
+DARKEST GREY:
+  rgba(25, 25, 25, 1)
 
-OFF GREY:
-  rgba(247,239,244, 1)
-
-DARK_TEXT:
-  rgb(40, 44, 52, 1)
+------------------------------
 
 BLUE GRADIENT:
   background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));

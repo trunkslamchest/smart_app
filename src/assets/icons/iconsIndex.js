@@ -1,25 +1,25 @@
 import homeWhiteIcon from './white_header_icon.svg'
-import homeBlackIcon from './black_header_icon.svg'
+import homeGreyIcon from './grey_header_icon.svg'
 import leaderboardWhiteIcon from './white_leaderboards_header_icon.svg'
-import leaderboardBlackIcon from './black_leaderboards_header_icon.svg'
+import leaderboardGreyIcon from './grey_leaderboards_header_icon.svg'
 import loginWhiteIcon from './white_login_header_icon.svg'
-import loginBlackIcon from './black_login_header_icon.svg'
+import loginGreyIcon from './grey_login_header_icon.svg'
 import signUpWhiteIcon from './white_signup_header_icon.svg'
-import signUpBlackIcon from './black_signup_header_icon.svg'
+import signUpGreyIcon from './grey_signup_header_icon.svg'
 import playWhiteIcon from './white_play_header_icon.svg'
-import playBlackIcon from './black_play_header_icon.svg'
+import playGreyIcon from './grey_play_header_icon.svg'
 
 const iconsIndex = {
   'homeWhiteIcon': homeWhiteIcon,
-  'homeBlackIcon': homeBlackIcon,
+  'homeGreyIcon': homeGreyIcon,
   'leaderboardWhiteIcon': leaderboardWhiteIcon,
-  'leaderboardBlackIcon': leaderboardBlackIcon,
+  'leaderboardGreyIcon': leaderboardGreyIcon,
   'loginWhiteIcon': loginWhiteIcon,
-  'loginBlackIcon': loginBlackIcon,
+  'loginGreyIcon': loginGreyIcon,
   'signUpWhiteIcon': signUpWhiteIcon,
-  'signUpBlackIcon': signUpBlackIcon,
+  'signUpGreyIcon': signUpGreyIcon,
   'playWhiteIcon': playWhiteIcon,
-  'playBlackIcon': playBlackIcon
+  'playGreyIcon': playGreyIcon
 }
 
 export default iconsIndex

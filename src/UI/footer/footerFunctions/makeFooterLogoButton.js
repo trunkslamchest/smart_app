@@ -5,7 +5,7 @@ const makeFooterLogoButton = (footerLogosIndex, onClickFunctions, route) => {
       buttonType: 'NavLink',
       id: 'footer_logo_button',
       image: footerLogosIndex.whiteFooterLogo,
-      imageHover: footerLogosIndex.blackFooterLogo,
+      imageHover: footerLogosIndex.greyFooterLogo,
       name: 'footerLogoButton',
       homeButton: true,
       onClickFunction: onClickFunctions,

@@ -5,7 +5,7 @@ const makeHomeButton = (iconsIndex, onPushLink, routes) => {
       buttonType: 'NavLink',
       id: 'header_home_button',
       image: iconsIndex.homeWhiteIcon,
-      imageHover: iconsIndex.homeBlackIcon,
+      imageHover: iconsIndex.homeGreyIcon,
       name: 'HomeButton',
       homeButton: true,
       onClickFunction: onPushLink,

@@ -5,7 +5,7 @@
   align-items: center;
   margin: 0px 0px 0px 0px;
   opacity: 1;
-  padding: 30px 0px 15px 0px;
+  padding: 60px 0px 15px 0px;
   width: 90%;
   animation: onmount_default_carousel_slide .5s ease-in-out 1;
 }
@@ -17,7 +17,7 @@
   align-items: center;
   margin: 0px 0px 0px 0px;
   opacity: 1;
-  padding: 30px 0px 15px 0px;
+  padding: 60px 0px 15px 0px;
   width: 90%;
   animation: dismount_default_carousel_slide .5s ease-in-out 1;
 

@@ -1,8 +1,8 @@
-import blackFooterLogo from './footerLogos/black_footer_logo.svg'
 import whiteFooterLogo from './footerLogos/white_footer_logo.svg'
+import greyFooterLogo from './footerLogos/grey_footer_logo.svg'
 
 const footerLogosIndex = {
-  'blackFooterLogo': blackFooterLogo,
+  'greyFooterLogo': greyFooterLogo,
   'whiteFooterLogo': whiteFooterLogo
 }
 

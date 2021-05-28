@@ -6,7 +6,7 @@ const makeLoggedOutHeaderButtons = (iconsIndex, onLogIn, onSignUp, onPushLink, r
       id: 'header_leader_board_button',
       headerButton: true,
       image: iconsIndex.leaderboardWhiteIcon,
-      imageHover: iconsIndex.leaderboardBlackIcon,
+      imageHover: iconsIndex.leaderboardGreyIcon,
       name: 'LeaderboardsButton',
       navButton: false,
       onClickFunction: onPushLink,
@@ -19,7 +19,7 @@ const makeLoggedOutHeaderButtons = (iconsIndex, onLogIn, onSignUp, onPushLink, r
       buttonType: 'modal',
       id: 'header_login_button',
       image: iconsIndex.loginWhiteIcon,
-      imageHover: iconsIndex.loginBlackIcon,
+      imageHover: iconsIndex.loginGreyIcon,
       name: 'LoginButton',
       onClickFunction: onLogIn,
       tooltipText: [ 'Login' ]
@@ -29,7 +29,7 @@ const makeLoggedOutHeaderButtons = (iconsIndex, onLogIn, onSignUp, onPushLink, r
       buttonType: 'modal',
       id: 'header_sign_up_button',
       image: iconsIndex.signUpWhiteIcon,
-      imageHover: iconsIndex.signUpBlackIcon,
+      imageHover: iconsIndex.signUpGreyIcon,
       name: 'SignUpButton',
       onClickFunction: onSignUp,
       tooltipText: [ 'Sign Up' ]
