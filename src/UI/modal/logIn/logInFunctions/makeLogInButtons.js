@@ -3,7 +3,7 @@ const makeLogInButtons = (glyphIndex, onSubmit, onReset, onCancel) => {
     {
       id: 'log_in_submit',
       image: glyphIndex.formWhiteCheckMark,
-      imageHover: glyphIndex.formBlackCheckMark,
+      imageHover: glyphIndex.formGreyCheckMark,
       name: 'LogInSubmit',
       onClickFunction: onSubmit,
       tooltipText: [ 'Login' ],
@@ -13,7 +13,7 @@ const makeLogInButtons = (glyphIndex, onSubmit, onReset, onCancel) => {
     {
       id: 'log_in_reset',
       image: glyphIndex.formWhiteReset,
-      imageHover: glyphIndex.formBlackReset,
+      imageHover: glyphIndex.formGreyReset,
       name: 'LogInReset',
       onClickFunction: onReset,
       tooltipText: [ 'Reset' ],
@@ -23,7 +23,7 @@ const makeLogInButtons = (glyphIndex, onSubmit, onReset, onCancel) => {
     {
       id: 'log_in_cancel',
       image: glyphIndex.formWhiteX,
-      imageHover: glyphIndex.formBlackX,
+      imageHover: glyphIndex.formGreyX,
       name: 'LogInCancel',
       onClickFunction: onCancel,
       tooltipText: [ 'Cancel' ],

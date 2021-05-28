@@ -73,9 +73,14 @@
   align-items: center;
 }
 
-.sign_up_tos_sub_container a,
+.sign_up_tos_sub_container a {
+  color: rgba(0, 0, 208, 1);
+  margin: 0px;
+  text-decoration: none;
+}
+
 .sign_up_tos_sub_container_disabled a {
-  color: rgba(4, 108, 196, 1);
+  color: rgba(50, 50, 50, 1);
   margin: 0px;
   text-decoration: none;
 }
@@ -86,7 +91,7 @@
 .sign_up_tos_sub_container_disabled a:active,
 .sign_up_tos_sub_container_disabled a:hover,
 .sign_up_tos_sub_container_disabled a:visited {
-  color: rgba(244, 166, 66, 1);
+  color: rgba(0, 0, 208, 1);
   margin: 0px;
   text-decoration: none;
   transition-property: color;

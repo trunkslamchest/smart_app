@@ -120,7 +120,7 @@ class LogIn extends React.Component {
         showModal={ this.props.modalLogIn }
       >
         <div className='log_in_wrapper'>
-          <ModalHeaderCentered header_text='Log In' />
+          <ModalHeaderCentered header_text='Log In To An Existing Account' />
             { (this.props.authLoading || this.state.validationLoading) && loading }
             <DefaultForm
               buttonRow={ true }

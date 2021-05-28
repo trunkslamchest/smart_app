@@ -1,10 +1,10 @@
 .leader_boards_buttons_row_button_middle {
   -webkit-appearance: none;
   display: flex;
-  background-image: linear-gradient(0deg, rgba(0, 0, 51, 1), rgba(0, 0, 102, 1));
+  background: rgba(0, 0, 102, 1);
   border: 0px solid black;
   box-sizing: border-box;
-  color: rgba(235, 235, 235, 1);
+  color: rgba(255, 255, 255, 1);
   cursor: pointer;
   font: 300 12pt 'PoppinsLight', sans-serif;
   padding: 10px 15px;
@@ -12,7 +12,7 @@
 }
 
 .leader_boards_buttons_row_button_middle:hover {
-  background-image: linear-gradient(0deg, rgba(211, 143, 57, 1), rgba(244, 166, 66, 1));
+  background: rgba(244, 166, 66, 1);
   border: 0px solid black;
   box-sizing: border-box;
   font: 600 12pt 'PoppinsLight', sans-serif;
