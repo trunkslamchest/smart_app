@@ -46,12 +46,12 @@
   SmartApp™ is a trivia application designed for people who love trivia, love to test their knowledge, and/or religiously watch Jeopardy. SmartApp utilizes the Open Trivia Database for it's trivia dataset. Answer Questions. Unlock Achievements. Improve Your Rank. Climb The Leaderboards. Get Smart.
 
   ### Key Features
-  - 250 trivia questions to answer
+  - 500 trivia questions to answer
   - 3 difficulty levels
   - 20 categories
   - User profiles with personalization and privacy settings
   - In depth question based user statistics
-  - 56 Unlockable Achievements
+  - 65 Unlockable Achievements
   - Performance based experience/leveling system
   - Statistically generated ranks/ratings
   - Interational/Regional/Category Specific Live Leaderboards

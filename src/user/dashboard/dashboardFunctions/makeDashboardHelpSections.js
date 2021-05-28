@@ -38,8 +38,8 @@ const makeDashboardHelpSections = [
       {
         list_header: `Profile Picture:`,
         list_items: [
-          'Cannot be larger than 150x150 in dimension',
-          'Cannot be larger than 2MB in size',
+          'Cannot be larger than 200x200 in dimension',
+          'Cannot be larger than 3MB in size',
         ]
       },
       {
@@ -218,7 +218,7 @@ const makeDashboardHelpSections = [
           `You can view both all of the achievements you have unlocked, as well as the achievements you haven't unlocked
            by clicking the 'Achievements' button (the trophy) on the navigation bar located at the top of the page.`,
           `Achievements can be unlocked by completing various goals while answering questions
-           (ex: Answer 5 questions in under 1 second, Answer 10 Politics questions correctly, etc...)`,
+           (ex: Answer your first question in under 1 second, Answer 10 Politics questions correctly, etc...)`,
           `You will recieve notifications after answering a question if you have unlocked and achievement,
            which will then be displayed on your Achievements Dashboard, and on your public profile.`,
           `If you do not want to have your achievements displayed on your public profile,
