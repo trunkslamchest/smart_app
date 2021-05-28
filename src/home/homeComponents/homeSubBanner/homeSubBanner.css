@@ -1,9 +1,26 @@
+.home_logged_in_sub_banner_container {
+  background: rgba(246, 246, 250, 1);
+  padding: 30px 0px 0px 0px;
+  width: 100%;
+}
+
 .home_logged_out_sub_banner_container {
-  /* padding: 60px 0px 0px 0px; */
   margin: -25px 0px 0px 0px;
   width: 100%;
-  /* z-index: 5; */
+}
 
+.home_logged_in_sub_banner_wrapper {
+  background: url(../../../assets/home_sub_banner/home_sub_banner.png) no-repeat center center;
+  background-size: cover;
+  border: 0px solid black;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5), 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 15px;
 }
 
 .home_logged_out_sub_banner_wrapper {
@@ -17,21 +34,20 @@
   justify-content: center;
   width: 100%;
   margin: 75px 0px 0px 0px;
-
   padding: 15px;
 }
 
-.home_logged_out_img_container {
+.home_sub_banner_img_container {
   display: flex;
   justify-content: center;
 }
 
-.home_logged_out_img_container img {
+.home_sub_banner_img_container img {
   height: auto;
   width: 25px;
 }
 
-.home_logged_out_text_container {
+.home_sub_banner_text_container {
   color: rgba(25, 25, 25, 1);
   display: flex;
   flex-direction: column;
@@ -42,19 +58,19 @@
   width: 100%;
 }
 
-.home_logged_out_text_container h1 {
+.home_sub_banner_text_container h1 {
   font: 300 10pt 'LatoLight';
   margin: 0px 0px 10px 0px;
   text-align: center;
 }
 
-.home_logged_out_text_container h2 {
+.home_sub_banner_text_container h2 {
   font: 300 12pt 'Poppins';
   margin: 0px 0px 0px 0px;
   text-align: center;
 }
 
-.home_logged_out_text_container h3 {
+.home_sub_banner_text_container h3 {
   font: 600 18pt 'Lato';
   margin: 0px 0px 0px 0px;
   text-align: justify;

@@ -13,16 +13,32 @@
     justify-content: space-evenly;
   }
 
+  .dashboard_profile_field h3 {
+    text-align: center;
+    padding: 5px 0px;
+  }
+
   .dashboard_profile_field ul {
     justify-content: center;
     align-content: center;
     align-items: center;
+    padding: 0px;
+  }
+
+  .dashboard_profile_field li span {
+    margin: 0px;
+  }
+
+  .edit_profile_input_container h3 {
+    text-align: center;
+    padding: 5px 0px;
   }
 
   .edit_profile_input_sub_container {
     justify-content: center;
     align-content: center;
     align-items: center;
+    padding: 0px;
   }
 
   .edit_profile_input_sub_container h3 {

@@ -36,7 +36,7 @@ const HomeBanner = (props) => {
   }
 
   return(
-    <div className='home_banner_container'>
+    <div className={ props.containerClass }>
       { homeBannerContent }
     </div>
   )

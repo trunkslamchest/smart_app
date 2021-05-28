@@ -19,13 +19,13 @@ const HomeLoggedOutContainer = () => {
 
   return(
     <div className='home_logged_out_wrapper'>
-      <HomeBanner logo_class={ 'home_logged_out_logo_container' } />
+      <HomeBanner containerClass={ 'home_logged_out_banner_container' } logo_class={ 'home_logged_out_logo_container' } />
       {/* <div className='divider_medium'></div> */}
       <HomeButtonBanner />
       {/* <div className='divider_medium'></div> */}
       <DefaultCarouselContainer slides={ makeHomeCarouselSlides(homeCarouselIndex) } />
       <HomeBottomBanner />
-      <HomeSubBanner />
+      <HomeSubBanner containerClass={ 'home_logged_out_sub_banner_container' } wrapperClass={ 'home_logged_out_sub_banner_wrapper' } />
       <HomeTech />
     </div>
   )

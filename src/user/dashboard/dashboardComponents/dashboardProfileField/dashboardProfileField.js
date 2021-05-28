@@ -9,9 +9,9 @@ import './dashboardProfileField.css'
 const DashboardProfileField = (props) => {
   return(
     <div className={ props.fieldClass }>
+      <h3>{ props.field.name }</h3>
       <ul>
-        <h3>{ props.field.name }</h3>
-        { props.field.data && props.field.data.length &&
+        { props.field.data && props.field.data.length > 1 &&
           <li>
             { props.field.name === "Country" &&
               <img

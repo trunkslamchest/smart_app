@@ -21,11 +21,12 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
   if(field.type === 'text' || field.type === 'textarea') if(field.val === 'null') fieldValue = null
 
   return (
+    <>
+    { !!field.label && <h3>{ field.label }</h3> }
     <div
       className={ field.inputSubContainerClass || 'default_input_sub_container' }
       key={ index.toString() + (field.label || field.id) }
     >
-      { !!field.label && <h3>{ field.label }</h3> }
       { Object.values(field).length > 2 &&
         <>
           <DefaultFormInput
@@ -76,6 +77,7 @@ const distribFormInputs = (formValid, errors, enableInput, field, index) => {
         </>
       }
     </div>
+    </>
   )
 }
 

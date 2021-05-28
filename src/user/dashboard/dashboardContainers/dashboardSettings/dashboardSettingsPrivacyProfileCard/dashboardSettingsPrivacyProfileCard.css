@@ -6,7 +6,7 @@
 .dashboard_settings_privacy_profile_card_img_container_active img::-moz-selection { opacity: 0; }
 
 .dashboard_settings_privacy_profile_card {
-  background-color: rgba(255, 255, 255, 1);
+  /* background-color: rgba(255, 255, 255, 1); */
   display: flex;
   justify-content: space-between;
   align-items: center;

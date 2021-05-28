@@ -8,7 +8,7 @@ const makeDashboardEditProfileFormButtons = (onSubmit, onReset, onCancel, formGl
       type: 'button',
       // text: ,
       image: formGlyphIndex.formWhiteCheckMark,
-      imageHover: formGlyphIndex.formBlackCheckMark,
+      imageHover: formGlyphIndex.formGreyCheckMark,
       tooltipText: [ 'Confirm' ],
     },
     {
@@ -19,7 +19,7 @@ const makeDashboardEditProfileFormButtons = (onSubmit, onReset, onCancel, formGl
       type: 'button',
       // text: ,
       image: formGlyphIndex.formWhiteReset,
-      imageHover: formGlyphIndex.formBlackReset,
+      imageHover: formGlyphIndex.formGreyReset,
       tooltipText: [ 'Reset' ],
     },
     {
@@ -30,7 +30,7 @@ const makeDashboardEditProfileFormButtons = (onSubmit, onReset, onCancel, formGl
       type: 'button',
       // text: ,
       image: formGlyphIndex.formWhiteX,
-      imageHover: formGlyphIndex.formBlackX,
+      imageHover: formGlyphIndex.formGreyX,
       tooltipText: [ 'Cancel' ],
     }
   ]

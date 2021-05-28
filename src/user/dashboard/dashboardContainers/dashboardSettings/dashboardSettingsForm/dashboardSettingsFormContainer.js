@@ -41,29 +41,26 @@ const DashboardSettingsFormContainer = (props) => {
   })
 
   return(
-    <div className="dashboard_settings_form_container">
-      <form
-        id='dashboard_settings_form'
-        name='dashboard_settings_form'
-        className='dashboard_settings_form'
-      >
-        <div className="dashboard_settings_privacy_container">
-          <DashboardHeader header_text={ "Settings" } />
-          <div className="dashboard_settings_privacy_profile_container">
-            <DashboardSubHeader header_text={ 'Privacy' } />
-            <div className='divider_medium' />
-            { distribPrivacyProfileSettings }
-          </div>
+    <form
+      id='dashboard_settings_form'
+      name='dashboard_settings_form'
+      className='dashboard_settings_form'
+    >
+      <DashboardHeader header_text={ "Settings" } />
+      <div className="dashboard_settings_privacy_container">
+        <DashboardSubHeader header_text={ 'Privacy' } />
+        <div className="dashboard_settings_privacy_profile_container">
+          { distribPrivacyProfileSettings }
         </div>
-        <DefaultButtonsContainer
-          buttons={ formButtons }
-          buttonRow={ true }
-          containerClass={ 'dashboard_form_buttons_container' }
-          enableButton={ props.enableButtons }
-          tooltipClass={ 'dashboard_form_button_tooltip' }
-        />
-      </form>
-    </div>
+      </div>
+      <DefaultButtonsContainer
+        buttons={ formButtons }
+        buttonRow={ true }
+        containerClass={ 'dashboard_form_buttons_container' }
+        enableButton={ props.enableButtons }
+        tooltipClass={ 'dashboard_form_button_tooltip' }
+      />
+    </form>
   )
 }
 
