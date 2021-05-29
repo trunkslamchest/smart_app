@@ -1,12 +1,7 @@
 @media only screen and (max-width: 768px) {
 
-  .stats_card_button_wrapper {
-    width: 100%;
-  }
-
   .stats_card_header {
     flex-wrap: wrap;
-
   }
 
   .stats_card_header_card_wrapper {
@@ -29,7 +24,13 @@
     flex-direction: column;
   }
 
-  .dashboard_stats_answer_card_sub_container_group {
+  .dashboard_stats_answer_card_sub_container_group_left {
+    border-radius: 0px;
+    width: 100%;
+  }
+
+  .dashboard_stats_answer_card_sub_container_group_right {
+    border-radius: 0px 0px 5px 5px;
     width: 100%;
   }
 

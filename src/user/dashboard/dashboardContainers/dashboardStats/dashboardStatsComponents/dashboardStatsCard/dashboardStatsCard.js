@@ -84,7 +84,6 @@ class DashboardStatsCard extends React.Component {
   }
 
   render(){
-
     const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
     const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
 
@@ -131,7 +130,11 @@ class DashboardStatsCard extends React.Component {
         </>
     }
 
-    return statsCardBlock
+    return (
+      <div className={ this.state.showStats ? 'stats_card_button_wrapper stats_card_button_wrapper_active' : 'stats_card_button_wrapper' }>
+        { statsCardBlock }
+      </div>
+    )
   }
 }
 

@@ -10,11 +10,11 @@ const makeDashboardEditProfileFormInputs = (
     email,
     first_name,
     gender,
-    genderPronouns,
+    gender_pronouns,
     last_name,
     user_name,
     genders,
-    gender_pronouns,
+    genderPronouns,
     months
   ) => {
     return [
@@ -123,34 +123,32 @@ const makeDashboardEditProfileFormInputs = (
         type: 'select',
         val: country
       },
-      [
-        {
-          errorContainerClass: 'edit_profile_form_error_container',
-          errorClass: 'edit_profile_form_error',
-          id: 'gender',
-          inputSubContainerClass: 'edit_profile_input_sub_container',
-          label: 'Gender',
-          name: 'gender',
-          onChange: onChange,
-          options: genders,
-          selectClass: 'edit_profile_select',
-          type: 'select',
-          val: gender
-        },
-        {
-          errorContainerClass: 'edit_profile_form_error_container',
-          errorClass: 'edit_profile_form_error',
-          id: 'gender_pronouns',
-          inputSubContainerClass: 'edit_profile_input_sub_container',
-          label: 'Pronouns',
-          name: 'genderPronouns',
-          onChange: onChange,
-          options: gender_pronouns,
-          selectClass: 'edit_profile_select',
-          type: 'select',
-          val: genderPronouns
-        }
-      ],
+      {
+        errorContainerClass: 'edit_profile_form_error_container',
+        errorClass: 'edit_profile_form_error',
+        id: 'gender',
+        inputSubContainerClass: 'edit_profile_input_sub_container',
+        label: 'Gender',
+        name: 'gender',
+        onChange: onChange,
+        options: genders,
+        selectClass: 'edit_profile_select',
+        type: 'select',
+        val: gender
+      },
+      {
+        errorContainerClass: 'edit_profile_form_error_container',
+        errorClass: 'edit_profile_form_error',
+        id: 'gender_pronouns',
+        inputSubContainerClass: 'edit_profile_input_sub_container',
+        label: 'Pronouns',
+        name: 'genderPronouns',
+        onChange: onChange,
+        options: genderPronouns,
+        selectClass: 'edit_profile_select',
+        type: 'select',
+        val: gender_pronouns
+      },
       [
         {
           inputSubContainerClass: 'edit_profile_input_sub_container',

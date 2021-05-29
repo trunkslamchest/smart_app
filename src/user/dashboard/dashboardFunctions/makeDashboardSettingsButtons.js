@@ -5,7 +5,7 @@ const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, formGlyphInde
       name: 'dashboardSettingsSubmit',
       onClickFunction: onSubmit,
       image: formGlyphIndex.formWhiteCheckMark,
-      imageHover: formGlyphIndex.formBlackCheckMark,
+      imageHover: formGlyphIndex.formGreyCheckMark,
       tooltipText: [ 'Confirm' ],
       type: 'button'
     },
@@ -14,7 +14,7 @@ const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, formGlyphInde
       name: 'dashboardSettingsReset',
       onClickFunction: onReset,
       image: formGlyphIndex.formWhiteReset,
-      imageHover: formGlyphIndex.formBlackReset,
+      imageHover: formGlyphIndex.formGreyReset,
       tooltipText: [ 'Reset' ],
       type: 'button'
     },
@@ -23,7 +23,7 @@ const makeDashboardSettingsButtons = (onSubmit, onReset, onCancel, formGlyphInde
       name: 'dashboardSettingsCancel',
       onClickFunction: onCancel,
       image: formGlyphIndex.formWhiteX,
-      imageHover: formGlyphIndex.formBlackX,
+      imageHover: formGlyphIndex.formGreyX,
       tooltipText: [ 'Cancel' ],
       type: 'button'
     }

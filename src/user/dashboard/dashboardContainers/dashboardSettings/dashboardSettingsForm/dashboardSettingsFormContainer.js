@@ -3,7 +3,6 @@ import React from 'react'
 import makeDashboardSettingsPrivacyFields from '../../../dashboardFunctions/makeDashboardSettingsPrivacyFields'
 import makeDashboardSettingsButtons from '../../../dashboardFunctions/makeDashboardSettingsButtons'
 
-import DashboardHeader from '../../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardSubHeader from '../../../dashboardComponents/dashboardSubHeader/dashboardSubHeader'
 import DashboardSettingsPrivacyProfileCard from '../dashboardSettingsPrivacyProfileCard/dashboardSettingsPrivacyProfileCard'
 import DefaultButtonsContainer from '../../../../../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
@@ -46,10 +45,9 @@ const DashboardSettingsFormContainer = (props) => {
       name='dashboard_settings_form'
       className='dashboard_settings_form'
     >
-      <DashboardHeader header_text={ "Settings" } />
-      <div className="dashboard_settings_privacy_container">
+      <div className="dashboard_settings_container">
         <DashboardSubHeader header_text={ 'Privacy' } />
-        <div className="dashboard_settings_privacy_profile_container">
+        <div className="dashboard_settings_sub_container">
           { distribPrivacyProfileSettings }
         </div>
       </div>

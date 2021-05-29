@@ -4,15 +4,19 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  padding: 0px 0px 0px 0px;
-  margin: 0px;
+  padding: 0px 0px 10px 0px;
+  margin: 1px 0px;
+}
+
+.stats_sub_container_bottom {
+  padding: 0px 0px 15px 0px;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .stats_sub_header {
   background-color: rgba(255, 255, 255, 1);
   display: flex;
   width: 100%;
-  margin: 0px 5px;
   padding: 5px 15px 5px 10px;
 }
 
@@ -22,15 +26,16 @@
   text-align: center;
 }
 
-.stats_no_answers {
+.stats_no_answers_container {
   background-color: rgba(246, 246, 250, 1);
+  border-radius: 0px 0px 5px 5px;
   display: flex;
   width: 100%;
-  margin: 0px 5px;
-  padding: 10px 15px 10px 10px;
+  margin: 0px 0px -15px 0px;
+  padding: 10px 15px 15px 10px;
 }
 
-.stats_no_answers h3 {
+.stats_no_answers_container h3 {
   color: rgba(150, 150, 150, 1);
   font: 300 12pt 'LatoLightItalic';
   align-self: center;

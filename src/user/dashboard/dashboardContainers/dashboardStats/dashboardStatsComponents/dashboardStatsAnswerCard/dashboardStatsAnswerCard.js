@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { routes } from '../../../../../../utility/paths'
 
@@ -14,10 +15,43 @@ const DashboardStatsAnswerCard = (props) => {
 
   const history = useHistory()
 
+  const componentClasses = {
+    cardContainer: 'dashboard_stats_answer_card_container',
+    cardSubContainer: 'dashboard_stats_answer_card_sub_container',
+    cardHeader: 'dashboard_stats_answer_card_header',
+    cardWrapper: 'dashboard_stats_answer_card_bottom_card_wrapper',
+    cardWrapperGroupLeft: props.cardNumber < props.answersLimit ? 'dashboard_stats_answer_card_sub_container_group_left' : 'dashboard_stats_answer_card_sub_container_group_left dashboard_stats_answer_card_sub_container_group_left_last',
+    cardWrapperGroupRight: props.cardNumber < props.answersLimit ? 'dashboard_stats_answer_card_sub_container_group_right' : 'dashboard_stats_answer_card_sub_container_group_right dashboard_stats_answer_card_sub_container_group_right_last',
+    cardWrapperWithBottomLeftBorder: props.cardNumber < props.answersLimit ? 'dashboard_stats_answer_card_bottom_card_wrapper' : 'dashboard_stats_answer_card_bottom_card_wrapper dashboard_stats_answer_card_bottom_card_wrapper_left',
+    cardWrapperWithBottomRightBorder: props.cardNumber < props.answersLimit ? 'dashboard_stats_answer_card_bottom_card_wrapper' : 'dashboard_stats_answer_card_bottom_card_wrapper dashboard_stats_answer_card_bottom_card_wrapper_right'
+  }
+
+  const [bottomCardLeftClass, setBottomCardLeftClass] = useState(componentClasses.cardWrapper)
+  const [bottomCardRightClass, setBottomCardRightClass] = useState(componentClasses.cardWrapperWithBottomLeftBorder)
+
   const onPushLink = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     history.push(buttonParams.route)
   }
+
+  useEffect(() => {
+    const checkWidth = window.matchMedia('(max-width: 768px)');
+
+    const switchCardClass = () => {
+      if (checkWidth.matches) {
+        setBottomCardLeftClass(componentClasses.cardWrapper)
+        setBottomCardRightClass(componentClasses.cardWrapperWithBottomLeftBorder)
+      } else {
+        setBottomCardLeftClass(componentClasses.cardWrapperWithBottomLeftBorder)
+        setBottomCardRightClass(componentClasses.cardWrapper)
+      }
+    };
+
+    switchCardClass()
+    checkWidth.addListener(switchCardClass)
+    return () => checkWidth.removeListener(switchCardClass)
+  // eslint-disable-next-line
+  }, [])
 
   let answer = props.answer
   let userAnswer = props.answer.answer
@@ -66,8 +100,8 @@ const DashboardStatsAnswerCard = (props) => {
   // }
 
   return(
-    <div className="dashboard_stats_answer_card_container">
-       <div className="dashboard_stats_answer_card_header">
+    <div className={ props.answerCardContainerClass }>
+       <div className={ componentClasses.cardHeader }>
         <h5>{ answer.question }</h5>
           <DefaultButtonsContainer
             buttons={ viewQuestionButton }
@@ -77,12 +111,12 @@ const DashboardStatsAnswerCard = (props) => {
             tooltipClass='dashboard_stats_view_question_button_tooltip'
           />
       </div>
-      <div className="dashboard_stats_answer_card_sub_container">
-        <div className="dashboard_stats_answer_card_sub_container_group">
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+      <div className={ props.answerCardSubContainerClass }>
+        <div className={ componentClasses.cardWrapperGroupLeft }>
+          <div className={ bottomCardLeftClass }>
             { resultGlyph }
           </div>
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+          <div className={ componentClasses.cardWrapper }>
             { answer.vote &&
               <>
                 <h4>Your Vote</h4>
@@ -95,25 +129,25 @@ const DashboardStatsAnswerCard = (props) => {
               </>
             }
           </div>
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+          <div className={ componentClasses.cardWrapper }>
             <h4>Rank</h4>
             <span>{ props.answer.performance.rank }</span>
           </div>
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+          <div className={ componentClasses.cardWrapper }>
             <h4>Rating</h4>
             <span>{ props.answer.performance.rating }</span>
           </div>
         </div>
-        <div className="dashboard_stats_answer_card_sub_container_group">
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+        <div className={ componentClasses.cardWrapperGroupRight }>
+          <div className={ bottomCardRightClass }>
             <h4>Your Time</h4>
             <span>{ props.answer.time } seconds</span>
           </div>
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+          <div className={ componentClasses.cardWrapper }>
             <h4>Your Answer</h4>
             <span>{ userAnswer }</span>
           </div>
-          <div className="dashboard_stats_answer_card_bottom_card_wrapper">
+          <div className={ componentClasses.cardWrapperWithBottomRightBorder }>
             <h4>Correct Answer</h4>
             <span>{ props.answer.correct_answer }</span>
           </div>

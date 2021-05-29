@@ -5,10 +5,17 @@
 
 .stats_card_button_wrapper {
   width: calc(100% - 20px);
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  border-radius: 5px;
+  margin: 1px 0px;
+}
+
+.stats_card_button_wrapper_active {
+  margin: 1px 0px 15px 0px;
 }
 
 .stats_card_header_button {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(246, 246, 250, 1);
   color: rgba(50, 50, 50, 1);
   outline: -webkit-focus-ring-color auto 0px;
   border: 0px solid rgba(150, 150, 150, 1);
@@ -37,7 +44,7 @@
   margin-block-end: 0px;
   padding: 0px;
   text-align: left;
-  width: 25%;
+  flex-grow: 1;
 }
 
 .stats_card_header_button_rank_rating_container,

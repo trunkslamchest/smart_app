@@ -8,6 +8,11 @@
     border-radius: 0px;
   }
 
+  .dashboard_header_left,
+  .dashboard_sub_header_left {
+    justify-content: center;
+  }
+
   .dashboard_date_container {
     flex-direction: row;
     justify-content: space-evenly;
@@ -33,7 +38,8 @@
     margin: 0px;
   }
 
-  .edit_profile_input_container h3 {
+  .edit_profile_input_container h3,
+  .edit_profile_input_container_last h3 {
     text-align: center;
     padding: 5px 0px 0px 0px;
   }

@@ -22,7 +22,7 @@ import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboard
 import DefaultForm from '../../../../UI/forms/defaultForm'
 
 import genders from '../../../../datasets/genders'
-import gender_pronouns from '../../../../datasets/genderPronouns'
+import genderPronouns from '../../../../datasets/genderPronouns'
 import months from '../../../../datasets/months'
 
 import flagIconIndex from '../../../../assets/flag_icons/flagIconIndex'
@@ -261,7 +261,7 @@ class DashboardEditProfile extends React.Component {
       this.state.last_name,
       this.state.user_name,
       genders,
-      gender_pronouns,
+      genderPronouns,
       months
     )
 
@@ -273,7 +273,6 @@ class DashboardEditProfile extends React.Component {
         <DefaultForm
           buttonContainerClass={ 'dashboard_form_buttons_container' }
           buttonRow={ true }
-          // dividers={ true }
           inputFields={ editProfileInputFields }
           inputContainerClass={ 'edit_profile_input_container' }
           formButtons={ editProfileFormButtons }

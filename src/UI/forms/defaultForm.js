@@ -14,19 +14,24 @@ import './defaultFormResponse.css'
 
 const DefaultForm = (props) => {
 
+  let componentClasses = {
+    form: props.formClass || 'default_form_container',
+    formHeader: props.formHeaderClass || 'default_form_header',
+    inputContainer: props.inputContainerClass || 'default_input_container'
+  }
+
   const distribInputFields = props.inputFields.map((field, index) => {
     let input
+    componentClasses.inputContainer = index < props.inputFields.length - 1 ? componentClasses.inputContainer : `${componentClasses.inputContainer}_last`
     if(Array.isArray(field)){
       input =
-        <div className={ props.inputContainerClass || 'default_input_container' } key={ index + field[0].label }>
+        <div className={ componentClasses.inputContainer } key={ index.toString() + field[0].label }>
           { field.map((nField, nIndex) => distribFormInputs(props.formValid, props.errors, props.enableInput, nField, nIndex)) }
-          { props.dividers && index < props.inputFields.length - 1 && <div className='divider_medium' /> }
         </div>
     } else {
       input =
-        <div className={ props.inputContainerClass || 'default_input_container' } key={ index + field.id }>
+        <div className={ componentClasses.inputContainer } key={ index.toString() + field.id }>
           { distribFormInputs(props.formValid, props.errors, props.enableInput, field, index) }
-          { props.dividers && index < props.inputFields.length - 1 && <div className='divider_medium' /> }
         </div>
     }
     return input
@@ -35,7 +40,7 @@ const DefaultForm = (props) => {
   return(
     <>
       {(!!props.formHeaderText || !!props.formSubHeaderText) &&
-        <div className={ props.formHeaderClass || 'default_form_header' }>
+        <div className={ componentClasses.formHeader }>
           { !!props.formHeaderText && <h2>{ props.formHeaderText }</h2> }
           { !!props.formSubHeaderText && <h3>{ props.formSubHeaderText }</h3> }
         </div>
@@ -43,7 +48,7 @@ const DefaultForm = (props) => {
       <form
         id={ props.formId }
         name={ props.formName }
-        className={ props.formClass || 'default_form_container' }
+        className={ componentClasses.form }
       >
         { distribInputFields }
         <DefaultButtonsContainer

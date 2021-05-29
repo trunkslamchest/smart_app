@@ -7,54 +7,50 @@ import './dashboardStatsSubContainer.css'
 
 const DashboardStatsSubContainer = (props) => {
 
-    let sortAnswers = {}, statsBlock = <></>
+  let sortAnswers = {}
+  const componentClasses = {
+    noAnswersContainer: 'stats_no_answers_container',
+    subContainer: props.qSet === 'category' ? 'stats_sub_container stats_sub_container_bottom' : 'stats_sub_container',
+    subHeader: 'stats_sub_header',
+    buttonWrapper: 'stats_card_button_wrapper'
+  }
 
-    for(let answer in props.userQuestions) {
-      sortAnswers[props.userQuestions[answer][props.qSet]] = {
-        ...sortAnswers[props.userQuestions[answer][props.qSet]], [answer]: props.userQuestions[answer]
-      }
+  for(let answer in props.userQuestions) {
+    sortAnswers[props.userQuestions[answer][props.qSet]] = {
+      ...sortAnswers[props.userQuestions[answer][props.qSet]], [answer]: props.userQuestions[answer]
     }
+  }
 
-    const qSortSet = Object.entries(sortAnswers)
+  const qSortSet = Object.entries(sortAnswers)
 
-    const distribAnswers = qSortSet.map((qSet, index) => {
-      return(
-        <div className='stats_card_button_wrapper' key={ index + 1 }>
-          <DashboardStatsCard
-            answers={ qSet[1] }
-            qSet={ props.qSet }
-            qSubSet={ qSet[0] }
-            qSetTotals={ props.questionTotals[props.qSet][qSet[0]] }
-            userTotals={ props.userTotals[props.qSet][qSet[0]] }
-          />
-        </div>
-      )
-    })
-
-    if(!distribAnswers.length && props.qSet === 'category')
-      statsBlock =
-        <>
-          <div className="stats_sub_header">
-            <h3>{ props.headerText }</h3>
-          </div>
-          <div className="stats_no_answers">
-            <h3>You have not answered any questions yet</h3>
-          </div>
-        </>
-    else
-      statsBlock =
-        <>
-          <div className="stats_sub_header">
-            <h3>{ props.headerText }</h3>
-          </div>
-          { distribAnswers }
-        </>
-
+  let distribAnswers = qSortSet.map((qSet, index) => {
     return(
-      <div className="stats_sub_container">
-        { statsBlock }
-      </div>
+      <DashboardStatsCard
+        answers={ qSet[1] }
+        key={ index + 1 }
+        qSet={ props.qSet }
+        qSubSet={ qSet[0] }
+        qSetTotals={ props.questionTotals[props.qSet][qSet[0]] }
+        userTotals={ props.userTotals[props.qSet][qSet[0]] }
+      />
     )
+  })
+
+  if(props.qSet === 'category')
+    if(!distribAnswers.length)
+      distribAnswers =
+        <div className={ componentClasses.noAnswersContainer }>
+          <h3>You have not answered any questions yet</h3>
+        </div>
+
+  return(
+    <div className={ componentClasses.subContainer }>
+      <div className={ componentClasses.subHeader }>
+        <h3>{ props.headerText }</h3>
+      </div>
+      { distribAnswers }
+    </div>
+  )
 }
 
 const store = (store) => {

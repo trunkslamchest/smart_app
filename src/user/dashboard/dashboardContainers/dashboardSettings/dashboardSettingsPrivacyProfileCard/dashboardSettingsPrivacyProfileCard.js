@@ -11,6 +11,10 @@ const DashboardSettingsPrivacyProfileCard = (props) => {
 
   const [hoverState, setHoverState] = useState(false)
 
+  const componentClasses = {
+    settingsCard: props.enabled ? 'dashboard_settings_privacy_profile_card' : 'dashboard_settings_privacy_profile_card dashboard_settings_privacy_profile_card_disabled'
+  }
+
   const onHover = () => { setHoverState(true) }
   const offHover = () => { setHoverState(false) }
   const onClickFunctions = (event) => { props.onChecked(event) }
@@ -18,7 +22,7 @@ const DashboardSettingsPrivacyProfileCard = (props) => {
 
   return (
     <div
-      className={ "dashboard_settings_privacy_profile_card" }
+      className={ componentClasses.settingsCard }
       name={ props.setting.name }
       style={ props.enabled && hoverState ? {
           background: 'rgba(244, 166, 66, 1)',

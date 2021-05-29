@@ -130,7 +130,6 @@ const UserStatsTotal = (props) => {
     <>
       { !props.from_dashboard && <ContainerHeader header_text={ 'Statistics' } /> }
       { totalStats }
-      {/* { props.from_dashboard && <div className='divider_medium' /> } */}
     </>
   )
 }

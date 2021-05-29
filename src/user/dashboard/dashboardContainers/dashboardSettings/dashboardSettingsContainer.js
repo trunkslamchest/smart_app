@@ -9,6 +9,7 @@ import {
 
 import { routes } from '../../../../utility/paths'
 
+import DashboardHeader from '../../dashboardComponents/dashboardHeader/dashboardHeader'
 import DashboardSettingsFormContainer from './dashboardSettingsForm/dashboardSettingsFormContainer'
 
 import './dashboardSettingsContainer.css'
@@ -136,7 +137,8 @@ class DashboardSettingsContainer extends React.Component {
 
   render(){
     return(
-      <div className="dashboard_settings_container">
+      <>
+        <DashboardHeader header_text={ "Settings" } />
         <DashboardSettingsFormContainer
           enableButtons={ this.state.enableButtons }
           onChecked={ this.onChecked }
@@ -156,15 +158,13 @@ class DashboardSettingsContainer extends React.Component {
           showStats={ this.state.settings.privacy.profile.showStats }
           showVotes={ this.state.settings.privacy.profile.showVotes }
         />
-      </div>
+      </>
     )
   }
 }
 
 const store = (store) => {
   return {
-    user: store.user,
-
     authId: store.auth.id,
     userSettings: store.user.settings
   }

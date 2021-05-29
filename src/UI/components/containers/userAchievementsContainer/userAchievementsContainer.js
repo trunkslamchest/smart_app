@@ -14,11 +14,12 @@ const UserAchievementsContainer = (props) => {
       achievementsBlock,
       headerText,
       headerText2
-      // containerClass = 'user_achievements_container'
 
   let componentClasses = {
     container: props.from_dashboard ? 'user_achievements_profile_container' : 'user_achievements_container',
-    subContainer: props.unlocked ? "user_achievements_sub_container_unlocked" : "user_achievements_sub_container_locked"
+    subContainerLocked: 'user_achievements_sub_container user_achievements_sub_container_locked',
+    subContainerUnlocked: props.userAchievements.unlocked[0] === 'null' ? 'user_achievements_sub_container user_achievements_sub_container_no_achievements' : 'user_achievements_sub_container user_achievements_sub_container_unlocked',
+    wrapper: 'user_achievements_wrapper',
   }
 
   if(props.achievements.totals.all && props.userAchievements){
@@ -45,7 +46,6 @@ const UserAchievementsContainer = (props) => {
     if(props.from_dashboard){
       headerText = 'Unlocked'
       headerText2 = 'Locked'
-      // containerClass = 'user_achievements_profile_container'
       if(props.userAchievements.unlocked[0] === 'null') distribUnlockedAchievements = <h3>You have not unlocked any achievements yet</h3>
       if(props.userAchievements.unlocked.length === props.achievements.totals.all) distribLockedAchievements = <h3>You have unlocked all the achievements</h3>
       else {
@@ -65,18 +65,17 @@ const UserAchievementsContainer = (props) => {
 
     achievementsBlock =
     <div className={ componentClasses.container }>
-      <div className='user_achievements_wrapper'>
-        { props.from_dashboard && <ContainerHeader header_text={ headerText } sub_text={ `${props.userAchievements.total}/${props.achievements.totals.all}` } /> }
-        { !props.from_dashboard && <ContainerHeader header_text={ headerText } sub_text={ `${props.userAchievements.total}/${props.achievements.totals.all}` } /> }
-        <div className={ `user_achievements_sub_container ${componentClasses.subContainer}` }>
+      <div className={ componentClasses.wrapper }>
+        <ContainerHeader header_text={ headerText } sub_text={ `${props.userAchievements.total}/${props.achievements.totals.all}` } />
+        <div className={ componentClasses.subContainerUnlocked }>
           { distribUnlockedAchievements }
         </div>
       </div>
       { props.from_dashboard &&
         <>
-          <div className='user_achievements_wrapper'>
+          <div className={ componentClasses.wrapper }>
             <ContainerHeader header_text={ headerText2 } sub_text={ `${props.achievements.totals.all - props.userAchievements.total}/${props.achievements.totals.all}` } />
-            <div className={ `user_achievements_sub_container ${componentClasses.subContainer}` }>
+            <div className={ componentClasses.subContainerLocked }>
               { distribLockedAchievements }
             </div>
           </div>

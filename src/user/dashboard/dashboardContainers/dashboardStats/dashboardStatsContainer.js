@@ -18,7 +18,6 @@ const DashboardStatsContainer = () => {
     <div className='dashboard_stats_container'>
       <UserStatsContainer from_dashboard={ true } />
       <DashboardStatsSubContainer qSet='difficulty' headerText='Difficulties' />
-      <div className='divider_medium' />
       <DashboardStatsSubContainer qSet='category' headerText='Categories' />
     </div>
     </>

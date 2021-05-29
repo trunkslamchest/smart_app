@@ -6,12 +6,24 @@
 .dashboard_settings_privacy_profile_card_img_container_active img::-moz-selection { opacity: 0; }
 
 .dashboard_settings_privacy_profile_card {
-  /* background-color: rgba(255, 255, 255, 1); */
+  background: rgba(246, 246, 250, 1);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 25px 5px 15px;
-  margin: 0px;
+  margin: 1px 0px;
+  width: calc(100% - 20px);
+}
+
+.dashboard_settings_privacy_profile_card_disabled {
+  background: rgba(200, 200, 200, 1);
+  cursor: not-allowed;
+}
+
+.dashboard_settings_privacy_profile_card_disabled span {
+  color: rgba(150, 150, 150, 1) !important;
 }
 
 .dashboard_settings_privacy_profile_card span {
