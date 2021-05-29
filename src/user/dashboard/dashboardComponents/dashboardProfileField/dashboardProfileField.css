@@ -1,18 +1,23 @@
+.dashboard_profile_field {
+  margin: 1px 0px;
+}
+
 .dashboard_profile_field h3 {
   background: rgba(255, 255, 255, 1);
   color: rgba(50, 50, 50, 1);
   width: 100%;
-  padding: 5px 5px 5px 15px;
+  padding: 5px 5px 0px 15px;
   font: 300 12pt 'PoppinsLight', sans-serif;
 }
 
 .dashboard_profile_field ul {
-  background: rgba(246, 246, 250, 1);
+  /* background: rgba(246, 246, 250, 1); */
+  background: rgba(255, 255, 255, 1);
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px 0px 0px 15px;
+  padding: 0px 0px 5px 15px;
   /* padding: 0px; */
 
   margin: 0px;

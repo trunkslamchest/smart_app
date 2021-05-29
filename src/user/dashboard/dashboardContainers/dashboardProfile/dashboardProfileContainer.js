@@ -98,7 +98,7 @@ const DashboardProfileContainer = (props) => {
           user_name={ user_name }
           date_block={ date_block }
         />
-        <div className='divider_medium' />
+        {/* <div className='divider_medium' /> */}
         <div className='dashboard_profile_fields_container'>
           { distribProfileFields }
         </div>

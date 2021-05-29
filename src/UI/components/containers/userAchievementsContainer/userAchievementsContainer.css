@@ -29,13 +29,20 @@
 }
 
 .user_achievements_sub_container {
-  background: rgba(246, 246, 250, 1);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 0px 0px;
   width: 100%;
+}
+
+.user_achievements_sub_container_locked {
+  background: rgba(246, 246, 250, 1);
+}
+
+.user_achievements_sub_container_unlocked {
+  background: rgba(255, 255, 255, 1);
 }
 
 .user_achievements_sub_container h3 {

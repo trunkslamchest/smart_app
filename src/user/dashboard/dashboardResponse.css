@@ -13,16 +13,20 @@
     justify-content: space-evenly;
   }
 
+  .dashboard_date_sub_container {
+    margin: 0px;
+  }
+
   .dashboard_profile_field h3 {
     text-align: center;
-    padding: 5px 0px;
+    padding: 5px 0px 0px 0px;
   }
 
   .dashboard_profile_field ul {
     justify-content: center;
     align-content: center;
     align-items: center;
-    padding: 0px;
+    padding: 0px 0px 5px 0px;
   }
 
   .dashboard_profile_field li span {
@@ -31,14 +35,14 @@
 
   .edit_profile_input_container h3 {
     text-align: center;
-    padding: 5px 0px;
+    padding: 5px 0px 0px 0px;
   }
 
   .edit_profile_input_sub_container {
     justify-content: center;
     align-content: center;
     align-items: center;
-    padding: 0px;
+    padding: 0px 0px 5px 0px;
   }
 
   .edit_profile_input_sub_container h3 {
@@ -47,6 +51,7 @@
 
   .edit_profile_image_sub_container {
     flex-direction: column;
+    padding: 5px 0px;
   }
 
   .edit_profile_avatar_img {
