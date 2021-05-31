@@ -18,21 +18,16 @@ const Header = (props) => {
 
   const history = useHistory()
 
-  let header
+  let header = <GuestHeader />
 
   const onPushLink = useCallback((event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     if (history.location.pathname !== buttonParams.route) history.push(buttonParams.route)
   }, [ history ])
 
-  if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader />
+  // if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader />
 
-  if(props.authStatus === 'authValid') {
-    header =
-      <NormalHeader
-        user_name={ props.user_name }
-      />
-  }
+  if(props.authStatus === 'authValid') header = <NormalHeader user_name={ props.user_name } />
 
   const homeButton = makeHomeButton(iconsIndex, onPushLink, routes)
 
@@ -47,7 +42,7 @@ const Header = (props) => {
           />
         </div>
         <div className='header_right'>
-          { header }
+          { !props.authLoading && header }
         </div>
     </div>
   )
@@ -55,7 +50,8 @@ const Header = (props) => {
 
 const store = (store) => {
   return {
-    authStatus: store.auth.status
+    authStatus: store.auth.status,
+    authLoading: store.auth.loading
   }
 }
 
