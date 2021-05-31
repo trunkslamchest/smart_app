@@ -6,13 +6,14 @@
 
   .leader_boards_header {
     border-radius: 0px;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 25px 5px 10px;
   }
 
-  .leader_boards_scores_row,
-  .leader_boards_scores_row_blank,
+  .leader_boards_scores_row_blank {
+    padding: 8.5px 5px 2.5px 8.5px;
+  }
+
   .leader_boards_scores_row_left,
-  .leader_boards_scores_row:hover,
   .leader_boards_scores_row_left:hover {
     padding: 2.5px 5px 2.5px 2.5px;
   }
@@ -20,11 +21,14 @@
   .leader_boards_scores_row span,
   .leader_boards_scores_row_blank span,
   .leader_boards_scores_row_left span,
-  .leader_boards_scores_row:hover span,
   .leader_boards_scores_row_left:hover span {
     font-family: 'LatoLight';
     font-size: calc(10px + (14 - 10) * ((100vw - 360px) / (769 - 360)));
     font-weight: 600;
+  }
+
+  .leader_boards_scores_row:hover span {
+    font-family: 'Lato';
   }
 
   .leader_boards_scores_row_left span:nth-child(1) {
@@ -42,10 +46,6 @@
 
   .leader_boards_scores_row_img_flag {
     margin-right: 1%;
-  }
-
-  .leader_boards_scores_row_right {
-    padding-right: 10px;
   }
 
 }

@@ -13,11 +13,9 @@ import './leaderBoardsScoresCard.css'
 class LeaderBoardsScoresCard extends React.Component {
 
   state = {
-    showScores: false,
-    headerButtonHover: false,
     currentPage: 0,
-    initPaginate: false,
-    leaderBoard: []
+    headerButtonHover: false,
+    leaderBoard: [],
   }
 
   constructor(props) {
@@ -28,23 +26,15 @@ class LeaderBoardsScoresCard extends React.Component {
 
   componentDidMount() {
     document.addEventListener('click', this.onClickListen)
-
     if(this.props.scores) {
       let pagniatedLeaderBoard = paginateLeaderBoard(this.props.pageLimit, this.props.scores)
       this.setState({ leaderBoard: pagniatedLeaderBoard })
     }
   }
 
-  componentDidUpdate() {
-    if(this.props.scores && !this.state.initPaginate) {
-      let pagniatedLeaderBoard = paginateLeaderBoard(this.props.pageLimit, this.props.scores)
-      this.setState({ initPaginate: true, leaderBoard: pagniatedLeaderBoard })
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('click', this.onClickListen)
-    this.setState({ headerButtonHover: false })
+    this.setState({ currentPage: 0, headerButtonHover: false, leaderBoard: [], showScores: false })
   }
 
   onClickListen = (event) => {
@@ -89,6 +79,8 @@ class LeaderBoardsScoresCard extends React.Component {
               countryFlag={ flagIconIndex[score.country] }
               fromScoresCard={ true }
               key={ score.uid }
+              prevScore={ !!this.state.leaderBoard[this.state.currentPage][index - 1] }
+              nextScore={ !!this.state.leaderBoard[this.state.currentPage][index + 1] }
               score={ score }
             />
           :
@@ -98,7 +90,7 @@ class LeaderBoardsScoresCard extends React.Component {
     }
 
     return(
-      <div className="leader_boards_scores_card_container" >
+      <div className={ this.state.showScores ? 'leader_boards_sub_wrapper leader_boards_sub_wrapper_active' : 'leader_boards_sub_wrapper' }>
         <div
           hover_trigger="headerButtonHover"
           onClick={ this.onDropDown }

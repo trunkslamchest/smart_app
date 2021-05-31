@@ -5,7 +5,7 @@
   }
 
   .stats_card_header_card_wrapper {
-    width: calc((100% / 3) - 1px);
+    width: calc(100% / 3);
   }
 
   .dashboard_stats_answer_card_header {

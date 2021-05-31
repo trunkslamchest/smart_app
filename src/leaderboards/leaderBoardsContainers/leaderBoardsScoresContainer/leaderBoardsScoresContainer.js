@@ -38,6 +38,8 @@ const LeaderBoardScoresContainer = (props) => {
         <LeaderBoardsScoresRow
           countryFlag={ flagIconIndex[score.country] }
           key={ score.uid }
+          prevScore={ !!leaderBoard[currentPage][index - 1] }
+          nextScore={ !!leaderBoard[currentPage][index + 1] }
           score={ score }
         />
       :

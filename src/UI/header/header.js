@@ -25,25 +25,21 @@ const Header = (props) => {
     if (history.location.pathname !== buttonParams.route) history.push(buttonParams.route)
   }, [ history ])
 
-  // if(localStorage.access === 'guest' || !localStorage.length) header = <GuestHeader />
-
   if(props.authStatus === 'authValid') header = <NormalHeader user_name={ props.user_name } />
 
   const homeButton = makeHomeButton(iconsIndex, onPushLink, routes)
 
   return(
     <div className='header_container'>
-        <div className='header_left'>
-          <DefaultButtonContainer
-            buttons={ homeButton }
-            buttonContainerClass={ 'header_button_container' }
-            containerClass={ 'header_buttons_container' }
-            enableButton={ true }
-          />
-        </div>
-        <div className='header_right'>
-          { !props.authLoading && header }
-        </div>
+      <div className='header_left'>
+        <DefaultButtonContainer
+          buttons={ homeButton }
+          buttonContainerClass={ 'header_button_container' }
+          containerClass={ 'header_buttons_container' }
+          enableButton={ true }
+        />
+      </div>
+      { !props.authLoading && <div className='header_right'>{ header }</div> }
     </div>
   )
 }

@@ -1,0 +1,21 @@
+.leader_boards_sub_container {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0px 0px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0px 0px 35px 0px;
+  margin: 10px 0px 0px 0px;
+}
+
+.leader_boards_sub_wrapper {
+  width: calc(100% - 20px);
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  border-radius: 5px;
+  margin: 1px 0px;
+}
+
+.leader_boards_sub_wrapper_active {
+  margin: 1px 0px 15px 0px;
+}

@@ -8,11 +8,8 @@ const LeaderBoardsSubHeader = (props) => {
 
   const arrow_grey_down = <img alt='open' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowDown } />
   const arrow_grey_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.greyArrowLeft } />
-  const arrow_white_left = <img alt='closed' className='header_button_menu_arrow' hover_trigger="headerButtonHover" src={ menuArrowIndex.whiteArrowLeft } />
 
-  let header_menu_arrow = arrow_white_left
-
-  if(props.headerButtonHover ) header_menu_arrow = arrow_grey_left
+  let header_menu_arrow = arrow_grey_left
   if(props.showScores) header_menu_arrow = arrow_grey_down
 
   return(

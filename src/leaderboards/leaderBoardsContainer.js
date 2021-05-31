@@ -12,7 +12,8 @@ import makeLeaderBoardsNavButtons from './leaderBoardsFunctions/makeLeaderBoards
 import makeLeaderBoardsHelpSections from './leaderBoardsFunctions/makeLeaderBoardsHelpSections'
 
 import LeaderBoardsOverallContainer from './leaderBoardsContainers/leaderBoardsOverallContainer'
-import LeaderBoardsSubContainer from './leaderBoardsContainers/leaderBoardsSubContainer/leaderBoardsSubContainer'
+import LeaderBoardsRegionalContainer from './leaderBoardsContainers/leaderBoardsRegionalContainer'
+import LeaderBoardsCatContainer from './leaderBoardsContainers/leaderBoardsCatContainer'
 
 import DefaultButtonsContainer from '../UI/buttons/defaultButtonsContainer/defaultButtonsContainer'
 
@@ -50,7 +51,7 @@ const LeaderBoardsContainer = (props) => {
           <LeaderBoardsOverallContainer />
         </Route>
         <Route exact path={ props.countriesRoute }>
-          <LeaderBoardsSubContainer
+          <LeaderBoardsRegionalContainer
             documentTitle='Regional'
             headerText='Countries'
             pageLimit={ 5 }
@@ -58,7 +59,7 @@ const LeaderBoardsContainer = (props) => {
           />
         </Route>
         <Route exact path={ props.catRoute }>
-          <LeaderBoardsSubContainer
+          <LeaderBoardsCatContainer
             documentTitle='Category'
             headerText='Categories'
             pageLimit={ 10 }
