@@ -19,7 +19,9 @@ const UserProfileCommentsContainer = (props) => {
   return(
     <div className="user_profile_comments_container">
       <ContainerHeader header_text={ 'Comments' } />
-      { distribQuestions }
+      <div className="user_profile_comment_cards_container">
+        { distribQuestions }
+      </div>
     </div>
   )
 }

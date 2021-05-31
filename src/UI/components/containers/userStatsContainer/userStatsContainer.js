@@ -9,12 +9,29 @@ import ContainerHeader from '../../../../UI/components/headers/containerHeader/c
 
 import trendArrowIndex from '../../../../assets/trend_arrows/trendArrowIndex'
 
+import './userStatsContainer.css'
 import './userStatsTotal.css'
 import './userStatsXP.css'
 import './userStatsPerformance.css'
 import './userStatsResponse.css'
 
 const UserStatsTotal = (props) => {
+
+  const componentClasses = {
+    statsContainer: 'user_stats_container',
+    statsWrapper: 'user_stats_wrapper',
+    statsTotalSubContainer: 'user_stats_total_sub_container',
+    statsTotalSubWrapper: 'user_stats_total_sub_wrapper',
+    statsTotalSubRow: 'user_stats_total_sub_row',
+    perfContainer: 'user_stats_performance_container',
+    perfSubContainer: 'user_stats_performance_sub_container',
+    rankContainer: 'user_stats_total_rank',
+    ratingContainer: 'user_stats_total_rating',
+    ratingSubContainer: 'user_stats_total_rating_sub_container',
+    xpContainer: 'user_stats_experience_container',
+    xpPerfContainer: 'user_stats_xp_perf_container',
+    xpBarContainer: 'user_stats_experience_bar_container'
+  }
 
   const numZero = (num) => {
     let a = num.split('')
@@ -44,14 +61,14 @@ const UserStatsTotal = (props) => {
     if(props.userQuestionTotals.answered >= 5) {
       performance =
         <>
-          <div className="user_stats_performance_sub_container">
-            <div className="user_stats_total_rank">
+          <div className={ componentClasses.perfSubContainer }>
+            <div className={ componentClasses.rankContainer }>
               <h2>SmartApp™ Rank</h2>
               <h1>{ props.userQuestionTotals.rank }</h1>
             </div>
-            <div className="user_stats_total_rating">
+            <div className={ componentClasses.ratingContainer }>
               <h2>SmartApp™ Rating</h2>
-              <div className="user_stats_total_rating_sub_container">
+              <div className={ componentClasses.ratingSubContainer }>
                 <h1>{ (props.userQuestionTotals.rating * 10).toFixed(2) }</h1>
                 { trendArrows.rating }
               </div>
@@ -64,14 +81,14 @@ const UserStatsTotal = (props) => {
       } else {
         performance =
           <>
-            <div className="user_stats_performance_sub_container">
-              <div className="user_stats_total_rank">
+            <div className={ componentClasses.perfSubContainer }>
+              <div className={ componentClasses.rankContainer }>
                 <h2>SmartApp™ Rank</h2>
                 <h1>NR</h1>
               </div>
-              <div className="user_stats_total_rating">
+              <div className={ componentClasses.ratingContainer }>
                 <h2>SmartApp™ Rating</h2>
-                <div className="user_stats_total_rating_sub_container">
+                <div className={ componentClasses.ratingSubContainer }>
                   <h1>NR</h1>
                   { trendArrows.rating }
                 </div>
@@ -84,33 +101,33 @@ const UserStatsTotal = (props) => {
     totalQuestionsAnswered = numZero(totalQuestionsAnswered)
 
     totalStats =
-      <div className="user_stats_total">
-        <div className='user_stats_total_sub_container'>
-        <div className='user_stats_total_sub_wrapper'>
-          <div className='user_stats_total_sub_row'>
-            { props.userQuestionTotals.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)
-            { trendArrows.answered }
+      <div className={ componentClasses.statsWrapper }>
+        <div className={ componentClasses.statsTotalSubContainer }>
+          <div className={ componentClasses.statsTotalSubWrapper }>
+            <div className={ componentClasses.statsTotalSubRow }>
+              { props.userQuestionTotals.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)
+              { trendArrows.answered }
+            </div>
+            <div className={ componentClasses.statsTotalSubRow }>
+              { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ props.userQuestionTotals.averages.correct }%)
+              { trendArrows.correct }
+            </div>
           </div>
-          <div className='user_stats_total_sub_row'>
-            { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ props.userQuestionTotals.averages.correct }%)
-            { trendArrows.correct }
+          <div className={ componentClasses.statsTotalSubWrapper }>
+            <div className={ componentClasses.statsTotalSubRow }>
+              Average Time: { props.userQuestionTotals.averages.avgTime } seconds
+              { trendArrows.averageTime }
+            </div>
+            <div className={ componentClasses.statsTotalSubRow }>
+              Outta Times: { props.userQuestionTotals.outta_time }
+              { trendArrows.outtaTime }
+            </div>
           </div>
         </div>
-        <div className='user_stats_total_sub_wrapper'>
-          <div className='user_stats_total_sub_row'>
-            Average Time: { props.userQuestionTotals.averages.avgTime } seconds
-            { trendArrows.averageTime }
-          </div>
-          <div className='user_stats_total_sub_row'>
-            Outta Times: { props.userQuestionTotals.outta_time }
-            { trendArrows.outtaTime }
-          </div>
-        </div>
-        </div>
-        <div className="user_stats_xp_perf_container">
-          <div className="user_stats_experience_container">
+        <div className={ componentClasses.xpPerfContainer }>
+          <div className={ componentClasses.xpContainer }>
             <h3>Level { props.userExperience.level }</h3>
-            <div className="user_stats_experience_bar_container">
+            <div className={ componentClasses.xpBarContainer }>
               <XPBar
                 userXP={ props.userExperience.total }
                 userLevel={ props.userExperience.level }
@@ -127,10 +144,10 @@ const UserStatsTotal = (props) => {
   }
 
   return(
-    <>
+    <div className={ componentClasses.statsContainer }>
       { !props.from_dashboard && <ContainerHeader header_text={ 'Statistics' } /> }
       { totalStats }
-    </>
+    </div>
   )
 }
 

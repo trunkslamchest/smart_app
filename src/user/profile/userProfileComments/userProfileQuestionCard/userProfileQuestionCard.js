@@ -17,10 +17,8 @@ const UserProfileQuestionCard = (props) => {
 
   return(
     <div className='user_profile_question_card_container'>
-      <div className='user_profile_question_card_wrapper'>
         <span>{ props.question.question }</span>
         { distribComments }
-      </div>
     </div>
   )
 }
