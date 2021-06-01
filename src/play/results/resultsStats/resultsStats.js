@@ -15,8 +15,6 @@ import './resultsStatsXP.css'
 
 const ResultsStats = (props) => {
 
-  console.log(props.staticResults, !props.staticUserAchievements)
-
   const componentClasses = {
     questionContainer: props.staticResults && !props.staticUserAchievements ? 'results_question_container results_question_static_no_achievements' : 'results_question_container',
     questionSubContainer: props.staticResults && !props.staticUserAchievements ? 'results_question_sub_container results_question_static_no_achievements' : 'results_question_sub_container',
