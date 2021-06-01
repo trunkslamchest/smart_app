@@ -17,6 +17,12 @@ const DefaultButton = (props) =>  {
   const [tooltipState, setTooltipState] = useState(false)
   const [menuState, setMenuState] = useState(false)
 
+  const componentClasses = {
+    buttonContainerClass: props.buttonContainerClass || 'default_button_container',
+    buttonActiveClass: `${props.buttonClass}_active`,
+    buttonClass: props.enableButton ? hoverState || menuState ? `${props.buttonClass} ${props.buttonClass}_active` : props.buttonClass : `${props.buttonClass} ${props.buttonClass}_disabled`,
+  }
+
   const timerRef = useRef(null);
 
   useEffect(() => { return () => { clearTimeout(timerRef.current) } }, [])
@@ -61,7 +67,6 @@ const DefaultButton = (props) =>  {
   }
 
   let buttonType
-  let buttonClass
   let buttonIMG = props.image
   let buttonText = <span params={ props.params }>{ props.text }</span>
 
@@ -88,16 +93,11 @@ const DefaultButton = (props) =>  {
       }
     </>
 
-  if(props.enableButton)
-    if(hoverState || menuState) buttonClass = `${props.buttonClass}_active`
-    else buttonClass = props.buttonClass
-  else buttonClass = `${props.buttonClass}_disabled`
-
   if(props.buttonType === 'NavLink') {
     buttonType =
       <NavLink
-        activeClassName={`${props.buttonClass}_active` }
-        className={ buttonClass }
+        activeClassName={ componentClasses.buttonActiveClass }
+        className={ componentClasses.buttonClass }
         id={ props.id }
         name={ props.name }
         onClick={ onClickFunction }
@@ -110,7 +110,7 @@ const DefaultButton = (props) =>  {
   } else {
     buttonType =
       <button
-        className={ buttonClass }
+        className={ componentClasses.buttonClass }
         id={ props.id }
         name={ props.name }
         params={ props.params }
@@ -123,7 +123,7 @@ const DefaultButton = (props) =>  {
 
   return(
     <div
-      className={ props.buttonContainerClass || 'default_button_container' }
+      className={ componentClasses.buttonContainerClass }
       onMouseEnter={ onHover }
       onMouseLeave={ offHover }
     >
@@ -154,7 +154,6 @@ const DefaultButton = (props) =>  {
 export default React.memo(DefaultButton)
 
 // export default React.memo(DefaultButton)
-
 
 // <DefaultButton
 //   enableButton={  }

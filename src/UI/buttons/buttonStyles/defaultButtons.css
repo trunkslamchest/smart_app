@@ -1,4 +1,14 @@
-.default_button_left {
+.default_button_container {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  border: 0px solid black;
+  box-sizing: border-box;
+}
+
+.default_button {
   -webkit-appearance: none;
   align-items: center;
   align-content: center;
@@ -7,7 +17,6 @@
   justify-content: center;
   background: rgba(0, 0, 102, 1);
   border: 0px solid black;
-  border-radius: 5px 0px 0px 5px;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
@@ -25,56 +34,48 @@
   word-spacing: normal;
 }
 
-.default_button_left_active {
-  -webkit-appearance: none;
-  align-items: center;
-  align-content: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  background: rgba(244, 166, 66, 1);
-  border: 0px solid black;
-  border-radius: 5px 0px 0px 5px;
-  box-sizing: border-box;
-  color: rgba(50, 50, 50, 1);
-  cursor: pointer;
-  font: 600 10pt 'PoppinsLight', sans-serif;
-  letter-spacing: normal;
-  margin: 0px;
-  padding: 10px 20px;
-  outline: -webkit-focus-ring-color auto 0px;
-  text-align: center;
-  text-decoration: none;
-  text-indent: 0px;
-  text-rendering: auto;
-  text-shadow: none;
-  text-transform: none;
-  word-spacing: normal;
+.default_button_disabled,
+.default_button_left_disabled,
+.default_button_right_disabled {
+  animation: none;
+  background: rgba(175, 175, 175, 0);
+  color: rgb(225, 225, 225, 0);
+  cursor: default;
+  opacity: 0;
+  transition: none;
 }
 
-.default_button_left:hover,
-.default_button_left_active:hover {
+.default_button_left {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.default_button_right {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.default_button_active,
+.default_button_left_active,
+.default_button_right_active {
+  background: rgba(244, 166, 66, 1);
+  color: rgba(50, 50, 50, 1);
+  font: 600 10pt 'PoppinsLight', sans-serif;
+}
+
+.default_button:hover,
+.default_button_active:hover {
   color: rgba(50, 50, 50, 1);
   background: rgba(244, 166, 66, 1);
-  border: 0px solid black;
-  box-sizing: border-box;
   font: 600 10pt 'PoppinsLight', sans-serif;
   transition: background-color, border-radius .2s ease-in-out 0s;
 }
 
-.default_button_left img,
-.default_button_left_active img {
-  width: 20px;
-  height: 20px;
-}
-
-.default_button_left span,
-.default_button_left_active span {
+.default_button span,
+.default_button_active span {
   align-self: stretch;
 }
 
-.default_button_left:active span,
-.default_button_left_active:active span {
+.default_button:active span,
+.default_button_active:active span {
   color: rgba(50, 50, 50, 1);
   display: block;
   opacity: 0;
@@ -85,8 +86,14 @@
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-.default_button_left:active img,
-.default_button_left_active:active img {
+.default_button img,
+.default_button_active img {
+  width: 20px;
+  height: 20px;
+}
+
+.default_button:active img,
+.default_button_active:active img {
   width: 20px;
   height: 20px;
   opacity: 0;

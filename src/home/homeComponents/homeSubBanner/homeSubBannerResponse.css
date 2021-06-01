@@ -9,4 +9,12 @@
     padding: 0px 30px;
   }
 
+  .home_logged_in_sub_banner_wrapper {
+    padding: 15px 0px;
+  }
+
+  .home_sub_banner_text_container h2 {
+    font-size: calc(14px + (16 - 14) * ((100vw - 361px) / (768 - 361)));
+  }
+
 }

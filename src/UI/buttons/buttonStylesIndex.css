@@ -1,8 +1,7 @@
 @import url('./buttonStyles/addCommentButton.css');
 @import url('./buttonStyles/completedButton.css');
 @import url('./buttonStyles/dashboardStatsViewQuestionButton.css');
-@import url('./buttonStyles/defaultButtons/defaultButtons.css');
-@import url('./buttonStyles/defaultButton.css');
+@import url('./buttonStyles/defaultButtons.css');
 @import url('./buttonStyles/defaultButtonAlt.css');
 @import url('./buttonStyles/editCommentButton.css');
 @import url('./buttonStyles/footerLogoButton.css');
@@ -16,7 +15,7 @@
 @import url('./buttonStyles/homeButton.css');
 @import url('./buttonStyles/homeLoggedInButton.css');
 @import url('./buttonStyles/modalHelpButton.css');
-@import url('./buttonStyles/navBarButtons/navBarButtons.css');
+@import url('./buttonStyles/navBarButtons.css');
 @import url('./buttonStyles/nextQuestionButton.css');
 @import url('./buttonStyles/questionCardChoiceButton.css');
 

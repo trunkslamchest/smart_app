@@ -12,11 +12,11 @@ const DefaultButtonContainer = (props) => {
 
   const calcButtonClass = (buttonClass, buttons, index) => {
     if(index === 0) {
-      return `${ buttonClass }_left`
+      return `${ buttonClass } ${ buttonClass }_left`
     } else if ( index === buttons - 1) {
-      return `${ buttonClass }_right`
+      return `${ buttonClass } ${ buttonClass }_right`
     } else {
-      return `${ buttonClass }_middle`
+      return `${ buttonClass }`
     }
   }
 
@@ -60,7 +60,7 @@ const DefaultButtonContainer = (props) => {
 }
 
 export default DefaultButtonContainer
-// 
+
 // export default React.memo(DefaultButtonContainer)
 
 // export default React.memo(DefaultButtonContainer, (prevProps, nextProps) => {

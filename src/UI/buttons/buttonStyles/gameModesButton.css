@@ -28,56 +28,22 @@
   word-spacing: normal;
 }
 
-.game_modes_button_active {
-  -webkit-appearance: none;
-  background: rgba(244, 166, 66, 1);
-  border: 0px solid black;
-  border-radius: 5px;
-  box-sizing: border-box;
-  color: rgba(50, 50, 50, 1);
-  cursor: pointer;
-  font: 600 12pt 'PoppinsLight', sans-serif;
-  margin: 0px;
-  min-width: 150px;
-  padding: 10px 20px;
-  outline: -webkit-focus-ring-color auto 0px;
-  text-align: center;
-  text-decoration: none;
-  word-spacing: normal;
-}
-
 .game_modes_button_disabled {
-  background: rgba(174, 174, 174, 0);
-  color: rgb(235, 235, 235, 0);
-  -webkit-appearance: none;
-  border: 0px solid black;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font: 300 12pt 'PoppinsLight', sans-serif;
-  margin: 0px;
-  min-width: 150px;
-  padding: 10px 20px;
-  outline: -webkit-focus-ring-color auto 0px;
-  text-align: center;
-  text-decoration: none;
-  word-spacing: normal;
+  animation: none;
+  background: rgba(175, 175, 175, 0);
+  color: rgb(225, 225, 225, 0);
+  cursor: default;
+  opacity: 0;
+  transition: none;
 }
 
+.game_modes_button_active,
 .game_modes_button:hover,
 .game_modes_button_active:hover {
-  color: rgba(50, 50, 50, 1);
   background: rgba(244, 166, 66, 1);
-  border: 0px solid black;
-  box-sizing: border-box;
+  border-radius: 5px;
+  color: rgba(50, 50, 50, 1);
   font: 600 12pt 'PoppinsLight', sans-serif;
-  min-width: 150px;
-}
-
-.game_modes_button img,
-.game_modes_button_active img {
-  width: 20px;
-  height: 20px;
 }
 
 .game_modes_button span,
@@ -95,6 +61,12 @@
   transition: all .15s ease-in-out 0s;
   transition-property: opacity, transform;
   outline: -webkit-focus-ring-color auto 0px;
+}
+
+.game_modes_button img,
+.game_modes_button_active img {
+  width: 20px;
+  height: 20px;
 }
 
 .game_modes_button:active img,

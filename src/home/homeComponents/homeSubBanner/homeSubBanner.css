@@ -54,24 +54,29 @@
   flex-wrap: nowrap;
   align-items: center;
   margin: 0px 0px 5px 0px;
-  min-width: 350px;
   width: 100%;
 }
 
 .home_sub_banner_text_container h1 {
-  font: 300 10pt 'LatoLight';
+  font-family: 'LatoLight';
+  font-size: 10pt;
+  font-weight: 300;
   margin: 0px 0px 10px 0px;
   text-align: center;
 }
 
 .home_sub_banner_text_container h2 {
-  font: 300 12pt 'Poppins';
+  font-family: 'Poppins';
+  font-size: 12pt;
+  font-weight: 300;
   margin: 0px 0px 0px 0px;
   text-align: center;
 }
 
 .home_sub_banner_text_container h3 {
-  font: 600 18pt 'Lato';
+  font-family: 'Lato';
+  font-size: 18pt;
+  font-weight: 600;
   margin: 0px 0px 0px 0px;
   text-align: justify;
 }
