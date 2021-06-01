@@ -3,7 +3,7 @@ const makeDeleteProfileFormButtons = (glyphIndex, onSubmitConfirm, onSubmitCance
     {
       id: 'delete_profile_form_confirm',
       image: glyphIndex.formWhiteCheckMark,
-      imageHover: glyphIndex.formBlackCheckMark,
+      imageHover: glyphIndex.formGreyCheckMark,
       name: 'deleteProfileFormConfirm',
       onClickFunction: onSubmitConfirm,
       tooltipText: [ 'Delete Your Profile' ],
@@ -13,7 +13,7 @@ const makeDeleteProfileFormButtons = (glyphIndex, onSubmitConfirm, onSubmitCance
     {
       id: 'delete_profile_form_cancel',
       image: glyphIndex.formWhiteX,
-      imageHover: glyphIndex.formBlackX,
+      imageHover: glyphIndex.formGreyX,
       name: 'deleteProfileFormCancel',
       onClickFunction: onSubmitCancel,
       tooltipText: [ 'Cancel' ],
