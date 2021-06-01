@@ -21,8 +21,7 @@ const ResultsAchievementContainer = (props) => {
           return (
             <ResultsAchievementCard
               achievement={ achievement }
-              // cardNumber={ index }
-              // key={ index }
+              key={ index }
               totalAchievements={ props.unlockedAchievements.length - 1 }
             />
           )
@@ -37,8 +36,7 @@ const ResultsAchievementContainer = (props) => {
           return (
             <ResultsAchievementCard
               achievement={ achievement }
-              // cardNumber={ index }
-              // key={ index }
+              key={ index }
               totalAchievements={ props.staticUserAchievements.unlocked.length - 1 }
             />
           )

@@ -14,50 +14,78 @@ import './resultsStatsQuestion.css'
 import './resultsStatsXP.css'
 
 const ResultsStats = (props) => {
+
+  console.log(props.staticResults, !props.staticUserAchievements)
+
+  const componentClasses = {
+    questionContainer: props.staticResults && !props.staticUserAchievements ? 'results_question_container results_question_static_no_achievements' : 'results_question_container',
+    questionSubContainer: props.staticResults && !props.staticUserAchievements ? 'results_question_sub_container results_question_static_no_achievements' : 'results_question_sub_container',
+    questionSubWrapperLeft: 'results_question_sub_wrapper_left',
+    questionSubWrapperRight: 'results_question_sub_wrapper_right',
+    questionCardWrapper: 'results_question_card_wrapper',
+    questionCardLeft: 'results_question_stat_card results_question_stat_card_left',
+    questionCardRight: 'results_question_stat_card results_question_stat_card_right',
+    perfContainer: 'results_perf_container',
+    perfSubContainer: 'results_perf_sub_container',
+    perfSubWrapper: 'results_perf_sub_wrapper',
+    perfSubWrapperTop: 'results_perf_sub_wrapper_top',
+    perfSubWrapperLeft: 'results_perf_sub_wrapper results_perf_sub_wrapper_left',
+    perfSubWrapperRight: 'results_perf_sub_wrapper results_perf_sub_wrapper_right',
+    perfSubWrapperHeader: 'results_perf_sub_wrapper_header',
+    perfSubWrapperText: 'results_perf_sub_wrapper_text',
+    statsWrapper: 'results_stats_wrapper',
+    xpContainer: 'results_xp_container',
+    xpWrapper: 'results_xp_wrapper',
+    xpCount: 'results_xp_count',
+    xpBarContainer: 'results_xp_bar_container',
+    xpBarSubContainer: 'results_xp_bar_sub_container',
+    xpTotal: 'results_xp_total',
+  }
+
   return(
     <>
       { props.showStats &&
-        <div className="results_stats_wrapper">
-          <div className='results_perf_container'>
+        <div className={ componentClasses.statsWrapper }>
+          <div className={ componentClasses.perfContainer }>
             <PlaySubHeaderCentered header_text={ 'Your Performance' } />
-            <div className='results_perf_sub_container'>
-              <div className='results_perf_sub_wrapper_top'>
-                <div className='results_perf_sub_wrapper results_perf_sub_wrapper_left'>
-                  <div className='results_perf_sub_wrapper_header'>
+            <div className={ componentClasses.perfSubContainer }>
+              <div className={ componentClasses.perfSubWrapperTop }>
+                <div className={ componentClasses.perfSubWrapperLeft }>
+                  <div className={ componentClasses.perfSubWrapperHeader }>
                     <h4>Rank</h4>
                   </div>
-                  <div className='results_perf_sub_wrapper_text'>
+                  <div className={ componentClasses.perfSubWrapperText }>
                     <h5>{ props.userRank }</h5>
                     { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
                   </div>
                 </div>
-                <div className='results_perf_sub_wrapper'>
-                    <div className='results_perf_sub_wrapper_header'>
+                <div className={ componentClasses.perfSubWrapper }>
+                    <div className={ componentClasses.perfSubWrapperHeader }>
                       <h4>Rating</h4>
                     </div>
-                    <div className='results_perf_sub_wrapper_text'>
+                    <div className={ componentClasses.perfSubWrapperText }>
                       <h5>{ props.userRating }</h5>
                       { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
                     </div>
                   </div>
-                <div className='results_perf_sub_wrapper results_perf_sub_wrapper_right'>
-                    <div className='results_perf_sub_wrapper_header'>
+                <div className={ componentClasses.perfSubWrapperRight }>
+                    <div className={ componentClasses.perfSubWrapperHeader }>
                       <h4>Time</h4>
                     </div>
-                    <div className='results_perf_sub_wrapper_text'>
+                    <div className={ componentClasses.perfSubWrapperText }>
                       <h5>{ props.userTime } seconds</h5>
                       { makeResultsTrendArrows(props.userTime, props.questionTime, 'time', trendArrowIndex) }
                     </div>
                   </div>
                 </div>
-                <div className='results_xp_container'>
-                  <div className='results_xp_wrapper'>
-                    <div className='results_xp_count'>
+                <div className={ componentClasses.xpContainer }>
+                  <div className={ componentClasses.xpWrapper }>
+                    <div className={ componentClasses.xpCount }>
                       <h4>+{ props.userXPgain }</h4><h5>XP</h5>
                     </div>
-                    <div className="results_xp_bar_container">
+                    <div className={ componentClasses.xpBarContainer }>
                       <h4>Level { props.userXPlevel }</h4>
-                      <div className="results_xp_bar_sub_container">
+                      <div className={ componentClasses.xpBarSubContainer }>
                       <XPBar
                           userXP={ props.userXPtotal }
                           userLevel={ props.userXPlevel }
@@ -65,45 +93,45 @@ const ResultsStats = (props) => {
                         />
                       </div>
                     </div>
-                    <div className='results_xp_total'>
+                    <div className={ componentClasses.xpTotal }>
                       <h4>{ props.userXPtotal }</h4><h5>/{ levels[props.userXPlevel] }</h5>
                     </div>
                   </div>
                 </div>
               </div>
           </div>
-          <div className='results_question_container'>
+          <div className={ componentClasses.questionContainer }>
             <PlaySubHeaderCentered header_text={ 'Question Stats' } />
-           <div className='results_question_sub_container'>
-              <div className='results_question_sub_wrapper_left'>
+           <div className={ componentClasses.questionSubContainer }>
+              <div className={ componentClasses.questionSubWrapperLeft }>
                 <h4>Difficulty</h4>
-                <div className='results_question_card_wrapper'>
-                  <div className='results_question_stat_card results_question_stat_card_left'>
+                <div className={ componentClasses.questionCardWrapper }>
+                  <div className={ componentClasses.questionCardLeft }>
                       <h5>Level</h5>
                       <h6>{ props.questionDiff[0].toUpperCase() + props.questionDiff.slice(1, props.questionDiff.length)}</h6>
                   </div>
-                  <div className='results_question_stat_card results_question_stat_card_right'>
+                  <div className={ componentClasses.questionCardRight }>
                       <h5>Rating</h5>
                       <h6>{ props.questionDiffRating }</h6>
                   </div>
                 </div>
               </div>
-              <div className='results_question_sub_wrapper_right'>
+              <div className={ componentClasses.questionSubWrapperRight }>
                 <h4>Total Answers: { props.totalAnswers }</h4>
-                <div className='results_question_card_wrapper'>
-                  <div className='results_question_stat_card results_question_stat_card_left'>
+                <div className={ componentClasses.questionCardWrapper }>
+                  <div className={ componentClasses.questionCardLeft }>
                     <h5>Correct</h5>
                     <h6>{ props.correctAnswers }</h6>
                   </div>
-                <div className='results_question_stat_card results_question_stat_card_left'>
+                <div className={ componentClasses.questionCardLeft }>
                     <h5>Incorrect</h5>
                     <h6>{ props.incorrectAnswers }</h6>
                 </div>
-                <div className='results_question_stat_card results_question_stat_card_left'>
+                <div className={ componentClasses.questionCardLeft }>
                     <h5>Outta Times</h5>
                     <h6>{ props.outtaTimeAnswers }</h6>
                 </div>
-                <div className='results_question_stat_card results_question_stat_card_right'>
+                <div className={ componentClasses.questionCardRight }>
                     <h5>Average Time</h5>
                     <h6>{ props.averageTime } seconds</h6>
                 </div>

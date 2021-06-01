@@ -92,6 +92,7 @@ const ResultsStatsContainer = (props) => {
         { statsState && ( props.userXP || props.results) &&
           <ResultsStats
             staticResults={ props.staticResults }
+            staticUserAchievements={ props.staticUserAchievements }
             showStats={ statsState }
           />
         }
@@ -123,6 +124,8 @@ const store = (store) => {
     staticQuestion: !!store.questions.staticQuestion,
     results: !!store.play.results || !!store.questions.staticUserResults,
     result: store.play.results ? store.play.results.result : store.questions.staticUserResults ? store.questions.staticUserResults.result : null,
+    staticUserAchievements: store.questions.staticUserResults ? !!store.questions.staticUserResults.achievements : false,
+
   }
 }
 

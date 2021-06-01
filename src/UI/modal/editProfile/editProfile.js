@@ -37,9 +37,9 @@ class EditProfile extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.modalEditProfile && this.props.authStatus === 'reAuthWithCredsSuccess'){
-      this.props.onEditProfileModal(false)
-    }
+    // if(this.props.modalEditProfile && this.props.authStatus === 'authSuccess'){
+    //   this.props.onEditProfileModal(false)
+    // }
     if(this.props.authStatus === 'fail' && !!this.props.authErrors.length && !Object.values(this.state.errors).length){
       let password = []
       this.props.authErrors.forEach(error => password.push(error) )

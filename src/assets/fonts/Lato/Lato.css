@@ -9,41 +9,16 @@
 }
 
 @font-face {
-  font-family: "LatoThin";
-  src: url("./Lato-Thin.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "LatoThinItalic";
-  src: url("./Lato-ThinItalic.ttf") format("truetype")
-}
-
-@font-face {
   font-family: "LatoLight";
   src: url("./Lato-Light.ttf") format("truetype")
 }
 
 @font-face {
+  font-family: "LatoThin";
+  src: url("./Lato-Thin.ttf") format("truetype")
+}
+
+@font-face {
   font-family: "LatoLightItalic";
   src: url("./Lato-LightItalic.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "LatoBold";
-  src: url("./Lato-Bold.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "LatoBoldItalic";
-  src: url("./Lato-BoldItalic.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "LatoBlack";
-  src: url("./Lato-Black.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "LatoBlackItalic";
-  src: url("./Lato-BlackItalic.ttf") format("truetype")
 }

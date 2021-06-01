@@ -12,9 +12,7 @@
 html, body {
   display: flex;
   flex-direction: column;
-  font-family:  "Lato", "Roboto",
-    "Helvetica", "Poppins",
-    sans-serif;
+  font-family:  "Lato", "Roboto", "Poppins", sans-serif;
   height: 100vh;
   margin: 0;
   overflow-x: hidden;

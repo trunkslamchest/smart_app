@@ -2,23 +2,3 @@
   font-family: "Baloo";
   src: url("./Baloo-Regular.ttf") format("truetype")
 }
-
-@font-face {
-  font-family: "BalooMedium";
-  src: url("./Baloo-Medium.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "BalooSemiBold";
-  src: url("./Baloo-SemiBold.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "BalooBold";
-  src: url("./Baloo-Bold.ttf") format("truetype")
-}
-
-@font-face {
-  font-family: "BalooExtraBold";
-  src: url("./Baloo-ExtraBold.ttf") format("truetype")
-}
