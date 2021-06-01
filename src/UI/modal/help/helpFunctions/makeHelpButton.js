@@ -1,4 +1,4 @@
-const makeLogInButtons = (glyphIndex, onHideModal) => {
+const makeLogInButtons = (onHideModal) => {
   return [
     {
       id: 'help_modal_button',

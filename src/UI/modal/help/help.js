@@ -16,8 +16,6 @@ import DocsP from '../../docs/body_text/docsP/docsP'
 import DocsUL from '../../docs/body_text/docsUL/docsUL'
 import DefaultButtonsContainer from '../../buttons/defaultButtonsContainer/defaultButtonsContainer'
 
-import glyphIndex from '../../../assets/glyphs/glyphIndex'
-
 import './help.css'
 import './helpResponse.css'
 
@@ -46,7 +44,7 @@ const Help = (props) => {
     })
   }
 
-  const helpButtons = makeHelpButton(glyphIndex, onHideModal)
+  const helpButtons = makeHelpButton(onHideModal)
 
   return (
       <Modal
