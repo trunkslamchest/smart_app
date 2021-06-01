@@ -9,8 +9,6 @@ const DashboardStatsAnswersContainer = (props) => {
   let answers = Object.entries(props.answers)
 
   let distribAnswers = answers.map((question, index) => {
-    console.log(index)
-
     let componentClasses = {
       answerCardContainerClass: index < answers.length - 1 ? 'dashboard_stats_answer_card_container' : 'dashboard_stats_answer_card_container dashboard_stats_answer_card_container_last',
       answerCardSubContainerClass: index < answers.length - 1 ? 'dashboard_stats_answer_card_sub_container' : 'dashboard_stats_answer_card_sub_container dashboard_stats_answer_card_sub_container_last'

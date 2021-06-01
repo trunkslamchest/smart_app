@@ -1,36 +1,35 @@
 .results_achievement_card {
   background: rgba(255, 255, 255, 1);
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 5px;
-  height: 140px;
-  flex-grow: 1;
-  flex-shrink: 3;
-  flex-basis: 200px;
+  padding: 0px;
+  height: 150px;
+  width: 150px;
+  margin: 15px;
 }
 
 .results_achievement_card_img_container img {
   padding: 5px 0px;
-  border-radius: .5em;
-  border: 1px solid rgba(255, 255, 255, 1);
 }
 
-.results_achievement_card_text_container h4 {
+.results_achievement_card h4 {
+  background: rgba(251, 223, 187, 1);
   font: 600 10pt 'Lato';
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  padding: 5px 0px;
   text-align: center;
+  width: 100%;
 }
 
-.results_achievement_card_text_container h5 {
+.results_achievement_card h5 {
   font: 300 9pt 'LatoItalic';
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin: 0px 5px;
   text-align: center;
 }

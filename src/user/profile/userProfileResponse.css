@@ -14,4 +14,12 @@
     text-align: center;
   }
 
+  .user_profile_question_card_container h1 {
+    padding: 5px;
+  }
+
+  .user_profile_comment_container {
+    padding: 5px;
+  }
+
 }

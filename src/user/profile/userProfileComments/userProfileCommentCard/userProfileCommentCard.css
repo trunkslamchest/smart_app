@@ -1,10 +1,17 @@
 .user_profile_comment_container {
+  background: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   margin: 0px 0px 0px 0px;
   padding: 5px 15px 5px 15px;
+}
+
+.user_profile_comment_container_last {
+  border-radius: 0px 0px 5px 5px;
+  padding: 5px 15px 10px 15px;
+
 }
 
 .user_profile_comment_container span:nth-child(1) {

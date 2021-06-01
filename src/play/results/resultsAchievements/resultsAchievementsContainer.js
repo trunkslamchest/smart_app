@@ -7,15 +7,23 @@ import './resultsAchievementsContainer.css'
 
 const ResultsAchievementContainer = (props) => {
 
+    const componentClasses = {
+      containerClass: 'results_achievement_container',
+      subContainerClass: props.staticResults ? 'results_achievement_sub_container results_achievement_sub_container_last' : 'results_achievement_sub_container',
+      headerClass: 'results_achievement_header_container'
+    }
+
     let distribAchievements, achievementHeader
 
     if(!props.staticResults) {
       if(props.unlockedAchievements && props.showAchievements){
-        distribAchievements = props.unlockedAchievements.map(achievement => {
+        distribAchievements = props.unlockedAchievements.map((achievement, index) => {
           return (
             <ResultsAchievementCard
-              key={ props.unlockedAchievements.indexOf(achievement) }
               achievement={ achievement }
+              // cardNumber={ index }
+              // key={ index }
+              totalAchievements={ props.unlockedAchievements.length - 1 }
             />
           )
         })
@@ -25,15 +33,17 @@ const ResultsAchievementContainer = (props) => {
       }
     } else {
       if(props.staticUserAchievements && props.showAchievements){
-        distribAchievements = props.staticUserAchievements.unlocked.map(achievement => {
+        distribAchievements = props.staticUserAchievements.unlocked.map((achievement, index) => {
           return (
             <ResultsAchievementCard
-              key={ props.staticUserAchievements.unlocked.indexOf(achievement) }
               achievement={ achievement }
+              // cardNumber={ index }
+              // key={ index }
+              totalAchievements={ props.staticUserAchievements.unlocked.length - 1 }
             />
           )
         })
-        if(props.staticUserAchievements.unlocked.length > 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
+        if(props.staticUserAchievements.unlocked.length >= 1) achievementHeader = <h3>New Achievements Unlocked!</h3>
         else if(props.staticUserAchievements.unlocked.length === 1) achievementHeader = <h3>New Achievement Unlocked!</h3>
         else achievementHeader = <></>
       }
@@ -42,11 +52,11 @@ const ResultsAchievementContainer = (props) => {
   return(
     <>
       { !!distribAchievements && !!distribAchievements.length &&
-        <div className='results_achievement_container'>
-          <div className='results_achievement_header_container'>
+        <div className={ componentClasses.containerClass }>
+          <div className={ componentClasses.headerClass }>
             { achievementHeader }
           </div>
-          <div className='results_achievement_sub_container'>
+          <div className={ componentClasses.subContainerClass }>
             { distribAchievements }
           </div>
         </div>

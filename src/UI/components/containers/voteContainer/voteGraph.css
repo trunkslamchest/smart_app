@@ -28,7 +28,7 @@
 
 .vote_totals_graph_sub_header_container {
   display: flex;
-  padding: 0px 0px;
+  padding: 0px 0px 0px 0px;
   width: 100%;
 }
 
@@ -36,7 +36,7 @@
   background: rgba(255, 255, 255, 1);
   display: flex;
   margin: 0px 0px 0px 0px;
-  padding: 5px 10px;
+  padding: 10px 10px 5px 10px;
 }
 
 .vote_totals_graph_sub_header_container_left img {
@@ -54,7 +54,7 @@
   background: rgba(255, 255, 255, 1);
   display: flex;
   margin: 0px 0px 0px 0px;
-  padding: 5px 10px;
+  padding: 10px 10px 5px 10px;
   flex-grow: 2;
 }
 
@@ -80,7 +80,7 @@
   background: rgba(255, 255, 255, 1);
   display: flex;
   margin: 0px 0px 0px 0px;
-  padding: 5px 10px;
+  padding: 10px 10px 5px 10px;
 }
 
 .vote_totals_graph_sub_header_container_right span {
