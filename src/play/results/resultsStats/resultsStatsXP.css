@@ -1,4 +1,5 @@
 .results_xp_container {
+  background: rgba(255, 255, 255, 1);
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -14,12 +15,12 @@
 .results_xp_wrapper {
   display: flex;
   width: 75%;
-  padding: 0px 0px 20px 0px;
+  padding: 0px 0px 15px 0px;
 }
 
 .results_xp_count {
   display: flex;
-  margin: 0px 5px;
+  margin: 0px 5px 0px 0px;
 }
 
 .results_xp_count h4 {
@@ -51,7 +52,7 @@
 
 .results_xp_total {
   display: flex;
-  margin: 0px 5px;
+  margin: 0px 0px 0px 5px;
 }
 
 .results_xp_total h4 {
@@ -63,9 +64,6 @@
 .results_xp_total h5 {
   font: 400 10pt "Lato";
   align-self: flex-end;
-}
-
-.results_xp_bar_sub_container {
 }
 
 .results_xp_bar {

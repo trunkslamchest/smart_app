@@ -33,7 +33,6 @@ const QuestionCardChoices = (props) => {
           { choices[3] }
         </div>
       </div>
-      <div className='divider_large' />
     </div>
   )
 }

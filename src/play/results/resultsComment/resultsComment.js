@@ -54,9 +54,7 @@ const ResultsComment = (props) => {
         <>
           { commentForm }
           <div className="results_all_comments">
-            <div className='divider_medium' />
             { distribComments }
-            <div className='divider_medium' />
           </div>
         </>
       }

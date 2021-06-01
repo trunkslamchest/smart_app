@@ -3,7 +3,7 @@
   background: rgba(255, 255, 255, 1);
   border-radius: 5px 5px 0px 0px;
   color: rgba(50, 50, 50, 1);
-  margin: 1px 1px 0px 1px;
+  margin: 0px 0px 0px 0px;
   padding: 15px 0px 0px 0px;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@
 .question_card_header {
   animation: slide_in_from_bottom .25s ease-in-out 1;
   background: rgba(255, 255, 255, 1);
-  margin: 0px 1px 0px 1px;
+  margin: 0px 0px 0px 0px;
   padding: 10px 0px 0px 0px;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
 .question_card_text {
   animation: slide_in_from_bottom .25s ease-in-out 1;
   background: rgba(255, 255, 255, 1);
-  margin: 0px 1px 0px 1px;
+  margin: 0px 0px 0px 0px;
   padding: 10px 15px 0px 15px;
   display: flex;
   flex-direction: column;
@@ -61,12 +61,13 @@
 
 .question_card_choices_container {
   animation: slide_in_from_bottom .25s ease-in-out 1;
-  background: rgba(255, 255, 255, 1);
-  margin: 0px 1px 0px 1px;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  border-radius: 0px 0px 5px 5px;
+  margin: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 0px 0px 0px;
+  padding: 30px 0px 45px 0px;
 }
 
 .question_card_choices_sub_container {
@@ -75,7 +76,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  padding: 15px 0px 20px 0px;
+  padding: 0px 0px 0px 0px;
   width: 80%;
 }
 

@@ -9,10 +9,7 @@ const ResultsHeader = (props) => {
     <>
       { props.showHeader &&
         <div className="results_answer_header">
-          <h3>
-            { props.results }
-          </h3>
-          <div className='divider_medium' />
+          <h3>{ props.results }</h3>
         </div>
       }
     </>

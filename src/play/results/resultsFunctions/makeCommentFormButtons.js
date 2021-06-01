@@ -3,7 +3,7 @@ const makeCommentFormButtons = (glyphIndex, onAddEditedComment, onCancelEditComm
     {
       id: 'edit_comment_button',
       image: glyphIndex.formWhiteCheckMark,
-      imageHover: glyphIndex.formBlackCheckMark,
+      imageHover: glyphIndex.formGreyCheckMark,
       name: 'editCommentConfirmButton',
       onClickFunction: onAddEditedComment,
       tooltipText: [ 'Confirm' ],
@@ -13,7 +13,7 @@ const makeCommentFormButtons = (glyphIndex, onAddEditedComment, onCancelEditComm
     {
       id: 'edit_comment_button',
       image: glyphIndex.formWhiteX,
-      imageHover: glyphIndex.formBlackX,
+      imageHover: glyphIndex.formGreyX,
       name: 'editCommentCancelButton',
       onClickFunction: onCancelEditComment,
       tooltipText: [ 'Cancel' ],

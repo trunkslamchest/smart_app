@@ -13,7 +13,6 @@ const ResultsAnswer = (props) => {
           <h4>
             { !props.staticResults ? `${ props.playCorrectAnswer }` : `${ props.staticCorrectAnswer }` }
           </h4>
-          <div className='divider_medium' />
         </div>
       }
     </>

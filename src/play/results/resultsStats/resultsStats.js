@@ -19,95 +19,97 @@ const ResultsStats = (props) => {
       { props.showStats &&
         <div className="results_stats_wrapper">
           <div className='results_perf_container'>
-            <PlaySubHeaderCentered header_text={ 'Performance' } />
+            <PlaySubHeaderCentered header_text={ 'Your Performance' } />
             <div className='results_perf_sub_container'>
-              <div className='results_perf_sub_wrapper'>
-                <div className='results_perf_sub_wrapper_header'>
-                  <h4>Your Rank</h4>
-                </div>
-                <div className='results_perf_sub_wrapper_text'>
-                  <h5>{ props.userRank }</h5>
-                  { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
-                </div>
-              </div>
-             <div className='results_perf_sub_wrapper'>
-                <div className='results_perf_sub_wrapper_header'>
-                  <h4>Your Rating</h4>
-                </div>
-                <div className='results_perf_sub_wrapper_text'>
-                  <h5>{ props.userRating }</h5>
-                  { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
-                </div>
-              </div>
-             <div className='results_perf_sub_wrapper'>
-                <div className='results_perf_sub_wrapper_header'>
-                  <h4>Your Time</h4>
-                </div>
-                <div className='results_perf_sub_wrapper_text'>
-                  <h5>{ props.userTime } seconds</h5>
-                  { makeResultsTrendArrows(props.userTime, props.questionTime, 'time', trendArrowIndex) }
-                </div>
-              </div>
-            </div>
-            <div className='results_xp_container'>
-              <h4>Your Experience</h4>
-              <div className='results_xp_wrapper'>
-                <div className='results_xp_count'>
-                  <h4>+{ props.userXPgain }</h4><h5>XP</h5>
-                </div>
-                <div className="results_xp_bar_container">
-                  <h4>Level { props.userXPlevel }</h4>
-                  <div className="results_xp_bar_sub_container">
-                  <XPBar
-                      userXP={ props.userXPtotal }
-                      userLevel={ props.userXPlevel }
-                      prevLevelXP={ levels[props.userXPlevel - 1] }
-                    />
+              <div className='results_perf_sub_wrapper_top'>
+                <div className='results_perf_sub_wrapper results_perf_sub_wrapper_left'>
+                  <div className='results_perf_sub_wrapper_header'>
+                    <h4>Rank</h4>
+                  </div>
+                  <div className='results_perf_sub_wrapper_text'>
+                    <h5>{ props.userRank }</h5>
+                    { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
                   </div>
                 </div>
-                <div className='results_xp_total'>
-                  <h4>{ props.userXPtotal }</h4><h5>/{ levels[props.userXPlevel] }</h5>
+                <div className='results_perf_sub_wrapper'>
+                    <div className='results_perf_sub_wrapper_header'>
+                      <h4>Rating</h4>
+                    </div>
+                    <div className='results_perf_sub_wrapper_text'>
+                      <h5>{ props.userRating }</h5>
+                      { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
+                    </div>
+                  </div>
+                <div className='results_perf_sub_wrapper results_perf_sub_wrapper_right'>
+                    <div className='results_perf_sub_wrapper_header'>
+                      <h4>Time</h4>
+                    </div>
+                    <div className='results_perf_sub_wrapper_text'>
+                      <h5>{ props.userTime } seconds</h5>
+                      { makeResultsTrendArrows(props.userTime, props.questionTime, 'time', trendArrowIndex) }
+                    </div>
+                  </div>
+                </div>
+                <div className='results_xp_container'>
+                  <div className='results_xp_wrapper'>
+                    <div className='results_xp_count'>
+                      <h4>+{ props.userXPgain }</h4><h5>XP</h5>
+                    </div>
+                    <div className="results_xp_bar_container">
+                      <h4>Level { props.userXPlevel }</h4>
+                      <div className="results_xp_bar_sub_container">
+                      <XPBar
+                          userXP={ props.userXPtotal }
+                          userLevel={ props.userXPlevel }
+                          prevLevelXP={ levels[props.userXPlevel - 1] }
+                        />
+                      </div>
+                    </div>
+                    <div className='results_xp_total'>
+                      <h4>{ props.userXPtotal }</h4><h5>/{ levels[props.userXPlevel] }</h5>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
-          <div className='divider_medium' />
           <div className='results_question_container'>
             <PlaySubHeaderCentered header_text={ 'Question Stats' } />
-            <div className='divider_medium' />
            <div className='results_question_sub_container'>
               <div className='results_question_sub_wrapper_left'>
-                <div className='results_question_sub_wrapper_header_left'>
-                  <h4>Difficulty</h4>
-                </div>
-                <div className='results_question_sub_wrapper_sub_header_left'>
-                    <h5>Level</h5>
-                    <h5>Rating</h5>
-                </div>
-                <div className='results_question_sub_wrapper_text_left'>
-                    <h6>{ props.questionDiff[0].toUpperCase() + props.questionDiff.slice(1, props.questionDiff.length)}</h6>
-                    <h6>{ props.questionDiffRating }</h6>
+                <h4>Difficulty</h4>
+                <div className='results_question_card_wrapper'>
+                  <div className='results_question_stat_card results_question_stat_card_left'>
+                      <h5>Level</h5>
+                      <h6>{ props.questionDiff[0].toUpperCase() + props.questionDiff.slice(1, props.questionDiff.length)}</h6>
+                  </div>
+                  <div className='results_question_stat_card results_question_stat_card_right'>
+                      <h5>Rating</h5>
+                      <h6>{ props.questionDiffRating }</h6>
+                  </div>
                 </div>
               </div>
               <div className='results_question_sub_wrapper_right'>
-                <div className='results_question_sub_wrapper_header_right'>
-                 <h4>Total Answers: { props.totalAnswers }</h4>
-                </div>
-                <div className='results_question_sub_wrapper_sub_header_right'>
+                <h4>Total Answers: { props.totalAnswers }</h4>
+                <div className='results_question_card_wrapper'>
+                  <div className='results_question_stat_card results_question_stat_card_left'>
                     <h5>Correct</h5>
-                    <h5>Incorrect</h5>
-                    <h5>Outta Times</h5>
-                    <h5>Average Time</h5>
-                </div>
-                <div className='results_question_sub_wrapper_text_right'>
                     <h6>{ props.correctAnswers }</h6>
+                  </div>
+                <div className='results_question_stat_card results_question_stat_card_left'>
+                    <h5>Incorrect</h5>
                     <h6>{ props.incorrectAnswers }</h6>
+                </div>
+                <div className='results_question_stat_card results_question_stat_card_left'>
+                    <h5>Outta Times</h5>
                     <h6>{ props.outtaTimeAnswers }</h6>
+                </div>
+                <div className='results_question_stat_card results_question_stat_card_right'>
+                    <h5>Average Time</h5>
                     <h6>{ props.averageTime } seconds</h6>
+                </div>
                 </div>
               </div>
             </div>
-            <div className='divider_medium' />
           </div>
         </div>
       }

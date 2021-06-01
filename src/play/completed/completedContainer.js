@@ -61,9 +61,7 @@ const CompletedContainer = (props) => {
     compeletedWrapper =
     <div className='completed_wrapper'>
       <PlayHeaderCentered header_text={ props.playQuestionMsg1 } />
-      <div className='divider_medium' />
       <PlaySubHeaderCentered header_text={ props.playQuestionMsg2 } />
-      <div className='divider_medium' />
       <DefaultButtonsContainer
         buttons={ completedButtons }
         buttonContainerClass={ 'completed_button_container' }

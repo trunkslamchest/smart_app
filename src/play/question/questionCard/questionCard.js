@@ -21,7 +21,7 @@ const QuestionCard = (props) => {
   const { playAnswer, onSetAnswer } = props
 
   useOnMount(() => {
-    startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
+    // startTimerRef.current = setTimeout(() => { timerIntervalRef.current = setInterval(() => { setTime(time => (time - 0.01).toFixed(2)) }, 10) }, 5000)
 
     return function cleanup(){
       clearTimeout(startTimerRef.current)
