@@ -22,7 +22,10 @@ const DashboardStatsSubContainer = (props) => {
     }
   }
 
-  const qSortSet = Object.entries(sortAnswers)
+  let qSortSet = Object.entries(sortAnswers)
+
+  if(props.qSet === 'category')
+    qSortSet = Object.entries(qSortSet.sort().reduce((cat, [name, questions]) => (cat[name] = questions , cat), {}))
 
   let distribAnswers = qSortSet.map((qSet, index) => {
     return(
@@ -37,13 +40,6 @@ const DashboardStatsSubContainer = (props) => {
     )
   })
 
-  if(props.qSet === 'category')
-    if(!distribAnswers.length)
-      distribAnswers =
-        <div className={ componentClasses.noAnswersContainer }>
-          <h3>You have not answered any questions yet</h3>
-        </div>
-
   return(
     <div className={ componentClasses.subContainer }>
       <div className={ componentClasses.subHeader }>
@@ -57,7 +53,6 @@ const DashboardStatsSubContainer = (props) => {
 const store = (store) => {
   return {
     userQuestions: store.user.questions.list,
-    // userTotals: store.user.questions.totals,
     questionTotals: store.questions.totals
   }
 }
