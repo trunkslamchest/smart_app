@@ -8,6 +8,7 @@ import './dashboardStatsSubContainer.css'
 const DashboardStatsSubContainer = (props) => {
 
   let sortAnswers = {}
+
   const componentClasses = {
     noAnswersContainer: 'stats_no_answers_container',
     subContainer: props.qSet === 'category' ? 'stats_sub_container stats_sub_container_bottom' : 'stats_sub_container',
@@ -56,7 +57,7 @@ const DashboardStatsSubContainer = (props) => {
 const store = (store) => {
   return {
     userQuestions: store.user.questions.list,
-    userTotals: store.user.questions.totals,
+    // userTotals: store.user.questions.totals,
     questionTotals: store.questions.totals
   }
 }

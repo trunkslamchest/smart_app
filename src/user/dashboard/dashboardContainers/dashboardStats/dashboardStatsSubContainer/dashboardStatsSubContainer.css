@@ -25,22 +25,3 @@
   font: 300 15pt "PoppinsLight";
   text-align: center;
 }
-
-.stats_no_answers_container {
-  background-color: rgba(246, 246, 250, 1);
-  border-radius: 0px 0px 5px 5px;
-  display: flex;
-  width: 100%;
-  margin: 0px 0px -15px 0px;
-  padding: 10px 15px 15px 10px;
-}
-
-.stats_no_answers_container h3 {
-  color: rgba(150, 150, 150, 1);
-  font: 300 12pt 'LatoLightItalic';
-  align-self: center;
-  text-align: center;
-  margin: 0px 1px 0px 1px;
-  padding: 0px 0px 0px 30px;
-  width: 100%;
-}
