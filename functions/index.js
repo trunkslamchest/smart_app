@@ -73,7 +73,6 @@ exports.checkUserName = functions
       }
 
       res.json(resObj).status(200)
-      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -96,7 +95,6 @@ exports.checkEmail = functions
       }
 
       res.json(resObj).status(200)
-      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -283,7 +281,6 @@ exports.getUserProfile = functions
       }
 
       res.json(userObj).status(200)
-      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -295,13 +292,11 @@ exports.updateUser = functions
     const reqData = JSON.parse(req.body.data)
 
     var updatedInfo = {};
-
     updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'info'] = reqData.info;
 
     firebase.database().ref().update(updatedInfo);
 
     res.json(updatedInfo).status(200);
-    // res.json({ message: 'done' }).status(200);
 });
 
 exports.uploadUserAvatar = functions
@@ -312,13 +307,11 @@ exports.uploadUserAvatar = functions
     const reqData = JSON.parse(req.body.data)
 
     var updatedAvatar = {};
-
     updatedAvatar['/users/list' + '/' + reqData.uid + '/info/avatar'] = reqData.img;
 
     firebase.database().ref().update(updatedAvatar);
 
     res.json(req.body).status(200);
-    // res.json({ message: 'done' }).status(200);
 });
 
 exports.updateUserSettings = functions
@@ -329,36 +322,12 @@ exports.updateUserSettings = functions
     const reqData = JSON.parse(req.body.data)
 
     var updatedInfo = {};
-
     updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'settings'] = reqData.settings;
 
     firebase.database().ref().update(updatedInfo);
 
     res.json(reqData.settings).status(200);
-    // res.json({ message: 'done' }).status(200);
 });
-
-// exports.updateUserLoginTime = functions
-//   .region('us-east1')
-//   .https.onRequest((req, res) => {
-//     setCORSpost(req, res);
-
-//     const reqData = JSON.parse(req.body.data)
-
-//     var updatedTime = {};
-
-//     updatedTime['/users/list' + '/' + reqData.uid + '/' + 'info/last_login'] = {
-//       time: reqData.time,
-//       day: reqData.day,
-//       month: reqData.month,
-//       year: reqData.year
-//     };
-
-//     firebase.database().ref().update(updatedTime);
-
-//     res.json(reqData).status(200);
-//     // res.json({ message: 'done' }).status(200);
-// });
 
 exports.updateUserLoginTime = functions
   .region('us-east1')
@@ -386,6 +355,7 @@ exports.updateUserLoginTime = functions
         resObj = reqData
         firebase.database().ref().update(updatedTime);
       } else resObj = { error: 'Could Not Update UserLogInTime: This User Does Not Exist' }
+
       res.json(resObj).status(200)
     })
 });
@@ -422,7 +392,6 @@ exports.deleteUser = functions
     })
 
     res.json({msg: 'Your Profile has been removed.'}).status(200)
-    // res.json({ message: 'done' }).status(200);
 });
 
 exports.getOverallLeaderBoards = functions
@@ -456,6 +425,7 @@ exports.getOverallLeaderBoards = functions
         }
       }
 
+      leaderBoardsObj.regional = Object.entries(leaderBoardsObj.regional).sort().reduce((obj, [key, value]) => (obj[key] = value , obj), {})
       leaderBoardsObj.international = sortedUsers
 
       res.json(leaderBoardsObj).status(200);
@@ -467,7 +437,7 @@ exports.getCatLeaderBoards = functions
   .https.onRequest((req, res) => {
     setCORSget(req, res);
 
-    var catSortedUsers = {}, leaderBoardsObj = { international: [], regional: { } }
+    var catSortedUsers = {}, leaderBoardsObj = { international: [] }
 
     firebase.database().ref('/users/list').once('value', function(){})
     .then(resObj => {
@@ -501,20 +471,9 @@ exports.getCatLeaderBoards = functions
         }
       })
 
-      for(let cat in catSortedUsers) { catSortedUsers[cat].sort(function(a, b) { return b.rating - a.rating }) }
+      for(let cat in catSortedUsers) { catSortedUsers[cat].sort((a, b) => b.rating - a.rating ) }
 
-      for(let cat in catSortedUsers){
-        catSortedUsers[cat].forEach(user => {
-          if(user.country !== "null") {
-            if(leaderBoardsObj.regional[cat]) {
-              if(leaderBoardsObj.regional[cat][user.country]) leaderBoardsObj.regional[cat][user.country] = [ ...leaderBoardsObj.regional[cat][user.country], user ]
-              else leaderBoardsObj.regional[cat] = { ...leaderBoardsObj.regional[cat],  [user.country]: [ user ]  }
-            } else leaderBoardsObj.regional[cat] = { [user.country]: [ user ] }
-          }
-        })
-      }
-
-      leaderBoardsObj.international = catSortedUsers
+      leaderBoardsObj.international = Object.entries(catSortedUsers).sort().reduce((obj, [key, value]) => (obj[key] = value , obj), {})
 
       res.json(leaderBoardsObj).status(200);
     })
@@ -529,7 +488,6 @@ exports.getAchievements = functions
     firebase.database().ref('/achievements').once('value', function(snap){
       res.json(snap.val()).status(200)
     });
-    // res.json({ message: 'done' }).status(200);
 });
 
 exports.quickQuestion = functions
@@ -565,10 +523,9 @@ exports.quickQuestion = functions
           msg2: 'Check back soon to see if more questions have been added to SmartApp™'
         }
       }
-      // }
+
       // setTimeout(() => { res.json(question).status(200) }, 5000)
       res.json(question).status(200)
-      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -611,7 +568,6 @@ exports.diffQuestion = functions
       }
 
       res.json(question)
-      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -654,7 +610,6 @@ exports.catQuestion = functions
         }
 
       res.json(question)
-      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -665,9 +620,7 @@ exports.questionsTotals = functions
 
     firebase.database().ref('/questions/totals').once('value', function(snap){
       res.json(snap.val()).status(200);
-      // res.json({ message: 'done' }).status(200);
     });
-
 });
 
 exports.questionResults = functions
@@ -992,10 +945,8 @@ exports.questionResults = functions
 
       firebase.database().ref('/questions/list/' + reqData.qid + '/answers').update(calcObj)
       firebase.database().ref('/questions/list/' + reqData.qid + '/rating').update(ratingObj)
-
       firebase.database().ref('/achievements/list/').update(achievementsObj.all);
       firebase.database().ref('/achievements/totals/').update(achievementsObj.totals);
-
       firebase.database().ref().update(userIdsObj)
       firebase.database().ref().update(userQuestionObj)
       firebase.database().ref().update(userTotalsObj)
@@ -1003,7 +954,6 @@ exports.questionResults = functions
       firebase.database().ref().update(userCatTotalsObj)
       firebase.database().ref().update(userXpObj)
       firebase.database().ref().update(userAchievementsObj)
-
       firebase.database().ref().update(allTotalsObj)
       firebase.database().ref().update(allDiffTotalsObj)
       firebase.database().ref().update(allCatTotalsObj)
@@ -1032,10 +982,8 @@ exports.questionVote = functions
           voteTotalsObj = {},
           voteDiffTotalsObj = {},
           voteCatTotalsObj = {},
-
           userVoteObj = {},
           userVoteTotalsObj = {},
-          voteTotalsBlankObj = { ZeroStars: 0, OneStars: 0, TwoStars: 0, ThreeStars: 0, FourStars: 0, FiveStars: 0, total: 0 }
 
       var question = db.questions.list[reqData.qid]
           questionTotals = db.questions.totals,
@@ -1099,9 +1047,6 @@ exports.questionVote = functions
 
       userVoteObj[userVotePath] = { ...user.questions.list[reqData.qid].votes, [vid]: { vote: reqData.vote } }
 
-      // if(user.questions.totals.all.votes) userVoteTotalsObj[userVoteTotalPath] = { ...voteTotalsBlankObj, [reqData.vote]: 1, total: 1 }
-      // else userVoteTotalsObj[userVoteTotalPath] = { ...user.questions.totals.all.votes, [reqData.vote]: user.questions.totals.all.votes[reqData.vote] + 1, total: user.questions.totals.all.votes.total + 1 }
-
       userVoteTotalsObj[userVoteTotalPath] = {
         ...user.questions.totals.all.votes,
         [reqData.vote]: user.questions.totals.all.votes[reqData.vote] + 1,
@@ -1112,7 +1057,6 @@ exports.questionVote = functions
       firebase.database().ref().update(userVoteTotalsObj);
 
       res.json(voteObj).status(200)
-    // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -1194,7 +1138,6 @@ exports.questionComment = functions
       resObj = { questionCommentsObj, commentObj }
 
       res.json(resObj).status(200)
-      // res.json({ message: 'done' }).status(200);
     })
 })
 
@@ -1313,7 +1256,6 @@ exports.staticQuestion = functions
       }
 
       res.json(resObj).status(200)
-      // res.json({ message: 'done' }).status(200);
     });
 });
 
@@ -1629,719 +1571,3 @@ var calcDiffRate = function(correct, incorrect, outta_time, avg_time, total) {
   if (correct !== 0) return questionsCorrectDecimal + outtaTimeRatio + averageTimeRatio
   else return 1.00 - outtaTimeRatio - averageTimeRatio
 }
-
-
-var setCORSbasic = function(req, res){
-  res.set('Access-Control-Allow-Methods', ['GET', 'OPTIONS']);
-  if(req.headers.origin === url.secured || req.headers.origin === url.unsecured )
-    res.set('Access-Control-Allow-Origin', `${req.headers.origin}`);
-}
-
-exports.createKeys = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-    var keys = []
-
-    for(i = 0; i < 100; i++){
-      var createKey = firebase.database().ref().push().key
-      keys.push(createKey)
-    }
-
-    console.log(keys)
-    res.json(keys)
-});
-
-exports.createFakeUsers = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-
-    var users = {}
-
-    const countries = [
-      'Afghanistan',
-      'Aland Islands',
-      'Albania',
-      'Algeria',
-      'American Samoa',
-      'Andorra',
-      'Angola',
-      'Anguilla',
-      'Antiqua And Barbuda',
-      'Argentina',
-      'Armenia',
-      'Aruba',
-      'Australia',
-      'Austria',
-      'Azerbaijan',
-      'Bahamas',
-      'Bahrain',
-      'Bangladesh',
-      'Barbados',
-      'Belarus',
-      'Belgium',
-      'Belize',
-      'Benin',
-      'Bermuda',
-      'Bhutan',
-      'Bolivia',
-      'Bosnia And Herzegovina',
-      'Botswana',
-      'Bouvet Island',
-      'Brazil',
-      'British Indian Ocean Territory',
-      'British Virgin Islands',
-      'Brunei Darussalam',
-      'Bulgaria',
-      'Burkina Faso',
-      'Burundi',
-      'Cabo Verde',
-      'Cambodia',
-      'Cameroon',
-      'Canada',
-      'Catalonia',
-      'Cayman Islands',
-      'Central African Republic',
-      'Chad',
-      'Chile',
-      'China',
-      'Christmas Island',
-      'Cocos Islands',
-      'Colombia',
-      'Comoros',
-      'Congo',
-      'Cook Islands',
-      'Costa Rica',
-      "Côte d'Ivoire",
-      'Croatia',
-      'Cuba',
-      'Cyprus',
-      'Czech Republic',
-      'Democratic Republic Of The Congo',
-      'Denmark',
-      'Djibouti',
-      'Dominica',
-      'Dominican Republic',
-      'Ecuador',
-      'Egypt',
-      'El Salvador',
-      'England',
-      'Equatorial Guinea',
-      'Eritrea',
-      'Estonia',
-      'Eswatini',
-      'Ethiopia',
-      'European Union',
-      'Falkland Islands',
-      'Faroe Islands',
-      'Fiji',
-      'Finland',
-      'France',
-      'French Guiana',
-      'French Polynesia',
-      'French Southern Territories',
-      'Gabon',
-      'Gambia',
-      'Georgia',
-      'Germany',
-      'Ghana',
-      'Gibraltar',
-      'Greece',
-      'Greenland',
-      'Grenada',
-      'Guadeloupe',
-      'Guam',
-      'Guatemala',
-      'Guinea',
-      'Guinea Bissau',
-      'Guyana',
-      'Haiti',
-      'Heard And McDonald Islands',
-      'Holy See',
-      'Honduras',
-      'HongKong',
-      'Hungary',
-      'Iceland',
-      'India',
-      'Indonesia',
-      'Iran',
-      'Iraq',
-      'Ireland',
-      'Israel',
-      'Italy',
-      'Jamaica',
-      'Japan',
-      'Jordan',
-      'Kazakhstan',
-      'Kenya',
-      'Kiribati',
-      'Kuwait',
-      'Kyrgystan',
-      'Laos',
-      'Latvia',
-      'Lebanon',
-      'Lesotho',
-      'Liberia',
-      'Libya',
-      'Liechtenstien',
-      'Lithuania',
-      'Luxembourg',
-      'Macao',
-      'Madagascar',
-      'Malawi',
-      'Malaysia',
-      'Maldives',
-      'Mali',
-      'Malta',
-      'Marshall Islands',
-      'Martinique',
-      'Mauritania',
-      'Mauritius',
-      'Mayotte',
-      'Mexico',
-      'Micronesia',
-      'Moldova',
-      'Monaco',
-      'Mongolia',
-      'Montenegro',
-      'Montserrat',
-      'Morocco',
-      'Mozambique',
-      'Myanmar',
-      'Nambia',
-      'Nauru',
-      'Nepal',
-      'Netherlands',
-      'Netherlands Antilles',
-      'New Caledonia',
-      'New Zealand',
-      'Nicaraqua',
-      'Niger',
-      'Nigeria',
-      'Niue',
-      'Norfolk Islands',
-      'Northern Mariana Islands',
-      'North Korea',
-      'North Macedonia',
-      'Norway',
-      'Oman',
-      'Pakistan',
-      'Palau',
-      'Palestine',
-      'Panama',
-      'Papua New Guinea',
-      'Paraguay',
-      'Peru',
-      'Philippines',
-      'Pitcairn',
-      'Poland',
-      'Portugal',
-      'Puerto Rico',
-      'Qatar',
-      'Reunion',
-      'Romania',
-      'Russia',
-      'Rwanda',
-      'Saint Helena',
-      'Saint Kitts And Nevis',
-      'Saint Lucia',
-      'Saint Pierre And Miquelon',
-      'Saint Vincent And The Grenadines',
-      'Samoa',
-      'San Marino',
-      'Sao Tome And Principe',
-      'Saudi Arabia',
-      'Scotland',
-      'Senegal',
-      'Serbia',
-      'Serbia And Montenegro',
-      'Seychelles',
-      'Sierra Leone',
-      'Singapore',
-      'Slovakia',
-      'Slovenia',
-      'Soloman Islands',
-      'Somalia',
-      'South Africa',
-      'South Georgia',
-      'South Korea',
-      'Spain',
-      'Sri Lanka',
-      'Sudan',
-      'Suriname',
-      'Svalbard And Jan Mayen',
-      'Sweden',
-      'Switzerland',
-      'Syria',
-      'Taiwan',
-      'Tajikistan',
-      'Tanzania',
-      'Thailand',
-      'Timor Leste',
-      'Togo',
-      'Tokelau',
-      'Tonga',
-      'Trinidad And Tobago',
-      'Tunisia',
-      'Turkey',
-      'Turkmenistan',
-      'Turks And Caicos Islands',
-      'Tuvalu',
-      'Uganda',
-      'Ukraine',
-      'United Arab Emirates',
-      'United Kingdom',
-      'United States Of America',
-      'Uruguay',
-      'US Virgin Islands',
-      'Uzbekistan',
-      'Vanuatu',
-      'Venezuela',
-      'Vietnam',
-      'Wales',
-      'Wallis And Futuna',
-      'Western Sahara',
-      'Yemen',
-      'Zambia',
-      'Zimbabwe'
-    ]
-
-    for(i = 0; i < 50; i++){
-      var createKey = firebase.database().ref().push().key
-      var randomUserNumber = Math.floor(Math.random() * Math.floor(10000))
-
-      users[createKey] = {
-        "info": {
-          "avatar": "https://firebasestorage.googleapis.com/v0/b/smartapp-b3d27.appspot.com/o/avatars%2Fdefault_avatar.png?alt=media&token=49efd887-faca-4f07-89fc-0d92df9f2f87",
-          "bio": "null",
-          "country": countries[Math.floor(Math.random() * countries.length)],
-          "email": `userTemp${randomUserNumber}@gmail.com`,
-          "first_name": "null",
-          "gender": "null",
-          "gender_pronouns": "null",
-          "dob": {
-            "day": 0,
-            "month": "null",
-            "year": 0
-          },
-          "join_date": {
-            "day": 23,
-            "month": "March",
-            "year": 2018
-          },
-          "last_login": {
-            "time": "08:24:32 AM",
-            "day": 23,
-            "month": "January",
-            "year": 2020
-          },
-          "last_name": "null",
-          "user_name": `userTemp${randomUserNumber}`
-        },
-        "questions": {
-          "totals": {
-            "all": {
-              "answered": Math.floor(Math.random() * Math.floor(100)),
-              "avg_time": genRand(1, 10, 2),
-              "comments": {
-                "total": 0
-              },
-              "correct": Math.floor(Math.random() * Math.floor(45)),
-              "incorrect": Math.floor(Math.random() * Math.floor(45)),
-              "outta_times": Math.floor(Math.random() * Math.floor(10)),
-              "rank": calcRating(genRand(0.25, 1, 2)),
-              "rating":  genRand(0.25, 1, 2),
-              "votes": {
-                "total": 0,
-                "FiveStars": 0,
-                "FourStars": 0,
-                "ThreeStars": 0,
-                "TwoStars": 0,
-                "OneStars": 0,
-                "ZeroStars": 0
-              }
-            },
-            "difficulty": {
-              "Easy": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Medium": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Hard": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              }
-            },
-            "categories": {
-              "Anime": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Art": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Books": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Celebrities": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Computers": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Film": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "General": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Geography": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "History": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Mathematics": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Music": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Mythology": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Nature": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Politics": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Science": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Sports": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Television": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Theatre": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Vehicles": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              },
-              "Video Games": {
-                "answered": Math.floor(Math.random() * Math.floor(10)),
-                "avg_time": genRand(1, 10, 2),
-                "correct": Math.floor(Math.random() * Math.floor(4)),
-                "incorrect": Math.floor(Math.random() * Math.floor(4)),
-                "outta_times": Math.floor(Math.random() * Math.floor(10)),
-                "rank": calcRating(genRand(0.25, 1, 2)),
-                "rating": genRand(0.25, 1, 2)
-              }
-            }
-          }
-        },
-        "experience": {
-          "avg": 0,
-          "level": genRand(1, 20, 0),
-          "total": genRand(10, 1000, 0)
-        },
-        "achievements": {
-          "total": 0,
-          "unlocked": [ "null" ]
-        },
-        "settings": {
-          "privacy": {
-            "profile": {
-              "private": false,
-              "showAchievements": true,
-              "showAvatar": true,
-              "showAge": true,
-              "showBio": true,
-              "showCountry": true,
-              "showExperience": true,
-              "showGender": true,
-              "showGenderPronouns": true,
-              "showRealName": true,
-              "showStats": true
-            }
-          }
-        }
-      }
-
-    }
-
-    // console.log(users)
-    res.json(users)
-});
-
-exports.makeLevels = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-
-    let resObj = {}
-
-    for(let i = 1; i <= 150; i++)
-
-    resObj[i] = (i * 100).toString()
-
-    res.json(resObj).status(200);
-    // res.json({ message: 'done' }).status(200);
-});
-
-const newAchievementsTemp = {
-}
-
-const newQuestionsTemp = [
-
-]
-
-// easy 0 : 0
-// med 0 : 0
-// hard 0 : 0
-
-const oldDBtemp = {
-}
-
-exports.updateDB = functions
-  .region('us-east1')
-  .https.onRequest((req, res) => {
-    setCORSbasic(req, res)
-
-    let rObj = {}
-    let newQObj = {}
-    let aObj = oldDBtemp.achievements
-    let qObj = oldDBtemp.questions
-    let uObj = oldDBtemp.users
-
-    if(newQuestionsTemp.length){
-      for(let newQ in newQuestionsTemp) {
-
-        var qid = firebase.database().ref().push().key
-        let question = newQuestionsTemp[newQ]
-        let questionObj = {}
-        let cat = question.category[0].toUpperCase() + question.category.slice(1, question.category.length)
-        let diff = question.difficulty[0].toUpperCase() + question.difficulty.slice(1, question.difficulty.length)
-        let choices = [ ...question.incorrect_answers, question.correct_answer ].sort()
-
-        if(question.category === "Entertainment: Japanese Anime & Manga")
-          cat = 'Anime'
-        if(question.category === "Entertainment: Books")
-          cat = 'Books'
-        if(question.category === "Science: Computers")
-          cat = 'Computers'
-        if(question.category === "Entertainment: Film")
-          cat = 'Film'
-        if(question.category === "General Knowledge")
-          cat = 'General'
-        if(question.category === "Science: Mathematics")
-          cat = 'Mathematics'
-        if(question.category === "Entertainment: Music")
-          cat = 'Music'
-        if(question.category === "Entertainment: Television")
-          cat = 'Television'
-        if(question.category === "Entertainment: Musicals & Theatres")
-          cat = 'Theatre'
-        if(question.category === "Entertainment: Video Games")
-          cat = 'Video Games'
-
-
-        questionObj = {
-          "type": question.type,
-          "question": question.question,
-          "correct": question.correct_answer,
-          "choices": choices,
-          "answers": {
-            "total": 0,
-            "correct": 0,
-            "incorrect": 0,
-            "outta_time": 0,
-            "avg_time": 0,
-            "total_time": 0
-          },
-          "votes": {
-            "total": 0,
-            "FiveStars": 0,
-            "FourStars": 0,
-            "ThreeStars": 0,
-            "TwoStars": 0,
-            "OneStars": 0,
-            "ZeroStars": 0
-          },
-          "difficulty": diff,
-          "category": cat,
-          "rating": {
-            "difficulty": 0,
-            "approval": 0,
-            "performance": 0
-          }
-        }
-
-        qObj.totals.all.questions = ++qObj.totals.all.questions
-        qObj.totals.difficulty[diff].questions = ++qObj.totals.difficulty[diff].questions
-        qObj.totals.category[cat].questions = ++qObj.totals.category[cat].questions
-
-        newQObj[qid] = questionObj
-      }
-    }
-
-    function sortObject(obj) {
-      return Object.keys(obj).sort().reduce(function (result, key) {
-          result[key] = obj[key]
-          return result
-      }, {})
-    }
-
-    aObj.list = sortObject({ ...aObj.list, ...newAchievementsTemp })
-    // aObj.list = { ...aObj.list, ...newAchievementsTemp }
-
-    aObj.totals.all = aObj.totals.all + Object.entries(newAchievementsTemp).length
-
-    // qObj.list = sortObject({ ...qObj.list, ...newQObj })
-    qObj.list = { ...qObj.list, ...newQObj }
-
-    rObj = {
-      achievements: aObj,
-      questions: qObj,
-      users: uObj
-    }
-
-    res.json(rObj).status(200);
-    // res.json({ message: 'done' }).status(200);
-});
-
