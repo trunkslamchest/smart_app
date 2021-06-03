@@ -195,7 +195,7 @@ const initUpdateUserVotesFromPlayController = (res) => {
 export const updateUserCommentsFromPlayController = (comment) => {
   return dispatch => {
     if(comment.type === 'play') dispatch(updateCommentStatus('commentSuccess', true))
-    if(comment.type === 'static') dispatch(updateStaticQuestionCommentStatus('commentSuccess'))
+    if(comment.type === 'static') dispatch(updateStaticQuestionCommentStatus('commentSuccess', false))
     dispatch(initUpdateUserCommentsFromPlayController(comment))
   }
 }

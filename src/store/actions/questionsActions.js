@@ -16,15 +16,6 @@ export const storeQuestionTotals = (totals) => {
   }
 }
 
-// export const getQuestionTotals = () => {
-//   return dispatch => {
-//     questionsFunctions('get', fetch.get.questionsTotals)
-//     .then(res => {
-//       dispatch(storeQuestionTotals(res))
-//     })
-//   }
-// }
-
 export const clearQuestionTotals = () => {
   return dispatch => {
     dispatch(initClearQuestionTotals())
@@ -107,7 +98,6 @@ const initClearStaticQuestion = () => {
     res: null
   }
 }
-
 
 export const updateQuestionStatus = (status) => {
   return {
@@ -203,8 +193,7 @@ export const clearStaticUserVote = () => {
 
 export const updateStaticQuestionComments = (obj) => {
   return dispatch => {
-    dispatch(commentLoading(true))
-    dispatch(updateStaticQuestionCommentStatus('updateStaticQuestionComment'))
+    dispatch(updateStaticQuestionCommentStatus('updateStaticQuestionComment', true))
     dispatch(initUpdateStaticQuestionComments(obj))
   }
 }
@@ -227,7 +216,7 @@ export const clearStaticUserComment = () => {
 export const editStaticQuestionComment = (obj) => {
   return dispatch => {
     dispatch(commentLoading(true))
-    dispatch(updateStaticQuestionCommentStatus('editStaticQuestionComment'))
+    dispatch(updateStaticQuestionCommentStatus('editStaticQuestionComment', true))
     dispatch(initEditStaticQuestionComment(obj))
   }
 }
@@ -248,10 +237,11 @@ export const deleteStaticQuestionComment = (obj) => {
   }
 }
 
-export const updateStaticQuestionCommentStatus = (status) => {
+export const updateStaticQuestionCommentStatus = (status, loading) => {
   return {
     type: actionTypes.UPDATE_STATIC_QUESTION_COMMENT_STATUS,
-    commentStatus: status
+    commentStatus: status,
+    commentLoading: loading,
   }
 }
 

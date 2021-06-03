@@ -5,22 +5,22 @@ import useOnMount from '../../utility/hooks/useOnMount'
 import { routes } from '../../utility/paths'
 import { connect } from 'react-redux'
 import {
-  clearStaticQuestion,
   clearQuestionStatus,
-  clearStaticUserQuestion,
+  clearStaticQuestion,
   clearStaticQuestionVoteStatus,
+  clearStaticUserQuestion,
   clearStaticUserVote,
   loading,
-  updateGameStatus,
-  setGameState,
-  resetQuestion,
+  help,
   resetAnswer,
+  resetComment,
+  resetQuestion,
   resetResults,
   resetVote,
-  resetComment,
-  help,
+  setGameState,
   setHelpHeader,
-  setHelpSections
+  setHelpSections,
+  updateGameStatus
 } from '../../store/actions/actionIndex'
 
 import makeResultsNavBarButtons from './resultsFunctions/makeResultsNavBarButtons'
@@ -40,14 +40,14 @@ const ResultsContainer = (props) => {
   const history = useHistory()
 
   const {
-    staticResults,
     playGameMode,
     playQuestion,
-    onClearStaticQuestion,
-    onClearStaticUserQuestion,
     onClearQuestionStatus,
+    onClearStaticQuestion,
     onClearStaticQuestionVoteStatus,
-    onClearStaticUserVote
+    onClearStaticUserQuestion,
+    onClearStaticUserVote,
+    staticResults
   } = props
 
   useOnMount(() => {
@@ -63,16 +63,16 @@ const ResultsContainer = (props) => {
       onClearStaticUserVote()
     }
   }, [
-      staticResults,
-      playGameMode,
-      playQuestion,
       history,
-      routes,
       onClearStaticQuestion,
       onClearStaticUserQuestion,
       onClearQuestionStatus,
       onClearStaticQuestionVoteStatus,
-      onClearStaticUserVote
+      onClearStaticUserVote,
+      playGameMode,
+      playQuestion,
+      routes,
+      staticResults
     ]
   )
 
@@ -163,34 +163,34 @@ const ResultsContainer = (props) => {
 
 const store = (store) => {
   return {
-    playGameMode: store.play.gameMode,
-    playQuestion: store.play.question,
     playAnswer: store.play.answer,
-    playResults: store.play.results,
-    playVoteStatus: store.play.voteStatus,
     playCommentStatus: store.play.commentStatus,
+    playGameMode: store.play.gameMode,
+    playResults: store.play.results,
+    playQuestion: store.play.question,
+    playVoteStatus: store.play.voteStatus,
     userAnswered: store.play.question && store.user.questions ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion && store.user.questions ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
   }
 }
 
 const dispatch = (dispatch) => {
   return {
-    onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
-    onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
     onClearQuestionStatus: () => dispatch(clearQuestionStatus()),
+    onClearStaticQuestion: () => dispatch(clearStaticQuestion()),
     onClearStaticQuestionVoteStatus: () => dispatch(clearStaticQuestionVoteStatus()),
+    onClearStaticUserQuestion: () => dispatch(clearStaticUserQuestion()),
     onClearStaticUserVote: () => dispatch(clearStaticUserVote()),
+    onHelpModal: (bool) => dispatch(help(bool)),
     onLoadingModal: (bool) => dispatch(loading(bool)),
-    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading)),
-    onSetGameState: (state) => dispatch(setGameState(state)),
-    onResetQuestion: () => dispatch(resetQuestion()),
     onResetAnswer: () => dispatch(resetAnswer()),
+    onResetComment: (obj) => dispatch(resetComment(obj)),
+    onResetQuestion: () => dispatch(resetQuestion()),
     onResetResults: () => dispatch(resetResults()),
     onResetVote: (obj) => dispatch(resetVote(obj)),
-    onResetComment: (obj) => dispatch(resetComment(obj)),
-    onHelpModal: (bool) => dispatch(help(bool)),
+    onSetGameState: (state) => dispatch(setGameState(state)),
     onSetHelpHeader: (header) => dispatch(setHelpHeader(header)),
-    onSetHelpSections: (sections) => dispatch(setHelpSections(sections))
+    onSetHelpSections: (sections) => dispatch(setHelpSections(sections)),
+    onUpdateGameStatus: (status, loading) => dispatch(updateGameStatus(status, loading))
   }
 }
 

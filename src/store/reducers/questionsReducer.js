@@ -22,13 +22,6 @@ const storeQuestionTotals = (currentState, action) => {
   }
 }
 
-// const getQuestionTotals = (currentState, action) => {
-//   return {
-//     ...currentState,
-//     totals: null
-//   }
-// }
-
 const getQuickQuestion = (currentState, action) => {
   return {
     ...currentState,
@@ -113,7 +106,8 @@ const updateStaticQuestionVoteStatus = (currentState, action) => {
 const updateStaticQuestionCommentStatus = (currentState, action) => {
   return {
     ...currentState,
-    commentStatus: action.commentStatus
+    commentStatus: action.commentStatus,
+    commentLoading: action.commentLoading
   }
 }
 

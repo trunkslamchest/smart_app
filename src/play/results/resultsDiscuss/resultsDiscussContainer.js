@@ -39,9 +39,7 @@ class ResultsDiscussContainer extends React.Component {
       this.enableVoteButtonsTimeout = setTimeout(() => { this.setState({ enableVoteButtons: true, showVoteButtons: true })}, 250)
       this.enableCommentButtonTimeout = setTimeout(() => { this.setState({ enableCommentButton: true, showComments: true })}, 500)
     }
-    else {
-      this.setState({ enableVoteButtons: true, showVoteButtons: true, enableCommentButton: true, showComments: true })
-    }
+    else this.setState({ enableVoteButtons: true, showVoteButtons: true, enableCommentButton: true, showComments: true })
   }
 
   componentDidUpdate(){
@@ -59,7 +57,6 @@ class ResultsDiscussContainer extends React.Component {
 
   onClickVoteFunctions = (event) => {
     event.persist()
-
     let voteObj
 
     if(!this.props.staticResults){
@@ -100,7 +97,7 @@ class ResultsDiscussContainer extends React.Component {
       }
 
       if(!this.props.staticResults)this.props.onUpdateCommentStatus('initComment', true)
-      else  this.props.onUpdateStaticQuestionCommentStatus('initComment')
+      else  this.props.onUpdateStaticQuestionCommentStatus('initComment', true)
 
       commentObj['uid'] = localStorage.id
       commentObj['comment'] = this.state.comment
@@ -115,8 +112,7 @@ class ResultsDiscussContainer extends React.Component {
 
     let voteProps, voteBlock, commentBlock, discussBlock
 
-    if(!this.props.userAnswered)
-      discussBlock = <h6 className='results_not_answered'>You cannot comment or vote on this question without answering it.</h6>
+    if(!this.props.userAnswered) discussBlock = <h6 className='results_not_answered'>You cannot comment or vote on this question without answering it.</h6>
     else {
       voteProps = this.props.questionVotes
       if(this.props.question) {
@@ -158,28 +154,27 @@ class ResultsDiscussContainer extends React.Component {
 
 const store = (store) => {
   return {
-    questions: store.questions,
-    commentLoading: store.play.commentLoading,
-    userName: store.user.info ? store.user.info.user_name : null,
+    commentLoading: store.play.commentLoading || store.questions.commentLoading,
     question: store.play.question ? !!store.play.question : !!store.questions.staticQuestion,
-    questionId: store.play.question ? store.play.question.id : store.questions.staticQuestion ? store.questions.staticQuestion.qid : null,
-    questionDifficulty: store.play.question ? store.play.question.difficulty : store.questions.question.difficulty,
     questionCategory: store.play.question ? store.play.question.category : store.questions.question.category,
+    questionDifficulty: store.play.question ? store.play.question.difficulty : store.questions.question.difficulty,
+    questionId: store.play.question ? store.play.question.id : store.questions.staticQuestion ? store.questions.staticQuestion.qid : null,
     questionVotes: store.play.question ? store.play.question.votes : store.questions.staticQuestion ? store.questions.staticQuestion.votes : null,
     results: store.play.results ? !!store.play.results : !!store.questions.staticUserResults,
-    resultsVotes: store.play.results ? store.play.results.vote : store.questions.staticUserResults ? store.questions.staticUserResults.vote : null
+    resultsVotes: store.play.results ? store.play.results.vote : store.questions.staticUserResults ? store.questions.staticUserResults.vote : null,
+    userName: store.user.info ? store.user.info.user_name : null
   }
 }
 
 const dispatch = (dispatch) => {
   return {
-    onSetVote: (obj) => dispatch(setVote(obj)),
-    onVoteLoading: (bool) => dispatch(voteLoading(bool)),
     onSetComment: (obj) => dispatch(setComment(obj)),
-    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
+    onSetVote: (obj) => dispatch(setVote(obj)),
     onUpdateCommentStatus: (status, loading) => dispatch(updateCommentStatus(status, loading)),
+    onUpdateStaticQuestionCommentStatus: (status, loading) => dispatch(updateStaticQuestionCommentStatus(status, loading)),
     onUpdateStaticQuestionVoteStatus: (status) => dispatch(updateStaticQuestionVoteStatus(status)),
-    onUpdateStaticQuestionCommentStatus: (status) => dispatch(updateStaticQuestionCommentStatus(status))
+    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
+    onVoteLoading: (bool) => dispatch(voteLoading(bool))
   }
 }
 
