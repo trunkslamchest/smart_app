@@ -1,9 +1,12 @@
 .dashboard_stats_answers_container {
-  background-color: rgba(0, 0, 51, 1);
+  background: rgba(0, 0, 51, 1);
 }
 
 .dashboard_stats_answers_header_container {
-  background-color: rgba(251, 223, 187, 1);
+  /* background-color: rgba(251, 223, 187, 1); */
+  /* background-color: rgba(246, 246, 250, 1); */
+  background: rgba(255, 255, 255, 1);
+  margin: 0px 0px 1px 0px;
   padding: 2.5px 0px;
 }
 

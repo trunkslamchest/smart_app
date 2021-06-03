@@ -31,9 +31,9 @@ const DashboardStatsAnswersContainer = (props) => {
 
   return(
     <>
-      <div className='dashboard_stats_answers_header_container'>
+      {/* <div className='dashboard_stats_answers_header_container'>
         <h1>Questions</h1>
-      </div>
+      </div> */}
       { distribAnswers }
     </>
   )

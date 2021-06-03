@@ -8,8 +8,8 @@
 }
 
 .stats_card_header_card_wrapper {
-  background: rgba(0, 0, 51, 1);
-  color: rgba(255, 255, 255, 1);
+  background: rgba(251, 223, 187, 1);
+  color: rgba(50, 50, 50, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@
 }
 
 .stats_card_header_card_wrapper h4 {
-  font: 600 10pt "LatoThin";
+  font: 600 10pt "LatoLight";
   padding: 5px 0px 0px 0px;
   margin-bottom: 2.5px;
 }

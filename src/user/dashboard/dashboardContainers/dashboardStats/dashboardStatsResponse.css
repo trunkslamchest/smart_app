@@ -13,7 +13,7 @@
   }
 
   .dashboard_stats_view_question_button_container {
-    padding: 0px 0px 5px 0px;
+    padding: 0px 0px 0px 0px;
   }
 
   .dashboard_stats_answer_card_header h5 {
@@ -32,6 +32,11 @@
   .dashboard_stats_answer_card_sub_container_group_right {
     border-radius: 0px 0px 5px 5px;
     width: 100%;
+  }
+
+  .dashboard_stats_answer_card_bottom_card_wrapper {
+    margin: 0.5px;
+    padding: 5px 0px;
   }
 
   .dashboard_stats_answer_card_bottom_card_wrapper h4 {
