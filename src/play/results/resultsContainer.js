@@ -169,7 +169,7 @@ const store = (store) => {
     playResults: store.play.results,
     playVoteStatus: store.play.voteStatus,
     playCommentStatus: store.play.commentStatus,
-    userAnswered: store.play.question ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
+    userAnswered: store.play.question && store.user.questions ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion && store.user.questions ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
   }
 }
 

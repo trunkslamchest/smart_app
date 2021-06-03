@@ -160,7 +160,7 @@ const store = (store) => {
   return {
     questions: store.questions,
     commentLoading: store.play.commentLoading,
-    userName: store.user.info.user_name,
+    userName: store.user.info ? store.user.info.user_name : null,
     question: store.play.question ? !!store.play.question : !!store.questions.staticQuestion,
     questionId: store.play.question ? store.play.question.id : store.questions.staticQuestion ? store.questions.staticQuestion.qid : null,
     questionDifficulty: store.play.question ? store.play.question.difficulty : store.questions.question.difficulty,

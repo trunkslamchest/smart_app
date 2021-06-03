@@ -174,7 +174,7 @@ class commentCard extends React.Component {
 
 const store = store => {
   return {
-    userName: store.user.info.user_name,
+    userName: store.user.info ? store.user.info.user_name : null,
     questionId: store.questions.staticQuestion ? store.questions.staticQuestion.qid : store.play.question.id,
     questionCategory: store.questions.staticQuestion ? store.questions.staticQuestion.category : store.play.question.category,
     questionDifficulty: store.questions.staticQuestion ? store.questions.staticQuestion.difficulty : store.play.question.difficulty,
