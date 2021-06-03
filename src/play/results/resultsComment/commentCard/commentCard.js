@@ -74,29 +74,30 @@ class commentCard extends React.Component {
         commentUser = this.props.comment.user,
         currentUser = this.props.currentUserName
 
-    if(commentUser === currentUser){
+    if(commentUser !== '[REDACTED]') {
+      if(commentUser === currentUser){
+        const onDeleteComment = () => {
+          let commentObj = makeCommentObject(
+            this.props.staticResults,
+            this.props.questionId,
+            this.props.questionDifficulty,
+            this.props.questionCategory,
+            this.props.comment,
+            this.props.userName,
+            this.state.editedComment
+          )
+          this.props.onDeleteUserComment(commentObj)
+          this.props.onDeleteQuestionComment(commentObj)
+        }
 
-      const onDeleteComment = () => {
-        let commentObj = makeCommentObject(
-          this.props.staticResults,
-          this.props.questionId,
-          this.props.questionDifficulty,
-          this.props.questionCategory,
-          this.props.comment,
-          this.props.userName,
-          this.state.editedComment
-        )
-        this.props.onDeleteUserComment(commentObj)
-        this.props.onDeleteQuestionComment(commentObj)
-      }
+        const onEditComment = () => { this.setState({ showEditCommentForm: true }) }
+        const onCancelEditComment = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: false }) }
 
-      const onEditComment = () => { this.setState({ showEditCommentForm: true }) }
-      const onCancelEditComment = () => { this.setState({ editedComment: this.props.comment.comment, showEditCommentForm: false }) }
+        commentButtons = makeCommentButtons(glyphIndex, onEditComment, onDeleteComment)
+        commentFormButtons = makeCommentFormButtons(glyphIndex, this.onAddEditedComment, onCancelEditComment)
 
-      commentButtons = makeCommentButtons(glyphIndex, onEditComment, onDeleteComment)
-      commentFormButtons = makeCommentFormButtons(glyphIndex, this.onAddEditedComment, onCancelEditComment)
-
-    } else commentUser = <Link to={ routes.user_profile + '/' + this.props.comment.user } target='_blank'>{ this.props.comment.user }</Link>
+      } else commentUser = <Link to={ routes.user_profile + '/' + this.props.comment.user } target='_blank'>{ this.props.comment.user }</Link>
+    }
 
     if(!this.state.editCommentForm.valid) {
       if(this.state.editCommentForm.errors){
