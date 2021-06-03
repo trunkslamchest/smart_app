@@ -1,21 +1,18 @@
 .results_xp_container {
-  background: rgba(255, 255, 255, 1);
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5px 0px 0px 0px;
-}
-
-.results_xp_container h4 {
-  font: 600 12pt 'LatoLight';
-  margin: 5px 0px 5px 0px;
+  border-radius: 5px;
+  margin: 10px 15px 15px 15px;
 }
 
 .results_xp_wrapper {
   display: flex;
-  width: 75%;
-  padding: 0px 0px 15px 0px;
+  padding: 10px 75px 15px 75px;
+}
+
+.results_xp_sub_wrapper {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  border-radius: 5px;
+  /* width: inherit; */
 }
 
 .results_xp_count {
@@ -24,6 +21,7 @@
 }
 
 .results_xp_count h4 {
+  background: rgba(255, 255, 255, 0);
   font: 600 12pt "Lato";
   align-self: flex-end;
   margin: 0px;
@@ -41,13 +39,10 @@
 }
 
 .results_xp_bar_container h4 {
+  background: rgba(255, 255, 255, 0);
   font: 300 12pt 'Lato';
   margin: 0px 0px 2.5px 0px;
   align-self: center;
-}
-
-.results_xp_bar_container h5 {
-  font: 300 10pt "Lato";
 }
 
 .results_xp_total {
@@ -56,6 +51,7 @@
 }
 
 .results_xp_total h4 {
+  background: rgba(255, 255, 255, 0);
   font: 600 12pt "Lato";
   align-self: flex-end;
   margin: 0px;
@@ -64,11 +60,4 @@
 .results_xp_total h5 {
   font: 400 10pt "Lato";
   align-self: flex-end;
-}
-
-.results_xp_bar {
-  background-color: rgba(50, 50, 50, 1);
-  border: 1px solid rgba(200, 200, 200, 1);
-  box-sizing: border-box;
-  width: 100%;
 }

@@ -303,7 +303,7 @@ const PlayController = (props) => {
         correct_answer: playResults.correct_answer,
         difficulty: playQuestionDifficulty,
         experience: playResults.experience,
-        performance: playResults.performance.qPerf,
+        performance: playResults.performance,
         question: playQuestionQuestion,
         result: playResults.result,
         time: playAnswer.time

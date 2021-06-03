@@ -343,7 +343,6 @@ exports.updateUser = functions
       firebase.database().ref().update(updatedInfo)
       res.json(updatedInfo).status(200);
     })
-
 });
 
 exports.uploadUserAvatar = functions
@@ -539,7 +538,6 @@ exports.getCatLeaderBoards = functions
       })
 
       for(let cat in catSortedUsers) { catSortedUsers[cat].sort((a, b) => b.rating - a.rating ) }
-
       leaderBoardsObj.international = Object.entries(catSortedUsers).sort().reduce((obj, [key, value]) => (obj[key] = value , obj), {})
 
       res.json(leaderBoardsObj).status(200);
@@ -924,6 +922,9 @@ exports.questionResults = functions
         reqData.difficulty
       )
 
+      perfObj.oPerf.avgTime = calcUserTotalsObj.averages.avgTime
+      perfObj.oPerf.old_avgTime = reqData.userTotals.all.averages.avgTime
+
       var userIdsPath = '/users/list/' + reqData.uid + '/questions/ids',
           userAchievementsPath = '/users/list/' + reqData.uid + '/achievements',
           userQuestionPath = '/users/list/' + reqData.uid + '/questions/list/' + reqData.qid,
@@ -946,7 +947,7 @@ exports.questionResults = functions
             answer: reqData.answer,
             correct_answer: question.correct,
             question: question.question,
-            performance: perfObj.qPerf,
+            performance: perfObj,
             experience: xpObj,
           }
           userXpObj = {},
@@ -1204,6 +1205,7 @@ exports.questionComment = functions
 
       resObj = { questionCommentsObj, commentObj }
 
+      // setTimeout(() => { res.json(resObj).status(200) }, 5000)
       res.json(resObj).status(200)
     })
 })
@@ -1627,7 +1629,12 @@ var calcQperf = function(time, result, diff) {
 var calcOperf = function(qRating, oRating) {
   let oPerfObj = {}, newOrating = qRating
   if(oRating !== 0) newOrating = parseFloat(((qRating + oRating) / 2.00).toFixed(2))
-  oPerfObj = { rating: newOrating, rank: calcRating(newOrating) }
+  oPerfObj = {
+    rating: newOrating,
+    rank: calcRating(newOrating),
+    old_rating: oRating,
+    old_rank: calcRating(oRating)
+  }
   return oPerfObj
 }
 

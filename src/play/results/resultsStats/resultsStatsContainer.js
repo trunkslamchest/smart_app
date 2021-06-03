@@ -82,23 +82,23 @@ const ResultsStatsContainer = (props) => {
     resultsBlock =
       <div className="results_stats_container">
         <ResultsHeader
-          staticResults={ props.staticResults }
           showHeader={ headerState }
+          staticResults={ props.staticResults }
         />
         <ResultsAnswer
-          staticResults={ props.staticResults }
           showCorrectAnswer={ correctAnswerState }
+          staticResults={ props.staticResults }
         />
         { statsState && ( props.userXP || props.results) &&
           <ResultsStats
+            showStats={ statsState }
             staticResults={ props.staticResults }
             staticUserAchievements={ props.staticUserAchievements }
-            showStats={ statsState }
           />
         }
         <ResultsAchievementsContainer
-          staticResults={ props.staticResults }
           showAchievements={ achievementsState }
+          staticResults={ props.staticResults }
         />
         { showNextQuestionButton &&
           <DefaultButtonsContainer
@@ -119,20 +119,18 @@ const ResultsStatsContainer = (props) => {
 
 const store = (store) => {
   return {
-    questions: store.questions,
-    userXP: store.user.experience,
-    staticQuestion: !!store.questions.staticQuestion,
     results: !!store.play.results || !!store.questions.staticUserResults,
     result: store.play.results ? store.play.results.result : store.questions.staticUserResults ? store.questions.staticUserResults.result : null,
+    staticQuestion: !!store.questions.staticQuestion,
     staticUserAchievements: store.questions.staticUserResults ? !!store.questions.staticUserResults.achievements : false,
-
+    userXP: store.user.experience
   }
 }
 
 const dispatch = (dispatch) => {
   return {
-    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading)),
     onSetVote: (obj) => dispatch(setVote(obj)),
+    onUpdateVoteStatus: (status, loading) => dispatch(updateVoteStatus(status, loading))
   }
 }
 

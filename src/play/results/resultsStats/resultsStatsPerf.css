@@ -3,16 +3,19 @@
   margin: 0px 0px 1px 0px;
 }
 
-.results_perf_container h3 {
-  font: 600 15pt "LatoThin";
-}
-
 .results_perf_sub_container {
-  background-image: linear-gradient(0deg, rgba(200, 200, 200, 1), rgba(175, 175, 175, 1));
   display: flex;
   flex-direction: column;
   margin: 0px 0px 0px 0px;
   flex-grow: 1;
+}
+
+.results_perf_sub_container h1 {
+  background: rgba(246, 246, 250, 1);
+  font: 300 12pt 'Poppins';
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
 }
 
 .results_perf_sub_wrapper_top {
@@ -23,28 +26,22 @@
 
 .results_perf_sub_wrapper {
   background: rgba(255, 255, 255, 1);
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  border-radius: 5px;
   margin: 0px 0px 0px 0px;
-  padding: 5px 0px 10px 0px;
   width: inherit;
 }
 
 .results_perf_sub_wrapper_left {
-  margin: 0px 1px 0px 0px;
+  border-radius: 5px;
+  margin: 0px 5px 0px 15px;
+  width: 60%;
 }
 
 .results_perf_sub_wrapper_right {
-  margin: 0px 0px 0px 1px;
-}
-
-.results_perf_sub_wrapper_header {
-  border-radius: 5px 5px 0px 0px;
-  width: 100%;
-  text-align: center;
-}
-
-.results_perf_sub_wrapper_header h4 {
-  font: 600 12pt 'LatoLight';
-  margin: 0px 0px 5px 0px;
+  border-radius: 5px;
+  margin: 0px 15px 0px 5px;
+  width: 40%;
 }
 
 .results_perf_sub_wrapper_text {
@@ -53,6 +50,10 @@
 }
 
 .results_perf_sub_wrapper_text h5 {
-  font: 300 12pt 'Lato';
+  font-family: 'Poppins';
+  font-size: 10pt;
+  font-weight: 300;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-align: center;
 }
-

@@ -2,74 +2,42 @@
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 1);
+  padding: 0px 0px 15px 0px;
 }
 
 .results_question_sub_container {
-  background: linear-gradient(0deg, rgba(200, 200, 200, 1), rgba(175, 175, 175, 1));
   display: flex;
-  margin: 0px 0px 15px 0px;
+  flex-direction: row;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+}
+
+.results_question_sub_container h1 {
+  background: rgba(246, 246, 250, 1);
+  font: 300 12pt 'Poppins';
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
 }
 
 .results_question_static_no_achievements {
   border-radius: 0px 0px 5px 5px;
 }
 
-.results_question_sub_container h4 {
+.results_question_sub_wrapper {
   background: rgba(255, 255, 255, 1);
-  font: 300 12pt 'Poppins';
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  border-radius: 5px;
   margin: 0px 0px 0px 0px;
-  padding: 0px 0px 5px 0px;
-  text-align: center;
-}
-
-.results_question_sub_container h5 {
-  font-family: 'Poppins';
-  font-size: 10pt;
-  font-weight: 300;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  text-align: center;
-}
-
-.results_question_sub_container h6 {
-  font: 300 10pt 'Lato';
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  text-align: center;
+  width: inherit;
 }
 
 .results_question_sub_wrapper_left {
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  margin: 0px 1px 0px 0px;
+  margin: 0px 5px 0px 15px;
+  width: 60%;
 }
 
 .results_question_sub_wrapper_right {
-  display: flex;
-  flex-direction: column;
-  margin: 0px 0px 0px 0px;
-  width: 65%;
-}
-
-.results_question_card_wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.results_question_stat_card {
-  background: rgba(255, 255, 255, 1);
-  display: flex;
-  flex-direction: column;
-  width: inherit;
-  padding: 5px 0px 5px 0px;
-}
-
-.results_question_stat_card_left {
-  margin: 0px 1px 0px 0px;
-}
-
-.results_question_stat_card_right {
-  margin: 0px 0px 0px 0px;
+  margin: 0px 15px 0px 5px;
+  width: 40%;
 }

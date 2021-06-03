@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 
 import levels from '../../../datasets/levels'
 
+
 import XPBar from '../../../UI/components/xpBar/xpBar'
-import makeResultsTrendArrows from '../resultsFunctions/makeResultsTrendArrows'
 import PlaySubHeaderCentered from '../../playComponents/playSubHeaderCentered/playSubHeaderCentered'
+import makeResultsStatsSubCards from '../resultsFunctions/makeResultsStatsSubCards'
+import makeResultsTrendArrows from '../resultsFunctions/makeResultsTrendArrows'
+
+import ResultsStatsSubCard from './resultsStatsSubCard'
 
 import trendArrowIndex from '../../../assets/trend_arrows/trendArrowIndex'
 
@@ -16,127 +20,111 @@ import './resultsStatsXP.css'
 const ResultsStats = (props) => {
 
   const componentClasses = {
-    questionContainer: props.staticResults && !props.staticUserAchievements ? 'results_question_container results_question_static_no_achievements' : 'results_question_container',
-    questionSubContainer: props.staticResults && !props.staticUserAchievements ? 'results_question_sub_container results_question_static_no_achievements' : 'results_question_sub_container',
-    questionSubWrapperLeft: 'results_question_sub_wrapper_left',
-    questionSubWrapperRight: 'results_question_sub_wrapper_right',
-    questionCardWrapper: 'results_question_card_wrapper',
-    questionCardLeft: 'results_question_stat_card results_question_stat_card_left',
-    questionCardRight: 'results_question_stat_card results_question_stat_card_right',
-    perfContainer: 'results_perf_container',
-    perfSubContainer: 'results_perf_sub_container',
-    perfSubWrapper: 'results_perf_sub_wrapper',
-    perfSubWrapperTop: 'results_perf_sub_wrapper_top',
-    perfSubWrapperLeft: 'results_perf_sub_wrapper results_perf_sub_wrapper_left',
-    perfSubWrapperRight: 'results_perf_sub_wrapper results_perf_sub_wrapper_right',
-    perfSubWrapperHeader: 'results_perf_sub_wrapper_header',
-    perfSubWrapperText: 'results_perf_sub_wrapper_text',
     statsWrapper: 'results_stats_wrapper',
     xpContainer: 'results_xp_container',
     xpWrapper: 'results_xp_wrapper',
+    xpSubWrapper: 'results_xp_sub_wrapper',
     xpCount: 'results_xp_count',
     xpBarContainer: 'results_xp_bar_container',
     xpBarSubContainer: 'results_xp_bar_sub_container',
     xpTotal: 'results_xp_total',
   }
 
+  let subCards = makeResultsStatsSubCards(
+    'results_perf_container',
+    props.staticResults && !props.staticUserAchievements ? 'results_question_container results_question_static_no_achievements' : 'results_question_container',
+    'results_perf_sub_container',
+    props.staticResults && !props.staticUserAchievements ? 'results_question_sub_container results_question_static_no_achievements' : 'results_question_sub_container',
+    'results_perf_sub_wrapper_top',
+    componentClasses.xpContainer,
+    'results_perf_sub_wrapper results_perf_sub_wrapper_left',
+    'results_perf_sub_wrapper results_perf_sub_wrapper_right',
+    'results_perf_sub_cards_wrapper',
+    'results_perf_sub_card_container',
+    'results_perf_sub_wrapper_text',
+    componentClasses.xpWrapper,
+    componentClasses.xpSubWrapper,
+    'results_perf_sub_card_container results_question_sub_card_container',
+    'results_question_sub_card_wrapper',
+    'results_perf_sub_cards_wrapper results_question_sub_cards_wrapper',
+    'results_question_sub_wrapper results_question_sub_wrapper_left',
+    'results_question_sub_wrapper results_question_sub_wrapper_right',
+    props.userQuestionRank,
+    props.userQuestionRating,
+    props.questionRating,
+    props.userQuestionTime,
+    props.averageTime,
+    props.questionTime,
+    props.userNewOverallRank,
+    props.userOldOverallRank,
+    props.userNewOverallRating,
+    props.userOldOverallRating,
+    props.userNewAvgTime,
+    props.userOldAvgTime,
+    props.totalAnswers,
+    props.correctAnswers,
+    props.incorrectAnswers,
+    props.outtaTimeAnswers,
+    props.questionDiff,
+    props.questionDiffRating,
+    makeResultsTrendArrows,
+    trendArrowIndex
+  )
+
+  const distribSubCards = subCards.map((container, ci) => {
+    return(<div className={ container.containerClass } key={ ci } >
+      <PlaySubHeaderCentered header_text={ container.headerText } />
+      <div className={ container.subContainerClass }>
+        { container.subContainer.map((subContainer, sci) => {
+          return(<div className={ subContainer.wrapperClass } key={ sci } >
+            { subContainer.subWrappers.map((subWrapper, swi) => {
+              return(<div className={ subWrapper.subWrapperClass } key={ swi } >
+                <h1>{ subWrapper.cardTitle }</h1>
+                <div className={ subWrapper.subCardWrapperClass }>
+                  { subWrapper.subCards.map((subCard, sui) => {
+                    return !!subCard.xpBar ?
+                      <React.Fragment key={ sui }>
+                        <div className={ componentClasses.xpCount }>
+                          <h4>+{ props.userXPgain }</h4><h5>XP</h5>
+                        </div>
+                        <div className={ componentClasses.xpBarContainer }>
+                          <h4>Level { props.userXPlevel }</h4>
+                          <div className={ componentClasses.xpBarSubContainer }>
+                          <XPBar
+                              userXP={ props.userXPtotal }
+                              userLevel={ props.userXPlevel }
+                              prevLevelXP={ levels[props.userXPlevel - 1] }
+                            />
+                          </div>
+                        </div>
+                        <div className={ componentClasses.xpTotal }>
+                          <h4>{ props.userXPtotal }</h4><h5>/{ levels[props.userXPlevel] }</h5>
+                        </div>
+                      </React.Fragment>
+                    :
+                      <ResultsStatsSubCard
+                        cardClass={ subCard.cardClass }
+                        key={ sui }
+                        headerText={ subCard.headerText }
+                        subHeaderText={ subCard.subHeaderText }
+                        subTextClass={ subCard.subTextClass }
+                        trendArrows={ subCard.trendArrows }
+                      />
+                    })}
+                </div>
+              </div>
+            )})}
+          </div>
+        )})}
+      </div>
+    </div>
+  )})
+
   return(
     <>
       { props.showStats &&
         <div className={ componentClasses.statsWrapper }>
-          <div className={ componentClasses.perfContainer }>
-            <PlaySubHeaderCentered header_text={ 'Your Performance' } />
-            <div className={ componentClasses.perfSubContainer }>
-              <div className={ componentClasses.perfSubWrapperTop }>
-                <div className={ componentClasses.perfSubWrapperLeft }>
-                  <div className={ componentClasses.perfSubWrapperHeader }>
-                    <h4>Rank</h4>
-                  </div>
-                  <div className={ componentClasses.perfSubWrapperText }>
-                    <h5>{ props.userRank }</h5>
-                    { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
-                  </div>
-                </div>
-                <div className={ componentClasses.perfSubWrapper }>
-                    <div className={ componentClasses.perfSubWrapperHeader }>
-                      <h4>Rating</h4>
-                    </div>
-                    <div className={ componentClasses.perfSubWrapperText }>
-                      <h5>{ props.userRating }</h5>
-                      { makeResultsTrendArrows(props.userRating, props.questionRating, 'percentage', trendArrowIndex) }
-                    </div>
-                  </div>
-                <div className={ componentClasses.perfSubWrapperRight }>
-                    <div className={ componentClasses.perfSubWrapperHeader }>
-                      <h4>Time</h4>
-                    </div>
-                    <div className={ componentClasses.perfSubWrapperText }>
-                      <h5>{ props.userTime } seconds</h5>
-                      { makeResultsTrendArrows(props.userTime, props.questionTime, 'time', trendArrowIndex) }
-                    </div>
-                  </div>
-                </div>
-                <div className={ componentClasses.xpContainer }>
-                  <div className={ componentClasses.xpWrapper }>
-                    <div className={ componentClasses.xpCount }>
-                      <h4>+{ props.userXPgain }</h4><h5>XP</h5>
-                    </div>
-                    <div className={ componentClasses.xpBarContainer }>
-                      <h4>Level { props.userXPlevel }</h4>
-                      <div className={ componentClasses.xpBarSubContainer }>
-                      <XPBar
-                          userXP={ props.userXPtotal }
-                          userLevel={ props.userXPlevel }
-                          prevLevelXP={ levels[props.userXPlevel - 1] }
-                        />
-                      </div>
-                    </div>
-                    <div className={ componentClasses.xpTotal }>
-                      <h4>{ props.userXPtotal }</h4><h5>/{ levels[props.userXPlevel] }</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div className={ componentClasses.questionContainer }>
-            <PlaySubHeaderCentered header_text={ 'Question Stats' } />
-           <div className={ componentClasses.questionSubContainer }>
-              <div className={ componentClasses.questionSubWrapperLeft }>
-                <h4>Difficulty</h4>
-                <div className={ componentClasses.questionCardWrapper }>
-                  <div className={ componentClasses.questionCardLeft }>
-                      <h5>Level</h5>
-                      <h6>{ props.questionDiff[0].toUpperCase() + props.questionDiff.slice(1, props.questionDiff.length)}</h6>
-                  </div>
-                  <div className={ componentClasses.questionCardRight }>
-                      <h5>Rating</h5>
-                      <h6>{ props.questionDiffRating }</h6>
-                  </div>
-                </div>
-              </div>
-              <div className={ componentClasses.questionSubWrapperRight }>
-                <h4>Total Answers: { props.totalAnswers }</h4>
-                <div className={ componentClasses.questionCardWrapper }>
-                  <div className={ componentClasses.questionCardLeft }>
-                    <h5>Correct</h5>
-                    <h6>{ props.correctAnswers }</h6>
-                  </div>
-                <div className={ componentClasses.questionCardLeft }>
-                    <h5>Incorrect</h5>
-                    <h6>{ props.incorrectAnswers }</h6>
-                </div>
-                <div className={ componentClasses.questionCardLeft }>
-                    <h5>Outta Times</h5>
-                    <h6>{ props.outtaTimeAnswers }</h6>
-                </div>
-                <div className={ componentClasses.questionCardRight }>
-                    <h5>Average Time</h5>
-                    <h6>{ props.averageTime } seconds</h6>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          { distribSubCards }
         </div>
       }
     </>
@@ -145,21 +133,27 @@ const ResultsStats = (props) => {
 
 const store = store => {
   return {
-    userRating: store.play.results ? store.play.results.performance.qPerf.rating : store.questions.staticUserResults.performance.rating,
-    userRank: store.play.results ? store.play.results.performance.qPerf.rank : store.questions.staticUserResults.performance.rank,
-    questionRating: store.play.question ? store.play.question.perfRating : store.questions.staticQuestion.rating.performance,
-    userTime: store.play.answer ? store.play.answer.time : store.questions.staticUserResults.time,
-    questionTime: store.play.question ? store.play.question.answers.avg_time : store.questions.staticQuestion ? store.questions.staticQuestion.answers.avg_time : null,
-    userXPgain: store.play.results ? store.play.results.experience.gain : store.questions.staticUserResults.experience.gain,
-    userXPtotal: store.questions.staticUserResults ? store.questions.staticUserResults.experience.newTotal : store.user.experience.total,
-    userXPlevel: store.questions.staticUserResults ? store.questions.staticUserResults.experience.level : store.user.experience.level,
-    questionDiff: store.play.question ? store.play.question.difficulty : store.questions.staticQuestion.difficulty,
-    questionDiffRating: store.play.question ? (store.play.question.diffRating).toFixed(2) : (store.questions.staticQuestion.rating.difficulty).toFixed(2),
-    totalAnswers: store.play.question ? store.play.question.answers.total : store.questions.staticQuestion.answers.total,
+    averageTime: store.play.question ? (store.play.question.answers.avg_time).toFixed(2) : (store.questions.staticQuestion.answers.avg_time).toFixed(2),
     correctAnswers: store.play.question ? store.play.question.answers.correct : store.questions.staticQuestion.answers.correct,
     incorrectAnswers: store.play.question ? store.play.question.answers.incorrect : store.questions.staticQuestion.answers.incorrect,
     outtaTimeAnswers: store.play.question ? store.play.question.answers.outta_time : store.questions.staticQuestion.answers.outta_time,
-    averageTime: store.play.question ? (store.play.question.answers.avg_time).toFixed(2) : (store.questions.staticQuestion.answers.avg_time).toFixed(2)
+    questionDiff: store.play.question ? store.play.question.difficulty : store.questions.staticQuestion.difficulty,
+    questionDiffRating: store.play.question ? (store.play.question.diffRating).toFixed(2) : (store.questions.staticQuestion.rating.difficulty).toFixed(2),
+    questionRating: store.play.question ? store.play.question.perfRating : store.questions.staticQuestion.rating.performance,
+    questionTime: store.play.question ? store.play.question.answers.avg_time : store.questions.staticQuestion ? store.questions.staticQuestion.answers.avg_time : null,
+    userNewAvgTime: store.play.results ? store.play.results.performance.oPerf.avgTime : store.questions.staticUserResults.performance.oPerf.avgTime,
+    userNewOverallRank: store.play.results ? store.play.results.performance.oPerf.rank : store.questions.staticUserResults.performance.oPerf.rank,
+    userNewOverallRating: store.play.results ? store.play.results.performance.oPerf.rating : store.questions.staticUserResults.performance.oPerf.rating,
+    userOldAvgTime: store.play.results ? store.play.results.performance.oPerf.old_avgTime : store.questions.staticUserResults.performance.oPerf.old_avgTime,
+    userOldOverallRank: store.play.results ? store.play.results.performance.oPerf.old_rank : store.questions.staticUserResults.performance.oPerf.old_rank,
+    userOldOverallRating: store.play.results ? store.play.results.performance.oPerf.old_rating : store.questions.staticUserResults.performance.oPerf.old_rating,
+    userQuestionRank: store.play.results ? store.play.results.performance.qPerf.rank : store.questions.staticUserResults.performance.qPerf.rank,
+    userQuestionRating: store.play.results ? store.play.results.performance.qPerf.rating : store.questions.staticUserResults.performance.qPerf.rating,
+    userQuestionTime: store.play.answer ? store.play.answer.time : store.questions.staticUserResults.time,
+    userXPgain: store.play.results ? store.play.results.experience.gain : store.questions.staticUserResults.experience.gain,
+    userXPtotal: store.questions.staticUserResults ? store.questions.staticUserResults.experience.newTotal : store.user.experience.total,
+    userXPlevel: store.questions.staticUserResults ? store.questions.staticUserResults.experience.level : store.user.experience.level,
+    totalAnswers: store.play.question ? store.play.question.answers.total : store.questions.staticQuestion.answers.total
   }
 }
 

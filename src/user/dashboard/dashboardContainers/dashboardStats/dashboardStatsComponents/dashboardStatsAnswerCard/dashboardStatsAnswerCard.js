@@ -131,11 +131,11 @@ const DashboardStatsAnswerCard = (props) => {
           </div>
           <div className={ componentClasses.cardWrapper }>
             <h4>Rank</h4>
-            <span>{ props.answer.performance.rank }</span>
+            <span>{ props.answer.performance.qPerf.rank }</span>
           </div>
           <div className={ componentClasses.cardWrapper }>
             <h4>Rating</h4>
-            <span>{ props.answer.performance.rating }</span>
+            <span>{ props.answer.performance.qPerf.rating }</span>
           </div>
         </div>
         <div className={ componentClasses.cardWrapperGroupRight }>
