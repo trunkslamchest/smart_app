@@ -9,9 +9,13 @@
 }
 
 .user_profile_header_date_sub_container h4 {
-  font: 300 12pt 'PoppinsLight', sans-serif;
+  font-family: 'PoppinsLight';
+  font-size: 12pt;
+  font-weight: 300;
 }
 
 .user_profile_header_date_sub_container h5 {
-  font: 300 9pt 'LatoItalic';
+  font-family: 'LatoItalic';
+  font-size: 9pt;
+  font-weight: 300;
 }

@@ -32,7 +32,7 @@ const DashboardProfileContainer = (props) => {
   }, [])
 
   let avatar = props.userInfo.avatar
-  let user_name = props.userInfo.user_name
+  let userName = props.userInfo.user_name
   let email = props.userInfo.email
   let bio = checkBlankString(props.userInfo.bio, 'Update your profile to add a Bio')
   let country = checkBlankString(props.userInfo.country, 'Update your profile to add your Country')
@@ -44,8 +44,9 @@ const DashboardProfileContainer = (props) => {
   let dobMonth = checkBlankString(props.userInfo.dob.month, 'Update your profile to add your Birth Month')
   let dobYear = checkBlankInt(props.userInfo.dob.year, 'Update your profile to add your Birth Year')
   let fullDOB = dobYear.field === 0 ? `${ dobMonth.field } ${ formatDay(dobDay.field) }` : `${ dobMonth.field } ${ formatDay(dobDay.field) }, ${ dobYear.field }`
-  let last_login = `${ props.userInfo.last_login.time } ${ formatMonth(props.userInfo.last_login.month) } ${ formatDay(props.userInfo.last_login.day) }, ${ props.userInfo.last_login.year }`
   let join_date = `${ formatMonth(props.userInfo.join_date.month) } ${ formatDay(props.userInfo.join_date.day) }, ${ props.userInfo.join_date.year }`
+  // let last_login = `${ props.userInfo.last_login.time } ${ formatMonth(props.userInfo.last_login.month) } ${ formatDay(props.userInfo.last_login.day) }, ${ props.userInfo.last_login.year }`
+  let last_login = `${ formatMonth(props.userInfo.last_login.month) } ${ formatDay(props.userInfo.last_login.day) }, ${ props.userInfo.last_login.year }`
 
   const onClickProfileButtonFunction = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
@@ -54,9 +55,22 @@ const DashboardProfileContainer = (props) => {
 
   const onClickDelete = () => { props.onDeleteProfileModal(true) }
 
-  const profileFields = makeDashboardProfileFields(firstName, lastName, email, bio, country, gender, genderPronouns, fullDOB, dobDay, dobMonth, dobYear, last_login, join_date)
+  const profileFields = makeDashboardProfileFields(
+    userName,
+    email,
+    firstName,
+    lastName,
+    bio,
+    country,
+    gender,
+    genderPronouns,
+    fullDOB,
+    dobDay,
+    dobMonth,
+    dobYear
+  )
 
-  const profileButtons = makeDashboardProfileButtons(glyphIndex, onClickProfileButtonFunction, onClickDelete, user_name, routes)
+  const profileButtons = makeDashboardProfileButtons(glyphIndex, onClickProfileButtonFunction, onClickDelete, userName, routes)
 
   let distribProfileFields = profileFields.map((field, index) => {
     return (
@@ -95,10 +109,9 @@ const DashboardProfileContainer = (props) => {
           avatar={ avatar }
           containerClass='dashboard_profile_header_buttons_container'
           email={ email }
-          user_name={ user_name }
+          user_name={ userName }
           date_block={ date_block }
         />
-        {/* <div className='divider_medium' /> */}
         <div className='dashboard_profile_fields_container'>
           { distribProfileFields }
         </div>

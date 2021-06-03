@@ -16,16 +16,17 @@ const UserProfileHeader = (props) => {
   let gender_pronouns = props.info.gender_pronouns !== 'null' && props.info.gender_pronouns
   let age = (props.info.dob && props.info.dob.year !== 0) && new Date().getFullYear() - props.info.dob.year
 
-  let last_login =
-    <div className='user_profile_header_date_sub_container'>
-      <h4>Last Login</h4>
-      <h5>{ props.info.last_login.time } { formatMonth(props.info.last_login.month) } { formatDay(props.info.last_login.day) }, { props.info.last_login.year }</h5>
-    </div>
-
   let join_date =
     <div className='user_profile_header_date_sub_container'>
       <h4>Join Date</h4>
       <h5>{ formatMonth(props.info.join_date.month) } { formatDay(props.info.join_date.day) }, { props.info.join_date.year }</h5>
+    </div>
+
+  let last_login =
+    <div className='user_profile_header_date_sub_container'>
+      <h4>Last Login</h4>
+      {/* <h5>{ props.info.last_login.time } { formatMonth(props.info.last_login.month) } { formatDay(props.info.last_login.day) }, { props.info.last_login.year }</h5> */}
+      <h5>{ formatMonth(props.info.last_login.month) } { formatDay(props.info.last_login.day) }, { props.info.last_login.year }</h5>
     </div>
 
   let date_block =

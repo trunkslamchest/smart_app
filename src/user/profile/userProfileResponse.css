@@ -9,9 +9,21 @@
     justify-content: space-evenly;
   }
 
+  .user_profile_header_date_sub_container {
+    margin: 0px 15px;
+  }
+
+  .user_profile_header_date_sub_container h4 {
+    font-size: calc(14px + (16 - 14) * ((100vw - 360px) / (769 - 360)));
+  }
+
   .user_profile_info_sub_container span {
     padding: 15px 5px 15px 5px;
     text-align: center;
+  }
+
+  .user_achievements_sub_container h3 {
+    padding: 15px 0px 15px 0px;
   }
 
   .user_profile_question_card_container h1 {

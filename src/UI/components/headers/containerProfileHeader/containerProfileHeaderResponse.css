@@ -2,7 +2,7 @@
 
   .container_profile_header {
     border-radius: 0px;
-    padding: 15px 0px 10px 0px;
+    padding: 15px 5px 15px 5px;
   }
 
   .container_profile_header_top {
@@ -49,7 +49,6 @@
 
   .container_profile_header_top_right {
     margin: 0px 0px 0px 0px;
-    width: 100%;
   }
 
 }
