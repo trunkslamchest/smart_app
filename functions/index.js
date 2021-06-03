@@ -124,7 +124,6 @@ exports.addUser = functions
       firebase.database().ref('/users/list').update(reqData);
       firebase.database().ref().update(usersTotalsObj);
 
-
       res.json(reqData).status(200);
     })
 
@@ -284,6 +283,21 @@ exports.getUserProfile = functions
     });
 });
 
+// exports.updateUser = functions
+//   .region('us-east1')
+//   .https.onRequest((req, res) => {
+//     setCORSpost(req, res);
+
+//     const reqData = JSON.parse(req.body.data)
+
+//     var updatedInfo = {};
+//     updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'info'] = reqData.info;
+
+//     firebase.database().ref().update(updatedInfo);
+
+//     res.json(updatedInfo).status(200);
+// });
+
 exports.updateUser = functions
   .region('us-east1')
   .https.onRequest((req, res) => {
@@ -292,11 +306,44 @@ exports.updateUser = functions
     const reqData = JSON.parse(req.body.data)
 
     var updatedInfo = {};
-    updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'info'] = reqData.info;
 
-    firebase.database().ref().update(updatedInfo);
+    var getRef = firebase.database().ref('/').get().then((snap) => {
+        return snap.val()
+      }).catch((error) => {
+        console.error(error)
+      });
 
-    res.json(updatedInfo).status(200);
+    getRef.then((db) => {
+      var questions = db.questions.list
+      var userQuestions = db.users.list[reqData.uid].questions.list
+      var commentedQuestions = []
+
+      if(reqData.info.user_name !== reqData.old_user_name){
+        for(let qid in userQuestions){
+          if(userQuestions[qid].comments) commentedQuestions.push(qid)
+        }
+
+        for(let index in commentedQuestions) {
+          let qid = commentedQuestions[index]
+          if(questions[qid]) {
+            let questionComments = questions[qid].comments
+            for(let cid in questionComments) {
+              let comment = questionComments[cid]
+              if(comment.uid === reqData.uid) {
+                let updatedCommentObj = {}
+                updatedCommentObj['/questions/list/' + qid + '/comments/' + cid ] = { ...questions[qid].comments[cid], user: reqData.info.user_name }
+                firebase.database().ref().update(updatedCommentObj);
+              }
+            }
+          }
+        }
+      }
+
+      updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'info'] = reqData.info;
+      firebase.database().ref().update(updatedInfo)
+      res.json(updatedInfo).status(200);
+    })
+
 });
 
 exports.uploadUserAvatar = functions
@@ -322,8 +369,8 @@ exports.updateUserSettings = functions
     const reqData = JSON.parse(req.body.data)
 
     var updatedInfo = {};
-    updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'settings'] = reqData.settings;
 
+    updatedInfo['/users/list' + '/' + reqData.uid + '/' + 'settings'] = reqData.settings;
     firebase.database().ref().update(updatedInfo);
 
     res.json(reqData.settings).status(200);
@@ -445,8 +492,8 @@ exports.getCatLeaderBoards = functions
         var uid = snap.key, userData = snap.val(), catTotals = userData.questions.totals.category
 
         for(let cat in catTotals){
-          if(catTotals[cat].answered >= 5 && catTotals[cat].rating >= 0.5) {
-          // if(catTotals[cat].answered > 0) {
+          // if(catTotals[cat].answered >= 5 && catTotals[cat].rating >= 0.5) {
+          if(catTotals[cat].answered > 0) {
             if(catSortedUsers[cat]) {
               catSortedUsers[cat] = [
                 ...catSortedUsers[cat],
@@ -958,7 +1005,6 @@ exports.questionResults = functions
       firebase.database().ref().update(allDiffTotalsObj)
       firebase.database().ref().update(allCatTotalsObj)
 
-      // setTimeout(() => { res.json(resObj).status(200) }, 5000)
       res.json(resObj).status(200)
     })
 });
@@ -983,7 +1029,7 @@ exports.questionVote = functions
           voteDiffTotalsObj = {},
           voteCatTotalsObj = {},
           userVoteObj = {},
-          userVoteTotalsObj = {},
+          userVoteTotalsObj = {}
 
       var question = db.questions.list[reqData.qid]
           questionTotals = db.questions.totals,
@@ -1100,6 +1146,7 @@ exports.questionComment = functions
 
       commentObj = {
         [cid]: {
+          uid: reqData.uid,
           cid: cid,
           comment: reqData.comment,
           user: reqData.user_name,
