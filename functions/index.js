@@ -416,8 +416,6 @@ exports.deleteUser = functions
 
     var user = `/users/list/${reqData.uid}`
 
-    firebase.database().ref(user).remove()
-
     var getRef = firebase.database().ref('/').get().then((snap) => {
         return snap.val()
       }).catch((error) => {
@@ -425,20 +423,42 @@ exports.deleteUser = functions
       });
 
     getRef.then((db) => {
-
-      var userTotals = db.users.totals,
-          userTotalsObj = {},
-          userTotalsPath = '/users/totals'
+      var questions = db.questions.list
+      var userTotals = db.users.totals
+      var userQuestions = db.users.list[reqData.uid].questions.list
+      var commentedQuestions = []
+      var userTotalsObj = {}
+      var userTotalsPath = '/users/totals'
 
       userTotalsObj[userTotalsPath] = {
         ...userTotals,
         registered: userTotals.registered - 1
       }
 
+      for(let qid in userQuestions){
+        if(userQuestions[qid].comments) commentedQuestions.push(qid)
+      }
+
+        for(let index in commentedQuestions) {
+          let qid = commentedQuestions[index]
+          if(questions[qid]) {
+            let questionComments = questions[qid].comments
+            for(let cid in questionComments) {
+              let comment = questionComments[cid]
+              if(comment.uid === reqData.uid) {
+                let updatedCommentObj = {}
+                updatedCommentObj['/questions/list/' + qid + '/comments/' + cid ] = { ...questions[qid].comments[cid], user: '[REDACTED]' }
+                firebase.database().ref().update(updatedCommentObj);
+              }
+            }
+          }
+        }
+
+      firebase.database().ref(user).remove()
       firebase.database().ref().update(userTotalsObj)
     })
 
-    res.json({msg: 'Your Profile has been removed.'}).status(200)
+    res.json({msg: 'Your Profile has been removed D:'}).status(200)
 });
 
 exports.getOverallLeaderBoards = functions
