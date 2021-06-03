@@ -15,7 +15,7 @@ const FooterLogo = () => {
   const history = useHistory()
 
   const onClickFunctions = () => {
-    document.body.scrollTop = 0
+    requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) })
     if (history.location.pathname !== routes.home) history.push( routes.home )
   }
 

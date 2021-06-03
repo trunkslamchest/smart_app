@@ -7,7 +7,7 @@ import './leaderBoardsSubContainer.css'
 
 const LeaderBoardsCatContainer = (props) => {
 
-  const { documentTitle, headerText, pageLimit, scores } = props
+  const { documentTitle, headerText, pageRowLimit, scores } = props
 
   useEffect(() => { document.title = `SmartApp™ | ${ documentTitle } Leaderboards` }, [documentTitle])
 
@@ -17,7 +17,7 @@ const LeaderBoardsCatContainer = (props) => {
     return(
       <LeaderBoardsScoresCard
         key={ index }
-        pageLimit={ pageLimit }
+        pageRowLimit={ pageRowLimit }
         scoresSetName={ scores[0] }
         sub_text={ 'Rating' }
         scores={ scores[1] }

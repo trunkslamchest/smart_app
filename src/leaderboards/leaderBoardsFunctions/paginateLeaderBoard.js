@@ -1,21 +1,23 @@
-const paginateLeaderBoard = (pageLimit, leaderBoard) => {
-    const rowLimit = leaderBoard.length
-    let page = [], pagedScores = [], currentCount = pageLimit
+const paginateLeaderBoard = (pageRowLimit, leaderBoard, catTemp) => {
+    const maxRowLimit = leaderBoard.length
+    let page = [], pagedScores = [], overflowLimit = pageRowLimit
 
-    for(let i = 0, j = rowLimit; (i <= currentCount && currentCount <= rowLimit) || j < currentCount;) {
-      if(i < rowLimit) {
-        leaderBoard[i].rank = i + 1
-        page.push(leaderBoard[i])
+    for(let row = 0; row <= overflowLimit;) {
+      if(row < maxRowLimit) {
+        leaderBoard[row].rank = row + 1
+        page.push(leaderBoard[row])
       }
-      if(i === currentCount - 1) {
+      if(row === overflowLimit - 1 && overflowLimit < maxRowLimit) {
         pagedScores.push(page)
         page = []
-        currentCount += pageLimit
+        overflowLimit += pageRowLimit
       }
-      if(i < rowLimit) i++
-      if(i === rowLimit) j++
-      if(j <= currentCount && j > rowLimit) page.push( null )
-      if(j === currentCount) pagedScores.push(page)
+      if(row < maxRowLimit || row < overflowLimit) row++
+      if(row > maxRowLimit) page.push( null )
+      if(row === overflowLimit) {
+        pagedScores.push(page)
+        break
+      }
     }
 
   return pagedScores

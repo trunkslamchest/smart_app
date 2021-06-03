@@ -10,11 +10,11 @@
   background-color: rgba(255, 204, 204, 1);
   border: 1px solid rgb(168, 62, 50, 0.4);
   border-radius: 2.5px;
-  margin: 1px auto !important;
+  margin: 0px 15px;
   padding: 5px 10px;
-  width: 400px;
+  max-width: 350px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .edit_profile_form_error_exclamation {

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import useOnMount from '../../../utility/hooks/useOnMount'
 
 import paginateLeaderBoard from '../../leaderBoardsFunctions/paginateLeaderBoard'
-import LeaderBoardsScoresRow from '../../leaderBoardsComponents/leaderBoardsScoresRow/leaderBoardsScoresRow'
+import LeaderBoardsScoresRowContainer from '../../leaderBoardsComponents/leaderBoardsScoresRow/leaderBoardsScoresRowContainer'
 import LeaderBoardsButtonsRow from '../../leaderBoardsComponents/leaderBoardsButtonsRow/leaderBoardsButtonsRow'
 
 import flagIconIndex from '../../../assets/flag_icons/flagIconIndex'
@@ -15,14 +15,14 @@ const LeaderBoardScoresContainer = (props) => {
   const [currentPage, setCurrentPage] = useState(0)
   const [leaderBoard, setLeaderboard] = useState([])
 
-  const { scores, pageLimit } = props
+  const { scores, pageRowLimit } = props
 
-  let distribScores
+  let distribScores, top3scores = [ ]
 
   useOnMount(() => {
-    let pagniatedLeaderBoard = paginateLeaderBoard(pageLimit, scores)
+    let pagniatedLeaderBoard = paginateLeaderBoard(pageRowLimit, scores)
     setLeaderboard(pagniatedLeaderBoard)
-  }, [scores, pageLimit, leaderBoard, paginateLeaderBoard])
+  }, [scores, pageRowLimit, leaderBoard, paginateLeaderBoard])
 
   const onChangePage = (value) => {
     let page = parseInt(currentPage)
@@ -34,28 +34,43 @@ const LeaderBoardScoresContainer = (props) => {
 
   if(!!leaderBoard[currentPage]) {
     distribScores = leaderBoard[currentPage].map((score, index) => {
-      return !!score ?
-        <LeaderBoardsScoresRow
-          countryFlag={ flagIconIndex[score.country] }
-          key={ score.uid }
-          prevScore={ !!leaderBoard[currentPage][index - 1] }
+      let scoreComponent = <LeaderBoardsScoresRowContainer
+          blankTop3Card ={ currentPage === 0 && !score && index < 3 }
+          currentPage={ currentPage }
+          cardNumber={ index + 1 }
+          countryFlag={ !!score && flagIconIndex[score.country] }
+          fromScoresCard={ true }
+          key={ score ? score.uid : index }
           nextScore={ !!leaderBoard[currentPage][index + 1] }
-          score={ score }
+          prevScore={ !!leaderBoard[currentPage][index - 1] }
+          score={ !!score && score }
+          scoreCount={ leaderBoard.length }
+          top3Card ={ currentPage === 0 && index < 3 }
         />
-      :
-        <LeaderBoardsScoresRow countryFlag={ null } key={ index } score={ null } />
+
+      if(currentPage === 0) {
+        if(index < 3) {
+          top3scores[index] = scoreComponent
+          return null
+        } else return scoreComponent
+      } else return scoreComponent
     })
   }
 
   return (
     <div className="leader_board_scores_container">
-      <div className="leader_board_scores_row_container">
+      <div className="leader_board_scores_sub_container">
+        { currentPage === 0 &&
+          <div className='leader_boards_top3_container'>
+            { top3scores }
+          </div>
+        }
         { distribScores }
       </div>
       <LeaderBoardsButtonsRow
-        onChangePage={ onChangePage }
         currentPage={ currentPage }
         maxPages={ leaderBoard.length }
+        onChangePage={ onChangePage }
         tooltipClass={ 'leader_boards_nav_button_tooltip' }
       />
     </div>

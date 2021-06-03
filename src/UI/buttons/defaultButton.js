@@ -52,7 +52,7 @@ const DefaultButton = (props) =>  {
       }
       if(props.buttonType === 'link'){
         let route = JSON.parse(props.params).route
-        document.body.scrollTop = 0
+        requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) })
         if (history.location.pathname !== route) history.push( route )
       }
       if(!!props.onClickFunction){ props.onClickFunction(event) }

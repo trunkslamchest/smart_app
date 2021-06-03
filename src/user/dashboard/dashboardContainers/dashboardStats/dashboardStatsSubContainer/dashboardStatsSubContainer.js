@@ -25,6 +25,7 @@ const DashboardStatsSubContainer = (props) => {
   let qSortSet = Object.entries(sortAnswers)
 
   if(props.qSet === 'category')
+    // eslint-disable-next-line
     qSortSet = Object.entries(qSortSet.sort().reduce((cat, [name, questions]) => (cat[name] = questions , cat), {}))
 
   let distribAnswers = qSortSet.map((qSet, index) => {

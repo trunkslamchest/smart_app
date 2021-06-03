@@ -54,7 +54,7 @@ const LeaderBoardsContainer = (props) => {
           <LeaderBoardsRegionalContainer
             documentTitle='Regional'
             headerText='Countries'
-            pageLimit={ 5 }
+            pageRowLimit={ 5 }
             scores={ props.countryLeaderBoards }
           />
         </Route>
@@ -62,7 +62,7 @@ const LeaderBoardsContainer = (props) => {
           <LeaderBoardsCatContainer
             documentTitle='Category'
             headerText='Categories'
-            pageLimit={ 10 }
+            pageRowLimit={ 10 }
             scores={ props.catLeaderBoards }
           />
         </Route>

@@ -1,0 +1,26 @@
+.leader_boards_scores_row_container_blank {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'LatoLight';
+  font-size: 10pt;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 1);
+  border: 0px;
+  padding: 3px 25px 3px 5px;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.leader_boards_scores_row_sub_container_blank {
+  flex-grow: 2;
+  display: flex;
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.leader_boards_scores_row_sub_container_blank span {
+  padding: 2.5px 0px;
+  text-align: center;
+  font: 600 10pt "LatoLight";
+  outline: -webkit-focus-ring-color auto 0px;
+}

@@ -137,6 +137,7 @@ class DashboardEditProfile extends React.Component {
   onSubmit = (event) => {
     event.persist()
     event.preventDefault()
+    requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) })
     this.onValidateEditProfile()
   }
 

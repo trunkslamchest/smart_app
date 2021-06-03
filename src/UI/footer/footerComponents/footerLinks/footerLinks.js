@@ -11,7 +11,8 @@ const FooterLinks = () => {
   const history = useHistory()
 
   const onPushLink = (event) => {
-    document.body.scrollTop = 0
+    requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) })
+
     let buttonParams = JSON.parse(event.target.attributes.params.value)
     history.push(buttonParams.route)
   }

@@ -26,6 +26,7 @@ class DashboardStatsCard extends React.Component {
   constructor(props) {
     super(props)
     this.buttonRef = React.createRef()
+    this.scrollRef = React.createRef()
     this.statsRef = React.createRef()
   }
 
@@ -47,9 +48,8 @@ class DashboardStatsCard extends React.Component {
   scrollToSection = () => { this.buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' }) }
 
   onDropDown = () => {
-    // if(this.state.showStats) document.body.scrollTop = 0
-    // else this.scrollToSection()
-    this.scrollToSection()
+    if(this.state.showStats) requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) })
+    requestAnimationFrame(() => { requestAnimationFrame(() => { this.scrollRef.current.scrollIntoView({ behavior: "smooth", top: this.scrollRef.current.offsetTop }) }) })
     let switchStats = !this.state.showStats
     this.setState({ showStats: switchStats })
   }
@@ -131,7 +131,10 @@ class DashboardStatsCard extends React.Component {
     }
 
     return (
-      <div className={ this.state.showStats ? 'stats_card_button_wrapper stats_card_button_wrapper_active' : 'stats_card_button_wrapper' }>
+      <div
+        className={ this.state.showStats ? 'stats_card_button_wrapper stats_card_button_wrapper_active' : 'stats_card_button_wrapper' }
+        ref={ this.scrollRef }
+      >
         { statsCardBlock }
       </div>
     )

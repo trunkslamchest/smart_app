@@ -14,7 +14,7 @@ import './userProfileResponse.css'
 
 const UserProfileContainer = (props) => {
 
-  useEffect(() => { document.body.scrollTop = 0 }, [])
+  useEffect(() => {     requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) }) }, [])
 
   let userProfileBlock = <></>
 

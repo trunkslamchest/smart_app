@@ -38,6 +38,10 @@
     margin: 0px;
   }
 
+  .dashboard_profile_country_flag {
+    margin-right: 10px;
+  }
+
   .edit_profile_input_container h3,
   .edit_profile_input_container_last h3 {
     text-align: center;

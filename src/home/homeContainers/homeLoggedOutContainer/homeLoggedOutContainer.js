@@ -15,7 +15,7 @@ import './homeLoggedOutContainer.css'
 
 const HomeLoggedOutContainer = () => {
 
-  useEffect(() => { document.body.scrollTop = 0 }, [])
+  useEffect(() => { requestAnimationFrame(() => { requestAnimationFrame(() => { document.body.scrollTo({ behavior: "smooth", top: 0 }) }) }) }, [])
 
   return(
     <div className='home_logged_out_wrapper'>

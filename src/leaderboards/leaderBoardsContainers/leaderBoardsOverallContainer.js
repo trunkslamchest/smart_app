@@ -12,19 +12,17 @@ const LeaderBoardsOverallContainer = (props) => {
   return(
     <>
       <LeaderBoardsHeader header_text={ "International" } sub_text={ "Rating" } />
-      { props.overallLeaderBoards &&
-        <LeaderBoardsScoresContainer
-          pageLimit={ 15 }
-          scores={ props.overallLeaderBoards.international }
-        />
-      }
+      <LeaderBoardsScoresContainer
+        pageRowLimit={ 15 }
+        scores={ props.overallLeaderBoards }
+      />
     </>
   )
 }
 
 const store = (store) => {
   return {
-    overallLeaderBoards: store.leaderBoards.overall
+    overallLeaderBoards: store.leaderBoards.overall.international
   }
 }
 
