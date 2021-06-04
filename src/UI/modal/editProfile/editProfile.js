@@ -37,9 +37,6 @@ class EditProfile extends React.Component {
   }
 
   componentDidUpdate() {
-    // if(this.props.modalEditProfile && this.props.authStatus === 'authSuccess'){
-    //   this.props.onEditProfileModal(false)
-    // }
     if(this.props.authStatus === 'fail' && !!this.props.authErrors.length && !Object.values(this.state.errors).length){
       let password = []
       this.props.authErrors.forEach(error => password.push(error) )
@@ -78,8 +75,8 @@ class EditProfile extends React.Component {
   }
 
   onCancel = () => {
-    this.props.onEditProfileModal(false)
     this.props.onClearAuthErrors()
+    this.props.onEditProfileModal(false)
   }
 
   clearLocalState = () => {
@@ -104,7 +101,7 @@ class EditProfile extends React.Component {
     const editProfileFormInputs = makeEditProfileFormInputs(this.onChange, this.state.password)
     const editProfileButtons = makeEditProfileButtons(glyphIndex, this.onSubmit, this.onCancel)
 
-    if(!this.props.modalLoading && !this.props.authLoading)
+    if(!this.props.modalLoading && !this.props.authLoading && !this.state.validationLoading)
       modalBlock =
         <div className='edit_profile_wrapper'>
           <ModalHeaderCentered header_text='Confirm Email Update' />

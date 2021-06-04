@@ -43,7 +43,6 @@ export {
   clearAuthStatus2,
   clearAuthErrors,
   clearUserCache
-  // setAuthRedirectPath,
 } from './authActions'
 
 export {
@@ -71,7 +70,6 @@ export {
 } from './userActions'
 
 export {
-  // getQuestionTotals,
   clearQuestionTotals,
   storeQuestionTotals,
   updateQuestionTotalsFromPlayController,
@@ -127,14 +125,12 @@ export {
 } from './playActions'
 
 export {
-  // getAchievements,
   storeAchievements,
   clearAchievements,
   updateAchievements
 } from './achievementActions'
 
 export {
-  // getUserProfile,
   storeUserProfile,
   clearUserProfile,
   updateUserProfileStatus,

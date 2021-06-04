@@ -85,7 +85,7 @@ const SelectionContainer = (props) => {
   }
 
   return(
-    !props.modalLoading &&
+    !props.showModal &&
       <div className='selection_wrapper'>
         <PlayHeaderCentered header_text={ `Select A ${ headerText }` } />
         <DefaultButtonsContainer
@@ -103,7 +103,7 @@ const SelectionContainer = (props) => {
 const store = (store) => {
   return {
     authStatus: store.auth.status,
-    modalLoading: store.modal.loading,
+    showModal: store.modal.showModal,
     playGameMode: store.play.gameMode,
     playGameState: store.play.gameState,
     playGameQset: store.play.gameQset,

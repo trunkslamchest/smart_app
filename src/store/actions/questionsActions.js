@@ -142,7 +142,7 @@ export const clearStaticUserQuestion = (res) => {
 
 export const updateStaticQuestionVotes = (votes, vote, rating) => {
   return dispatch => {
-    dispatch(updateStaticQuestionVoteStatus('updateStaticQuestionVote'))
+    dispatch(updateStaticQuestionVoteStatus('updateStaticQuestionVote', true))
     dispatch(initUpdateStaticQuestionVotes(votes, rating))
     dispatch(updateStaticUserVote(vote))
   }
@@ -156,10 +156,11 @@ const initUpdateStaticQuestionVotes = (votes, rating) => {
   }
 }
 
-export const updateStaticQuestionVoteStatus = (status) => {
+export const updateStaticQuestionVoteStatus = (status, loading) => {
   return {
     type: actionTypes.UPDATE_STATIC_QUESTION_VOTE_STATUS,
-    voteStatus: status
+    voteStatus: status,
+    voteLoading: loading
   }
 }
 
@@ -172,7 +173,7 @@ export const clearStaticQuestionVoteStatus = () => {
 
 export const updateStaticUserVote = (vote) => {
   return dispatch => {
-    dispatch(updateStaticQuestionVoteStatus('updateStaticUserVote'))
+    dispatch(updateStaticQuestionVoteStatus('updateStaticUserVote', true))
     dispatch(initUpdateStaticUserVote(vote))
   }
 }

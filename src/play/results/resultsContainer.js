@@ -144,20 +144,21 @@ const ResultsContainer = (props) => {
   }
 
   return(
-    <>
-      <DefaultButtonsContainer
-        buttons={ makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute }) }
-        buttonClass={ 'nav_bar_button' }
-        buttonContainerClass={ 'nav_bar_button_container' }
-        buttonRow={ true }
-        containerClass={ 'nav_bar_container' }
-        enableButton={ true }
-        tooltipClass={ 'nav_bar_tooltip' }
-      />
-      <div className='results_wrapper'>
-        { routeBoard }
-      </div>
-    </>
+    !props.showModal &&
+      <>
+        <DefaultButtonsContainer
+          buttons={ makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute }) }
+          buttonClass={ 'nav_bar_button' }
+          buttonContainerClass={ 'nav_bar_button_container' }
+          buttonRow={ true }
+          containerClass={ 'nav_bar_container' }
+          enableButton={ true }
+          tooltipClass={ 'nav_bar_tooltip' }
+        />
+        <div className='results_wrapper'>
+          { routeBoard }
+        </div>
+      </>
   )
 }
 
@@ -169,6 +170,7 @@ const store = (store) => {
     playResults: store.play.results,
     playQuestion: store.play.question,
     playVoteStatus: store.play.voteStatus,
+    showModal: store.modal.showModal,
     userAnswered: store.play.question && store.user.questions ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion && store.user.questions ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
   }
 }

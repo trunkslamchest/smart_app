@@ -84,14 +84,13 @@ const Dashboard = (props) => {
       </>
     }
 
-  return( (!props.modalLoading || !props.authLoading) && dashboardBlock )
+  return !props.showModal && dashboardBlock
 }
 
 const store = (store) => {
   return {
     authStatus: store.auth.status,
-    authLoading: store.auth.loading,
-    modalLoading: store.modal.loading
+    showModal: store.modal.showModal
   }
 }
 

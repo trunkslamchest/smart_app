@@ -196,7 +196,6 @@ export const authUser = () => {
 export const getSmarts = (user_name) => {
   let obj = user_name ? { user_name: user_name } : { id: localStorage.id }
   return dispatch => {
-    // authFunctions('getSmarts', fetch.get.smarts, localStorage.id)
     authFunctions('getSmarts', fetch.get.smarts, obj)
     .then(resObj => {
       if(resObj === null) localStorage.clear()

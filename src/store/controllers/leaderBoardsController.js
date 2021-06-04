@@ -22,6 +22,7 @@ const LeaderBoardsController = (props) => {
   const [displayLeaderBoards, setDisplayLeaderBoards] = useState(false)
 
   const {
+    authStatus,
     leaderBoardCategories,
     leaderBoardLoading,
     leaderBoardOverall,
@@ -45,8 +46,8 @@ const LeaderBoardsController = (props) => {
   }
 
   const initLeaderBoardsModule = useCallback(() => {
-    onLoadingModal(true)
     onSetLoadingModalType('leaderBoards', 'leaderBoards')
+    onLoadingModal(true)
     onUpdateLeaderBoardsLoadingStatus(true)
     onUpdateLeaderBoardsStatus('initLeaderBoards')
   }, [
@@ -75,20 +76,21 @@ const LeaderBoardsController = (props) => {
     onUpdateLeaderBoardsStatus('displayLeaderBoards')
     setDisplayLeaderBoards(true)
     onUpdateLeaderBoardsLoadingStatus(false)
-    onLoadingModal(false)
   }, [
     onUpdateLeaderBoardsStatus,
-    onUpdateLeaderBoardsLoadingStatus,
+    onUpdateLeaderBoardsLoadingStatus
+  ])
+
+  const leaderBoardsCleanupModule = useCallback(() => {
+    setOverallLeaderBoards(false)
+    setCatLeaderBoards(false)
+    setTimeout(() => { onLoadingModal(false) }, 250)
+  }, [
     onLoadingModal
   ])
 
-  const leaderBoardsCleanupModule = () => {
-    setOverallLeaderBoards(false)
-    setCatLeaderBoards(false)
-  }
-
   useOnMount(() => {
-    if(!leaderBoardStatus && !leaderBoardOverall) initLeaderBoardsModule()
+    if(!leaderBoardStatus && !leaderBoardOverall && !localStorage.id) initLeaderBoardsModule()
     return () => reset()
   }, [
     leaderBoardOverall,
@@ -105,11 +107,13 @@ const LeaderBoardsController = (props) => {
   }
 
   useEffect(() => {
+    if(!leaderBoardStatus && !leaderBoardOverall && authStatus === 'authValid') initLeaderBoardsModule()
     if(leaderBoardStatus === 'initLeaderBoards' && !overallLeaderBoards) getOverallLeaderBoardsModule()
     if(leaderBoardStatus === 'getOverallLeaderBoards' && leaderBoardOverall && !catLeaderBoards) getCatLeaderBoardsModule()
     if(leaderBoardStatus === 'getCatLeaderBoards' && leaderBoardOverall && leaderBoardCategories && !displayLeaderBoards) displayLeaderBoardsModule()
     if(leaderBoardOverall && leaderBoardCategories && !leaderBoardLoading) leaderBoardsCleanupModule()
   }, [
+    authStatus,
     catLeaderBoards,
     displayLeaderBoards,
     leaderBoardCategories,
@@ -117,17 +121,18 @@ const LeaderBoardsController = (props) => {
     leaderBoardOverall,
     leaderBoardStatus,
     overallLeaderBoards,
+    initLeaderBoardsModule,
     getOverallLeaderBoardsModule,
     getCatLeaderBoardsModule,
     displayLeaderBoardsModule,
+    leaderBoardsCleanupModule
   ])
 
   return(
     <>
       {
         props.leaderBoardStatus === 'displayLeaderBoards' &&
-        !props.leaderBoardLoading &&
-        !props.modalLoading &&
+        !props.showModal &&
           <LeaderBoardsContainer
             overallRoute={ routes.leader_boards + '/overall' }
             countriesRoute={ routes.leader_boards + '/countries' }
@@ -140,7 +145,8 @@ const LeaderBoardsController = (props) => {
 
 const store = (store) => {
   return {
-    modalLoading: store.modal.loading,
+    authStatus: store.auth.status,
+    showModal: store.modal.showModal,
     leaderBoardStatus: store.leaderBoards.status,
     leaderBoardLoading: store.leaderBoards.loading,
     leaderBoardOverall: store.leaderBoards.overall,

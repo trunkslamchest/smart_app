@@ -185,14 +185,17 @@ class DashboardEditProfile extends React.Component {
         this.checkUserExists()
       }
     }
-    else this.props.onLoadingModal(false)
+    // else this.props.onLoadingModal(false)
+    else setTimeout(() => { this.props.onLoadingModal(false) }, 250)
+
   }
 
   checkUserExists = () => {
     checkFunctions('checkUserName', check.user_name, { old_user_name: this.props.userInfo.user_name, new_user_name: this.state.user_name, type: 'editProfile' })
     .then(resObj => {
       if(!resObj.valid) {
-        this.props.onLoadingModal(false)
+        // this.props.onLoadingModal(false)
+        setTimeout(() => { this.props.onLoadingModal(false) }, 250)
         this.setState({ form: { valid: false, user_name: { valid: resObj.valid, errors: [ resObj.errors ] }, pending: false  } })
       }
       else this.onValidation()

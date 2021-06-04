@@ -82,7 +82,7 @@ class AuthController extends React.Component {
             expires: "360000"
           })
         } else {
-          if(this.props.modalLoading) this.props.onLoadingModal(false)
+          if(this.props.modalLoading) setTimeout(() => { this.props.onLoadingModal(false) }, 250)
           this.clearLocalStorageModule()
           return "temp error 0293"
         }
@@ -124,9 +124,7 @@ class AuthController extends React.Component {
     return render
   }
 
-  componentWillUnmount(){
-    this.props.onShowModal(false)
-  }
+  componentWillUnmount(){ this.props.onShowModal(false) }
 
   authSignUpLogInRefreshGroup = () => {
     if((this.props.authStatus === 'updateAuthDisplayNameSuccess' ||
@@ -155,7 +153,6 @@ class AuthController extends React.Component {
     if(!this.props.allAchievements && !this.state.clearAuthCreds) this.clearAuthCredsModule()
     if(!this.props.authId && !this.state.clearLocalStorage) this.authFinalizeLogOutModule()
     if(this.props.authStatus === 'authSuccess' && !this.props[formatAuthType]) this.authRedirectModule(authType)
-
   }
 
   authFailModule = () => {
@@ -232,13 +229,11 @@ class AuthController extends React.Component {
     this.setState({ authValid: true })
     localStorage.authValid = true
 
-    if(this.props.authType === 'editProfile' || this.props.authType === 'editProfileModal') this.props.history.push( routes.dashboard_profile )
-    if(!!this.props.modalLoading) this.props.onLoadingModal(false)
-    if(!!this.props.modalLogIn) this.props.onLogInModal(false)
-    if(!!this.props.modalSignUp) this.props.onSignUpModal(false)
-    if(!!this.props.modalDeleteProfile) this.props.onDeleteProfileModal(false)
-    if(!!this.props.modalEditProfile) this.props.onEditProfileModal(false)
-    this.props.onAuthUpdateLoadingStatus(false)
+    if(!!this.props.modalLoading) setTimeout(() => { this.props.onLoadingModal(false) }, 250)
+    if(!!this.props.modalLogIn) setTimeout(() => { this.props.onLogInModal(false) }, 250)
+    if(!!this.props.modalSignUp) setTimeout(() => { this.props.onSignUpModal(false) }, 250)
+    if(!!this.props.modalDeleteProfile) setTimeout(() => { this.props.onDeleteProfileModal(false) }, 250)
+    if(!!this.props.modalEditProfile) setTimeout(() => { this.props.onEditProfileModal(false) }, 250)
 
     if(this.props.authErrors.length) this.props.onClearAuthErrors()
     if(this.props.authStatus2) this.props.onClearAuthStatus2()
@@ -246,21 +241,22 @@ class AuthController extends React.Component {
     if(this.props.authSmartCache) this.props.onClearSmartCache()
     this.authRedirectModule(this.props.authType)
     if(this.props.authType) this.props.onClearAuthType()
+    this.props.onAuthUpdateLoadingStatus(false)
   }
 
   authFinalizeLogOutModule = () => {
     this.setState({ clearLocalStorage: true })
     this.props.onAuthUpdateStatus('authSuccess')
     this.clearLocalStorageModule()
-    if(!!this.props.modalLoading) this.props.onLoadingModal(false)
-    if(!!this.props.modalLogOut) this.props.onLogOutModal(false)
-    if(!!this.props.modalDeleteProfile) this.props.onDeleteProfileModal(false)
+    if(!!this.props.modalLoading) setTimeout(() => { this.props.onLoadingModal(false) }, 250)
+    if(!!this.props.modalLogOut) setTimeout(() => { this.props.onLogOutModal(false) }, 250)
+    if(!!this.props.modalDeleteProfile) setTimeout(() => { this.props.onDeleteProfileModal(false) }, 250)
   }
 
   authRedirectModule = (authType) => {
-    if(authType === 'signUp') {
-      this.props.history.push( routes.home )
-    }
+    if(authType === 'signUp') this.props.history.push( routes.home )
+    if(authType === 'editProfile' || authType === 'editProfileModal') this.props.history.push( routes.dashboard_profile )
+
     if(authType === 'deleteProfile' || authType === 'logOut') {
       this.props.history.push( routes.home )
       this.props.onClearAuthStatus()

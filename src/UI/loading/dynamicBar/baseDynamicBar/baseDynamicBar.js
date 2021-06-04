@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import { loadingBarClassSwitch } from './barFunctions/loadingBarClassSwitch'
@@ -8,17 +8,50 @@ import { loadingBarTextSwitch } from './barFunctions/loadingBarTextSwitch'
 import './baseDynamicBar.css'
 
 const BaseDynamicBar = (props) => {
-  let loadStatus
+
+  const [loadStatus, setLoadStatus] = useState(null)
+
+  const {
+    authStatus,
+    leaderboardsStatus,
+    commentStatus,
+    modalType,
+    playStatus,
+    profileStatus,
+    questionStatus,
+    staticCommentStatus,
+    staticVoteStatus,
+    voteStatus
+  } = props
+
+  console.log(props)
+
   let barType = props.barType || props.authType
 
-  if(props.modalType === 'auth') loadStatus = props.authStatus
-  if(props.modalType === 'play') loadStatus = props.playStatus
-  if(props.modalType === 'leaderBoards') loadStatus = props.leaderboardStatus
-  if(props.modalType === 'userProfile') loadStatus = props.profileStatus
-
-
-  if(props.modalType === 'questionVote') loadStatus = props.voteStatus
-  if(props.modalType === 'questionComment') loadStatus = props.commentStatus || props.staticCommentStatus
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if(modalType === 'auth') setLoadStatus(authStatus)
+        if(modalType === 'leaderBoards') setLoadStatus(leaderboardsStatus)
+        if(modalType === 'play') setLoadStatus(playStatus)
+        if(modalType === 'staticQuestion') setLoadStatus(questionStatus)
+        if(modalType === 'questionVote') setLoadStatus(voteStatus || staticVoteStatus)
+        if(modalType === 'questionComment') setLoadStatus(commentStatus || staticCommentStatus)
+        if(modalType === 'userProfile') setLoadStatus(profileStatus)
+      })
+    })
+  }, [
+    authStatus,
+    commentStatus,
+    leaderboardsStatus,
+    modalType,
+    playStatus,
+    profileStatus,
+    questionStatus,
+    staticCommentStatus,
+    staticVoteStatus,
+    voteStatus
+  ])
 
   return(
     <div className="dyanmic_bar_container">
@@ -36,12 +69,14 @@ const store = store => {
   return {
     authType: store.auth.authType,
     authStatus: store.auth.status,
-    leaderboardStatus: store.leaderBoards.status,
-    playStatus: store.play.status,
-    voteStatus: store.play.voteStatus,
     commentStatus: store.play.commentStatus,
+    leaderboardsStatus: store.leaderBoards.status,
+    playStatus: store.play.status,
+    profileStatus: store.profile.status,
     staticCommentStatus: store.questions.commentStatus,
-    profileStatus: store.profile.status
+    staticVoteStatus: store.questions.voteStatus,
+    voteStatus: store.play.voteStatus,
+    questionStatus: store.questions.status
   }
 }
 

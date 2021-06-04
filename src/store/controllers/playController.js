@@ -148,7 +148,7 @@ const PlayController = (props) => {
   ])
 
   const selectGameModeModule = useCallback(() => {
-    onLoadingModal(false)
+    setTimeout(() => { onLoadingModal(false)  }, 250)
     onUpdateGameStatus('selectGameMode', false)
     onSetGameState('select')
   }, [
@@ -158,7 +158,7 @@ const PlayController = (props) => {
   ])
 
   const reSelectGameModeModule = () => {
-    if(props.modalLoading) props.onLoadingModal(false)
+    if(props.modalLoading) setTimeout(() => { props.onLoadingModal(false) }, 250)
     props.onUpdateGameStatus('selectGameMode', false)
     if(!props.playGameState) props.onSetGameState('select')
     if(props.playQuestion) props.onResetQuestion()
@@ -176,7 +176,7 @@ const PlayController = (props) => {
     else history.push( routes[playGameMode] + '/completed' )
 
     onSetGameState('completed')
-    onLoadingModal(false)
+    setTimeout(() => { onLoadingModal(false) }, 250)
   }, [
     history,
     playGameMode,
@@ -215,7 +215,7 @@ const PlayController = (props) => {
     } else {
       onUpdateGameStatus('displayQuestion', false)
       onSetGameState('question')
-      onLoadingModal(false)
+      setTimeout(() => { onLoadingModal(false) }, 250)
     }
   }, [
     playGameState,
@@ -336,9 +336,9 @@ const PlayController = (props) => {
   ])
 
   const displayResultsModule = useCallback(() => {
-    onUpdateGameStatus('displayResults', false)
+    onUpdateGameStatus('displayResults', true)
     history.push( routes[playGameMode] + '/results/stats' )
-    onLoadingModal(false)
+    setTimeout(() => { onLoadingModal(false) }, 250)
   }, [
     history,
     playGameMode,
@@ -440,19 +440,20 @@ const PlayController = (props) => {
       if(playGameState === 'answered' && playStatus === 'updateQuestionTotalsSuccess' && playQuestionAnswer) updateUserQuestionsModule()
       if(playGameState === 'answered' && playStatus === 'updateUserQuestionsSuccess') setResultsModule()
       if(playGameState === 'results' && playStatus === 'setAllResultsSuccess') displayResultsModule()
+
       if(playGameState === 'results' && voteStatus === 'initVote' && playResults.vote) updateUserVotesModule()
 
       if(playGameState === 'results'
-         && voteStatus === 'voteSuccess'
-         && userQuestions.list[playQuestionId].vote)
-         displayVotesModule()
+        && voteStatus === 'voteSuccess'
+        && userQuestions.list[playQuestionId].vote)
+        setTimeout(() => { displayVotesModule() }, 250)
 
       if(playGameState === 'results' && commentStatus === 'initComment' && playResults.comment) updateUserCommentsModule()
 
       if(playGameState === 'results'
         && commentStatus === 'commentSuccess'
         && userQuestions.list[playQuestionId].comments[playResults.comment.cid])
-        displayCommentsModule()
+        setTimeout(() => { displayCommentsModule() }, 250)
     }
   }, [
     authLoading,

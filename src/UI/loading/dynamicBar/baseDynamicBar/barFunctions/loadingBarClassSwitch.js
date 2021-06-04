@@ -48,8 +48,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'clearAchievements') barClass = 'loading_bar_12'
     if(status === 'clearAuthCreds') barClass = 'loading_bar_13'
     if(status === 'clearLocalStorage') barClass = 'loading_bar_14'
-    if(status === 'authSuccess') barClass = 'loading_bar_15'
-
+    if(status === 'authSuccess') barClass = 'loading_bar_final'
   }
 
   if(barType === 'userProfile') {
@@ -80,7 +79,7 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'setQsetSuccess') barClass = 'loading_bar_11'
     if(status === 'setByDiff') barClass = 'loading_bar_13'
     if(status === 'setByCat') barClass = 'loading_bar_15'
-    if(status === 'setQuestionSuccess') barClass = 'loading_bar_17'
+    if(status === 'setQuestionSuccess') barClass = 'loading_bar_final'
     if(status === 'displayQuestion') barClass = 'loading_bar_final'
   }
 
@@ -93,12 +92,13 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'updateUserQuestionsSuccess') barClass = 'loading_bar_15'
     if(status === 'setAllResultsSuccess') barClass = 'loading_bar_17'
     if(status === 'displayResults') barClass = 'loading_bar_final'
-
   }
 
   if(barType === 'questionVote'){
     if(status === 'initVote') barClass = 'loading_bar_5'
-    if(status === 'sentVote') barClass = 'loading_bar_10'
+    if(status === 'sentVote') barClass = 'loading_bar_8'
+    if(status === 'updateStaticQuestionVote') barClass = 'loading_bar_10'
+    if(status === 'updateStaticUserVote') barClass = 'loading_bar_15'
     if(status === 'voteSuccess') barClass = 'loading_bar_final'
   }
 
@@ -106,6 +106,13 @@ export var loadingBarClassSwitch = function(barType, status) {
     if(status === 'initComment') barClass = 'loading_bar_5'
     if(status === 'sentComment' || status === 'updateStaticQuestionComment') barClass = 'loading_bar_10'
     if(status === 'commentSuccess') barClass = 'loading_bar_final'
+  }
+
+  if(barType === 'staticQuestion'){
+    if(status === 'initStaticQuestion') barClass = 'loading_bar_5'
+    if(status === 'getStaticQuestion' || status === 'updateStaticQuestionComment') barClass = 'loading_bar_10'
+    if(status === 'setStaticUserResults') barClass = 'loading_bar_15'
+    if(status === 'displayStaticQuestion') barClass = 'loading_bar_final'
   }
 
   return barClass

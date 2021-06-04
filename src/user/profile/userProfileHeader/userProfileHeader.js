@@ -25,7 +25,6 @@ const UserProfileHeader = (props) => {
   let last_login =
     <div className='user_profile_header_date_sub_container'>
       <h4>Last Login</h4>
-      {/* <h5>{ props.info.last_login.time } { formatMonth(props.info.last_login.month) } { formatDay(props.info.last_login.day) }, { props.info.last_login.year }</h5> */}
       <h5>{ formatMonth(props.info.last_login.month) } { formatDay(props.info.last_login.day) }, { props.info.last_login.year }</h5>
     </div>
 

@@ -92,20 +92,28 @@ export var loadingBarTextSwitch = function(barType, status) {
     if(status === 'updateQuestionTotalsSuccess') barText = 'Updating Question Totals'
     if(status === 'updateUserQuestionsSuccess') barText = 'Revising User Question Totals'
     if(status === 'setAllResultsSuccess') barText = 'Finalizing Question Results'
-    if(status === 'displayResults') barText = 'Question Results Finalized'
-
+    if(status === 'displayResults') barText = 'Question Results Success'
   }
 
   if(barType === 'questionVote'){
     if(status === 'initVote') barText = 'Validating User Vote'
-    if(status === 'sentVote') barText = 'Fetching Local Votes'
-    if(status === 'voteSuccess') barText = 'Updating Vote Tables'
+    if(status === 'sentVote') barText = 'Votecast Sent'
+    if(status === 'updateStaticQuestionVote') barText = 'Rewriting User Vote'
+    if(status === 'updateStaticUserVote') barText = 'Updating Vote Tables'
+    if(status === 'voteSuccess') barText = 'Vote Success'
   }
 
   if(barType === 'questionComment'){
     if(status === 'initComment') barText = 'Validating User Comment'
-    if(status === 'sentComment' || status === 'updateStaticQuestionComment') barText = 'Fetching Local Comments'
-    if(status === 'commentSuccess') barText = 'Updated Comment Tables'
+    if(status === 'sentComment' || status === 'updateStaticQuestionComment') barText = 'Comment Object Sent'
+    if(status === 'commentSuccess') barText = 'Comment Success'
+  }
+
+  if(barType === 'staticQuestion'){
+    if(status === 'initStaticQuestion') barText = 'Initializing Static Question'
+    if(status === 'getStaticQuestion' || status === 'updateStaticQuestionComment') barText = 'Received Question Data'
+    if(status === 'setStaticUserResults') barText = 'Setting User Statistics'
+    if(status === 'displayStaticQuestion') barText = 'Static Question Success'
   }
 
   return barText

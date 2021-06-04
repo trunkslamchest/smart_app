@@ -99,7 +99,8 @@ const updateStaticQuestionComments = (currentState, action) => {
 const updateStaticQuestionVoteStatus = (currentState, action) => {
   return {
     ...currentState,
-    voteStatus: action.voteStatus
+    voteStatus: action.voteStatus,
+    voteLoading: action.voteLoading
   }
 }
 

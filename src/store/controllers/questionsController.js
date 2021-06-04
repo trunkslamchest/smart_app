@@ -91,7 +91,7 @@ class QuestionsController extends React.Component {
 
   cleanupStaticQuestionModule = () => {
     this.props.onUpdateQuestionLoadingStatus(false)
-    this.props.onLoadingModal(false)
+    setTimeout(() => { this.props.onLoadingModal(false) }, 250)
     this.setState({ initStaticResults: false, initStaticUserResults: false })
   }
 
@@ -120,8 +120,8 @@ class QuestionsController extends React.Component {
 
   successModule = (type) => {
     this.props[`onClearStaticUser${type}`]()
-    this.props[`onClearStaticQuestion${type}Status`]()
-    this.props[`on${type}Loading`](false)
+    setTimeout(() => { this.props[`on${type}Loading`](false) }, 250)
+    setTimeout(() => { this.props[`onClearStaticQuestion${type}Status`]() }, 250)
   }
 
   render(){

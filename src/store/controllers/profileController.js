@@ -94,7 +94,7 @@ const ProfileController = (props) => {
     onUpdateUserProfileStatus('displayProfile')
     setDisplayProfile(true)
     onUpdateUserProfileLoadingStatus(false)
-    onLoadingModal(false)
+    setTimeout(() => { onLoadingModal(false) }, 250)
     onClearSmartCache()
   }, [
     onUpdateUserProfileStatus,
@@ -147,7 +147,7 @@ const ProfileController = (props) => {
     <>
       {
         props.profileStatus === 'displayProfile' &&
-        !props.loadingModal &&
+        !props.showModal &&
         <UserProfileContainer userData={ props.profileData } />
       }
     </>
@@ -158,7 +158,7 @@ const store = (store) => {
   return {
     achievements: store.achievements.all,
     smartCache: store.auth.smartCache,
-    loadingModal: store.modal.loading,
+    showModal: store.modal.showModal,
     questionTotals: store.questions.totals,
     profileData: store.profile.userData,
     profileStatus: store.profile.status

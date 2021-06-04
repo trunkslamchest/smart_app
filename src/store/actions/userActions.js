@@ -31,8 +31,8 @@ export const updateUserInfo = (authType, obj) => {
   return dispatch => {
     userFunctions('patch', fetch.patch.user, obj)
     .then((res) => {
-      dispatch(authUpdateStatus('updateUserSuccess', true))
       dispatch(initUpdateUserInfo(obj.info))
+      dispatch(authUpdateStatus('updateUserSuccess', true))
     })
   }
 }
@@ -179,9 +179,9 @@ export const updateUserQuestionTotalsFromPlayController = (userTotals) => {
 
 export const updateUserVotesFromPlayController = (vote) => {
   return dispatch => {
-    if(vote.type === 'play') dispatch(updateVoteStatus('voteSuccess', true))
-    if(vote.type === 'static') dispatch(updateStaticQuestionVoteStatus('voteSuccess'))
     dispatch(initUpdateUserVotesFromPlayController(vote))
+    if(vote.type === 'play') dispatch(updateVoteStatus('voteSuccess', true))
+    if(vote.type === 'static') dispatch(updateStaticQuestionVoteStatus('voteSuccess', true))
   }
 }
 
@@ -194,9 +194,9 @@ const initUpdateUserVotesFromPlayController = (res) => {
 
 export const updateUserCommentsFromPlayController = (comment) => {
   return dispatch => {
-    if(comment.type === 'play') dispatch(updateCommentStatus('commentSuccess', true))
-    if(comment.type === 'static') dispatch(updateStaticQuestionCommentStatus('commentSuccess', false))
     dispatch(initUpdateUserCommentsFromPlayController(comment))
+    if(comment.type === 'play') dispatch(updateCommentStatus('commentSuccess', true))
+    if(comment.type === 'static') dispatch(updateStaticQuestionCommentStatus('commentSuccess', true))
   }
 }
 

@@ -34,7 +34,6 @@ const updateAchievements = (currentState, action) => {
 
 const achievementReducer = (currentState = initialState, action) => {
   switch(action.type) {
-    // case actionTypes.GET_ACHIEVEMENTS: return storeAchievements(currentState, action);
     case actionTypes.STORE_ACHIEVEMENTS: return storeAchievements(currentState, action);
     case actionTypes.CLEAR_ACHIEVEMENTS: return clearAchievements(currentState, action);
     case actionTypes.UPDATE_ACHIEVEMENTS: return updateAchievements(currentState, action);

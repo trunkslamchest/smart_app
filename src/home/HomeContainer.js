@@ -7,26 +7,20 @@ import HomeLoggedOutContainer from './homeContainers/homeLoggedOutContainer/home
 
 const HomeContainer = (props) => {
 
-  useEffect(() => {
-    document.title = "SmartApp™ | Get Your Smart On"
-  }, [])
+  useEffect(() => { document.title = "SmartApp™ | Get Your Smart On" }, [])
 
   let homePage = <></>
 
-  if(props.authStatus === 'authValid') {
-    homePage = <HomeLoggedInContainer user_name={ props.userName } />
-  } else {
-    homePage = <HomeLoggedOutContainer />
-  }
+  if(props.authStatus === 'authValid') homePage = <HomeLoggedInContainer user_name={ props.userName } />
+  else homePage = <HomeLoggedOutContainer />
 
-  return <>{ (!props.authLoading && !props.modalLoading) && homePage }</>
+  return !props.showModal && homePage
 }
 
 const store = store => {
   return {
     authStatus: store.auth.status,
-    authLoading: store.auth.loading,
-    modalLoading: store.modal.loading,
+    showModal: store.modal.showModal,
     userName: store.user.info ? store.user.info.user_name : null
   }
 }

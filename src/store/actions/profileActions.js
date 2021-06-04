@@ -1,30 +1,11 @@
 import * as actionTypes from './actionTypes'
 
-// import { fetch } from '../../utility/paths'
-// import userFunctions from '../../utility/userFunctions'
-
-// export const getUserProfile = (user_name) => {
-//   return dispatch => {
-//     userFunctions('getUserProfile', fetch.post.userProfile, user_name)
-//     .then(res => {
-//       dispatch(initGetUserProfile(res))
-//     })
-//   }
-// }
-
 export const storeUserProfile = (user) => {
   return {
     type: actionTypes.STORE_USER_PROFILE,
     userData: user
   }
 }
-
-// const initGetUserProfile = (res) => {
-//   return {
-//     type: actionTypes.GET_USER_PROFILE,
-//     userData: res
-//   }
-// }
 
 export const clearUserProfile = () => {
   return {
