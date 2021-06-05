@@ -50,7 +50,7 @@
 }
 
 .add_comment_button_tooltip_wrapper span {
-  color: rgba(200, 200, 200, 1);
+  color: rgba(225, 225, 225, 1);
   font: 300 10pt 'Poppins', 'sans-serif';
   padding: 5px;
 }
