@@ -24,7 +24,7 @@ const BaseDynamicBar = (props) => {
     voteStatus
   } = props
 
-  console.log(props)
+  // console.log(props)
 
   let barType = props.barType || props.authType
 

@@ -56,7 +56,6 @@ export const check = {
 //     staticQuestion: `${process.env.REACT_APP_DEPLOY_GET_STATIC_QUESTION}`,
 //     user: `${process.env.REACT_APP_DEPLOY_GET_USER}`,
 //     users: `${process.env.REACT_APP_DEPLOY_GET_USERS}`
-
 //   },
 //   post: {
 //     user: `${process.env.REACT_APP_DEPLOY_ADD_USER}`,
@@ -88,7 +87,6 @@ export const check = {
 export const routes = {
   root: '/',
   home: '/testSub',
-
   dashboard: '/testSub/dashboard',
   dashboard_achievements: '/testSub/dashboard/achievements',
   dashboard_answers: '/testSub/dashboard/answers',
@@ -99,11 +97,9 @@ export const routes = {
   dashboard_stats: '/testSub/dashboard/stats',
   dashboard_test: '/testSub/dashboard/test',
   dashboard_votes: '/testSub/dashboard/votes',
-
   leader_boards: '/testSub/leaderBoards',
   static_results: '/testSub/results',
   user_profile: '/testSub/users',
-
   play: '/testSub/play',
   quick_play: '/testSub/play/quick',
   quick_question: '/testSub/play/quick/question',
@@ -113,7 +109,6 @@ export const routes = {
   by_cat: '/testSub/play/category',
   by_cat_select: '/testSub/play/category/select',
   by_cat_question: '/testSub/play/category/question',
-
   disclaimer: '/testSub/disclaimer',
   license: '/testSub/license',
   privacy: '/testSub/privacy',
@@ -125,7 +120,6 @@ export const routes = {
 // export const routes = {
   // root: '/',
   // home: '/smartapp',
-
   // dashboard: '/smartapp/dashboard',
   // dashboard_achievements: '/smartapp/dashboard/achievements',
   // dashboard_answers: '/smartapp/dashboard/answers',
@@ -136,11 +130,9 @@ export const routes = {
   // dashboard_stats: '/smartapp/dashboard/stats',
   // dashboard_test: '/smartapp/dashboard/test',
   // dashboard_votes: '/smartapp/dashboard/votes',
-
   // leader_boards: '/smartapp/leaderBoards',
   // static_results: '/smartapp/results',
   // user_profile: '/smartapp/users',
-
   // play: '/smartapp/play',
   // quick_play: '/smartapp/play/quick',
   // quick_question: '/smartapp/play/quick/question',
@@ -150,7 +142,6 @@ export const routes = {
   // by_cat: '/smartapp/play/category',
   // by_cat_select: '/smartapp/play/category/select',
   // by_cat_question: '/smartapp/play/category/question',
-
   // disclaimer: '/smartapp/disclamier',
   // license: '/smartapp/license',
   // privacy: '/smartapp/privacy',
