@@ -43,6 +43,13 @@ const SelectionContainer = (props) => {
         if(playGameMode) reSelectGameMode()
       }
 
+      if(history.location.pathname === routes.by_cat_select) {
+        if(playGameMode !== 'by_cat') setGameMode('by_cat')
+        if(playGameState !== 'select') setGameState('select')
+        if(playGameQset) resetGameQset()
+        if(playQuestion) resetQuestion()
+      }
+
       if(history.location.pathname === routes.by_diff_select) {
         if(playGameMode !== 'by_diff') setGameMode('by_diff')
         if(playGameState !== 'select') setGameState('select')
@@ -50,12 +57,6 @@ const SelectionContainer = (props) => {
         if(playQuestion) resetQuestion()
       }
 
-      if(history.location.pathname === routes.by_cat_select) {
-        if(playGameMode !== 'by_cat') setGameMode('by_cat')
-        if(playGameState !== 'select') setGameState('select')
-        if(playGameQset) resetGameQset()
-        if(playQuestion) resetQuestion()
-      }
     }
   }, [
     authStatus,
@@ -82,8 +83,8 @@ const SelectionContainer = (props) => {
   }
 
   let selectionButtons = makeSelectionButtons(gameModes, routes, onClickFunctions)
-  let difficultyButtons = makeDifficultyButtons(difficulties, routes, onClickFunctions)
   let categoryButtons = makeCategoryButtons(categories, routes, onClickFunctions)
+  let difficultyButtons = makeDifficultyButtons(difficulties, routes, onClickFunctions)
 
   let headerText
   let buttonGroup
@@ -94,16 +95,16 @@ const SelectionContainer = (props) => {
     buttonGroup = selectionButtons
   }
 
-  if(location.pathname === routes.by_diff_select) {
-    document.title = "SmartApp™ | Play | Difficulty | Select"
-    headerText = 'Difficulty'
-    buttonGroup = difficultyButtons
-  }
-
   if(location.pathname === routes.by_cat_select) {
     document.title = "SmartApp™ | Play | Category | Select"
     headerText = 'Category'
     buttonGroup = categoryButtons
+  }
+
+  if(location.pathname === routes.by_diff_select) {
+    document.title = "SmartApp™ | Play | Difficulty | Select"
+    headerText = 'Difficulty'
+    buttonGroup = difficultyButtons
   }
 
   return(
