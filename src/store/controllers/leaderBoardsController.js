@@ -121,36 +121,32 @@ const LeaderBoardsController = (props) => {
     leaderBoardOverall,
     leaderBoardStatus,
     overallLeaderBoards,
-    initLeaderBoardsModule,
+    displayLeaderBoardsModule,
     getOverallLeaderBoardsModule,
     getCatLeaderBoardsModule,
-    displayLeaderBoardsModule,
+    initLeaderBoardsModule,
     leaderBoardsCleanupModule
   ])
 
   return(
-    <>
-      {
-        props.leaderBoardStatus === 'displayLeaderBoards' &&
-        !props.showModal &&
-          <LeaderBoardsContainer
-            overallRoute={ routes.leader_boards + '/overall' }
-            countriesRoute={ routes.leader_boards + '/countries' }
-            catRoute={ routes.leader_boards + '/categories' }
-          />
-      }
-    </>
+    !props.modalLoading &&
+    props.leaderBoardStatus === 'displayLeaderBoards' &&
+      <LeaderBoardsContainer
+        catRoute={ routes.leader_boards + '/categories' }
+        countriesRoute={ routes.leader_boards + '/countries' }
+        overallRoute={ routes.leader_boards + '/overall' }
+      />
   )
 }
 
 const store = (store) => {
   return {
     authStatus: store.auth.status,
-    showModal: store.modal.showModal,
-    leaderBoardStatus: store.leaderBoards.status,
+    leaderBoardCategories: store.leaderBoards.cat,
     leaderBoardLoading: store.leaderBoards.loading,
     leaderBoardOverall: store.leaderBoards.overall,
-    leaderBoardCategories: store.leaderBoards.cat
+    leaderBoardStatus: store.leaderBoards.status,
+    modalLoading: store.modal.loading && store.modal.showModal
   }
 }
 

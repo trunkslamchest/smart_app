@@ -14,13 +14,13 @@ const HomeContainer = (props) => {
   if(props.authStatus === 'authValid') homePage = <HomeLoggedInContainer user_name={ props.userName } />
   else homePage = <HomeLoggedOutContainer />
 
-  return !props.showModal && homePage
+  return !props.modalLoading && homePage
 }
 
 const store = store => {
   return {
     authStatus: store.auth.status,
-    showModal: store.modal.showModal,
+    modalLoading: store.modal.loading && store.modal.showModal,
     userName: store.user.info ? store.user.info.user_name : null
   }
 }

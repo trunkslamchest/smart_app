@@ -24,44 +24,66 @@ const SelectionContainer = (props) => {
   const history = useHistory()
   const location= useLocation()
 
+  const {
+    authStatus,
+    playGameMode,
+    playGameState,
+    playGameQset,
+    playQuestion,
+    reSelectGameMode,
+    resetGameQset,
+    resetQuestion,
+    setGameMode,
+    setGameState
+  } = props
+
   useEffect(() => {
-    if(props.authStatus === 'authValid') {
+    if(authStatus === 'authValid') {
       if(history.location.pathname === routes.play) {
-        if(props.playGameMode) props.reSelectGameMode()
+        if(playGameMode) reSelectGameMode()
       }
 
       if(history.location.pathname === routes.by_diff_select) {
-        if(props.playGameMode !== 'by_diff') props.setGameMode('by_diff')
-        if(props.playGameState !== 'select') props.setGameState('select')
-        if(props.playGameQset) props.resetGameQset()
-        if(props.playQuestion) props.resetQuestion()
+        if(playGameMode !== 'by_diff') setGameMode('by_diff')
+        if(playGameState !== 'select') setGameState('select')
+        if(playGameQset) resetGameQset()
+        if(playQuestion) resetQuestion()
       }
 
       if(history.location.pathname === routes.by_cat_select) {
-        if(props.playGameMode !== 'by_cat') props.setGameMode('by_cat')
-        if(props.playGameState !== 'select') props.setGameState('select')
-        if(props.playGameQset) props.resetGameQset()
-        if(props.playQuestion) props.resetQuestion()
+        if(playGameMode !== 'by_cat') setGameMode('by_cat')
+        if(playGameState !== 'select') setGameState('select')
+        if(playGameQset) resetGameQset()
+        if(playQuestion) resetQuestion()
       }
     }
-  }, [history, props])
+  }, [
+    authStatus,
+    history,
+    playGameMode,
+    playGameState,
+    playGameQset,
+    playQuestion,
+    reSelectGameMode,
+    resetGameQset,
+    resetQuestion,
+    setGameMode,
+    setGameState
+  ])
 
-  const onClickGameModeFunction = (event) => {
+  const onClickFunctions = (event) => {
     let buttonParams = JSON.parse(event.target.attributes.params.value)
-    localStorage.gameMode = buttonParams.gameMode
-    props.onSetGameMode(buttonParams.gameMode)
+    if(!!buttonParams.qSet) props.onSetGameQset(buttonParams.qSet)
+    if(!!buttonParams.gameMode) {
+      localStorage.gameMode = buttonParams.gameMode
+      props.onSetGameMode(buttonParams.gameMode)
+    }
     history.push( buttonParams.route )
   }
 
-  const onClickQsetFunction = (event) => {
-    let buttonParams = JSON.parse(event.target.attributes.params.value)
-    props.onSetGameQset(buttonParams.qSet)
-    history.push( buttonParams.route )
-  }
-
-  let selectionButtons = makeSelectionButtons(gameModes, routes, onClickGameModeFunction)
-  let difficultyButtons = makeDifficultyButtons(difficulties, routes, onClickQsetFunction)
-  let categoryButtons = makeCategoryButtons(categories, routes, onClickQsetFunction)
+  let selectionButtons = makeSelectionButtons(gameModes, routes, onClickFunctions)
+  let difficultyButtons = makeDifficultyButtons(difficulties, routes, onClickFunctions)
+  let categoryButtons = makeCategoryButtons(categories, routes, onClickFunctions)
 
   let headerText
   let buttonGroup
@@ -85,7 +107,7 @@ const SelectionContainer = (props) => {
   }
 
   return(
-    !props.showModal &&
+    !props.modalLoading &&
       <div className='selection_wrapper'>
         <PlayHeaderCentered header_text={ `Select A ${ headerText }` } />
         <DefaultButtonsContainer
@@ -103,7 +125,7 @@ const SelectionContainer = (props) => {
 const store = (store) => {
   return {
     authStatus: store.auth.status,
-    showModal: store.modal.showModal,
+    modalLoading: store.modal.loading && store.modal.showModal,
     playGameMode: store.play.gameMode,
     playGameState: store.play.gameState,
     playGameQset: store.play.gameQset,

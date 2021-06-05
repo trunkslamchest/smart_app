@@ -144,7 +144,7 @@ const ResultsContainer = (props) => {
   }
 
   return(
-    !props.showModal &&
+    !props.modalLoading &&
       <>
         <DefaultButtonsContainer
           buttons={ makeResultsNavBarButtons(resultsNavBarIconIndex, onHelp, onPushLink, { stats: statsRoute, discuss: discussRoute }) }
@@ -170,7 +170,7 @@ const store = (store) => {
     playResults: store.play.results,
     playQuestion: store.play.question,
     playVoteStatus: store.play.voteStatus,
-    showModal: store.modal.showModal,
+    modalLoading: store.modal.loading && store.modal.showModal,
     userAnswered: store.play.question && store.user.questions ? store.user.questions.ids.includes(store.play.question.id) : store.questions.staticQuestion && store.user.questions ? store.user.questions.ids.includes(store.questions.staticQuestion.qid) : 'pending'
   }
 }

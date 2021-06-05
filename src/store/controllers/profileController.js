@@ -144,24 +144,20 @@ const ProfileController = (props) => {
   ])
 
   return(
-    <>
-      {
-        props.profileStatus === 'displayProfile' &&
-        !props.showModal &&
-        <UserProfileContainer userData={ props.profileData } />
-      }
-    </>
+    !props.modalLoading &&
+    props.profileStatus === 'displayProfile' &&
+      <UserProfileContainer userData={ props.profileData } />
   )
 }
 
 const store = (store) => {
   return {
     achievements: store.achievements.all,
-    smartCache: store.auth.smartCache,
-    showModal: store.modal.showModal,
-    questionTotals: store.questions.totals,
+    modalLoading: store.modal.loading && store.modal.showModal,
     profileData: store.profile.userData,
-    profileStatus: store.profile.status
+    profileStatus: store.profile.status,
+    questionTotals: store.questions.totals,
+    smartCache: store.auth.smartCache
   }
 }
 
