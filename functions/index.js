@@ -413,19 +413,18 @@ exports.deleteUser = functions
 
     const reqData = JSON.parse(req.body.data)
 
-    var user = `/users/list/${reqData.uid}`
-
-    var getRef = firebase.database().ref('/').get().then((snap) => {
+    var dbRef = firebase.database().ref('/').get().then((snap) => {
         return snap.val()
       }).catch((error) => {
         console.error(error);
       });
 
-    getRef.then((db) => {
+    dbRef.then((db) => {
       var questions = db.questions.list
       var userTotals = db.users.totals
       var userQuestions = db.users.list[reqData.uid].questions.list
       var commentedQuestions = []
+      var userPath = '/users/list/' + reqData.uid
       var userTotalsObj = {}
       var userTotalsPath = '/users/totals'
 
@@ -453,11 +452,10 @@ exports.deleteUser = functions
           }
         }
 
-      firebase.database().ref(user).remove()
       firebase.database().ref().update(userTotalsObj)
+      firebase.database().ref(userPath).remove()
+      res.json({msg: 'Your Profile has been removed D:'}).status(200)
     })
-
-    res.json({msg: 'Your Profile has been removed D:'}).status(200)
 });
 
 exports.getOverallLeaderBoards = functions
