@@ -105,21 +105,21 @@ const UserStatsTotal = (props) => {
         <div className={ componentClasses.statsTotalSubContainer }>
           <div className={ componentClasses.statsTotalSubWrapper }>
             <div className={ componentClasses.statsTotalSubRow }>
-              { props.userQuestionTotals.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)
+              <span>{ props.userQuestionTotals.answered }/{ props.questionTotals.questions } answered ({ totalQuestionsAnswered }%)</span>
               { trendArrows.answered }
             </div>
             <div className={ componentClasses.statsTotalSubRow }>
-              { props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ props.userQuestionTotals.averages.correct }%)
+              <span>{ props.userQuestionTotals.correct }/{ props.userQuestionTotals.answered } correct ({ props.userQuestionTotals.averages.correct }%)</span>
               { trendArrows.correct }
             </div>
           </div>
           <div className={ componentClasses.statsTotalSubWrapper }>
             <div className={ componentClasses.statsTotalSubRow }>
-              Average Time: { props.userQuestionTotals.averages.avgTime } seconds
+              <span>Average Time: { props.userQuestionTotals.averages.avgTime }<span>s</span></span>
               { trendArrows.averageTime }
             </div>
             <div className={ componentClasses.statsTotalSubRow }>
-              Outta Times: { props.userQuestionTotals.outta_time }
+              <span>Outta Times: { props.userQuestionTotals.outta_time }</span>
               { trendArrows.outtaTime }
             </div>
           </div>

@@ -27,7 +27,7 @@ const DashboardStatsContainer = (props) => {
     statsBlock =
       <div className={ componentClasses.statsContainer }>
         <UserStatsContainer from_dashboard={ true } />
-        <DashboardStatsSubContainer headerText='Difficulties' qSet='difficulty'userTotals={ props.userTotals } />
+        <DashboardStatsSubContainer headerText='Difficulties' qSet='difficulty' userTotals={ props.userTotals } />
         <DashboardStatsSubContainer headerText='Categories' qSet='category' userTotals={ props.userTotals } />
       </div>
 

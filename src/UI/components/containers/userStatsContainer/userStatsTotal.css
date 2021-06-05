@@ -30,7 +30,19 @@
 .user_stats_total_sub_row {
   display: flex;
   justify-content: center;
-  padding: 2.5px 0px;
+  padding: 0px;
+}
+
+.user_stats_total_sub_row span {
+  font-family: 'Poppins';
+  font-size: 11pt;
+  font-weight: 300;
+}
+
+.user_stats_total_sub_row span span {
+  font-family: 'PoppinsSemiBold';
+  font-size: 11pt;
+  font-weight: 300;
 }
 
 .user_stats_xp_perf_container {

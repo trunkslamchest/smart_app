@@ -57,3 +57,12 @@
   margin-block-end: 0px;
   text-align: center;
 }
+
+.results_perf_sub_wrapper_text h5 span {
+  font-family: 'PoppinsSemiBold';
+  font-size: 10pt;
+  font-weight: 300;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-align: center;
+}

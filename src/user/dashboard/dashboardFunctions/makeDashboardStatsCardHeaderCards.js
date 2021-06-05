@@ -47,7 +47,9 @@ const makeDashboardStatsCardHeaderCards = (userTotals, qSetTotals, questionsAnsw
       },
       {
         header_text: 'Average Time',
-        span_text: `${ (userTotals.averages.avgTime).toFixed(2) } seconds`,
+        // span_text: `${ (userTotals.averages.avgTime).toFixed(2) }s`,
+        span_text: <>{ (userTotals.averages.avgTime).toFixed(2) }<span>s</span></>,
+
         arrow_img: calcTrend(userTotals.averages.avgTime, qSetTotals.averages.avgTime, 'time', arrows)
       },
       {

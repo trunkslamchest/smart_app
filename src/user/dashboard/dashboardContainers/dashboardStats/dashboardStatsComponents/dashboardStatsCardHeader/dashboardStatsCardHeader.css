@@ -26,3 +26,7 @@
 .stats_card_header_card_wrapper span {
   font: 300 10pt "Lato";
 }
+
+.stats_card_header_card_wrapper span span{
+  font: 600 10pt "Lato";
+}

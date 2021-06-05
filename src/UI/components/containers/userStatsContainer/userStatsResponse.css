@@ -22,7 +22,7 @@
 
   .user_stats_xp_perf_container {
     order: 1;
-    padding: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
     width: 100%;
   }
 
@@ -30,4 +30,8 @@
     padding: 10px 30px;
   }
 
+  .user_stats_total_sub_row span,
+  .user_stats_total_sub_row span span {
+    font-size: calc(12px + (16 - 12) * ((100vw - 360px) / (769 - 360)))
+  }
 }

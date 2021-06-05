@@ -34,6 +34,11 @@
 }
 
 @font-face {
+  font-family: "PoppinsSemiBold";
+  src: url("./Poppins-SemiBold.ttf") format("truetype")
+}
+
+@font-face {
   font-family: "PoppinsLight";
   src: url("./Poppins-Light.ttf") format("truetype")
 }

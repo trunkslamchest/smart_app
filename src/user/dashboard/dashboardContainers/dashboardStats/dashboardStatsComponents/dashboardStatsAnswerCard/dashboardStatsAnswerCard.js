@@ -141,7 +141,7 @@ const DashboardStatsAnswerCard = (props) => {
         <div className={ componentClasses.cardWrapperGroupRight }>
           <div className={ bottomCardRightClass }>
             <h4>Your Time</h4>
-            <span>{ props.answer.time } seconds</span>
+            <span>{ (props.answer.time / 1.00).toFixed(2) }<span>s</span></span>
           </div>
           <div className={ componentClasses.cardWrapper }>
             <h4>Your Answer</h4>
