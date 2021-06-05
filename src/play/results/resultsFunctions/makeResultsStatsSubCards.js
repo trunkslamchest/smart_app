@@ -71,7 +71,7 @@ const makeResultsStatsSubCards = (
                   cardClass: perfSubCard,
                   subTextClass: perfSubWrapperText,
                   headerText: 'Time',
-                  subHeaderText: <>{ userQuestionTime }<span>s</span></>,
+                  subHeaderText: <>{ (userQuestionTime / 1.00).toFixed(2) }<span>s</span></>,
                   trendArrows: makeResultsTrendArrows(averageTime, questionTime, 'time', trendArrowIndex, false)
                 }
               ]
@@ -99,7 +99,7 @@ const makeResultsStatsSubCards = (
                   cardClass: perfSubCard,
                   subTextClass: perfSubWrapperText,
                   headerText: 'Average Time',
-                  subHeaderText: <>{ userNewAvgTime }<span>s</span></>,
+                  subHeaderText: <>{ (userNewAvgTime / 1.00).toFixed(2) }<span>s</span></>,
                   trendArrows: makeResultsTrendArrows(userNewAvgTime, userOldAvgTime, 'time', trendArrowIndex, true)
                 }
               ]
@@ -154,7 +154,7 @@ const makeResultsStatsSubCards = (
                   cardClass: questionSubCard,
                   subTextClass: perfSubWrapperText,
                   headerText: 'Average Time',
-                  subHeaderText: <>{ averageTime }<span>s</span></>
+                  subHeaderText: <>{ (averageTime / 1.00).toFixed(2) }<span>s</span></>
                 }
               ]
             }
