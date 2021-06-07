@@ -7,58 +7,77 @@ import CarouselButtonContainer from './carouselComponents/carouselButton/carouse
 import './defaultCarouselContainer.css'
 import './defaultCarouselContainerResponse.css'
 
-
 const DefaultCarouselContainer = (props) => {
 
-  const [slideState, setSlideState] = useState("mount")
-  const [currentSlide, setCurrentSlide] = useState(null)
   const [currentPosition, setCurrentPosition] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(null)
+  const [slideState, setSlideState] = useState("mount")
+  const [stopTimer, setStopTimer] = useState(false)
 
   const { slides } = props
 
   const startSliderTimerRef = useRef(null)
   const slideInTimerRef = useRef(null)
+  const slideDisplayTimerRef = useRef(null)
   const slideOutTimerRef = useRef(null)
+  const switchSlideTimerRef = useRef(null)
+  const manualSwitchSlideTimerRef = useRef(null)
 
   useEffect(() => {
-    setCurrentSlide(slides[currentPosition])
 
-    const slideOut = () => {
-      setSlideState("dismount")
-      clearInterval(slideOutTimerRef.current)
+    if(!stopTimer) {
+      setCurrentSlide(slides[currentPosition])
+      startSliderTimerRef.current = setTimeout(function(){ slideIn() }, 100)
+
+      const slideIn = () => {
+        setSlideState("mount")
+        slideDisplayTimerRef.current = setTimeout( function(){ slideDisplay() }, 500)
+      }
+
+      const slideDisplay = () => {
+        setSlideState("mounted")
+        slideOutTimerRef.current = setTimeout(function(){ slideOut()}, 10000)
+      }
+
+      const slideOut = () => {
+        setSlideState("dismount")
+        switchSlideTimerRef.current = setTimeout(function(){ switchSlide() }, 250)
+      }
+
+      const switchSlide = () => {
+        setSlideState("switchSlide")
+        let nextPosition = currentPosition < slides.length - 1 ? currentPosition + 1 : 0
+        setCurrentSlide(slides[nextPosition])
+        setCurrentPosition(nextPosition)
+        slideInTimerRef.current = setTimeout(function(){ slideIn() }, 100)
+      }
     }
-
-    const slideTimer = () => {
-      slideOutTimerRef.current = setInterval(slideOut, 9750)
-      let nextPosition = currentPosition < slides.length - 1 ? currentPosition + 1 : 0
-
-      setSlideState("mount")
-      setCurrentSlide(slides[nextPosition])
-      setCurrentPosition(nextPosition)
-    }
-
-    startSliderTimerRef.current =  setInterval(slideTimer, 10000)
-    slideOutTimerRef.current = setInterval(slideOut, 9750)
 
     return function cleanup() {
-      clearInterval(startSliderTimerRef.current)
+      clearTimeout(startSliderTimerRef.current)
       clearTimeout(slideInTimerRef.current)
-      clearInterval(slideOutTimerRef.current)
+      clearTimeout(slideDisplayTimerRef.current)
+      clearTimeout(slideOutTimerRef.current)
+      clearTimeout(switchSlideTimerRef.current)
     }
-  }, [slides, currentPosition])
+  }, [stopTimer, slides, currentPosition])
 
   const switchPosition = (position) => {
-    clearInterval(startSliderTimerRef.current)
-    clearInterval(slideOutTimerRef.current)
+
+    setStopTimer(true)
+    clearTimeout(startSliderTimerRef.current)
+    clearTimeout(slideInTimerRef.current)
+    clearTimeout(slideDisplayTimerRef.current)
+    clearTimeout(slideOutTimerRef.current)
+    clearTimeout(switchSlideTimerRef.current)
 
     let slideIn = (position) => {
       setSlideState("mount")
       setCurrentSlide(props.slides[position])
       setCurrentPosition(position)
-      clearTimeout(slideInTimerRef.current)
     }
 
-    slideInTimerRef.current = setTimeout(function(){ slideIn(position) }, 250)
+    manualSwitchSlideTimerRef.current = setTimeout(function(){ slideIn(position) }, 250)
     setSlideState("dismount")
   }
 

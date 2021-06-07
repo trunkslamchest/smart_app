@@ -1,3 +1,4 @@
+
 .default_carousel_slide_container {
   display: flex;
   flex-direction: row;
@@ -7,20 +8,20 @@
   opacity: 1;
   padding: 60px 0px 15px 0px;
   width: 90%;
+}
+
+.mount_default_carousel_slide_container {
   animation: onmount_default_carousel_slide .5s ease-in-out 1;
 }
 
 .dismount_default_carousel_slide_container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin: 0px 0px 0px 0px;
-  opacity: 1;
-  padding: 60px 0px 15px 0px;
-  width: 90%;
   animation: dismount_default_carousel_slide .5s ease-in-out 1;
+}
 
+.switch_slide_default_carousel_slide_container {
+  animation: none;
+  opacity: 0;
+  transform: translateX(-2000px);
 }
 
 @keyframes onmount_default_carousel_slide
