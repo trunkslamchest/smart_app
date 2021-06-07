@@ -1,33 +1,53 @@
 const makeDashboardStatsCardHeaderCards = (userTotals, qSetTotals, questionsAnswered, trendArrowIndex) => {
 
   const arrows = {
-    up_arrow:
+    even_bar:
+      <img
+        alt='Even with global average'
+        className='trend_arrow'
+        src={ trendArrowIndex.greyEvenBar }
+        title='Even with global average'
+      />,
+    green_up_arrow:
       <img
         alt='Higher than global average'
         className='trend_arrow'
         src={ trendArrowIndex.greenArrowUp }
         title='Higher than global average'
       />,
-    down_arrow:
+    green_down_arrow:
+      <img
+        alt='Lower than global average'
+        className='trend_arrow'
+        src={ trendArrowIndex.greenArrowDown }
+        title='Lower than global average'
+      />,
+    red_down_arrow:
       <img
         alt='Lower than global average'
         className='trend_arrow'
         src={ trendArrowIndex.redArrowDown }
         title='Lower than global average'
       />,
-    no_arrow: <></>
+    red_up_arrow:
+      <img
+        alt='Higher than global average'
+        className='trend_arrow'
+        src={ trendArrowIndex.redArrowUp }
+        title='Higher than global average'
+      />
   }
 
   function calcTrend(userStat, averageStat, statType, arrows) {
-    let arrow = arrows.no_arrow
+    let arrow = arrows.even_bar
 
     if(userStat !== 0){
       if(statType === 'percentage')
-        if(userStat > averageStat) arrow = arrows.up_arrow
-        else if(userStat < averageStat) arrow = arrows.down_arrow
+        if(userStat > averageStat) arrow = arrows.green_up_arrow
+        else if(userStat < averageStat) arrow = arrows.red_down_arrow
       if(statType === 'time')
-        if(userStat > averageStat) arrow = arrows.down_arrow
-        else if(userStat < averageStat) arrow = arrows.up_arrow
+        if(userStat > averageStat) arrow = arrows.red_up_arrow
+        else if(userStat < averageStat) arrow = arrows.green_down_arrow
     }
 
     return arrow
@@ -47,9 +67,7 @@ const makeDashboardStatsCardHeaderCards = (userTotals, qSetTotals, questionsAnsw
       },
       {
         header_text: 'Average Time',
-        // span_text: `${ (userTotals.averages.avgTime).toFixed(2) }s`,
         span_text: <>{ (userTotals.averages.avgTime).toFixed(2) }<span>s</span></>,
-
         arrow_img: calcTrend(userTotals.averages.avgTime, qSetTotals.averages.avgTime, 'time', arrows)
       },
       {
@@ -66,8 +84,7 @@ const makeDashboardStatsCardHeaderCards = (userTotals, qSetTotals, questionsAnsw
         header_text: 'Correct',
         span_text: `${ userTotals.correct }/${ userTotals.answered } (${ userTotals.averages.correct }%)`,
         arrow_img: calcTrend(userTotals.averages.correct, qSetTotals.averages.correct, 'percentage', arrows)
-      },
-
+      }
     ]
   )
 }

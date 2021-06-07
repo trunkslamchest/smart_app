@@ -72,7 +72,7 @@ const makeResultsStatsSubCards = (
                   subTextClass: perfSubWrapperText,
                   headerText: 'Time',
                   subHeaderText: <>{ (userQuestionTime / 1.00).toFixed(2) }<span>s</span></>,
-                  trendArrows: makeResultsTrendArrows(averageTime, questionTime, 'time', trendArrowIndex, false)
+                  trendArrows: makeResultsTrendArrows((userQuestionTime / 1.00), questionTime, 'time', trendArrowIndex, false)
                 }
               ]
             },

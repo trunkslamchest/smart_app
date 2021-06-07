@@ -120,15 +120,7 @@ const ResultsStats = (props) => {
     </div>
   )})
 
-  return(
-    <>
-      { props.showStats &&
-        <div className={ componentClasses.statsWrapper }>
-          { distribSubCards }
-        </div>
-      }
-    </>
-  )
+  return props.showStats && <div className={ componentClasses.statsWrapper }>{ distribSubCards }</div>
 }
 
 const store = store => {

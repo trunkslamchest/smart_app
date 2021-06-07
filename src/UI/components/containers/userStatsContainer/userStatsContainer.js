@@ -41,7 +41,7 @@ const UserStatsTotal = (props) => {
   let trendArrows = makeUserStatsTrendArrows(
     props.userQuestionTotals.rating,
     props.questionTotals.averages.rating,
-    props.userQuestionTotals.answered,
+    (props.userQuestionTotals.answered / props.questionTotals.questions) * 100,
     props.questionTotals.averages.answers,
     props.userQuestionTotals.averages.correct,
     props.questionTotals.averages.correct,
@@ -60,41 +60,40 @@ const UserStatsTotal = (props) => {
     totalQuestionsAnswered = ((props.userQuestionTotals.answered / props.questionTotals.questions) * 100).toFixed(2)
     if(props.userQuestionTotals.answered >= 5) {
       performance =
-        <>
-          <div className={ componentClasses.perfSubContainer }>
-            <div className={ componentClasses.rankContainer }>
-              <h2>SmartApp™ Rank</h2>
+        <div className={ componentClasses.perfSubContainer }>
+          <div className={ componentClasses.rankContainer }>
+            <h2>SmartApp™ Rank</h2>
+            <div className={ componentClasses.ratingSubContainer }>
+              { trendArrows.rating }
               <h1>{ props.userQuestionTotals.rank }</h1>
             </div>
-            <div className={ componentClasses.ratingContainer }>
-              <h2>SmartApp™ Rating</h2>
-              <div className={ componentClasses.ratingSubContainer }>
-                <h1>{ (props.userQuestionTotals.rating * 10).toFixed(2) }</h1>
-                { trendArrows.rating }
-              </div>
+          </div>
+          <div className={ componentClasses.ratingContainer }>
+            <h2>SmartApp™ Rating</h2>
+            <div className={ componentClasses.ratingSubContainer }>
+              { trendArrows.rating }
+              <h1>{ (props.userQuestionTotals.rating * 10).toFixed(2) }</h1>
             </div>
           </div>
-        </>
+        </div>
     } else {
       if(props.from_dashboard){
         performance = <p>Answer <span>{ 5 - props.userQuestionTotals.answered }</span> more questions to receive a rank & rating!</p>
       } else {
         performance =
-          <>
-            <div className={ componentClasses.perfSubContainer }>
-              <div className={ componentClasses.rankContainer }>
-                <h2>SmartApp™ Rank</h2>
+          <div className={ componentClasses.perfSubContainer }>
+            <div className={ componentClasses.rankContainer }>
+              <h2>SmartApp™ Rank</h2>
+              <h1>NR</h1>
+            </div>
+            <div className={ componentClasses.ratingContainer }>
+              <h2>SmartApp™ Rating</h2>
+              <div className={ componentClasses.ratingSubContainer }>
                 <h1>NR</h1>
-              </div>
-              <div className={ componentClasses.ratingContainer }>
-                <h2>SmartApp™ Rating</h2>
-                <div className={ componentClasses.ratingSubContainer }>
-                  <h1>NR</h1>
-                  { trendArrows.rating }
-                </div>
+                { trendArrows.rating }
               </div>
             </div>
-          </>
+          </div>
       }
     }
 
