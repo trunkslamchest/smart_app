@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/smartapp/static/css/main.c1742807.chunk.css",
-    "main.js": "/smartapp/static/js/main.64b58ddb.chunk.js",
-    "main.js.map": "/smartapp/static/js/main.64b58ddb.chunk.js.map",
+    "main.css": "/smartapp/static/css/main.d373e078.chunk.css",
+    "main.js": "/smartapp/static/js/main.15c070a3.chunk.js",
+    "main.js.map": "/smartapp/static/js/main.15c070a3.chunk.js.map",
     "runtime-main.js": "/smartapp/static/js/runtime-main.4fd3f6d3.js",
     "runtime-main.js.map": "/smartapp/static/js/runtime-main.4fd3f6d3.js.map",
     "static/js/2.0d08bb57.chunk.js": "/smartapp/static/js/2.0d08bb57.chunk.js",
     "static/js/2.0d08bb57.chunk.js.map": "/smartapp/static/js/2.0d08bb57.chunk.js.map",
     "index.html": "/smartapp/index.html",
-    "static/css/main.c1742807.chunk.css.map": "/smartapp/static/css/main.c1742807.chunk.css.map",
+    "static/css/main.d373e078.chunk.css.map": "/smartapp/static/css/main.d373e078.chunk.css.map",
     "static/js/2.0d08bb57.chunk.js.LICENSE.txt": "/smartapp/static/js/2.0d08bb57.chunk.js.LICENSE.txt",
     "static/media/1_star_rating.583df56b.svg": "/smartapp/static/media/1_star_rating.583df56b.svg",
     "static/media/2_star_rating.b661eb4d.svg": "/smartapp/static/media/2_star_rating.b661eb4d.svg",
@@ -34,7 +34,8 @@
     "static/media/github_footer_logo.8644efd6.svg": "/smartapp/static/media/github_footer_logo.8644efd6.svg",
     "static/media/github_hover_footer_logo.5c99744a.svg": "/smartapp/static/media/github_hover_footer_logo.5c99744a.svg",
     "static/media/green_checkmark.bb7d88b0.svg": "/smartapp/static/media/green_checkmark.bb7d88b0.svg",
-    "static/media/green_trend_arrow.f16a2fdc.svg": "/smartapp/static/media/green_trend_arrow.f16a2fdc.svg",
+    "static/media/green_down_trend_arrow.12488629.svg": "/smartapp/static/media/green_down_trend_arrow.12488629.svg",
+    "static/media/green_up_trend_arrow.6b5e0eb6.svg": "/smartapp/static/media/green_up_trend_arrow.6b5e0eb6.svg",
     "static/media/grey_1_star_rating.d280cac2.svg": "/smartapp/static/media/grey_1_star_rating.d280cac2.svg",
     "static/media/grey_2_star_rating.cd7661da.svg": "/smartapp/static/media/grey_2_star_rating.cd7661da.svg",
     "static/media/grey_3_star_rating.3f47a667.svg": "/smartapp/static/media/grey_3_star_rating.3f47a667.svg",
@@ -47,6 +48,7 @@
     "static/media/grey_discuss_nav_bar_button.b8a0571c.svg": "/smartapp/static/media/grey_discuss_nav_bar_button.b8a0571c.svg",
     "static/media/grey_down_menu_arrow.a27e7f53.svg": "/smartapp/static/media/grey_down_menu_arrow.a27e7f53.svg",
     "static/media/grey_edit.bb130b95.svg": "/smartapp/static/media/grey_edit.bb130b95.svg",
+    "static/media/grey_even_trend_arrow.ec080525.svg": "/smartapp/static/media/grey_even_trend_arrow.ec080525.svg",
     "static/media/grey_footer_logo.648ee93f.svg": "/smartapp/static/media/grey_footer_logo.648ee93f.svg",
     "static/media/grey_header_icon.d503590a.svg": "/smartapp/static/media/grey_header_icon.d503590a.svg",
     "static/media/grey_help_nav_bar_button.c2fc65e1.svg": "/smartapp/static/media/grey_help_nav_bar_button.c2fc65e1.svg",
@@ -81,8 +83,9 @@
     "static/media/otb_footer_logo.4d96ad44.svg": "/smartapp/static/media/otb_footer_logo.4d96ad44.svg",
     "static/media/otb_hover_footer_logo.6d79ea90.svg": "/smartapp/static/media/otb_hover_footer_logo.6d79ea90.svg",
     "static/media/react_home_icon.4be93bd6.svg": "/smartapp/static/media/react_home_icon.4be93bd6.svg",
+    "static/media/red_down_trend_arrow.4e425a25.svg": "/smartapp/static/media/red_down_trend_arrow.4e425a25.svg",
     "static/media/red_error_exclamation.9f8dd207.svg": "/smartapp/static/media/red_error_exclamation.9f8dd207.svg",
-    "static/media/red_trend_arrow.4df15b79.svg": "/smartapp/static/media/red_trend_arrow.4df15b79.svg",
+    "static/media/red_up_trend_arrow.b50788ba.svg": "/smartapp/static/media/red_up_trend_arrow.b50788ba.svg",
     "static/media/red_x.43b3baf5.svg": "/smartapp/static/media/red_x.43b3baf5.svg",
     "static/media/redux_home_icon.e9092b37.svg": "/smartapp/static/media/redux_home_icon.e9092b37.svg",
     "static/media/scss_home_icon.bc21bd9c.svg": "/smartapp/static/media/scss_home_icon.bc21bd9c.svg",
@@ -121,7 +124,7 @@
   "entrypoints": [
     "static/js/runtime-main.4fd3f6d3.js",
     "static/js/2.0d08bb57.chunk.js",
-    "static/css/main.c1742807.chunk.css",
-    "static/js/main.64b58ddb.chunk.js"
+    "static/css/main.d373e078.chunk.css",
+    "static/js/main.15c070a3.chunk.js"
   ]
 }
